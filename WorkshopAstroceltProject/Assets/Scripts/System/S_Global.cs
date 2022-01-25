@@ -16,6 +16,16 @@ public class S_Global : MonoBehaviour
     public S_TurnManager g_turnManager;
     public S_Player g_player;
     public S_Enemy g_enemy;
+    public S_MapGeneration g_mapManager;
+    public S_DrawingManager g_DrawingManager;
+    public S_StarClassManager g_StarClassManager;
+
+    [Header("Character States")]
+    public bool g_b_playerTurn;
+    public bool g_b_enemyTurn;
+
+    [Header("Null States")]
+    public S_Star g_nullStar;
 
     void Awake()
     {
