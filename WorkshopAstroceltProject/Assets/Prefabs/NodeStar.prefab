@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3232526743670229590}
   - component: {fileID: 7516782595821362771}
   - component: {fileID: 3475617502623980383}
-  - component: {fileID: -6388886420511229966}
+  - component: {fileID: 6955678015951239671}
+  - component: {fileID: 2347392078461315274}
   m_Layer: 0
   m_Name: NodeStar
-  m_TagString: NodeStar
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,9 +47,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -71,7 +72,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-6388886420511229966
+--- !u!114 &6955678015951239671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,17 +81,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1640622787860408978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cccc142abe080764da0522e4f32ba5ef, type: 3}
+  m_Script: {fileID: 11500000, guid: c53fe15e004f4b34688cc16cea53eb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   c_starHoverColor: {r: 0, g: 0, b: 0, a: 0}
-  s_nodeStarTemplate:
+  s_starGraphic: {fileID: 6122840224723126708}
+  s_starTemplateClass:
     m_previous: {fileID: 0}
     m_forward: {fileID: 0}
-  s_energyStarTemplate:
-    m_previous: {fileID: 0}
-    m_forward: {fileID: 0}
-  s_elementStarTemplate: {fileID: 0}
+--- !u!114 &2347392078461315274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640622787860408978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1582beff6334e919486c07ea4d3316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starType: '"Node"'
 --- !u!1 &6122840224723126708
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,8 +113,8 @@ GameObject:
   - component: {fileID: 7868034960225705030}
   - component: {fileID: 389474685738491352}
   m_Layer: 0
-  m_Name: StarGraphic
-  m_TagString: Untagged
+  m_Name: NodeStarGraphic
+  m_TagString: NodeStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
