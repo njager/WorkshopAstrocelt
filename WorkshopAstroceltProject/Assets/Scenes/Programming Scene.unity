@@ -422,10 +422,11 @@ MonoBehaviour:
   g_enemy: {fileID: 1005853314}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 0}
-  g_StarClassManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
-  g_nullStar: {fileID: 0}
+  g_nullStar:
+    m_previous: {fileID: 0}
+    m_forward: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -1188,13 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd97c98f626489f43a548611c70dc1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g_nodeStarTemplate:
-    m_previous: {fileID: 0}
-    m_forward: {fileID: 0}
-  g_energyStarTemplate:
-    m_previous: {fileID: 0}
-    m_forward: {fileID: 0}
-  g_elementStarTemplate: {fileID: 0}
+  starType: 
 --- !u!1001 &125664424168536173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1263,10 +1258,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NodeStar
       objectReference: {fileID: 0}
-    - target: {fileID: 1640622787860408978, guid: 89f0cb3e81d13f54cb9eb0d6b84e7abd, type: 3}
-      propertyPath: m_TagString
-      value: NodeStar
-      objectReference: {fileID: 0}
     - target: {fileID: 3232526743670229590, guid: 89f0cb3e81d13f54cb9eb0d6b84e7abd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1327,10 +1318,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7165402992530625468, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
       propertyPath: m_Name
-      value: EnergyStar
-      objectReference: {fileID: 0}
-    - target: {fileID: 7165402992530625468, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
-      propertyPath: m_TagString
       value: EnergyStar
       objectReference: {fileID: 0}
     - target: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
@@ -1397,11 +1384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3339982878317251572, guid: 1854591a6d64533478290a431eac38c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 3339982878317251572, guid: 1854591a6d64533478290a431eac38c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 3339982878317251572, guid: 1854591a6d64533478290a431eac38c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1450,11 +1437,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6454044182902328387, guid: bcb6a26ab5e60f54aab94b161e7888b6, type: 3}
       propertyPath: m_Name
-      value: ElementStar
-      objectReference: {fileID: 0}
-    - target: {fileID: 6454044182902328387, guid: bcb6a26ab5e60f54aab94b161e7888b6, type: 3}
-      propertyPath: m_TagString
-      value: ElementStar
+      value: RitualStar
       objectReference: {fileID: 0}
     - target: {fileID: 8561052831896400521, guid: bcb6a26ab5e60f54aab94b161e7888b6, type: 3}
       propertyPath: m_RootOrder

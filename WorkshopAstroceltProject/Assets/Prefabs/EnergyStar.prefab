@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 8539178483310768944}
   - component: {fileID: 7886650131419971171}
   - component: {fileID: 2549681591324021385}
-  - component: {fileID: 5406703346968731323}
+  - component: {fileID: 5411750500188637886}
+  - component: {fileID: 1280418675001395157}
   m_Layer: 0
   m_Name: EnergyStar
-  m_TagString: EnergyStar
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5406703346968731323
+--- !u!114 &5411750500188637886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,17 +81,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7165402992530625468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cccc142abe080764da0522e4f32ba5ef, type: 3}
+  m_Script: {fileID: 11500000, guid: b519607ef0da781429f1548f6c6c383e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   c_starHoverColor: {r: 0, g: 0, b: 0, a: 0}
-  s_nodeStarTemplate:
+  s_starGraphic: {fileID: 8082527287553830910}
+  s_starTemplateClass:
     m_previous: {fileID: 0}
     m_forward: {fileID: 0}
-  s_energyStarTemplate:
-    m_previous: {fileID: 0}
-    m_forward: {fileID: 0}
-  s_elementStarTemplate: {fileID: 0}
+--- !u!114 &1280418675001395157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165402992530625468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1582beff6334e919486c07ea4d3316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starType: '"Energy"'
 --- !u!1 &8082527287553830910
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,8 +113,8 @@ GameObject:
   - component: {fileID: 545056092212501249}
   - component: {fileID: 7047292802453582703}
   m_Layer: 0
-  m_Name: StarGraphic
-  m_TagString: Untagged
+  m_Name: EnergyStarGraphic
+  m_TagString: EnergyStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
