@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class S_DrawingManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private S_Global g_global;
+
+    private void Awake()
     {
-        
+        g_global = S_Global.g_instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// This is the script that spawns the line renderer for the star map
+    /// It does not check if the stars alread have lines attached to them, but 
+    /// the line renderer will tell this script in a different function if there is collision or not
+    /// - Riley
+    /// </summary>
+    public void SpawnLine(Vector2 _loc1, Vector2 _loc2)
     {
-        
+        //spawn a line renderer and place it at the two locations
     }
+
+    //public S_Star 
 }
