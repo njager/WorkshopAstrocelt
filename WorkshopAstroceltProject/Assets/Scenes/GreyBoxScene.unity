@@ -467,6 +467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eddcf0d11338944baa637a7f1c9297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTurnBar: {fileID: 0}
+  playerTurnBar: {fileID: 0}
+  playerHealthBar: {fileID: 0}
+  playerHealthText: {fileID: 0}
+  tempUIInitial: 0
+  tempUIMax: 0
 --- !u!1 &499243149
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +507,7 @@ MonoBehaviour:
   g_enemy: {fileID: 1005853314}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 0}
+  g_UIManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar:
@@ -634,7 +641,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 679584882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487312183}
+        m_TargetAssemblyTypeName: S_UIManager, Assembly-CSharp
+        m_MethodName: EndTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &679584882
 MonoBehaviour:
   m_ObjectHideFlags: 0

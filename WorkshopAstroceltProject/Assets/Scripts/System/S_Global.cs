@@ -18,6 +18,7 @@ public class S_Global : MonoBehaviour
     public S_Enemy g_enemy;
     public S_MapGeneration g_mapManager;
     public S_DrawingManager g_DrawingManager;
+    public S_UIManager g_UIManager; 
 
     [Header("Character States")]
     public bool g_b_playerTurn;
