@@ -22,40 +22,36 @@ public class S_UIManager : MonoBehaviour
 
     private float spawnTimer = 5f;
 
-    private void Awake()
-    {
-        g_global = S_Global.g_instance; 
-    }
-
     void Start()
     {
+        g_global = S_Global.g_instance; //DO NOT PUT IN AWAKE, breaks behavior for some reason.
         tempUIInitial = 60;
         tempUIMax = 100; 
     }
 
     void Update()
     {
-        //SetElements();  
+        SetElements();  
 
-        //if (g_global.g_b_playerTurn == true)
+        if (g_global.g_b_playerTurn == true)
         {
             //Turn indicator changing
-            //playerTurnBar.SetActive(true);
-            //enemyTurnBar.SetActive(false); 
+            playerTurnBar.SetActive(true);
+            enemyTurnBar.SetActive(false); 
         }
 
-        //if (g_global.g_b_playerTurn == false)
+        if (g_global.g_b_playerTurn == false)
         {
             //Turn indicator changing
-            //playerTurnBar.SetActive(false);
-            //enemyTurnBar.SetActive(true);
+            playerTurnBar.SetActive(false);
+            enemyTurnBar.SetActive(true);
 
             //Simulating the enemy turn behavior "waiting" before changing back
-            //spawnTimer -= Time.deltaTime;
-            //if (spawnTimer < 0)
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer < 0)
             {
-                //g_global.g_turnManager.PlayerStateChange();
-                //spawnTimer = 5f;
+                g_global.g_turnManager.PlayerStateChange();
+                spawnTimer = 5f;
             }
         }
     }
@@ -71,13 +67,23 @@ public class S_UIManager : MonoBehaviour
         playerHealthText.text = tempUIInitial.ToString() + "/" + tempUIMax.ToString();
 
         //Health Bar
-        playerHealthBar.fillAmount = tempUIInitial / tempUIMax;
+        playerHealthBar.fillAmount = (float)tempUIInitial / (float)tempUIMax;
     }
 
-    //Temporary Button placeholder for triggering the state machine
+    //Temporary Button placeholder for triggering the state machine, move code like this to S_ButtonManager
     public void EndTurn()
     {
-        tempUIInitial-= 5; // Simultating enemy attack
-        g_global.g_turnManager.EnemyStateChange();
+        if(g_global.g_b_enemyTurn == true)
+        {
+            Debug.Log("Not your turn!");
+            return;
+        }
+        else
+        {
+            tempUIInitial -= 5; // Simultating enemy attack
+            Debug.Log("Clicked!");
+            g_global.g_turnManager.EnemyStateChange();
+        }
+        
     }
 }

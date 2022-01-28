@@ -7,15 +7,17 @@ public class S_TurnManager : MonoBehaviour
     private S_Global g_global;
 
     public bool b_playerInitialTurn = true;
-    public bool b_enemyInitalTurn = false;
+    public bool b_enemyInitialTurn = false;
 
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
     /// </summary>
-    private void Awake()
+    void Start()
     {
         g_global = S_Global.g_instance;
+        g_global.g_b_playerTurn = b_playerInitialTurn;
+        g_global.g_b_enemyTurn = b_enemyInitialTurn;
     }
 
 

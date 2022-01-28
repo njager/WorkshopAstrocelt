@@ -25,12 +25,10 @@ public class S_Global : MonoBehaviour
     public bool g_b_enemyTurn;
 
     [Header("Null States")]
-    public S_Star g_nullStar;
+    public S_StarClass g_nullStar;
 
     void Awake()
     {
         g_instance = this;
-        g_b_playerTurn = g_turnManager.b_playerInitialTurn;
-        g_b_enemyTurn = g_turnManager.b_enemyInitalTurn;
     }
 }
