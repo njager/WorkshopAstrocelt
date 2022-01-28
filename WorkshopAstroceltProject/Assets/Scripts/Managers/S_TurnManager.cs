@@ -16,8 +16,6 @@ public class S_TurnManager : MonoBehaviour
     private void Awake()
     {
         g_global = S_Global.g_instance;
-        g_global.g_b_playerTurn = b_playerInitialTurn;
-        g_global.g_b_enemyTurn = b_enemyInitalTurn;
     }
 
 

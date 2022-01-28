@@ -35,27 +35,27 @@ public class S_UIManager : MonoBehaviour
 
     void Update()
     {
-        SetElements();  
+        //SetElements();  
 
-        if (g_global.g_b_playerTurn == true)
+        //if (g_global.g_b_playerTurn == true)
         {
             //Turn indicator changing
-            playerTurnBar.SetActive(true);
-            enemyTurnBar.SetActive(false); 
+            //playerTurnBar.SetActive(true);
+            //enemyTurnBar.SetActive(false); 
         }
 
-        if (g_global.g_b_playerTurn == false)
+        //if (g_global.g_b_playerTurn == false)
         {
             //Turn indicator changing
-            playerTurnBar.SetActive(false);
-            enemyTurnBar.SetActive(true);
+            //playerTurnBar.SetActive(false);
+            //enemyTurnBar.SetActive(true);
 
             //Simulating the enemy turn behavior "waiting" before changing back
-            spawnTimer -= Time.deltaTime;
-            if (spawnTimer < 0)
+            //spawnTimer -= Time.deltaTime;
+            //if (spawnTimer < 0)
             {
-                g_global.g_turnManager.PlayerStateChange();
-                spawnTimer = 5f;
+                //g_global.g_turnManager.PlayerStateChange();
+                //spawnTimer = 5f;
             }
         }
     }
@@ -71,7 +71,7 @@ public class S_UIManager : MonoBehaviour
         playerHealthText.text = tempUIInitial.ToString() + "/" + tempUIMax.ToString();
 
         //Health Bar
-        playerHealthBar.fillAmount = tempUIInitial/ tempUIMax;
+        playerHealthBar.fillAmount = tempUIInitial / tempUIMax;
     }
 
     //Temporary Button placeholder for triggering the state machine
