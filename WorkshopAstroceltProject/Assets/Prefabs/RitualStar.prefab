@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 2440462935911650192}
   - component: {fileID: 4783706319147114213}
   m_Layer: 0
-  m_Name: NeutralStarGraphic
+  m_Name: ColorlessStarGraphic
   m_TagString: NeutralRitualStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.4528302, g: 0.44215024, b: 0.44215024, a: 1}
+  m_Color: {r: 0.45631874, g: 0.6132076, b: 0.42037496, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -338,9 +338,11 @@ MonoBehaviour:
   s_redRitualStarGraphic: {fileID: 776223449507903903}
   s_blueRitualStarGraphic: {fileID: 4154172398554925229}
   s_yellowRitualStarGraphic: {fileID: 6909720486647782166}
-  s_starTemplateClass:
+  s_starTemplate:
     m_previous: {fileID: 0}
-    m_forward: {fileID: 0}
+    m_next: {fileID: 0}
+    m_previousLine: {fileID: 0}
+    m_nextLine: {fileID: 0}
 --- !u!114 &1834187910795450664
 MonoBehaviour:
   m_ObjectHideFlags: 0

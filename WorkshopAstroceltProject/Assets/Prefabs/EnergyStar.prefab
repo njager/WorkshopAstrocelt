@@ -86,9 +86,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c_starHoverColor: {r: 0, g: 0, b: 0, a: 0}
   s_starGraphic: {fileID: 8082527287553830910}
-  s_starTemplateClass:
+  s_starTemplate:
     m_previous: {fileID: 0}
-    m_forward: {fileID: 0}
+    m_next: {fileID: 0}
+    m_previousLine: {fileID: 0}
+    m_nextLine: {fileID: 0}
 --- !u!114 &1280418675001395157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +176,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.20632699, g: 0.6886792, b: 0.17180887, a: 1}
+  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
