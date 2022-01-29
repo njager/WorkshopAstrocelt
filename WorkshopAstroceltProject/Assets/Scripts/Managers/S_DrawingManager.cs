@@ -6,7 +6,11 @@ public class S_DrawingManager : MonoBehaviour
 {
     private S_Global g_global;
 
+    public LineRenderer l_constelationLine;
+
+
     public S_StarClass s_previousStar;
+    public Vector2 v2_prevLoc;
     public bool b_drawing;
 
     private void Awake()
@@ -20,36 +24,55 @@ public class S_DrawingManager : MonoBehaviour
     /// changes the b_drawing variable when it is clicked
     /// - Riley
     /// </summary>
-    public void NodeStarClicked(S_StarClass _starN)
+    public void NodeStarClicked(S_StarClass _starN, Vector2 _loc)
     {
-
+        if (b_drawing) 
+        { 
+            b_drawing = false;
+            SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
+        }
+        else 
+        { 
+            b_drawing = true;
+            s_previousStar = _starN;
+            v2_prevLoc = _loc;
+        }
+        print("did it");
     }
 
     /// <summary>
-    /// This is the func that will check the star to make sure it doesnt already have a line 
+    /// This is the func for non node stars and checks conditions before passing along to the spawn line function 
     /// - Riley
     /// </summary>
-    public void StarClicked(S_StarClass _star)
+    public void StarClicked(S_StarClass _star, Vector2 _loc)
     {
-        //check if the clicked star has a 
-        //if(s_previousStar is NodeStar) {dont check shit just gooo}
-        //else { check for a line attached to the the previous }
-        //at the end spawn the line if it is valid
-        SpawnLine(s_previousStar, _star);
+        if (s_previousStar != null)
+        {
+            SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
+        }
     }
 
     /// <summary>
     /// This is the func that spawns the line renderer for the star map
-    /// It does not check if the stars alread have lines attached to them, but 
-    /// the line renderer will tell this script in a different function if there is collision or not
-    /// assign the stars to know if it has a linerender attached to it and puts them in the line renderer as well
+    /// It sets the start and end points of the line and then changes the previous star to be the most recently imputed
+    /// sets the previous and next line in each script to be the line created
     /// - Riley
     /// </summary>
-    public void SpawnLine(S_StarClass _star1, S_StarClass _star2)
+    public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
-        //spawn a line renderer and place it at the two locations
-        //take the star object and put it in star1 star2
-        //take star1 and star2 and put it in the line renderer
+        LineRenderer _newline = Instantiate(l_constelationLine);
+
+        _newline.SetPosition(0, _loc1);
+        _newline.SetPosition(1, _loc2);
+
+        _star1.s_star.m_nextLine = _newline;
+        _star2.s_star.m_previousLine = _newline;
+
+        _star1.s_star.m_next = _star2;
+        _star2.s_star.m_previous = _star1;
+
+        s_previousStar = _star2;
+        v2_prevLoc = _loc2;
     }
 
     /// <summary>

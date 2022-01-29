@@ -25,7 +25,7 @@ public class S_NodeStar : MonoBehaviour
     /// then assign the startColor to the starSprite 
     /// - Riley & Josh
     /// </summary>
-    private void Awake()
+    private void Start()
     {
         //change null to nullstar 
         g_global = S_Global.g_instance;
@@ -47,5 +47,17 @@ public class S_NodeStar : MonoBehaviour
     {
         //change the color to the start color when mouse leaves
         s_starSprite.color = c_starStartColor;
+    }
+
+    /// <summary>
+    /// This is the func that will trigger the drawing. 
+    /// Check to make sure the star doesnt have all its lines 
+    /// then call the drawingmanager that it is the node star and has been clicked
+    /// </summary>
+    public void OnMouseDown()
+    {
+        print("Here Node");
+        //doesnt like this call
+        g_global.g_DrawingManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
     }
 }

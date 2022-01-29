@@ -5,6 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class S_Star
 {
+    private S_Global g_global;
+
+    //put in start to avoid any race conditions (doesnt need to be in awake)
+    private void Start()
+    {
+        g_global = S_Global.g_instance;
+    }
+
     // Stars used to connect to it's other two lines
     [Header("Other Stars")]
     public S_StarClass m_previous;
@@ -12,8 +20,8 @@ public class S_Star
 
     // Lines that were made with this star
     [Header("Lines Attached to Star")]
-    public S_ConstellationLine m_previousLine;
-    public S_ConstellationLine m_nextLine;
-
+    public LineRenderer m_previousLine;
+    public LineRenderer m_nextLine;
+    
     //Functions can be added to be used in other star scripts, tested and works - Josh
 }

@@ -27,7 +27,7 @@ public class S_RitualStar : MonoBehaviour
     /// - Riley & Josh
     /// </summary>
 
-    private void Awake()
+    private void Start()
     {
         //change null to nullstar 
         g_global = S_Global.g_instance;
@@ -51,5 +51,15 @@ public class S_RitualStar : MonoBehaviour
     {
         //change the color to the start color when mouse leaves
         s_starSprite.color = c_starStartColor;
+    }
+
+    public void OnMouseDown()
+    {
+        if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
+        {
+            print("Here");
+            //doesnt like this call
+            g_global.g_DrawingManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+        }
     }
 }

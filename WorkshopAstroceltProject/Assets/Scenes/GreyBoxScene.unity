@@ -5386,7 +5386,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s_previousStar: {fileID: 0}
+  l_constelationLine: {fileID: 6747237267146521666, guid: ed8ade2b4196151469dd1825d0f23c35, type: 3}
+  s_previousStar:
+    m_previous: {fileID: 0}
+    m_next: {fileID: 0}
+    m_previousLine: {fileID: 0}
+    m_nextLine: {fileID: 0}
+  v2_prevLoc: {x: 0, y: 0}
   b_drawing: 0
 --- !u!1 &2099872389
 GameObject:
