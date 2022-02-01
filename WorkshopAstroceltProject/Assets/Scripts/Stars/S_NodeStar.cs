@@ -23,6 +23,7 @@ public class S_NodeStar : MonoBehaviour
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
     /// then assign the startColor to the starSprite 
+    /// Do in start to properly fetch global
     /// - Riley & Josh
     /// </summary>
     private void Start()
@@ -31,7 +32,6 @@ public class S_NodeStar : MonoBehaviour
         g_global = S_Global.g_instance;
 
         //assign after the star class gets assigned 
-
         s_starSprite = s_starGraphic.GetComponent<SpriteRenderer>();
 
         c_starStartColor = s_starSprite.color;

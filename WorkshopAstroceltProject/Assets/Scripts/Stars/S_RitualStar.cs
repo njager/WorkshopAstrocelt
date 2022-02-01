@@ -23,7 +23,8 @@ public class S_RitualStar : MonoBehaviour
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
-    /// then assign the startColor to the starSprite 
+    /// then assign the startColor to the starSprite  
+    /// Do in start to properly fetch global
     /// - Riley & Josh
     /// </summary>
 

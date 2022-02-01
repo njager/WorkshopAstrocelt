@@ -18,12 +18,12 @@ public class S_NullStar : MonoBehaviour
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
-    /// then assign the startColor to the starSprite 
+    /// then assign the startColor to the starSprite  
+    /// Do in start to properly fetch global
     /// - Riley & Josh
     /// </summary>
     private void Awake()
     {
-        //change null to nullstar 
         g_global = S_Global.g_instance;
     }
 
