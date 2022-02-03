@@ -1120,14 +1120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testStar1: {fileID: 576107795}
-  testStar2: {fileID: 939871219}
+  testStar2: {fileID: 569133890}
   m_childLineRendererObject: {fileID: 798434928}
   m_lineRendererInst: {fileID: 798434930}
-  f_boxOffsetX: 0
-  f_boxOffsetY: 0
+  f_boxOffsetX: 0.15
+  f_boxOffsetY: 0.125
   constellationLinePrefab: {fileID: 470833515}
   i_index: 0
   v2_prevLoc: {x: 0, y: 0}
+  f_lineWidth: 0.275
   s_previousStar: {fileID: 576107795}
   s_nextStar: {fileID: 939871219}
 --- !u!4 &470833517
@@ -1603,6 +1604,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500611604}
   m_CullTransparentMesh: 1
+--- !u!114 &569133890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1280418675001395157, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
+  m_PrefabInstance: {fileID: 2450440253926526695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1582beff6334e919486c07ea4d3316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &572004695
 GameObject:
   m_ObjectHideFlags: 0

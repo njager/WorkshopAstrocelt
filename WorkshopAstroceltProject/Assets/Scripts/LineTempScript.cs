@@ -22,6 +22,8 @@ public class LineTempScript : MonoBehaviour
     public int i_index;
     public Vector2 v2_prevLoc;
 
+    public float f_lineWidth;
+
     public S_StarClass s_previousStar;
     public S_StarClass s_nextStar;
 
@@ -32,10 +34,6 @@ public class LineTempScript : MonoBehaviour
     void Start()
     {
         g_global = S_Global.g_instance;
-
-        //m_lineRendererInst.SetPosition(0, gameObject.transform.position);
-        //m_lineRendererInst.SetPosition(1, testStar.gameObject.transform.position);
-        //SetUp(); 
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -52,7 +50,19 @@ public class LineTempScript : MonoBehaviour
         //add functionality for running into another star
     }
 
-    public void SetUp()
+    public float calculateXOffset(float _length)
+    {
+        float _offsetedLength = _length * (1-f_boxOffsetX);
+        return _offsetedLength; 
+    }
+
+    public float calculateYOffset(float _width)
+    {
+        float _offsetedWidth = _width * (1 - f_boxOffsetY);
+        return _offsetedWidth;
+    }
+
+    public void SetUp(S_StarClass _star)
     {
         //Grab Line Renderer point data
         Vector3 _startPoint = m_lineRendererInst.GetPosition(0);
@@ -61,15 +71,31 @@ public class LineTempScript : MonoBehaviour
         // Grab the box collider
         m_box = gameObject.GetComponent<BoxCollider2D>();
 
-        //Width Grab
-        float _lineWidth = m_lineRendererInst.endWidth - f_boxOffsetX;
-
         //Distance calculation aka Length
-        float _newBoxWidth = Mathf.Pow(Mathf.Pow((_endPoint.x - _startPoint.x),2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2), 0.5f);
-        Debug.Log(_newBoxWidth);
+        float _newBoxLength= Mathf.Pow(Mathf.Pow((_endPoint.x - _startPoint.x),2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2), 0.5f);
+        //Debug.Log(_newBoxLength);
 
-        Vector2 _newBoxSize = new Vector2 (_lineWidth, _newBoxWidth);
-        m_box.size = _newBoxSize;  
+        //Width Grab
+        float _lineWidth = f_lineWidth;
+
+        //Set the new Box
+        Vector2 _newBoxSize = new Vector2 (calculateXOffset(_newBoxLength), calculateYOffset(_lineWidth));
+        m_box.size = _newBoxSize;
+
+        // Keep original position
+        Transform _originalPosition = gameObject.transform;
+
+        // Need to move parent object to the center
+        gameObject.transform.position = _startPoint + (_endPoint - _startPoint) / 2;
+
+        // Calculate rotation, adapted code 
+        Vector3 _difference = _star.gameObject.transform.position - transform.position;
+        float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
+
+        ///<summary>
+        /// https://answers.unity.com/questions/1023987/lookat-only-on-z-axis.html original code found in here
+        ///</summary>
     }
 
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
@@ -79,14 +105,14 @@ public class LineTempScript : MonoBehaviour
         LineTempScript _lineScript = _newLineObject.GetComponent<LineTempScript>();
         LineRenderer _newLine = _lineScript.m_childLineRendererObject.GetComponent<LineRenderer>(); 
 
-        // Set line positions
+        // Set line positions and width
         _newLine.SetPosition(0, _loc2);
         _newLine.SetPosition(1, _loc1);
+        _newLine.startWidth = _lineScript.f_lineWidth;
+        _newLine.endWidth = _lineScript.f_lineWidth; 
 
-        // Rotate the game object, then rotate lineRendererObject back (child inhereit's parent rotation, but can be changed independently)
-        _lineScript.SetUp();
-        //_newLineObject.transform.LookAt(_loc1);
-        //_newLine.gameObject.transform.rotation = Quaternion.identity;
+        // Run set up script
+        _lineScript.SetUp(_star2);
 
         //Set Stars in lineScript
         _lineScript.s_previousStar = _star1;
@@ -112,7 +138,7 @@ public class LineTempScript : MonoBehaviour
     public void TestButton()
     {
         Vector2 _loc1 = new Vector2(0, 0.79f);
-        Vector2 _loc2 = new Vector2(6.72f, 6.25f);
+        Vector2 _loc2 = new Vector2(-10f, 7f);
         SpawnLine(testStar1, testStar2, _loc1, _loc2);
     }
 }
