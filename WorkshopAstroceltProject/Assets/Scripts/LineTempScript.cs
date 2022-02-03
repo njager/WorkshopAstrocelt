@@ -27,6 +27,8 @@ public class LineTempScript : MonoBehaviour
     public S_StarClass s_previousStar;
     public S_StarClass s_nextStar;
 
+    public S_StarClass star3; 
+
     private void Awake()
     {
         m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
@@ -88,6 +90,8 @@ public class LineTempScript : MonoBehaviour
         // Need to move parent object to the center
         gameObject.transform.position = _startPoint + (_endPoint - _startPoint) / 2;
 
+        //transform.LookAt(new Vector3(transform.position.x, transform.position.y, _star.gameObject.transform.position.z));
+  
         // Calculate rotation, adapted code 
         Vector3 _difference = _star.gameObject.transform.position - transform.position;
         float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
@@ -112,7 +116,7 @@ public class LineTempScript : MonoBehaviour
         _newLine.endWidth = _lineScript.f_lineWidth; 
 
         // Run set up script
-        _lineScript.SetUp(_star2);
+        _lineScript.SetUp(_star1);
 
         //Set Stars in lineScript
         _lineScript.s_previousStar = _star1;
@@ -137,8 +141,15 @@ public class LineTempScript : MonoBehaviour
     // Test Function
     public void TestButton()
     {
-        Vector2 _loc1 = new Vector2(0, 0.79f);
-        Vector2 _loc2 = new Vector2(-10f, 7f);
+        Vector2 _loc1 = new Vector2(0.0f, 0.79f);
+        Vector2 _loc2 = new Vector2(2.51f, 5.08f);
         SpawnLine(testStar1, testStar2, _loc1, _loc2);
+    }
+
+    public void TestButton2()
+    {
+        Vector2 _loc1 = new Vector2(2.51f, 5.08f);
+        Vector2 _loc2 = new Vector2(7.04f, 2.2f);
+        SpawnLine(testStar2, star3, _loc1, _loc2);
     }
 }
