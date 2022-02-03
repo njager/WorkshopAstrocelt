@@ -27,7 +27,7 @@ public class LineTempScript : MonoBehaviour
     public S_StarClass s_previousStar;
     public S_StarClass s_nextStar;
 
-    public S_StarClass star3; 
+    // public S_StarClass star3; 
 
     private void Awake()
     {
@@ -142,7 +142,7 @@ public class LineTempScript : MonoBehaviour
     public void TestButton()
     {
         Vector2 _loc1 = new Vector2(0.0f, 0.79f);
-        Vector2 _loc2 = new Vector2(2.51f, 5.08f);
+        Vector2 _loc2 = new Vector2(-2.51f, -5.08f);
         SpawnLine(testStar1, testStar2, _loc1, _loc2);
     }
 
@@ -150,6 +150,6 @@ public class LineTempScript : MonoBehaviour
     {
         Vector2 _loc1 = new Vector2(2.51f, 5.08f);
         Vector2 _loc2 = new Vector2(7.04f, 2.2f);
-        SpawnLine(testStar2, star3, _loc1, _loc2);
+        //SpawnLine(testStar2, star3, _loc1, _loc2);
     }
 }
