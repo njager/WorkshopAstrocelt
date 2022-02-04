@@ -93,7 +93,7 @@ public class S_Player : MonoBehaviour
             _statusEffect = p_playerAttributes.p_b_bleeding;
             if (_statusEffect == false)
             {
-                
+                // These effects need to be fleshed out first
             }
             else
             {
