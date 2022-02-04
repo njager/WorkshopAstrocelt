@@ -21,7 +21,9 @@ public class S_Player : MonoBehaviour
 
 
     /// <summary>
-    /// Trigger function for when the player is attacked
+    /// Trigger function for when the player is attacked, first whittles shields, 
+    /// and still hits health if there's any remainder
+    /// else it hits health directly
     /// </summary>
     /// <param name="_damageValue"></param>
     

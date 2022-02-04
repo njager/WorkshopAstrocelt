@@ -34,14 +34,11 @@ public class S_PlayerAttributes : MonoBehaviour
  
     void Start()
     {
-        p_b_bleeding = false;
-        p_b_poisoned = false;
-        p_b_stunned = false;
-
         g_global = S_Global.g_instance; 
 
         if(g_global.g_i_sceneIndex == 0)
         {
+            FirstSceneVariables();
             g_global.g_playerAttributeSheet = this; 
         }
         else
@@ -53,6 +50,18 @@ public class S_PlayerAttributes : MonoBehaviour
 
     public void FirstSceneVariables()
     {
+        // PlayerConstants
+        p_i_health = 100;
+        p_i_healthMax = 100;
 
+        p_i_shield = 100;
+        p_i_shieldMax = 100;
+
+        p_f_playerEnergyGenerationRate = 1.0f;
+
+        //Status Effects
+        p_b_bleeding = false;
+        p_b_poisoned = false;
+        p_b_stunned = false;
     }
 }
