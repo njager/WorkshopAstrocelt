@@ -42,8 +42,6 @@ public class S_DrawingManager : MonoBehaviour
             b_drawing = true;
             s_previousStar = _starN;
             v2_prevLoc = _loc;
-
-            print(s_previousStar);
         }
     }
 
@@ -100,8 +98,6 @@ public class S_DrawingManager : MonoBehaviour
         //set the previous star and loc
         s_previousStar = _star2;
         v2_prevLoc = _loc2;
-
-        print(s_previousStar);
     }
 
     /// <summary>
@@ -132,6 +128,26 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void ConstellationReset()
     {
-        //retrace the constellation from the node star
+        print("first");
+        while (s_previousStar.starType != "Null")
+        {
+            S_StarClass _temporalStar = s_previousStar.s_star.m_previous;
+
+            s_previousStar.s_star.m_previous = s_nullStarInst;
+            s_previousStar.s_star.m_next = s_nullStarInst;
+
+            //check if the line needs to be deleted
+            if (s_previousStar.s_star.m_nextLine!=null)
+            {
+                Destroy(s_previousStar.s_star.m_nextLine);
+            }
+            
+            s_previousStar.s_star.m_nextLine = null;
+            s_previousStar.s_star.m_previousLine = null;
+
+            //s_previousStar.s_star.
+
+            s_previousStar = _temporalStar;
+        }
     }
 }
