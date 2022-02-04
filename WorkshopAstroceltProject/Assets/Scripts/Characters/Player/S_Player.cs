@@ -33,7 +33,7 @@ public class S_Player : MonoBehaviour
         if(p_playerAttributes.p_i_shield <= 0)
         {
             p_playerAttributes.p_i_health -= _damageValue;
-            Debug.Log("Player Health Attacked!");
+            Debug.Log("Player Attacked!");
         }
         else
         {

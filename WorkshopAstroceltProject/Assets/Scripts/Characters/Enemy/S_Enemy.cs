@@ -15,24 +15,62 @@ public class S_Enemy : MonoBehaviour
     }
 
    
-   public void EnemyAttacked(string _enemyType)
-   {
+    public void EnemyAttacked(string _enemyType, int _damageVal)
+    {
+        if (_enemyType == "Lumberjack")
+        {
+            if (e_enemyAttributes.e_i_shield <= 0)
+            {
+                e_enemyAttributes.e_i_health -= _damageVal;
+                Debug.Log("Enemy Attacked!");
+            }
+            else
+            {
+                int _tempVal = e_enemyAttributes.e_i_shield - _damageVal;
+                if (_tempVal < 0)
+                {
+                    e_enemyAttributes.e_i_shield -= _damageVal;
+                    if (e_enemyAttributes.e_i_shield < 0)
+                    {
+                        e_enemyAttributes.e_i_shield = 0;
+                    }
+                    EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                    Debug.Log("Enemy didn't have enough shields!");
+                }
+                else
+                {
+                    e_enemyAttributes.e_i_shield -= _damageVal;
+                    Debug.Log("Enemy had shields!");
+                }
+            }
+        }
+    }
 
-   }
+    public void EnemyShielded(int _shieldVal)
+    {
+        e_enemyAttributes.e_i_shield += _shieldVal;
+        Debug.Log("Enemy Shields");
+    }
 
-   public void EnemyShielded(string _enemyType)
-   {
+    public void EnemyHealed(int _healthVal)
+    {
+        e_enemyAttributes.e_i_health += _healthVal;
+        Debug.Log("Enemy Heals");
+    }
 
-   }
+    public void EnemySpecialAbility(string _enemyType)
+    {
+        if(_enemyType == "Lumberjack")
+        {
+            Debug.Log("Lumberjack doesn't have a special ability!");
+            return;
+        }
+    } 
 
-   public void EnemySpecialAbility(string _enemyType)
-   {
-
-   } 
-
-   public void EnemyDied(string _enemyType)
-   {
-        g_global.g_i_enemyCount -= 1; 
+    public void EnemyDied(string _enemyType)
+    {
+        g_global.g_i_enemyCount -= 1;
+        Debug.Log("Enemy Perished");
         gameObject.SetActive(false);
-   }
+    }
 }
