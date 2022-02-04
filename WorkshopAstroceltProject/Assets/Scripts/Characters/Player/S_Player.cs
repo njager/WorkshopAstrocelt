@@ -16,7 +16,7 @@ public class S_Player : MonoBehaviour
     {
         g_global = S_Global.g_instance;
 
-        //p_playerAttributes = g_global.g_p_playerAttributeSheet; 
+        p_playerAttributes = g_global.g_playerAttributeSheet; 
     }
 
 
@@ -57,6 +57,12 @@ public class S_Player : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Player shielding function for when they gain shields from play
+    /// </summary>
+    /// <param name="_shieldValue"></param>
+
+
     public void PlayerShielded(int _shieldValue)
     {
         p_playerAttributes.p_i_shield += _shieldValue; 
@@ -87,7 +93,7 @@ public class S_Player : MonoBehaviour
             _statusEffect = p_playerAttributes.p_b_bleeding;
             if (_statusEffect == false)
             {
-
+                
             }
             else
             {
@@ -102,6 +108,13 @@ public class S_Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Status Effect Trigger function for when the player is stunned
+    /// </summary>
+    /// <param name="_statusEffect"></param>
+    /// <param name="_stunVal"></param>
+    /// <param name="_turnCount"></param>
+    /// 
     public void PlayerStunned(bool _statusEffect, int _stunVal, int _turnCount)
     {
         if (_statusEffect == p_playerAttributes.p_b_stunned)
@@ -109,7 +122,7 @@ public class S_Player : MonoBehaviour
             _statusEffect = p_playerAttributes.p_b_stunned;
             if (_statusEffect == false)
             {
-
+                // These effects need to be fleshed out first
             }
             else
             {
@@ -124,6 +137,13 @@ public class S_Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Status Effect Trigger function for when the player is poisoned
+    /// </summary>
+    /// <param name="_statusEffect"></param>
+    /// <param name="_poisonVal"></param>
+    /// <param name="_turnCount"></param>
+
     public void PlayerPoisoned(bool _statusEffect,int _poisonVal, int _turnCount)
     {
         if (_statusEffect == p_playerAttributes.p_b_stunned)
@@ -131,7 +151,7 @@ public class S_Player : MonoBehaviour
             _statusEffect = p_playerAttributes.p_b_stunned;
             if (_statusEffect == false)
             {
-
+                // These effects need to be fleshed out first
             }
             else
             {
@@ -144,5 +164,15 @@ public class S_Player : MonoBehaviour
             Debug.Log("Wrong Status Effect!");
             return; 
         }
+    }
+
+    //Update to scene switching when the overworld is created, as well as a lost level type thing
+    public void PlayerLosesScene()
+    {
+        // Pause The game
+        Time.timeScale = 0f;
+
+        // Error the game, I guess
+        Debug.Log("You Lost!");
     }
 }

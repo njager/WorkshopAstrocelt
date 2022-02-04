@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_EnemyAttributes : MonoBehaviour
+public class S_EnemyTemplate : ScriptableObject 
 {
-    //public S_EnemyTemplate enemyTemplate;
-
     [Header("Frequency Rates")]
     public float e_f_attackRate;
     public float e_f_shieldRate;
@@ -21,14 +19,9 @@ public class S_EnemyAttributes : MonoBehaviour
     public float e_f_challengeRating;
 
     // Set this to identify which enemy
-    public string e_str_enemyType;
+    public string e_str_enemyType; 
 
     // Add more enemies to toggle on and off as needed
     [Header("Enemy Type Bools")]
-    public bool e_b_enemyIsLumberjack;
-
-    void Start()
-    {
-        
-    }
+    public bool e_b_enemyIsLumberjack; 
 }

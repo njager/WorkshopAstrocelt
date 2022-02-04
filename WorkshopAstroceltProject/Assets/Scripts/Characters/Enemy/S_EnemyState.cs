@@ -14,6 +14,9 @@ public class S_EnemyState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(g_global.g_enemyAttributeSheet == false)
+        {
+
+        }
     }
 }

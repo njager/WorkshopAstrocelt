@@ -29,13 +29,34 @@ public class S_Global : MonoBehaviour
     [Header("Null States")]
     public S_StarClass g_nullStar;
 
-    [Header("Player Control")]
+    [Header("Character Control")]
     public int g_i_sceneIndex;
 
-    public S_PlayerAttributes g_playerAttributeSheet; 
+    public S_PlayerAttributes g_playerAttributeSheet;
+    public S_PlayerState g_playerState;
+
+    public S_EnemyAttributes g_enemyAttributeSheet;
+    public S_EnemyState g_enemyState;
+
+    [Header("Win Lose Variables")]
+    public bool g_b_playerWon;
+    public bool g_b_playerLost;
+
+    public int g_i_enemyCount;
+    //This variable in paricular will probably be set by a database - scene database idea hit me when thinking about this
+    public int g_i_enemyCountMax; 
 
     void Awake()
     {
         g_instance = this;
+
+        //for now
+        g_i_sceneIndex = 0;
+    }
+
+    void Start()
+    {
+        g_i_enemyCountMax = g_i_enemyCount;
+        Debug.Log("EnemyCount");
     }
 }
