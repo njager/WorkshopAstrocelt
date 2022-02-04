@@ -30,46 +30,42 @@ public class S_ConstelationManager : MonoBehaviour
         string _color = "";
 
 
-        for(int i=0; i <= 10; i++){
-            print(_curStar.starType);
-            if (_curStar.starType != "Node")
+        while(_curStar.starType != "Node")
+        {
+            if (_curStar.starType == "Ritual")
             {
-                if (_curStar.starType == "Ritual")
+                if (_hasColor)
                 {
-                    if (_hasColor)
-                    {
-                        //trigger a retrace
-                    }
-                    else
-                    {
-                        //change the color bool to true and increment count
-                        _hasColor = true;
-                        _count++;
-                        S_RitualStar _rStar = _curStar.gameObject.GetComponent<S_RitualStar>();
-
-                        //compare in hierarchy to get the color
-                        if (_rStar.s_redRitualStarGraphic.activeInHierarchy) {
-                            _color = "red";
-                        }
-                        else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
-                        {
-                            _color = "yellow";
-                        }
-                        else if (_rStar.s_blueRitualStarGraphic.activeInHierarchy)
-                        {
-                            _color = "blue";
-                        }
-                        _curStar = _curStar.s_star.m_previous;
-                        print("there is a color");
-                    }
+                    //trigger a retrace
                 }
                 else
                 {
+                    //change the color bool to true and increment count
+                    _hasColor = true;
                     _count++;
+                    S_RitualStar _rStar = _curStar.gameObject.GetComponent<S_RitualStar>();
+
+                    //compare in hierarchy to get the color
+                    if (_rStar.s_redRitualStarGraphic.activeInHierarchy) {
+                        _color = "red";
+                    }
+                    else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
+                    {
+                        _color = "yellow";
+                    }
+                    else if (_rStar.s_blueRitualStarGraphic.activeInHierarchy)
+                    {
+                        _color = "blue";
+                    }
                     _curStar = _curStar.s_star.m_previous;
+                    print("there is a color");
                 }
             }
-            else { print("done"); }
+            else
+            {
+                _count++;
+                _curStar = _curStar.s_star.m_previous;
+            }
         }
 
         //assining the colored energy to the count
