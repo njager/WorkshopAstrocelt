@@ -8,8 +8,10 @@ public class S_PlayerAttributes : MonoBehaviour
 
     [Header("Player Attributes")]
     public int p_i_health;
+    public int p_i_healthMax; 
 
     public int p_i_shield;
+    public int p_i_shieldMax;
 
     public float p_f_playerEnergyGenerationRate;
 
@@ -38,6 +40,19 @@ public class S_PlayerAttributes : MonoBehaviour
 
         g_global = S_Global.g_instance; 
 
-        if
+        if(g_global.g_i_sceneIndex == 0)
+        {
+            g_global.g_playerAttributeSheet = this; 
+        }
+        else
+        {
+            // load some sort of array to global and this script
+            g_global.g_playerAttributeSheet = this; 
+        }
+    }
+
+    public void FirstSceneVariables()
+    {
+
     }
 }

@@ -31,11 +31,31 @@ public class S_Player : MonoBehaviour
         if(p_playerAttributes.p_i_shield <= 0)
         {
             p_playerAttributes.p_i_health -= _damageValue;
+            Debug.Log("Player Health Attacked!");
+        }
+        else
+        {
+            int _tempVal = p_playerAttributes.p_i_shield - _damageValue; 
+            if (_tempVal < 0)
+            {
+                p_playerAttributes.p_i_shield -= _damageValue;
+                if(p_playerAttributes.p_i_shield < 0)
+                {
+                    p_playerAttributes.p_i_shield = 0;
+                }
+                PlayerAttacked(Mathf.Abs(_tempVal)); 
+                Debug.Log("Player didn't have enough shields!");
+            }
+            else
+            {
+                p_playerAttributes.p_i_shield -= _damageValue;
+                Debug.Log("Player had shields!");
+            }
         }
         
     }
 
-    public void PlayerAddShields(int _shieldValue)
+    public void PlayerShielded(int _shieldValue)
     {
         p_playerAttributes.p_i_shield += _shieldValue; 
     }

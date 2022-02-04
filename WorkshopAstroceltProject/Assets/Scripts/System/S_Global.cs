@@ -30,7 +30,7 @@ public class S_Global : MonoBehaviour
     public S_StarClass g_nullStar;
 
     [Header("Player Control")]
-    public int SceneIndex;
+    public int g_i_sceneIndex;
 
     public S_PlayerAttributes g_playerAttributeSheet; 
 
