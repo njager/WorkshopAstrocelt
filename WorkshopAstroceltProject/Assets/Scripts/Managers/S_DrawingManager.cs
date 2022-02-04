@@ -6,7 +6,7 @@ public class S_DrawingManager : MonoBehaviour
 {
     private S_Global g_global;
 
-    public LineRenderer l_constelationLine;
+    public GameObject l_constelationLine;
 
     public int i_index;
 
@@ -35,13 +35,15 @@ public class S_DrawingManager : MonoBehaviour
             b_drawing = false;
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
             s_previousStar = s_nullStarInst;
-            //this is the call to the finishing behaviour
+            g_global.g_ConstelationManager.RetraceConstelation(_starN);
         }
         else 
         { 
             b_drawing = true;
             s_previousStar = _starN;
             v2_prevLoc = _loc;
+
+            print(s_previousStar);
         }
     }
 
@@ -61,35 +63,45 @@ public class S_DrawingManager : MonoBehaviour
     /// This is the func that spawns the line renderer for the star map
     /// It sets the start and end points of the line and then changes the previous star to be the most recently imputed
     /// sets the previous and next line in each script to be the line created
-    /// - Riley
+    /// - Riley and Josh
     /// </summary>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
-        //make the line and set position for the end point and the previous and next star in script
-        LineRenderer _newline = Instantiate(l_constelationLine);
-        _newline.GetComponent<S_ConstellationLine>().lr_itSelf = _newline;
-        //_newline.gameObject.transform.LookAt(_loc1);
-        _newline.GetComponent<S_ConstellationLine>().SetUp();
-        _newline.SetPosition(0, _loc2);
-        _newline.SetPosition(1, _loc1);
+        //Instiate the linePrefab and grab it's objects
+        GameObject _newLineObject = Instantiate(l_constelationLine);
+        LineTempScript _lineScript = _newLineObject.GetComponent<LineTempScript>();
+        LineRenderer _newLine = _lineScript.m_childLineRendererObject.GetComponent<LineRenderer>();
 
-        _newline.GetComponent<S_ConstellationLine>().s_previousStar = _star1;
-        _newline.GetComponent<S_ConstellationLine>().s_nextStar = _star2;
-        
-        _newline.GetComponent<S_ConstellationLine>().i_index = i_index;
-        
-        i_index++;
+        //Set Stars in lineScript before changing location otherwise colision will happen before these are set
+        _lineScript.s_previousStar = _star1;
+        _lineScript.s_nextStar = _star2;
 
-        //set the vars for the stars so that they have the line theyre attached to, and the previous and next star
-        _star1.s_star.m_nextLine = _newline;
-        _star2.s_star.m_previousLine = _newline;
-
+        //give each star their previous and next before the line is made to avoid overwriting the collision trigger
         _star1.s_star.m_next = _star2;
         _star2.s_star.m_previous = _star1;
+
+        // Set line positions and width
+        _newLine.SetPosition(0, _loc2);
+        _newLine.SetPosition(1, _loc1);
+        _newLine.startWidth = _lineScript.f_lineWidth;
+        _newLine.endWidth = _lineScript.f_lineWidth;
+
+        // Run set up script
+        _lineScript.SetUp(_star1);
+
+        //give the line an index and incranment by 1
+        _lineScript.i_index = i_index;
+        i_index++;
+
+        //set the vars for the stars so that they have the line theyre attached to
+        _star1.s_star.m_nextLine = _newLine;
+        _star2.s_star.m_previousLine = _newLine;
 
         //set the previous star and loc
         s_previousStar = _star2;
         v2_prevLoc = _loc2;
+
+        print(s_previousStar);
     }
 
     /// <summary>
@@ -98,11 +110,20 @@ public class S_DrawingManager : MonoBehaviour
     /// destroy line at the end
     /// - Riley
     /// </summary>
-    public void GoBackOnce(LineRenderer _line)
+    public void GoBackOnce(GameObject _line)
     {
-        s_previousStar = _line.GetComponent<S_ConstellationLine>().s_previousStar;
-        v2_prevLoc = _line.GetPosition(0);
-        Destroy(_line.gameObject);
+        //get the data from the line and assign the previous star and loc
+        LineTempScript _lineScript = _line.GetComponent<LineTempScript>();
+        s_previousStar = _lineScript.s_previousStar;
+        v2_prevLoc = _lineScript.m_lineRendererInst.GetPosition(1);
+
+        //reset the data for the star
+        s_previousStar.s_star.m_next = null;
+        s_previousStar.s_star.m_nextLine = null;
+        print(s_previousStar);
+
+        //destroy the line
+        Destroy(_line);
     }
 
     /// <summary>

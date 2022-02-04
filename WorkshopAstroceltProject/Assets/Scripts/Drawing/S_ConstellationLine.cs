@@ -37,7 +37,7 @@ public class S_ConstellationLine : MonoBehaviour
         {
             if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index
             {
-                g_global.g_DrawingManager.GoBackOnce(lr_itSelf);
+                //g_global.g_DrawingManager.GoBackOnce(lr_itSelf);
             }
         }
         //add functionality for running into another star

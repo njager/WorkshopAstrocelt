@@ -355,7 +355,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1582beff6334e919486c07ea4d3316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starType: '"Ritual" '
+  starType: Ritual
+  s_star:
+    m_previous: {fileID: 0}
+    m_next: {fileID: 0}
+    m_previousLine: {fileID: 0}
+    m_nextLine: {fileID: 0}
 --- !u!1 &6909720486647782166
 GameObject:
   m_ObjectHideFlags: 0

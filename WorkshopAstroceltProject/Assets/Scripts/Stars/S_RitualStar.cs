@@ -58,8 +58,6 @@ public class S_RitualStar : MonoBehaviour
     {
         if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
         {
-            print("Here");
-            //doesnt like this call
             g_global.g_DrawingManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
         }
     }

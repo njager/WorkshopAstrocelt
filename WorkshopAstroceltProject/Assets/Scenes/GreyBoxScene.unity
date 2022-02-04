@@ -1451,6 +1451,7 @@ MonoBehaviour:
   g_enemy: {fileID: 1005853314}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
+  g_ConstelationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
   g_vectorManager: {fileID: 1108261637}
   g_b_playerTurn: 0
@@ -3797,6 +3798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c950e953d198f4645bb64d4c68938eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i_redEnergy: 0
+  i_yellowEnergy: 0
+  i_blueEnergy: 0
 --- !u!1 &1387076156
 GameObject:
   m_ObjectHideFlags: 0
@@ -6366,7 +6370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  l_constelationLine: {fileID: 6747237267146521666, guid: ed8ade2b4196151469dd1825d0f23c35, type: 3}
+  l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
   i_index: 0
   s_previousStar: {fileID: 0}
   s_nullStarInst: {fileID: 0}
