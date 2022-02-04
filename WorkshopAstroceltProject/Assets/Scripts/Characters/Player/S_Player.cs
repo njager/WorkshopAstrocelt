@@ -28,9 +28,17 @@ public class S_Player : MonoBehaviour
 
     public void PlayerAttacked(int _damageValue)
     {
-        p_playerAttributes.p_i_health -= _damageValue; 
+        if(p_playerAttributes.p_i_shield <= 0)
+        {
+            p_playerAttributes.p_i_health -= _damageValue;
+        }
+        
     }
 
+    public void PlayerAddShields(int _shieldValue)
+    {
+        p_playerAttributes.p_i_shield += _shieldValue; 
+    }
 
     /// <summary>
     /// Trigger function for when the player is healed

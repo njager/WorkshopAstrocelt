@@ -29,6 +29,11 @@ public class S_Global : MonoBehaviour
     [Header("Null States")]
     public S_StarClass g_nullStar;
 
+    [Header("Player Control")]
+    public int SceneIndex;
+
+    public S_PlayerAttributes g_playerAttributeSheet; 
+
     void Awake()
     {
         g_instance = this;
