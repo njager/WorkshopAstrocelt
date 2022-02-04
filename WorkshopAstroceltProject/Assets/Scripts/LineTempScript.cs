@@ -46,7 +46,7 @@ public class LineTempScript : MonoBehaviour
             if (other.GetComponent<LineTempScript>().i_index < i_index) //check which one has a larger index
             {
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
-                return; 
+                //g_global.g_DrawingManager.ConstellationReset();
             }
         }
         //add functionality for running into another star

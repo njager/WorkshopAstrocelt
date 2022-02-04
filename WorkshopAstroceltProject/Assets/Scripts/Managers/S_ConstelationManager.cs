@@ -58,7 +58,6 @@ public class S_ConstelationManager : MonoBehaviour
                         _color = "blue";
                     }
                     _curStar = _curStar.s_star.m_previous;
-                    print("there is a color");
                 }
             }
             else
