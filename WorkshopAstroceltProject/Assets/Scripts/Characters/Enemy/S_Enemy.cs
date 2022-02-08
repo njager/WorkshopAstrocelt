@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq; 
 
 public class S_Enemy : MonoBehaviour
 {
@@ -10,15 +11,16 @@ public class S_Enemy : MonoBehaviour
 
     public int e_i_enemyCount;
 
-    void Awake()
+    void Start()
     {
         g_global = S_Global.g_instance;
         g_global.g_i_enemyCount += 1;
         e_i_enemyCount = g_global.g_i_enemyCount;
-        Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString()); 
+        Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
+
+        g_global.e_l_enemyList.Add(this); 
     }
 
-   
     public void EnemyAttacked(string _enemyType, int _damageVal)
     {
         if (_enemyType == "Lumberjack")
@@ -71,6 +73,8 @@ public class S_Enemy : MonoBehaviour
         }
     } 
 
+
+    // Require enemytype in case we need to do death behavior
     public void EnemyDied(string _enemyType)
     {
         g_global.g_i_enemyCount -= 1;

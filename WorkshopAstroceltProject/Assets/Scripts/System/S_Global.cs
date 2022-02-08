@@ -47,9 +47,13 @@ public class S_Global : MonoBehaviour
     public bool g_b_playerWon;
     public bool g_b_playerLost;
 
+    [Header("Enemy Counts")]
     public int g_i_enemyCount;
     //This variable in paricular will probably be set by a database - scene database idea hit me when thinking about this
-    public int g_i_enemyCountMax; 
+    public int g_i_enemyCountMax;
+
+    [Header("Lists")]
+    public List<S_Enemy> e_l_enemyList; 
 
     void Awake()
     {
@@ -61,7 +65,8 @@ public class S_Global : MonoBehaviour
 
     void Start()
     {
+        //This likely needs to be set in the scene prefab
         g_i_enemyCountMax = g_i_enemyCount;
-        Debug.Log("EnemyCount");
+        Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
     }
 }

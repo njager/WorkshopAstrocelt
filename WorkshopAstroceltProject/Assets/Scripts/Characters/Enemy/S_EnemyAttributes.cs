@@ -22,7 +22,7 @@ public class S_EnemyAttributes : MonoBehaviour
 
     public float e_f_challengeRating;
 
-    // Set this to identify which enemy
+    [Header("Typing")]
     public string e_str_enemyType;
 
     // Add more enemies to toggle on and off as needed
@@ -34,15 +34,18 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_stunned;
     public bool e_b_bleeding;
 
+    public S_Enemy e_enemyScript; 
+
     void Start()
     {
         g_global = S_Global.g_instance;
 
         //Inform Global
         InstanceVariables();
+        e_enemyScript = gameObject.GetComponent<S_Enemy>();
 
         //Fill sheet 1 in global if enemy 1
-        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 1)
+        if (e_enemyScript.e_i_enemyCount == 1)
         {
             if (g_global.g_enemyAttributeSheet1 == null)
             {
@@ -54,8 +57,8 @@ public class S_EnemyAttributes : MonoBehaviour
             }
         }
 
-        //Fill sheet 1 in global if enemy 1
-        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 2)
+        //Fill sheet 2 in global if enemy 2
+        if (e_enemyScript.e_i_enemyCount == 2)
         {
             if (g_global.g_enemyAttributeSheet2 == null)
             {
@@ -67,7 +70,7 @@ public class S_EnemyAttributes : MonoBehaviour
             }
         }
 
-        //Fill sheet 1 in global if enemy 1
+        //Fill sheet 3 in global if enemy 3
         if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 3)
         {
             if (g_global.g_enemyAttributeSheet3 == null)
@@ -80,7 +83,7 @@ public class S_EnemyAttributes : MonoBehaviour
             }
         }
 
-        //Fill sheet 1 in global if enemy 1
+        //Fill sheet 4 in global if enemy 4
         if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 4)
         {
             if (g_global.g_enemyAttributeSheet4 == null)
@@ -93,8 +96,8 @@ public class S_EnemyAttributes : MonoBehaviour
             }
         }
 
-        //Fill sheet 1 in global if enemy 1
-        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 5)
+        //Fill sheet 5 in global if enemy 5
+        if (e_enemyScript.e_i_enemyCount == 5)
         {
             if (g_global.g_enemyAttributeSheet5 == null)
             {
@@ -104,6 +107,27 @@ public class S_EnemyAttributes : MonoBehaviour
             {
                 Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
             }
+        }
+
+        if (e_enemyScript.e_i_enemyCount == 1)
+        {
+            g_global.g_enemyState.enemy1 = e_enemyScript;
+        }
+        if (e_enemyScript.e_i_enemyCount == 2)
+        {
+            g_global.g_enemyState.enemy2 = e_enemyScript;
+        }
+        if (e_enemyScript.e_i_enemyCount == 3)
+        {
+            g_global.g_enemyState.enemy3 = e_enemyScript;
+        }
+        if (e_enemyScript.e_i_enemyCount == 4)
+        {
+            g_global.g_enemyState.enemy4 = e_enemyScript;
+        }
+        if (e_enemyScript.e_i_enemyCount == 5)
+        {
+            g_global.g_enemyState.enemy5 = e_enemyScript;
         }
 
     }
@@ -118,6 +142,8 @@ public class S_EnemyAttributes : MonoBehaviour
         e_i_shieldMax = 100;
 
         e_f_challengeRating = 1.0f;
+
+        e_str_enemyType = "Lumberjack"; 
 
         //Status Effects
         e_b_bleeding = false;

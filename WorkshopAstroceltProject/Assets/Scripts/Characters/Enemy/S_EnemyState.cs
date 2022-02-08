@@ -12,7 +12,13 @@ public class S_EnemyState : MonoBehaviour
     public S_Enemy enemy2;
     public S_Enemy enemy3;
     public S_Enemy enemy4;
-    public S_Enemy enemy5; 
+    public S_Enemy enemy5;
+
+    public string str_enemy1Type;
+    public string str_enemy2Type;
+    public string str_enemy3Type;
+    public string str_enemy4Type;
+    public string str_enemy5Type;
 
     void Awake()
     {
@@ -23,85 +29,105 @@ public class S_EnemyState : MonoBehaviour
     void Update()
     {
         //If the enemy 1 healths or goes over in shields from abilities, or they die
-        if (g_global.g_enemyAttributeSheet1.e_i_health > g_global.g_enemyAttributeSheet1.e_i_healthMax)
+        if(g_global.g_enemyAttributeSheet1 != null)
         {
-            g_global.g_enemyAttributeSheet1.e_i_health = g_global.g_enemyAttributeSheet1.e_i_healthMax;
-        }
+            if (g_global.g_enemyAttributeSheet1.e_i_health > g_global.g_enemyAttributeSheet1.e_i_healthMax)
+            {
+                g_global.g_enemyAttributeSheet1.e_i_health = g_global.g_enemyAttributeSheet1.e_i_healthMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet1.e_i_shield > g_global.g_enemyAttributeSheet1.e_i_shieldMax)
-        {
-            g_global.g_enemyAttributeSheet1.e_i_shield = g_global.g_enemyAttributeSheet1.e_i_shieldMax;
-        }
+            if (g_global.g_enemyAttributeSheet1.e_i_shield > g_global.g_enemyAttributeSheet1.e_i_shieldMax)
+            {
+                g_global.g_enemyAttributeSheet1.e_i_shield = g_global.g_enemyAttributeSheet1.e_i_shieldMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
-        {
-            
+            if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
+            {
+                enemy1.EnemyDied(str_enemy1Type);
+            }
         }
+        
 
 
         // Same for enemy 2
-        if (g_global.g_enemyAttributeSheet2.e_i_health > g_global.g_enemyAttributeSheet2.e_i_healthMax)
+        if(g_global.g_enemyAttributeSheet2 != null)
         {
-            g_global.g_enemyAttributeSheet2.e_i_health = g_global.g_enemyAttributeSheet2.e_i_healthMax;
-        }
+            if (g_global.g_enemyAttributeSheet2.e_i_health > g_global.g_enemyAttributeSheet2.e_i_healthMax)
+            {
+                g_global.g_enemyAttributeSheet2.e_i_health = g_global.g_enemyAttributeSheet2.e_i_healthMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet2.e_i_shield > g_global.g_enemyAttributeSheet2.e_i_shieldMax)
-        {
-            g_global.g_enemyAttributeSheet2.e_i_shield = g_global.g_enemyAttributeSheet2.e_i_shieldMax;
-        }
+            if (g_global.g_enemyAttributeSheet2.e_i_shield > g_global.g_enemyAttributeSheet2.e_i_shieldMax)
+            {
+                g_global.g_enemyAttributeSheet2.e_i_shield = g_global.g_enemyAttributeSheet2.e_i_shieldMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet2.e_i_health <= 0)
-        {
-
+            if (g_global.g_enemyAttributeSheet2.e_i_health <= 0)
+            {
+                enemy2.EnemyDied(str_enemy2Type);
+            }
         }
+        
 
 
         // Same for enemy 3
-        if (g_global.g_enemyAttributeSheet3.e_i_health > g_global.g_enemyAttributeSheet3.e_i_healthMax)
+        if(g_global.g_enemyAttributeSheet3 != null)
         {
-            g_global.g_enemyAttributeSheet3.e_i_health = g_global.g_enemyAttributeSheet3.e_i_healthMax;
-        }
+            if (g_global.g_enemyAttributeSheet3.e_i_health > g_global.g_enemyAttributeSheet3.e_i_healthMax)
+            {
+                g_global.g_enemyAttributeSheet3.e_i_health = g_global.g_enemyAttributeSheet3.e_i_healthMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet3.e_i_shield > g_global.g_enemyAttributeSheet3.e_i_shieldMax)
-        {
-            g_global.g_enemyAttributeSheet3.e_i_shield = g_global.g_enemyAttributeSheet3.e_i_shieldMax;
-        }
+            if (g_global.g_enemyAttributeSheet3.e_i_shield > g_global.g_enemyAttributeSheet3.e_i_shieldMax)
+            {
+                g_global.g_enemyAttributeSheet3.e_i_shield = g_global.g_enemyAttributeSheet3.e_i_shieldMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet3.e_i_health <= 0)
-        {
-
+            if (g_global.g_enemyAttributeSheet3.e_i_health <= 0)
+            {
+                enemy3.EnemyDied(str_enemy3Type);
+            }
         }
+        
 
         // Same for enemy 4
-        if (g_global.g_enemyAttributeSheet4.e_i_health > g_global.g_enemyAttributeSheet4.e_i_healthMax)
+        if(g_global.g_enemyAttributeSheet4 != null)
         {
-            g_global.g_enemyAttributeSheet4.e_i_health = g_global.g_enemyAttributeSheet4.e_i_healthMax;
-        }
+            if (g_global.g_enemyAttributeSheet4.e_i_health > g_global.g_enemyAttributeSheet4.e_i_healthMax)
+            {
+                g_global.g_enemyAttributeSheet4.e_i_health = g_global.g_enemyAttributeSheet4.e_i_healthMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet4.e_i_shield > g_global.g_enemyAttributeSheet4.e_i_shieldMax)
-        {
-            g_global.g_enemyAttributeSheet4.e_i_shield = g_global.g_enemyAttributeSheet4.e_i_shieldMax;
-        }
+            if (g_global.g_enemyAttributeSheet4.e_i_shield > g_global.g_enemyAttributeSheet4.e_i_shieldMax)
+            {
+                g_global.g_enemyAttributeSheet4.e_i_shield = g_global.g_enemyAttributeSheet4.e_i_shieldMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet4.e_i_health <= 0)
-        {
-
+            if (g_global.g_enemyAttributeSheet4.e_i_health <= 0)
+            {
+                enemy4.EnemyDied(str_enemy4Type);
+            }
         }
 
         // Same for enemy 5
-        if (g_global.g_enemyAttributeSheet5.e_i_health > g_global.g_enemyAttributeSheet5.e_i_healthMax)
+        if(g_global.g_enemyAttributeSheet5 != null)
         {
-            g_global.g_enemyAttributeSheet5.e_i_health = g_global.g_enemyAttributeSheet5.e_i_healthMax;
-        }
+            if (g_global.g_enemyAttributeSheet5.e_i_health > g_global.g_enemyAttributeSheet5.e_i_healthMax)
+            {
+                g_global.g_enemyAttributeSheet5.e_i_health = g_global.g_enemyAttributeSheet5.e_i_healthMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet5.e_i_shield > g_global.g_enemyAttributeSheet5.e_i_shieldMax)
-        {
-            g_global.g_enemyAttributeSheet5.e_i_shield = g_global.g_enemyAttributeSheet5.e_i_shieldMax;
-        }
+            if (g_global.g_enemyAttributeSheet5.e_i_shield > g_global.g_enemyAttributeSheet5.e_i_shieldMax)
+            {
+                g_global.g_enemyAttributeSheet5.e_i_shield = g_global.g_enemyAttributeSheet5.e_i_shieldMax;
+            }
 
-        if (g_global.g_enemyAttributeSheet5.e_i_health <= 0)
-        {
-
+            if (g_global.g_enemyAttributeSheet5.e_i_health <= 0)
+            {
+                enemy5.EnemyDied(str_enemy5Type);
+            }
         }
     }
+
+    
 }
