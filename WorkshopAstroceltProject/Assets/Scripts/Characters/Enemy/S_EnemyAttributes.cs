@@ -36,9 +36,14 @@ public class S_EnemyAttributes : MonoBehaviour
 
     public S_Enemy e_enemyScript; 
 
-    void Start()
+    /// <summary>
+    /// Start doesn't have to be initiated in engine
+    /// -Josh
+    /// </summary>
+     
+    public void BeginPlayBehavior(S_Global g_instance)
     {
-        g_global = S_Global.g_instance;
+        g_global = g_instance; 
 
         //Inform Global
         InstanceVariables();

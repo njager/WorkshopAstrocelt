@@ -7,18 +7,28 @@ public class S_Enemy : MonoBehaviour
 {
     private S_Global g_global;
 
-    private S_EnemyAttributes e_enemyAttributes;
+    [SerializeField] S_EnemyAttributes e_enemyAttributes;
 
     public int e_i_enemyCount;
 
     void Start()
     {
         g_global = S_Global.g_instance;
-        g_global.g_i_enemyCount += 1;
-        e_i_enemyCount = g_global.g_i_enemyCount;
+
+        SetCount(); 
+        
         Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
 
-        g_global.e_l_enemyList.Add(this); 
+        g_global.e_l_enemyList.Add(this);
+
+        //e_enemyAttributes.BeginPlayBehavior(g_global);
+    }
+
+    void SetCount()
+    {
+        g_global.g_i_enemyCount += 1;
+        e_i_enemyCount = g_global.g_i_enemyCount;
+        return; 
     }
 
     public void EnemyAttacked(string _enemyType, int _damageVal)
@@ -80,5 +90,10 @@ public class S_Enemy : MonoBehaviour
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
         gameObject.SetActive(false);
+    }
+
+    public void OnMouseDown()
+    {
+        g_global.g_selectorManager.EnemySelected(this); 
     }
 }

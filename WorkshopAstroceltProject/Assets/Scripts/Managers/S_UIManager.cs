@@ -73,16 +73,24 @@ public class S_UIManager : MonoBehaviour
     //Temporary Button placeholder for triggering the state machine, move code like this to S_ButtonManager
     public void EndTurn()
     {
-        if(g_global.g_b_enemyTurn == true)
+        if (g_global.g_selectorManager.e_enemySelected != null)
         {
-            Debug.Log("Not your turn!");
-            return;
+            if (g_global.g_b_enemyTurn == true)
+            {
+                Debug.Log("Not your turn!");
+                return;
+            }
+            else
+            {
+                tempUIInitial -= 5; // Simultating enemy attack, update later
+                Debug.Log("Clicked!");
+                g_global.g_turnManager.EnemyStateChange();
+            }
         }
         else
         {
-            tempUIInitial -= 5; // Simultating enemy attack
-            Debug.Log("Clicked!");
-            g_global.g_turnManager.EnemyStateChange();
+            Debug.Log("No enemy Selected!");
+            return; 
         }
         
     }

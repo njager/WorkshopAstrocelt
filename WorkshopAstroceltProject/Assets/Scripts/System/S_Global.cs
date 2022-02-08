@@ -21,6 +21,7 @@ public class S_Global : MonoBehaviour
     public S_ConstelationManager g_ConstelationManager;
     public S_UIManager g_UIManager;
     public S_VectorManager g_vectorManager;
+    public S_SelectorManager g_selectorManager; 
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -53,7 +54,10 @@ public class S_Global : MonoBehaviour
     public int g_i_enemyCountMax;
 
     [Header("Lists")]
-    public List<S_Enemy> e_l_enemyList; 
+    public List<S_Enemy> e_l_enemyList;
+
+    [Header("Arrays")]
+    public string placeholder;
 
     void Awake()
     {

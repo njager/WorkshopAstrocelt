@@ -20,6 +20,13 @@ public class S_EnemyState : MonoBehaviour
     public string str_enemy4Type;
     public string str_enemy5Type;
 
+    [Header("Bool Check")]
+    public bool e_b_enemy1Dead;
+    public bool e_b_enemy2Dead;
+    public bool e_b_enemy3Dead;
+    public bool e_b_enemy4Dead;
+    public bool e_b_enemy5Dead; 
+
     void Awake()
     {
         g_global = S_Global.g_instance;

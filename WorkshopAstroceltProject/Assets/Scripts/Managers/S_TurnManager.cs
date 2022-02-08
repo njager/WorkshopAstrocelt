@@ -20,10 +20,10 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = b_enemyInitialTurn;
     }
 
-
     /// <summary>
     /// Change the state to the player turn 
     /// trigger the map generation for the new player turn
+    /// Reset the selector so the enemy has to be selected again
     /// - Riley & Josh
     /// </summary>
     public void PlayerStateChange()
@@ -31,6 +31,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
         g_global.g_mapManager.NewMapGeneration();
+        g_global.g_selectorManager.SelectorReset(); 
     }
 
     /// <summary>
