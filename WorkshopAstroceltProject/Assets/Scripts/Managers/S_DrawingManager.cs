@@ -88,7 +88,7 @@ public class S_DrawingManager : MonoBehaviour
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
         //Instiate the linePrefab and grab it's objects
-        GameObject _newLineObject = Instantiate(l_constelationLine);
+        GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
         S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
         LineRenderer _newLine = _lineScript.m_childLineRendererObject.GetComponent<LineRenderer>();
 
@@ -130,15 +130,18 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void GoBackOnce(GameObject _line)
     {
+        //set the cur previous star to have a nullstar as a previous
+        s_previousStar.s_star.m_previous = s_nullStarInst;
+
         //get the data from the line and assign the previous star and loc
         S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
         s_previousStar = _lineScript.s_previousStar;
         v2_prevLoc = _lineScript.m_lineRendererInst.GetPosition(1);
 
         //reset the data for the star
-        s_previousStar.s_star.m_next = null;
+        s_previousStar.s_star.m_next = s_nullStarInst;
         s_previousStar.s_star.m_nextLine = null;
-        print(s_previousStar);
+        Debug.Log("deleted a line and now cur previousStar is", s_previousStar);
 
         //destroy the line
         Destroy(_line);

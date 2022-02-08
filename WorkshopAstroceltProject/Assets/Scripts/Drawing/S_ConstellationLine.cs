@@ -19,6 +19,7 @@ public class S_ConstellationLine : MonoBehaviour
     public GameObject constellationLinePrefab;
     public int i_index;
     public float f_lineWidth;
+    public S_StarClass s_nullStarInst;
 
     private void Awake()
     {
@@ -40,7 +41,16 @@ public class S_ConstellationLine : MonoBehaviour
                 //g_global.g_DrawingManager.ConstellationReset();
             }
         }
-        //add functionality for running into another star
+        if (other.CompareTag("Star"))
+        {
+            print(other);
+            if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
+            {
+                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+            }
+            else { return; }
+        }
+        
     }
 
     public float calculateXOffset(float _length)
