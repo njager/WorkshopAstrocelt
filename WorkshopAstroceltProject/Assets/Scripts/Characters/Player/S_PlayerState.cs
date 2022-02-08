@@ -16,7 +16,6 @@ public class S_PlayerState : MonoBehaviour
     public float bleedingDamageRate;
     public int stunnedDamageValue;
 
-
     [Header("Status Effect States")]
     public bool p_b_inBleedingState;
     public bool p_b_inStunnedState;
@@ -39,6 +38,12 @@ public class S_PlayerState : MonoBehaviour
         {
             g_global.g_playerAttributeSheet.p_i_shield = g_global.g_playerAttributeSheet.p_i_shieldMax;
         }
+
+        // If player lost
+        if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
+        {
+            Lose();
+        }
     }
 
     public void BleedingStatusEffectForTurn(float _damageRate)
@@ -52,6 +57,8 @@ public class S_PlayerState : MonoBehaviour
         {
             Debug.Log("Effect not active!");
             // Maybe return a bool here for a turn manager check?
+
+            //Was this riley? 
         }
     }
 
@@ -85,6 +92,11 @@ public class S_PlayerState : MonoBehaviour
     {
         int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
         return _bleedingCalc;
+    }
+
+    public void Lose()
+    {
+        // If player loses, trigger behavior
     }
 
 }

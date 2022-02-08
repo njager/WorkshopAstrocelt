@@ -6,12 +6,16 @@ public class S_Enemy : MonoBehaviour
 {
     private S_Global g_global;
 
-    private S_EnemyAttributes e_enemyAttributes; 
+    private S_EnemyAttributes e_enemyAttributes;
+
+    public int e_i_enemyCount;
 
     void Awake()
     {
         g_global = S_Global.g_instance;
-        g_global.g_i_enemyCount += 1; 
+        g_global.g_i_enemyCount += 1;
+        e_i_enemyCount = g_global.g_i_enemyCount;
+        Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString()); 
     }
 
    

@@ -35,8 +35,13 @@ public class S_Global : MonoBehaviour
     public S_PlayerAttributes g_playerAttributeSheet;
     public S_PlayerState g_playerState;
 
-    public S_EnemyAttributes g_enemyAttributeSheet;
     public S_EnemyState g_enemyState;
+    [Header("All Potential Enemy Sheets")]
+    public S_EnemyAttributes g_enemyAttributeSheet1;
+    public S_EnemyAttributes g_enemyAttributeSheet2;
+    public S_EnemyAttributes g_enemyAttributeSheet3;
+    public S_EnemyAttributes g_enemyAttributeSheet4;
+    public S_EnemyAttributes g_enemyAttributeSheet5;
 
     [Header("Win Lose Variables")]
     public bool g_b_playerWon;

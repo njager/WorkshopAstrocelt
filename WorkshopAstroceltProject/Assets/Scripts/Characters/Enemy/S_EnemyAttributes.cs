@@ -40,7 +40,72 @@ public class S_EnemyAttributes : MonoBehaviour
 
         //Inform Global
         InstanceVariables();
-        g_global.g_enemyAttributeSheet = this;
+
+        //Fill sheet 1 in global if enemy 1
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 1)
+        {
+            if (g_global.g_enemyAttributeSheet1 == null)
+            {
+                g_global.g_enemyAttributeSheet1 = this;
+            }
+            else
+            {
+                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!"); 
+            }
+        }
+
+        //Fill sheet 1 in global if enemy 1
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 2)
+        {
+            if (g_global.g_enemyAttributeSheet2 == null)
+            {
+                g_global.g_enemyAttributeSheet2 = this;
+            }
+            else
+            {
+                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
+            }
+        }
+
+        //Fill sheet 1 in global if enemy 1
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 3)
+        {
+            if (g_global.g_enemyAttributeSheet3 == null)
+            {
+                g_global.g_enemyAttributeSheet3 = this;
+            }
+            else
+            {
+                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
+            }
+        }
+
+        //Fill sheet 1 in global if enemy 1
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 4)
+        {
+            if (g_global.g_enemyAttributeSheet4 == null)
+            {
+                g_global.g_enemyAttributeSheet4 = this;
+            }
+            else
+            {
+                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
+            }
+        }
+
+        //Fill sheet 1 in global if enemy 1
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 5)
+        {
+            if (g_global.g_enemyAttributeSheet5 == null)
+            {
+                g_global.g_enemyAttributeSheet5 = this;
+            }
+            else
+            {
+                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
+            }
+        }
+
     }
     //Temporary
     public void InstanceVariables()
