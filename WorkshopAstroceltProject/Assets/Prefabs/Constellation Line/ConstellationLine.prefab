@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 2478283171175456663}
   - component: {fileID: 2478283171175456662}
   - component: {fileID: 2478283171175456660}
-  - component: {fileID: 2478283171175456661}
+  - component: {fileID: 2125022304029448758}
   m_Layer: 0
   m_Name: ConstellationLine
   m_TagString: Line
@@ -175,18 +175,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebd280a70f4b3a4499cde565449b516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testStar1: {fileID: 0}
-  testStar2: {fileID: 0}
-  m_childLineRendererObject: {fileID: 2478283170881642634}
-  m_lineRendererInst: {fileID: 2478283170881642632}
-  f_boxOffsetX: 0.15
-  f_boxOffsetY: 0.125
-  constellationLinePrefab: {fileID: 2478283171175456657}
-  i_index: 0
-  v2_prevLoc: {x: 0, y: 0}
-  f_lineWidth: 0.275
   s_previousStar: {fileID: 0}
   s_nextStar: {fileID: 0}
+  m_childLineRendererObject: {fileID: 2478283170881642634}
+  m_lineRendererInst: {fileID: 2478283170881642632}
+  f_boxOffsetX: 0.2
+  f_boxOffsetY: 0.2
+  constellationLinePrefab: {fileID: 2478283171175456657}
+  i_index: 0
+  f_lineWidth: 0.175
 --- !u!50 &2478283171175456660
 Rigidbody2D:
   serializedVersion: 4
@@ -208,8 +205,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &2478283171175456661
-BoxCollider2D:
+--- !u!70 &2125022304029448758
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -222,15 +219,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Direction: 1

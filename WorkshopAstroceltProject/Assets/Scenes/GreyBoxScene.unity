@@ -743,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 329350484}
   - component: {fileID: 329350483}
   m_Layer: 0
-  m_Name: TempEndTurnButton (1)
+  m_Name: Undo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1036,11 +1036,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099707690}
         m_TargetAssemblyTypeName: S_DrawingManager, Assembly-CSharp
-        m_MethodName: GoBackOnce
-        m_Mode: 2
+        m_MethodName: ConstellationReset
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.LineRenderer, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1197,18 +1197,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebd280a70f4b3a4499cde565449b516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testStar1: {fileID: 576107795}
-  testStar2: {fileID: 1475468446}
-  m_childLineRendererObject: {fileID: 798434928}
-  m_lineRendererInst: {fileID: 798434930}
-  f_boxOffsetX: 0.15
-  f_boxOffsetY: 0.125
-  constellationLinePrefab: {fileID: 470833515}
-  i_index: 0
-  v2_prevLoc: {x: 0, y: 0}
-  f_lineWidth: 0.275
   s_previousStar: {fileID: 576107795}
   s_nextStar: {fileID: 939871219}
+  m_childLineRendererObject: {fileID: 0}
+  m_lineRendererInst: {fileID: 0}
+  f_boxOffsetX: 0
+  f_boxOffsetY: 0
+  constellationLinePrefab: {fileID: 0}
+  i_index: 0
+  f_lineWidth: 0
 --- !u!4 &470833517
 Transform:
   m_ObjectHideFlags: 0
@@ -1548,6 +1545,7 @@ MonoBehaviour:
   g_b_playerLost: 0
   g_i_enemyCount: 0
   g_i_enemyCountMax: 0
+  e_l_enemyList: []
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -2476,7 +2474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3640,6 +3638,11 @@ MonoBehaviour:
   enemy3: {fileID: 0}
   enemy4: {fileID: 0}
   enemy5: {fileID: 0}
+  str_enemy1Type: 
+  str_enemy2Type: 
+  str_enemy3Type: 
+  str_enemy4Type: 
+  str_enemy5Type: 
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4143,17 +4146,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02452a600f8504008b1f56b15a8138d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1475468446 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1280418675001395157, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
-  m_PrefabInstance: {fileID: 837618320}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c1582beff6334e919486c07ea4d3316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1508326618
@@ -5419,7 +5411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8561052831896400521, guid: bcb6a26ab5e60f54aab94b161e7888b6, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8561052831896400521, guid: bcb6a26ab5e60f54aab94b161e7888b6, type: 3}
       propertyPath: m_LocalPosition.x

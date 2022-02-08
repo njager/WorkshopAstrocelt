@@ -6,28 +6,27 @@ public class S_ConstellationLine : MonoBehaviour
 {
     private S_Global g_global;
 
-    [Header("Editer Vars")]
-    public float offset;
-
-    [Header("Assigned when Spawned")]
-    public LineRenderer lr_itSelf;
-    public int i_index;
-
     public S_StarClass s_previousStar;
     public S_StarClass s_nextStar;
 
-    private void Start()
+    [Header("New Required Variables for Line Script")]
+    public GameObject m_childLineRendererObject;
+
+    public LineRenderer m_lineRendererInst;
+    private CapsuleCollider2D m_cap;
+    public float f_boxOffsetX;
+    public float f_boxOffsetY;
+    public GameObject constellationLinePrefab;
+    public int i_index;
+    public float f_lineWidth;
+
+    private void Awake()
+    {
+        m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
+    }
+    void Start()
     {
         g_global = S_Global.g_instance;
-    }
-
-    public void SetUp()
-    {
-        EdgeCollider2D _edge = lr_itSelf.GetComponent<EdgeCollider2D>();
-
-        //Vector2[] _corners = new List<Vector2>();
-
-        //_edge.points = _corners;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -37,9 +36,58 @@ public class S_ConstellationLine : MonoBehaviour
         {
             if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index
             {
-                //g_global.g_DrawingManager.GoBackOnce(lr_itSelf);
+                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+                //g_global.g_DrawingManager.ConstellationReset();
             }
         }
         //add functionality for running into another star
+    }
+
+    public float calculateXOffset(float _length)
+    {
+        float _offsetedLength = _length * (1-f_boxOffsetX);
+        return _offsetedLength; 
+    }
+
+    public float calculateYOffset(float _width)
+    {
+        float _offsetedWidth = _width * (1 - f_boxOffsetY);
+        return _offsetedWidth;
+    }
+
+    public void SetUp(S_StarClass _star)
+    {
+        //Grab Line Renderer point data
+        Vector3 _startPoint = m_lineRendererInst.GetPosition(0);
+        Vector3 _endPoint = m_lineRendererInst.GetPosition(1);
+
+        // Grab the box collider
+        m_cap = gameObject.GetComponent<CapsuleCollider2D>();
+
+        //Distance calculation aka Length
+        float _newBoxLength= Mathf.Pow(Mathf.Pow((_endPoint.x - _startPoint.x),2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2), 0.5f);
+        //Debug.Log(_newBoxLength);
+
+        //Width Grab
+        float _lineWidth = f_lineWidth;
+
+        //Set the new Box
+        Vector2 _newBoxSize = new Vector2 (calculateXOffset(_newBoxLength), calculateYOffset(_lineWidth));
+        m_cap.size = _newBoxSize;
+
+        // Keep original position
+        Transform _originalPosition = gameObject.transform;
+
+        // Need to move parent object to the center
+        gameObject.transform.position = _startPoint + (_endPoint - _startPoint) / 2;
+  
+        // Calculate rotation, adapted code 
+        Vector3 _difference = _star.gameObject.transform.position - transform.position;
+        float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
+
+        ///<summary>
+        /// https://answers.unity.com/questions/1023987/lookat-only-on-z-axis.html original code found in here
+        ///</summary>
     }
 }

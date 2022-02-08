@@ -42,7 +42,6 @@ public class S_DrawingManager : MonoBehaviour
         { 
             b_drawing = false;
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
-            s_previousStar = s_nullStarInst;
             g_global.g_ConstelationManager.RetraceConstelation(_starN);
         }
         else 
@@ -50,6 +49,7 @@ public class S_DrawingManager : MonoBehaviour
             b_drawing = true;
             s_previousStar = _starN;
             v2_prevLoc = _loc;
+            _starN.s_star.m_previous = s_nullStarInst;
         }
     }
 
@@ -69,10 +69,12 @@ public class S_DrawingManager : MonoBehaviour
         }
         else
         {
-            if (s_previousStar != s_nullStarInst)
+            
+            if (true)
             {
                 b_drawing = true;
                 SpawnLine(s_nodeStarInst, _star, v2_nodeStarLoc, _loc);
+                s_nodeStarInst.s_star.m_previous = s_nullStarInst;
             }
         }
     }
@@ -87,7 +89,7 @@ public class S_DrawingManager : MonoBehaviour
     {
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine);
-        LineTempScript _lineScript = _newLineObject.GetComponent<LineTempScript>();
+        S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
         LineRenderer _newLine = _lineScript.m_childLineRendererObject.GetComponent<LineRenderer>();
 
         //Set Stars in lineScript before changing location otherwise colision will happen before these are set
@@ -129,7 +131,7 @@ public class S_DrawingManager : MonoBehaviour
     public void GoBackOnce(GameObject _line)
     {
         //get the data from the line and assign the previous star and loc
-        LineTempScript _lineScript = _line.GetComponent<LineTempScript>();
+        S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
         s_previousStar = _lineScript.s_previousStar;
         v2_prevLoc = _lineScript.m_lineRendererInst.GetPosition(1);
 
@@ -140,6 +142,9 @@ public class S_DrawingManager : MonoBehaviour
 
         //destroy the line
         Destroy(_line);
+
+        //if you go back once and drawing is false then it was a node star
+        if (!b_drawing) { b_drawing = true; }
     }
 
     /// <summary>
@@ -148,7 +153,6 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void ConstellationReset()
     {
-        print("first");
         while (s_previousStar.starType != "Null")
         {
             S_StarClass _temporalStar = s_previousStar.s_star.m_previous;
@@ -157,17 +161,19 @@ public class S_DrawingManager : MonoBehaviour
             s_previousStar.s_star.m_next = s_nullStarInst;
 
             //check if the line needs to be deleted
+            //deletes the graphic not the star
             if (s_previousStar.s_star.m_nextLine!=null)
             {
-                Destroy(s_previousStar.s_star.m_nextLine);
+                Destroy(s_previousStar.s_star.m_nextLine.gameObject.GetComponentInParent<S_ConstellationLine>().gameObject);
             }
             
             s_previousStar.s_star.m_nextLine = null;
             s_previousStar.s_star.m_previousLine = null;
 
-            //s_previousStar.s_star.
-
             s_previousStar = _temporalStar;
         }
+
+        //done drawing now
+        b_drawing = false;
     }
 }

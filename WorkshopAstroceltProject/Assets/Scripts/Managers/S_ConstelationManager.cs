@@ -66,6 +66,7 @@ public class S_ConstelationManager : MonoBehaviour
                 _curStar = _curStar.s_star.m_previous;
             }
         }
+        if (!_hasColor) { g_global.g_DrawingManager.ConstellationReset(); }
 
         //assining the colored energy to the count
         if (_color == "red") { i_redEnergy = _count; }
