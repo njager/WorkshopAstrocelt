@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class S_DrawingManager : MonoBehaviour
 {
+    //private vars
     private S_Global g_global;
-
-    public GameObject l_constelationLine;
-
-    public int i_index;
+    private bool b_drawing;
 
     public S_StarClass s_previousStar;
-    public S_StarClass s_nullStarInst;
     public Vector2 v2_prevLoc;
-    public bool b_drawing;
+    public int i_index;
+    public Vector2 v2_nodeStarLoc;
+
+    [Header("Add the ConstellationLine")]
+    public GameObject l_constelationLine;
+
+    [Header("Null and Node stars")]
+    public S_StarClass s_nullStarInst;
+    public S_StarClass s_nodeStarInst;
+    
+
 
     private void Start()
     {
         g_global = S_Global.g_instance;
         s_previousStar = s_nullStarInst;
         i_index = 0;
+        v2_nodeStarLoc = s_nodeStarInst.gameObject.transform.position;
     }
 
     /// <summary>
@@ -47,13 +55,25 @@ public class S_DrawingManager : MonoBehaviour
 
     /// <summary>
     /// This is the func for non node stars and checks conditions before passing along to the spawn line function 
+    /// Added functionallity for clicking on a star before a node star
     /// - Riley
     /// </summary>
     public void StarClicked(S_StarClass _star, Vector2 _loc)
     {
-        if (s_previousStar != s_nullStarInst)
+        if (b_drawing)
         {
-            SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
+            if (s_previousStar != s_nullStarInst)
+            {
+                SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
+            }
+        }
+        else
+        {
+            if (s_previousStar != s_nullStarInst)
+            {
+                b_drawing = true;
+                SpawnLine(s_nodeStarInst, _star, v2_nodeStarLoc, _loc);
+            }
         }
     }
 

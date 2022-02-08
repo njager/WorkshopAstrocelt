@@ -1538,8 +1538,12 @@ MonoBehaviour:
   g_i_sceneIndex: 0
   g_playerAttributeSheet: {fileID: 0}
   g_playerState: {fileID: 0}
-  g_enemyAttributeSheet: {fileID: 0}
   g_enemyState: {fileID: 0}
+  g_enemyAttributeSheet1: {fileID: 0}
+  g_enemyAttributeSheet2: {fileID: 0}
+  g_enemyAttributeSheet3: {fileID: 0}
+  g_enemyAttributeSheet4: {fileID: 0}
+  g_enemyAttributeSheet5: {fileID: 0}
   g_b_playerWon: 0
   g_b_playerLost: 0
   g_i_enemyCount: 0
@@ -3631,6 +3635,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a4779466a86784b91551046f916325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy1: {fileID: 0}
+  enemy2: {fileID: 0}
+  enemy3: {fileID: 0}
+  enemy4: {fileID: 0}
+  enemy5: {fileID: 0}
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3663,7 +3672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_playerInitialTurn: 0
+  b_playerInitialTurn: 1
   b_enemyInitialTurn: 0
 --- !u!1 &1271133895
 GameObject:
@@ -5772,12 +5781,12 @@ Transform:
   - {fileID: 2450440253926526696}
   - {fileID: 837618321}
   - {fileID: 2095368581}
-  - {fileID: 1146930078}
   - {fileID: 2102913837}
+  - {fileID: 1146930078}
   - {fileID: 285875821}
   - {fileID: 858285005}
-  - {fileID: 872569759}
   - {fileID: 2011276852}
+  - {fileID: 872569759}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6125,12 +6134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
-  i_index: 0
   s_previousStar: {fileID: 0}
-  s_nullStarInst: {fileID: 0}
   v2_prevLoc: {x: 0, y: 0}
-  b_drawing: 0
+  i_index: 0
+  v2_nodeStarLoc: {x: 0, y: 0}
+  l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
+  s_nullStarInst: {fileID: 826952977}
+  s_nodeStarInst: {fileID: 576107795}
 --- !u!1 &2099872389
 GameObject:
   m_ObjectHideFlags: 0
@@ -6246,7 +6256,7 @@ Transform:
   - {fileID: 2082559650}
   - {fileID: 1851100176}
   m_Father: {fileID: 2080584402}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107212521
 GameObject:
