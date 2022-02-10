@@ -47,7 +47,8 @@ public class S_ConstelationManager : MonoBehaviour
                 {
                     if (_hasColor)
                     {
-                        //trigger a retrace
+                        g_global.g_DrawingManager.ConstellationReset();
+                        break;
                     }
                     else
                     {
