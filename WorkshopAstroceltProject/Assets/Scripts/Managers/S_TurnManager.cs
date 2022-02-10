@@ -29,15 +29,15 @@ public class S_TurnManager : MonoBehaviour
     public void PlayerStateChange()
     {
         //Temporary map switching triggered by UIManager
-        if(g_global.g_mapManager.map_b_map1Used == true)
+        if(g_global.g_mapManager.map_b_map1Used != true)
         {
-            g_global.g_mapManager.Map2(); 
+            g_global.g_mapManager.Map1(); 
         }
-        if(g_global.g_mapManager.map_b_map2Used == true)
+        else if(g_global.g_mapManager.map_b_map2Used != true)
         {
-            g_global.g_mapManager.Map1();
+            g_global.g_mapManager.Map2();
         }
-        if (g_global.g_mapManager.map_b_map3Used == true)
+        else if (g_global.g_mapManager.map_b_map3Used != true)
         {
             g_global.g_mapManager.Map3();
         }

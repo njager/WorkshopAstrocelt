@@ -23,7 +23,13 @@ public class S_MapGeneration : MonoBehaviour
     //Will grab chunks here
     private void Awake()
     {
-        global = S_Global.Instance; 
+        global = S_Global.Instance;
+        Map1(); 
+    }
+
+    private void Start()
+    {
+        //map_b_map2Used = true; 
     }
 
     public void NewMapGeneration()
@@ -36,7 +42,7 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map1
     public void Map1()
     {
-        Vector3 newNodeStarPosition = new Vector3( 0f, 0f, 0f );
+        Vector3 newNodeStarPosition = new Vector3( -1.27f, 0.04f, 0f );
         nodeStar.gameObject.transform.position = newNodeStarPosition;
 
         map1.SetActive(true);
@@ -46,13 +52,13 @@ public class S_MapGeneration : MonoBehaviour
         //Toggle Booleans
         map_b_map1Used = true;
         map_b_map2Used = false;
-        map_b_map3Used = false;
+        map_b_map3Used = true;
     }
 
     //Designer Map2
     public void Map2()
     {
-        Vector3 newNodeStarPosition = new Vector3(0f, 0f, 0f);
+        Vector3 newNodeStarPosition = new Vector3(2.43f, 1.69f, 0f);
         nodeStar.gameObject.transform.position = newNodeStarPosition;
 
         map1.SetActive(false);
@@ -60,7 +66,7 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(false);
 
         //Toggle Booleans
-        map_b_map1Used = false;
+        map_b_map1Used = true;
         map_b_map2Used = true;
         map_b_map3Used = false;
     }
@@ -68,7 +74,7 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map3
     public void Map3()
     {
-        Vector3 newNodeStarPosition = new Vector3(0f, 0f, 0f);
+        Vector3 newNodeStarPosition = new Vector3(-1.18f, 3.9f, 0f);
         nodeStar.gameObject.transform.position = newNodeStarPosition;
 
         map1.SetActive(false);
@@ -77,7 +83,7 @@ public class S_MapGeneration : MonoBehaviour
 
         //Toggle Booleans
         map_b_map1Used = false;
-        map_b_map2Used = false;
+        map_b_map2Used = true;
         map_b_map3Used = true;
     }
 }
