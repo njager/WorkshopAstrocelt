@@ -7,6 +7,8 @@ public class S_MapGeneration : MonoBehaviour
     //Private variables
     private S_Global global;
 
+    public S_NodeStar nodeStar; 
+
     [Header("Temporary Booleans")]
     public bool map_b_map1Used;
     public bool map_b_map2Used;
@@ -34,6 +36,9 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map1
     public void Map1()
     {
+        Vector3 newNodeStarPosition = new Vector3( 0f, 0f, 0f );
+        nodeStar.gameObject.transform.position = newNodeStarPosition;
+
         map1.SetActive(true);
         map2.SetActive(false);
         map3.SetActive(false);
@@ -47,6 +52,9 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map2
     public void Map2()
     {
+        Vector3 newNodeStarPosition = new Vector3(0f, 0f, 0f);
+        nodeStar.gameObject.transform.position = newNodeStarPosition;
+
         map1.SetActive(false);
         map2.SetActive(true);
         map3.SetActive(false);
@@ -60,6 +68,9 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map3
     public void Map3()
     {
+        Vector3 newNodeStarPosition = new Vector3(0f, 0f, 0f);
+        nodeStar.gameObject.transform.position = newNodeStarPosition;
+
         map1.SetActive(false);
         map2.SetActive(false);
         map3.SetActive(true);
