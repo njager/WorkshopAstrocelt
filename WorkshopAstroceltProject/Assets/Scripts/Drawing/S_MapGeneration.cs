@@ -29,13 +29,15 @@ public class S_MapGeneration : MonoBehaviour
         
     }
 
-
-
     ////Temporary\\\\
 
     //Designer Map1
     public void Map1()
     {
+        map1.SetActive(true);
+        map2.SetActive(false);
+        map3.SetActive(false);
+
         //Toggle Booleans
         map_b_map1Used = true;
         map_b_map2Used = false;
@@ -45,6 +47,10 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map2
     public void Map2()
     {
+        map1.SetActive(false);
+        map2.SetActive(true);
+        map3.SetActive(false);
+
         //Toggle Booleans
         map_b_map1Used = false;
         map_b_map2Used = true;
@@ -54,6 +60,10 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map3
     public void Map3()
     {
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(true);
+
         //Toggle Booleans
         map_b_map1Used = false;
         map_b_map2Used = false;
