@@ -31,7 +31,7 @@ public class S_RitualStar : MonoBehaviour
     private void Start()
     {
         //change null to nullstar 
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
 
         //assign after the star class gets assigned 
 

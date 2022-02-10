@@ -24,7 +24,7 @@ public class S_NullStar : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
 }

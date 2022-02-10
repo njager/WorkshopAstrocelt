@@ -8,9 +8,9 @@ public class S_Star
     private S_Global g_global;
 
     //put in start to avoid any race conditions (doesnt need to be in awake)
-    private void Start()
+    private void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
     // Stars used to connect to it's other two lines

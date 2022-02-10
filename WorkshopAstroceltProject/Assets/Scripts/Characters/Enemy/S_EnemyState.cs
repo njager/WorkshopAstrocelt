@@ -29,7 +29,7 @@ public class S_EnemyState : MonoBehaviour
 
     void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
     // Update is called once per frame

@@ -16,9 +16,9 @@ public class S_OldConstellationLine : MonoBehaviour
     public S_StarClass s_previousStar;
     public S_StarClass s_nextStar;
 
-    private void Start()
+    private void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
     public void SetUp()

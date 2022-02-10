@@ -12,9 +12,9 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_yellowEnergy;
     public int i_blueEnergy;
 
-    private void Start()
+    private void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
     /// <summary>

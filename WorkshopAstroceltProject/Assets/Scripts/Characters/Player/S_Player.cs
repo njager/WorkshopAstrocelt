@@ -12,9 +12,9 @@ public class S_Player : MonoBehaviour
     /// Basic Start S_Global setup, grabbing playerAttributes; 
     /// </summary>
 
-    void Start()
+    void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
 
         p_playerAttributes = g_global.g_playerAttributeSheet; 
     }

@@ -27,7 +27,7 @@ public class S_ConstellationLine : MonoBehaviour
     }
     void Start()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

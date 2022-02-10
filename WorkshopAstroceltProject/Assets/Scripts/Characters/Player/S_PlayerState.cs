@@ -21,9 +21,9 @@ public class S_PlayerState : MonoBehaviour
     public bool p_b_inStunnedState;
     public bool p_b_inPoisonedState;
 
-    void Start()
+    void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
     }
 
     void Update()

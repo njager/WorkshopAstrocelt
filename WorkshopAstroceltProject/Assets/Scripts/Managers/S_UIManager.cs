@@ -22,9 +22,9 @@ public class S_UIManager : MonoBehaviour
 
     private float spawnTimer = 5f;
 
-    void Start()
+    void Awake()
     {
-        g_global = S_Global.g_instance; //DO NOT PUT IN AWAKE, breaks behavior for some reason.
+        g_global = S_Global.Instance; 
         tempUIInitial = 60;
         tempUIMax = 100; 
     }

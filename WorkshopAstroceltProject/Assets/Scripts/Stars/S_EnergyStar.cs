@@ -25,10 +25,10 @@ public class S_EnergyStar : MonoBehaviour
     /// Do in start to properly fetch global
     /// - Riley & Josh
     /// </summary>
-    private void Start()
+    private void Awake()
     {
         //change null to nullstar 
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
 
         //assign after the star class gets assigned
         s_starSprite = s_starGraphic.GetComponent<SpriteRenderer>();

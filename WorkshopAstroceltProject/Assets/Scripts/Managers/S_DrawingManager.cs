@@ -22,9 +22,9 @@ public class S_DrawingManager : MonoBehaviour
     
 
 
-    private void Start()
+    private void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
         s_previousStar = s_nullStarInst;
         i_index = 0;
         v2_nodeStarLoc = s_nodeStarInst.gameObject.transform.position;

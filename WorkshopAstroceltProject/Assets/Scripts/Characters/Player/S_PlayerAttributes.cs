@@ -32,9 +32,9 @@ public class S_PlayerAttributes : MonoBehaviour
     public bool p_b_stunned;
     public bool p_b_bleeding;
  
-    void Start()
+    void Awake()
     {
-        g_global = S_Global.g_instance; 
+        g_global = S_Global.Instance; 
 
         if(g_global.g_i_sceneIndex == 0)
         {

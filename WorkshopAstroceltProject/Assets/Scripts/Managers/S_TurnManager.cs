@@ -13,9 +13,9 @@ public class S_TurnManager : MonoBehaviour
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
     /// </summary>
-    void Start()
+    void Awake()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
         g_global.g_b_playerTurn = b_playerInitialTurn;
         g_global.g_b_enemyTurn = b_enemyInitialTurn;
     }

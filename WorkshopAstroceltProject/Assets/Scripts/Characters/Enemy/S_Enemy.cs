@@ -13,7 +13,7 @@ public class S_Enemy : MonoBehaviour
 
     void Start()
     {
-        g_global = S_Global.g_instance;
+        g_global = S_Global.Instance;
 
         SetCount(); 
         
