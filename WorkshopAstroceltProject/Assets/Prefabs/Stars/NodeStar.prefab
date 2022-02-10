@@ -71,7 +71,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!114 &6955678015951239671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53fe15e004f4b34688cc16cea53eb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_starHoverColor: {r: 0, g: 0, b: 0, a: 0}
+  c_starHoverColor: {r: 0.745283, g: 0.39523232, b: 0.094918124, a: 1}
   s_starGraphic: {fileID: 6122840224723126708}
   s_starTemplate:
     m_previous: {fileID: 0}
@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 6122840224723126708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 3232526743670229590}
   m_RootOrder: 0

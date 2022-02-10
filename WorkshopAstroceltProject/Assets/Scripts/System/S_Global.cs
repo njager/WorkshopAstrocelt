@@ -10,7 +10,7 @@ using TMPro;
 
 public class S_Global : MonoBehaviour
 {
-    public static S_Global g_instance;
+    public static S_Global Instance;
 
     [Header("Script References")]
     public S_TurnManager g_turnManager;
@@ -59,9 +59,16 @@ public class S_Global : MonoBehaviour
     [Header("Arrays")]
     public string placeholder;
 
-    void Awake()
+    private void Awake()
     {
-        g_instance = this;
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
 
         //for now
         g_i_sceneIndex = 0;

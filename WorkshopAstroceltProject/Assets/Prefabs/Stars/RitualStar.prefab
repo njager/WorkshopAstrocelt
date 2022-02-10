@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3004275835478708033
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 776223449507903903}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8561052831896400521}
   m_RootOrder: 1
@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2440462935911650192
 Transform:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 6014539376243678328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8561052831896400521}
   m_RootOrder: 0
@@ -320,7 +320,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!114 &7915091844831734677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3fdf7101f684a59892988562f53d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_starHoverColor: {r: 0, g: 0, b: 0, a: 0}
+  c_starHoverColor: {r: 0.6415094, g: 0.15432537, b: 0.15432537, a: 1}
   s_neutralRitualStarGraphic: {fileID: 6014539376243678328}
   s_redRitualStarGraphic: {fileID: 776223449507903903}
   s_blueRitualStarGraphic: {fileID: 4154172398554925229}

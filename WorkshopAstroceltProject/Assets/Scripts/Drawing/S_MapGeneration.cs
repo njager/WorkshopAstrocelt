@@ -16,4 +16,24 @@ public class S_MapGeneration : MonoBehaviour
     {
         
     }
+
+    //Temporary
+
+    //Designer Map1
+    public void Map1()
+    {
+
+    }
+
+    //Designer Map2
+    public void Map2()
+    {
+
+    }
+
+    //Designer Map3
+    public void Map3()
+    {
+
+    }
 }
