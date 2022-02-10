@@ -42,7 +42,7 @@ public class S_DrawingManager : MonoBehaviour
         { 
             b_drawing = false;
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
-            g_global.g_ConstelationManager.RetraceConstelation(_starN);
+            StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(_starN));
         }
         else 
         { 

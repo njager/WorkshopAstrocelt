@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Linq; 
 
 public class S_ConstelationManager : MonoBehaviour
 {
     private S_Global g_global;
-    float f_timer = 1;
+    float f_timer = 3f;
 
     [Header("Energy Colors")]
     public int i_redEnergy;
     public int i_yellowEnergy;
     public int i_blueEnergy;
+
+    public List<GameObject> lineRendererList;
+    public bool enumerateTemp; 
 
     private void Awake()
     {
@@ -63,6 +69,7 @@ public class S_ConstelationManager : MonoBehaviour
                         {
                             _color = "blue";
                         }
+
                         _curStar = _curStar.s_star.m_previous;
                     }
                 }
@@ -79,6 +86,19 @@ public class S_ConstelationManager : MonoBehaviour
             else if (_color == "yellow") { i_yellowEnergy = _count; }
             else if (_color == "blue") { i_blueEnergy = _count; }
             print(_count);
+
+            
         }
+    }
+
+    public IEnumerator LineDeletion()
+    {
+        foreach (GameObject lineObject in lineRendererList.ToList())
+        {
+            lineRendererList.Remove(lineObject);
+            lineObject.SetActive(false);
+        }
+        enumerateTemp = true; 
+        yield return enumerateTemp = true; 
     }
 }

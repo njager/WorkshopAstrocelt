@@ -24,11 +24,10 @@ public class S_ConstellationLine : MonoBehaviour
     private void Awake()
     {
         m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
-    }
-    void Start()
-    {
         g_global = S_Global.Instance;
+        g_global.g_ConstellationManager.lineRendererList.Add(this.gameObject);
     }
+    
 
     private void OnTriggerEnter2D(Collider2D col)
     {

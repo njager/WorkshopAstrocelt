@@ -838,7 +838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &116821759
 Transform:
   m_ObjectHideFlags: 0
@@ -3999,7 +3999,7 @@ MonoBehaviour:
   g_enemy: {fileID: 1005853314}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
-  g_ConstelationManager: {fileID: 1330287152}
+  g_ConstellationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
   g_vectorManager: {fileID: 1108261637}
   g_selectorManager: {fileID: 1455212357}
@@ -4052,7 +4052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &500611605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10755,6 +10755,8 @@ MonoBehaviour:
   i_redEnergy: 0
   i_yellowEnergy: 0
   i_blueEnergy: 0
+  lineRendererList: []
+  enumerateTemp: 0
 --- !u!1001 &1336605811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13279,8 +13281,8 @@ Transform:
   - {fileID: 16822590}
   - {fileID: 233048289}
   - {fileID: 575256573}
-  - {fileID: 1313896442}
   - {fileID: 497489127}
+  - {fileID: 1313896442}
   - {fileID: 741538498}
   - {fileID: 1221968973}
   - {fileID: 1003653104}
@@ -13810,7 +13812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1789803375
 Transform:
   m_ObjectHideFlags: 0
@@ -14253,7 +14255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1852917019
 Transform:
   m_ObjectHideFlags: 0
@@ -15490,7 +15492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2064645094
 Transform:
   m_ObjectHideFlags: 0
@@ -15572,7 +15574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2067104503
 Transform:
   m_ObjectHideFlags: 0

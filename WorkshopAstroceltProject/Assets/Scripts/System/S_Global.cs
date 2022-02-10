@@ -18,7 +18,7 @@ public class S_Global : MonoBehaviour
     public S_Enemy g_enemy;
     public S_MapGeneration g_mapManager;
     public S_DrawingManager g_DrawingManager;
-    public S_ConstelationManager g_ConstelationManager;
+    public S_ConstelationManager g_ConstellationManager;
     public S_UIManager g_UIManager;
     public S_VectorManager g_vectorManager;
     public S_SelectorManager g_selectorManager; 
@@ -63,7 +63,7 @@ public class S_Global : MonoBehaviour
     {
         if(Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(this);
         }
         else
         {
