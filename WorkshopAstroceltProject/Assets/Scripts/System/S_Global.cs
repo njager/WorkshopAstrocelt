@@ -21,7 +21,9 @@ public class S_Global : MonoBehaviour
     public S_ConstelationManager g_ConstellationManager;
     public S_UIManager g_UIManager;
     public S_VectorManager g_vectorManager;
-    public S_SelectorManager g_selectorManager; 
+    public S_SelectorManager g_selectorManager;
+    public S_CardManager g_cardManager;
+    public S_CardDatabase g_CardDatabase;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -56,6 +58,7 @@ public class S_Global : MonoBehaviour
     [Header("Lists")]
     public List<S_Enemy> e_l_enemyList;
     public List<GameObject> g_lst_lineRendererList;
+    public List<GameObject> lst_p_playerDeck;
 
     [Header("Arrays")]
     public string placeholder;
