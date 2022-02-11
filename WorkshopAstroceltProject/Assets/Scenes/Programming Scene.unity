@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &48723228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48723229}
+  m_Layer: 0
+  m_Name: CardTemplate
+  m_TagString: Card
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48723229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48723228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &72318028
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +226,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b605fea58103e4bbb1e9dc30efa1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeStar: {fileID: 0}
+  map_b_map1Used: 0
+  map_b_map2Used: 0
+  map_b_map3Used: 0
+  map1: {fileID: 0}
+  map2: {fileID: 0}
+  map3: {fileID: 0}
 --- !u!1 &230339467
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,9 +566,10 @@ MonoBehaviour:
   g_enemy: {fileID: 0}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 0}
-  g_ConstelationManager: {fileID: 0}
+  g_ConstellationManager: {fileID: 0}
   g_UIManager: {fileID: 0}
   g_vectorManager: {fileID: 0}
+  g_selectorManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 0}
@@ -550,7 +588,6 @@ MonoBehaviour:
   g_i_enemyCountMax: 0
   e_l_enemyList: []
   placeholder: 
-  g_ui_selector: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0

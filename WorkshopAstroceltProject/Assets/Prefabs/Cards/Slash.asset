@@ -12,21 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
-  CardName: Wicked Strike
-  FlavorText: '"Can''t go wrong with it!"'
+  CardName: 
+  FlavorText: 
   EnergyCost: 0
-  EffectVal: 0
+  EffectValue: 0
   CardRarity: 1
-  NumberOfCharactersAffected: 0
+  AffectsSelf: 0
+  Affects1Character: 0
+  Affects2Characters: 0
   CardArtAssetPrefab: {fileID: 0}
   RedColorType: 0
   BlueColorType: 0
   GreenColorType: 0
-  ColorlessType: 0
+  WhiteColorType: 0
   DamageEffectType: 0
-  BuffEffectType: 0
+  HealEffectType: 0
   ShieldEffectType: 0
   UniqueEffectType: 0
+  NoEffect: 0
   BleedingStatusEffect: 0
   StunStatusEffect: 0
   PoisonStatusEffect: 0
@@ -35,5 +38,6 @@ MonoBehaviour:
   RestrainStatusEffect: 0
   BurnStatusEffect: 0
   ShockStatusEffect: 0
-  DamagePercentagePerTurn: 0
+  DamagePercentage: 0
   TurnCount: 0
+  Payback: 0

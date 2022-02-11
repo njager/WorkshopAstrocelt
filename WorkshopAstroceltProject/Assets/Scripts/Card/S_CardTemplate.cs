@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card Template")]
 public class S_CardTemplate : ScriptableObject
@@ -18,7 +19,7 @@ public class S_CardTemplate : ScriptableObject
     public bool Affects1Character;
     public bool Affects2Characters; 
     
-    [Header("Art (subject to change)")]
+    [Header("Art Prefab(subject to change)")]
     public GameObject CardArtAssetPrefab;
 
     [Header("Toggle Color Types")]
@@ -29,7 +30,7 @@ public class S_CardTemplate : ScriptableObject
 
     [Header("Main Effect Types")]
     public bool DamageEffectType;
-    public bool HealEffectType;
+    public bool HealEffectType; // May end up being status
     public bool ShieldEffectType;
     public bool UniqueEffectType;
 
@@ -44,9 +45,13 @@ public class S_CardTemplate : ScriptableObject
     public bool BurnStatusEffect;
     public bool ShockStatusEffect; 
 
-    [Header("Bleeding Status Effect Variables")]
-    public int DamagePercentagePerTurn; //40% of the card's
-    public int TurnCount; 
+    [Header("Potential Status Effect")]
+    public int DamagePercentage; 
+    public int TurnCount;
 
-    [Header("Poison Status Effect Variables")]
+    [Header("If Unique, toggle what Unique card it is.")]
+    public bool Payback;
+
+    [Header("Extra Info")]
+    public string ExtraInfo;
 }
