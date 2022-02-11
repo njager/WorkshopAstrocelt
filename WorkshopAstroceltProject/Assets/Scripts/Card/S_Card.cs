@@ -26,6 +26,7 @@ public class S_Card : MonoBehaviour
 
     [Header("Status Effect Triggers")]
     public bool c_b_bleedStatusEffectType;
+    public bool c_b_stunnedStatusEffectType;
     public bool c_b_poisonStatusEffectType;
 
     private void Awake()

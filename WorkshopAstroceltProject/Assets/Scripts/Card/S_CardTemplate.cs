@@ -9,23 +9,44 @@ public class S_CardTemplate : ScriptableObject
     public string CardName;
     public string FlavorText;
 
-    public int CardRarity; 
-    public int AttackVal;
+    public int EnergyCost;
+    public int EffectValue;
+    public float CardRarity;
 
-    public GameObject cardArtAssetPrefab;
+    [Header("Number of Characters Affected")]
+    public bool AffectsSelf;
+    public bool Affects1Character;
+    public bool Affects2Characters; 
+    
+    [Header("Art (subject to change)")]
+    public GameObject CardArtAssetPrefab;
 
     [Header("Toggle Color Types")]
     public bool RedColorType;
     public bool BlueColorType;
     public bool GreenColorType;
-    public bool ColorlessType; 
+    public bool WhiteColorType; 
 
-    [Header("Effect Types")]
+    [Header("Main Effect Types")]
     public bool DamageEffectType;
     public bool HealEffectType;
     public bool ShieldEffectType;
+    public bool UniqueEffectType;
 
-    [Header("Status Effect Triggers")]
-    public bool c_b_bleedStatusEffectType;
-    public bool c_b_poisonStatusEffectType;
+    [Header("Status Effect Types")]
+    public bool NoEffect; 
+    public bool BleedingStatusEffect;
+    public bool StunStatusEffect;
+    public bool PoisonStatusEffect;
+    public bool EmpoweredStatusEffect;
+    public bool LuckyStatusEffect;
+    public bool RestrainStatusEffect;
+    public bool BurnStatusEffect;
+    public bool ShockStatusEffect; 
+
+    [Header("Bleeding Status Effect Variables")]
+    public int DamagePercentagePerTurn; //40% of the card's
+    public int TurnCount; 
+
+    [Header("Poison Status Effect Variables")]
 }
