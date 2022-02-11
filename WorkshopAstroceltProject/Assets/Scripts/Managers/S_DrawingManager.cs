@@ -156,6 +156,7 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void ConstellationReset()
     {
+        Debug.Log("Constellation Reset Triggered");
         while (s_previousStar.starType != "Null")
         {
             S_StarClass _temporalStar = s_previousStar.s_star.m_previous;

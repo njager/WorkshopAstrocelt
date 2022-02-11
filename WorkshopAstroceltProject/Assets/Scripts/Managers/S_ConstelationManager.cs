@@ -8,7 +8,11 @@ using System.Linq;
 public class S_ConstelationManager : MonoBehaviour
 {
     private S_Global g_global;
-    float f_timer = 3f;
+    float f_timer = 2f;
+
+    [Header("Constellation Sizes")]
+    public int i_minSize;
+    public int i_maxSize;
 
     [Header("Energy Colors")]
     public int i_redEnergy;
@@ -29,17 +33,18 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public IEnumerator RetraceConstelation(S_StarClass _node)
     {
+        //wait so if a line deletes itself were safe
         yield return new WaitForSeconds(f_timer);
 
         //set up some function vars
         S_StarClass _curStar = _node.s_star.m_previous;
-        if (_curStar.starType !="Null")
+        if (_curStar.starType != "Null")
         {
             int _count = 0;
             bool _hasColor = false;
             string _color = "";
 
-
+            //loop through 
             while (_curStar.starType != "Node")
             {
                 if (_curStar.starType == "Ritual")
@@ -79,7 +84,10 @@ public class S_ConstelationManager : MonoBehaviour
                     _curStar = _curStar.s_star.m_previous;
                 }
             }
+            //delete the constellation if it has no ritual star or is too small
             if (!_hasColor) { g_global.g_DrawingManager.ConstellationReset(); }
+            if(_count < i_minSize) { g_global.g_DrawingManager.ConstellationReset(); }
+            if (_count > i_maxSize) { g_global.g_DrawingManager.ConstellationReset(); }
 
             //assining the colored energy to the count
             if (_color == "red") { i_redEnergy = _count; }

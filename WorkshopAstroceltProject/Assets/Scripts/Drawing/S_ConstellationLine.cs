@@ -42,9 +42,9 @@ public class S_ConstellationLine : MonoBehaviour
         }
         if (other.CompareTag("Star"))
         {
-            print(other);
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
             {
+                Debug.Log("encountered another star in path");
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
             }
             else { return; }
@@ -69,6 +69,8 @@ public class S_ConstellationLine : MonoBehaviour
         //Grab Line Renderer point data
         Vector3 _startPoint = m_lineRendererInst.GetPosition(0);
         Vector3 _endPoint = m_lineRendererInst.GetPosition(1);
+
+        if(_startPoint == _endPoint) { g_global.g_DrawingManager.GoBackOnce(this.gameObject); }
 
         // Grab the box collider
         m_cap = gameObject.GetComponent<CapsuleCollider2D>();
