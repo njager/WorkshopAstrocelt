@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class S_Card : MonoBehaviour
 {
+    private S_CardTemplate cardTemplate; 
+
     [Header("Card Basics")]
     public string c_str_cardName;
     public string c_str_flavorText;
