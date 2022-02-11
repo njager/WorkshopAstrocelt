@@ -10,11 +10,6 @@ public class S_NullStar : MonoBehaviour
     public Color c_starHoverColor;
     public GameObject s_starGraphic;
 
-
-    [Header("Class Templates")]
-    public S_Star s_starTemplate;
-
-
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer

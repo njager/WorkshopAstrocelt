@@ -16,10 +16,6 @@ public class S_RitualStar : MonoBehaviour
     public GameObject s_blueRitualStarGraphic;
     public GameObject s_yellowRitualStarGraphic;
 
-
-    [Header("Class Template")]
-    public S_Star s_starTemplate;
-
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer

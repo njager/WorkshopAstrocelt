@@ -15,7 +15,6 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_yellowEnergy;
     public int i_blueEnergy;
 
-    public List<GameObject> lineRendererList;
     public bool enumerateTemp; 
 
     private void Awake()
@@ -94,9 +93,9 @@ public class S_ConstelationManager : MonoBehaviour
 
     public IEnumerator LineDeletion()
     {
-        foreach (GameObject lineObject in lineRendererList.ToList())
+        foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
         {
-            lineRendererList.Remove(lineObject);
+            g_global.g_lst_lineRendererList.Remove(lineObject);
             lineObject.SetActive(false);
         }
         enumerateTemp = true; 

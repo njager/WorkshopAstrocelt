@@ -55,6 +55,7 @@ public class S_Global : MonoBehaviour
 
     [Header("Lists")]
     public List<S_Enemy> e_l_enemyList;
+    public List<GameObject> g_lst_lineRendererList;
 
     [Header("Arrays")]
     public string placeholder;
