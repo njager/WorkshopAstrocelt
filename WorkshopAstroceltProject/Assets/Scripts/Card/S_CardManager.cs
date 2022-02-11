@@ -12,11 +12,11 @@ public class S_CardManager : MonoBehaviour
     public int p_i_handSize;
     public int p_i_handSizeLimit; 
 
-    private void Awake()
+    private void Start()
     {
         g_global = S_Global.Instance;
 
-        for(int i = p_i_handSize; p_i_handSize <= p_i_handSizeLimit; i++)
+        for(int i = p_i_handSize; i <= p_i_handSizeLimit; i++)
         {
             int _index = randomNumGenerator();
             GameObject _randomCard = g_global.g_CardDatabase.GetCard(_index);
@@ -27,7 +27,7 @@ public class S_CardManager : MonoBehaviour
     public int randomNumGenerator()
     {
         System.Random rand = new System.Random();
-        int _number = rand.Next(0, (p_i_handSize + 1));
+        int _number = rand.Next(0, 3);
         return _number;
     }
 }
