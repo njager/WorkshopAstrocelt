@@ -31,7 +31,12 @@ public class S_PlayerAttributes : MonoBehaviour
     public bool p_b_poisoned;
     public bool p_b_stunned;
     public bool p_b_bleeding;
- 
+    public bool e_b_empowered;
+    public bool e_b_lucky;
+    public bool e_b_restrained;
+    public bool e_b_burned;
+    public bool e_b_shocked;
+
     void Awake()
     {
         g_global = S_Global.Instance; 
@@ -54,7 +59,7 @@ public class S_PlayerAttributes : MonoBehaviour
         p_i_health = 100;
         p_i_healthMax = 100;
 
-        p_i_shield = 100;
+        p_i_shield = 0;
         p_i_shieldMax = 100;
 
         p_f_playerEnergyGenerationRate = 1.0f;

@@ -20,6 +20,8 @@ public class S_EnemyAttributes : MonoBehaviour
     public int e_i_shield;
     public int e_i_shieldMax;
 
+    public int e_i_enemyDamageValue;
+
     public float e_f_challengeRating;
 
     [Header("Typing")]
@@ -33,17 +35,18 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_poisoned;
     public bool e_b_stunned;
     public bool e_b_bleeding;
+    public bool e_b_empowered;
+    public bool e_b_lucky;
+    public bool e_b_restrained;
+    public bool e_b_burned;
+    public bool e_b_shocked;
 
-    public S_Enemy e_enemyScript; 
+    //It's attached enemy script
+    public S_Enemy e_enemyScript;
 
-    /// <summary>
-    /// Start doesn't have to be initiated in engine
-    /// -Josh
-    /// </summary>
-     
-    public void BeginPlayBehavior(S_Global g_instance)
+    public void Start()
     {
-        g_global = g_instance; 
+        g_global = S_Global.Instance; 
 
         //Inform Global
         InstanceVariables();
@@ -145,6 +148,8 @@ public class S_EnemyAttributes : MonoBehaviour
 
         e_i_shield = 100;
         e_i_shieldMax = 100;
+
+        e_i_enemyDamageValue = 5;
 
         e_f_challengeRating = 1.0f;
 

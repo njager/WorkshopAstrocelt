@@ -29,6 +29,7 @@ public class S_UIManager : MonoBehaviour
         tempUIMax = 100; 
     }
 
+    //Some of this should be in turn manager?
     void Update()
     {
         SetElements();  
@@ -64,13 +65,12 @@ public class S_UIManager : MonoBehaviour
     public void SetElements()
     {
         // Text
-        playerHealthText.text = tempUIInitial.ToString() + "/" + tempUIMax.ToString();
+        playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
 
         //Health Bar
-        playerHealthBar.fillAmount = (float)tempUIInitial / (float)tempUIMax;
+        playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;
     }
 
-    //Temporary Button placeholder for triggering the state machine, move code like this to S_ButtonManager
     public void EndTurn()
     {
         if (g_global.g_selectorManager.e_enemySelected != null)
@@ -82,9 +82,43 @@ public class S_UIManager : MonoBehaviour
             }
             else
             {
-                tempUIInitial -= 5; // Simultating enemy attack, update later
-                Debug.Log("Clicked!");
-                g_global.g_turnManager.EnemyStateChange();
+                // Turn damage for Enemy 1
+                if (g_global.g_enemyAttributeSheet1 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
+                    //Debug.Log("Clicked!");
+                    g_global.g_turnManager.EnemyStateChange();
+                }
+                // Turn damage for Enemy 2
+                if (g_global.g_enemyAttributeSheet2 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
+                    //Debug.Log("Clicked!");
+                    g_global.g_turnManager.EnemyStateChange();
+                }
+                // Turn damage for Enemy 3
+                if (g_global.g_enemyAttributeSheet3 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
+                    //Debug.Log("Clicked!");
+                    g_global.g_turnManager.EnemyStateChange();
+                }
+                // Turn damage for Enemy 4
+                if (g_global.g_enemyAttributeSheet4 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
+                    //Debug.Log("Clicked!");
+                    g_global.g_turnManager.EnemyStateChange();
+                }
+                // Turn damage for Enemy 5
+                if (g_global.g_enemyAttributeSheet5 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
+                    //Debug.Log("Clicked!");
+                    g_global.g_turnManager.EnemyStateChange();
+                }
+
+
             }
         }
         else

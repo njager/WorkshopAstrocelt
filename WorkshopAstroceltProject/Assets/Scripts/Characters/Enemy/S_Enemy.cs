@@ -11,7 +11,7 @@ public class S_Enemy : MonoBehaviour
 
     public int e_i_enemyCount;
 
-    void Start()
+    void Awake()
     {
         g_global = S_Global.Instance;
 
@@ -20,8 +20,6 @@ public class S_Enemy : MonoBehaviour
         Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
 
         g_global.e_l_enemyList.Add(this);
-
-        //e_enemyAttributes.BeginPlayBehavior(g_global);
     }
 
     void SetCount()

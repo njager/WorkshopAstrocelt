@@ -29,12 +29,12 @@ public class S_PlayerState : MonoBehaviour
     void Update()
     {
         // Check for health and shield limits here
-        if(g_global.g_playerAttributeSheet.p_i_health < g_global.g_playerAttributeSheet.p_i_healthMax)
+        if(g_global.g_playerAttributeSheet.p_i_health > g_global.g_playerAttributeSheet.p_i_healthMax)
         {
             g_global.g_playerAttributeSheet.p_i_health = g_global.g_playerAttributeSheet.p_i_healthMax;
         }
 
-        if (g_global.g_playerAttributeSheet.p_i_shield < g_global.g_playerAttributeSheet.p_i_shieldMax)
+        if (g_global.g_playerAttributeSheet.p_i_shield > g_global.g_playerAttributeSheet.p_i_shieldMax)
         {
             g_global.g_playerAttributeSheet.p_i_shield = g_global.g_playerAttributeSheet.p_i_shieldMax;
         }
