@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class S_Card : MonoBehaviour
 {
-    private S_CardTemplate cardTemplate; 
+    private ScriptableObject cardTemplate;
+    private S_Global global; 
 
     [Header("Card Basics")]
     public string c_str_cardName;
@@ -13,13 +15,18 @@ public class S_Card : MonoBehaviour
     public int c_i_cardRarity;
     public int c_i_attackVal;
 
-    public GameObject cardArtAssetObj;
+    [Header("Card Graphic References")]
+    public GameObject c_childGraphic; // The graphic itself
+    public TextMeshProUGUI c_tx_header; // Header Textbox
+    public TextMeshProUGUI c_tx_body; // Body Text Box
+    public TextMeshProUGUI c_tx_flavor; // Flavor Text Box
+    public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
     [Header("Color Types")]
     public bool c_b_redColorType;
     public bool c_b_blueColorType;
     public bool c_b_greenColorType;
-    public bool c_b_colorlessType;
+    public bool c_b_whiteColorType;
 
     [Header("Effect Types")]
     public bool c_b_damageEffectType;
@@ -33,16 +40,11 @@ public class S_Card : MonoBehaviour
 
     private void Awake()
     {
-        c_b_damageEffectType = false;
-        c_b_healEffectType = false;
-        c_b_shieldEffectType = false;
-
-        c_b_redColorType = false;
-        c_b_blueColorType = false;
-        c_b_greenColorType = false;
-        c_b_colorlessType = false;
-
-        c_b_bleedStatusEffectType = false;
-        c_b_poisonStatusEffectType = false;
+        global = S_Global.Instance;
+    }
+    
+    private void Start()
+    {
+        
     }
 }

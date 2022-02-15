@@ -15,7 +15,10 @@ public class S_CardDatabase : MonoBehaviour
     public GameObject cardPrefab1; //Lasting Blow, ID 1
     public GameObject cardPrefab2; //Magic Armor, ID 2
 
-    Dictionary<int, GameObject> dict_CardDatabase = new Dictionary<int, GameObject>();
+    [Header("Scriptable Objects")]
+    public ScriptableObject cardScript0; //Wicked Strike
+
+    public Dictionary<int, GameObject> dict_CardDatabase = new Dictionary<int, GameObject>();
 
     void Awake()
     {
