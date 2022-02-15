@@ -18,21 +18,21 @@ public class S_CardTemplate : ScriptableObject
     public float CardRarity;
     
     [Header("Number of Characters Affected")]
-    public bool AffectsSelf;
+    public bool AffectsPlayer;
     public bool Affects1Character;
     public bool Affects2Characters; 
 
     [Header("Toggle Color Types")]
     public bool RedColorType;
     public bool BlueColorType;
-    public bool GreenColorType;
+    public bool YellowColorType;
     public bool WhiteColorType; 
 
     [Header("Main Effect Types")]
-    public bool DamageEffectType;
-    public bool HealEffectType; // May end up being status
-    public bool ShieldEffectType;
-    public bool UniqueEffectType;
+    public bool DamageEffect;
+    public bool HealEffect;
+    public bool ShieldEffect;
+    public bool UniqueEffect;
 
     [Header("Status Effect Types")]
     public bool NoEffect; 
