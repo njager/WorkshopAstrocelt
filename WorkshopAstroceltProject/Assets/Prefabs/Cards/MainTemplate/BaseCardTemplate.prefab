@@ -182,7 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c_cardTemplate: {fileID: 0}
   c_i_cardIndex: 0
-  c_cl_colorType: 
   c_str_cardName: 
   c_str_headerText: 
   c_str_bodyText: 
@@ -198,7 +197,7 @@ MonoBehaviour:
   c_childBlueGraphic: {fileID: 0}
   c_childYellowGraphic: {fileID: 0}
   c_childWhiteGraphic: {fileID: 0}
-  c_b_affectsSelf: 0
+  c_b_affectsPlayer: 0
   c_b_affectsOne: 0
   c_b_affectsTwo: 0
   c_b_damageMainEffect: 0
@@ -220,6 +219,7 @@ MonoBehaviour:
   c_tx_body: {fileID: 0}
   c_tx_flavor: {fileID: 0}
   c_tx_energyCost: {fileID: 0}
+  c_b_unqiuePayback: 0
 --- !u!50 &1732291931699124592
 Rigidbody2D:
   serializedVersion: 4
@@ -754,7 +754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.207, y: 1.3}
+  m_AnchoredPosition: {x: 3.148, y: 1.3}
   m_SizeDelta: {x: 37.2263, y: 37.9357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2735765819573211809
@@ -794,8 +794,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285493103
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -870,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8359965273965263009
 Transform:
   m_ObjectHideFlags: 0
