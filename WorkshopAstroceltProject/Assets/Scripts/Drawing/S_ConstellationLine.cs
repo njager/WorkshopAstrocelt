@@ -49,7 +49,12 @@ public class S_ConstellationLine : MonoBehaviour
             }
             else { return; }
         }
-        
+        if (other.CompareTag("Meteor"))
+        {
+            Debug.Log("encountered a Meteor chain in path");
+            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+           
+        }
     }
 
     public float calculateXOffset(float _length)

@@ -278,6 +278,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b605fea58103e4bbb1e9dc30efa1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeStar: {fileID: 0}
+  map_b_map1Used: 0
+  map_b_map2Used: 0
+  map_b_map3Used: 0
+  map1: {fileID: 0}
+  map2: {fileID: 0}
+  map3: {fileID: 0}
 --- !u!1 &73390823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,10 +1617,12 @@ MonoBehaviour:
   g_enemy: {fileID: 1005853314}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
-  g_ConstelationManager: {fileID: 1330287152}
+  g_ConstellationManager: {fileID: 0}
   g_UIManager: {fileID: 487312183}
   g_vectorManager: {fileID: 1108261637}
   g_selectorManager: {fileID: 1455212357}
+  g_cardManager: {fileID: 0}
+  g_CardDatabase: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -1631,6 +1640,10 @@ MonoBehaviour:
   g_i_enemyCount: 0
   g_i_enemyCountMax: 0
   e_l_enemyList: []
+  g_lst_lineRendererList: []
+  lst_p_playerDeck: 
+  lst_p_playerGrave: 
+  lst_p_playerHand: []
   placeholder: 
 --- !u!4 &499243151
 Transform:
@@ -3675,6 +3688,11 @@ Transform:
   m_Father: {fileID: 686920473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1210586225 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+  m_PrefabInstance: {fileID: 9193655987483959238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1269889771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,9 +3966,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c950e953d198f4645bb64d4c68938eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i_minSize: 0
+  i_maxSize: 0
   i_redEnergy: 0
   i_yellowEnergy: 0
   i_blueEnergy: 0
+  enumerateTemp: 0
 --- !u!1 &1418691786
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,6 +4261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02452a600f8504008b1f56b15a8138d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p_i_handSize: 0
+  p_i_handSizeLimit: 0
+  p_i_startHandSize: 0
+  p_i_drawPerTurn: 0
 --- !u!1 &1455212355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5916,6 +5941,7 @@ Transform:
   - {fileID: 858285005}
   - {fileID: 2011276852}
   - {fileID: 872569759}
+  - {fileID: 1210586225}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6142,6 +6168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0883779ae71a4eddb5dcdacfa2a2d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i_cardCount: 0
+  cardPrefab0: {fileID: 0}
+  cardPrefab1: {fileID: 0}
+  cardPrefab2: {fileID: 0}
+  cardScript0: {fileID: 0}
 --- !u!1001 &2095368580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6969,3 +7000,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b2260f3b5177a49ad93355dcbd7b17, type: 3}
+--- !u!1001 &9193655987483959238
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2080584402}
+    m_Modifications:
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.0000157
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6820489
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 40220117276276143, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+      propertyPath: m_Name
+      value: Meteor Chain
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
