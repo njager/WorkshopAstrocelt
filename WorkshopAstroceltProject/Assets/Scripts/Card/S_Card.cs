@@ -43,7 +43,6 @@ public class S_Card : MonoBehaviour
 
     [Header("Main Effect Types")]
     public bool c_b_damageMainEffect;
-    public bool c_b_healMainEffect;
     public bool c_b_shieldMainEffect;
     public bool c_b_uniqueMainEffect;
 
@@ -57,6 +56,10 @@ public class S_Card : MonoBehaviour
     public bool c_b_restrainStatusEffect;
     public bool c_b_burnStatusEffect;
     public bool c_b_shockStatusEffect;
+    public bool c_b_drawStatusEffect;
+    public bool c_b_siphonStatusEffect;
+    public bool c_b_fralitizeStatusEffect;
+    public bool c_b_manipulateStatusEffect;
 
     [Header("Potential Status Effect Values")]
     public float c_f_damagePercentage; // If not using effect value, use this
@@ -106,9 +109,22 @@ public class S_Card : MonoBehaviour
 
         //Toggle Main Effects
         c_b_damageMainEffect = _cardData.DamageEffect;
-        c_b_healMainEffect = _cardData.HealEffect;
-        c_b_shieldMainEffect = _cardData.HealEffect;
-        c_b_uniqueMainEffect = _cardData.HealEffect;
+        c_b_shieldMainEffect = _cardData.ShieldEffect;
+        c_b_uniqueMainEffect = _cardData.UniqueEffect;
+
+        //Toggle Status Effects
+        c_b_noEffect = _cardData.NoEffect;
+        c_b_bleedStatusEffect = _cardData.BleedStatusEffect;
+        c_b_stunStatusEffect = _cardData.StunStatusEffect;
+        c_b_poisonStatusEffect = _cardData.PoisonStatusEffect;
+        c_b_empowerStatusEffect = _cardData.EmpowerStatusEffect;
+        c_b_restrainStatusEffect = _cardData.RestrainStatusEffect;
+        c_b_burnStatusEffect = _cardData.BurnStatusEffect;
+        c_b_shockStatusEffect = _cardData.ShockStatusEffect;
+        c_b_drawStatusEffect = _cardData.DrawStatusEffect;
+        c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
+        c_b_fralitizeStatusEffect = _cardData.FralitizeStatusEffect;
+        c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect; 
 
         //Toggle Color Types, will need to adapt for synergies
 
@@ -173,6 +189,16 @@ public class S_Card : MonoBehaviour
             c_childWhiteGraphic.SetActive(true);
         }
 
+        SetText();
+
+    }
+
+    public void SetText()
+    {
+        c_tx_header.text = c_str_headerText;
+        c_tx_body.text = c_str_bodyText;
+        c_tx_flavor.text = c_str_flavorText;
+        c_tx_energyCost.text = c_i_energyCost.ToString();
     }
 
     [Header("Unique Cards")]

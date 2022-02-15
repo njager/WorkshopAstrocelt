@@ -30,22 +30,24 @@ public class S_CardTemplate : ScriptableObject
 
     [Header("Main Effect Types")]
     public bool DamageEffect;
-    public bool HealEffect;
     public bool ShieldEffect;
     public bool UniqueEffect;
 
     [Header("Status Effect Types")]
     public bool NoEffect; 
-    public bool BleedingStatusEffect;
+    public bool BleedStatusEffect;
     public bool StunStatusEffect;
     public bool PoisonStatusEffect;
-    public bool EmpoweredStatusEffect;
-    public bool LuckyStatusEffect;
+    public bool EmpowerStatusEffect;
     public bool RestrainStatusEffect;
     public bool BurnStatusEffect;
-    public bool ShockStatusEffect; 
+    public bool ShockStatusEffect;
+    public bool DrawStatusEffect;
+    public bool SiphonStatusEffect; 
+    public bool FralitizeStatusEffect;
+    public bool ManipulateStatusEffect; 
 
-    [Header("Potential Status Effect")]
+    [Header("Potential Status Effect Values")]
     public int DamagePercentage; 
     public int TurnCount;
 

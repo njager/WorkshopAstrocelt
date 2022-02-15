@@ -10,22 +10,25 @@ public class S_CardDatabase : MonoBehaviour
 
     public int i_cardCount;
 
-    [Header("Card Prefabs")]
-    public GameObject cardPrefab0; //Wicked Strike, ID 0
-    public GameObject cardPrefab1; //Lasting Blow, ID 1
-    public GameObject cardPrefab2; //Magic Armor, ID 2
+    public GameObject c_cardPrefabTemplate; 
 
     [Header("Scriptable Objects")]
-    public ScriptableObject cardScript0; //Wicked Strike
+    public ScriptableObject cardScript0; // temp, ID 0
+    public ScriptableObject cardScript1; // temp, ID 1
+    public ScriptableObject cardScript2; // temp, ID 2
+    public ScriptableObject cardScript3; // temp, ID 3
+    public ScriptableObject cardScript4; // temp, ID 4
+    public ScriptableObject cardScript5; // temp, ID 5
+    public ScriptableObject cardScript6; // temp, ID 6
+    public ScriptableObject cardScript7; // temp, ID 7
+    public ScriptableObject cardScript8; // temp, ID 8
+    public ScriptableObject cardScript9; // temp, ID 9
 
     public Dictionary<int, GameObject> dict_CardDatabase = new Dictionary<int, GameObject>();
 
     void Awake()
     {
         g_global = S_Global.Instance;
-        dict_CardDatabase.Add(0, cardPrefab0);
-        dict_CardDatabase.Add(1, cardPrefab0);
-        dict_CardDatabase.Add(2, cardPrefab0);
     }
 
     /// <summary>
@@ -38,5 +41,10 @@ public class S_CardDatabase : MonoBehaviour
     {
         GameObject _returnCard = dict_CardDatabase[_index];
         return _returnCard;
+    }
+
+    public void InstanceCard()
+    {
+        //Instantiate()
     }
 }
