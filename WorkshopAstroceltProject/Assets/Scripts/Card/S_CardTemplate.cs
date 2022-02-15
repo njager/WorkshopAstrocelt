@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using TMPro;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card Template")]
 public class S_CardTemplate : ScriptableObject
 {
     [Header("Card Basics")]
     public string CardName;
+    public string HeaderText;
+    public string BodyText;
     public string FlavorText;
 
     public int EnergyCost;
     public int EffectValue;
     public float CardRarity;
-
+    
     [Header("Number of Characters Affected")]
     public bool AffectsSelf;
     public bool Affects1Character;
     public bool Affects2Characters; 
-    
-    [Header("Art Prefab(subject to change)")]
-    public GameObject CardArtAssetPrefab;
 
     [Header("Toggle Color Types")]
     public bool RedColorType;
