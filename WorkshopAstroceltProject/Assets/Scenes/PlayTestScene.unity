@@ -1065,7 +1065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &125840814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4343,7 +4343,9 @@ MonoBehaviour:
   g_i_enemyCountMax: 0
   e_l_enemyList: []
   g_lst_lineRendererList: []
-  lst_p_playerDeck: []
+  lst_p_playerDeck: 
+  lst_p_playerGrave: 
+  lst_p_playerHand: []
   placeholder: 
 --- !u!4 &499243151
 Transform:
@@ -4376,7 +4378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &500611605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8610,7 +8612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &999242439
 Transform:
   m_ObjectHideFlags: 0
@@ -11004,7 +11006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1355035069
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11577,6 +11579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p_i_handSize: 0
   p_i_handSizeLimit: 0
+  p_i_startHandSize: 0
+  p_i_drawPerTurn: 0
 --- !u!1 &1455212355
 GameObject:
   m_ObjectHideFlags: 0
@@ -15307,7 +15311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1986396591
 Transform:
   m_ObjectHideFlags: 0
@@ -15940,7 +15944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2064645094
 Transform:
   m_ObjectHideFlags: 0
@@ -16439,10 +16443,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_cardCount: 3
-  cardPrefab0: {fileID: 0}
-  cardPrefab1: {fileID: 0}
-  cardPrefab2: {fileID: 0}
+  c_cardPrefabTemplate: {fileID: 0}
   cardScript0: {fileID: 0}
+  cardScript1: {fileID: 0}
+  cardScript2: {fileID: 0}
+  cardScript3: {fileID: 0}
+  cardScript4: {fileID: 0}
+  cardScript5: {fileID: 0}
+  cardScript6: {fileID: 0}
+  cardScript7: {fileID: 0}
+  cardScript8: {fileID: 0}
+  cardScript9: {fileID: 0}
 --- !u!1001 &2092353970
 PrefabInstance:
   m_ObjectHideFlags: 0
