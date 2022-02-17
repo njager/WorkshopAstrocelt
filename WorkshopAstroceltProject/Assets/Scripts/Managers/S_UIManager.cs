@@ -17,44 +17,20 @@ public class S_UIManager : MonoBehaviour
 
     public TextMeshProUGUI playerHealthText;
 
-    public int tempUIInitial;
-    public int tempUIMax;
-
-    private float spawnTimer = 5f;
+    //public int tempUIInitial;
+    //public int tempUIMax;
 
     void Awake()
     {
         g_global = S_Global.Instance; 
-        tempUIInitial = 60;
-        tempUIMax = 100; 
+        //tempUIInitial = 60;
+        //tempUIMax = 100; 
     }
 
-    //Some of this should be in turn manager?
+    //Some of this should be in turn manager?, probably
     void Update()
     {
         SetElements();  
-
-        if (g_global.g_b_playerTurn == true)
-        {
-            //Turn indicator changing
-            playerTurnBar.SetActive(true);
-            enemyTurnBar.SetActive(false); 
-        }
-
-        if (g_global.g_b_playerTurn == false)
-        {
-            //Turn indicator changing
-            playerTurnBar.SetActive(false);
-            enemyTurnBar.SetActive(true);
-
-            //Simulating the enemy turn behavior "waiting" before changing back
-            spawnTimer -= Time.deltaTime;
-            if (spawnTimer < 0)
-            {
-                g_global.g_turnManager.PlayerStateChange();
-                spawnTimer = 5f;
-            }
-        }
     }
 
     /// <summary>
@@ -117,8 +93,6 @@ public class S_UIManager : MonoBehaviour
                     //Debug.Log("Clicked!");
                     g_global.g_turnManager.EnemyStateChange();
                 }
-
-
             }
         }
         else
