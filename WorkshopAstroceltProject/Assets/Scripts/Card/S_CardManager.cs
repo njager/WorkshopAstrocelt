@@ -22,8 +22,8 @@ public class S_CardManager : MonoBehaviour
         for(int i = p_i_handSize; i <= p_i_handSizeLimit; i++)
         {
             int _index = randomNumGenerator(3);
-            GameObject _randomCard = g_global.g_CardDatabase.GetCard(_index);
-            g_global.lst_p_playerHand.Add(_randomCard);
+            //GameObject _randomCard = g_global.g_CardDatabase.GetCard(_index);
+            //g_global.lst_p_playerHand.Add(_randomCard);
         }
 
         DealCards(p_i_startHandSize);

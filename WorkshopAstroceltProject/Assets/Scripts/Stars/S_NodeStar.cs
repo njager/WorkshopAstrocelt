@@ -34,6 +34,7 @@ public class S_NodeStar : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        Debug.Log("WHY");
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
     }
