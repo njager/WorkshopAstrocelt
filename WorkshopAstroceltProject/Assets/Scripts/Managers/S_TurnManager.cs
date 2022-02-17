@@ -9,6 +9,8 @@ public class S_TurnManager : MonoBehaviour
     public bool b_playerInitialTurn = true;
     public bool b_enemyInitialTurn = false;
 
+    private float spawnTimer = 5f;
+
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
@@ -18,6 +20,24 @@ public class S_TurnManager : MonoBehaviour
         g_global = S_Global.Instance;
         g_global.g_b_playerTurn = b_playerInitialTurn;
         g_global.g_b_enemyTurn = b_enemyInitialTurn;
+    }
+
+    void Update()
+    {
+        if (g_global.g_b_playerTurn == false)
+        {
+            //Turn indicator changing
+            //playerTurnBar.SetActive(false);
+            //enemyTurnBar.SetActive(true);
+
+            //Simulating the enemy turn behavior "waiting" before changing back
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer < 0)
+            {
+                g_global.g_turnManager.PlayerStateChange();
+                spawnTimer = 5f;
+            }
+        }
     }
 
     /// <summary>

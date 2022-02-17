@@ -32,7 +32,7 @@ public class S_RitualStar : MonoBehaviour
         //assign after the star class gets assigned 
 
         // Need to change for ritual star after we determine how ritual stars know they should be distnguished - Josj
-        s_starSprite = s_neutralRitualStarGraphic.GetComponent<SpriteRenderer>();
+        s_starSprite = s_redRitualStarGraphic.GetComponent<SpriteRenderer>();
         // will be neutral star graphic for now since that's the one on by default. 
 
         c_starStartColor = s_starSprite.color;
