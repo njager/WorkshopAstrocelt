@@ -13,6 +13,8 @@ public class S_DrawingManager : MonoBehaviour
     public int i_index;
     public Vector2 v2_nodeStarLoc;
 
+    public int i_starSound = 0;
+
     [Header("Add the ConstellationLine")]
     public GameObject l_constelationLine;
 
@@ -40,12 +42,14 @@ public class S_DrawingManager : MonoBehaviour
     {
         if (b_drawing) 
         { 
+            //do some final thing with star sound
             b_drawing = false;
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
             StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(_starN));
         }
         else 
-        { 
+        {
+            i_starSound = 0;
             b_drawing = true;
             s_previousStar = _starN;
             v2_prevLoc = _loc;
@@ -87,6 +91,9 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
+        //change the star sound here if the line is formed
+        i_starSound++;
+
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
         S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
@@ -130,6 +137,9 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void GoBackOnce(GameObject _line)
     {
+        //decrement the star sound
+        i_starSound--;
+
         //set the cur previous star to have a nullstar as a previous
         s_previousStar.s_star.m_previous = s_nullStarInst;
 

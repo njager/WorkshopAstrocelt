@@ -86,16 +86,20 @@ public class S_ConstelationManager : MonoBehaviour
             }
             //delete the constellation if it has no ritual star or is too small
             if (!_hasColor) { g_global.g_DrawingManager.ConstellationReset(); }
-            if(_count < i_minSize) { g_global.g_DrawingManager.ConstellationReset(); }
-            if (_count > i_maxSize) { g_global.g_DrawingManager.ConstellationReset(); }
+            else if(_count < i_minSize) { g_global.g_DrawingManager.ConstellationReset(); }
+            else if (_count > i_maxSize) { g_global.g_DrawingManager.ConstellationReset(); }
+            else
+            {
+                //trigger the star sound here
 
-            //assining the colored energy to the count
-            if (_color == "red") { i_redEnergy = _count; }
-            else if (_color == "yellow") { i_yellowEnergy = _count; }
-            else if (_color == "blue") { i_blueEnergy = _count; }
-            print(_count);
+                //assining the colored energy to the count
+                if (_color == "red") { i_redEnergy = _count; }
+                else if (_color == "yellow") { i_yellowEnergy = _count; }
+                else if (_color == "blue") { i_blueEnergy = _count; }
+                print(_count);
 
-            
+                //pass the _count to another function
+            }
         }
     }
 
@@ -104,7 +108,8 @@ public class S_ConstelationManager : MonoBehaviour
         foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
         {
             g_global.g_lst_lineRendererList.Remove(lineObject);
-            lineObject.SetActive(false);
+            Destroy(lineObject);
+            //this is bugging out when turn changes
         }
         enumerateTemp = true; 
         yield return enumerateTemp = true; 
