@@ -4010,8 +4010,6 @@ MonoBehaviour:
   playerTurnBar: {fileID: 2067104502}
   playerHealthBar: {fileID: 97589811}
   playerHealthText: {fileID: 73390825}
-  tempUIInitial: 0
-  tempUIMax: 0
 --- !u!1 &489131023
 GameObject:
   m_ObjectHideFlags: 0
@@ -17867,6 +17865,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
+--- !u!1 &2497990689650468898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497990690667023715, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
+  m_PrefabInstance: {fileID: 2497990689650468897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2497990689650468899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497990689650468898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Sounds/Star & Constellation/Star_Phase1
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1001 &3339982877304572010
 PrefabInstance:
   m_ObjectHideFlags: 0
