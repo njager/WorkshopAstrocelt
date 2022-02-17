@@ -14,6 +14,8 @@ public class S_IconManager : MonoBehaviour
     public bool e_b_enemy1Attacking;
     public bool e_b_enemy2Attacking;
     public bool e_b_enemy3Attacking;
+    public bool e_b_enemy4Attacking;
+    public bool e_b_enemy5Attacking;
 
     public void Awake()
     {
@@ -23,24 +25,34 @@ public class S_IconManager : MonoBehaviour
     /// <summary>
     /// Based off the dice roll, change enemy icons or not
     /// </summary>
-    /// <param name="_givenEnemyIcon"></param>
-    public void EnemyActionNextTurn(GameObject _givenEnemyIcon)
+    /// <param name="_enemyToChange"></param>
+    public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
         int _chanceSelected = ShieldChance();
         if (_chanceSelected > 3) // Set To Damage Next Turn
         {
-            _givenEnemyIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttack;
-            if (_givenEnemyIcon.CompareTag("Icon1") == true)
+            _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttack;
+            if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
             {
                 e_b_enemy1Attacking = true;
                 return;
             }
-            if (_givenEnemyIcon.CompareTag("Icon2") == true)
+            if (_enemyToChange.e_i_enemyCount == 2) //Enemy 2 is attacking next turn
             {
                 e_b_enemy2Attacking = true;
                 return;
             }
-            if (_givenEnemyIcon.CompareTag("Icon3") == true)
+            if (_enemyToChange.e_i_enemyCount == 3) //Enemy 3 is attacking next turn
+            {
+                e_b_enemy3Attacking = true;
+                return;
+            }
+            if (_enemyToChange.e_i_enemyCount == 4) //Enemy 4 is attacking next turn
+            {
+                e_b_enemy3Attacking = true;
+                return;
+            }
+            if (_enemyToChange.e_i_enemyCount == 5) //Enemy 5 is attacking next turn
             {
                 e_b_enemy3Attacking = true;
                 return;
@@ -48,18 +60,28 @@ public class S_IconManager : MonoBehaviour
         }
         else // Set To Shield
         {
-            _givenEnemyIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyShield;
-            if (_givenEnemyIcon.CompareTag("Icon1") == true)
+            _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttack;
+            if (_enemyToChange.e_i_enemyCount == 1)
             {
                 e_b_enemy1Attacking = false;
                 return;
             }
-            if (_givenEnemyIcon.CompareTag("Icon2") == true)
+            if (_enemyToChange.e_i_enemyCount == 2)
             {
                 e_b_enemy2Attacking = false;
                 return;
             }
-            if (_givenEnemyIcon.CompareTag("Icon3") == true)
+            if (_enemyToChange.e_i_enemyCount == 3)
+            {
+                e_b_enemy3Attacking = false;
+                return;
+            }
+            if (_enemyToChange.e_i_enemyCount == 4)
+            {
+                e_b_enemy3Attacking = false;
+                return;
+            }
+            if (_enemyToChange.e_i_enemyCount == 5)
             {
                 e_b_enemy3Attacking = false;
                 return;

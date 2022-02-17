@@ -11,6 +11,8 @@ public class S_Enemy : MonoBehaviour
 
     public int e_i_enemyCount;
 
+    public GameObject e_sp_spriteIcon; 
+
     void Awake()
     {
         g_global = S_Global.Instance;
