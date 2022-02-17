@@ -29,7 +29,7 @@ public class S_IconManager : MonoBehaviour
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
         int _chanceSelected = ShieldChance();
-        if (_chanceSelected > 3) // Set To Damage Next Turn
+        if (_chanceSelected >= 50) // Set To Damage Next Turn
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttack;
             if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
@@ -95,7 +95,7 @@ public class S_IconManager : MonoBehaviour
     /// <returns></returns>
     private int ShieldChance()
     {
-        int _chance = Random.Range(1, 11);
+        int _chance = Random.Range(0, 101); // Hardcoded for lumberjack, may create different ones or add this to the enemy at somepoint
         return _chance;
     }
 }
