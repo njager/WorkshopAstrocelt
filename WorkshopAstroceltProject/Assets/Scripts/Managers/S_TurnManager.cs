@@ -84,23 +84,23 @@ public class S_TurnManager : MonoBehaviour
         //Then load the next icon
         if (g_global.g_enemyAttributeSheet1 != null)
         {
-            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet1.gameObject.GetComponent<S_Enemy>());
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet1.e_enemyScript);
         }
         if (g_global.g_enemyAttributeSheet2 != null)
         {
-            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet2.gameObject.GetComponent<S_Enemy>());
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet2.e_enemyScript);
         }
         if (g_global.g_enemyAttributeSheet3 != null)
         {
-            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet3.gameObject.GetComponent<S_Enemy>());
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet3.e_enemyScript);
         }
         if (g_global.g_enemyAttributeSheet4 != null)
         {
-            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet4.gameObject.GetComponent<S_Enemy>());
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet4.e_enemyScript);
         }
         if (g_global.g_enemyAttributeSheet5 != null)
         {
-            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet5.gameObject.GetComponent<S_Enemy>());
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet5.e_enemyScript);
         }
     }
 
@@ -165,7 +165,7 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_enemyState.e_b_enemy1Attacking = false;
                 g_global.g_enemyState.e_b_enemy1Shielding = true;
-                g_global.g_enemyAttributeSheet1.gameObject.GetComponent<S_Enemy>().EnemyShielded(10); // Temporary shield value gained, as told by designers 
+                g_global.g_enemyAttributeSheet1.e_enemyScript.EnemyShielded(10); // Temporary shield value gained, as told by designers 
             }
         }
 
@@ -180,7 +180,7 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_enemyState.e_b_enemy2Attacking = false;
                 g_global.g_enemyState.e_b_enemy2Shielding = true;
-                g_global.g_enemyAttributeSheet2.gameObject.GetComponent<S_Enemy>().EnemyShielded(10);
+                g_global.g_enemyAttributeSheet2.e_enemyScript.EnemyShielded(10);
             }
         }
 
@@ -195,7 +195,7 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_enemyState.e_b_enemy3Attacking = false;
                 g_global.g_enemyState.e_b_enemy3Shielding = true;
-                g_global.g_enemyAttributeSheet3.gameObject.GetComponent<S_Enemy>().EnemyShielded(10);
+                g_global.g_enemyAttributeSheet3.e_enemyScript.EnemyShielded(10);
             }
         }
 
@@ -210,7 +210,7 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_enemyState.e_b_enemy4Attacking = false;
                 g_global.g_enemyState.e_b_enemy4Shielding = true;
-                g_global.g_enemyAttributeSheet4.gameObject.GetComponent<S_Enemy>().EnemyShielded(10);
+                g_global.g_enemyAttributeSheet4.e_enemyScript.EnemyShielded(10);
             }
         }
 
@@ -225,7 +225,7 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_enemyState.e_b_enemy5Attacking = false;
                 g_global.g_enemyState.e_b_enemy5Shielding = true;
-                g_global.g_enemyAttributeSheet5.gameObject.GetComponent<S_Enemy>().EnemyShielded(10);
+                g_global.g_enemyAttributeSheet5.e_enemyScript.EnemyShielded(10);
             }
         }
     }
