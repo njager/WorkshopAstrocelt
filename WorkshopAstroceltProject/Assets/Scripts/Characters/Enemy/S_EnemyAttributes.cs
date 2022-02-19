@@ -116,6 +116,11 @@ public class S_EnemyAttributes : MonoBehaviour
                 Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
             }
         }
+    }
+
+    private void Start()
+    {
+        g_global.g_iconManager.EnemyIconNextTurn(e_enemyScript);
 
         if (e_enemyScript.e_i_enemyCount == 1)
         {
@@ -137,12 +142,6 @@ public class S_EnemyAttributes : MonoBehaviour
         {
             g_global.g_enemyState.enemy5 = e_enemyScript;
         }
-
-    }
-
-    private void Start()
-    {
-        g_global.g_iconManager.EnemyIconNextTurn(e_enemyScript);
     }
 
     //Temporary
