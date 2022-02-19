@@ -26,10 +26,6 @@ public class S_TurnManager : MonoBehaviour
     {
         if (g_global.g_b_playerTurn == false)
         {
-            //Turn indicator changing
-            //playerTurnBar.SetActive(false);
-            //enemyTurnBar.SetActive(true);
-
             //Simulating the enemy turn behavior "waiting" before changing back
             spawnTimer -= Time.deltaTime;
             if (spawnTimer < 0)
@@ -81,8 +77,31 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EnemyStateChange()
     {
+        //Switch turns
         g_global.g_b_playerTurn = false;
         g_global.g_b_enemyTurn = true;
+
+        //Then load the next icon
+        if (g_global.g_enemyAttributeSheet1 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet1.gameObject.GetComponent<S_Enemy>());
+        }
+        if (g_global.g_enemyAttributeSheet2 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet2.gameObject.GetComponent<S_Enemy>());
+        }
+        if (g_global.g_enemyAttributeSheet3 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet3.gameObject.GetComponent<S_Enemy>());
+        }
+        if (g_global.g_enemyAttributeSheet4 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet4.gameObject.GetComponent<S_Enemy>());
+        }
+        if (g_global.g_enemyAttributeSheet5 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet5.gameObject.GetComponent<S_Enemy>());
+        }
     }
 
     public void EndTurn()
@@ -96,41 +115,33 @@ public class S_TurnManager : MonoBehaviour
             }
             else
             {
+                EnemyAttackingOrShielding();
                 // Turn damage for Enemy 1
                 if (g_global.g_enemyAttributeSheet1 != null)
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
-                    //Debug.Log("Clicked!");
-                    g_global.g_turnManager.EnemyStateChange();
                 }
                 // Turn damage for Enemy 2
                 if (g_global.g_enemyAttributeSheet2 != null)
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
-                    //Debug.Log("Clicked!");
-                    g_global.g_turnManager.EnemyStateChange();
                 }
                 // Turn damage for Enemy 3
                 if (g_global.g_enemyAttributeSheet3 != null)
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
-                    //Debug.Log("Clicked!");
-                    g_global.g_turnManager.EnemyStateChange();
                 }
                 // Turn damage for Enemy 4
                 if (g_global.g_enemyAttributeSheet4 != null)
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
-                    //Debug.Log("Clicked!");
-                    g_global.g_turnManager.EnemyStateChange();
                 }
                 // Turn damage for Enemy 5
                 if (g_global.g_enemyAttributeSheet5 != null)
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
-                    //Debug.Log("Clicked!");
-                    g_global.g_turnManager.EnemyStateChange();
                 }
+                EnemyStateChange();
             }
         }
         else
