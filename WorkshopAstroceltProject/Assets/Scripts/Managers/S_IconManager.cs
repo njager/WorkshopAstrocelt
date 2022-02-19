@@ -19,7 +19,12 @@ public class S_IconManager : MonoBehaviour
 
     public void Awake()
     {
-        g_global = S_Global.Instance; 
+        g_global = S_Global.Instance;
+        e_b_enemy1Attacking = false;
+        e_b_enemy1Attacking = false;
+        e_b_enemy1Attacking = false;
+        e_b_enemy1Attacking = false;
+        e_b_enemy1Attacking = false;
     }
 
     /// <summary>

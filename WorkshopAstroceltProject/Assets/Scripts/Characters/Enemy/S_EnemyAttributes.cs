@@ -44,7 +44,7 @@ public class S_EnemyAttributes : MonoBehaviour
     //It's attached enemy script
     public S_Enemy e_enemyScript;
 
-    public void Start()
+    public void Awake()
     {
         g_global = S_Global.Instance; 
 
@@ -139,6 +139,12 @@ public class S_EnemyAttributes : MonoBehaviour
         }
 
     }
+
+    private void Start()
+    {
+        g_global.g_iconManager.EnemyIconNextTurn(e_enemyScript);
+    }
+
     //Temporary
     public void InstanceVariables()
     {
