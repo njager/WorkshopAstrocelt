@@ -26,10 +26,6 @@ public class S_TurnManager : MonoBehaviour
     {
         if (g_global.g_b_playerTurn == false)
         {
-            //Turn indicator changing
-            //playerTurnBar.SetActive(false);
-            //enemyTurnBar.SetActive(true);
-
             //Simulating the enemy turn behavior "waiting" before changing back
             spawnTimer -= Time.deltaTime;
             if (spawnTimer < 0)
@@ -81,7 +77,156 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EnemyStateChange()
     {
+        //Switch turns
         g_global.g_b_playerTurn = false;
         g_global.g_b_enemyTurn = true;
+
+        //Then load the next icon
+        if (g_global.g_enemyAttributeSheet1 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet1.e_enemyScript);
+        }
+        if (g_global.g_enemyAttributeSheet2 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet2.e_enemyScript);
+        }
+        if (g_global.g_enemyAttributeSheet3 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet3.e_enemyScript);
+        }
+        if (g_global.g_enemyAttributeSheet4 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet4.e_enemyScript);
+        }
+        if (g_global.g_enemyAttributeSheet5 != null)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet5.e_enemyScript);
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (g_global.g_selectorManager.e_enemySelected != null)
+        {
+            if (g_global.g_b_enemyTurn == true)
+            {
+                Debug.Log("Not your turn!");
+                return;
+            }
+            else
+            {
+                EnemyAttackingOrShielding();
+                // Turn damage for Enemy 1
+                if (g_global.g_enemyAttributeSheet1 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
+                }
+                // Turn damage for Enemy 2
+                if (g_global.g_enemyAttributeSheet2 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
+                }
+                // Turn damage for Enemy 3
+                if (g_global.g_enemyAttributeSheet3 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
+                }
+                // Turn damage for Enemy 4
+                if (g_global.g_enemyAttributeSheet4 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
+                }
+                // Turn damage for Enemy 5
+                if (g_global.g_enemyAttributeSheet5 != null)
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
+                }
+                EnemyStateChange();
+            }
+        }
+        else
+        {
+            Debug.Log("No enemy Selected!");
+            return;
+        }
+
+    }
+
+    public void EnemyAttackingOrShielding()
+    {
+        if(g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
+        {
+            if (g_global.g_iconManager.e_b_enemy1Attacking == true) //Enemy 1 Attack
+            {
+                g_global.g_enemyState.e_b_enemy1Attacking = true;
+                g_global.g_enemyState.e_b_enemy1Shielding = false;
+            }
+            else //Enemy 1 Shield
+            {
+                g_global.g_enemyState.e_b_enemy1Attacking = false;
+                g_global.g_enemyState.e_b_enemy1Shielding = true;
+                g_global.g_enemyAttributeSheet1.e_enemyScript.EnemyShielded(10); // Temporary shield value gained, as told by designers 
+            }
+        }
+
+        if (g_global.g_enemyAttributeSheet2 != null) // Check if enemy 2 is present
+        {
+            if (g_global.g_iconManager.e_b_enemy2Attacking == true) // Enemy 2 Attack
+            {
+                g_global.g_enemyState.e_b_enemy2Attacking = true;
+                g_global.g_enemyState.e_b_enemy2Shielding = false;
+            }
+            else //Enemy 2 Shield
+            {
+                g_global.g_enemyState.e_b_enemy2Attacking = false;
+                g_global.g_enemyState.e_b_enemy2Shielding = true;
+                g_global.g_enemyAttributeSheet2.e_enemyScript.EnemyShielded(10);
+            }
+        }
+
+        if (g_global.g_enemyAttributeSheet3 != null) // Check if enemy 3 is present
+        {
+            if (g_global.g_iconManager.e_b_enemy3Attacking == true) // Enemy 3 Attack
+            {
+                g_global.g_enemyState.e_b_enemy3Attacking = true;
+                g_global.g_enemyState.e_b_enemy3Shielding = false;
+            }
+            else // Enemy 3 Shield
+            {
+                g_global.g_enemyState.e_b_enemy3Attacking = false;
+                g_global.g_enemyState.e_b_enemy3Shielding = true;
+                g_global.g_enemyAttributeSheet3.e_enemyScript.EnemyShielded(10);
+            }
+        }
+
+        if (g_global.g_enemyAttributeSheet4 != null) // Check if enemy 4 is present
+        {
+            if (g_global.g_iconManager.e_b_enemy4Attacking == true) // Enemy 4 Attack
+            {
+                g_global.g_enemyState.e_b_enemy4Attacking = true;
+                g_global.g_enemyState.e_b_enemy4Shielding = false;
+            }
+            else // Enemy 4 Shield
+            {
+                g_global.g_enemyState.e_b_enemy4Attacking = false;
+                g_global.g_enemyState.e_b_enemy4Shielding = true;
+                g_global.g_enemyAttributeSheet4.e_enemyScript.EnemyShielded(10);
+            }
+        }
+
+        if (g_global.g_enemyAttributeSheet5 != null) // Check if enemy 5 is present
+        {
+            if (g_global.g_iconManager.e_b_enemy5Attacking == true) // Enemy 5 Attack
+            {
+                g_global.g_enemyState.e_b_enemy5Attacking = true;
+                g_global.g_enemyState.e_b_enemy5Shielding = false;
+            }
+            else // Enemy 5 Shield
+            {
+                g_global.g_enemyState.e_b_enemy5Attacking = false;
+                g_global.g_enemyState.e_b_enemy5Shielding = true;
+                g_global.g_enemyAttributeSheet5.e_enemyScript.EnemyShielded(10);
+            }
+        }
     }
 }

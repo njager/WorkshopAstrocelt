@@ -25,7 +25,22 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy2Dead;
     public bool e_b_enemy3Dead;
     public bool e_b_enemy4Dead;
-    public bool e_b_enemy5Dead; 
+    public bool e_b_enemy5Dead;
+
+    //Check thse for their next turn actions 
+    [Header("Enemy Shielding Bools")]
+    public bool e_b_enemy1Shielding;
+    public bool e_b_enemy2Shielding;
+    public bool e_b_enemy3Shielding;
+    public bool e_b_enemy4Shielding;
+    public bool e_b_enemy5Shielding;
+
+    [Header("Enemy Attacking Bools")]
+    public bool e_b_enemy1Attacking;
+    public bool e_b_enemy2Attacking;
+    public bool e_b_enemy3Attacking;
+    public bool e_b_enemy4Attacking;
+    public bool e_b_enemy5Attacking;
 
     void Awake()
     {

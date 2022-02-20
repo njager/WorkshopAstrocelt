@@ -96,4 +96,12 @@ public class S_Enemy : MonoBehaviour
     {
         g_global.g_selectorManager.EnemySelected(this); 
     }
+
+
+    //Eventually use this? Check with designers, imported code. 
+    public void EnemyDamageChange(S_Enemy enemy)
+    {
+        int _randEnemyDamageInt = Random.Range(6, 12);
+        //enemy.enemyDamage = _randEnemyDamageInt;
+    }
 }

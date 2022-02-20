@@ -19,7 +19,12 @@ public class S_IconManager : MonoBehaviour
 
     public void Awake()
     {
-        g_global = S_Global.Instance; 
+        g_global = S_Global.Instance;
+        e_b_enemy1Attacking = false;
+        e_b_enemy2Attacking = false;
+        e_b_enemy3Attacking = false;
+        e_b_enemy4Attacking = false;
+        e_b_enemy5Attacking = false;
     }
 
     /// <summary>
@@ -60,7 +65,7 @@ public class S_IconManager : MonoBehaviour
         }
         else // Set To Shield
         {
-            _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttack;
+            _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyShield;
             if (_enemyToChange.e_i_enemyCount == 1)
             {
                 e_b_enemy1Attacking = false;
