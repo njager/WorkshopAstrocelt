@@ -57,6 +57,15 @@ public class S_TurnManager : MonoBehaviour
         {
             g_global.g_mapManager.Map3();
         }
+        else if (g_global.g_mapManager.map_b_map4Used != true)
+        {
+            g_global.g_mapManager.Map4();
+        }
+        else if (g_global.g_mapManager.map_b_map5Used != true)
+        {
+            g_global.g_mapManager.Map5();
+        }
+
         // Temp line removal 
         g_global.g_ConstellationManager.enumerateTemp = false; 
         StartCoroutine(g_global.g_ConstellationManager.LineDeletion());
