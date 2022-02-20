@@ -15,6 +15,7 @@ public class S_MapGeneration : MonoBehaviour
     public GameObject blackBar3;
     public GameObject blackBar4;
     public GameObject blackBar5;
+    public GameObject blackBar6;
 
     [Header("Temporary Booleans")]
     public bool map_b_map1Used;

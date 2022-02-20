@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class S_LineMultiplier : MonoBehaviour
 {
+    [Header("Animation Curve")]
+    public AnimationCurve animationCurveForMultiplier;
+
     // Start is called before the first frame update
     void Start()
     {
