@@ -65,7 +65,7 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map 1
     public void Map1()
     {
-        Vector3 newNodeStarPosition = new Vector3(-1.27f, 0.04f, 0f);
+        Vector3 newNodeStarPosition = new Vector3(-0.39f, 0.07f, 0f);
         nodeStar.gameObject.transform.position = newNodeStarPosition;
 
         map1.SetActive(true);
