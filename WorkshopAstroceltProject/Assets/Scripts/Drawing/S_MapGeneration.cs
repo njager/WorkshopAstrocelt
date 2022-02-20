@@ -129,7 +129,7 @@ public class S_MapGeneration : MonoBehaviour
     //Designer Map 5
     public void Map5()
     {
-        Vector3 newNodeStarPosition = new Vector3(0.17f, 5.4f, 0f);
+        Vector3 newNodeStarPosition = new Vector3(-1.21f, 4.87f, 0f);
         nodeStar.gameObject.transform.position = newNodeStarPosition;
 
         map1.SetActive(false);
