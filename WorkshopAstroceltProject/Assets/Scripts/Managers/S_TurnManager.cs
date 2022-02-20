@@ -57,17 +57,27 @@ public class S_TurnManager : MonoBehaviour
         {
             g_global.g_mapManager.Map3();
         }
+        else if (g_global.g_mapManager.map_b_map4Used != true)
+        {
+            g_global.g_mapManager.Map4();
+        }
+        else if (g_global.g_mapManager.map_b_map5Used != true)
+        {
+            g_global.g_mapManager.Map5();
+        }
+
         // Temp line removal 
         g_global.g_ConstellationManager.enumerateTemp = false; 
         StartCoroutine(g_global.g_ConstellationManager.LineDeletion());
 
-        g_global.g_b_playerTurn = true;
-        g_global.g_b_enemyTurn = false;
+        
         g_global.g_DrawingManager.s_nodeStarInst.s_star.m_previous = g_global.g_nullStar;
         g_global.g_DrawingManager.s_nodeStarInst.s_star.m_next = g_global.g_nullStar;
         g_global.g_DrawingManager.v2_nodeStarLoc = g_global.g_DrawingManager.s_nodeStarInst.gameObject.transform.position; 
         //g_global.g_mapManager.NewMapGeneration();
         g_global.g_selectorManager.SelectorReset();
+        g_global.g_b_playerTurn = true;
+        g_global.g_b_enemyTurn = false;
 
     }
 
