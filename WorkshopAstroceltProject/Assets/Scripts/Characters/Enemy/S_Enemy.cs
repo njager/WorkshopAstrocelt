@@ -104,4 +104,15 @@ public class S_Enemy : MonoBehaviour
         int _randEnemyDamageInt = Random.Range(6, 12);
         //enemy.enemyDamage = _randEnemyDamageInt;
     }
+
+    private void SetEnemyHealthText(int _healthVal)
+    {
+
+    }
+
+    //Only do this to 5
+    private void SetEnemyShieldText(int _shieldVal)
+    {
+        
+    }
 }
