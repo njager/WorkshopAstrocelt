@@ -45,9 +45,20 @@ public class S_UIManager : MonoBehaviour
     public Image enemy4HealthBar;
     public Image enemy5HealthBar;
 
+    [Header("Win Lose Elements")]
+    public GameObject winText;
+    public GameObject loseText;
+    public GameObject resetCanvas;
+    public GameObject greyboxCanvas;
+
     void Awake()
     {
-        g_global = S_Global.Instance; 
+        g_global = S_Global.Instance;
+
+        //Set all three to false to start
+        winText.SetActive(false);
+        loseText.SetActive(false);
+        resetCanvas.SetActive(false);
     }
 
     //Some of this should be in turn manager?, probably

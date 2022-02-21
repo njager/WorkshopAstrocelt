@@ -9,7 +9,7 @@ public class S_Enemy : MonoBehaviour
 
     [SerializeField] S_EnemyAttributes e_enemyAttributes;
 
-    public string e_str_enemyType;
+    public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
 
     public int e_i_enemyCount;
 
@@ -109,6 +109,8 @@ public class S_Enemy : MonoBehaviour
         //enemy.enemyDamage = _randEnemyDamageInt;
     }
 
+
+    //Maybe use direct calls? Optimization decision
     private void SetEnemyHealthText(int _healthVal)
     {
 

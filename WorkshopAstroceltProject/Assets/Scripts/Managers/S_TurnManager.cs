@@ -138,6 +138,7 @@ public class S_TurnManager : MonoBehaviour
                 else
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
+                    //RuntimeManager.PlayOneShot(Attack_Vanilla);
                 }
             }
             // Turn damage for Enemy 2

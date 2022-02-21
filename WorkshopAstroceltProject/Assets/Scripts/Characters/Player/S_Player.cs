@@ -165,14 +165,4 @@ public class S_Player : MonoBehaviour
             return; 
         }
     }
-
-    //Update to scene switching when the overworld is created, as well as a lost level type thing
-    public void PlayerLosesScene()
-    {
-        // Pause The game
-        Time.timeScale = 0f;
-
-        // Error the game, I guess
-        Debug.Log("You Lost!");
-    }
 }

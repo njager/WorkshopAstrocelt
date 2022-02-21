@@ -94,9 +94,38 @@ public class S_PlayerState : MonoBehaviour
         return _bleedingCalc;
     }
 
-    public void Lose()
+    /// <summary>
+    /// Player Loses Scene
+    /// - Josh
+    /// </summary>
+    public void PlayerLoses()
     {
-        // If player loses, trigger behavior
+        //Player lost so trigger lose text and reset canvas
+        g_global.g_UIManager.greyboxCanvas.SetActive(false);
+        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.loseText.SetActive(true);
+
+        //Play lose sound
+
+        // Pause The game
+        Time.timeScale = 0f;
+    }
+
+    /// <summary>
+    /// Player Wins Scene
+    /// - Josh
+    /// </summary>
+    public void PlayerWins()
+    {
+        //Player won so trigger win text and reset canvas
+        g_global.g_UIManager.greyboxCanvas.SetActive(false);
+        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.winText.SetActive(true);
+
+        //Play win sound
+
+        // Pause The game
+        Time.timeScale = 0f;
     }
 
 }
