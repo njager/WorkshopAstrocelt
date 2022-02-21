@@ -282,6 +282,7 @@ public class S_Card : MonoBehaviour
             }
             else
             {
+                //g_global.g_constellationManager.c
                 TriggerAttackCard();
             }
         }

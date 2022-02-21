@@ -6,7 +6,7 @@ public class S_Player : MonoBehaviour
 {
     private S_Global g_global;
 
-    private S_PlayerAttributes p_playerAttributes; 
+    [SerializeField] S_PlayerAttributes p_playerAttributes; 
 
     /// <summary>
     /// Basic Start S_Global setup, grabbing playerAttributes; 

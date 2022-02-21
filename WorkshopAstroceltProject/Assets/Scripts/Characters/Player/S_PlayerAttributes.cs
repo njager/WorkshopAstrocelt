@@ -60,7 +60,7 @@ public class S_PlayerAttributes : MonoBehaviour
         p_i_healthMax = 100;
 
         p_i_shield = 0;
-        p_i_shieldMax = 100;
+        p_i_shieldMax = 10;
 
         p_f_playerEnergyGenerationRate = 1.0f;
 
