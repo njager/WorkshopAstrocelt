@@ -81,7 +81,7 @@ public class S_Card : MonoBehaviour
     
     private void Start()
     {
-        FetchCardData(c_cardTemplate);
+        //FetchCardData(c_cardTemplate);
     }
 
     /// <summary>

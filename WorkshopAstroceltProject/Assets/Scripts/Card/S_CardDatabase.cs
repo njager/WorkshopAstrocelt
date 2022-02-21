@@ -10,7 +10,15 @@ public class S_CardDatabase : MonoBehaviour
 
     public int i_cardCount;
 
-    public GameObject c_cardPrefabTemplate; 
+    public GameObject c_cardPrefabTemplate;
+
+    [Header("Card Positions")]
+    public GameObject topPosition;
+    public GameObject nextPosition;
+    public GameObject afterPosition;
+    public GameObject closePosition;
+    public GameObject bottomPosition;
+
 
     [Header("Scriptable Objects")]
     public S_CardTemplate cardScript0; // Slash1, ID 0
@@ -33,7 +41,11 @@ public class S_CardDatabase : MonoBehaviour
 
     void Start()
     {
-        
+        InstanceCard(topPosition, cardScript0);
+        InstanceCard(nextPosition, cardScript2);
+        InstanceCard(afterPosition, cardScript4);
+        InstanceCard(closePosition, cardScript5);
+        InstanceCard(bottomPosition, cardScript7);
     }
 
     /// <summary>
@@ -48,8 +60,10 @@ public class S_CardDatabase : MonoBehaviour
         return _returnCard;
     }
 
-    public void InstanceCard()
+    public void InstanceCard(GameObject _position, S_CardTemplate _cardTemplate)
     {
-        //Instantiate()
+        GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
+        playerCard.transform.SetParent(_position.gameObject.transform, false);
     }
 }
