@@ -325,23 +325,23 @@ public class S_Card : MonoBehaviour
     /// <summary>
     /// Move deck down 1
     /// </summary>
-    private void MoveCards() // Works
+    private void MoveCards() // Works fully
     {
-        if(g_global.g_cardManager.closePosition.transform.GetChild(0) != null) // Move card from close to bottom
+        if (g_global.g_cardManager.topPosition.transform.childCount > 0) //Move card from top to after
         {
-            g_global.g_cardManager.closePosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false);
+            g_global.g_cardManager.topPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.nextPosition.transform, false);
         }
-        if (g_global.g_cardManager.afterPosition.transform.GetChild(0) != null) // Move card from after to close
-        {
-            g_global.g_cardManager.afterPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.closePosition.transform, false);
-        }
-        if (g_global.g_cardManager.nextPosition.transform.GetChild(0) != null) // Move card from next to after
+        if (g_global.g_cardManager.nextPosition.transform.childCount > 0) // Move card from next to after
         {
             g_global.g_cardManager.nextPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.afterPosition.transform, false);
         }
-        if (g_global.g_cardManager.topPosition.transform.GetChild(0) != null) //Move card from top to after
+        if (g_global.g_cardManager.afterPosition.transform.childCount > 0) // Move card from after to close
         {
-            g_global.g_cardManager.topPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.nextPosition.transform, false);
+            g_global.g_cardManager.afterPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.closePosition.transform, false);
+        }
+        if (g_global.g_cardManager.closePosition.transform.childCount > 0) // Move card from close to bottom
+        {
+            g_global.g_cardManager.closePosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false);
         }
     }
 }
