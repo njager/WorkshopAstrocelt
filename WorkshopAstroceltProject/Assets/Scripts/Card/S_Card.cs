@@ -212,19 +212,95 @@ public class S_Card : MonoBehaviour
     {
         if(transform.parent != null && transform.parent.tag == "Bottom")
         {
-            PlayCard();
+            if(g_global.g_ConstellationManager.i_energyCount >= c_i_energyCost)
+            {
+                PlayCard();
+            }
+            else
+            {
+                Debug.Log("You do not have enough energy to play that card!");
+            }
         }
         else
         {
-            Transform _currentTransform = GetComponentInParent<Transform>();
             GameObject _currentBottomCard = g_global.g_cardManager.bottomPosition.GetComponentInChildren<S_Card>().gameObject;
+            print(_currentBottomCard);
 
-            transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
-            _currentBottomCard.transform.position = _currentTransform.position; // Move the other card on the bottom to the this card's previous position
+            //Card is on top
+            if (transform.parent.CompareTag("Top"))
+            {
+                _currentBottomCard.transform.position = g_global.g_cardManager.topPosition.transform.position;
+                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                Debug.Log("Please Select the card at the bottom for play!");
+            }
+
+            //Card is in next slot
+            else if (transform.parent.CompareTag("Next"))
+            {
+                _currentBottomCard.transform.position = g_global.g_cardManager.nextPosition.transform.position;
+                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                Debug.Log("Please Select the card at the bottom for play!");
+            }
+
+            //Card is in after slot
+            else if (transform.parent.CompareTag("After"))
+            {
+                _currentBottomCard.transform.position = g_global.g_cardManager.afterPosition.transform.position;
+                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                Debug.Log("Please Select the card at the bottom for play!");
+            }
+
+            //Card is in close slot
+            else if (transform.parent.CompareTag("Close"))
+            {
+                _currentBottomCard.transform.position = g_global.g_cardManager.closePosition.transform.position;
+                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                Debug.Log("Please Select the card at the bottom for play!");
+            }
+
         }
     }
 
+    /// <summary>
+    /// If card is on the bottom play card
+    /// Also check for enemy selection for attack cards
+    /// Presumed all shield cards are on player
+    /// - Josh
+    /// </summary>
     private void PlayCard()
+    {
+        if (c_b_attackMainEffect == true)
+        {
+            if (g_global.g_selectorManager.e_enemySelected == null)
+            {
+                Debug.Log("Please select an enemy to use this card on!");
+                return;
+            }
+            else
+            {
+                TriggerAttackCard();
+            }
+        }
+        else if(c_b_shieldMainEffect == true)
+        {
+            TriggerShieldCard();
+        }
+        
+
+    }
+
+    /// <summary>
+    /// If Milestone 1 Card type is attack, do attack function on selected enemy
+    /// </summary>
+    private void TriggerAttackCard()
+    {
+
+    }
+
+    /// <summary>
+    /// If Milestone 1 Card type is shield, do shield function on player
+    /// </summary>
+    private void TriggerShieldCard()
     {
 
     }

@@ -19,14 +19,16 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_yellowEnergy;
     public int i_blueEnergy;
 
-    [Header("Energy Counter")]
+    [Header("Energy Count")]
     public int i_energyCount;
+    public bool energyWasCleared; 
 
     public bool enumerateTemp; 
 
     private void Awake()
     {
         g_global = S_Global.Instance;
+        energyWasCleared = true;
     }
 
     /// <summary>
@@ -122,5 +124,6 @@ public class S_ConstelationManager : MonoBehaviour
     public void ClearEnergy()
     {
         i_energyCount = 0;
+        energyWasCleared = true;
     }
 }

@@ -45,9 +45,17 @@ public class S_EnergyStar : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if(this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
+        if(g_global.g_ConstellationManager.energyWasCleared == true)
         {
-            g_global.g_DrawingManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
+            {
+                g_global.g_DrawingManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+            }
+        }
+        else
+        {
+            Debug.Log("Please finish play before drawing again.");
+            return;
         }
     }
 }
