@@ -11,20 +11,20 @@ public class S_IconManager : MonoBehaviour
     public Sprite e_sp_enemyShield; //sprite = sp
 
     [Header("Enemy Bools")]
-    public bool e_b_enemy1Attacking;
-    public bool e_b_enemy2Attacking;
-    public bool e_b_enemy3Attacking;
-    public bool e_b_enemy4Attacking;
-    public bool e_b_enemy5Attacking;
+    public bool e_b_enemy1IconAttacking;
+    public bool e_b_enemy2IconAttacking;
+    public bool e_b_enemy3IconAttacking;
+    public bool e_b_enemy4IconAttacking;
+    public bool e_b_enemy5IconAttacking;
 
     public void Awake()
     {
         g_global = S_Global.Instance;
-        e_b_enemy1Attacking = false;
-        e_b_enemy2Attacking = false;
-        e_b_enemy3Attacking = false;
-        e_b_enemy4Attacking = false;
-        e_b_enemy5Attacking = false;
+        e_b_enemy1IconAttacking = false;
+        e_b_enemy2IconAttacking = false;
+        e_b_enemy3IconAttacking = false;
+        e_b_enemy4IconAttacking = false;
+        e_b_enemy5IconAttacking = false;
     }
 
     /// <summary>
@@ -39,28 +39,23 @@ public class S_IconManager : MonoBehaviour
             _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttack;
             if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
             {
-                e_b_enemy1Attacking = true;
-                return;
+                e_b_enemy1IconAttacking = true;
             }
-            if (_enemyToChange.e_i_enemyCount == 2) //Enemy 2 is attacking next turn
+            else if (_enemyToChange.e_i_enemyCount == 2) //Enemy 2 is attacking next turn
             {
-                e_b_enemy2Attacking = true;
-                return;
+                e_b_enemy2IconAttacking = true;
             }
-            if (_enemyToChange.e_i_enemyCount == 3) //Enemy 3 is attacking next turn
+            else if (_enemyToChange.e_i_enemyCount == 3) //Enemy 3 is attacking next turn
             {
-                e_b_enemy3Attacking = true;
-                return;
+                e_b_enemy3IconAttacking = true;
             }
-            if (_enemyToChange.e_i_enemyCount == 4) //Enemy 4 is attacking next turn
+            else if (_enemyToChange.e_i_enemyCount == 4) //Enemy 4 is attacking next turn
             {
-                e_b_enemy3Attacking = true;
-                return;
+                e_b_enemy3IconAttacking = true;
             }
-            if (_enemyToChange.e_i_enemyCount == 5) //Enemy 5 is attacking next turn
+            else if (_enemyToChange.e_i_enemyCount == 5) //Enemy 5 is attacking next turn
             {
-                e_b_enemy3Attacking = true;
-                return;
+                e_b_enemy3IconAttacking = true;
             }
         }
         else // Set To Shield
@@ -68,28 +63,23 @@ public class S_IconManager : MonoBehaviour
             _enemyToChange.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyShield;
             if (_enemyToChange.e_i_enemyCount == 1)
             {
-                e_b_enemy1Attacking = false;
-                return;
+                e_b_enemy1IconAttacking = false;
             }
-            if (_enemyToChange.e_i_enemyCount == 2)
+            else if (_enemyToChange.e_i_enemyCount == 2)
             {
-                e_b_enemy2Attacking = false;
-                return;
+                e_b_enemy2IconAttacking = false;
             }
-            if (_enemyToChange.e_i_enemyCount == 3)
+            else if (_enemyToChange.e_i_enemyCount == 3)
             {
-                e_b_enemy3Attacking = false;
-                return;
+                e_b_enemy3IconAttacking = false;
             }
-            if (_enemyToChange.e_i_enemyCount == 4)
+            else if (_enemyToChange.e_i_enemyCount == 4)
             {
-                e_b_enemy3Attacking = false;
-                return;
+                e_b_enemy3IconAttacking = false;
             }
-            if (_enemyToChange.e_i_enemyCount == 5)
+            else if (_enemyToChange.e_i_enemyCount == 5)
             {
-                e_b_enemy3Attacking = false;
-                return;
+                e_b_enemy3IconAttacking = false;
             }
         }
     }

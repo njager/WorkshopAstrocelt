@@ -117,57 +117,84 @@ public class S_TurnManager : MonoBehaviour
 
     public void EndTurn()
     {
-        if (g_global.g_selectorManager.e_enemySelected != null)
+        if (g_global.g_b_enemyTurn == true)
         {
-            if (g_global.g_b_enemyTurn == true)
-            {
-                Debug.Log("Not your turn!");
-                return;
-            }
-            else
-            {
-                EnemyAttackingOrShielding();
-                // Turn damage for Enemy 1
-                if (g_global.g_enemyAttributeSheet1 != null)
-                {
-                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
-                }
-                // Turn damage for Enemy 2
-                if (g_global.g_enemyAttributeSheet2 != null)
-                {
-                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
-                }
-                // Turn damage for Enemy 3
-                if (g_global.g_enemyAttributeSheet3 != null)
-                {
-                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
-                }
-                // Turn damage for Enemy 4
-                if (g_global.g_enemyAttributeSheet4 != null)
-                {
-                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
-                }
-                // Turn damage for Enemy 5
-                if (g_global.g_enemyAttributeSheet5 != null)
-                {
-                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
-                }
-                EnemyStateChange();
-            }
+            Debug.Log("Not your turn!");
+            return;
         }
         else
         {
-            Debug.Log("No enemy Selected!");
-            return;
+            RemoveShielding(); //Remove all shields first
+            EnemyAttackingOrShielding();
+            // Turn damage for Enemy 1
+            if (g_global.g_enemyAttributeSheet1 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy1Shielding == true)
+                {
+                    g_global.g_enemyAttributeSheet1.e_enemyScript.EnemyShielded(10);
+                }
+                else
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
+                }
+            }
+            // Turn damage for Enemy 2
+            if (g_global.g_enemyAttributeSheet2 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy2Shielding == true)
+                {
+                    g_global.g_enemyAttributeSheet2.e_enemyScript.EnemyShielded(10);
+                }
+                else
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
+                }
+            }
+            // Turn damage for Enemy 3
+            if (g_global.g_enemyAttributeSheet3 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy3Shielding == true)
+                {
+                    g_global.g_enemyAttributeSheet3.e_enemyScript.EnemyShielded(10);
+                }
+                else
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
+                }
+            }
+            // Turn damage for Enemy 4
+            if (g_global.g_enemyAttributeSheet4 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy4Shielding == true)
+                {
+                    g_global.g_enemyAttributeSheet4.e_enemyScript.EnemyShielded(10);
+                }
+                else
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
+                }
+            }
+            // Turn damage for Enemy 5
+            if (g_global.g_enemyAttributeSheet5 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy5Shielding == true)
+                {
+                    g_global.g_enemyAttributeSheet5.e_enemyScript.EnemyShielded(10);
+                }
+                else
+                {
+                    g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
+                }
+            }
+            EnemyStateChange();
         }
-
     }
 
     public void EnemyAttackingOrShielding()
     {
         if(g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
         {
-            if (g_global.g_iconManager.e_b_enemy1Attacking == true) //Enemy 1 Attack
+            if (g_global.g_iconManager.e_b_enemy1IconAttacking == true) //Enemy 1 Attack
             {
                 g_global.g_enemyState.e_b_enemy1Attacking = true;
                 g_global.g_enemyState.e_b_enemy1Shielding = false;
@@ -176,13 +203,12 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_enemyState.e_b_enemy1Attacking = false;
                 g_global.g_enemyState.e_b_enemy1Shielding = true;
-                g_global.g_enemyAttributeSheet1.e_enemyScript.EnemyShielded(10); // Temporary shield value gained, as told by designers 
             }
         }
 
         if (g_global.g_enemyAttributeSheet2 != null) // Check if enemy 2 is present
         {
-            if (g_global.g_iconManager.e_b_enemy2Attacking == true) // Enemy 2 Attack
+            if (g_global.g_iconManager.e_b_enemy2IconAttacking == true) // Enemy 2 Attack
             {
                 g_global.g_enemyState.e_b_enemy2Attacking = true;
                 g_global.g_enemyState.e_b_enemy2Shielding = false;
@@ -197,7 +223,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet3 != null) // Check if enemy 3 is present
         {
-            if (g_global.g_iconManager.e_b_enemy3Attacking == true) // Enemy 3 Attack
+            if (g_global.g_iconManager.e_b_enemy3IconAttacking == true) // Enemy 3 Attack
             {
                 g_global.g_enemyState.e_b_enemy3Attacking = true;
                 g_global.g_enemyState.e_b_enemy3Shielding = false;
@@ -212,7 +238,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet4 != null) // Check if enemy 4 is present
         {
-            if (g_global.g_iconManager.e_b_enemy4Attacking == true) // Enemy 4 Attack
+            if (g_global.g_iconManager.e_b_enemy4IconAttacking == true) // Enemy 4 Attack
             {
                 g_global.g_enemyState.e_b_enemy4Attacking = true;
                 g_global.g_enemyState.e_b_enemy4Shielding = false;
@@ -227,7 +253,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet5 != null) // Check if enemy 5 is present
         {
-            if (g_global.g_iconManager.e_b_enemy5Attacking == true) // Enemy 5 Attack
+            if (g_global.g_iconManager.e_b_enemy5IconAttacking == true) // Enemy 5 Attack
             {
                 g_global.g_enemyState.e_b_enemy5Attacking = true;
                 g_global.g_enemyState.e_b_enemy5Shielding = false;
@@ -238,6 +264,41 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_enemyState.e_b_enemy5Shielding = true;
                 g_global.g_enemyAttributeSheet5.e_enemyScript.EnemyShielded(10);
             }
+        }
+    }
+
+    /// <summary>
+    /// Remove shielding as it's supposed to at end of turn
+    /// </summary>
+    private void RemoveShielding()
+    {
+        //Reset player
+        g_global.g_playerAttributeSheet.p_i_shield = 0;
+
+        //Reset Enemy
+        if(g_global.g_enemyAttributeSheet1 != null) // Strip Enemy 1 of Shielding
+        {
+            g_global.g_enemyAttributeSheet1.e_i_shield = 0;
+        }
+
+        if (g_global.g_enemyAttributeSheet2 != null) // Strip Enemy 2 of Shielding
+        {
+            g_global.g_enemyAttributeSheet2.e_i_shield = 0;
+        }
+
+        if (g_global.g_enemyAttributeSheet3 != null) // Strip Enemy 3 of Shielding
+        {
+            g_global.g_enemyAttributeSheet3.e_i_shield = 0;
+        }
+
+        if (g_global.g_enemyAttributeSheet4 != null) // Strip Enemy 4 of Shielding
+        {
+            g_global.g_enemyAttributeSheet4.e_i_shield = 0;
+        }
+
+        if (g_global.g_enemyAttributeSheet5 != null) // Strip Enemy 5 of Shielding
+        {
+            g_global.g_enemyAttributeSheet5.e_i_shield = 0;
         }
     }
 }
