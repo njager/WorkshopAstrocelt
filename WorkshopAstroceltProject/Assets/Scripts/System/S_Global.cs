@@ -92,7 +92,6 @@ public class S_Global : MonoBehaviour
         Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
     }
 
-
     //Adding cheat buttons
     private void Update()
     {
