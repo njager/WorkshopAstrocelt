@@ -6771,7 +6771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Current Energy: 8'
+  m_text: 'Current Energy: ?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18185,10 +18185,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02452a600f8504008b1f56b15a8138d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_i_handSize: 0
-  p_i_handSizeLimit: 0
-  p_i_startHandSize: 0
-  p_i_drawPerTurn: 0
+  p_i_handSizeLimit: 10
+  p_i_startHandSize: 5
+  p_i_drawPerTurn: 5
+  topPosition: {fileID: 0}
+  nextPosition: {fileID: 0}
+  afterPosition: {fileID: 0}
+  closePosition: {fileID: 0}
+  bottomPosition: {fileID: 0}
+  c_cardPrefabTemplate: {fileID: 0}
+  bullshit: 0
 --- !u!1001 &1453530991
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -44,8 +44,10 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
+        g_global.g_cardManager.NewHand();
+
         //Temporary map switching triggered by UIManager
-        if(g_global.g_mapManager.map_b_map1Used != true)
+        if (g_global.g_mapManager.map_b_map1Used != true)
         {
             g_global.g_mapManager.Map1(); 
         }
@@ -78,7 +80,6 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_selectorManager.SelectorReset();
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
-
     }
 
     /// <summary>
