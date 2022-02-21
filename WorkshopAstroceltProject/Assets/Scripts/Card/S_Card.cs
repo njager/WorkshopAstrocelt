@@ -71,12 +71,18 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_flavor; // Flavor Text Box
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
+    public int c_i_cardID; 
+
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
     //Functions
     private void Awake()
     {
         g_global = S_Global.Instance;
+
+        //Separate cards
+        g_global.c_i_cardIDNum += 1;
+        c_i_cardID = g_global.c_i_cardIDNum;
     }
     
     private void Start()
@@ -210,7 +216,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if(transform.parent != null && transform.parent.tag == "Bottom")
+        if(transform.parent.CompareTag("Bottom"))
         {
             if(g_global.g_ConstellationManager.i_energyCount >= c_i_energyCost)
             {
@@ -223,41 +229,39 @@ public class S_Card : MonoBehaviour
         }
         else
         {
-            GameObject _currentBottomCard = g_global.g_cardManager.bottomPosition.GetComponentInChildren<S_Card>().gameObject;
-            print(_currentBottomCard);
+            GameObject _currentBottomCard = g_global.g_cardManager.bottomPosition.transform.GetChild(0).gameObject;
 
             //Card is on top
             if (transform.parent.CompareTag("Top"))
             {
-                _currentBottomCard.transform.position = g_global.g_cardManager.topPosition.transform.position;
-                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
+                _currentBottomCard.transform.SetParent(g_global.g_cardManager.topPosition.transform, false);
                 Debug.Log("Please Select the card at the bottom for play!");
             }
 
             //Card is in next slot
-            else if (transform.parent.CompareTag("Next"))
+            if (transform.parent.CompareTag("Next"))
             {
-                _currentBottomCard.transform.position = g_global.g_cardManager.nextPosition.transform.position;
-                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
+                _currentBottomCard.transform.SetParent(g_global.g_cardManager.nextPosition.transform, false);
                 Debug.Log("Please Select the card at the bottom for play!");
             }
 
             //Card is in after slot
-            else if (transform.parent.CompareTag("After"))
+            if (transform.parent.CompareTag("After"))
             {
-                _currentBottomCard.transform.position = g_global.g_cardManager.afterPosition.transform.position;
-                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
+                _currentBottomCard.transform.SetParent(g_global.g_cardManager.afterPosition.transform, false);
                 Debug.Log("Please Select the card at the bottom for play!");
             }
 
             //Card is in close slot
-            else if (transform.parent.CompareTag("Close"))
+            if (transform.parent.CompareTag("Close"))
             {
-                _currentBottomCard.transform.position = g_global.g_cardManager.closePosition.transform.position;
-                transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
+                _currentBottomCard.transform.SetParent(g_global.g_cardManager.closePosition.transform, false);
                 Debug.Log("Please Select the card at the bottom for play!");
             }
-
         }
     }
 

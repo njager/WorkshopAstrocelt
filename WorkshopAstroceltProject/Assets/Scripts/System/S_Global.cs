@@ -66,6 +66,9 @@ public class S_Global : MonoBehaviour
     [Header("Arrays")]
     public string placeholder;
 
+    [Header("Card IDs")]
+    public int c_i_cardIDNum; 
+
     private void Awake()
     {
         if(Instance != null && Instance != this)
