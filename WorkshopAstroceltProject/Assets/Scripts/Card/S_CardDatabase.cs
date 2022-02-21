@@ -32,20 +32,32 @@ public class S_CardDatabase : MonoBehaviour
     public S_CardTemplate cardScript8; // Dodge, ID 8
     public S_CardTemplate cardScript9; // Bulwark, ID 9
 
-    public Dictionary<int, GameObject> dict_CardDatabase = new Dictionary<int, GameObject>();
+    public Dictionary<int, S_CardTemplate> dict_CardDatabase = new Dictionary<int, S_CardTemplate>();
 
     void Awake()
     {
         g_global = S_Global.Instance;
+
+        dict_CardDatabase.Add(0, cardScript0);
+        dict_CardDatabase.Add(1, cardScript1);
+        dict_CardDatabase.Add(2, cardScript2);
+        dict_CardDatabase.Add(3, cardScript3);
+        dict_CardDatabase.Add(4, cardScript4);
+        dict_CardDatabase.Add(5, cardScript5);
+        dict_CardDatabase.Add(6, cardScript6);
+        dict_CardDatabase.Add(7, cardScript7);
+        dict_CardDatabase.Add(8, cardScript8);
+        dict_CardDatabase.Add(9, cardScript9);
+
+        for(int i=0; i < 10; i++)
+        {
+            g_global.lst_p_playerDeck.Add(i);
+        }
     }
 
     void Start()
     {
-        InstanceCard(topPosition, cardScript0);
-        InstanceCard(nextPosition, cardScript2);
-        InstanceCard(afterPosition, cardScript4);
-        InstanceCard(closePosition, cardScript5);
-        InstanceCard(bottomPosition, cardScript7);
+        
     }
 
     /// <summary>
@@ -54,16 +66,9 @@ public class S_CardDatabase : MonoBehaviour
     /// </summary>
     /// <param name="_index"></param>
     /// <returns></returns>
-    public GameObject GetCard(int _index)
+    public S_CardTemplate GetCard(int _index)
     {
-        GameObject _returnCard = dict_CardDatabase[_index];
+        S_CardTemplate _returnCard = dict_CardDatabase[_index];
         return _returnCard;
-    }
-
-    public void InstanceCard(GameObject _position, S_CardTemplate _cardTemplate)
-    {
-        GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
-        playerCard.transform.SetParent(_position.gameObject.transform, false);
     }
 }

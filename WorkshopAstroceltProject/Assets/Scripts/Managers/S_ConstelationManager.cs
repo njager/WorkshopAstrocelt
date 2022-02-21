@@ -18,6 +18,7 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_redEnergy;
     public int i_yellowEnergy;
     public int i_blueEnergy;
+    public int i_energyCount;
 
     public bool enumerateTemp; 
 
@@ -99,6 +100,7 @@ public class S_ConstelationManager : MonoBehaviour
                 print(_count);
 
                 //pass the _count to another function
+                i_energyCount = _count;
             }
         }
     }
