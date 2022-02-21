@@ -12,32 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
-  CardName: 
+  CardName: Slash
+  HeaderText: Slash
+  BodyText: 
   FlavorText: 
-  EnergyCost: 0
-  EffectValue: 0
+  EnergyCost: 2
+  EffectValue: 4
   CardRarity: 1
-  AffectsSelf: 0
-  Affects1Character: 0
+  AffectsPlayer: 0
+  Affects1Character: 1
   Affects2Characters: 0
-  CardArtAssetPrefab: {fileID: 0}
   RedColorType: 0
   BlueColorType: 0
-  GreenColorType: 0
-  WhiteColorType: 0
-  DamageEffectType: 0
-  HealEffectType: 0
-  ShieldEffectType: 0
-  UniqueEffectType: 0
-  NoEffect: 0
-  BleedingStatusEffect: 0
+  YellowColorType: 0
+  WhiteColorType: 1
+  AttackEffect: 1
+  ShieldEffect: 0
+  UniqueEffect: 0
+  NoEffect: 1
+  BleedStatusEffect: 0
   StunStatusEffect: 0
   PoisonStatusEffect: 0
-  EmpoweredStatusEffect: 0
-  LuckyStatusEffect: 0
+  EmpowerStatusEffect: 0
   RestrainStatusEffect: 0
   BurnStatusEffect: 0
   ShockStatusEffect: 0
+  DrawStatusEffect: 0
+  SiphonStatusEffect: 0
+  FralitizeStatusEffect: 0
+  ManipulateStatusEffect: 0
   DamagePercentage: 0
   TurnCount: 0
   Payback: 0
+  ExtraInfo: 

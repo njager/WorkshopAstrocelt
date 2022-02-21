@@ -13,22 +13,27 @@ public class S_CardDatabase : MonoBehaviour
     public GameObject c_cardPrefabTemplate; 
 
     [Header("Scriptable Objects")]
-    public ScriptableObject cardScript0; // temp, ID 0
-    public ScriptableObject cardScript1; // temp, ID 1
-    public ScriptableObject cardScript2; // temp, ID 2
-    public ScriptableObject cardScript3; // temp, ID 3
-    public ScriptableObject cardScript4; // temp, ID 4
-    public ScriptableObject cardScript5; // temp, ID 5
-    public ScriptableObject cardScript6; // temp, ID 6
-    public ScriptableObject cardScript7; // temp, ID 7
-    public ScriptableObject cardScript8; // temp, ID 8
-    public ScriptableObject cardScript9; // temp, ID 9
+    public S_CardTemplate cardScript0; // Slash1, ID 0
+    public S_CardTemplate cardScript1; // Slash2, ID 1
+    public S_CardTemplate cardScript2; // Bludgeon1, ID 2
+    public S_CardTemplate cardScript3; // Bludgeon2, ID 3
+    public S_CardTemplate cardScript4; // Pierce, ID 4
+    public S_CardTemplate cardScript5; // Block, ID 5
+    public S_CardTemplate cardScript6; // Block, ID 6
+    public S_CardTemplate cardScript7; // Dodge, ID 7
+    public S_CardTemplate cardScript8; // Dodge, ID 8
+    public S_CardTemplate cardScript9; // Bulwark, ID 9
 
     public Dictionary<int, GameObject> dict_CardDatabase = new Dictionary<int, GameObject>();
 
     void Awake()
     {
         g_global = S_Global.Instance;
+    }
+
+    void Start()
+    {
+        
     }
 
     /// <summary>

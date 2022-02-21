@@ -42,7 +42,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_affectsTwo;
 
     [Header("Main Effect Types")]
-    public bool c_b_damageMainEffect;
+    public bool c_b_attackMainEffect;
     public bool c_b_shieldMainEffect;
     public bool c_b_uniqueMainEffect;
 
@@ -108,7 +108,7 @@ public class S_Card : MonoBehaviour
         c_b_affectsTwo = _cardData.Affects2Characters;
 
         //Toggle Main Effects
-        c_b_damageMainEffect = _cardData.DamageEffect;
+        c_b_attackMainEffect = _cardData.AttackEffect;
         c_b_shieldMainEffect = _cardData.ShieldEffect;
         c_b_uniqueMainEffect = _cardData.UniqueEffect;
 

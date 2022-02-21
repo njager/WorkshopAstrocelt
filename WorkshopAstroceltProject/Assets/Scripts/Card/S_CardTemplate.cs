@@ -29,7 +29,7 @@ public class S_CardTemplate : ScriptableObject
     public bool WhiteColorType; 
 
     [Header("Main Effect Types")]
-    public bool DamageEffect;
+    public bool AttackEffect;
     public bool ShieldEffect;
     public bool UniqueEffect;
 
