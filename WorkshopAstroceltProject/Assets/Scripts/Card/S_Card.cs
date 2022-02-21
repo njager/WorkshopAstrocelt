@@ -6,7 +6,7 @@ using TMPro;
 public class S_Card : MonoBehaviour
 {
     public S_CardTemplate c_cardTemplate;
-    private S_Global global;
+    private S_Global g_global;
 
     // Index from database;
     public int c_i_cardIndex;
@@ -76,7 +76,7 @@ public class S_Card : MonoBehaviour
     //Functions
     private void Awake()
     {
-        global = S_Global.Instance;
+        g_global = S_Global.Instance;
     }
     
     private void Start()
@@ -203,4 +203,29 @@ public class S_Card : MonoBehaviour
 
     [Header("Unique Cards")]
     public bool c_b_unqiuePayback;
+
+
+    /// <summary>
+    /// Check position of card
+    /// </summary>
+    public void OnMouseDown()
+    {
+        if(transform.parent != null && transform.parent.tag == "Bottom")
+        {
+            PlayCard();
+        }
+        else
+        {
+            Transform _currentTransform = GetComponentInParent<Transform>();
+            GameObject _currentBottomCard = g_global.g_cardManager.bottomPosition.GetComponentInChildren<S_Card>().gameObject;
+
+            transform.position = g_global.g_cardManager.bottomPosition.transform.position; // Move this card to bottom of the stack
+            _currentBottomCard.transform.position = _currentTransform.position; // Move the other card on the bottom to the this card's previous position
+        }
+    }
+
+    private void PlayCard()
+    {
+
+    }
 }
