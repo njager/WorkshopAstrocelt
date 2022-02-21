@@ -7,7 +7,7 @@ public class SceneManagerMan : MonoBehaviour
 {
     public void Scene0()
     {
-        SceneManager.LoadScene(0); 
+        SceneManager.LoadSceneAsync(0); 
     }
     public void Exit()
     {
