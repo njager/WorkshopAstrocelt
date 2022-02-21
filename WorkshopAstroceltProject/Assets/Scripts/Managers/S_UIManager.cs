@@ -66,56 +66,41 @@ public class S_UIManager : MonoBehaviour
         // Text
         playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
 
-        //Health Bar
-        playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;
+        energyText.text = "Current Energy: " + g_global.g_ConstellationManager.i_energyCount.ToString();
 
+        //Health and Shield Bar
+        playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;
         playerShieldText.text = g_global.g_playerAttributeSheet.p_i_shield.ToString();
 
-        //Update Shield Text
-        if (g_global.g_enemyAttributeSheet1 != null)
-        {
-            enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.e_i_shield.ToString();
-        }
-        if (g_global.g_enemyAttributeSheet2 != null)
-        {
-            enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.e_i_shield.ToString();
-        }
-        if (g_global.g_enemyAttributeSheet3 != null)
-        {
-            enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.e_i_shield.ToString();
-        }
-        if (g_global.g_enemyAttributeSheet4 != null)
-        {
-            enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.e_i_shield.ToString();
-        }
-        if (g_global.g_enemyAttributeSheet5 != null)
-        {
-            enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
-        }
 
         //Update Enemy Health Bars
         if(g_global.g_enemyAttributeSheet1 != null) 
         {
+            enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.e_i_shield.ToString();
             enemy1HealthText.text = g_global.g_enemyAttributeSheet1.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet1.e_i_healthMax.ToString();
             enemy1HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet1.e_i_health / (float)g_global.g_enemyAttributeSheet1.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet2 != null)
         {
+            enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.e_i_shield.ToString();
             enemy2HealthText.text = g_global.g_enemyAttributeSheet2.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet2.e_i_healthMax.ToString();
             enemy2HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet2.e_i_health / (float)g_global.g_enemyAttributeSheet2.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet3 != null) 
         {
+            enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.e_i_shield.ToString();
             enemy3HealthText.text = g_global.g_enemyAttributeSheet3.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet3.e_i_healthMax.ToString();
             enemy3HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet3.e_i_health / (float)g_global.g_enemyAttributeSheet3.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet4 != null)
         {
+            enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.e_i_shield.ToString();
             enemy4HealthText.text = g_global.g_enemyAttributeSheet4.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet4.e_i_healthMax.ToString();
             enemy4HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet4.e_i_health / (float)g_global.g_enemyAttributeSheet4.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet5 != null)
         {
+            enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
             enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }

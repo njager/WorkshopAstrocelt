@@ -51,9 +51,12 @@ public class S_EnemyAttributes : MonoBehaviour
         //Inform Global
         InstanceVariables();
         e_enemyScript = gameObject.GetComponent<S_Enemy>();
+    }
 
+    private void Start()
+    {
         //Fill sheet 1 in global if enemy 1
-        if (e_enemyScript.e_i_enemyCount == 1)
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 1)
         {
             if (g_global.g_enemyAttributeSheet1 == null)
             {
@@ -61,12 +64,12 @@ public class S_EnemyAttributes : MonoBehaviour
             }
             else
             {
-                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!"); 
+                Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
             }
         }
 
         //Fill sheet 2 in global if enemy 2
-        if (e_enemyScript.e_i_enemyCount == 2)
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 2)
         {
             if (g_global.g_enemyAttributeSheet2 == null)
             {
@@ -105,7 +108,7 @@ public class S_EnemyAttributes : MonoBehaviour
         }
 
         //Fill sheet 5 in global if enemy 5
-        if (e_enemyScript.e_i_enemyCount == 5)
+        if (gameObject.GetComponent<S_Enemy>().e_i_enemyCount == 5)
         {
             if (g_global.g_enemyAttributeSheet5 == null)
             {
@@ -116,10 +119,7 @@ public class S_EnemyAttributes : MonoBehaviour
                 Debug.Log("Something Already filled up this Sheet! And wasn't supposed to!");
             }
         }
-    }
 
-    private void Start()
-    {
         g_global.g_iconManager.EnemyIconNextTurn(e_enemyScript);
 
         if (e_enemyScript.e_i_enemyCount == 1)
@@ -151,8 +151,8 @@ public class S_EnemyAttributes : MonoBehaviour
         e_i_health = 100;
         e_i_healthMax = 100;
 
-        e_i_shield = 100;
-        e_i_shieldMax = 100;
+        e_i_shield = 0;
+        e_i_shieldMax = 10;
 
         e_i_enemyDamageValue = 5;
 
