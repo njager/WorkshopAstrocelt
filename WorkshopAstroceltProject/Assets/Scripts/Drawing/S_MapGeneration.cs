@@ -54,6 +54,7 @@ public class S_MapGeneration : MonoBehaviour
         blackBar3.SetActive(false);
         blackBar4.SetActive(false);
         blackBar5.SetActive(false);
+        blackBar6.SetActive(false);
     }
 
     /// <summary>
