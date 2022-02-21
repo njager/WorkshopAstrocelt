@@ -80,14 +80,14 @@ public class S_Card : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        //Separate cards
+        //Separate cards, ended up not being needed
         g_global.c_i_cardIDNum += 1;
         c_i_cardID = g_global.c_i_cardIDNum;
     }
     
     private void Start()
     {
-        //FetchCardData(c_cardTemplate);
+        //May be needed
     }
 
     /// <summary>
@@ -298,7 +298,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerAttackCard()
     {
-
+        g_global.g_selectorManager.e_enemySelected.EnemyAttacked(g_global.g_selectorManager.e_enemySelected.e_str_enemyType, c_i_effectValue);
     }
 
     /// <summary>
@@ -306,6 +306,6 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerShieldCard()
     {
-
+        g_global.g_player.PlayerHealed(c_i_effectValue);
     }
 }

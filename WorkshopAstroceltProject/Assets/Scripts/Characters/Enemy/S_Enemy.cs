@@ -9,6 +9,8 @@ public class S_Enemy : MonoBehaviour
 
     [SerializeField] S_EnemyAttributes e_enemyAttributes;
 
+    public string e_str_enemyType;
+
     public int e_i_enemyCount;
 
     public GameObject e_sp_spriteIcon; 
