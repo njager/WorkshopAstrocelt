@@ -91,6 +91,8 @@ public class S_Enemy : MonoBehaviour
     {
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
+        g_global.g_selectorManager.SelectorReset();
+        e_enemyAttributes.e_i_health = 0;
         gameObject.SetActive(false);
     }
 

@@ -63,10 +63,15 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet1.e_i_shield = g_global.g_enemyAttributeSheet1.e_i_shieldMax;
             }
 
-            if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
+            if(e_b_enemy1Dead != true)
             {
-                enemy1.EnemyDied(str_enemy1Type);
+                if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
+                {
+                    enemy1.EnemyDied(str_enemy1Type);
+                    e_b_enemy1Dead = true; 
+                }
             }
+            
         }
         
 
@@ -84,9 +89,13 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet2.e_i_shield = g_global.g_enemyAttributeSheet2.e_i_shieldMax;
             }
 
-            if (g_global.g_enemyAttributeSheet2.e_i_health <= 0)
+            if (e_b_enemy2Dead != true)
             {
-                enemy2.EnemyDied(str_enemy2Type);
+                if (g_global.g_enemyAttributeSheet2.e_i_health <= 0)
+                {
+                    enemy2.EnemyDied(str_enemy2Type);
+                    e_b_enemy2Dead = true;
+                }
             }
         }
         
@@ -105,9 +114,13 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet3.e_i_shield = g_global.g_enemyAttributeSheet3.e_i_shieldMax;
             }
 
-            if (g_global.g_enemyAttributeSheet3.e_i_health <= 0)
+            if (e_b_enemy3Dead != true)
             {
-                enemy3.EnemyDied(str_enemy3Type);
+                if (g_global.g_enemyAttributeSheet3.e_i_health <= 0)
+                {
+                    enemy3.EnemyDied(str_enemy3Type);
+                    e_b_enemy3Dead = true; 
+                }
             }
         }
         
@@ -125,10 +138,16 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet4.e_i_shield = g_global.g_enemyAttributeSheet4.e_i_shieldMax;
             }
 
-            if (g_global.g_enemyAttributeSheet4.e_i_health <= 0)
+            if (e_b_enemy4Dead != true)
             {
-                enemy4.EnemyDied(str_enemy4Type);
+                if (g_global.g_enemyAttributeSheet4.e_i_health <= 0)
+                {
+                    enemy4.EnemyDied(str_enemy4Type);
+                    e_b_enemy4Dead = true;
+                }
             }
+
+            
         }
 
         // Same for enemy 5
@@ -144,9 +163,13 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet5.e_i_shield = g_global.g_enemyAttributeSheet5.e_i_shieldMax;
             }
 
-            if (g_global.g_enemyAttributeSheet5.e_i_health <= 0)
+            if(e_b_enemy5Dead != true)
             {
-                enemy5.EnemyDied(str_enemy5Type);
+                if (g_global.g_enemyAttributeSheet5.e_i_health <= 0)
+                {
+                    enemy5.EnemyDied(str_enemy5Type);
+                    e_b_enemy5Dead = true;
+                }
             }
         }
     }
