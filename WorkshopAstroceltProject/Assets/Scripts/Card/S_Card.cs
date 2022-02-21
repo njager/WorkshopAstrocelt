@@ -309,7 +309,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerShieldCard()
     {
-        g_global.g_player.PlayerHealed(c_i_effectValue);
+        g_global.g_player.PlayerShielded(c_i_effectValue);
         DeleteCard();
     }
 

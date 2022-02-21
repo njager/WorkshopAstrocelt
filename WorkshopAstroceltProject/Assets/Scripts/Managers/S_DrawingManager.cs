@@ -193,6 +193,8 @@ public class S_DrawingManager : MonoBehaviour
     public void ConstellationReset()
     {
         Debug.Log("Constellation Reset Triggered");
+        g_global.g_ConstellationManager.energyWasCleared = true;
+        i_starSound = 0;
         while (s_previousStar.starType != "Null")
         {
             S_StarClass _temporalStar = s_previousStar.s_star.m_previous;

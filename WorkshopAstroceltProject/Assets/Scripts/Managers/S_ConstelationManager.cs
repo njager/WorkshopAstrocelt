@@ -8,7 +8,7 @@ using System.Linq;
 public class S_ConstelationManager : MonoBehaviour
 {
     private S_Global g_global;
-    float f_timer = 2f;
+    float f_timer = 1f;
 
     [Header("Constellation Sizes")]
     public int i_minSize;
@@ -40,6 +40,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         //wait so if a line deletes itself were safe
         yield return new WaitForSeconds(f_timer);
+        energyWasCleared = false;
 
         //set up some function vars
         S_StarClass _curStar = _node.s_star.m_previous;
@@ -124,6 +125,7 @@ public class S_ConstelationManager : MonoBehaviour
     public void ClearEnergy()
     {
         i_energyCount = 0;
+        g_global.g_DrawingManager.i_starSound = 0;
         energyWasCleared = true;
     }
 }
