@@ -18,6 +18,8 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_redEnergy;
     public int i_yellowEnergy;
     public int i_blueEnergy;
+
+    [Header("Energy Counter")]
     public int i_energyCount;
 
     public bool enumerateTemp; 
@@ -115,5 +117,10 @@ public class S_ConstelationManager : MonoBehaviour
         }
         enumerateTemp = true; 
         yield return enumerateTemp = true; 
+    }
+
+    public void ClearEnergy()
+    {
+        i_energyCount = 0;
     }
 }
