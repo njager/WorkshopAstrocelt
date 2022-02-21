@@ -13,6 +13,9 @@ public class S_DrawingManager : MonoBehaviour
     public int i_index;
     public Vector2 v2_nodeStarLoc;
 
+    public GameObject _starSoundPhase1;
+    public GameObject _starSoundPhase2;
+
     public int i_starSound = 0;
 
     [Header("Add the ConstellationLine")]
@@ -44,6 +47,9 @@ public class S_DrawingManager : MonoBehaviour
         { 
             //do some final thing with star sound
             b_drawing = false;
+            _starSoundPhase1.SetActive(false);
+            PlaySound();
+
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
             StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(_starN));
         }
@@ -55,6 +61,13 @@ public class S_DrawingManager : MonoBehaviour
             v2_prevLoc = _loc;
             _starN.s_star.m_previous = s_nullStarInst;
         }
+    }
+
+    public void PlaySound()
+    {
+        _starSoundPhase2.SetActive(true);
+        var emitter = _starSoundPhase2.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Note Order", i_starSound);
     }
 
     /// <summary>
@@ -76,6 +89,9 @@ public class S_DrawingManager : MonoBehaviour
             
             if (true)
             {
+                // Audio: the sounds will be played once the object is enabled. When first click on a normal star, enable this object to play the first click sound that plays the first note and first note only.
+                _starSoundPhase1.SetActive(true);
+                
                 b_drawing = true;
                 SpawnLine(s_nodeStarInst, _star, v2_nodeStarLoc, _loc);
                 s_nodeStarInst.s_star.m_previous = s_nullStarInst;
@@ -94,6 +110,12 @@ public class S_DrawingManager : MonoBehaviour
         //change the star sound here if the line is formed
         i_starSound++;
 
+        var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Note Order", i_starSound);
+
+
+        
+        
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
         S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
