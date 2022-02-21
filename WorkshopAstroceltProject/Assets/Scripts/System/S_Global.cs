@@ -15,7 +15,7 @@ public class S_Global : MonoBehaviour
     [Header("Script References")]
     public S_TurnManager g_turnManager;
     public S_Player g_player;
-    public S_Enemy g_enemy;
+    //public S_Enemy g_enemy;
     public S_MapGeneration g_mapManager;
     public S_DrawingManager g_DrawingManager;
     public S_ConstelationManager g_ConstellationManager;
@@ -38,8 +38,8 @@ public class S_Global : MonoBehaviour
 
     public S_PlayerAttributes g_playerAttributeSheet;
     public S_PlayerState g_playerState;
-
     public S_EnemyState g_enemyState;
+
     [Header("All Potential Enemy Sheets")]
     public S_EnemyAttributes g_enemyAttributeSheet1;
     public S_EnemyAttributes g_enemyAttributeSheet2;
@@ -90,5 +90,30 @@ public class S_Global : MonoBehaviour
         //This likely needs to be set in the scene prefab
         g_i_enemyCountMax = g_i_enemyCount;
         Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
+    }
+
+
+    //Adding cheat buttons
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            g_enemyState.e_b_enemy1Dead = true;
+            g_enemyState.enemy1.EnemyDied("Lumberjack");
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            g_enemyState.e_b_enemy2Dead = true;
+            g_enemyState.enemy2.EnemyDied("Lumberjack");
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            g_enemyState.e_b_enemy3Dead = true;
+            g_enemyState.enemy3.EnemyDied("Lumberjack");
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            g_playerAttributeSheet.p_i_health = 0;
+        }
     }
 }

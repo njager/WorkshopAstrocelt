@@ -6338,6 +6338,7 @@ MonoBehaviour:
   winText: {fileID: 1343041395}
   loseText: {fileID: 579670013}
   resetCanvas: {fileID: 1845475216}
+  greyboxCanvas: {fileID: 933933132}
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6881,7 +6882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   g_turnManager: {fileID: 1269889775}
   g_player: {fileID: 2082358049}
-  g_enemy: {fileID: 1005853314}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
   g_ConstellationManager: {fileID: 1330287152}
@@ -14458,17 +14458,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1068484044281633898, guid: 0dcbb68087cd1ce4cb45fd92ac9da4de, type: 3}
   m_PrefabInstance: {fileID: 1068484045167412970}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1005853314 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1068484044281633896, guid: 0dcbb68087cd1ce4cb45fd92ac9da4de, type: 3}
-  m_PrefabInstance: {fileID: 1068484045167412970}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1024280868
 GameObject:
   m_ObjectHideFlags: 0

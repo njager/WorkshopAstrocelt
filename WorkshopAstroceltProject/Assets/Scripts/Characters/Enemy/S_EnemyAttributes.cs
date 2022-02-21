@@ -25,7 +25,7 @@ public class S_EnemyAttributes : MonoBehaviour
     public float e_f_challengeRating;
 
     [Header("Typing")]
-    public string e_str_enemyType;
+    public string e_str_enemyType; 
 
     // Add more enemies to toggle on and off as needed
     [Header("Enemy Type Bools")]
