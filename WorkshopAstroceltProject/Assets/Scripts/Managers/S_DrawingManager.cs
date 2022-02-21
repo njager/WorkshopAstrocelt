@@ -63,6 +63,10 @@ public class S_DrawingManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Added by Victor to play FMOD sounds
+    /// </summary>
     public void PlaySound()
     {
         _starSoundPhase2.SetActive(true);

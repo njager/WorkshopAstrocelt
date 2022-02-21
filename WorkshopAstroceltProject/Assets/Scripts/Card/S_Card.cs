@@ -282,12 +282,13 @@ public class S_Card : MonoBehaviour
             }
             else
             {
-                //g_global.g_constellationManager.c
+                g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
                 TriggerAttackCard();
             }
         }
         else if(c_b_shieldMainEffect == true)
         {
+            g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
             TriggerShieldCard();
         }
         
@@ -300,6 +301,7 @@ public class S_Card : MonoBehaviour
     private void TriggerAttackCard()
     {
         g_global.g_selectorManager.e_enemySelected.EnemyAttacked(g_global.g_selectorManager.e_enemySelected.e_str_enemyType, c_i_effectValue);
+        DeleteCard();
     }
 
     /// <summary>
@@ -308,5 +310,38 @@ public class S_Card : MonoBehaviour
     private void TriggerShieldCard()
     {
         g_global.g_player.PlayerHealed(c_i_effectValue);
+        DeleteCard();
+    }
+
+    /// <summary>
+    /// Delete the card played
+    /// </summary>
+    private void DeleteCard()
+    {
+        MoveCards();
+        Destroy(gameObject); // Remove card from play
+    }
+
+    /// <summary>
+    /// Move deck down 1
+    /// </summary>
+    private void MoveCards() // Works
+    {
+        if(g_global.g_cardManager.closePosition.transform.GetChild(0) != null) // Move card from close to bottom
+        {
+            g_global.g_cardManager.closePosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false);
+        }
+        if (g_global.g_cardManager.afterPosition.transform.GetChild(0) != null) // Move card from after to close
+        {
+            g_global.g_cardManager.afterPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.closePosition.transform, false);
+        }
+        if (g_global.g_cardManager.nextPosition.transform.GetChild(0) != null) // Move card from next to after
+        {
+            g_global.g_cardManager.nextPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.afterPosition.transform, false);
+        }
+        if (g_global.g_cardManager.topPosition.transform.GetChild(0) != null) //Move card from top to after
+        {
+            g_global.g_cardManager.topPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.nextPosition.transform, false);
+        }
     }
 }
