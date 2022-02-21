@@ -42,7 +42,13 @@ public class S_PlayerState : MonoBehaviour
         // If player lost
         if (g_global.g_playerAttributeSheet.p_i_health <= 0)
         {
-            Lose();
+            PlayerLoses();
+        }
+
+        //If player won
+        if (g_global.g_i_enemyCount <= 0)
+        {
+            PlayerWins();
         }
     }
 
