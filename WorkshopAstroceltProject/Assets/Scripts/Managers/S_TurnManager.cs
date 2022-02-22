@@ -113,7 +113,7 @@ public class S_TurnManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This the the function that gets triggered when the end turn button is pressed 
+    /// This the function that gets triggered when the end turn button is pressed 
     /// -Josh
     /// </summary>
     public void EndTurn()
@@ -126,7 +126,6 @@ public class S_TurnManager : MonoBehaviour
         else
         {
             e_b_enemyDidAttack = false;
-            RemoveShielding(); //Remove all shields first
             g_global.g_ConstellationManager.ClearEnergy();
             EnemyAttackingOrShielding();
             
@@ -138,7 +137,7 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy1Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet1.e_enemyScript.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(10);
                     }
                     else
                     {
@@ -154,7 +153,7 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy2Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet2.e_enemyScript.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(10);
                     }
                     else
                     {
@@ -170,7 +169,7 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy3Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet3.e_enemyScript.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(10);
                     }
                     else
                     {
@@ -186,7 +185,7 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy4Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet4.e_enemyScript.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(10);
                     }
                     else
                     {
@@ -202,7 +201,7 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet5.e_enemyScript.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(10);
                     }
                     else
                     {
@@ -211,6 +210,8 @@ public class S_TurnManager : MonoBehaviour
                     }
                 }
             }
+
+            RemoveShielding(); //Remove all shields first
             EnemyStateChange();
 
             //Play sound
@@ -230,7 +231,7 @@ public class S_TurnManager : MonoBehaviour
     {
         if(g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
         {
-            if (g_global.g_iconManager.e_b_enemy1IconAttacking == true) //Enemy 1 Attack
+            if (g_global.g_iconManager.e_b_enemy1IconCheck == true) //Enemy 1 Attack
             {
                 g_global.g_enemyState.e_b_enemy1Attacking = true;
                 g_global.g_enemyState.e_b_enemy1Shielding = false;
@@ -244,7 +245,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet2 != null) // Check if enemy 2 is present
         {
-            if (g_global.g_iconManager.e_b_enemy2IconAttacking == true) // Enemy 2 Attack
+            if (g_global.g_iconManager.e_b_enemy2IconCheck == true) // Enemy 2 Attack
             {
                 g_global.g_enemyState.e_b_enemy2Attacking = true;
                 g_global.g_enemyState.e_b_enemy2Shielding = false;
@@ -258,7 +259,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet3 != null) // Check if enemy 3 is present
         {
-            if (g_global.g_iconManager.e_b_enemy3IconAttacking == true) // Enemy 3 Attack
+            if (g_global.g_iconManager.e_b_enemy3IconCheck == true) // Enemy 3 Attack
             {
                 g_global.g_enemyState.e_b_enemy3Attacking = true;
                 g_global.g_enemyState.e_b_enemy3Shielding = false;
@@ -272,7 +273,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet4 != null) // Check if enemy 4 is present
         {
-            if (g_global.g_iconManager.e_b_enemy4IconAttacking == true) // Enemy 4 Attack
+            if (g_global.g_iconManager.e_b_enemy4IconCheck == true) // Enemy 4 Attack
             {
                 g_global.g_enemyState.e_b_enemy4Attacking = true;
                 g_global.g_enemyState.e_b_enemy4Shielding = false;
@@ -286,7 +287,7 @@ public class S_TurnManager : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet5 != null) // Check if enemy 5 is present
         {
-            if (g_global.g_iconManager.e_b_enemy5IconAttacking == true) // Enemy 5 Attack
+            if (g_global.g_iconManager.e_b_enemy5IconCheck == true) // Enemy 5 Attack
             {
                 g_global.g_enemyState.e_b_enemy5Attacking = true;
                 g_global.g_enemyState.e_b_enemy5Shielding = false;

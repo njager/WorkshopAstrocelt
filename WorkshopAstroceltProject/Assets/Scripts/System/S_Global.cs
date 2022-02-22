@@ -94,7 +94,7 @@ public class S_Global : MonoBehaviour
         Time.timeScale = 1f;
         //This likely needs to be set in the scene prefab
         g_i_enemyCountMax = g_i_enemyCount;
-        Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
+        //Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
     }
 
     //Adding cheat buttons

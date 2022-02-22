@@ -42,7 +42,7 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_shocked;
 
     //It's attached enemy script
-    public S_Enemy e_enemyScript;
+    public S_Enemy e_enemy;
 
     public void Awake()
     {
@@ -50,7 +50,7 @@ public class S_EnemyAttributes : MonoBehaviour
 
         //Inform Global
         InstanceVariables();
-        e_enemyScript = gameObject.GetComponent<S_Enemy>();
+        e_enemy = gameObject.GetComponent<S_Enemy>();
     }
 
     private void Start()
@@ -120,27 +120,27 @@ public class S_EnemyAttributes : MonoBehaviour
             }
         }
 
-        g_global.g_iconManager.EnemyIconNextTurn(e_enemyScript);
+        g_global.g_iconManager.EnemyIconNextTurn(e_enemy);
 
-        if (e_enemyScript.e_i_enemyCount == 1)
+        if (e_enemy.e_i_enemyCount == 1)
         {
-            g_global.g_enemyState.enemy1 = e_enemyScript;
+            g_global.g_enemyState.enemy1 = e_enemy;
         }
-        if (e_enemyScript.e_i_enemyCount == 2)
+        if (e_enemy.e_i_enemyCount == 2)
         {
-            g_global.g_enemyState.enemy2 = e_enemyScript;
+            g_global.g_enemyState.enemy2 = e_enemy;
         }
-        if (e_enemyScript.e_i_enemyCount == 3)
+        if (e_enemy.e_i_enemyCount == 3)
         {
-            g_global.g_enemyState.enemy3 = e_enemyScript;
+            g_global.g_enemyState.enemy3 = e_enemy;
         }
-        if (e_enemyScript.e_i_enemyCount == 4)
+        if (e_enemy.e_i_enemyCount == 4)
         {
-            g_global.g_enemyState.enemy4 = e_enemyScript;
+            g_global.g_enemyState.enemy4 = e_enemy;
         }
-        if (e_enemyScript.e_i_enemyCount == 5)
+        if (e_enemy.e_i_enemyCount == 5)
         {
-            g_global.g_enemyState.enemy5 = e_enemyScript;
+            g_global.g_enemyState.enemy5 = e_enemy;
         }
     }
 

@@ -49,15 +49,10 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(8, cardScript8);
         dict_CardDatabase.Add(9, cardScript9);
 
-        for(int i=0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             g_global.lst_p_playerDeck.Add(i);
         }
-    }
-
-    void Start()
-    {
-        
     }
 
     /// <summary>
