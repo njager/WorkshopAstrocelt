@@ -26,6 +26,27 @@ public class S_Enemy : MonoBehaviour
         g_global.e_l_enemyList.Add(this);
     }
 
+    private void Start()
+    {
+        //If enemy 1 move spots
+        if (e_i_enemyCount == 1)
+        {
+            gameObject.transform.SetParent(g_global.g_e_enemyPosition1.transform, false);
+        }
+
+        //If enemy 2 move spots
+        if (e_i_enemyCount == 2)
+        {
+            gameObject.transform.SetParent(g_global.g_e_enemyPosition2.transform, false);
+        }
+
+        //If enemy 3 move spots
+        if (e_i_enemyCount == 3)
+        {
+            gameObject.transform.SetParent(g_global.g_e_enemyPosition3.transform, false);
+        }
+    }
+
     void SetCount()
     {
         g_global.g_i_enemyCount += 1;

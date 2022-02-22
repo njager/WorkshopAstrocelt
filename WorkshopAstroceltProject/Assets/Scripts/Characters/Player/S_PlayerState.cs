@@ -45,6 +45,11 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_playerAttributeSheet.p_i_shield = g_global.g_playerAttributeSheet.p_i_shieldMax;
         }
 
+        if (g_global.g_playerAttributeSheet.p_i_shield <= 0)
+        {
+            g_global.g_playerAttributeSheet.p_i_shield = 0;
+        }
+
         // If player lost
         if (g_global.g_playerAttributeSheet.p_i_health <= 0)
         {

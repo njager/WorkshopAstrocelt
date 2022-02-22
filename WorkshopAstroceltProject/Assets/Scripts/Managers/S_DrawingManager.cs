@@ -49,7 +49,6 @@ public class S_DrawingManager : MonoBehaviour
             PlaySound();
 
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
-            StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(_starN));
         }
         else 
         {
@@ -159,6 +158,7 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void GoBackOnce(GameObject _line)
     {
+        
         //decrement the star sound
         i_starSound--;
 
@@ -176,6 +176,7 @@ public class S_DrawingManager : MonoBehaviour
         Debug.Log("deleted a line and now cur previousStar is", s_previousStar);
 
         //destroy the line
+        g_global.g_lineMultiplierManager.lst_tempList.Remove(_line);
         Destroy(_line);
 
         //if you go back once and drawing is false then it was a node star
@@ -188,6 +189,8 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void ConstellationReset()
     {
+        g_global.g_lineMultiplierManager.ClearLineList();
+        g_global.g_ConstellationManager.ClearEnergy();
         Debug.Log("Constellation Reset Triggered");
         g_global.g_ConstellationManager.energyWasCleared = true;
         i_starSound = 0;
@@ -210,8 +213,6 @@ public class S_DrawingManager : MonoBehaviour
 
             s_previousStar = _temporalStar;
         }
-
-        g_global.g_lineMultiplierManager.ClearLineList();
 
         //done drawing now
         b_drawing = false;
