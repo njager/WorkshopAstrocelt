@@ -80,11 +80,26 @@ public class S_CardManager : MonoBehaviour
     public void NewHand()
     {
         g_global.lst_p_playerHand.Clear();
-        Destroy(topPosition.transform.GetChild(0).gameObject);
-        Destroy(nextPosition.transform.GetChild(0).gameObject);
-        Destroy(afterPosition.transform.GetChild(0).gameObject);
-        Destroy(closePosition.transform.GetChild(0).gameObject);
-        Destroy(bottomPosition.transform.GetChild(0).gameObject);
+        if (topPosition.transform.childCount > 0)
+        {
+            Destroy(topPosition.transform.GetChild(0).gameObject);
+        }
+        if (nextPosition.transform.childCount > 0)
+        {
+            Destroy(nextPosition.transform.GetChild(0).gameObject);
+        }
+        if (afterPosition.transform.childCount > 0)
+        {
+            Destroy(afterPosition.transform.GetChild(0).gameObject);
+        }
+        if (closePosition.transform.childCount > 0)
+        {
+            Destroy(closePosition.transform.GetChild(0).gameObject);
+        }
+        if (bottomPosition.transform.childCount > 0)
+        {
+            Destroy(bottomPosition.transform.GetChild(0).gameObject);
+        }
 
         DealCards(p_i_drawPerTurn);
 

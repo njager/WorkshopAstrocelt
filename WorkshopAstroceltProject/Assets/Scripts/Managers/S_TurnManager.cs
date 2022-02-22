@@ -132,6 +132,7 @@ public class S_TurnManager : MonoBehaviour
         {
             e_b_enemyDidAttack = false;
             RemoveShielding(); //Remove all shields first
+            g_global.g_ConstellationManager.ClearEnergy();
             EnemyAttackingOrShielding();
             // Turn damage for Enemy 1
             if (g_global.g_enemyAttributeSheet1 != null)
