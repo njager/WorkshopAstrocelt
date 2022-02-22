@@ -8,6 +8,9 @@ public class S_TurnManager : MonoBehaviour
 {
     private S_Global g_global;
 
+    public GameObject attackSound;
+    public bool e_b_enemyDidAttack;
+
     public bool b_playerInitialTurn = true;
     public bool b_enemyInitialTurn = false;
 
@@ -80,6 +83,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_DrawingManager.v2_nodeStarLoc = g_global.g_DrawingManager.s_nodeStarInst.gameObject.transform.position; 
         //g_global.g_mapManager.NewMapGeneration();
         g_global.g_selectorManager.SelectorReset();
+        attackSound.SetActive(false);
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
     }
@@ -126,6 +130,7 @@ public class S_TurnManager : MonoBehaviour
         }
         else
         {
+            e_b_enemyDidAttack = false;
             RemoveShielding(); //Remove all shields first
             EnemyAttackingOrShielding();
             // Turn damage for Enemy 1
@@ -138,7 +143,7 @@ public class S_TurnManager : MonoBehaviour
                 else
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
-                    //RuntimeManager.PlayOneShot(Attack_Vanilla);
+                    e_b_enemyDidAttack = true;
                 }
             }
             // Turn damage for Enemy 2
@@ -151,6 +156,7 @@ public class S_TurnManager : MonoBehaviour
                 else
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
+                    e_b_enemyDidAttack = true;
                 }
             }
             // Turn damage for Enemy 3
@@ -163,6 +169,7 @@ public class S_TurnManager : MonoBehaviour
                 else
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
+                    e_b_enemyDidAttack = true;
                 }
             }
             // Turn damage for Enemy 4
@@ -175,6 +182,7 @@ public class S_TurnManager : MonoBehaviour
                 else
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
+                    e_b_enemyDidAttack = true;
                 }
             }
             // Turn damage for Enemy 5
@@ -187,9 +195,16 @@ public class S_TurnManager : MonoBehaviour
                 else
                 {
                     g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
+                    e_b_enemyDidAttack = true;
                 }
             }
             EnemyStateChange();
+
+            //Play sound
+            if(e_b_enemyDidAttack == true)
+            {
+                PlayAttackSound();
+            }
         }
     }
 
@@ -268,6 +283,11 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_enemyAttributeSheet5.e_enemyScript.EnemyShielded(10);
             }
         }
+    }
+
+    public void PlayAttackSound()
+    {
+        attackSound.SetActive(true);
     }
 
     /// <summary>

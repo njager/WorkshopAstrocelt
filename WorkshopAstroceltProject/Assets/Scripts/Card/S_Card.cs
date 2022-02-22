@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using FMODUnity;
+using FMOD.Studio;
 
 public class S_Card : MonoBehaviour
 {
@@ -301,6 +303,7 @@ public class S_Card : MonoBehaviour
     private void TriggerAttackCard()
     {
         g_global.g_selectorManager.e_enemySelected.EnemyAttacked(g_global.g_selectorManager.e_enemySelected.e_str_enemyType, c_i_effectValue);
+        PlayAttackSound();
         DeleteCard();
     }
 
@@ -319,6 +322,7 @@ public class S_Card : MonoBehaviour
     private void DeleteCard()
     {
         MoveCards();
+        g_global.g_turnManager.attackSound.SetActive(false);
         Destroy(gameObject); // Remove card from play
     }
 
@@ -343,5 +347,14 @@ public class S_Card : MonoBehaviour
         {
             g_global.g_cardManager.closePosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false);
         }
+    }
+
+
+    /// <summary>
+    /// Attack sound
+    /// </summary>
+    public void PlayAttackSound()
+    {
+        g_global.g_turnManager.attackSound.SetActive(true);
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class S_PlayerState : MonoBehaviour
 {
@@ -20,6 +22,10 @@ public class S_PlayerState : MonoBehaviour
     public bool p_b_inBleedingState;
     public bool p_b_inStunnedState;
     public bool p_b_inPoisonedState;
+
+    [Header("Audio Prefab")]
+    public GameObject playerWinMusic;
+    public GameObject playerLoseMusic;
 
     void Awake()
     {
@@ -112,9 +118,11 @@ public class S_PlayerState : MonoBehaviour
         g_global.g_UIManager.loseText.SetActive(true);
 
         //Play lose sound
+        PlaySoundLose();
+        //playerLoseMusic.SetActive(false);
 
         // Pause The game
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     /// <summary>
@@ -129,9 +137,21 @@ public class S_PlayerState : MonoBehaviour
         g_global.g_UIManager.winText.SetActive(true);
 
         //Play win sound
+        PlaySoundWin();
+        //playerWinMusic.SetActive(false);
 
         // Pause The game
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
+    }
+
+    private void PlaySoundWin()
+    {
+        playerWinMusic.SetActive(true);
+    }
+
+    private void PlaySoundLose()
+    {
+        playerLoseMusic.SetActive(true);
     }
 
 }
