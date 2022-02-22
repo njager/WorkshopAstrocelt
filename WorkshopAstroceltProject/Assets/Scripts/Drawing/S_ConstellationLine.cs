@@ -26,6 +26,7 @@ public class S_ConstellationLine : MonoBehaviour
         m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
         g_global = S_Global.Instance;
         g_global.g_lst_lineRendererList.Add(gameObject);
+        g_global.g_lineMultiplierManager.lst_tempList.Add(gameObject);
     }
     
 

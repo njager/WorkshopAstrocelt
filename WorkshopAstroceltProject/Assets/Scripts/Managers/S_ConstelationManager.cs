@@ -126,6 +126,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         i_energyCount = 0;
         g_global.g_DrawingManager.i_starSound = 0;
+        g_global.g_lineMultiplierManager.ClearLineList();
         energyWasCleared = true;
     }
 }

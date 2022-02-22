@@ -14,6 +14,9 @@ public class S_LineMultiplier : MonoBehaviour
     public float lowerBoundCalc;
     public float upperBoundCalc;
 
+    [Header("Line Multiplier List")]
+    public List<GameObject> lst_tempList; 
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,7 +37,7 @@ public class S_LineMultiplier : MonoBehaviour
     public float LineMultiplierCalculator() // Where the line multiplier is calculated
     {
         // Initial Values
-        float _lineAmount = LineMultiplierGrabbing(g_global.g_lst_lineRendererList);
+        float _lineAmount = LineMultiplierGrabbing(lst_tempList);
         float _lineMultiplier = 1.0f;
 
         // Global Animation Curve values 
@@ -65,6 +68,14 @@ public class S_LineMultiplier : MonoBehaviour
         {
             //Debug.Log(lineMultiplier);
             return _lineMultiplier = comparatorCurve.Evaluate(_lineValue);
+        }
+    }
+
+    public void ClearLineList()
+    {
+        foreach(GameObject _line in lst_tempList)
+        {
+            lst_tempList.Remove(_line);
         }
     }
 }

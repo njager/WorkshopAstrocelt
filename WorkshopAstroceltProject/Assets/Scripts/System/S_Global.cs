@@ -15,7 +15,6 @@ public class S_Global : MonoBehaviour
     [Header("Script References")]
     public S_TurnManager g_turnManager;
     public S_Player g_player;
-    //public S_Enemy g_enemy;
     public S_MapGeneration g_mapManager;
     public S_DrawingManager g_DrawingManager;
     public S_ConstelationManager g_ConstellationManager;
@@ -25,6 +24,7 @@ public class S_Global : MonoBehaviour
     public S_IconManager g_iconManager; 
     public S_CardManager g_cardManager;
     public S_CardDatabase g_CardDatabase;
+    public S_LineMultiplier g_lineMultiplierManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -80,7 +80,7 @@ public class S_Global : MonoBehaviour
             Instance = this;
         }
 
-        //for now
+        //May be needed for gamemanager later
         g_i_sceneIndex = 0;
     }
 

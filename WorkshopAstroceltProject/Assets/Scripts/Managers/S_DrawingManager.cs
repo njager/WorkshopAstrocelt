@@ -25,8 +25,6 @@ public class S_DrawingManager : MonoBehaviour
     public S_StarClass s_nullStarInst;
     public S_StarClass s_nodeStarInst;
     
-
-
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -114,12 +112,10 @@ public class S_DrawingManager : MonoBehaviour
         //change the star sound here if the line is formed
         i_starSound++;
 
+        //Victor's sound
         var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Note Order", i_starSound);
 
-
-        
-        
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
         S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
@@ -214,6 +210,8 @@ public class S_DrawingManager : MonoBehaviour
 
             s_previousStar = _temporalStar;
         }
+
+        g_global.g_lineMultiplierManager.ClearLineList();
 
         //done drawing now
         b_drawing = false;

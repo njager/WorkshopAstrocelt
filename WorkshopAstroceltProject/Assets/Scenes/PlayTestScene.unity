@@ -6339,6 +6339,7 @@ MonoBehaviour:
   loseText: {fileID: 579670013}
   resetCanvas: {fileID: 1845475216}
   greyboxCanvas: {fileID: 933933132}
+  lineMultiplierAmount: 0
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6891,6 +6892,7 @@ MonoBehaviour:
   g_iconManager: {fileID: 1037513594}
   g_cardManager: {fileID: 1451117616}
   g_CardDatabase: {fileID: 2086421104}
+  g_lineMultiplierManager: {fileID: 630261271}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -9087,7 +9089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 261.8, y: -366.6}
+  m_AnchoredPosition: {x: 250, y: -366.6}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &611506094
@@ -9473,6 +9475,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   lowerBoundCalc: 6
   upperBoundCalc: 15
+  lst_tempList: []
 --- !u!1 &630341300
 GameObject:
   m_ObjectHideFlags: 0

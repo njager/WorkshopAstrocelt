@@ -61,10 +61,22 @@ public class S_UIManager : MonoBehaviour
         resetCanvas.SetActive(false);
     }
 
+    public float lineMultiplierAmount;
+
     //Some of this should be in turn manager?, probably
     void Update()
     {
         SetElements();  
+    }
+
+    /// <summary>
+    /// Evaluate Line Multiplier
+    /// </summary>
+    /// <returns></returns>
+    public float EvaluateLineText()
+    {
+        float _LineMultiplier = g_global.g_lineMultiplierManager.LineMultiplierCalculator();
+        return _LineMultiplier;
     }
 
     /// <summary>
@@ -116,5 +128,8 @@ public class S_UIManager : MonoBehaviour
             enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }
 
+        //Line Multiplier
+        lineMultiplierAmount = Mathf.Round(EvaluateLineText() * 10f) / 10f;
+        lineMultiplierText.text = "Line Multiplier: " + lineMultiplierAmount + "x";
     }
 }
