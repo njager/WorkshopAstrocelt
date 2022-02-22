@@ -70,16 +70,6 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Evaluate Line Multiplier
-    /// </summary>
-    /// <returns></returns>
-    public float EvaluateLineText()
-    {
-        float _LineMultiplier = g_global.g_lineMultiplierManager.LineMultiplierCalculator();
-        return _LineMultiplier;
-    }
-
-    /// <summary>
     /// Update the UI Elements
     /// In a seperate function to keep things clean
     /// - Josh
@@ -127,9 +117,5 @@ public class S_UIManager : MonoBehaviour
             enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }
-
-        //Line Multiplier
-        lineMultiplierAmount = Mathf.Round(EvaluateLineText() * 10f) / 10f;
-        lineMultiplierText.text = "Line Multiplier: " + lineMultiplierAmount + "x";
     }
 }

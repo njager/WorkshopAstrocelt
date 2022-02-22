@@ -42,6 +42,9 @@ public class S_ConstelationManager : MonoBehaviour
         yield return new WaitForSeconds(f_timer);
         energyWasCleared = false;
 
+        g_global.g_UIManager.lineMultiplierAmount = Mathf.Round(g_global.g_lineMultiplierManager.LineMultiplierCalculator() * 10f) / 10f;
+        g_global.g_UIManager.lineMultiplierText.text = "Line Multiplier: " + g_global.g_UIManager.lineMultiplierAmount + "x";
+
         //set up some function vars
         S_StarClass _curStar = _node.s_star.m_previous;
         if (_curStar.starType != "Null")
@@ -105,7 +108,7 @@ public class S_ConstelationManager : MonoBehaviour
                 print(_count);
 
                 //pass the _count to another function
-                i_energyCount = _count;
+                i_energyCount = (int)Mathf.Round(_count * g_global.g_UIManager.lineMultiplierAmount);
             }
         }
     }

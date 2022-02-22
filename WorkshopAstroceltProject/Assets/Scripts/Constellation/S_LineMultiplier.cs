@@ -29,7 +29,7 @@ public class S_LineMultiplier : MonoBehaviour
         foreach (GameObject _lineRendererReference in _lineList.ToList())
         {
             S_ConstellationLine _lineScript = _lineRendererReference.GetComponent<S_ConstellationLine>();
-            _lineLengthTally += _lineScript.f_lineWidth;
+            _lineLengthTally += _lineScript.f_lineLength;
         }
         return _lineLengthTally;
     }

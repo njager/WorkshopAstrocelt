@@ -19,6 +19,7 @@ public class S_ConstellationLine : MonoBehaviour
     public GameObject constellationLinePrefab;
     public int i_index;
     public float f_lineWidth;
+    public float f_lineLength;
     public S_StarClass s_nullStarInst;
 
     private void Awake()
@@ -81,8 +82,9 @@ public class S_ConstellationLine : MonoBehaviour
         // Grab the box collider
         m_cap = gameObject.GetComponent<CapsuleCollider2D>();
 
+        f_lineLength = Mathf.Pow((_endPoint.x - _startPoint.x), 2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2);
         //Distance calculation aka Length
-        float _newBoxLength= Mathf.Pow(Mathf.Pow((_endPoint.x - _startPoint.x),2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2), 0.5f);
+        float _newBoxLength= Mathf.Pow(f_lineLength, 0.5f);
         //Debug.Log(_newBoxLength);
 
         //Width Grab
