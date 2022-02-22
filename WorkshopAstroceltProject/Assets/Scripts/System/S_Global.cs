@@ -67,7 +67,12 @@ public class S_Global : MonoBehaviour
     public string placeholder;
 
     [Header("Card IDs")]
-    public int c_i_cardIDNum; 
+    public int c_i_cardIDNum;
+
+    [Header("Enemy Positions")]
+    public GameObject g_e_enemyPosition1;
+    public GameObject g_e_enemyPosition2;
+    public GameObject g_e_enemyPosition3;
 
     private void Awake()
     {

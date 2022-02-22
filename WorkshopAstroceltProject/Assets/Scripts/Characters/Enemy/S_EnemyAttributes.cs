@@ -148,13 +148,13 @@ public class S_EnemyAttributes : MonoBehaviour
     public void InstanceVariables()
     {
         // PlayerConstants
-        e_i_health = 100;
-        e_i_healthMax = 100;
+        e_i_health = 15;
+        e_i_healthMax = 15;
 
         e_i_shield = 0;
         e_i_shieldMax = 10;
 
-        e_i_enemyDamageValue = 5;
+        e_i_enemyDamageValue = 6;
 
         e_f_challengeRating = 1.0f;
 
