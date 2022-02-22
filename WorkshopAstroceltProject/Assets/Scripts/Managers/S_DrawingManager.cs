@@ -159,6 +159,7 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void GoBackOnce(GameObject _line)
     {
+        
         //decrement the star sound
         i_starSound--;
 
@@ -176,6 +177,7 @@ public class S_DrawingManager : MonoBehaviour
         Debug.Log("deleted a line and now cur previousStar is", s_previousStar);
 
         //destroy the line
+        g_global.g_lineMultiplierManager.lst_tempList.Remove(_line);
         Destroy(_line);
 
         //if you go back once and drawing is false then it was a node star
