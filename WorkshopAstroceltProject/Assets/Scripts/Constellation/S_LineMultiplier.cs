@@ -73,7 +73,7 @@ public class S_LineMultiplier : MonoBehaviour
 
     public void ClearLineList()
     {
-        foreach(GameObject _line in lst_tempList)
+        foreach(GameObject _line in lst_tempList.ToList())
         {
             lst_tempList.Remove(_line);
         }

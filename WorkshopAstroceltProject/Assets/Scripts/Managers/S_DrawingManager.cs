@@ -188,6 +188,7 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void ConstellationReset()
     {
+        g_global.g_lineMultiplierManager.ClearLineList();
         Debug.Log("Constellation Reset Triggered");
         g_global.g_ConstellationManager.energyWasCleared = true;
         i_starSound = 0;
@@ -210,8 +211,6 @@ public class S_DrawingManager : MonoBehaviour
 
             s_previousStar = _temporalStar;
         }
-
-        g_global.g_lineMultiplierManager.ClearLineList();
 
         //done drawing now
         b_drawing = false;
