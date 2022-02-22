@@ -189,6 +189,7 @@ public class S_DrawingManager : MonoBehaviour
     public void ConstellationReset()
     {
         g_global.g_lineMultiplierManager.ClearLineList();
+        g_global.g_ConstellationManager.ClearEnergy();
         Debug.Log("Constellation Reset Triggered");
         g_global.g_ConstellationManager.energyWasCleared = true;
         i_starSound = 0;
