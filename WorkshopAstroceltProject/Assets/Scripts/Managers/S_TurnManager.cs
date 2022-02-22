@@ -49,6 +49,7 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
+        //give the player a new hand
         g_global.g_cardManager.NewHand();
 
         //Temporary map switching triggered by UIManager
@@ -77,19 +78,25 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_ConstellationManager.b_lineDeletionCompletion = false; 
         StartCoroutine(g_global.g_ConstellationManager.LineDeletion());
 
-        
+        //clear data for the stars when the map changes (prolly should be a function)
         g_global.g_DrawingManager.s_nodeStarInst.s_star.m_previous = g_global.g_nullStar;
         g_global.g_DrawingManager.s_nodeStarInst.s_star.m_next = g_global.g_nullStar;
         g_global.g_DrawingManager.v2_nodeStarLoc = g_global.g_DrawingManager.s_nodeStarInst.gameObject.transform.position; 
-        //g_global.g_mapManager.NewMapGeneration();
+        
+        //change the selector
         g_global.g_selectorManager.SelectorReset();
+
+        //stop the audio
         attackSound.SetActive(false);
+
+        //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
     }
 
     /// <summary>
-    /// Change the state to the enemy turn
+    /// Change the state to the enemy turn 
+    /// Triggers the changing of the enemy ui icons
     /// - Riley & Josh
     /// </summary>
     public void EnemyStateChange()
@@ -99,43 +106,16 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = true;
 
         //Then load the next icon
-        if(g_global.g_enemyState.e_b_enemy1Dead != true)
+        foreach(S_Enemy _enemy in g_global.e_l_enemyList)
         {
-            if (g_global.g_enemyAttributeSheet1 != null)
-            {
-                g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet1.e_enemyScript);
-            }
-        }
-        if (g_global.g_enemyState.e_b_enemy2Dead != true)
-        {
-            if (g_global.g_enemyAttributeSheet2 != null)
-            {
-                g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet2.e_enemyScript);
-            }
-        }
-        if (g_global.g_enemyState.e_b_enemy3Dead != true)
-        {
-            if (g_global.g_enemyAttributeSheet3 != null)
-            {
-                g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet3.e_enemyScript);
-            }
-        }
-        if (g_global.g_enemyState.e_b_enemy4Dead != true)
-        {
-            if (g_global.g_enemyAttributeSheet4 != null)
-            {
-                g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet4.e_enemyScript);
-            }
-        }
-        if (g_global.g_enemyState.e_b_enemy5Dead != true)
-        {
-            if (g_global.g_enemyAttributeSheet5 != null)
-            {
-                g_global.g_iconManager.EnemyIconNextTurn(g_global.g_enemyAttributeSheet5.e_enemyScript);
-            }
+            _enemy.ChangeIcon();
         }
     }
 
+    /// <summary>
+    /// This the the function that gets triggered when the end turn button is pressed 
+    /// -Josh
+    /// </summary>
     public void EndTurn()
     {
         if (g_global.g_b_enemyTurn == true)
@@ -150,6 +130,7 @@ public class S_TurnManager : MonoBehaviour
             g_global.g_ConstellationManager.ClearEnergy();
             EnemyAttackingOrShielding();
             
+
             if (g_global.g_enemyState.e_b_enemy1Dead != true)
             {
                 // Turn damage for Enemy or Shield
@@ -240,6 +221,11 @@ public class S_TurnManager : MonoBehaviour
         }
     }
 
+    
+    /// <summary>
+    /// This helper function switches whether the enemy is going to attack or defend
+    /// -Josh
+    /// </summary>
     public void EnemyAttackingOrShielding()
     {
         if(g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
@@ -312,6 +298,7 @@ public class S_TurnManager : MonoBehaviour
             }
         }
     }
+
 
     public void PlayAttackSound()
     {

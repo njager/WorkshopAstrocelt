@@ -142,4 +142,12 @@ public class S_Enemy : MonoBehaviour
     {
         
     }
+
+    public void ChangeIcon()
+    {
+        if (g_global.g_enemyState.e_b_enemy1Dead != true)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(this);
+        }
+    }
 }
