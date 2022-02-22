@@ -49,7 +49,6 @@ public class S_DrawingManager : MonoBehaviour
             PlaySound();
 
             SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
-            StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(_starN));
         }
         else 
         {
