@@ -42,6 +42,12 @@ public class S_ConstellationLine : MonoBehaviour
                 //g_global.g_DrawingManager.ConstellationReset();
             }
         }
+        if (other.CompareTag("Meteor"))
+        {
+            Debug.Log("encountered a Meteor chain in path");
+            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+
+        }
         if (other.CompareTag("Star"))
         {
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
@@ -49,13 +55,11 @@ public class S_ConstellationLine : MonoBehaviour
                 Debug.Log("encountered another star in path");
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
             }
+            else if (s_nextStar.starType=="Node")
+            {
+                StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(s_nextStar));
+            }
             else { return; }
-        }
-        if (other.CompareTag("Meteor"))
-        {
-            Debug.Log("encountered a Meteor chain in path");
-            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
-           
         }
     }
 
