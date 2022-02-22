@@ -51,7 +51,7 @@ public class S_NodeStar : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if(g_global.g_ConstellationManager.energyWasCleared == true)
+        if(g_global.g_ConstellationManager.b_starLockout == true)
         {
             g_global.g_DrawingManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
         }

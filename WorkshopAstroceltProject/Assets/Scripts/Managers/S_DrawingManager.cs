@@ -184,16 +184,20 @@ public class S_DrawingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This Function resets the entire constellation chain
+    /// This Function resets the entire constellation chain 
+    /// Clears line multiplier and energy while keeping the turn the same
     /// - Riley
     /// </summary>
     public void ConstellationReset()
     {
+        //reset the energy, multipliers, and the sond queues
         g_global.g_lineMultiplierManager.ClearLineList();
         g_global.g_ConstellationManager.ClearEnergy();
-        Debug.Log("Constellation Reset Triggered");
-        g_global.g_ConstellationManager.energyWasCleared = true;
         i_starSound = 0;
+        //Debug.Log("Constellation Reset Triggered");
+
+        g_global.g_ConstellationManager.b_starLockout = true;
+        
         while (s_previousStar.starType != "Null")
         {
             S_StarClass _temporalStar = s_previousStar.s_star.m_previous;

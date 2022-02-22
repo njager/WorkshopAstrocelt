@@ -74,7 +74,7 @@ public class S_TurnManager : MonoBehaviour
         }
 
         // Temp line removal 
-        g_global.g_ConstellationManager.enumerateTemp = false; 
+        g_global.g_ConstellationManager.b_lineDeletionCompletion = false; 
         StartCoroutine(g_global.g_ConstellationManager.LineDeletion());
 
         
