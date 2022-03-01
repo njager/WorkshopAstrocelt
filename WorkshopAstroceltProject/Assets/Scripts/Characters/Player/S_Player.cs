@@ -42,6 +42,7 @@ public class S_Player : MonoBehaviour
             if (_tempVal > 0)
             {
                 p_playerAttributes.p_i_shield -= _damageValue;
+                p_playerAttributes.p_i_health -= _tempVal; 
                 Debug.Log("Player didn't have enough shields!");
             }
             else
@@ -51,18 +52,6 @@ public class S_Player : MonoBehaviour
             }
         }
         
-    }
-
-    private void Leftovers(int _damageValue)
-    {
-        p_playerAttributes.p_i_shield -= _damageValue;
-        int _value = p_playerAttributes.p_i_shield - _damageValue;
-        //HealthLeftovers(Mathf.Abs(_value));
-    }
-
-    private void HealthLeftovers(int _damageVal)
-    {
-        p_playerAttributes.p_i_health -= _damageVal;
     }
 
     /// <summary>

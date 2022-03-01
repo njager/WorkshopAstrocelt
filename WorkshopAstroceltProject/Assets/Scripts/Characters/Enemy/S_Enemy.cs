@@ -21,7 +21,7 @@ public class S_Enemy : MonoBehaviour
 
         SetCount(); 
         
-        Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
+        //Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
 
         g_global.e_l_enemyList.Add(this);
     }
@@ -141,5 +141,13 @@ public class S_Enemy : MonoBehaviour
     private void SetEnemyShieldText(int _shieldVal)
     {
         
+    }
+
+    public void ChangeIcon()
+    {
+        if (g_global.g_enemyState.e_b_enemy1Dead != true)
+        {
+            g_global.g_iconManager.EnemyIconNextTurn(this);
+        }
     }
 }

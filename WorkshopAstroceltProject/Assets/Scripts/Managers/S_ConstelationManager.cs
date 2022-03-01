@@ -8,7 +8,8 @@ using System.Linq;
 public class S_ConstelationManager : MonoBehaviour
 {
     private S_Global g_global;
-    float f_timer = 1f;
+    [Header("Timer")]
+    public float f_timer = 1f;
 
     [Header("Constellation Sizes")]
     public int i_minSize;
@@ -21,14 +22,14 @@ public class S_ConstelationManager : MonoBehaviour
 
     [Header("Energy Count")]
     public int i_energyCount;
-    public bool energyWasCleared; 
+    public bool b_starLockout; 
 
-    public bool enumerateTemp; 
+    public bool b_lineDeletionCompletion; 
 
     private void Awake()
     {
         g_global = S_Global.Instance;
-        energyWasCleared = true;
+        b_starLockout = true;
     }
 
     /// <summary>
@@ -40,7 +41,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         //wait so if a line deletes itself were safe
         yield return new WaitForSeconds(f_timer);
-        energyWasCleared = false;
+        b_starLockout = false;
 
         g_global.g_UIManager.lineMultiplierAmount = Mathf.Round(g_global.g_lineMultiplierManager.LineMultiplierCalculator() * 10f) / 10f;
         g_global.g_UIManager.lineMultiplierText.text = "Line Multiplier: " + g_global.g_UIManager.lineMultiplierAmount + "x";
@@ -113,6 +114,11 @@ public class S_ConstelationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is a helper function that deletes the line 
+    /// Gets triggered when the map changes
+    /// - Riley
+    /// </summary>
     public IEnumerator LineDeletion()
     {
         foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
@@ -121,15 +127,20 @@ public class S_ConstelationManager : MonoBehaviour
             Destroy(lineObject);
             //this is bugging out when turn changes
         }
-        enumerateTemp = true; 
-        yield return enumerateTemp = true; 
+        b_lineDeletionCompletion = true; 
+        yield return b_lineDeletionCompletion = true; 
     }
 
+    /// <summary>
+    /// This Function gets rid of the stored energy in the constellation manager
+    /// Gets cleared when turns change and the like
+    /// - Riley
+    /// </summary>
     public void ClearEnergy()
     {
         i_energyCount = 0;
         g_global.g_DrawingManager.i_starSound = 0;
         g_global.g_lineMultiplierManager.ClearLineList();
-        energyWasCleared = true;
+        b_starLockout = true;
     }
 }

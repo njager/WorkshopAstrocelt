@@ -154,7 +154,7 @@ public class S_CardManager : MonoBehaviour
 
     public void InstanceCard(GameObject _position, S_CardTemplate _cardTemplate)
     {
-        print("end");
+        //print("end");
         GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
         playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
         playerCard.transform.SetParent(_position.gameObject.transform, false);

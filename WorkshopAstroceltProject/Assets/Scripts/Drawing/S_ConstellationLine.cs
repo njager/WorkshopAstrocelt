@@ -48,33 +48,46 @@ public class S_ConstellationLine : MonoBehaviour
             g_global.g_DrawingManager.GoBackOnce(this.gameObject);
 
         }
-        if (other.CompareTag("Star"))
+        if (other.CompareTag("Star")) //check if the col is a star
         {
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
             {
                 Debug.Log("encountered another star in path");
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
             }
-            else if (s_nextStar.starType=="Node")
+            else if (s_nextStar.starType=="Node") 
             {
+                //check all other posibilities first, then if the next star is a node you know the constellation is done
                 StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(s_nextStar));
             }
             else { return; }
         }
     }
 
+    /// <summary>
+    /// This Function calculates the X offset
+    /// - Riley
+    /// </summary>
     public float calculateXOffset(float _length)
     {
         float _offsetedLength = _length * (1-f_boxOffsetX);
         return _offsetedLength; 
     }
 
+    /// <summary>
+    /// This Function calculates the Y offset
+    /// - Riley
+    /// </summary>
     public float calculateYOffset(float _width)
     {
         float _offsetedWidth = _width * (1 - f_boxOffsetY);
         return _offsetedWidth;
     }
 
+    /// <summary>
+    /// This function sets up the line and set the collider
+    /// - Riley
+    /// </summary>
     public void SetUp(S_StarClass _star)
     {
         //Grab Line Renderer point data
