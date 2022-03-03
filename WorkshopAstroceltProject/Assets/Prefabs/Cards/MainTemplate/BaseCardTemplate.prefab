@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1291470681944299839}
   - component: {fileID: 8519685718915682676}
   m_Layer: 5
-  m_Name: TextHeader
+  m_Name: HeaderText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2778339121888646734
 Transform:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1134803473554262699}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7260653881121269525
 SpriteRenderer:
@@ -248,9 +248,9 @@ Transform:
   m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children:
   - {fileID: 7995788678396638727}
-  - {fileID: 2778339121888646734}
   - {fileID: 2975461885888909089}
   - {fileID: 6550953829572649842}
+  - {fileID: 2778339121888646734}
   - {fileID: 7307045470609581347}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -280,10 +280,10 @@ MonoBehaviour:
   c_b_blueColorType: 0
   c_b_yellowColorType: 0
   c_b_whiteColorType: 0
-  c_childRedGraphic: {fileID: 0}
-  c_childBlueGraphic: {fileID: 0}
-  c_childYellowGraphic: {fileID: 0}
-  c_childWhiteGraphic: {fileID: 2933252154425886787}
+  c_childRedGraphic: {fileID: 2933252154425886787}
+  c_childBlueGraphic: {fileID: 3365269874002950304}
+  c_childYellowGraphic: {fileID: 3699037876890548309}
+  c_childWhiteGraphic: {fileID: 764733994422469853}
   c_b_affectsPlayer: 0
   c_b_affectsOne: 0
   c_b_affectsTwo: 0
@@ -323,6 +323,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e02c5ea594b047bf71e06907b0404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  c_card: {fileID: 4983290150367598717}
+  c_BoxCollider2D: {fileID: 8070727403578559325}
+  c_redArtGraphic: {fileID: 2933252154425886787}
+  c_blueArtGraphic: {fileID: 3365269874002950304}
+  c_yellowArtGraphic: {fileID: 3699037876890548309}
+  c_whiteArtGraphic: {fileID: 764733994422469853}
+  c_headerTextObject: {fileID: 15493982483848031}
+  c_bodyTextObject: {fileID: 4088062394403323071}
+  c_energyCostTextObject: {fileID: 6157924404423903682}
+  c_flavorTextObject: {fileID: 5661175733290701232}
+  c_tx_headerText: {fileID: 8519685718915682676}
+  c_tx_bodyText: {fileID: 7994180667109303153}
+  c_tx_energyCostText: {fileID: 971835802296304112}
+  c_tx_flavorText: {fileID: 6248408915480781643}
 --- !u!50 &1732291931699124592
 Rigidbody2D:
   serializedVersion: 4
@@ -468,7 +482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2975461885888909089
 Transform:
   m_ObjectHideFlags: 0
@@ -481,7 +495,7 @@ Transform:
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1134803473554262699}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4585899152052259927
 SpriteRenderer:
@@ -550,7 +564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6550953829572649842
 Transform:
   m_ObjectHideFlags: 0
@@ -563,7 +577,7 @@ Transform:
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1134803473554262699}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3501916538853547231
 SpriteRenderer:
@@ -646,7 +660,7 @@ RectTransform:
   m_LocalScale: {x: 0.025, y: 0.025, z: 1}
   m_Children: []
   m_Father: {fileID: 7307045470609581347}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -781,9 +795,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7703391989198149051}
+  - {fileID: 497102065983880397}
   - {fileID: 4633263388036764133}
   - {fileID: 7716579164897214672}
-  - {fileID: 497102065983880397}
   m_Father: {fileID: 1134803473554262699}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -883,7 +897,7 @@ RectTransform:
   m_LocalScale: {x: 0.025, y: 0.025, z: 1}
   m_Children: []
   m_Father: {fileID: 7307045470609581347}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -999,7 +1013,7 @@ GameObject:
   - component: {fileID: 2735765819573211809}
   - component: {fileID: 971835802296304112}
   m_Layer: 5
-  m_Name: CardNumber
+  m_Name: EnergyCostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1017,7 +1031,7 @@ RectTransform:
   m_LocalScale: {x: 0.025, y: 0.025, z: 1}
   m_Children: []
   m_Father: {fileID: 7307045470609581347}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
