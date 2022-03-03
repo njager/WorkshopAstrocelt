@@ -6320,31 +6320,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eddcf0d11338944baa637a7f1c9297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyText: {fileID: 500611606}
-  lineMultiplierText: {fileID: 890800869}
-  playerHealthText: {fileID: 73390825}
-  playerShieldText: {fileID: 238214977}
-  playerHealthBar: {fileID: 97589811}
-  enemy1HealthText: {fileID: 1701365864}
-  enemy2HealthText: {fileID: 7339375888649373375}
-  enemy3HealthText: {fileID: 1489358157}
-  enemy4HealthText: {fileID: 0}
-  enemy5HealthText: {fileID: 0}
-  enemy1ShieldText: {fileID: 1701365863}
-  enemy2ShieldText: {fileID: 7339375888649373374}
-  enemy3ShieldText: {fileID: 1489358158}
-  enemy4ShieldText: {fileID: 0}
-  enemy5ShieldText: {fileID: 0}
-  enemy1HealthBar: {fileID: 1701365862}
-  enemy2HealthBar: {fileID: 7339375888649373373}
-  enemy3HealthBar: {fileID: 1489358156}
-  enemy4HealthBar: {fileID: 0}
-  enemy5HealthBar: {fileID: 0}
+  p_tx_energyText: {fileID: 500611606}
+  p_tx_playerHealthText: {fileID: 73390825}
+  p_tx_playerShieldText: {fileID: 238214977}
+  p_playerHealthBar: {fileID: 97589811}
+  e_tx_enemy1HealthText: {fileID: 73390825}
+  e_tx_enemy2HealthText: {fileID: 7339375888649373375}
+  e_tx_enemy3HealthText: {fileID: 1489358157}
+  e_tx_enemy4HealthText: {fileID: 0}
+  e_tx_enemy5HealthText: {fileID: 0}
+  e_tx_enemy1ShieldText: {fileID: 1701365863}
+  e_tx_enemy2ShieldText: {fileID: 7339375888649373374}
+  e_tx_enemy3ShieldText: {fileID: 1489358158}
+  e_tx_enemy4ShieldText: {fileID: 0}
+  e_tx_enemy5ShieldText: {fileID: 0}
+  e_enemy1HealthBar: {fileID: 1701365862}
+  e_enemy2HealthBar: {fileID: 7339375888649373373}
+  e_enemy3HealthBar: {fileID: 1489358156}
+  e_enemy4HealthBar: {fileID: 0}
+  e_enemy5HealthBar: {fileID: 0}
   winText: {fileID: 1343041395}
   loseText: {fileID: 579670013}
   resetCanvas: {fileID: 1845475216}
   greyboxCanvas: {fileID: 933933132}
-  lineMultiplierAmount: 0
+  energyIconSprite: {fileID: 0}
+  redEnergyIcon: {fileID: 0}
+  blueEnergyIcon: {fileID: 0}
+  yellowEnergyIcon: {fileID: 0}
+  nullEnergyIcon: {fileID: 0}
+  p_tx_lineMultiplierText: {fileID: 890800869}
+  p_f_lineMultiplierAmount: 0
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9427,9 +9432,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lowerBoundCalc: 6
-  upperBoundCalc: 15
-  lst_tempList: []
+  lowerBoundForCalculation: 0
+  upperBoundForCalculation: 0
+  lst_lineLengthList: []
+  debugLineValue: 0
 --- !u!1 &630341300
 GameObject:
   m_ObjectHideFlags: 0
@@ -13466,9 +13472,9 @@ RectTransform:
   - {fileID: 329350482}
   - {fileID: 611506093}
   - {fileID: 116821759}
-  - {fileID: 1489358155}
-  - {fileID: 7339375888649373372}
   - {fileID: 1701365861}
+  - {fileID: 7339375888649373372}
+  - {fileID: 1489358155}
   - {fileID: 566775951}
   - {fileID: 703428115}
   - {fileID: 500611605}
@@ -20076,7 +20082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_LocalScale.x
@@ -22523,7 +22529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22578,17 +22584,6 @@ MonoBehaviour:
 --- !u!114 &1701365863 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5296318188900015078, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
-  m_PrefabInstance: {fileID: 1701365860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1701365864 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3378431176010901683, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
   m_PrefabInstance: {fileID: 1701365860}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
