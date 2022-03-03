@@ -76,6 +76,33 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Explicitly change the icons according provided energy type
+    /// Use null to represent white, and white/null is present when there is no active energy for the player i.e drawing or enemy turn
+    /// -Josh
+    /// </summary>
+    /// <param name="_colorType"></param>
+    public void ChangeEnergyIcon(string _colorType)
+    {
+        if (_colorType.ToLower() == "red")
+        {
+            energyIconSprite.sprite = redEnergyIcon; // Change to Red Energy Icon
+        }
+        if (_colorType.ToLower() == "blue")
+        {
+            energyIconSprite.sprite = blueEnergyIcon; // Change to Blue Energy Icon
+        }
+        if (_colorType.ToLower() == "yellow")
+        {
+            energyIconSprite.sprite = yellowEnergyIcon; // Change to Yellow Energy Icon
+        }
+        if (_colorType.ToLower() == "null")
+        {
+            energyIconSprite.sprite = nullEnergyIcon; // Change to Null Energy Icon
+        }
+
+    }
+
+    /// <summary>
     /// Update the UI Elements
     /// In a seperate function to keep things clean
     /// - Josh
@@ -123,32 +150,5 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }
-    }
-
-    /// <summary>
-    /// Explicitly change the icons according provided energy type
-    /// Use null to represent white, and white/null is present when there is no active energy for the player i.e drawing or enemy turn
-    /// -Josh
-    /// </summary>
-    /// <param name="_colorType"></param>
-    public void ChangeEnergyIcon(string _colorType)
-    {
-        if(_colorType.ToLower() == "red")
-        {
-            energyIconSprite.sprite = redEnergyIcon; // Change to Red Energy Icon
-        }
-        if (_colorType.ToLower() == "blue")
-        {
-            energyIconSprite.sprite = blueEnergyIcon; // Change to Blue Energy Icon
-        }
-        if (_colorType.ToLower() == "yellow")
-        {
-            energyIconSprite.sprite = yellowEnergyIcon; // Change to Yellow Energy Icon
-        }
-        if (_colorType.ToLower() == "null")
-        {
-            energyIconSprite.sprite = nullEnergyIcon; // Change to Null Energy Icon
-        }
-
     }
 }
