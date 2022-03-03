@@ -11,8 +11,7 @@ public class S_UIManager : MonoBehaviour
     // Anything under here is just to help flesh out the greybox
     [Header("Initial GreyBox UI")]
     public TextMeshProUGUI p_tx_energyText;
-    public TextMeshProUGUI p_tx_lineMultiplierText; 
-
+    
     [Header("Player UI")]
     public TextMeshProUGUI p_tx_playerHealthText;
     public TextMeshProUGUI p_tx_playerShieldText;
@@ -58,6 +57,10 @@ public class S_UIManager : MonoBehaviour
     public Sprite blueEnergyIcon;
     public Sprite yellowEnergyIcon;
     public Sprite nullEnergyIcon; // Null is equivalent to white here, but don't want to make "white energy type" explicit. - Josh
+
+    [Header("Line Multiplier")]
+    public TextMeshProUGUI p_tx_lineMultiplierText;
+    public float p_f_lineMultiplierAmount;
 
     void Awake()
     {
