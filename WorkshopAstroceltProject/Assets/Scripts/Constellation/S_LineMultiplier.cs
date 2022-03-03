@@ -31,7 +31,17 @@ public class S_LineMultiplier : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if(lst_lineLengthList.Count > 0)
+            {
+                debugLineValue = LineMultiplierGrabbing(lst_lineLengthList);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            debugLineValue = 0f;
+        }
     }
 
     private float LineMultiplierGrabbing(List<float> _lineList) // Helper function to give me a line tally to use in the calculator 
