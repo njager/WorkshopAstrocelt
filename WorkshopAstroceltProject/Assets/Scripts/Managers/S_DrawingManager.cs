@@ -175,7 +175,7 @@ public class S_DrawingManager : MonoBehaviour
         Debug.Log("deleted a line and now cur previousStar is", s_previousStar);
 
         //destroy the line
-        g_global.g_lineMultiplierManager.lst_tempList.Remove(_line);
+        g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
         Destroy(_line);
 
         //if you go back once and drawing is false then it was a node star

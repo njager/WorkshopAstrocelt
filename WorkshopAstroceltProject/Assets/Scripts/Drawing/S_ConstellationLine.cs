@@ -27,9 +27,7 @@ public class S_ConstellationLine : MonoBehaviour
         m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
         g_global = S_Global.Instance;
         g_global.g_lst_lineRendererList.Add(gameObject);
-        g_global.g_lineMultiplierManager.lst_tempList.Add(gameObject);
     }
-    
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -121,6 +119,7 @@ public class S_ConstellationLine : MonoBehaviour
         Vector3 _difference = _star.gameObject.transform.position - transform.position;
         float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
+        g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
 
         ///<summary>
         /// https://answers.unity.com/questions/1023987/lookat-only-on-z-axis.html original code found in here
