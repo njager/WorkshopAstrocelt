@@ -11,11 +11,14 @@ public class S_LineMultiplier : MonoBehaviour
     public AnimationCurve animationCurveForMultiplier;
 
     [Header("Designer Values")]
-    public float lowerBoundCalc;
-    public float upperBoundCalc;
+    public float lowerBoundForCalculation;
+    public float upperBoundForCalculation;
 
-    [Header("Line Multiplier List")]
-    public List<GameObject> lst_tempList; 
+    [Header("Line Lengths")]
+    public List<float> lst_lineLengthList; // don't need a list of lines just values
+
+    [Header("Debug Elements")]
+    public float debugLineValue;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,13 +26,20 @@ public class S_LineMultiplier : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
-    private float LineMultiplierGrabbing(List<GameObject> _lineList) // Helper function to give me a line tally to use in the calculator 
+    /// <summary>
+    /// This is added here so I can see the average line length
+    /// </summary>
+    private void Update()
+    {
+        
+    }
+
+    private float LineMultiplierGrabbing(List<float> _lineList) // Helper function to give me a line tally to use in the calculator 
     {
         float _lineLengthTally = 0f;
-        foreach (GameObject _lineRendererReference in _lineList.ToList())
+        foreach (float _lineRendererLength in _lineList.ToList())
         {
-            S_ConstellationLine _lineScript = _lineRendererReference.GetComponent<S_ConstellationLine>();
-            _lineLengthTally += _lineScript.f_lineLength;
+            _lineLengthTally += _lineRendererLength;
         }
         return _lineLengthTally;
     }
@@ -37,15 +47,15 @@ public class S_LineMultiplier : MonoBehaviour
     public float LineMultiplierCalculator() // Where the line multiplier is calculated
     {
         // Initial Values
-        float _lineAmount = LineMultiplierGrabbing(lst_tempList);
-        float _lineMultiplier = 1.0f;
+        float _lineAmount = LineMultiplierGrabbing(lst_lineLengthList);
+        float _lineMultiplier = 1.0f; // Default value to return
 
         // Global Animation Curve values 
         AnimationCurve comparatorCurve = animationCurveForMultiplier;
         float _lowerBoundCurve = comparatorCurve[0].value;
         float _upperBoundCurve = comparatorCurve[1].value;
 
-        float _lineValue = (_lineAmount - lowerBoundCalc) / upperBoundCalc; // Normalize the tally amount into a decimal values around 1.0 
+        float _lineValue = (_lineAmount - lowerBoundForCalculation) / upperBoundForCalculation; // Normalize the tally amount into a decimal values around 1.0 
         //Debug.Log(_lineValue); 
 
         // Compare the normalized value to the curve values 
@@ -73,9 +83,9 @@ public class S_LineMultiplier : MonoBehaviour
 
     public void ClearLineList()
     {
-        foreach(GameObject _line in lst_tempList.ToList())
+        foreach(float _lineLength in lst_lineLengthList.ToList())
         {
-            lst_tempList.Remove(_line);
+            lst_lineLengthList.Remove(_lineLength);
         }
     }
 }
