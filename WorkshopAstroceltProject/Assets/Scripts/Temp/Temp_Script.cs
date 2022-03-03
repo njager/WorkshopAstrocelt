@@ -9,8 +9,11 @@ public class Temp_Script : MonoBehaviour
 
     void Start()
     {
-        GameObject playerCard = Instantiate(spawnObject, new Vector3(0, 0, 0), Quaternion.identity);
-        playerCard.transform.SetParent(this.gameObject.transform, false);
+        for(int i=0; i<5; i++)
+        {
+            GameObject playerCard = Instantiate(spawnObject, new Vector3(0, 0, 0), Quaternion.identity);
+            playerCard.transform.SetParent(this.gameObject.transform, false);
+        }
     }
 
     

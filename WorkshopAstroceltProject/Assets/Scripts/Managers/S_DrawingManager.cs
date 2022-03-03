@@ -189,14 +189,16 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void ConstellationReset()
     {
+        //stop the player from clicking on stars while reseting
+        g_global.g_ConstellationManager.b_starLockout = true;
+
         //reset the energy, multipliers, and the sond queues
         g_global.g_lineMultiplierManager.ClearLineList();
         g_global.g_ConstellationManager.ClearEnergy();
         i_starSound = 0;
         //Debug.Log("Constellation Reset Triggered");
 
-        g_global.g_ConstellationManager.b_starLockout = true;
-        
+
         while (s_previousStar.starType != "Null")
         {
             S_StarClass _temporalStar = s_previousStar.s_star.m_previous;
@@ -217,7 +219,8 @@ public class S_DrawingManager : MonoBehaviour
             s_previousStar = _temporalStar;
         }
 
-        //done drawing now
+        //done drawing now, let the player start again
         b_drawing = false;
+        g_global.g_ConstellationManager.b_starLockout = false;
     }
 }

@@ -27,7 +27,7 @@ public class S_CardManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        NewHand();
+        //NewHand();
     }
 
     /// <summary>
