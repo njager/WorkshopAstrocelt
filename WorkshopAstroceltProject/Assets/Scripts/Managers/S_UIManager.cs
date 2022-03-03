@@ -62,6 +62,10 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI p_tx_lineMultiplierText;
     public float p_f_lineMultiplierAmount;
 
+    public bool b_redEnergy = false;
+    public bool b_blueEnergy = false;
+    public bool b_yellowEnergy = false;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -89,18 +93,30 @@ public class S_UIManager : MonoBehaviour
         if (_colorType.ToLower() == "red")
         {
             energyIconSprite.sprite = redEnergyIcon; // Change to Red Energy Icon
+            b_redEnergy = true;
+            b_blueEnergy = false;
+            b_yellowEnergy = false;
         }
         if (_colorType.ToLower() == "blue")
         {
             energyIconSprite.sprite = blueEnergyIcon; // Change to Blue Energy Icon
+            b_redEnergy = false;
+            b_blueEnergy = true;
+            b_yellowEnergy = false;
         }
         if (_colorType.ToLower() == "yellow")
         {
             energyIconSprite.sprite = yellowEnergyIcon; // Change to Yellow Energy Icon
+            b_redEnergy = false;
+            b_blueEnergy = false;
+            b_yellowEnergy = true;
         }
         if (_colorType.ToLower() == "null")
         {
             energyIconSprite.sprite = nullEnergyIcon; // Change to Null Energy Icon
+            b_redEnergy = false;
+            b_blueEnergy = false;
+            b_yellowEnergy = false;
         }
 
     }

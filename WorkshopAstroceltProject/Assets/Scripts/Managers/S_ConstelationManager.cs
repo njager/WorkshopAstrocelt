@@ -103,13 +103,16 @@ public class S_ConstelationManager : MonoBehaviour
                 //trigger the star sound here
 
                 //assining the colored energy to the count
+                _count = (int)Mathf.Round(_count * g_global.g_UIManager.p_f_lineMultiplierAmount);
+                i_energyCount = _count;
                 if (_color == "red") { i_redEnergy = _count; }
                 else if (_color == "yellow") { i_yellowEnergy = _count; }
                 else if (_color == "blue") { i_blueEnergy = _count; }
-                print(_count);
+
+                g_global.g_UIManager.ChangeEnergyIcon(_color);
 
                 //pass the _count to another function
-                i_energyCount = (int)Mathf.Round(_count * g_global.g_UIManager.p_f_lineMultiplierAmount);
+                
             }
         }
     }
@@ -138,7 +141,11 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void ClearEnergy()
     {
+        i_redEnergy = 0;
+        i_yellowEnergy = 0;
+        i_blueEnergy = 0;
         i_energyCount = 0;
+
         g_global.g_DrawingManager.i_starSound = 0;
         g_global.g_lineMultiplierManager.ClearLineList();
         b_starLockout = true;
