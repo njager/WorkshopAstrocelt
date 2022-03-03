@@ -10,46 +10,54 @@ public class S_UIManager : MonoBehaviour
 
     // Anything under here is just to help flesh out the greybox
     [Header("Initial GreyBox UI")]
-    public TextMeshProUGUI energyText;
-    public TextMeshProUGUI lineMultiplierText; 
+    public TextMeshProUGUI p_tx_energyText;
+    public TextMeshProUGUI p_tx_lineMultiplierText; 
 
     [Header("Player UI")]
-    public TextMeshProUGUI playerHealthText;
-    public TextMeshProUGUI playerShieldText;
-    public Image playerHealthBar;
+    public TextMeshProUGUI p_tx_playerHealthText;
+    public TextMeshProUGUI p_tx_playerShieldText;
+    public Image p_playerHealthBar;
 
     [Header("Enemy Health Textboxes")]
-    public TextMeshProUGUI enemy1HealthText;
-    public TextMeshProUGUI enemy2HealthText;
-    public TextMeshProUGUI enemy3HealthText;
+    public TextMeshProUGUI e_tx_enemy1HealthText;
+    public TextMeshProUGUI e_tx_enemy2HealthText;
+    public TextMeshProUGUI e_tx_enemy3HealthText;
 
     //Not present
-    public TextMeshProUGUI enemy4HealthText;
-    public TextMeshProUGUI enemy5HealthText;
+    public TextMeshProUGUI e_tx_enemy4HealthText;
+    public TextMeshProUGUI e_tx_enemy5HealthText;
 
     [Header("Enemy Shield Textboxes")]
-    public TextMeshProUGUI enemy1ShieldText;
-    public TextMeshProUGUI enemy2ShieldText;
-    public TextMeshProUGUI enemy3ShieldText;
+    public TextMeshProUGUI e_tx_enemy1ShieldText;
+    public TextMeshProUGUI e_tx_enemy2ShieldText;
+    public TextMeshProUGUI e_tx_enemy3ShieldText;
 
     //Not present
-    public TextMeshProUGUI enemy4ShieldText;
-    public TextMeshProUGUI enemy5ShieldText;
+    public TextMeshProUGUI e_tx_enemy4ShieldText;
+    public TextMeshProUGUI e_tx_enemy5ShieldText;
 
     [Header("Enemy Healthbars")]
-    public Image enemy1HealthBar;
-    public Image enemy2HealthBar;
-    public Image enemy3HealthBar;
+    public Image e_enemy1HealthBar;
+    public Image e_enemy2HealthBar;
+    public Image e_enemy3HealthBar;
 
     //Not present
-    public Image enemy4HealthBar;
-    public Image enemy5HealthBar;
+    public Image e_enemy4HealthBar;
+    public Image e_enemy5HealthBar;
 
     [Header("Win Lose Elements")]
     public GameObject winText;
     public GameObject loseText;
     public GameObject resetCanvas;
     public GameObject greyboxCanvas;
+
+    //Will never be a white energy icon
+    [Header("Energy Generation Elements")]
+    public SpriteRenderer energyIconSprite;
+    public Sprite redEnergyIcon;
+    public Sprite blueEnergyIcon;
+    public Sprite yellowEnergyIcon;
+    public Sprite nullEnergyIcon; // Null is equivalent to white here, but don't want to make "white energy type" explicit. - Josh
 
     void Awake()
     {
@@ -60,8 +68,6 @@ public class S_UIManager : MonoBehaviour
         loseText.SetActive(false);
         resetCanvas.SetActive(false);
     }
-
-    public float lineMultiplierAmount;
 
     //Some of this should be in turn manager?, probably
     void Update()
@@ -77,45 +83,72 @@ public class S_UIManager : MonoBehaviour
     public void SetElements()
     {
         // Text
-        playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
+        p_tx_playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
 
-        energyText.text = "Current Energy: " + g_global.g_ConstellationManager.i_energyCount.ToString();
+        p_tx_energyText.text = "Current Energy: " + g_global.g_ConstellationManager.i_energyCount.ToString();
 
         //Health and Shield Bar
-        playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;
-        playerShieldText.text = g_global.g_playerAttributeSheet.p_i_shield.ToString();
+        p_playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;
+        p_tx_playerShieldText.text = g_global.g_playerAttributeSheet.p_i_shield.ToString();
 
 
         //Update Enemy Health Bars
         if(g_global.g_enemyAttributeSheet1 != null) 
         {
-            enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.e_i_shield.ToString();
-            enemy1HealthText.text = g_global.g_enemyAttributeSheet1.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet1.e_i_healthMax.ToString();
-            enemy1HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet1.e_i_health / (float)g_global.g_enemyAttributeSheet1.e_i_healthMax;
+            e_tx_enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.e_i_shield.ToString();
+            e_tx_enemy1HealthText.text = g_global.g_enemyAttributeSheet1.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet1.e_i_healthMax.ToString();
+            e_enemy1HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet1.e_i_health / (float)g_global.g_enemyAttributeSheet1.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet2 != null)
         {
-            enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.e_i_shield.ToString();
-            enemy2HealthText.text = g_global.g_enemyAttributeSheet2.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet2.e_i_healthMax.ToString();
-            enemy2HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet2.e_i_health / (float)g_global.g_enemyAttributeSheet2.e_i_healthMax;
+            e_tx_enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.e_i_shield.ToString();
+            e_tx_enemy2HealthText.text = g_global.g_enemyAttributeSheet2.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet2.e_i_healthMax.ToString();
+            e_enemy2HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet2.e_i_health / (float)g_global.g_enemyAttributeSheet2.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet3 != null) 
         {
-            enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.e_i_shield.ToString();
-            enemy3HealthText.text = g_global.g_enemyAttributeSheet3.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet3.e_i_healthMax.ToString();
-            enemy3HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet3.e_i_health / (float)g_global.g_enemyAttributeSheet3.e_i_healthMax;
+            e_tx_enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.e_i_shield.ToString();
+            e_tx_enemy3HealthText.text = g_global.g_enemyAttributeSheet3.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet3.e_i_healthMax.ToString();
+            e_enemy3HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet3.e_i_health / (float)g_global.g_enemyAttributeSheet3.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet4 != null)
         {
-            enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.e_i_shield.ToString();
-            enemy4HealthText.text = g_global.g_enemyAttributeSheet4.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet4.e_i_healthMax.ToString();
-            enemy4HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet4.e_i_health / (float)g_global.g_enemyAttributeSheet4.e_i_healthMax;
+            e_tx_enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.e_i_shield.ToString();
+            e_tx_enemy4HealthText.text = g_global.g_enemyAttributeSheet4.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet4.e_i_healthMax.ToString();
+            e_enemy4HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet4.e_i_health / (float)g_global.g_enemyAttributeSheet4.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet5 != null)
         {
-            enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
-            enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
-            enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
+            e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
+            e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
+            e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }
+    }
+
+    /// <summary>
+    /// Explicitly change the icons according provided energy type
+    /// Use null to represent white, and white/null is present when there is no active energy for the player i.e drawing or enemy turn
+    /// -Josh
+    /// </summary>
+    /// <param name="_colorType"></param>
+    public void ChangeEnergyIcon(string _colorType)
+    {
+        if(_colorType.ToLower() == "red")
+        {
+            energyIconSprite.sprite = redEnergyIcon; // Change to Red Energy Icon
+        }
+        if (_colorType.ToLower() == "blue")
+        {
+            energyIconSprite.sprite = blueEnergyIcon; // Change to Blue Energy Icon
+        }
+        if (_colorType.ToLower() == "yellow")
+        {
+            energyIconSprite.sprite = yellowEnergyIcon; // Change to Yellow Energy Icon
+        }
+        if (_colorType.ToLower() == "null")
+        {
+            energyIconSprite.sprite = nullEnergyIcon; // Change to Null Energy Icon
+        }
+
     }
 }
