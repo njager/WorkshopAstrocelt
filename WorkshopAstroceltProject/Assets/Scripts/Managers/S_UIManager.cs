@@ -61,11 +61,23 @@ public class S_UIManager : MonoBehaviour
     [Header("Line Multiplier")]
     public TextMeshProUGUI p_tx_lineMultiplierText;
     public float p_f_lineMultiplierAmount;
-
     public bool b_redEnergy = false;
     public bool b_blueEnergy = false;
     public bool b_yellowEnergy = false;
 
+    [Header("Shielding UI Elements")]
+    [SerializeField] GameObject p_playerShieldOverlay;
+    [SerializeField] GameObject e_enemy1ShieldOverlay;
+    [SerializeField] GameObject e_enemy2ShieldOverlay;
+    [SerializeField] GameObject e_enemy3ShieldOverlay;
+    [SerializeField] GameObject e_enemy4ShieldOverlay;
+    [SerializeField] GameObject e_enemy5ShieldOverlay;
+    [SerializeField] GameObject p_playerShieldIcon;
+    [SerializeField] GameObject e_enemy1ShieldIcon;
+    [SerializeField] GameObject e_enemy2ShieldIcon;
+    [SerializeField] GameObject e_enemy3ShieldIcon;
+    [SerializeField] GameObject e_enemy4ShieldIcon;
+    [SerializeField] GameObject e_enemy5ShieldIcon;
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -79,7 +91,8 @@ public class S_UIManager : MonoBehaviour
     //Some of this should be in turn manager?, probably
     void Update()
     {
-        SetElements();  
+        SetElements();
+        ShieldingUI(); //Temporary
     }
 
     /// <summary>
@@ -119,6 +132,124 @@ public class S_UIManager : MonoBehaviour
             b_yellowEnergy = false;
         }
 
+    }
+
+    /// <summary>
+    /// Toggle the shield elements in the UI based on if they are active or not
+    /// Will be updated alongside all other UI disintegration calls
+    /// Jager's request
+    /// -Josh
+    /// </summary>
+    public void ShieldingUI()
+    {
+        //Toggle Shields for player
+        if (g_global.g_playerAttributeSheet.p_i_shield <= 0) //If no shields don't turn on shield UI
+        {
+            p_tx_playerShieldText.gameObject.SetActive(false);
+            p_playerShieldIcon.SetActive(false);
+            p_playerShieldOverlay.SetActive(false);
+        }
+        else
+        {
+            p_tx_playerShieldText.gameObject.SetActive(true);
+            p_playerShieldIcon.SetActive(true);
+            p_playerShieldOverlay.SetActive(true);
+        }
+        // Toggle Shields for enemy 1
+        if(g_global.g_enemyAttributeSheet1 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Dead != true)
+            {
+                if(g_global.g_enemyAttributeSheet1.e_i_shield <= 0)
+                {
+                    e_tx_enemy1ShieldText.gameObject.SetActive(false);
+                    e_enemy1ShieldIcon.SetActive(false);
+                    e_enemy1ShieldOverlay.SetActive(false);
+                }
+                else
+                {
+                    e_tx_enemy1ShieldText.gameObject.SetActive(true);
+                    e_enemy1ShieldIcon.SetActive(true);
+                    e_enemy1ShieldOverlay.SetActive(true);
+                }
+            }
+        }
+        // Toggle Shields for enemy 2
+        if (g_global.g_enemyAttributeSheet2 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Dead != true)
+            {
+                if (g_global.g_enemyAttributeSheet2.e_i_shield <= 0)
+                {
+                    e_tx_enemy2ShieldText.gameObject.SetActive(false);
+                    e_enemy2ShieldIcon.SetActive(false);
+                    e_enemy2ShieldOverlay.SetActive(false);
+                }
+                else
+                {
+                    e_tx_enemy2ShieldText.gameObject.SetActive(true);
+                    e_enemy2ShieldIcon.SetActive(true);
+                    e_enemy2ShieldOverlay.SetActive(true);
+                }
+            }
+        }
+        // Toggle Shields for enemy 3
+        if (g_global.g_enemyAttributeSheet3 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Dead != true)
+            {
+                if (g_global.g_enemyAttributeSheet3.e_i_shield <= 0)
+                {
+                    e_tx_enemy3ShieldText.gameObject.SetActive(false);
+                    e_enemy3ShieldIcon.SetActive(false);
+                    e_enemy3ShieldOverlay.SetActive(false);
+                }
+                else
+                {
+                    e_tx_enemy3ShieldText.gameObject.SetActive(true);
+                    e_enemy3ShieldIcon.SetActive(true);
+                    e_enemy3ShieldOverlay.SetActive(true);
+                }
+            }
+        }
+        // Toggle Shields for enemy 4
+        if (g_global.g_enemyAttributeSheet4 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Dead != true)
+            {
+                if (g_global.g_enemyAttributeSheet4.e_i_shield <= 0)
+                {
+                    e_tx_enemy4ShieldText.gameObject.SetActive(false);
+                    e_enemy4ShieldIcon.SetActive(false);
+                    e_enemy4ShieldOverlay.SetActive(false);
+                }
+                else
+                {
+                    e_tx_enemy4ShieldText.gameObject.SetActive(true);
+                    e_enemy4ShieldIcon.SetActive(true);
+                    e_enemy4ShieldOverlay.SetActive(true);
+                }
+            }
+        }
+        // Toggle Shields for enemy 5
+        if (g_global.g_enemyAttributeSheet5 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Dead != true)
+            {
+                if (g_global.g_enemyAttributeSheet5.e_i_shield <= 0)
+                {
+                    e_tx_enemy5ShieldText.gameObject.SetActive(false);
+                    e_enemy5ShieldIcon.SetActive(false);
+                    e_enemy5ShieldOverlay.SetActive(false);
+                }
+                else
+                {
+                    e_tx_enemy5ShieldText.gameObject.SetActive(true);
+                    e_enemy4ShieldIcon.SetActive(true);
+                    e_enemy5ShieldOverlay.SetActive(true);
+                }
+            }
+        }
     }
 
     /// <summary>
