@@ -8,11 +8,12 @@ using FMOD.Studio;
 
 public class S_Card : MonoBehaviour
 {
-    [Header("Template it's built on")]
-    public S_CardTemplate c_cardTemplate;
-    public S_CardDragger s_c_cardDraggerReference;
+    //Private varibales
     private Sprite c_cardBaseImage;
     private S_Global g_global;
+    
+    [Header("Template it's built on")]
+    public S_CardTemplate c_cardTemplate;
     
     [Header("Card Index")]
     public int c_i_cardIndex; // Not utilized at this time, may be helpful for something like score?
@@ -76,6 +77,9 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_body; // Body Text Box
     public TextMeshProUGUI c_tx_flavor; // Flavor Text Box
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
+
+    [Header("Card Dragger References")]
+    public S_CardDragger s_c_cardDraggerReference;
 
     public int c_i_cardID; 
 
@@ -184,9 +188,7 @@ public class S_Card : MonoBehaviour
             //Toggle Graphics
             c_cardBaseImage = c_whiteArtGraphic;
         }
-
         SetText();
-
     }
 
     public void SetText()
@@ -200,67 +202,11 @@ public class S_Card : MonoBehaviour
     [Header("Unique Cards")]
     public bool c_b_unqiuePayback;
 
-
-    /// <summary>
-    /// Check position of card
-    /// Deprecated, sadly
-    /// </summary>
-    public void OnMouseDown()
-    {
-        if(transform.parent.CompareTag("Bottom"))
-        {
-            if(g_global.g_ConstellationManager.i_energyCount >= c_i_energyCost)
-            {
-                //PlayCard();
-            }
-            else
-            {
-                Debug.Log("You do not have enough energy to play that card!");
-            }
-        }
-        else
-        {
-            GameObject _currentBottomCard = g_global.g_cardManager.bottomPosition.transform.GetChild(0).gameObject;
-
-            //Card is on top
-            if (transform.parent.CompareTag("Top"))
-            {
-                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
-                _currentBottomCard.transform.SetParent(g_global.g_cardManager.topPosition.transform, false);
-                Debug.Log("Please Select the card at the bottom for play!");
-            }
-
-            //Card is in next slot
-            if (transform.parent.CompareTag("Next"))
-            {
-                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
-                _currentBottomCard.transform.SetParent(g_global.g_cardManager.nextPosition.transform, false);
-                Debug.Log("Please Select the card at the bottom for play!");
-            }
-
-            //Card is in after slot
-            if (transform.parent.CompareTag("After"))
-            {
-                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
-                _currentBottomCard.transform.SetParent(g_global.g_cardManager.afterPosition.transform, false);
-                Debug.Log("Please Select the card at the bottom for play!");
-            }
-
-            //Card is in close slot
-            if (transform.parent.CompareTag("Close"))
-            {
-                transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false); // Move this card to bottom of the stack
-                _currentBottomCard.transform.SetParent(g_global.g_cardManager.closePosition.transform, false);
-                Debug.Log("Please Select the card at the bottom for play!");
-            }
-        }
-    }
-
     /// <summary>
     /// Play the card based on if it was dropped onto player or enemy
     /// - Josh
     /// </summary>
-    private void PlayCard(GameObject _character)
+    public void PlayCard(GameObject _character)
     {
         if (c_b_attackMainEffect == true)
         {
@@ -282,8 +228,6 @@ public class S_Card : MonoBehaviour
                 TriggerShieldCard(_character.GetComponent<S_Player>());
             }
         }
-        
-
     }
 
     /// <summary>
@@ -310,34 +254,9 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void DeleteCard()
     {
-        MoveCards();
         g_global.g_turnManager.attackSound.SetActive(false);
         Destroy(gameObject); // Remove card from play
     }
-
-    /// <summary>
-    /// Move deck down 1
-    /// </summary>
-    private void MoveCards() // Works fully
-    {
-        if (g_global.g_cardManager.topPosition.transform.childCount > 0) //Move card from top to after
-        {
-            g_global.g_cardManager.topPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.nextPosition.transform, false);
-        }
-        if (g_global.g_cardManager.nextPosition.transform.childCount > 0) // Move card from next to after
-        {
-            g_global.g_cardManager.nextPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.afterPosition.transform, false);
-        }
-        if (g_global.g_cardManager.afterPosition.transform.childCount > 0) // Move card from after to close
-        {
-            g_global.g_cardManager.afterPosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.closePosition.transform, false);
-        }
-        if (g_global.g_cardManager.closePosition.transform.childCount > 0) // Move card from close to bottom
-        {
-            g_global.g_cardManager.closePosition.transform.GetChild(0).transform.SetParent(g_global.g_cardManager.bottomPosition.transform, false);
-        }
-    }
-
 
     /// <summary>
     /// Attack sound
@@ -345,5 +264,10 @@ public class S_Card : MonoBehaviour
     public void PlayAttackSound()
     {
         g_global.g_turnManager.attackSound.SetActive(true);
+    }
+
+    public void MoveBackPosition()
+    {
+        s_c_cardDraggerReference.c_cardTransform.anchoredPosition = s_c_cardDraggerReference.c_v3_initialPosition;
     }
 }

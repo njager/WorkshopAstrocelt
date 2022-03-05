@@ -119,7 +119,7 @@ public class S_Enemy : MonoBehaviour
 
     public void OnMouseDown()
     {
-        g_global.g_selectorManager.EnemySelected(this); 
+        //g_global.g_selectorManager.EnemySelected(this); 
     }
 
 

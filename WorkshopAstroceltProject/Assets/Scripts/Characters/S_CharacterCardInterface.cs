@@ -10,7 +10,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
 {
     private RectTransform p_playerRectTransform;
     private S_Card c_cardData;
-
+    private S_Global g_global;
 
     void Awake()
     {
@@ -22,9 +22,15 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         if (_eventData.pointerDrag != null)
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
-            if(c_cardData.c_b_affectsPlayer == true)
+            if(g_global.g_ConstellationManager.i_energyCount >= c_cardData.c_i_energyCost)
             {
-
+                if (c_cardData.c_b_affectsPlayer == true) //check to see if it affects player
+                {
+                    if (c_cardData.c_b_shieldMainEffect == true) //check to see if it's a shield card
+                    {
+                        c_cardData.PlayCard(g_global.g_player.gameObject);
+                    }
+                }
             }
         }
     }

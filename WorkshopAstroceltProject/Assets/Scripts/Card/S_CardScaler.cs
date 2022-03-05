@@ -7,18 +7,12 @@ using TMPro;
 
 public class S_CardScaler : MonoBehaviour
 {
-    private S_Global global;
+    private S_Global g_global;
     //Card to eventually modify the rest of the elements of the card object, including it's rigidbody
 
     [Header("Other card elements")]
     public S_Card c_card;
     public BoxCollider2D c_BoxCollider2D;
-
-    [Header("Card Graphics")]
-    public GameObject c_redArtGraphic;
-    public GameObject c_blueArtGraphic;
-    public GameObject c_yellowArtGraphic;
-    public GameObject c_whiteArtGraphic;
 
     [Header("Text Objects")]
     public GameObject c_headerTextObject;
@@ -37,7 +31,7 @@ public class S_CardScaler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        global = S_Global.Instance;
+        g_global = S_Global.Instance;
     }
 
     // Update is called once per frame
