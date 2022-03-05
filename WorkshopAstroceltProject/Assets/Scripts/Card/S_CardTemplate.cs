@@ -37,7 +37,7 @@ public class S_CardTemplate : ScriptableObject
     public bool NoEffect; 
     public bool BleedStatusEffect;
     public bool StunStatusEffect;
-    public bool PoisonStatusEffect;
+    public bool AcidStatusEffect;
     public bool EmpowerStatusEffect;
     public bool RestrainStatusEffect;
     public bool BurnStatusEffect;

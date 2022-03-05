@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using FMODUnity;
 using FMOD.Studio;
 
 public class S_Card : MonoBehaviour
 {
+    [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
+    private Image c_cardBaseImage;
     private S_Global g_global;
 
     // Index from database;
@@ -32,11 +35,11 @@ public class S_Card : MonoBehaviour
     public bool c_b_yellowColorType;
     public bool c_b_whiteColorType;
 
-    [Header("Card Graphic Options")]
-    public GameObject c_childRedGraphic; // If Red, toggle
-    public GameObject c_childBlueGraphic; // If Blue, toggle
-    public GameObject c_childYellowGraphic; // If Yellow, toggle
-    public GameObject c_childWhiteGraphic; // If White, toggle
+    [Header("Card Graphic Assets")]
+    public Image c_redArtGraphic; // If Red, toggle this
+    public Image c_blueArtGraphic; // If Blue, toggle this
+    public Image c_yellowArtGraphic; // If Yellow, toggle this 
+    public Image c_whiteArtGraphic; // If White, toggle this
 
     [Header("Num of Characters Affected")]
     public bool c_b_affectsPlayer;
@@ -52,7 +55,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_noEffect;
     public bool c_b_bleedStatusEffect;
     public bool c_b_stunStatusEffect;
-    public bool c_b_poisonStatusEffect;
+    public bool c_b_acidStatusEffect;
     public bool c_b_empowerStatusEffect;
     public bool c_b_luckyStatusEffect;
     public bool c_b_restrainStatusEffect;
@@ -85,11 +88,7 @@ public class S_Card : MonoBehaviour
         //Separate cards, ended up not being needed
         g_global.c_i_cardIDNum += 1;
         c_i_cardID = g_global.c_i_cardIDNum;
-    }
-    
-    private void Start()
-    {
-        //May be needed
+        c_cardBaseImage = GetComponent<Image>();
     }
 
     /// <summary>
@@ -124,7 +123,7 @@ public class S_Card : MonoBehaviour
         c_b_noEffect = _cardData.NoEffect;
         c_b_bleedStatusEffect = _cardData.BleedStatusEffect;
         c_b_stunStatusEffect = _cardData.StunStatusEffect;
-        c_b_poisonStatusEffect = _cardData.PoisonStatusEffect;
+        c_b_acidStatusEffect = _cardData.AcidStatusEffect;
         c_b_empowerStatusEffect = _cardData.EmpowerStatusEffect;
         c_b_restrainStatusEffect = _cardData.RestrainStatusEffect;
         c_b_burnStatusEffect = _cardData.BurnStatusEffect;
@@ -146,10 +145,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_childRedGraphic.SetActive(true);
-            c_childBlueGraphic.SetActive(false);
-            c_childYellowGraphic.SetActive(false);
-            c_childWhiteGraphic.SetActive(false);
+            c_cardBaseImage = c_redArtGraphic;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -161,10 +157,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_childRedGraphic.SetActive(false);
-            c_childBlueGraphic.SetActive(true);
-            c_childYellowGraphic.SetActive(false);
-            c_childWhiteGraphic.SetActive(false);
+            c_cardBaseImage = c_blueArtGraphic;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -176,13 +169,10 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_childRedGraphic.SetActive(false);
-            c_childBlueGraphic.SetActive(false);
-            c_childYellowGraphic.SetActive(true);
-            c_childWhiteGraphic.SetActive(false);
+            c_cardBaseImage = c_redArtGraphic;
         }
         //White Type
-        else if (_cardData.BlueColorType == true)
+        else if (_cardData.WhiteColorType == true)
         {
             //Toggle Bools
             c_b_redColorType = false;
@@ -191,10 +181,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = true;
 
             //Toggle Graphics
-            c_childRedGraphic.SetActive(false);
-            c_childBlueGraphic.SetActive(false);
-            c_childYellowGraphic.SetActive(false);
-            c_childWhiteGraphic.SetActive(true);
+            c_cardBaseImage = c_whiteArtGraphic;
         }
 
         SetText();
