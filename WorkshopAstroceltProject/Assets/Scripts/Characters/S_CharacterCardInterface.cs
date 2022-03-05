@@ -9,6 +9,8 @@ using UnityEngine.EventSystems;
 public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
 {
     private RectTransform p_playerRectTransform;
+    private S_Card c_cardData;
+
 
     void Awake()
     {
@@ -19,7 +21,11 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
     {
         if (_eventData.pointerDrag != null)
         {
-            _eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<Transform>().position;
+            c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
+            if(c_cardData.c_b_affectsPlayer == true)
+            {
+
+            }
         }
     }
 }
