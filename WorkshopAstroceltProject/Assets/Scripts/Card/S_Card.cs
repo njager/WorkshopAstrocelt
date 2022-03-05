@@ -44,7 +44,7 @@ public class S_Card : MonoBehaviour
     [Header("Num of Characters Affected")]
     public bool c_b_affectsPlayer;
     public bool c_b_affectsOne;
-    public bool c_b_affectsTwo;
+    public bool c_b_affectsAll;
 
     [Header("Main Effect Types")]
     public bool c_b_attackMainEffect;
@@ -112,7 +112,7 @@ public class S_Card : MonoBehaviour
         //Toggle Characters affected
         c_b_affectsPlayer = _cardData.AffectsPlayer;
         c_b_affectsOne = _cardData.Affects1Character;
-        c_b_affectsTwo = _cardData.Affects2Characters;
+        c_b_affectsAll = _cardData.AffectsAllOtherCharacters;
 
         //Toggle Main Effects
         c_b_attackMainEffect = _cardData.AttackEffect;

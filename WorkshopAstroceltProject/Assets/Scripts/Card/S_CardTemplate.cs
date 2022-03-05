@@ -20,7 +20,7 @@ public class S_CardTemplate : ScriptableObject
     [Header("Number of Characters Affected")]
     public bool AffectsPlayer;
     public bool Affects1Character;
-    public bool Affects2Characters; 
+    public bool AffectsAllOtherCharacters;
 
     [Header("Toggle Color Types")]
     public bool RedColorType;
