@@ -3506,8 +3506,9 @@ GameObject:
   - component: {fileID: 231519643}
   - component: {fileID: 231519645}
   - component: {fileID: 231519644}
+  - component: {fileID: 231519646}
   m_Layer: 0
-  m_Name: Enemy1Position
+  m_Name: Enemy1CanvasPosition
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3562,6 +3563,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231519642}
   m_CullTransparentMesh: 1
+--- !u!114 &231519646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231519642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &233048288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7048,6 +7061,7 @@ MonoBehaviour:
   g_e_enemyPosition1: {fileID: 1282492985}
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
+  g_objectBeingDragged: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -10301,9 +10315,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662767146}
-  - component: {fileID: 662767147}
   m_Layer: 0
-  m_Name: EnemyPos2
+  m_Name: EnemyGameWorldPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10323,18 +10336,6 @@ Transform:
   m_Father: {fileID: 1684403708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &662767147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662767145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &673198194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13500,9 +13501,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 919921211}
-  - component: {fileID: 919921212}
   m_Layer: 0
-  m_Name: EnemyPos3
+  m_Name: EnemyGameWorldPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13522,18 +13522,6 @@ Transform:
   m_Father: {fileID: 1684403708}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919921212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919921210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &927680744
 GameObject:
   m_ObjectHideFlags: 0
@@ -17757,9 +17745,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282492986}
-  - component: {fileID: 1282492987}
   m_Layer: 0
-  m_Name: EnemyPos1
+  m_Name: EnemyGameWorldPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17779,18 +17766,6 @@ Transform:
   m_Father: {fileID: 1684403708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1282492987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282492985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1285050335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18921,6 +18896,7 @@ GameObject:
   - component: {fileID: 1356242471}
   - component: {fileID: 1356242473}
   - component: {fileID: 1356242472}
+  - component: {fileID: 1356242474}
   m_Layer: 0
   m_Name: Enemy3Position
   m_TagString: Enemy
@@ -18977,6 +18953,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356242470}
   m_CullTransparentMesh: 1
+--- !u!114 &1356242474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356242470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1357182297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27169,8 +27157,9 @@ GameObject:
   - component: {fileID: 2058963055}
   - component: {fileID: 2058963057}
   - component: {fileID: 2058963056}
+  - component: {fileID: 2058963058}
   m_Layer: 0
-  m_Name: Enemy2Position
+  m_Name: Enemy2CanvasPosition
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27225,6 +27214,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058963054}
   m_CullTransparentMesh: 1
+--- !u!114 &2058963058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058963054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2064645093
 GameObject:
   m_ObjectHideFlags: 0

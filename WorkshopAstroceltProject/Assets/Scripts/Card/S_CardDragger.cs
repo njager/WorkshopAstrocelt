@@ -5,7 +5,7 @@ using Unity.VectorGraphics;
 using Unity.VectorGraphics.Editor;
 using UnityEngine.EventSystems;
 
-public class S_CardDragger : MonoBehaviour, IDragHandler 
+public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private S_Global g_global; 
   
@@ -21,6 +21,12 @@ public class S_CardDragger : MonoBehaviour, IDragHandler
         c_cardTransform = GetComponent<RectTransform>();
     }
 
+    public void OnBeginDrag(PointerEventData _eventData)
+    {
+        g_global.g_objectBeingDragged = null;
+        g_global.g_objectBeingDragged = _eventData.pointerDrag;
+    }
+
     public void OnDrag(PointerEventData _eventData)
     {
         if( transformCounter == 0)
@@ -29,5 +35,10 @@ public class S_CardDragger : MonoBehaviour, IDragHandler
             transformCounter++; // Increment counter to make this happen only once
         }
         c_cardTransform.anchoredPosition += _eventData.delta / g_global.g_UIManager.greyboxCanvas.GetComponent<Canvas>().scaleFactor; // Take the change in mouse position and divide it by the size of the box it's in
+    }
+
+    public void OnEndDrag(PointerEventData _eventData)
+    {
+        //Nothing yet
     }
 }

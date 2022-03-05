@@ -74,6 +74,9 @@ public class S_Global : MonoBehaviour
     public GameObject g_e_enemyPosition2;
     public GameObject g_e_enemyPosition3;
 
+    [Header("Card Dragging")]
+    public GameObject g_objectBeingDragged;
+
     private void Awake()
     {
         if(Instance != null && Instance != this)
