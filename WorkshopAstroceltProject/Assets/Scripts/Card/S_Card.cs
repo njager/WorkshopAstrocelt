@@ -10,7 +10,7 @@ public class S_Card : MonoBehaviour
 {
     [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
-    private Image c_cardBaseImage;
+    private Sprite c_cardBaseImage;
     private S_Global g_global;
 
     // Index from database;
@@ -36,10 +36,10 @@ public class S_Card : MonoBehaviour
     public bool c_b_whiteColorType;
 
     [Header("Card Graphic Assets")]
-    public Image c_redArtGraphic; // If Red, toggle this
-    public Image c_blueArtGraphic; // If Blue, toggle this
-    public Image c_yellowArtGraphic; // If Yellow, toggle this 
-    public Image c_whiteArtGraphic; // If White, toggle this
+    public Sprite c_redArtGraphic; // If Red, toggle this
+    public Sprite c_blueArtGraphic; // If Blue, toggle this
+    public Sprite c_yellowArtGraphic; // If Yellow, toggle this 
+    public Sprite c_whiteArtGraphic; // If White, toggle this
 
     [Header("Num of Characters Affected")]
     public bool c_b_affectsPlayer;
@@ -88,7 +88,7 @@ public class S_Card : MonoBehaviour
         //Separate cards, ended up not being needed
         g_global.c_i_cardIDNum += 1;
         c_i_cardID = g_global.c_i_cardIDNum;
-        c_cardBaseImage = GetComponent<Image>();
+        c_cardBaseImage = GetComponent<Image>().sprite;
     }
 
     /// <summary>
