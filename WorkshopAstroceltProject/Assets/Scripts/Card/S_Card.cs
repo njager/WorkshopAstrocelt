@@ -10,11 +10,12 @@ public class S_Card : MonoBehaviour
 {
     [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
+    public S_CardDragger s_c_cardDraggerReference;
     private Sprite c_cardBaseImage;
     private S_Global g_global;
-
-    // Index from database;
-    public int c_i_cardIndex;
+    
+    [Header("Card Index")]
+    public int c_i_cardIndex; // Not utilized at this time, may be helpful for something like score?
 
     [Header("Card Basics")]
     public string c_str_cardName;
@@ -202,6 +203,7 @@ public class S_Card : MonoBehaviour
 
     /// <summary>
     /// Check position of card
+    /// Deprecated, sadly
     /// </summary>
     public void OnMouseDown()
     {
@@ -209,7 +211,7 @@ public class S_Card : MonoBehaviour
         {
             if(g_global.g_ConstellationManager.i_energyCount >= c_i_energyCost)
             {
-                PlayCard();
+                //PlayCard();
             }
             else
             {
@@ -255,30 +257,30 @@ public class S_Card : MonoBehaviour
     }
 
     /// <summary>
-    /// If card is on the bottom play card
-    /// Also check for enemy selection for attack cards
-    /// Presumed all shield cards are on player
+    /// Play the card based on if it was dropped onto player or enemy
     /// - Josh
     /// </summary>
-    private void PlayCard()
+    private void PlayCard(GameObject _character)
     {
         if (c_b_attackMainEffect == true)
         {
-            if (g_global.g_selectorManager.e_enemySelected == null)
+            g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
+            if(_character.GetComponent<S_Enemy>() != null)
             {
-                Debug.Log("Please select an enemy to use this card on!");
-                return;
+                TriggerAttackCard(_character.GetComponent<S_Enemy>());
             }
             else
             {
-                g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
-                TriggerAttackCard();
+                //c_cardrectTransform.position; 
             }
         }
         else if(c_b_shieldMainEffect == true)
         {
             g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
-            TriggerShieldCard();
+            if (_character.GetComponent<S_Player>() != null) //Had to do this for enemy, might as well do for player
+            {
+                TriggerShieldCard(_character.GetComponent<S_Player>());
+            }
         }
         
 
@@ -287,9 +289,9 @@ public class S_Card : MonoBehaviour
     /// <summary>
     /// If Milestone 1 Card type is attack, do attack function on selected enemy
     /// </summary>
-    private void TriggerAttackCard()
+    private void TriggerAttackCard(S_Enemy _enemy)
     {
-        g_global.g_selectorManager.e_enemySelected.EnemyAttacked(g_global.g_selectorManager.e_enemySelected.e_str_enemyType, c_i_effectValue);
+        _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_effectValue);
         PlayAttackSound();
         DeleteCard();
     }
@@ -297,9 +299,9 @@ public class S_Card : MonoBehaviour
     /// <summary>
     /// If Milestone 1 Card type is shield, do shield function on player
     /// </summary>
-    private void TriggerShieldCard()
+    private void TriggerShieldCard(S_Player _player)
     {
-        g_global.g_player.PlayerShielded(c_i_effectValue);
+        _player.PlayerShielded(c_i_effectValue);
         DeleteCard();
     }
 

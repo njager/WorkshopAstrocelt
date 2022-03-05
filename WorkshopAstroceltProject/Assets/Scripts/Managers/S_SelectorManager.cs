@@ -9,8 +9,8 @@ public class S_SelectorManager : MonoBehaviour
 
     public GameObject selector;
 
-    [Header("DON'T FILL, Supposed to be null")]
-    public S_Enemy e_enemySelected;
+    //[Header("DON'T FILL, Supposed to be null")]
+    //public S_Enemy e_enemySelected;
 
     // Side note: Find how to remove the ability to see a public variable in editors
 
@@ -28,7 +28,7 @@ public class S_SelectorManager : MonoBehaviour
     /// <param name="_enemySelected"></param>
     public void EnemySelected(S_Enemy _enemySelected)
     {
-        e_enemySelected = _enemySelected;
+        //e_enemySelected = _enemySelected;
         if (selector.activeInHierarchy == false) // If not active, make active then move
         {
             selector.SetActive(true);
@@ -47,6 +47,6 @@ public class S_SelectorManager : MonoBehaviour
     public void SelectorReset()
     {
         selector.SetActive(false);
-        e_enemySelected = null; 
+        // e_enemySelected = null; 
     }
 }
