@@ -266,8 +266,8 @@ public class S_Card : MonoBehaviour
         g_global.g_turnManager.attackSound.SetActive(true);
     }
 
-    public void MoveBackPosition()
+    public void ResetPosition()
     {
-        s_c_cardDraggerReference.c_cardTransform.anchoredPosition = s_c_cardDraggerReference.c_v3_initialPosition;
+        s_c_cardDraggerReference.c_cardTransform.position = s_c_cardDraggerReference.c_v3_initialPosition;
     }
 }

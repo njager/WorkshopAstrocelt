@@ -8,17 +8,15 @@ using UnityEngine.EventSystems;
 
 public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
 {
-    //private RectTransform characterRectTransform;
     private S_Card c_cardData;
     private S_Global g_global;
 
-    private bool p_b_attachedToPlayer;
-    private bool p_b_attachedToEnemy; 
+    public bool p_b_attachedToPlayer;
+    public bool e_b_attachedToEnemy; 
 
     void Awake()
     {
         g_global = S_Global.Instance;
-        //characterRectTransform = GetComponent<RectTransform>();
     }
 
     void Start()
@@ -26,12 +24,12 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         if(tag == "Player") // If on player, set bools accordingly
         {
             p_b_attachedToPlayer = true;
-            p_b_attachedToEnemy = false;
+            e_b_attachedToEnemy = false;
         }
         if(tag == "Enemy") // If on an enemy, set bools accordingly
         {
             p_b_attachedToPlayer = false;
-            p_b_attachedToEnemy = true;
+            e_b_attachedToEnemy = true;
         }
     }
 
@@ -39,8 +37,8 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
     {
         if (_eventData.pointerDrag != null)
         {
-            //c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
-            c_cardData = g_global.g_objectBeingDragged.GetComponent<S_Card>();
+            c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
+            //c_cardData = g_global.g_objectBeingDragged.GetComponent<S_Card>();
             if (g_global.g_ConstellationManager.i_energyCount >= c_cardData.c_i_energyCost)
             {
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
@@ -51,9 +49,27 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                         {
                             c_cardData.PlayCard(g_global.g_player.gameObject);
                         }
+                        else
+                        {
+                            Debug.Log("Wrong effect type!");
+                            c_cardData.ResetPosition();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Card Cannot affect player!");
+                        c_cardData.ResetPosition();
+                        return;
                     }
                 }
-                else if(p_b_attachedToEnemy == true) // I like to make bool checks clear in what they are checking, but could be optimized
+                else
+                {
+                    Debug.Log("Wrong Character Type!");
+                    c_cardData.ResetPosition();
+                    return;
+                }
+                if(e_b_attachedToEnemy == true) // I like to make bool checks clear in what they are checking, but could be optimized
                 {
                     if (c_cardData.c_b_affectsOne == true) //check to see if it affects enemy
                     {
