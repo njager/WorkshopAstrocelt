@@ -20,9 +20,11 @@ public class S_TextPopUp : MonoBehaviour
     [SerializeField] bool b_useRed;
     [SerializeField] bool b_useYellow;
     [SerializeField] bool b_useBlue;
+    
 
     [Header("Given Position:")]
-    private Vector3 v3_givenPosition;
+    [SerializeField] Vector3 v3_givenPosition;
+    private bool b_deletionTimerFlag;
 
     [Header("Modfiable DOTween Attributes")]
     [SerializeField] Vector4 v4_doTweenShakeValues; //Vibration, stregth, duration, randomness
@@ -32,32 +34,40 @@ public class S_TextPopUp : MonoBehaviour
     [SerializeField] Color cl_redColor;
     [SerializeField] Color cl_blueColor;
     [SerializeField] Color cl_yellowColor;
+    [SerializeField] float f_colorDuration;
+    [SerializeField] float f_doFadeAlpha;
+    [SerializeField] float f_doFadeDuration;
 
-    //What to do upon instantiation
+    /// <summary>
+    /// Set
+    /// </summary>
     void Awake()
     {
         g_global = S_Global.Instance;
         tx_baseTextMesh = transform.GetComponent<TextMeshPro>();
+        b_deletionTimerFlag = false;
     }
 
     /// <summary>
-    /// Use Update to make use of a minitimer
+    /// Use IEnumerator as an update loop to make use of a minitimer
     /// Should be low impact since it'll be deleted in a couple seconds
     /// - Josh
     /// </summary>
-    void Update()
+    private IEnumerator DeletionTimer()
     {
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
         if (f_disappearTimer < 0)
         {
-            tx_baseTextMesh.DOFade(0f, 1f);
+            tx_baseTextMesh.DOFade(f_doFadeAlpha, f_doFadeDuration);
             f_destroyTimer -= Time.deltaTime;
             if (f_destroyTimer < 0)
             {
                 Destroy(gameObject);
             }
         }
+        b_deletionTimerFlag = true;
+        yield return b_deletionTimerFlag == true; 
     }
 
     /// <summary>
@@ -69,7 +79,6 @@ public class S_TextPopUp : MonoBehaviour
         v3_givenPosition = _givenPosition;
     }
 
-
     /// <summary>
     /// Move the popup object to location and finish it's set up
     /// - Josh
@@ -78,33 +87,34 @@ public class S_TextPopUp : MonoBehaviour
     public IEnumerator MovePopUp()
     {
         //"Punch" the position for shake and scale (hardcoded, need to change)
-        gameObject.transform.DOShakePosition(1f, 0.3f, 10, 10f);
-        gameObject.transform.DOScale(new Vector3(1.5f, 1.5f, 0), 0.2f);
+        gameObject.transform.DOShakePosition(v4_doTweenShakeValues.x, v4_doTweenShakeValues.y, (int)v4_doTweenShakeValues.z, v4_doTweenShakeValues.w); //3rd value will be casted to int
+        gameObject.transform.DOScale(new Vector3(v3_doTweenScale.x, v3_doTweenScale.y, v3_doTweenScale.z), f_colorDuration);
 
         //Flash the color then reset
-        tx_baseTextMesh.DOColor(UtilsClass.GetColorFromString("FFFFFF"), 0.2f);
+        tx_baseTextMesh.DOColor(cl_tx_textColor, f_colorDuration);
 
         yield return new WaitForSeconds(0.25f);
 
         gameObject.transform.DOScale(new Vector3(1, 1, 0), .2f);
 
         //check what color to return it to after flashing white
-        if (b_useRed)
+        if (b_useRed) // Change to yellow color
         {
-            tx_baseTextMesh.DOColor(UtilsClass.GetColorFromString("5ECC71"), 0.2f); // Note Change to a yellow color later
+            tx_baseTextMesh.DOColor(cl_redColor, f_colorDuration); 
         }
-        else if (b_useBlue)
+        else if (b_useBlue) // Change to blue color
         {
-            tx_baseTextMesh.DOColor(UtilsClass.GetColorFromString("DD6666"), 0.2f); // Note Change to a blue color later
+            tx_baseTextMesh.DOColor(cl_blueColor, f_colorDuration); 
         }
-        else if (b_useYellow)
+        else if (b_useYellow) // Change to yellow color
         {
-            tx_baseTextMesh.DOColor(UtilsClass.GetColorFromString("7598D1"), 0.2f); // Note Change to red color later
+            tx_baseTextMesh.DOColor(cl_yellowColor, f_colorDuration); 
         }
 
-        yield return new WaitForSeconds(1); // Note Can actually yield return more than once
+        yield return new WaitForSeconds(1f); // Note Can actually yield return more than once
 
         //Move to given position
         gameObject.transform.DOMove(v3_givenPosition, 1.5f);
+        StartCoroutine(DeletionTimer()); // Deletion Timer start here
     }
 }

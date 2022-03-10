@@ -11092,6 +11092,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707196415}
+  - component: {fileID: 707196416}
   m_Layer: 0
   m_Name: TextPopupTemplate
   m_TagString: PopUp
@@ -11113,6 +11114,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &707196416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707196414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cef6f96d5ef640d784258f0705298ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tx_baseTextMesh: {fileID: 0}
+  f_disappearTimer: 0
+  f_destroyTimer: 1
+  cl_tx_textColor: {r: 1, g: 1, b: 1, a: 0}
+  b_useRed: 0
+  b_useYellow: 0
+  b_useBlue: 0
+  v4_doTweenShakeValues: {x: 0, y: 0, z: 0, w: 0}
+  v3_doTweenScale: {x: 0, y: 0, z: 0}
+  cl_redColor: {r: 0.54901963, g: 0.09019608, b: 0.09019608, a: 1}
+  cl_blueColor: {r: 0.1764706, g: 0.2901961, b: 0.8392157, a: 0}
+  cl_yellowColor: {r: 0.69803923, g: 0.6862745, b: 0.15686275, a: 0}
+  f_colorDuration: 0
+  f_doFadeAlpha: 0
+  f_doFadeDuration: 0
 --- !u!1001 &713657641
 PrefabInstance:
   m_ObjectHideFlags: 0
