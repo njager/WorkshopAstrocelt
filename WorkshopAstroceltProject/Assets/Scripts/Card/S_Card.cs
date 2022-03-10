@@ -81,7 +81,18 @@ public class S_Card : MonoBehaviour
     [Header("Card Dragger References")]
     public S_CardDragger s_c_cardDraggerReference;
 
-    public int c_i_cardID; 
+    public int c_i_cardID;
+
+    [Header("Card Hover Height")]
+    public float i_hoverHeight;
+
+    [Header("Zoom Card Scalars")]
+    public float i_hoverX;
+    public float i_hoverY;
+
+    public GameObject cv_canvas;
+    
+    private GameObject c_zoomCard;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -94,6 +105,8 @@ public class S_Card : MonoBehaviour
         g_global.c_i_cardIDNum += 1;
         c_i_cardID = g_global.c_i_cardIDNum;
         c_cardBaseImage = GetComponent<Image>().sprite;
+
+        cv_canvas = GameObject.Find("GreyboxCanvas");
     }
 
     /// <summary>
@@ -269,5 +282,29 @@ public class S_Card : MonoBehaviour
     public void ResetPosition()
     {
         s_c_cardDraggerReference.c_cardTransform.position = s_c_cardDraggerReference.c_v3_initialPosition;
+    }
+
+    /// <summary>
+    /// Function that creates a hover card when moused over
+    /// -Riley Halloran
+    /// </summary>
+    public void OnHoverEnter()
+    {
+        //Instantiate a new card based off the location of the mouse and the hoverHeight
+        c_zoomCard = Instantiate(gameObject, new Vector2(Input.mousePosition.x, Input.mousePosition.y + i_hoverHeight), Quaternion.identity);
+        c_zoomCard.transform.SetParent(cv_canvas.transform, false);
+
+        //scale the transform of the rect
+        RectTransform _rect = c_zoomCard.GetComponent<RectTransform>();
+        _rect.sizeDelta = new Vector2(_rect.sizeDelta.x * i_hoverX, _rect.sizeDelta.y * i_hoverY);
+    }
+
+    /// <summary>
+    /// Function that destroys the hover card when the mouse leavess
+    /// -Riley Halloran
+    /// </summary>
+    public void OnHoverExit()
+    {
+        Destroy(c_zoomCard);
     }
 }
