@@ -53,7 +53,7 @@ public class S_NodeStar : MonoBehaviour
     {
         if(g_global.g_ConstellationManager.b_starLockout == true)
         {
-            g_global.g_DrawingManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
+            g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
         }
         else
         {

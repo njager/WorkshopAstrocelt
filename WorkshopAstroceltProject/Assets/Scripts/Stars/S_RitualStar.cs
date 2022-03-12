@@ -52,11 +52,12 @@ public class S_RitualStar : MonoBehaviour
 
     public void OnMouseDown()
     {
+
         if (g_global.g_ConstellationManager.b_starLockout == true)
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
             {
-                g_global.g_DrawingManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+                g_global.g_ConstellationManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
             }
         }
         else

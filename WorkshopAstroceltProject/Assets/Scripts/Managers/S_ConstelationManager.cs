@@ -7,9 +7,30 @@ using System.Linq;
 
 public class S_ConstelationManager : MonoBehaviour
 {
+    //global script
     private S_Global g_global;
+
+    //the list of the current constellation
+    public List<S_StarClass> ls_curConstellation;
+
+    //this is the color for the cur constellation
+    public string str_curColor = "";
+
+    //bool to tell if you are making a constellation atm
+    public bool b_makingConstellation;
+
+    //bool for locking out drawing
+    public bool b_starLockout;
+
+    //previous star and previous loc
+    public S_StarClass s_previousStar;
+    public Vector2 v2_prevLoc;
+
     [Header("Timer")]
     public float f_timer = 1f;
+
+    [Header("Null star")]
+    public S_StarClass s_nullStarInst;
 
     [Header("Constellation Sizes")]
     public int i_minSize;
@@ -22,117 +43,211 @@ public class S_ConstelationManager : MonoBehaviour
 
     [Header("Energy Count")]
     public int i_energyCount;
-    public bool b_starLockout; 
-
-    public bool b_lineDeletionCompletion; 
 
     private void Awake()
     {
+        //fetch global, get set previous as null, and start with star lockout
         g_global = S_Global.Instance;
+        s_previousStar = s_nullStarInst;
         b_starLockout = true;
     }
+
+    /// <summary>
+    /// This func gets called from the lines themseleves after they get spawned. 
+    /// Adds the star to the data structure and checks types and constraints
+    /// -Riley
+    /// </summary>
+    /// <param name="_star"></param>
+    public void AddStarToCurConstellation(S_StarClass _star)
+    {
+        //add to data structure
+        ls_curConstellation.Add(_star);
+        print(ls_curConstellation.Count());
+
+        //check the type of the star added
+        if (_star.starType == "Ritual")
+        {
+            if (str_curColor != "") { g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); }
+
+            //get the ritual star component
+            S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
+
+            //compare in hierarchy to get the color
+            if (_rStar.s_redRitualStarGraphic.activeInHierarchy)
+            {
+                str_curColor = "red";
+            }
+            else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
+            {
+                str_curColor = "yellow";
+            }
+            else if (_rStar.s_blueRitualStarGraphic.activeInHierarchy)
+            {
+                str_curColor = "blue";
+            }
+        }
+        if (_star.starType == "Node")
+        {
+            if (b_makingConstellation)
+            {
+                //finsih making the constellation
+                FinishConstellation(_star);
+            }
+            else
+            {
+                //now that the node is added, change the bool
+                b_makingConstellation = true;
+            }
+        }
+        //check if the lenght is greater than the max length, sub 1 for the two node stars
+        else if (ls_curConstellation.Count() - 2 >= i_maxSize)
+        {
+            //delete the constellation with the top star
+            g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]);
+        }
+    }
+
+    /// <summary>
+    /// This function deletes the most recent star.
+    /// It gets called from no where atm
+    /// -Riley
+    /// </summary>
+    public void DeleteTopStarCurConstellation()
+    {
+        S_StarClass _star = ls_curConstellation[ls_curConstellation.Count()];
+
+        ls_curConstellation.RemoveAt(ls_curConstellation.Count());
+
+        if (_star.starType == "Ritual")
+        {
+            str_curColor = "";
+        }
+        if (_star.starType == "Node")
+        {
+            if (b_makingConstellation)
+            {
+                //finsih making the constellation
+                b_makingConstellation = false;
+
+                FinishConstellation(_star);
+            }
+            else
+            {
+                //now that the node is added, change the bool
+                b_makingConstellation = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This function gets called internally if a constraint gets triggered and the constellation needs resetting, 
+    /// or after a constellation is finished and everything needs reset to normal.  
+    /// </summary>
+    public void DeleteWholeCurConstellation()
+    {
+        //clear the constellation
+        ls_curConstellation.Clear();
+
+        //set the bool
+        b_makingConstellation = false;
+
+        //reset the color
+        str_curColor = "";
+
+        //reset the prvious star
+        s_previousStar = s_nullStarInst;
+        v2_prevLoc = new Vector2(0,0);
+}
+
+    /// <summary>
+    /// This Function deals with whenever the player clicks on a node star
+    /// if the player hasnt started a constellation then change drawing bool and set previous loc
+    /// if the player is making a constellation then finish it, and call the finishing behaviour
+    /// - Riley
+    /// </summary>
+    public void NodeStarClicked(S_StarClass _starN, Vector2 _locN)
+    {
+        if (b_makingConstellation) //if you have started a constellation
+        {
+            //do some final thing with star sound
+            //_starSoundPhase1.SetActive(false);
+            //PlaySound();
+            
+            g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
+        }
+        else //if you have not started a constellation
+        {
+            //i_starSound = 0;
+
+            //add to the list
+            AddStarToCurConstellation(_starN);
+
+            //set all of the previous star stuff as the node
+            s_previousStar = _starN;
+            v2_prevLoc = _locN;
+
+            //set node star's previous as null
+            _starN.s_star.m_previous = s_nullStarInst;
+        }
+    }
+
+    /// <summary>
+    /// This is the func for non node stars and checks conditions before passing along to the spawn line function 
+    /// Added functionallity for clicking on a star before a node star
+    /// - Riley
+    /// </summary>
+    public void StarClicked(S_StarClass _star, Vector2 _loc)
+    {
+        if (b_makingConstellation)
+        {
+            if (s_previousStar != s_nullStarInst)
+            {
+                g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
+            }
+        }
+    }
+
 
     /// <summary>
     /// This Function is the constellation finishing behavior that goes through the stars clicked on and retraces the path. 
     /// This then gets the total energy and assigns the proper energy color
     /// - Riley
     /// </summary>
-    public IEnumerator RetraceConstelation(S_StarClass _node)
+    public void FinishConstellation(S_StarClass _node)
     {
-        //wait so if a line deletes itself were safe
-        yield return new WaitForSeconds(f_timer);
+        //lock out stars while calculating
         b_starLockout = false;
 
         g_global.g_UIManager.p_f_lineMultiplierAmount = Mathf.Round(g_global.g_lineMultiplierManager.LineMultiplierCalculator() * 10f) / 10f;
         g_global.g_UIManager.p_tx_lineMultiplierText.text = "Line Multiplier: " + g_global.g_UIManager.p_f_lineMultiplierAmount + "x";
 
-        //set up some function vars
-        S_StarClass _curStar = _node.s_star.m_previous;
-        if (_curStar.starType != "Null")
+        //set up the energy
+        int _energy = ls_curConstellation.Count() - 2;
+
+        //check constrainst
+        if (str_curColor == "") { g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); }
+        else if (ls_curConstellation.Count()-2 < i_minSize) { g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); }
+        else
         {
-            int _count = 0;
-            bool _hasColor = false;
-            string _color = "";
+            //trigger the star sound here
 
-            //loop through 
-            while (_curStar.starType != "Node")
-            {
-                if (_curStar.starType == "Ritual")
-                {
-                    if (_hasColor)
-                    {
-                        g_global.g_DrawingManager.ConstellationReset();
-                        break;
-                    }
-                    else
-                    {
-                        //change the color bool to true and increment count
-                        _hasColor = true;
-                        _count++;
-                        S_RitualStar _rStar = _curStar.gameObject.GetComponent<S_RitualStar>();
+            //assining the colored energy to the count
+            _energy = (int)Mathf.Round(_energy * g_global.g_UIManager.p_f_lineMultiplierAmount);
+            i_energyCount = _energy;
 
-                        //compare in hierarchy to get the color
-                        if (_rStar.s_redRitualStarGraphic.activeInHierarchy)
-                        {
-                            _color = "red";
-                        }
-                        else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
-                        {
-                            _color = "yellow";
-                        }
-                        else if (_rStar.s_blueRitualStarGraphic.activeInHierarchy)
-                        {
-                            _color = "blue";
-                        }
+            if (str_curColor == "red") { i_redEnergy = _energy; }
+            else if (str_curColor == "yellow") { i_yellowEnergy = _energy; }
+            else if (str_curColor == "blue") { i_blueEnergy = _energy; }
 
-                        _curStar = _curStar.s_star.m_previous;
-                    }
-                }
-                else
-                {
-                    _count++;
-                    _curStar = _curStar.s_star.m_previous;
-                }
-            }
-            //delete the constellation if it has no ritual star or is too small
-            if (!_hasColor) { g_global.g_DrawingManager.ConstellationReset(); }
-            else if(_count < i_minSize) { g_global.g_DrawingManager.ConstellationReset(); }
-            else if (_count > i_maxSize) { g_global.g_DrawingManager.ConstellationReset(); }
-            else
-            {
-                //trigger the star sound here
+            g_global.g_UIManager.ChangeEnergyIcon(str_curColor);
 
-                //assining the colored energy to the count
-                _count = (int)Mathf.Round(_count * g_global.g_UIManager.p_f_lineMultiplierAmount);
-                i_energyCount = _count;
-                if (_color == "red") { i_redEnergy = _count; }
-                else if (_color == "yellow") { i_yellowEnergy = _count; }
-                else if (_color == "blue") { i_blueEnergy = _count; }
-
-                g_global.g_UIManager.ChangeEnergyIcon(_color);
-
-                //pass the _count to another function
-                
-            }
+            //pass the _count to another function
         }
+
+        b_starLockout = true;
     }
 
-    /// <summary>
-    /// This is a helper function that deletes the line 
-    /// Gets triggered when the map changes
-    /// - Riley
-    /// </summary>
-    public IEnumerator LineDeletion()
-    {
-        foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
-        {
-            g_global.g_lst_lineRendererList.Remove(lineObject);
-            Destroy(lineObject);
-            //this is bugging out when turn changes
-        }
-        b_lineDeletionCompletion = true; 
-        yield return b_lineDeletionCompletion = true; 
-    }
+    
 
     /// <summary>
     /// This Function gets rid of the stored energy in the constellation manager

@@ -21,6 +21,7 @@ public class S_ConstellationLine : MonoBehaviour
     public float f_lineWidth;
     public float f_lineLength;
     public S_StarClass s_nullStarInst;
+    public bool b_starAdded = false;
 
     private void Awake()
     {
@@ -32,14 +33,6 @@ public class S_ConstellationLine : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         GameObject other = col.gameObject;
-        if (other.CompareTag("Line")) //check if collider is a line
-        {
-            if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index
-            {
-                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
-                //g_global.g_DrawingManager.ConstellationReset();
-            }
-        }
         if (other.CompareTag("Meteor"))
         {
             Debug.Log("encountered a Meteor chain in path");
@@ -53,12 +46,24 @@ public class S_ConstellationLine : MonoBehaviour
                 Debug.Log("encountered another star in path");
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
             }
-            else if (s_nextStar.starType=="Node") 
+            else
             {
-                //check all other posibilities first, then if the next star is a node you know the constellation is done
-                StartCoroutine(g_global.g_ConstellationManager.RetraceConstelation(s_nextStar));
+                print("Here workls");
+                if (!b_starAdded)
+                {
+                    g_global.g_ConstellationManager.AddStarToCurConstellation(s_nextStar);
+                    b_starAdded = true;
+                }
             }
-            else { return; }
+        }
+        if (other.CompareTag("Line")) //check if collider is a line
+        {
+            LineRenderer _prevLine = s_previousStar.s_star.m_previousLine;
+            if (other.GetComponent<S_ConstellationLine>().i_index < i_index && other.GetComponent<LineRenderer>()!=_prevLine) //check which one has a larger index and if it is equal to the previous line
+            {
+                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+                //g_global.g_DrawingManager.ConstellationReset();
+            }
         }
     }
 
