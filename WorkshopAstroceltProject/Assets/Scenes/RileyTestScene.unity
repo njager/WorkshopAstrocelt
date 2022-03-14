@@ -4113,6 +4113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3d76853e7a364589b119e60280929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tx_textMesh: {fileID: 0}
+  v3_startingTextPopupPosition: {x: 0, y: 0, z: 0}
+  p_v3_playerHealthBarPosition: {x: 0, y: 0, z: 0}
+  e_v3_enemy1HealthBarPosition: {x: 0, y: 0, z: 0}
+  e_v3_enemy2HealthBarPosition: {x: 0, y: 0, z: 0}
+  e_v3_enemy3HealthBarPosition: {x: 0, y: 0, z: 0}
+  e_v3_enemy4HealthBarPosition: {x: 0, y: 0, z: 0}
+  e_v3_enemy5HealthBarPosition: {x: 0, y: 0, z: 0}
+  textPopupPrefab: {fileID: 0}
+  energyPopupPrefab: {fileID: 0}
 --- !u!1001 &278486993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6350,6 +6360,21 @@ MonoBehaviour:
   nullEnergyIcon: {fileID: 0}
   p_tx_lineMultiplierText: {fileID: 0}
   p_f_lineMultiplierAmount: 0
+  b_redEnergy: 0
+  b_blueEnergy: 0
+  b_yellowEnergy: 0
+  p_playerShieldOverlay: {fileID: 0}
+  e_enemy1ShieldOverlay: {fileID: 0}
+  e_enemy2ShieldOverlay: {fileID: 0}
+  e_enemy3ShieldOverlay: {fileID: 0}
+  e_enemy4ShieldOverlay: {fileID: 0}
+  e_enemy5ShieldOverlay: {fileID: 0}
+  p_playerShieldIcon: {fileID: 0}
+  e_enemy1ShieldIcon: {fileID: 0}
+  e_enemy2ShieldIcon: {fileID: 0}
+  e_enemy3ShieldIcon: {fileID: 0}
+  e_enemy4ShieldIcon: {fileID: 0}
+  e_enemy5ShieldIcon: {fileID: 0}
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6929,6 +6954,7 @@ MonoBehaviour:
   g_e_enemyPosition1: {fileID: 1282492985}
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
+  g_objectBeingDragged: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -18274,15 +18300,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c950e953d198f4645bb64d4c68938eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ls_curConstellation: []
+  str_curColor: 
+  b_makingConstellation: 0
+  b_starLockout: 0
+  s_previousStar: {fileID: 0}
+  v2_prevLoc: {x: 0, y: 0}
   f_timer: 1
+  s_nullStarInst: {fileID: 826952977}
   i_minSize: 3
   i_maxSize: 7
   i_redEnergy: 0
   i_yellowEnergy: 0
   i_blueEnergy: 0
   i_energyCount: 0
-  b_starLockout: 0
-  b_lineDeletionCompletion: 0
 --- !u!1001 &1336605811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19502,7 +19533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selector: {fileID: 29678253}
-  e_enemySelected: {fileID: 0}
 --- !u!1001 &1459895050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27512,16 +27542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s_previousStar: {fileID: 0}
-  v2_prevLoc: {x: 0, y: 0}
   i_index: 0
-  v2_nodeStarLoc: {x: 0, y: 0}
   _starSoundPhase1: {fileID: 552178285}
   _starSoundPhase2: {fileID: 1732484530}
   i_starSound: 0
   l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
   s_nullStarInst: {fileID: 826952977}
-  s_nodeStarInst: {fileID: 576107795}
+  b_lineDeletionCompletion: 0
 --- !u!1001 &2100221526
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -75,13 +75,12 @@ public class S_TurnManager : MonoBehaviour
         }
 
         // Temp line removal 
-        g_global.g_ConstellationManager.b_lineDeletionCompletion = false; 
-        StartCoroutine(g_global.g_ConstellationManager.LineDeletion());
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
-        //clear data for the stars when the map changes (prolly should be a function)
-        g_global.g_DrawingManager.s_nodeStarInst.s_star.m_previous = g_global.g_nullStar;
-        g_global.g_DrawingManager.s_nodeStarInst.s_star.m_next = g_global.g_nullStar;
-        g_global.g_DrawingManager.v2_nodeStarLoc = g_global.g_DrawingManager.s_nodeStarInst.gameObject.transform.position; 
+        //clear data for the stars when the map changes (prolly should be a function) "YES IT SHOULD, tell me what needs to be added to clean this up and its purpose -Riley"
+        //g_global.g_DrawingManager.s_nodeStarInst.s_star.m_previous = g_global.g_nullStar;
+        //g_global.g_DrawingManager.s_nodeStarInst.s_star.m_next = g_global.g_nullStar;
         
         //change the selector
         g_global.g_selectorManager.SelectorReset();

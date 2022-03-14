@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class S_DrawingManager : MonoBehaviour
 {
     //private vars
     private S_Global g_global;
-    private bool b_drawing;
 
-    public S_StarClass s_previousStar;
-    public Vector2 v2_prevLoc;
+    //index for the lines
     public int i_index;
-    public Vector2 v2_nodeStarLoc;
 
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
@@ -23,41 +21,13 @@ public class S_DrawingManager : MonoBehaviour
 
     [Header("Null and Node stars")]
     public S_StarClass s_nullStarInst;
-    public S_StarClass s_nodeStarInst;
-    
+
+    public bool b_lineDeletionCompletion;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
-        s_previousStar = s_nullStarInst;
         i_index = 0;
-        v2_nodeStarLoc = s_nodeStarInst.gameObject.transform.position;
-    }
-
-    /// <summary>
-    /// This Function deals with whenever the player clicks on a node star
-    /// if the player hasnt started a constellation then change drawing bool and set previous loc
-    /// if the player is making a constellation then finish it, and call the finishing behaviour
-    /// - Riley
-    /// </summary>
-    public void NodeStarClicked(S_StarClass _starN, Vector2 _loc)
-    {
-        if (b_drawing) 
-        { 
-            //do some final thing with star sound
-            b_drawing = false;
-            _starSoundPhase1.SetActive(false);
-            PlaySound();
-
-            SpawnLine(s_previousStar, _starN, v2_prevLoc, _loc);
-        }
-        else 
-        {
-            i_starSound = 0;
-            b_drawing = true;
-            s_previousStar = _starN;
-            v2_prevLoc = _loc;
-            _starN.s_star.m_previous = s_nullStarInst;
-        }
     }
 
     /// <summary>
@@ -70,34 +40,7 @@ public class S_DrawingManager : MonoBehaviour
         emitter.SetParameter("Note Order", i_starSound);
     }
 
-    /// <summary>
-    /// This is the func for non node stars and checks conditions before passing along to the spawn line function 
-    /// Added functionallity for clicking on a star before a node star
-    /// - Riley
-    /// </summary>
-    public void StarClicked(S_StarClass _star, Vector2 _loc)
-    {
-        if (b_drawing)
-        {
-            if (s_previousStar != s_nullStarInst)
-            {
-                SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
-            }
-        }
-        else
-        {
-            
-            if (true)
-            {
-                // Audio: the sounds will be played once the object is enabled. When first click on a normal star, enable this object to play the first click sound that plays the first note and first note only.
-                _starSoundPhase1.SetActive(true);
-                
-                b_drawing = true;
-                SpawnLine(s_nodeStarInst, _star, v2_nodeStarLoc, _loc);
-                s_nodeStarInst.s_star.m_previous = s_nullStarInst;
-            }
-        }
-    }
+    
 
     /// <summary>
     /// This is the func that spawns the line renderer for the star map
@@ -107,6 +50,7 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
+
         //change the star sound here if the line is formed
         i_starSound++;
 
@@ -145,14 +89,14 @@ public class S_DrawingManager : MonoBehaviour
         _star2.s_star.m_previousLine = _newLine;
 
         //set the previous star and loc
-        s_previousStar = _star2;
-        v2_prevLoc = _loc2;
+        g_global.g_ConstellationManager.s_previousStar = _star2;
+        g_global.g_ConstellationManager.v2_prevLoc = _loc2;
     }
 
     /// <summary>
     /// This is the func that the line renderer calls when it collides
     /// use the line to go back to the previous star and set that as previousstar and previous loc
-    /// destroy line at the end
+    /// destroy line at the end but dont call the constellation because the star was never added to the data structure
     /// - Riley
     /// </summary>
     public void GoBackOnce(GameObject _line)
@@ -162,32 +106,30 @@ public class S_DrawingManager : MonoBehaviour
         i_starSound--;
 
         //set the cur previous star to have a nullstar as a previous
-        s_previousStar.s_star.m_previous = s_nullStarInst;
+        g_global.g_ConstellationManager.s_previousStar.s_star.m_previous = s_nullStarInst;
 
         //get the data from the line and assign the previous star and loc
         S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
-        s_previousStar = _lineScript.s_previousStar;
-        v2_prevLoc = _lineScript.m_lineRendererInst.GetPosition(1);
+        g_global.g_ConstellationManager.s_previousStar = _lineScript.s_previousStar;
+        g_global.g_ConstellationManager.v2_prevLoc = _lineScript.m_lineRendererInst.GetPosition(1);
 
         //reset the data for the star
-        s_previousStar.s_star.m_next = s_nullStarInst;
-        s_previousStar.s_star.m_nextLine = null;
-        Debug.Log("deleted a line and now cur previousStar is", s_previousStar);
+        g_global.g_ConstellationManager.s_previousStar.s_star.m_next = s_nullStarInst;
+        g_global.g_ConstellationManager.s_previousStar.s_star.m_nextLine = null;
+        Debug.Log("deleted a line and now cur previousStar is old");
 
         //destroy the line
         g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
         Destroy(_line);
-
-        //if you go back once and drawing is false then it was a node star
-        if (!b_drawing) { b_drawing = true; }
     }
 
     /// <summary>
     /// This Function resets the entire constellation chain 
     /// Clears line multiplier and energy while keeping the turn the same
+    /// gets called from the undo button and after a constraint is triggered
     /// - Riley
     /// </summary>
-    public void ConstellationReset()
+    public void ConstellationReset(S_StarClass _Star)
     {
         //stop the player from clicking on stars while reseting
         g_global.g_ConstellationManager.b_starLockout = true;
@@ -198,29 +140,49 @@ public class S_DrawingManager : MonoBehaviour
         i_starSound = 0;
         //Debug.Log("Constellation Reset Triggered");
 
+        S_StarClass _previousStar = _Star;
 
-        while (s_previousStar.starType != "Null")
+        while (_previousStar.starType != "Null")
         {
-            S_StarClass _temporalStar = s_previousStar.s_star.m_previous;
+            S_StarClass _temporalStar = _previousStar.s_star.m_previous;
 
-            s_previousStar.s_star.m_previous = s_nullStarInst;
-            s_previousStar.s_star.m_next = s_nullStarInst;
+            _previousStar.s_star.m_previous = s_nullStarInst;
+            _previousStar.s_star.m_next = s_nullStarInst;
 
             //check if the line needs to be deleted
             //deletes the graphic not the star
-            if (s_previousStar.s_star.m_nextLine!=null)
+            if (_previousStar.s_star.m_nextLine!=null)
             {
-                Destroy(s_previousStar.s_star.m_nextLine.gameObject.GetComponentInParent<S_ConstellationLine>().gameObject);
+                Destroy(_previousStar.s_star.m_nextLine.gameObject.GetComponentInParent<S_ConstellationLine>().gameObject);
             }
             
-            s_previousStar.s_star.m_nextLine = null;
-            s_previousStar.s_star.m_previousLine = null;
+            _previousStar.s_star.m_nextLine = null;
+            _previousStar.s_star.m_previousLine = null;
 
-            s_previousStar = _temporalStar;
+            _previousStar = _temporalStar;
         }
 
+        //call the constellation manager to clear the list
+        g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+
         //done drawing now, let the player start again
-        b_drawing = false;
         g_global.g_ConstellationManager.b_starLockout = false;
+    }
+
+    /// <summary>
+    /// This is a helper function that deletes the line 
+    /// Gets triggered when the map changes
+    /// - Riley
+    /// </summary>
+    public IEnumerator LineDeletion()
+    {
+        foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
+        {
+            g_global.g_lst_lineRendererList.Remove(lineObject);
+            Destroy(lineObject);
+            //this is bugging out when turn changes
+        }
+        b_lineDeletionCompletion = true;
+        yield return b_lineDeletionCompletion == true;
     }
 }
