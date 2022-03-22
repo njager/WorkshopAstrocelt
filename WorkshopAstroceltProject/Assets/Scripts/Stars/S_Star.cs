@@ -20,8 +20,8 @@ public class S_Star
 
     // Lines that were made with this star
     [Header("Lines Attached to Star")]
-    public LineRenderer m_previousLine;
-    public LineRenderer m_nextLine;
+    public S_ConstellationLine m_previousLine;
+    public S_ConstellationLine m_nextLine;
     
     //Functions can be added to be used in other star scripts, tested and works - Josh
 }

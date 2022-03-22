@@ -4876,10 +4876,10 @@ MonoBehaviour:
       - m_Target: {fileID: 2099707690}
         m_TargetAssemblyTypeName: S_DrawingManager, Assembly-CSharp
         m_MethodName: ConstellationReset
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: S_StarClass, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6015,6 +6015,7 @@ MonoBehaviour:
   f_lineWidth: 0
   f_lineLength: 0
   s_nullStarInst: {fileID: 0}
+  b_starAdded: 0
 --- !u!4 &470833517
 Transform:
   m_ObjectHideFlags: 0
@@ -11133,6 +11134,7 @@ MonoBehaviour:
   b_useRed: 0
   b_useYellow: 0
   b_useBlue: 0
+  v3_givenPosition: {x: 0, y: 0, z: 0}
   v4_doTweenShakeValues: {x: 0, y: 0, z: 0, w: 0}
   v3_doTweenScale: {x: 0, y: 0, z: 0}
   cl_redColor: {r: 0.54901963, g: 0.09019608, b: 0.09019608, a: 1}

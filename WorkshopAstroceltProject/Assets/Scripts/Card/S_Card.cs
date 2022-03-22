@@ -291,7 +291,7 @@ public class S_Card : MonoBehaviour
     public void OnHoverEnter()
     {
         //Instantiate a new card based off the location of the mouse and the hoverHeight
-        c_zoomCard = Instantiate(gameObject, new Vector2(Input.mousePosition.x, Input.mousePosition.y + i_hoverHeight), Quaternion.identity);
+        c_zoomCard = Instantiate(gameObject, new Vector2(transform.position.x, transform.position.y + i_hoverHeight), Quaternion.identity);
         c_zoomCard.transform.SetParent(cv_canvas.transform, false);
 
         //scale the transform of the rect

@@ -48,7 +48,6 @@ public class S_ConstellationLine : MonoBehaviour
             }
             else
             {
-                print("Here workls");
                 if (!b_starAdded)
                 {
                     g_global.g_ConstellationManager.AddStarToCurConstellation(s_nextStar);
@@ -58,7 +57,7 @@ public class S_ConstellationLine : MonoBehaviour
         }
         if (other.CompareTag("Line")) //check if collider is a line
         {
-            LineRenderer _prevLine = s_previousStar.s_star.m_previousLine;
+            LineRenderer _prevLine = s_previousStar.s_star.m_previousLine.GetComponent<LineRenderer>();
             if (other.GetComponent<S_ConstellationLine>().i_index < i_index && other.GetComponent<LineRenderer>()!=_prevLine) //check which one has a larger index and if it is equal to the previous line
             {
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
@@ -83,7 +82,7 @@ public class S_ConstellationLine : MonoBehaviour
     /// </summary>
     public float calculateYOffset(float _width)
     {
-        float _offsetedWidth = _width * (1 - f_boxOffsetY);
+        float _offsetedWidth = _width * (1-f_boxOffsetY);
         return _offsetedWidth;
     }
 

@@ -50,7 +50,6 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
-
         //change the star sound here if the line is formed
         i_starSound++;
 
@@ -85,8 +84,8 @@ public class S_DrawingManager : MonoBehaviour
         i_index++;
 
         //set the vars for the stars so that they have the line theyre attached to
-        _star1.s_star.m_nextLine = _newLine;
-        _star2.s_star.m_previousLine = _newLine;
+        _star1.s_star.m_nextLine = _lineScript;
+        _star2.s_star.m_previousLine = _lineScript;
 
         //set the previous star and loc
         g_global.g_ConstellationManager.s_previousStar = _star2;
@@ -121,6 +120,9 @@ public class S_DrawingManager : MonoBehaviour
         //destroy the line
         g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
         Destroy(_line);
+
+        //delete the star from the list
+        g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
     }
 
     /// <summary>

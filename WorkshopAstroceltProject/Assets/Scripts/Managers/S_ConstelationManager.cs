@@ -62,12 +62,12 @@ public class S_ConstelationManager : MonoBehaviour
     {
         //add to data structure
         ls_curConstellation.Add(_star);
-        print(ls_curConstellation.Count());
 
         //check the type of the star added
         if (_star.starType == "Ritual")
         {
-            if (str_curColor != "") { g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); }
+            //go back once if it is another ritual star
+            if (str_curColor != "") { g_global.g_DrawingManager.GoBackOnce(ls_curConstellation[ls_curConstellation.Count()-1].s_star.m_previousLine.gameObject); }
 
             //get the ritual star component
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
@@ -114,9 +114,9 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void DeleteTopStarCurConstellation()
     {
-        S_StarClass _star = ls_curConstellation[ls_curConstellation.Count()];
+        S_StarClass _star = ls_curConstellation[ls_curConstellation.Count()-1];
 
-        ls_curConstellation.RemoveAt(ls_curConstellation.Count());
+        ls_curConstellation.RemoveAt(ls_curConstellation.Count()-1);
 
         if (_star.starType == "Ritual")
         {
@@ -231,10 +231,11 @@ public class S_ConstelationManager : MonoBehaviour
         {
             //trigger the star sound here
 
-            //assining the colored energy to the count
-            _energy = (int)Mathf.Round(_energy * g_global.g_UIManager.p_f_lineMultiplierAmount);
+            //add the line multiplier
+            //_energy = (int)Mathf.Round(_energy * g_global.g_UIManager.p_f_lineMultiplierAmount);
             i_energyCount = _energy;
 
+            //assining the colored energy to the count
             if (str_curColor == "red") { i_redEnergy = _energy; }
             else if (str_curColor == "yellow") { i_yellowEnergy = _energy; }
             else if (str_curColor == "blue") { i_blueEnergy = _energy; }
