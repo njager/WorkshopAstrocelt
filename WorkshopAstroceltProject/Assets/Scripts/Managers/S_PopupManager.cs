@@ -10,7 +10,7 @@ public class S_PopupManager : MonoBehaviour
 {
     //private variables
     private S_Global g_global;
-    [SerializeField] TextMeshPro tx_textMesh;
+    [SerializeField] TextMeshProUGUI tx_textMesh;
 
     [Header("Position Data")]
     [SerializeField] Vector3 v3_startingTextPopupPosition; 
