@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 684450524107534984}
   - component: {fileID: 5554066982219315847}
   - component: {fileID: 7052261342896429276}
-  - component: {fileID: 8256312126815950930}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -136,28 +135,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068484044281633941}
   m_CullTransparentMesh: 1
---- !u!114 &8256312126815950930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068484044281633941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fc2a37cc6647dc44c84770f522d16158, type: 3}
-  m_PreserveAspect: 0
 --- !u!1 &1211010528336425680
 GameObject:
   m_ObjectHideFlags: 0
