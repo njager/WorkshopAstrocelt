@@ -112,6 +112,7 @@ public class S_Card : MonoBehaviour
         if (c_b_redColorType) { c_str_color = "red"; }
         else if (c_b_yellowColorType) { c_str_color = "yellow"; }
         else if (c_b_blueColorType) { c_str_color = "blue"; }
+        else if(c_b_whiteColorType) { c_str_color = "white"; }
     }
 
     /// <summary>
@@ -228,6 +229,7 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
+            print(c_i_energyCost);
             if(g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
             {
                 if (_character.GetComponent<S_Enemy>() != null)

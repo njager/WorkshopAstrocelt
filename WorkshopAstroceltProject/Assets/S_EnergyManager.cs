@@ -51,7 +51,7 @@ public class S_EnergyManager : MonoBehaviour
     public bool useEnergy(float _energy, string _color)
     {
         //make sure the colors match before using energy
-        if (_color == str_energyColor) 
+        if (_color == str_energyColor || _color == "white") 
         { 
             i_energyCount -= _energy;
             return true;
