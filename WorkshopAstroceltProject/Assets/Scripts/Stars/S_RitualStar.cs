@@ -23,6 +23,11 @@ public class S_RitualStar : MonoBehaviour
     public bool s_b_blueColor;
     public bool s_b_yellowColor;
 
+    [Header("Star Collisons")]
+    public BoxCollider2D s_redStarCollider;
+    public PolygonCollider2D s_blueStarCollider;
+    public PolygonCollider2D s_yellowStarCollider;
+
     /// <summary>
     /// Grab global for the ritual star
     /// Randomly choose between red, blue, and yellow ritual star graphics. 
@@ -65,8 +70,9 @@ public class S_RitualStar : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the starSprite = to the SpriteRenderer
-    /// Then assign the startColor to the starSprite  
+    /// Set the starSprite = to the active SpriteRenderer based off bool
+    /// Then assign the startColor to the starSprite
+    /// Toggle colliders for the active graphic
     /// - Riley & Josh
     /// </summary>
     private void Start()
@@ -77,7 +83,12 @@ public class S_RitualStar : MonoBehaviour
             s_redRitualStarGraphic.SetActive(true);
             s_blueRitualStarGraphic.SetActive(false);
             s_yellowRitualStarGraphic.SetActive(false);
-            
+
+            // Toggle Collider for Red
+            s_redStarCollider.enabled = true;
+            s_blueStarCollider.enabled = false;
+            s_yellowStarCollider.enabled = false; 
+
             // Grab correct graphic
             s_starSprite = s_redRitualStarGraphic.GetComponent<SpriteRenderer>();
         }
@@ -88,6 +99,11 @@ public class S_RitualStar : MonoBehaviour
             s_blueRitualStarGraphic.SetActive(true);
             s_yellowRitualStarGraphic.SetActive(false);
 
+            // Toggle Collider for Blue
+            s_redStarCollider.enabled = false;
+            s_blueStarCollider.enabled = true;
+            s_yellowStarCollider.enabled = false;
+
             // Grab correct graphic
             s_starSprite = s_blueRitualStarGraphic.GetComponent<SpriteRenderer>();
         }
@@ -97,6 +113,11 @@ public class S_RitualStar : MonoBehaviour
             s_redRitualStarGraphic.SetActive(false);
             s_blueRitualStarGraphic.SetActive(false);
             s_yellowRitualStarGraphic.SetActive(true);
+
+            // Toggle Collider for Yellow
+            s_redStarCollider.enabled = false;
+            s_blueStarCollider.enabled = false;
+            s_yellowStarCollider.enabled = true;
 
             // Grab correct graphic
             s_starSprite = s_yellowRitualStarGraphic.GetComponent<SpriteRenderer>();
@@ -124,7 +145,6 @@ public class S_RitualStar : MonoBehaviour
         {
             s_starSprite.color = s_c_yellowStarHoverColor;
         }
-
     }
 
     /// <summary>
@@ -135,11 +155,10 @@ public class S_RitualStar : MonoBehaviour
     /// </summary>
     private void OnMouseExit()
     {
-        
         s_starSprite.color = s_c_starStartColor;
     }
 
-    public void OnMouseDown()
+    private void OnMouseDown()
     {
 
         if (g_global.g_ConstellationManager.b_starLockout == true)
