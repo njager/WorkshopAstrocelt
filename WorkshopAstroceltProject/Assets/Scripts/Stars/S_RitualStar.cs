@@ -29,6 +29,35 @@ public class S_RitualStar : MonoBehaviour
         g_global = S_Global.Instance;
 
         //Determine random color in awake first, to be used for hover effects in start
+        int _colorIntRand = Random.Range(1, 3);
+        
+        if(_colorIntRand == 1) // System choose red
+        {
+            // Adjust accordingly
+            s_b_redColor = true;
+            s_b_blueColor = false;
+            s_b_yellowColor = false; 
+        }
+
+        else if (_colorIntRand == 2) // System choose blue
+        {
+            // Adjust accordingly
+            s_b_redColor = false;
+            s_b_blueColor = true;
+            s_b_yellowColor = false;
+        }
+
+        else if (_colorIntRand == 3) // System choose yellow
+        {
+            // Adjust accordingly
+            s_b_redColor = false;
+            s_b_blueColor = false;
+            s_b_yellowColor = true;
+        }
+        else
+        {
+            Debug.Log("Ritual Star error!");
+        }
     }
 
     /// <summary>
