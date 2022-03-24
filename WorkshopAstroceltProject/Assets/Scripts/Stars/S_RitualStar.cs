@@ -5,12 +5,15 @@ using UnityEngine;
 public class S_RitualStar : MonoBehaviour
 {
     private S_Global g_global;
-    private Color c_starStartColor;
+    private Color s_c_starStartColor;
     private SpriteRenderer s_starSprite;
 
     [Header("Star Colors")]
-    public Color c_starHoverColor;
-    //public GameObject s_neutralRitualStarGraphic; Non-existent
+    public Color s_c_redStarHoverColor;
+    public Color s_c_blueStarHoverColor;
+    public Color s_c_yellowStarHoverColor;
+
+    [Header("Star Graphics")]
     public GameObject s_redRitualStarGraphic;
     public GameObject s_blueRitualStarGraphic;
     public GameObject s_yellowRitualStarGraphic;
@@ -21,8 +24,9 @@ public class S_RitualStar : MonoBehaviour
     public bool s_b_yellowColor;
 
     /// <summary>
-    /// Grab global for the ritual star if needed
+    /// Grab global for the ritual star
     /// Randomly choose between red, blue, and yellow ritual star graphics. 
+    /// -Josh
     /// </summary>
     private void Awake()
     {
@@ -67,21 +71,72 @@ public class S_RitualStar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        s_starSprite = s_redRitualStarGraphic.GetComponent<SpriteRenderer>();
+        if(s_b_redColor == true) // Set Red Graphic as main graphic, toggle it on and all others off
+        {
+            // Toggles Red
+            s_redRitualStarGraphic.SetActive(true);
+            s_blueRitualStarGraphic.SetActive(false);
+            s_yellowRitualStarGraphic.SetActive(false);
+            
+            // Grab correct graphic
+            s_starSprite = s_redRitualStarGraphic.GetComponent<SpriteRenderer>();
+        }
+        else if (s_b_blueColor == true) // Set Blue Graphic as main graphic, toggle it on and all others off
+        {
+            // Toggles Blue
+            s_redRitualStarGraphic.SetActive(false);
+            s_blueRitualStarGraphic.SetActive(true);
+            s_yellowRitualStarGraphic.SetActive(false);
 
-        c_starStartColor = s_starSprite.color;
+            // Grab correct graphic
+            s_starSprite = s_blueRitualStarGraphic.GetComponent<SpriteRenderer>();
+        }
+        else if (s_b_yellowColor == true) // Set Yellow Graphic as main graphic, toggle it on and all others off
+        {
+            // Toggles Yellow
+            s_redRitualStarGraphic.SetActive(false);
+            s_blueRitualStarGraphic.SetActive(false);
+            s_yellowRitualStarGraphic.SetActive(true);
+
+            // Grab correct graphic
+            s_starSprite = s_yellowRitualStarGraphic.GetComponent<SpriteRenderer>();
+        }
+
+        //Then grab that sprites color (should be same for whatever is active)
+        s_c_starStartColor = s_starSprite.color;
     }
 
+    /// <summary>
+    /// Change the color to the hover color when moused over according to color when moused over
+    /// - Josh
+    /// </summary>
     private void OnMouseEnter()
     {
-        //change the color to the hover color when moused over
-        s_starSprite.color = c_starHoverColor;
+        if (s_b_redColor == true) // If Red
+        {
+            s_starSprite.color = s_c_redStarHoverColor;
+        }
+        else if (s_b_blueColor == true) // If Blue
+        {
+            s_starSprite.color = s_c_blueStarHoverColor;
+        }
+        else if (s_b_yellowColor == true) // If Yellow
+        {
+            s_starSprite.color = s_c_yellowStarHoverColor;
+        }
+
     }
 
+    /// <summary>
+    /// Change the color to the start color when mouse leaves the star
+    /// Doesn't have to be determined beforehand, unlike the hover color
+    /// Derived at start
+    /// - Josh
+    /// </summary>
     private void OnMouseExit()
     {
-        //change the color to the start color when mouse leaves
-        s_starSprite.color = c_starStartColor;
+        
+        s_starSprite.color = s_c_starStartColor;
     }
 
     public void OnMouseDown()
@@ -96,7 +151,7 @@ public class S_RitualStar : MonoBehaviour
         }
         else
         {
-            Debug.Log("Please finish play before drawing again.");
+            Debug.Log("Please play your cards before drawing again.");
             return;
         }
     }
