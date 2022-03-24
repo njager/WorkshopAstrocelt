@@ -24,7 +24,12 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData _eventData)
     {
         g_global.g_objectBeingDragged = null;
-        g_global.g_objectBeingDragged = _eventData.pointerDrag;
+
+        //check if object is first in the list and then set it as the drag object
+        if(_eventData.pointerDrag == g_global.lst_p_playerHand[0])
+        {
+            g_global.g_objectBeingDragged = _eventData.pointerDrag;
+        }
     }
 
     public void OnDrag(PointerEventData _eventData)
@@ -39,6 +44,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData _eventData)
     {
+
         //Nothing yet
     }
 }
