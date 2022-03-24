@@ -228,15 +228,16 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
-            g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color);
-
-            if (_character.GetComponent<S_Enemy>() != null)
+            if(g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
             {
-                TriggerAttackCard(_character.GetComponent<S_Enemy>());
-            }
-            else
-            {
-                //c_cardrectTransform.position; 
+                if (_character.GetComponent<S_Enemy>() != null)
+                {
+                    TriggerAttackCard(_character.GetComponent<S_Enemy>());
+                }
+                else
+                {
+                    //c_cardrectTransform.position; 
+                }
             }
         }
         else if(c_b_shieldMainEffect == true)
