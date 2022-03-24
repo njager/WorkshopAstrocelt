@@ -19,6 +19,9 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         g_global = S_Global.Instance;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         if(tag == "Player") // If on player, set bools accordingly
@@ -33,13 +36,19 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         }
     }
 
+    /// <summary>
+    /// The recipricating event for OnDragEnd,
+    /// this is a built-in event handler that will automatically respond to an object ending it's drag on the collision
+    /// Used in conjunction with 
+    /// </summary>
+    /// <param name="_eventData"></param>
     public void OnDrop(PointerEventData _eventData)
     {
         if (_eventData.pointerDrag != null)
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
             //c_cardData = g_global.g_objectBeingDragged.GetComponent<S_Card>();
-            if (g_global.g_energyManager.i_energyCount >= c_cardData.c_i_energyCost)
+            if (g_global.g_ConstellationManager.i_energyCount >= c_cardData.c_i_energyCost)
             {
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
                 {
