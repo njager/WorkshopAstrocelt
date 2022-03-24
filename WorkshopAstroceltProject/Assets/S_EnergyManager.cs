@@ -15,6 +15,7 @@ public class S_EnergyManager : MonoBehaviour
     private void Awake()
     {
         g_global = S_Global.Instance;
+        i_energyCount = 0;
     }
 
     public void SetEnergy(string _color, int _energy)
