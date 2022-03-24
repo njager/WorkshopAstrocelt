@@ -6,34 +6,39 @@ public class S_RitualStar : MonoBehaviour
 {
     private S_Global g_global;
     private Color c_starStartColor;
-
     private SpriteRenderer s_starSprite;
 
     [Header("Star Colors")]
     public Color c_starHoverColor;
-    public GameObject s_neutralRitualStarGraphic;
+    //public GameObject s_neutralRitualStarGraphic; Non-existent
     public GameObject s_redRitualStarGraphic;
     public GameObject s_blueRitualStarGraphic;
     public GameObject s_yellowRitualStarGraphic;
 
-    /// <summary>
-    /// Fetch the global script and assign the class based off of the tag for this gameobject
-    /// set the starSprite = to the SpriteRenderer
-    /// then assign the startColor to the starSprite  
-    /// Do in start to properly fetch global
-    /// - Riley & Josh
-    /// </summary>
+    [Header("Color Booleans")]
+    public bool s_b_redColor;
+    public bool s_b_blueColor;
+    public bool s_b_yellowColor;
 
-    private void Start()
+    /// <summary>
+    /// Grab global for the ritual star if needed
+    /// Randomly choose between red, blue, and yellow ritual star graphics. 
+    /// </summary>
+    private void Awake()
     {
-        //change null to nullstar 
         g_global = S_Global.Instance;
 
-        //assign after the star class gets assigned 
+        //Determine random color in awake first, to be used for hover effects in start
+    }
 
-        // Need to change for ritual star after we determine how ritual stars know they should be distnguished - Josj
+    /// <summary>
+    /// Set the starSprite = to the SpriteRenderer
+    /// Then assign the startColor to the starSprite  
+    /// - Riley & Josh
+    /// </summary>
+    private void Start()
+    {
         s_starSprite = s_redRitualStarGraphic.GetComponent<SpriteRenderer>();
-        // will be neutral star graphic for now since that's the one on by default. 
 
         c_starStartColor = s_starSprite.color;
     }
