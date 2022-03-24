@@ -21,7 +21,7 @@ public class S_EnergyManager : MonoBehaviour
     public void SetEnergy(string _color, int _energy)
     {
         str_energyColor = _color;
-        i_energyCount = _energy;
+        i_energyCount = _energy + 10;
 
         g_global.g_UIManager.ChangeEnergyIcon(str_energyColor);
     }
@@ -48,12 +48,17 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     /// <param name="_energy"></param>
     /// <param name="_color"></param>
-    public void useEnergy(float _energy, string _color)
+    public bool useEnergy(float _energy, string _color)
     {
         //make sure the colors match before using energy
-        if (_color == str_energyColor) { i_energyCount -= _energy; }
+        if (_color == str_energyColor) 
+        { 
+            i_energyCount -= _energy;
+            return true;
+        }
         else
         {
+            return false;
             Debug.Log("Wrong color Bitch");
         }
     }
