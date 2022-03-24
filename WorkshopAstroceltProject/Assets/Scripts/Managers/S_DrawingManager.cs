@@ -138,7 +138,7 @@ public class S_DrawingManager : MonoBehaviour
 
         //reset the energy, multipliers, and the sond queues
         g_global.g_lineMultiplierManager.ClearLineList();
-        g_global.g_ConstellationManager.ClearEnergy();
+        g_global.g_energyManager.ClearEnergy();
         i_starSound = 0;
         //Debug.Log("Constellation Reset Triggered");
 

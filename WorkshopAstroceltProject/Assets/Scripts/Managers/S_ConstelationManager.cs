@@ -36,11 +36,6 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_minSize;
     public int i_maxSize;
 
-    [Header("Energy Colors")]
-    public int i_redEnergy;
-    public int i_yellowEnergy;
-    public int i_blueEnergy;
-
     [Header("Energy Count")]
     public int i_energyCount;
 
@@ -233,37 +228,11 @@ public class S_ConstelationManager : MonoBehaviour
 
             //add the line multiplier
             //_energy = (int)Mathf.Round(_energy * g_global.g_UIManager.p_f_lineMultiplierAmount);
-            i_energyCount = _energy;
-
-            //assining the colored energy to the count
-            if (str_curColor == "red") { i_redEnergy = _energy; }
-            else if (str_curColor == "yellow") { i_yellowEnergy = _energy; }
-            else if (str_curColor == "blue") { i_blueEnergy = _energy; }
-
-            g_global.g_UIManager.ChangeEnergyIcon(str_curColor);
 
             //pass the _count to another function
+            g_global.g_energyManager.SetEnergy(str_curColor, _energy);
         }
 
-        b_starLockout = true;
-    }
-
-    
-
-    /// <summary>
-    /// This Function gets rid of the stored energy in the constellation manager
-    /// Gets cleared when turns change and the like
-    /// - Riley
-    /// </summary>
-    public void ClearEnergy()
-    {
-        i_redEnergy = 0;
-        i_yellowEnergy = 0;
-        i_blueEnergy = 0;
-        i_energyCount = 0;
-
-        g_global.g_DrawingManager.i_starSound = 0;
-        g_global.g_lineMultiplierManager.ClearLineList();
         b_starLockout = true;
     }
 }

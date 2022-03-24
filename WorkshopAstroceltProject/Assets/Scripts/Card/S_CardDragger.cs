@@ -44,7 +44,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData _eventData)
     {
-
         //Nothing yet
+        //remove card from hand
     }
 }

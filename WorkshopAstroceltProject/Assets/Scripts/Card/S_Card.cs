@@ -36,6 +36,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_blueColorType;
     public bool c_b_yellowColorType;
     public bool c_b_whiteColorType;
+    public string c_str_color;
 
     [Header("Card Graphic Assets")]
     public Sprite c_redArtGraphic; // If Red, toggle this
@@ -107,6 +108,10 @@ public class S_Card : MonoBehaviour
         c_cardBaseImage = GetComponent<Image>().sprite;
 
         cv_canvas = GameObject.Find("GreyboxCanvas");
+
+        if (c_b_redColorType) { c_str_color = "red"; }
+        else if (c_b_yellowColorType) { c_str_color = "yellow"; }
+        else if (c_b_blueColorType) { c_str_color = "blue"; }
     }
 
     /// <summary>
@@ -223,8 +228,9 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
-            g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
-            if(_character.GetComponent<S_Enemy>() != null)
+            g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color);
+
+            if (_character.GetComponent<S_Enemy>() != null)
             {
                 TriggerAttackCard(_character.GetComponent<S_Enemy>());
             }

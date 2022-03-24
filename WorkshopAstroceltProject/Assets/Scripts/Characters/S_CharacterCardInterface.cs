@@ -39,7 +39,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
             //c_cardData = g_global.g_objectBeingDragged.GetComponent<S_Card>();
-            if (g_global.g_ConstellationManager.i_energyCount >= c_cardData.c_i_energyCost)
+            if (g_global.g_energyManager.i_energyCount >= c_cardData.c_i_energyCost)
             {
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
                 {
