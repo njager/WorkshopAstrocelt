@@ -12,6 +12,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("Useful Variables")]
     public Vector3 c_v3_initialPosition;
     public RectTransform c_cardTransform;
+    public S_CardTemplate c_card;
 
     public int transformCounter = 0; // Use this to trigger bheavior only once;
 
@@ -19,27 +20,30 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         g_global = S_Global.Instance;
         c_cardTransform = GetComponent<RectTransform>();
+        c_card = GetComponent<S_Card>().c_cardTemplate;
     }
 
     public void OnBeginDrag(PointerEventData _eventData)
     {
         g_global.g_objectBeingDragged = null;
 
-        //check if object is first in the list and then set it as the drag object
-        if(_eventData.pointerDrag == g_global.lst_p_playerHand[0])
-        {
-            g_global.g_objectBeingDragged = _eventData.pointerDrag;
-        }
+        g_global.g_objectBeingDragged = _eventData.pointerDrag;
     }
 
     public void OnDrag(PointerEventData _eventData)
     {
-        if( transformCounter == 0)
+        //only trigger if your the front card in the hand
+        if (c_card == g_global.lst_p_playerHand[0])
         {
-            c_v3_initialPosition = gameObject.transform.position;
-            transformCounter++; // Increment counter to make this happen only once
+
+
+            if (transformCounter == 0)
+            {
+                c_v3_initialPosition = gameObject.transform.position;
+                transformCounter++; // Increment counter to make this happen only once
+            }
+            c_cardTransform.anchoredPosition += _eventData.delta / g_global.g_UIManager.greyboxCanvas.GetComponent<Canvas>().scaleFactor; // Take the change in mouse position and divide it by the size of the box it's in
         }
-        c_cardTransform.anchoredPosition += _eventData.delta / g_global.g_UIManager.greyboxCanvas.GetComponent<Canvas>().scaleFactor; // Take the change in mouse position and divide it by the size of the box it's in
     }
 
     public void OnEndDrag(PointerEventData _eventData)

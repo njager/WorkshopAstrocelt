@@ -214,7 +214,7 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = false;
 
         g_global.g_UIManager.p_f_lineMultiplierAmount = Mathf.Round(g_global.g_lineMultiplierManager.LineMultiplierCalculator() * 10f) / 10f;
-        g_global.g_UIManager.p_tx_lineMultiplierText.text = "Line Multiplier: " + g_global.g_UIManager.p_f_lineMultiplierAmount + "x";
+        //g_global.g_UIManager.p_tx_lineMultiplierText.text = "Line Multiplier: " + g_global.g_UIManager.p_f_lineMultiplierAmount + "x";
 
         //set up the energy
         int _energy = ls_curConstellation.Count() - 2;

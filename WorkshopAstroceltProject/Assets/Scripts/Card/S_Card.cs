@@ -122,6 +122,10 @@ public class S_Card : MonoBehaviour
     /// <param name="_cardData"></param>
     public void FetchCardData(S_CardTemplate _cardData)
     {
+        c_cardTemplate = _cardData;
+
+        this.GetComponent<S_CardDragger>().c_card = _cardData;
+
         //Load strings
         c_str_cardName = _cardData.CardName;
         c_str_headerText = _cardData.HeaderText;
