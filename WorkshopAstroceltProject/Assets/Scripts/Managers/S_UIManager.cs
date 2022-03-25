@@ -262,7 +262,7 @@ public class S_UIManager : MonoBehaviour
         // Text
         p_tx_playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
 
-        p_tx_energyText.text = "Current Energy: " + g_global.g_energyManager.i_energyCount.ToString();
+        //p_tx_energyText.text = "Current Energy: " + g_global.g_energyManager.i_energyCount.ToString();
 
         //Health and Shield Bar
         p_playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;

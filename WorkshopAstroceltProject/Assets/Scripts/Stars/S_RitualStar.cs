@@ -29,8 +29,8 @@ public class S_RitualStar : MonoBehaviour
     public PolygonCollider2D s_yellowStarCollider;
 
     [Header("Star Scale Values")]
-    [SerializeField] float f_xScaleVector;
-    [SerializeField] float f_yScaleVector;
+    [SerializeField] float f_lowerScaleBound;
+    [SerializeField] float f_upperScaleBound;
 
     /// <summary>
     /// Grab global for the ritual star
@@ -128,7 +128,7 @@ public class S_RitualStar : MonoBehaviour
             s_starSprite = s_yellowRitualStarGraphic.GetComponent<SpriteRenderer>();
         }
 
-        // Trigger helper function scale change
+        // Trigger helper function scale change, 3 times for more variation (small changes)
         ScaleChange();
         ScaleChange();
         ScaleChange();
@@ -143,16 +143,20 @@ public class S_RitualStar : MonoBehaviour
     /// </summary>
     private void ScaleChange()
     {
-        f_xScaleVector = Random.Range(0.0f, 0.03f); 
-        f_yScaleVector = Random.Range(0.0f, 0.03f);
-        Vector3 _tempScale = new Vector3(f_xScaleVector, f_yScaleVector, 0); // Build new Scale
+        // Set random float values for vector bulding 
+        float _xScaleVector = Random.Range(f_lowerScaleBound, f_upperScaleBound); 
+        float _yScaleVector = Random.Range(f_lowerScaleBound, f_upperScaleBound);
 
-        int _scaleChance = Random.Range(0, 2); // Toss a coin
-        if (_scaleChance == 0) // Add new scale
+        // Build new Scale
+        Vector3 _tempScale = new Vector3(_xScaleVector, _yScaleVector, 0);
+
+        // Toss a coin
+        int _scaleChance = Random.Range(0, 2); 
+        if (_scaleChance == 0) // Add new scale, heads
         {
             transform.localScale += _tempScale;
         }
-        if (_scaleChance == 1) // Subtract new scale
+        if (_scaleChance == 1) // Subtract new scale, tails
         {
             transform.localScale -= _tempScale;
         }
