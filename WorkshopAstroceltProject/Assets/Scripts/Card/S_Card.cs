@@ -153,7 +153,7 @@ public class S_Card : MonoBehaviour
         c_b_burnStatusEffect = _cardData.BurnStatusEffect;
         c_b_drawStatusEffect = _cardData.DrawStatusEffect;
         c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
-        c_b_fralitizeStatusEffect = _cardData.FralitizeStatusEffect;
+        c_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
         c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect; 
 
         //Toggle Color Types, will need to adapt for synergies
