@@ -36,15 +36,13 @@ public class S_CardTemplate : ScriptableObject
     [Header("Status Effect Types")]
     public bool NoEffect; 
     public bool BleedStatusEffect;
-    public bool StunStatusEffect;
     public bool AcidStatusEffect;
-    public bool EmpowerStatusEffect;
-    public bool RestrainStatusEffect;
     public bool BurnStatusEffect;
-    public bool ShockStatusEffect;
+    public bool ResistStatusEffect;
+    public bool SiphonStatusEffect;
+    public bool StunStatusEffect;
     public bool DrawStatusEffect;
-    public bool SiphonStatusEffect; 
-    public bool FralitizeStatusEffect;
+    public bool FralityStatusEffect;
     public bool ManipulateStatusEffect; 
 
     [Header("Potential Status Effect Values")]

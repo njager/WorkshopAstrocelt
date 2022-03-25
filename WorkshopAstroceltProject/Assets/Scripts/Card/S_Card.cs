@@ -59,11 +59,8 @@ public class S_Card : MonoBehaviour
     public bool c_b_bleedStatusEffect;
     public bool c_b_stunStatusEffect;
     public bool c_b_acidStatusEffect;
-    public bool c_b_empowerStatusEffect;
-    public bool c_b_luckyStatusEffect;
-    public bool c_b_restrainStatusEffect;
+    public bool c_b_resistStatusEffect;
     public bool c_b_burnStatusEffect;
-    public bool c_b_shockStatusEffect;
     public bool c_b_drawStatusEffect;
     public bool c_b_siphonStatusEffect;
     public bool c_b_fralitizeStatusEffect;
@@ -152,10 +149,8 @@ public class S_Card : MonoBehaviour
         c_b_bleedStatusEffect = _cardData.BleedStatusEffect;
         c_b_stunStatusEffect = _cardData.StunStatusEffect;
         c_b_acidStatusEffect = _cardData.AcidStatusEffect;
-        c_b_empowerStatusEffect = _cardData.EmpowerStatusEffect;
-        c_b_restrainStatusEffect = _cardData.RestrainStatusEffect;
+        c_b_resistStatusEffect = _cardData.ResistStatusEffect;
         c_b_burnStatusEffect = _cardData.BurnStatusEffect;
-        c_b_shockStatusEffect = _cardData.ShockStatusEffect;
         c_b_drawStatusEffect = _cardData.DrawStatusEffect;
         c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
         c_b_fralitizeStatusEffect = _cardData.FralitizeStatusEffect;
