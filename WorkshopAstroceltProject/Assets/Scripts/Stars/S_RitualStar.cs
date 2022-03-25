@@ -24,7 +24,7 @@ public class S_RitualStar : MonoBehaviour
     public bool s_b_yellowColor;
 
     [Header("Star Collisons")]
-    public BoxCollider2D s_redStarCollider;
+    public PolygonCollider2D s_redStarCollider;
     public PolygonCollider2D s_blueStarCollider;
     public PolygonCollider2D s_yellowStarCollider;
 
