@@ -10,8 +10,6 @@ public class S_EnergyManager : MonoBehaviour
     public string str_energyColor;
     public float i_energyCount;
 
-
-
     private void Awake()
     {
         g_global = S_Global.Instance;

@@ -29,8 +29,8 @@ public class S_RitualStar : MonoBehaviour
     public PolygonCollider2D s_yellowStarCollider;
 
     [Header("Star Scale Values")]
-    [SerializeField] float xScaleVector;
-    [SerializeField] float yScaleVector;
+    [SerializeField] float f_xScaleVector;
+    [SerializeField] float f_yScaleVector;
 
     /// <summary>
     /// Grab global for the ritual star
@@ -42,7 +42,7 @@ public class S_RitualStar : MonoBehaviour
         g_global = S_Global.Instance;
 
         //Determine random color in awake first, to be used for hover effects in start
-        int _colorIntRand = Random.Range(1, 3);
+        int _colorIntRand = Random.Range(1, 4);
         
         if(_colorIntRand == 1) // System choose red
         {
@@ -128,20 +128,34 @@ public class S_RitualStar : MonoBehaviour
             s_starSprite = s_yellowRitualStarGraphic.GetComponent<SpriteRenderer>();
         }
 
-        // Scaling math
-        int _scaleChance = Random.Range(0, 1);
-        Vector3 _tempScale = new Vector3(xScaleVector, yScaleVector, 0);
-        if(_scaleChance == 0) // Add scale
-        {
-            transform.localScale += _tempScale;
-        }
-        if (_scaleChance == 1) // Subtract scale
-        {
-            transform.localScale -= _tempScale;
-        } 
+        // Trigger helper function scale change
+        ScaleChange();
+        ScaleChange();
+        ScaleChange();
+       
         
         //Then grab that sprites color (should be same for whatever is active)
         s_c_starStartColor = s_starSprite.color;
+    }
+
+    /// <summary>
+    /// HelperFunction to change scale of the stars
+    /// </summary>
+    private void ScaleChange()
+    {
+        f_xScaleVector = Random.Range(0.0f, 0.03f); 
+        f_yScaleVector = Random.Range(0.0f, 0.03f);
+        Vector3 _tempScale = new Vector3(f_xScaleVector, f_yScaleVector, 0); // Build new Scale
+
+        int _scaleChance = Random.Range(0, 2); // Toss a coin
+        if (_scaleChance == 0) // Add new scale
+        {
+            transform.localScale += _tempScale;
+        }
+        if (_scaleChance == 1) // Subtract new scale
+        {
+            transform.localScale -= _tempScale;
+        }
     }
 
     /// <summary>
