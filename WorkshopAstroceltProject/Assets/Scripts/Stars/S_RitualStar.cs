@@ -28,6 +28,10 @@ public class S_RitualStar : MonoBehaviour
     public PolygonCollider2D s_blueStarCollider;
     public PolygonCollider2D s_yellowStarCollider;
 
+    [Header("Star Scale Values")]
+    [SerializeField] float xScaleVector;
+    [SerializeField] float yScaleVector;
+
     /// <summary>
     /// Grab global for the ritual star
     /// Randomly choose between red, blue, and yellow ritual star graphics. 
@@ -73,6 +77,7 @@ public class S_RitualStar : MonoBehaviour
     /// Set the starSprite = to the active SpriteRenderer based off bool
     /// Then assign the startColor to the starSprite
     /// Toggle colliders for the active graphic
+    /// Also change scale of the star in a small percentage
     /// - Riley & Josh
     /// </summary>
     private void Start()
@@ -123,6 +128,18 @@ public class S_RitualStar : MonoBehaviour
             s_starSprite = s_yellowRitualStarGraphic.GetComponent<SpriteRenderer>();
         }
 
+        // Scaling math
+        int _scaleChance = Random.Range(0, 1);
+        Vector3 _tempScale = new Vector3(xScaleVector, yScaleVector, 0);
+        if(_scaleChance == 0) // Add scale
+        {
+            transform.localScale += _tempScale;
+        }
+        if (_scaleChance == 1) // Subtract scale
+        {
+            transform.localScale -= _tempScale;
+        } 
+        
         //Then grab that sprites color (should be same for whatever is active)
         s_c_starStartColor = s_starSprite.color;
     }
