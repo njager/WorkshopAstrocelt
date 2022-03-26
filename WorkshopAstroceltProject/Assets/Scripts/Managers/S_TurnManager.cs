@@ -125,7 +125,7 @@ public class S_TurnManager : MonoBehaviour
         else
         {
             e_b_enemyDidAttack = false;
-            g_global.g_ConstellationManager.ClearEnergy();
+            g_global.g_energyManager.ClearEnergy();
             EnemyAttackingOrShielding();
             
 

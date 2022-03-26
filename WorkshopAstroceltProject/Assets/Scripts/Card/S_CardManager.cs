@@ -13,11 +13,7 @@ public class S_CardManager : MonoBehaviour
     public int p_i_startHandSize;
     public int p_i_drawPerTurn;
 
-    public GameObject topPosition;
-    public GameObject nextPosition;
-    public GameObject afterPosition;
-    public GameObject closePosition;
-    public GameObject bottomPosition;
+    public GameObject c_cardHolder;
 
     public GameObject c_cardPrefabTemplate;
 
@@ -27,7 +23,8 @@ public class S_CardManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        //NewHand();
+        //once the game starts give the players some cards
+        NewHand();
     }
 
     /// <summary>
@@ -71,70 +68,25 @@ public class S_CardManager : MonoBehaviour
                 //get the card game object and add it to the player hand
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
                 g_global.lst_p_playerHand.Add(_randomCard);
-                
-                
+
+                //add the card to the field and then assign an int to it
+                InstanceCard(_randomCard);
+                print(g_global.lst_p_playerDeck[0]);
             }
         }
     }
 
+    /// <summary>
+    /// This gets called from turn manager and is the new hand the player gets at a start of a turn
+    /// - Riley
+    /// </summary>
     public void NewHand()
     {
+        //clear the player hand
         g_global.lst_p_playerHand.Clear();
-        if (topPosition.transform.childCount > 0)
-        {
-            Destroy(topPosition.transform.GetChild(0).gameObject);
-        }
-        if (nextPosition.transform.childCount > 0)
-        {
-            Destroy(nextPosition.transform.GetChild(0).gameObject);
-        }
-        if (afterPosition.transform.childCount > 0)
-        {
-            Destroy(afterPosition.transform.GetChild(0).gameObject);
-        }
-        if (closePosition.transform.childCount > 0)
-        {
-            Destroy(closePosition.transform.GetChild(0).gameObject);
-        }
-        if (bottomPosition.transform.childCount > 0)
-        {
-            Destroy(bottomPosition.transform.GetChild(0).gameObject);
-        }
 
+        //deal the new cards
         DealCards(p_i_drawPerTurn);
-
-        print(g_global.lst_p_playerHand.Count);
-
-        foreach (S_CardTemplate card in g_global.lst_p_playerHand)
-        {
-
-            if (bullshit == 0) 
-            { 
-                InstanceCard(topPosition, card);
-                bullshit++;
-            }
-            else if (bullshit == 1)
-            {
-                InstanceCard(nextPosition, card);
-                bullshit++;
-            }
-            else if (bullshit == 2)
-            {
-                InstanceCard(afterPosition, card);
-                bullshit++;
-            }
-            else if(bullshit == 3)
-            {
-                InstanceCard(closePosition, card);
-                bullshit++;
-            }
-            else if (bullshit >= 4)
-            {
-                InstanceCard(bottomPosition, card);
-                bullshit=0;
-            }
-
-        }
     }
 
     /// <summary>
@@ -152,11 +104,17 @@ public class S_CardManager : MonoBehaviour
         g_global.lst_p_playerGrave.Clear();
     }
 
-    public void InstanceCard(GameObject _position, S_CardTemplate _cardTemplate)
+    /// <summary>
+    /// Create the card from the template and instantiate it to the hand.
+    /// This gets called from the dealcards function
+    /// -Riley Halloran
+    /// </summary>
+    /// <param name="_cardTemplate"></param>
+    public void InstanceCard(S_CardTemplate _cardTemplate)
     {
         //print("end");
         GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
         playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
-        playerCard.transform.SetParent(_position.gameObject.transform, false);
+        playerCard.transform.SetParent(c_cardHolder.gameObject.transform, false);
     }
 }

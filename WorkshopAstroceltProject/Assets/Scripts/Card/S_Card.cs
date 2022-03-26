@@ -36,6 +36,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_blueColorType;
     public bool c_b_yellowColorType;
     public bool c_b_whiteColorType;
+    public string c_str_color;
 
     [Header("Card Graphic Assets")]
     public Sprite c_redArtGraphic; // If Red, toggle this
@@ -58,11 +59,8 @@ public class S_Card : MonoBehaviour
     public bool c_b_bleedStatusEffect;
     public bool c_b_stunStatusEffect;
     public bool c_b_acidStatusEffect;
-    public bool c_b_empowerStatusEffect;
-    public bool c_b_luckyStatusEffect;
-    public bool c_b_restrainStatusEffect;
+    public bool c_b_resistStatusEffect;
     public bool c_b_burnStatusEffect;
-    public bool c_b_shockStatusEffect;
     public bool c_b_drawStatusEffect;
     public bool c_b_siphonStatusEffect;
     public bool c_b_fralitizeStatusEffect;
@@ -107,6 +105,11 @@ public class S_Card : MonoBehaviour
         c_cardBaseImage = GetComponent<Image>().sprite;
 
         cv_canvas = GameObject.Find("GreyboxCanvas");
+
+        if (c_b_redColorType) { c_str_color = "red"; }
+        else if (c_b_yellowColorType) { c_str_color = "yellow"; }
+        else if (c_b_blueColorType) { c_str_color = "blue"; }
+        else if(c_b_whiteColorType) { c_str_color = "white"; }
     }
 
     /// <summary>
@@ -116,6 +119,10 @@ public class S_Card : MonoBehaviour
     /// <param name="_cardData"></param>
     public void FetchCardData(S_CardTemplate _cardData)
     {
+        c_cardTemplate = _cardData;
+
+        this.GetComponent<S_CardDragger>().c_card = _cardData;
+
         //Load strings
         c_str_cardName = _cardData.CardName;
         c_str_headerText = _cardData.HeaderText;
@@ -142,13 +149,11 @@ public class S_Card : MonoBehaviour
         c_b_bleedStatusEffect = _cardData.BleedStatusEffect;
         c_b_stunStatusEffect = _cardData.StunStatusEffect;
         c_b_acidStatusEffect = _cardData.AcidStatusEffect;
-        c_b_empowerStatusEffect = _cardData.EmpowerStatusEffect;
-        c_b_restrainStatusEffect = _cardData.RestrainStatusEffect;
+        c_b_resistStatusEffect = _cardData.ResistStatusEffect;
         c_b_burnStatusEffect = _cardData.BurnStatusEffect;
-        c_b_shockStatusEffect = _cardData.ShockStatusEffect;
         c_b_drawStatusEffect = _cardData.DrawStatusEffect;
         c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
-        c_b_fralitizeStatusEffect = _cardData.FralitizeStatusEffect;
+        c_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
         c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect; 
 
         //Toggle Color Types, will need to adapt for synergies
@@ -223,14 +228,17 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
-            g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
-            if(_character.GetComponent<S_Enemy>() != null)
+            print(c_i_energyCost);
+            if(g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
             {
-                TriggerAttackCard(_character.GetComponent<S_Enemy>());
-            }
-            else
-            {
-                //c_cardrectTransform.position; 
+                if (_character.GetComponent<S_Enemy>() != null)
+                {
+                    TriggerAttackCard(_character.GetComponent<S_Enemy>());
+                }
+                else
+                {
+                    //c_cardrectTransform.position; 
+                }
             }
         }
         else if(c_b_shieldMainEffect == true)
