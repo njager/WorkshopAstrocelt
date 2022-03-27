@@ -76,6 +76,10 @@ public class S_Global : MonoBehaviour
 
     [Header("Card Dragging")]
     public GameObject g_objectBeingDragged;
+    public bool b_firstCard = true;
+
+    [Header("Audio")]
+    public GameObject a_audioPlayer;
 
     private void Awake()
     {
@@ -98,6 +102,9 @@ public class S_Global : MonoBehaviour
         //This likely needs to be set in the scene prefab
         g_i_enemyCountMax = g_i_enemyCount;
         //Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
+
+        //start the combat music loop
+        a_audioPlayer.SetActive(true);
     }
 
     //Adding cheat buttons
