@@ -39,6 +39,12 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Energy Count")]
     public int i_energyCount;
 
+
+    public GameObject _starSoundPhase1;
+    public GameObject _starSoundPhase2;
+
+    public int i_starSound = 0;
+
     private void Awake()
     {
         //fetch global, get set previous as null, and start with star lockout
@@ -55,6 +61,13 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
+        //change the star sound here if the line is formed
+        i_starSound++;
+
+        //Victor's sound
+        var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Note Order", i_starSound);
+
         //add to data structure
         ls_curConstellation.Add(_star);
 
@@ -109,6 +122,9 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void DeleteTopStarCurConstellation()
     {
+        //decrement the star sound
+        i_starSound--;
+
         S_StarClass _star = ls_curConstellation[ls_curConstellation.Count()-1];
 
         ls_curConstellation.RemoveAt(ls_curConstellation.Count()-1);
@@ -165,8 +181,8 @@ public class S_ConstelationManager : MonoBehaviour
         if (b_makingConstellation) //if you have started a constellation
         {
             //do some final thing with star sound
-            //_starSoundPhase1.SetActive(false);
-            //PlaySound();
+            _starSoundPhase1.SetActive(false);
+            PlaySound();
             
             g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
         }
@@ -210,6 +226,9 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void FinishConstellation(S_StarClass _node)
     {
+        //reset the audio
+        i_starSound = 0;
+
         //lock out stars while calculating
         b_starLockout = false;
 
@@ -234,5 +253,15 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         b_starLockout = true;
+    }
+
+    /// <summary>
+    /// Added by Victor to play FMOD sounds
+    /// </summary>
+    public void PlaySound()
+    {
+        _starSoundPhase2.SetActive(true);
+        var emitter = _starSoundPhase2.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Note Order", i_starSound);
     }
 }

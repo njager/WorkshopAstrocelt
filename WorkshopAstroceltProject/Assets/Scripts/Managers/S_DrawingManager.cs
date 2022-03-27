@@ -11,11 +11,6 @@ public class S_DrawingManager : MonoBehaviour
     //index for the lines
     public int i_index;
 
-    public GameObject _starSoundPhase1;
-    public GameObject _starSoundPhase2;
-
-    public int i_starSound = 0;
-
     [Header("Add the ConstellationLine")]
     public GameObject l_constelationLine;
 
@@ -28,19 +23,7 @@ public class S_DrawingManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
         i_index = 0;
-    }
-
-    /// <summary>
-    /// Added by Victor to play FMOD sounds
-    /// </summary>
-    public void PlaySound()
-    {
-        _starSoundPhase2.SetActive(true);
-        var emitter = _starSoundPhase2.GetComponent<FMODUnity.StudioEventEmitter>();
-        emitter.SetParameter("Note Order", i_starSound);
-    }
-
-    
+    }    
 
     /// <summary>
     /// This is the func that spawns the line renderer for the star map
@@ -50,13 +33,6 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
-        //change the star sound here if the line is formed
-        i_starSound++;
-
-        //Victor's sound
-        var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
-        emitter.SetParameter("Note Order", i_starSound);
-
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
         S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
@@ -100,10 +76,6 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void GoBackOnce(GameObject _line)
     {
-        
-        //decrement the star sound
-        i_starSound--;
-
         //set the cur previous star to have a nullstar as a previous
         g_global.g_ConstellationManager.s_previousStar.s_star.m_previous = s_nullStarInst;
 
@@ -139,7 +111,7 @@ public class S_DrawingManager : MonoBehaviour
         //reset the energy, multipliers, and the sond queues
         g_global.g_lineMultiplierManager.ClearLineList();
         g_global.g_energyManager.ClearEnergy();
-        i_starSound = 0;
+        
         //Debug.Log("Constellation Reset Triggered");
 
         S_StarClass _previousStar = _Star;

@@ -63,7 +63,7 @@ public class S_Player : MonoBehaviour
     public void PlayerShielded(int _shieldValue)
     {
         //play sound effect
-
+        a_audioPlayer.SetActive(true);
 
         p_playerAttributes.p_i_shield += _shieldValue; 
     }

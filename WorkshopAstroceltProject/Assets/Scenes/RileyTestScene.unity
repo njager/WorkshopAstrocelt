@@ -6699,6 +6699,8 @@ MonoBehaviour:
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
   g_objectBeingDragged: {fileID: 0}
+  b_firstCard: 1
+  a_audioPlayer: {fileID: 267340014}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -13775,6 +13777,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1069473940}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1097529414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7352657549183316712, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
+  m_PrefabInstance: {fileID: 525955781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1098223306
 GameObject:
   m_ObjectHideFlags: 0
@@ -17799,7 +17806,6 @@ MonoBehaviour:
   p_i_drawPerTurn: 5
   c_cardHolder: {fileID: 1623711189}
   c_cardPrefabTemplate: {fileID: 1134803473554262698, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
-  a_audioPlayer: {fileID: 0}
 --- !u!1001 &1453530991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26489,6 +26495,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6364323939937959219, guid: f6b2260f3b5177a49ad93355dcbd7b17, type: 3}
+      propertyPath: a_audioPlayer
+      value: 
+      objectReference: {fileID: 1097529414}
     - target: {fileID: 6374797893746008622, guid: f6b2260f3b5177a49ad93355dcbd7b17, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
