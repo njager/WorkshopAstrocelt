@@ -8,6 +8,7 @@ public class S_Enemy : MonoBehaviour
     private S_Global g_global;
 
     [SerializeField] S_EnemyAttributes e_enemyAttributes;
+    [SerializeField] GameObject a_audioPlayer;
 
     public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
 
@@ -56,6 +57,9 @@ public class S_Enemy : MonoBehaviour
 
     public void EnemyAttacked(string _enemyType, int _damageVal)
     {
+        //sound effect goes here
+        a_audioPlayer.SetActive(true);
+
         if (_enemyType == "Lumberjack")
         {
             if (e_enemyAttributes.e_i_shield <= 0)

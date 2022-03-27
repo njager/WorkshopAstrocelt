@@ -6,7 +6,8 @@ public class S_Player : MonoBehaviour
 {
     private S_Global g_global;
 
-    [SerializeField] S_PlayerAttributes p_playerAttributes; 
+    [SerializeField] S_PlayerAttributes p_playerAttributes;
+    [SerializeField] GameObject a_audioPlayer;
 
     /// <summary>
     /// Basic Start S_Global setup, grabbing playerAttributes; 
@@ -59,9 +60,11 @@ public class S_Player : MonoBehaviour
     /// </summary>
     /// <param name="_shieldValue"></param>
 
-
     public void PlayerShielded(int _shieldValue)
     {
+        //play sound effect
+
+
         p_playerAttributes.p_i_shield += _shieldValue; 
     }
 

@@ -17,11 +17,14 @@ public class S_CardManager : MonoBehaviour
 
     public GameObject c_cardPrefabTemplate;
 
-    public int bullshit = 0;
+    [SerializeField] GameObject a_audioPlayer;
 
     private void Start()
     {
         g_global = S_Global.Instance;
+
+        //start the audio combat loop
+        a_audioPlayer.SetActive(true);
 
         //once the game starts give the players some cards
         NewHand();
