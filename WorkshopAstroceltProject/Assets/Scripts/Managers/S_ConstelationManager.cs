@@ -233,12 +233,7 @@ public class S_ConstelationManager : MonoBehaviour
         int _energy = ls_curConstellation.Count() - 2;
 
         //check constrainst
-        if (str_curColor == "") 
-        {
-            Debug.Log("Reset Constellation cuz no ritual star");
-            g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); 
-        }
-        else if (ls_curConstellation.Count()-2 < i_minSize) 
+        if (ls_curConstellation.Count()-2 < i_minSize) 
         {
             Debug.Log("Reset Constellation cuz constellation size is smaller than " + i_minSize);
             g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); 
