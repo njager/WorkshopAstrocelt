@@ -34,10 +34,10 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData _eventData)
     {
         //Stop the card from having popup
-        g_global.ls_p_playerHand[g_global.ls_p_playerHand.Count - 1].GetComponent<S_Card>().EndHover();
+        g_global.ls_p_playerHand[0].GetComponent<S_Card>().EndHover();
 
         //only trigger if your the front card in the hand
-        if (this.gameObject == g_global.ls_p_playerHand[g_global.ls_p_playerHand.Count - 1])
+        if (this.gameObject == g_global.ls_p_playerHand[0])
         {
             if (transformCounter == 0)
             {
@@ -50,7 +50,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData _eventData)
     {
-        if (this.gameObject == g_global.ls_p_playerHand[g_global.ls_p_playerHand.Count - 1])
+        if (this.gameObject == g_global.ls_p_playerHand[0])
         {
             //reset the card if it didnt trigger the CharacterCardInterface
             _eventData.pointerDrag.GetComponent<S_Card>().ResetPosition();

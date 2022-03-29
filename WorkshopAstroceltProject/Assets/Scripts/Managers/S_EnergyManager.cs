@@ -92,7 +92,7 @@ public class S_EnergyManager : MonoBehaviour
         }
         else
         {
-            g_global.g_cardManager.RemoveCard();
+            //card isnt playable
             return false;
         }
     }
