@@ -81,15 +81,15 @@ public class S_ConstelationManager : MonoBehaviour
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
 
             //compare in hierarchy to get the color
-            if (_rStar.s_redRitualStarGraphic.activeInHierarchy)
+            if (_rStar.s_b_redColor)
             {
                 str_curColor = "red";
             }
-            else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
+            else if (_rStar.s_b_yellowColor)
             {
                 str_curColor = "yellow";
             }
-            else if (_rStar.s_blueRitualStarGraphic.activeInHierarchy)
+            else if (_rStar.s_b_blueColor)
             {
                 str_curColor = "blue";
             }
@@ -107,9 +107,10 @@ public class S_ConstelationManager : MonoBehaviour
                 b_makingConstellation = true;
             }
         }
-        //check if the lenght is greater than the max length, sub 1 for the two node stars
+        //check if the length is greater than the max length, sub 1 for the two node stars
         else if (ls_curConstellation.Count() - 2 >= i_maxSize)
         {
+            Debug.Log("Constellation Length is greater than " + i_maxSize);
             //delete the constellation with the top star
             g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]);
         }
@@ -137,14 +138,7 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (b_makingConstellation)
             {
-                //finsih making the constellation
-                b_makingConstellation = false;
-
-                FinishConstellation(_star);
-            }
-            else
-            {
-                //now that the node is added, change the bool
+                //removed the node star so reset
                 b_makingConstellation = false;
             }
         }
@@ -239,8 +233,16 @@ public class S_ConstelationManager : MonoBehaviour
         int _energy = ls_curConstellation.Count() - 2;
 
         //check constrainst
-        if (str_curColor == "") { g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); }
-        else if (ls_curConstellation.Count()-2 < i_minSize) { g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); }
+        if (str_curColor == "") 
+        {
+            Debug.Log("Reset Constellation cuz no ritual star");
+            g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); 
+        }
+        else if (ls_curConstellation.Count()-2 < i_minSize) 
+        {
+            Debug.Log("Reset Constellation cuz constellation size is smaller than " + i_minSize);
+            g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]); 
+        }
         else
         {
             //trigger the star sound here
@@ -295,6 +297,9 @@ public class S_ConstelationManager : MonoBehaviour
 
         //print out the energy at the end for debuggin purposes
         Debug.Log("Ritual stars give 10 energy || Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
+
+        b_makingConstellation = false;
+        ls_curConstellation.Clear();
 
         b_starLockout = true;
     }

@@ -27,7 +27,7 @@ public class S_ConstellationLine : MonoBehaviour
     {
         m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
         g_global = S_Global.Instance;
-        g_global.g_lst_lineRendererList.Add(gameObject);
+        g_global.g_ls_lineRendererList.Add(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)

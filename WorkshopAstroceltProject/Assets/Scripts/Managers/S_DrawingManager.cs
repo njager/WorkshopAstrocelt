@@ -150,9 +150,9 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public IEnumerator LineDeletion()
     {
-        foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
+        foreach (GameObject lineObject in g_global.g_ls_lineRendererList.ToList())
         {
-            g_global.g_lst_lineRendererList.Remove(lineObject);
+            g_global.g_ls_lineRendererList.Remove(lineObject);
             Destroy(lineObject);
             //this is bugging out when turn changes
         }

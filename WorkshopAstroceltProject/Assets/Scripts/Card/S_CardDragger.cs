@@ -53,7 +53,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (this.gameObject == g_global.ls_p_playerHand[0])
         {
             //reset the card if it didnt trigger the CharacterCardInterface
-            _eventData.pointerDrag.GetComponent<S_Card>().ResetPosition();
+            //_eventData.pointerDrag.GetComponent<S_Card>().ResetPosition();
 
             //start the audio
             if (g_global.b_firstCard)
