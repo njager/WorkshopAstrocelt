@@ -104,7 +104,7 @@ public class S_Card : MonoBehaviour
         c_i_cardID = g_global.c_i_cardIDNum;
         c_cardBaseImage = GetComponent<Image>().sprite;
 
-        cv_canvas = GameObject.Find("GreyboxCanvas");
+        cv_canvas = GameObject.Find("MainCanvas");
     }
 
     private void Start()

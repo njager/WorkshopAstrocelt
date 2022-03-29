@@ -6511,7 +6511,7 @@ MonoBehaviour:
   g_e_enemyPosition3: {fileID: 919921210}
   g_objectBeingDragged: {fileID: 0}
   b_firstCard: 1
-  a_audioPlayer: {fileID: 0}
+  a_audioPlayer: {fileID: 1787920205}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -11769,7 +11769,7 @@ Transform:
   - {fileID: 1685692457}
   - {fileID: 1684403708}
   m_Father: {fileID: 933933133}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &892187737
 PrefabInstance:
@@ -12120,7 +12120,7 @@ GameObject:
   - component: {fileID: 933933135}
   - component: {fileID: 933933134}
   m_Layer: 0
-  m_Name: GreyboxCanvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12143,10 +12143,10 @@ RectTransform:
   - {fileID: 116821759}
   - {fileID: 566775951}
   - {fileID: 29678254}
+  - {fileID: 891138400}
   - {fileID: 1489358155}
   - {fileID: 7339375888649373372}
   - {fileID: 1701365861}
-  - {fileID: 891138400}
   m_Father: {fileID: 1043160447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18203,7 +18203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_LocalScale.x
@@ -20767,7 +20767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21940,6 +21940,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1784680357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1787920205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8963451779003273411, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
+  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1791052888
 PrefabInstance:
@@ -26175,7 +26180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_LocalPosition.x
