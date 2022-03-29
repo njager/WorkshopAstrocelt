@@ -95,6 +95,7 @@ public class S_EnergyManager : MonoBehaviour
 
     public void RitualBonusEnergy(string _color)
     {
+        Debug.Log("Bonus " + _color + " energy");
         if (_color == "red")
         {
             i_redEnergy = (int)(i_redEnergy * 1.5);
