@@ -20,9 +20,10 @@ public class S_Enemy : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        SetCount(); 
-        
+        SetCount();
+
         //Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
+        a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
 
         g_global.e_l_enemyList.Add(this);
     }
