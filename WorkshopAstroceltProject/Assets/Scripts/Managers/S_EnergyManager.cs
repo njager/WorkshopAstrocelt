@@ -70,24 +70,20 @@ public class S_EnergyManager : MonoBehaviour
         if (_color == "red" && i_redEnergy - _energy >= 0) 
         {
             i_redEnergy -= _energy;
-            g_global.g_cardManager.RemoveCard();
             return true;
         }
         else if (_color == "yellow" && i_yellowEnergy - _energy >= 0)
         {
             i_yellowEnergy -= _energy;
-            g_global.g_cardManager.RemoveCard();
             return true;
         }
         else if (_color == "blue" && i_blueEnergy - _energy >= 0)
         {
             i_blueEnergy -= _energy;
-            g_global.g_cardManager.RemoveCard();
             return true;
         }
         else if(_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >=0)
         {
-            g_global.g_cardManager.RemoveCard();
             return true;
         }
         else

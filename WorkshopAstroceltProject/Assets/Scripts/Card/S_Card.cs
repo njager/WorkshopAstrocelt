@@ -105,11 +105,14 @@ public class S_Card : MonoBehaviour
         c_cardBaseImage = GetComponent<Image>().sprite;
 
         cv_canvas = GameObject.Find("GreyboxCanvas");
+    }
 
+    private void Start()
+    {
         if (c_b_redColorType) { c_str_color = "red"; }
         else if (c_b_yellowColorType) { c_str_color = "yellow"; }
         else if (c_b_blueColorType) { c_str_color = "blue"; }
-        else if(c_b_whiteColorType) { c_str_color = "white"; }
+        else if (c_b_whiteColorType) { c_str_color = "white"; }
     }
 
     /// <summary>
@@ -275,6 +278,7 @@ public class S_Card : MonoBehaviour
     private void DeleteCard()
     {
         g_global.g_turnManager.attackSound.SetActive(false);
+        g_global.g_cardManager.RemoveCard();
         Destroy(gameObject); // Remove card from play
     }
 
