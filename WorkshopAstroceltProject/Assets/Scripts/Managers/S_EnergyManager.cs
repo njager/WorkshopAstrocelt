@@ -92,4 +92,20 @@ public class S_EnergyManager : MonoBehaviour
             return false;
         }
     }
+
+    public void RitualBonusEnergy(string _color)
+    {
+        if (_color == "red")
+        {
+            i_redEnergy = (int)(i_redEnergy * 1.5);
+        }
+        if (_color == "blue")
+        {
+            i_blueEnergy = (int)(i_blueEnergy * 1.5);
+        }
+        if (_color == "yellow")
+        {
+            i_yellowEnergy = (int)(i_yellowEnergy * 1.5);
+        }
+    }
 }
