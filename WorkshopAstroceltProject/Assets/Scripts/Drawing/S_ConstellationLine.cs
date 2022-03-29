@@ -23,11 +23,19 @@ public class S_ConstellationLine : MonoBehaviour
     public S_StarClass s_nullStarInst;
     public bool b_starAdded = false;
 
+    [Header("Variable Line Width")]
+    [SerializeField] float f_lineWidthMin;
+    [SerializeField] float f_lineWidthMax;
+
     private void Awake()
     {
         m_lineRendererInst = m_childLineRendererObject.GetComponent<LineRenderer>();
         g_global = S_Global.Instance;
         g_global.g_ls_lineRendererList.Add(gameObject);
+
+        //Set variable width, min .11, max 0.175
+        f_lineWidth = Random.Range(f_lineWidthMin, f_lineWidthMax);
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
