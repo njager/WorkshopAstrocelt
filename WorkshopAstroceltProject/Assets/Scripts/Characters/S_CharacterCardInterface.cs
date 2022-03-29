@@ -19,9 +19,6 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         g_global = S_Global.Instance;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Start()
     {
         if(tag == "Player") // If on player, set bools accordingly
@@ -48,7 +45,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
             //c_cardData = g_global.g_objectBeingDragged.GetComponent<S_Card>();
-            if (g_global.g_energyManager.i_energyCount >= c_cardData.c_i_energyCost)
+            if (g_global.g_energyManager.i_energyCount >= c_cardData.c_i_energyCost) //check to see if the card can be played
             {
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
                 {
@@ -56,6 +53,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     {
                         if (c_cardData.c_b_shieldMainEffect == true) //check to see if it's a shield card
                         {
+                            //play the card
                             c_cardData.PlayCard(g_global.g_player.gameObject);
                         }
                         else
@@ -129,6 +127,12 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                         }
                     }
                 }
+            }
+            else
+            {
+                Debug.Log("Wrong Character Type!");
+                c_cardData.ResetPosition();
+                return;
             }
         }
     }

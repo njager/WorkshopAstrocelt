@@ -47,7 +47,7 @@ public class S_CardManager : MonoBehaviour
         for(int i=0; i<_deal; i++)
         {
             //prevent deck drawing if hand is too big
-            if(g_global.lst_p_playerHand.Count() < p_i_handSizeLimit)
+            if(g_global.ls_p_playerHand.Count() < p_i_handSizeLimit)
             {
                 //if the deck is empty move the cards over
                 if (g_global.lst_p_playerDeck.Count() <= 0)
@@ -65,7 +65,6 @@ public class S_CardManager : MonoBehaviour
 
                 //get the card game object and add it to the player hand
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
-                g_global.lst_p_playerHand.Add(_randomCard);
 
                 //add the card to the field and then assign an int to it
                 InstanceCard(_randomCard);
@@ -81,7 +80,7 @@ public class S_CardManager : MonoBehaviour
     public void NewHand()
     {
         //clear the player hand
-        g_global.lst_p_playerHand.Clear();
+        g_global.ls_p_playerHand.Clear();
 
         //deal the new cards
         DealCards(p_i_drawPerTurn);
@@ -114,5 +113,18 @@ public class S_CardManager : MonoBehaviour
         GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
         playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
         playerCard.transform.SetParent(c_cardHolder.gameObject.transform, false);
+
+        g_global.ls_p_playerHand.Add(playerCard);
+    }
+
+    /// <summary>
+    /// This method removes the first card from the list. 
+    /// This gets called from the Card Dragger function
+    /// -Riley Halloran
+    /// </summary>
+    /// <param name="_cardTemplate"></param>
+    public void RemoveCard()
+    {
+        g_global.ls_p_playerHand.RemoveAt(0);
     }
 }

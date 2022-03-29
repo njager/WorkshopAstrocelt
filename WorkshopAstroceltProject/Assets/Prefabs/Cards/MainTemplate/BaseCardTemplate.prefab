@@ -145,11 +145,11 @@ GameObject:
   - component: {fileID: 1659173918879325576}
   - component: {fileID: 4983290150367598717}
   - component: {fileID: 3024136225333618356}
+  - component: {fileID: 8596015523136984958}
   - component: {fileID: 1732291931699124592}
   - component: {fileID: 8070727403578559325}
   - component: {fileID: 2354040147060434634}
   - component: {fileID: 225657933331396096}
-  - component: {fileID: 8596015523136984958}
   - component: {fileID: -7867624380638338939}
   m_Layer: 0
   m_Name: BaseCardTemplate
@@ -218,11 +218,8 @@ MonoBehaviour:
   c_b_bleedStatusEffect: 0
   c_b_stunStatusEffect: 0
   c_b_acidStatusEffect: 0
-  c_b_empowerStatusEffect: 0
-  c_b_luckyStatusEffect: 0
-  c_b_restrainStatusEffect: 0
+  c_b_resistStatusEffect: 0
   c_b_burnStatusEffect: 0
-  c_b_shockStatusEffect: 0
   c_b_drawStatusEffect: 0
   c_b_siphonStatusEffect: 0
   c_b_fralitizeStatusEffect: 0
@@ -262,6 +259,22 @@ MonoBehaviour:
   c_tx_bodyText: {fileID: 7994180667109303153}
   c_tx_energyCostText: {fileID: 971835802296304112}
   c_tx_flavorText: {fileID: 6248408915480781643}
+--- !u!114 &8596015523136984958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134803473554262698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c48b94fbe71e145a85e5ba2f55ab7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  c_v3_initialPosition: {x: 0, y: 0, z: 0}
+  c_cardTransform: {fileID: 0}
+  c_card: {fileID: 0}
+  transformCounter: 0
 --- !u!50 &1732291931699124592
 Rigidbody2D:
   serializedVersion: 4
@@ -347,21 +360,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8596015523136984958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134803473554262698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c48b94fbe71e145a85e5ba2f55ab7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  c_v3_initialPosition: {x: 0, y: 0, z: 0}
-  c_cardTransform: {fileID: 0}
-  transformCounter: 0
 --- !u!114 &-7867624380638338939
 MonoBehaviour:
   m_ObjectHideFlags: 0

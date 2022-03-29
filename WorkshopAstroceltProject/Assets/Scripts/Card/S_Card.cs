@@ -228,7 +228,6 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
-            print(c_i_energyCost);
             if(g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
             {
                 if (_character.GetComponent<S_Enemy>() != null)
@@ -312,6 +311,15 @@ public class S_Card : MonoBehaviour
     /// -Riley Halloran
     /// </summary>
     public void OnHoverExit()
+    {
+        if (c_zoomCard != null) { Destroy(c_zoomCard); }
+    }
+
+    /// <summary>
+    /// Destroy the hover card if the Card starts getting dragged
+    /// -Riley Halloran
+    /// </summary>
+    public void EndHover()
     {
         Destroy(c_zoomCard);
     }

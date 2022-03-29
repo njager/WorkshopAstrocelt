@@ -10,18 +10,35 @@ public class S_EnergyManager : MonoBehaviour
     public string str_energyColor;
     public float i_energyCount;
 
+    public int i_redEnergy;
+    public int i_yellowEnergy;
+    public int i_blueEnergy;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
         i_energyCount = 0;
     }
 
+    /// <summary>
+    /// This function gets called in constellation manager to set the energy
+    /// </summary>
+    /// <param name="_color"></param>
+    /// <param name="_energy"></param>
     public void SetEnergy(string _color, int _energy)
     {
-        str_energyColor = _color;
-        i_energyCount = _energy + 10;
-
-        g_global.g_UIManager.ChangeEnergyIcon(str_energyColor);
+        if (_color == "red")
+        {
+            i_redEnergy += _energy;
+        }
+        else if (_color == "yellow")
+        {
+            i_yellowEnergy += _energy;
+        }
+        else if (_color == "blue")
+        {
+            i_blueEnergy += _energy;
+        }
     }
 
     /// <summary>
@@ -46,18 +63,35 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     /// <param name="_energy"></param>
     /// <param name="_color"></param>
-    public bool useEnergy(float _energy, string _color)
+    public bool useEnergy(int _energy, string _color)
     {
         //make sure the colors match before using energy
-        if (_color == str_energyColor || _color == "white") 
-        { 
-            i_energyCount -= _energy;
+        //remove the card if it actually gets played
+        if (_color == "red" && i_redEnergy - _energy >= 0) 
+        {
+            i_redEnergy -= _energy;
+            g_global.g_cardManager.RemoveCard();
+            return true;
+        }
+        else if (_color == "yellow" && i_yellowEnergy - _energy >= 0)
+        {
+            i_yellowEnergy -= _energy;
+            g_global.g_cardManager.RemoveCard();
+            return true;
+        }
+        else if (_color == "blue" && i_blueEnergy - _energy >= 0)
+        {
+            i_blueEnergy -= _energy;
+            g_global.g_cardManager.RemoveCard();
+            return true;
+        }
+        else if(_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >=0)
+        {
             return true;
         }
         else
         {
             return false;
-            Debug.Log("Wrong color Bitch");
         }
     }
 }

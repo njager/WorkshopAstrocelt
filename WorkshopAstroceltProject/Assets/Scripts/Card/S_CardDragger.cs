@@ -14,6 +14,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public RectTransform c_cardTransform;
     public S_CardTemplate c_card;
 
+
     public int transformCounter = 0; // Use this to trigger bheavior only once;
 
     void Awake()
@@ -32,11 +33,12 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData _eventData)
     {
+        //Stop the card from having popup
+        g_global.ls_p_playerHand[0].GetComponent<S_Card>().EndHover();
+
         //only trigger if your the front card in the hand
-        if (c_card == g_global.lst_p_playerHand[0])
+        if (c_card == g_global.ls_p_playerHand[0].GetComponent<S_Card>().c_cardTemplate)
         {
-
-
             if (transformCounter == 0)
             {
                 c_v3_initialPosition = gameObject.transform.position;
@@ -48,7 +50,9 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData _eventData)
     {
-        //Nothing yet
+        //reset the card if it didnt trigger the CharacterCardInterface
+        _eventData.pointerDrag.GetComponent<S_Card>().ResetPosition();
+
         //remove card from hand
 
         //start the audio

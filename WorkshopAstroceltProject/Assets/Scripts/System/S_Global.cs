@@ -61,7 +61,7 @@ public class S_Global : MonoBehaviour
     public List<GameObject> g_lst_lineRendererList;
     public List<int> lst_p_playerDeck;
     public List<int> lst_p_playerGrave;
-    public List<S_CardTemplate> lst_p_playerHand;
+    public List<GameObject> ls_p_playerHand;
 
     [Header("Arrays")]
     public string placeholder;

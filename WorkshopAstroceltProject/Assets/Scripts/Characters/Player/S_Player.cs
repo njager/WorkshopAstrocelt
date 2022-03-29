@@ -12,7 +12,6 @@ public class S_Player : MonoBehaviour
     /// <summary>
     /// Basic Start S_Global setup, grabbing playerAttributes; 
     /// </summary>
-
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -27,8 +26,6 @@ public class S_Player : MonoBehaviour
     /// else it hits health directly
     /// </summary>
     /// <param name="_damageValue"></param>
-    
-
     public void PlayerAttacked(int _damageValue)
     {
         if(p_playerAttributes.p_i_shield <= 0)
@@ -59,7 +56,6 @@ public class S_Player : MonoBehaviour
     /// Player shielding function for when they gain shields from play
     /// </summary>
     /// <param name="_shieldValue"></param>
-
     public void PlayerShielded(int _shieldValue)
     {
         //play sound effect
@@ -72,7 +68,6 @@ public class S_Player : MonoBehaviour
     /// Trigger function for when the player is healed
     /// </summary>
     /// <param name="_healedValue"></param>
-    
     public void PlayerHealed(int _healedValue)
     {
         p_playerAttributes.p_i_health += _healedValue; 
@@ -85,7 +80,6 @@ public class S_Player : MonoBehaviour
     /// <param name="_statusEffect"></param>
     /// <param name="bleedingRate"></param>
     /// <param name="_turnCount"></param>
-   
     public void PlayerBleeding(bool _statusEffect, float bleedingRate, int _turnCount)
     {
         if(_statusEffect == p_playerAttributes.p_b_bleeding)
@@ -114,7 +108,6 @@ public class S_Player : MonoBehaviour
     /// <param name="_statusEffect"></param>
     /// <param name="_stunVal"></param>
     /// <param name="_turnCount"></param>
-    /// 
     public void PlayerStunned(bool _statusEffect, int _stunVal, int _turnCount)
     {
         if (_statusEffect == p_playerAttributes.p_b_stunned)
@@ -143,7 +136,6 @@ public class S_Player : MonoBehaviour
     /// <param name="_statusEffect"></param>
     /// <param name="_poisonVal"></param>
     /// <param name="_turnCount"></param>
-
     public void PlayerPoisoned(bool _statusEffect,int _poisonVal, int _turnCount)
     {
         if (_statusEffect == p_playerAttributes.p_b_stunned)
