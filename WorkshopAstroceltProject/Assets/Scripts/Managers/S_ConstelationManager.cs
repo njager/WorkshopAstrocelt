@@ -290,7 +290,7 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         //print out the energy at the end for debuggin purposes
-        Debug.Log("Ritual stars give 10 energy || Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
+        Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
 
         b_makingConstellation = false;
         ls_curConstellation.Clear();
