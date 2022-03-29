@@ -20,10 +20,9 @@ public class S_Enemy : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        SetCount();
-
+        SetCount(); 
+        
         //Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
-        a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
 
         g_global.e_l_enemyList.Add(this);
     }
@@ -56,12 +55,20 @@ public class S_Enemy : MonoBehaviour
         return; 
     }
 
+    /// <summary>
+    /// Enemy attacked
+    /// Update for Magician
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyType"></param>
+    /// <param name="_damageVal"></param>
+
     public void EnemyAttacked(string _enemyType, int _damageVal)
     {
         //sound effect goes here
         a_audioPlayer.SetActive(true);
 
-        if (_enemyType == "Lumberjack")
+        if (_enemyType == "Lumberjack" || _enemyType == "Magician")
         {
             if (e_enemyAttributes.e_i_shield <= 0)
             {
@@ -136,6 +143,10 @@ public class S_Enemy : MonoBehaviour
             Debug.Log("Lumberjack doesn't have a special ability!");
             return;
         }
+        if(_enemyType == "Magician")
+        {
+            g_global.g_player.PlayerStunned(g_global.g_player.p_playerAttributes.p_b_stunned, 1); 
+        }
     } 
 
 
@@ -153,15 +164,6 @@ public class S_Enemy : MonoBehaviour
     {
         //g_global.g_selectorManager.EnemySelected(this); 
     }
-
-
-    //Eventually use this? Check with designers, imported code. 
-    public void EnemyDamageChange(S_Enemy enemy)
-    {
-        int _randEnemyDamageInt = Random.Range(6, 12);
-        //enemy.enemyDamage = _randEnemyDamageInt;
-    }
-
 
     //Maybe use direct calls? Optimization decision
     private void SetEnemyHealthText(int _healthVal)
