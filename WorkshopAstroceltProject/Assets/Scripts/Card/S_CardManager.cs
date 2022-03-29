@@ -68,7 +68,6 @@ public class S_CardManager : MonoBehaviour
 
                 //add the card to the field and then assign an int to it
                 InstanceCard(_randomCard);
-                print(g_global.lst_p_playerDeck[0]);
             }
         }
     }
@@ -118,13 +117,13 @@ public class S_CardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This method removes the first card from the list. 
+    /// This method removes the first card from the list (Which is the last card). 
     /// This gets called from the Card Dragger function
     /// -Riley Halloran
     /// </summary>
     /// <param name="_cardTemplate"></param>
     public void RemoveCard()
     {
-        g_global.ls_p_playerHand.RemoveAt(0);
+        g_global.ls_p_playerHand.RemoveAt(g_global.ls_p_playerHand.Count - 1);
     }
 }
