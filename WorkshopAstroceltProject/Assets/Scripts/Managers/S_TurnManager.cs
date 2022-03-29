@@ -136,12 +136,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy1Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if(g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet1.e_str_enemyType);
                     }
                 }
             }
@@ -152,12 +156,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy2Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy2Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy2SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy2.EnemySpecialAbility(g_global.g_enemyAttributeSheet2.e_str_enemyType);
                     }
                 }
             }
@@ -168,12 +176,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy3Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy3SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet3.e_str_enemyType);
                     }
                 }
             }
@@ -184,12 +196,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy4Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy4.EnemySpecialAbility(g_global.g_enemyAttributeSheet4.e_str_enemyType);
                     }
                 }
             }
@@ -200,12 +216,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy5SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy5.EnemySpecialAbility(g_global.g_enemyAttributeSheet5.e_str_enemyType);
                     }
                 }
             }

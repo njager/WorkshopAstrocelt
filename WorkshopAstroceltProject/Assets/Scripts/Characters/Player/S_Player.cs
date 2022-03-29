@@ -6,7 +6,7 @@ public class S_Player : MonoBehaviour
 {
     private S_Global g_global;
 
-    [SerializeField] S_PlayerAttributes p_playerAttributes;
+    public S_PlayerAttributes p_playerAttributes;
     [SerializeField] GameObject a_audioPlayer;
 
     /// <summary>
@@ -108,9 +108,8 @@ public class S_Player : MonoBehaviour
     /// Status Effect Trigger function for when the player is stunned
     /// </summary>
     /// <param name="_statusEffect"></param>
-    /// <param name="_stunVal"></param>
     /// <param name="_turnCount"></param>
-    public void PlayerStunned(bool _statusEffect, int _stunVal, int _turnCount)
+    public void PlayerStunned(bool _statusEffect, int _turnCount)
     {
         if (_statusEffect == p_playerAttributes.p_b_stunned)
         {
@@ -118,6 +117,8 @@ public class S_Player : MonoBehaviour
             if (_statusEffect == false)
             {
                 // These effects need to be fleshed out first
+
+                //Use turn count, in S_TurnMannager?
             }
             else
             {

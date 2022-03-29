@@ -26,12 +26,13 @@ public class S_IconManager : MonoBehaviour
 
     /// <summary>
     /// Based off the dice roll, change enemy icons or not
+    /// Hardcoded for magician update to be smarter
     /// </summary>
     /// <param name="_enemyToChange"></param>
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
         int _chanceSelected = IntentDiceRoll();
-        if (_chanceSelected >= _enemyToChange.e_enemyAttributes.e_f_attackRate) // Set Enemy up for Attack
+        if (_chanceSelected == 1 || _chanceSelected == 2) // Set Enemy up for Attack
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttack;
             if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
@@ -55,7 +56,7 @@ public class S_IconManager : MonoBehaviour
                 e_b_enemy5IconCheck = "attack";
             }
         }
-        else if (_chanceSelected >= _enemyToChange.e_enemyAttributes.e_f_shieldRate)
+        else if (_chanceSelected == 3)
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyShield;
             if (_enemyToChange.e_i_enemyCount == 1)
@@ -79,7 +80,7 @@ public class S_IconManager : MonoBehaviour
                 e_b_enemy5IconCheck = "shield";
             }
         }
-        else if (_chanceSelected >= _enemyToChange.e_enemyAttributes.e_f_shieldRate)
+        else if (_chanceSelected == 4)
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAbility;
             if (_enemyToChange.e_i_enemyCount == 1)
@@ -111,7 +112,7 @@ public class S_IconManager : MonoBehaviour
     /// <returns></returns>
     private int IntentDiceRoll()
     {
-        int _chance = Random.Range(0, 101); // Hardcoded for lumberjack, may create different ones or add this to the enemy at somepoint
+        int _chance = Random.Range(1, 5); // Hardcoded
         return _chance;
     }
 }

@@ -56,6 +56,9 @@ public class S_EnemyAttributes : MonoBehaviour
         //Inform Global
         //InstanceVariables();
         e_enemy = gameObject.GetComponent<S_Enemy>();
+
+        //Calculate Damage
+        AttackDamageRoll();
     }
 
     private void Start()
@@ -147,6 +150,13 @@ public class S_EnemyAttributes : MonoBehaviour
         {
             g_global.g_enemyState.enemy5 = e_enemy;
         }
+    }
+    /// <summary>
+    /// Helper function to calculate a new damage each attack turn
+    /// </summary>
+    public void AttackDamageRoll()
+    {
+        e_i_enemyDamageValue = Random.Range(e_i_enemyMinDamageRange, e_i_enemyMaxDamageRange);
     }
 
     //Temporary
