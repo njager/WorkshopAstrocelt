@@ -250,6 +250,7 @@ public class S_ConstelationManager : MonoBehaviour
 
             //pass the _count to another function
             foreach (S_StarClass _star in ls_curConstellation){
+
                 //check the star type
                 if(_star.starType == "Ritual")
                 {
@@ -259,15 +260,15 @@ public class S_ConstelationManager : MonoBehaviour
                     //compare in hierarchy to get the color
                     if (_rStar.s_b_redColor)
                     {
-                        g_global.g_energyManager.SetEnergy("red", 1);
+                        g_global.g_energyManager.SetEnergy("red", 1 + 10);
                     }
                     else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
                     {
-                        g_global.g_energyManager.SetEnergy("yellow", 1);
+                        g_global.g_energyManager.SetEnergy("yellow", 1 + 10);
                     }
                     else if (_rStar.s_b_blueColor)
                     {
-                        g_global.g_energyManager.SetEnergy("blue", 1);
+                        g_global.g_energyManager.SetEnergy("blue", 1 + 10);
                     }
                 }
                 else if (_star.starType == "Energy")
@@ -293,7 +294,7 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         //print out the energy at the end for debuggin purposes
-        Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
+        Debug.Log("Ritual stars give 10 energy || Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
 
         b_starLockout = true;
     }

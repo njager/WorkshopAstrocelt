@@ -87,10 +87,12 @@ public class S_EnergyManager : MonoBehaviour
         }
         else if(_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >=0)
         {
+            g_global.g_cardManager.RemoveCard();
             return true;
         }
         else
         {
+            g_global.g_cardManager.RemoveCard();
             return false;
         }
     }

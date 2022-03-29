@@ -87,6 +87,33 @@ public class S_Enemy : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (e_enemyAttributes.e_i_shield <= 0)
+            {
+                e_enemyAttributes.e_i_health -= _damageVal;
+                Debug.Log("Enemy Attacked!");
+            }
+            else
+            {
+                int _tempVal = e_enemyAttributes.e_i_shield - _damageVal;
+                if (_tempVal < 0)
+                {
+                    e_enemyAttributes.e_i_shield -= _damageVal;
+                    if (e_enemyAttributes.e_i_shield < 0)
+                    {
+                        e_enemyAttributes.e_i_shield = 0;
+                    }
+                    EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                    Debug.Log("Enemy didn't have enough shields!");
+                }
+                else
+                {
+                    e_enemyAttributes.e_i_shield -= _damageVal;
+                    Debug.Log("Enemy had shields!");
+                }
+            }
+        }
     }
 
     public void EnemyShielded(int _shieldVal)
