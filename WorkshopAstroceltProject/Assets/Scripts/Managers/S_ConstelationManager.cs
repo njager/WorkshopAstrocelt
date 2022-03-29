@@ -71,29 +71,6 @@ public class S_ConstelationManager : MonoBehaviour
         //add to data structure
         ls_curConstellation.Add(_star);
 
-        //check the type of the star added
-        if (_star.starType == "Ritual")
-        {
-            //go back once if it is another ritual star
-            if (str_curColor != "") { g_global.g_DrawingManager.GoBackOnce(ls_curConstellation[ls_curConstellation.Count()-1].s_star.m_previousLine.gameObject); }
-
-            //get the ritual star component
-            S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
-
-            //compare in hierarchy to get the color
-            if (_rStar.s_b_redColor)
-            {
-                str_curColor = "red";
-            }
-            else if (_rStar.s_b_yellowColor)
-            {
-                str_curColor = "yellow";
-            }
-            else if (_rStar.s_b_blueColor)
-            {
-                str_curColor = "blue";
-            }
-        }
         if (_star.starType == "Node")
         {
             if (b_makingConstellation)
@@ -240,6 +217,11 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else
         {
+            //bools to trigger
+            int _red = 0;
+            int _blue = 0;
+            int _yellow = 0;
+
             //trigger the star sound here
 
             //add the line multiplier
@@ -257,15 +239,18 @@ public class S_ConstelationManager : MonoBehaviour
                     //compare in hierarchy to get the color
                     if (_rStar.s_b_redColor)
                     {
-                        g_global.g_energyManager.SetEnergy("red", 1 + 10);
+                        g_global.g_energyManager.SetEnergy("red", 1);
+                        _red += 1;
                     }
                     else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
                     {
-                        g_global.g_energyManager.SetEnergy("yellow", 1 + 10);
+                        g_global.g_energyManager.SetEnergy("yellow", 1);
+                        _yellow += 1;
                     }
                     else if (_rStar.s_b_blueColor)
                     {
-                        g_global.g_energyManager.SetEnergy("blue", 1 + 10);
+                        g_global.g_energyManager.SetEnergy("blue", 1);
+                        _blue += 1;
                     }
                 }
                 else if (_star.starType == "Energy")
@@ -287,6 +272,20 @@ public class S_ConstelationManager : MonoBehaviour
                         g_global.g_energyManager.SetEnergy("blue", 1);
                     }
                 }
+            }
+            for(int i = 0; i < _red; i++)
+            {
+                g_global.g_energyManager.RitualBonusEnergy("red");
+            }
+
+            for (int i = 0; i < _blue; i++)
+            {
+                g_global.g_energyManager.RitualBonusEnergy("blue");
+            }
+
+            for (int i = 0; i < _yellow; i++)
+            {
+                g_global.g_energyManager.RitualBonusEnergy("yellow");
             }
         }
 
