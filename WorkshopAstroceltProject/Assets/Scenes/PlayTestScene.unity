@@ -6554,6 +6554,8 @@ MonoBehaviour:
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
   g_objectBeingDragged: {fileID: 0}
+  b_firstCard: 1
+  a_audioPlayer: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -7392,11 +7394,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
   m_PrefabInstance: {fileID: 550014559}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &552178285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5762026203560648043, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &556192200
 PrefabInstance:
@@ -9927,7 +9924,7 @@ GameObject:
   - component: {fileID: 707196415}
   - component: {fileID: 707196416}
   m_Layer: 0
-  m_Name: TextPopup(temp)
+  m_Name: TextPopup
   m_TagString: PopUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16669,6 +16666,9 @@ MonoBehaviour:
   i_minSize: 3
   i_maxSize: 7
   i_energyCount: 0
+  _starSoundPhase1: {fileID: 0}
+  _starSoundPhase2: {fileID: 0}
+  i_starSound: 0
 --- !u!1001 &1336605811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17637,7 +17637,6 @@ MonoBehaviour:
   p_i_drawPerTurn: 5
   c_cardHolder: {fileID: 1623711189}
   c_cardPrefabTemplate: {fileID: 1134803473554262698, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
-  bullshit: 0
 --- !u!1001 &1453530991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21230,11 +21229,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.24, y: 10.24}
   m_EdgeRadius: 0
---- !u!1 &1732484530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4553803423840061754, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1732903537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25368,9 +25362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_index: 0
-  _starSoundPhase1: {fileID: 552178285}
-  _starSoundPhase2: {fileID: 1732484530}
-  i_starSound: 0
   l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
   s_nullStarInst: {fileID: 826952977}
   b_lineDeletionCompletion: 0
