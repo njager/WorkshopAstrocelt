@@ -241,11 +241,14 @@ public class S_Card : MonoBehaviour
         }
         else if(c_b_shieldMainEffect == true)
         {
-            g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
-            if (_character.GetComponent<S_Player>() != null) //Had to do this for enemy, might as well do for player
+            if (_character.GetComponent<S_Player>() != null)
             {
-                TriggerShieldCard(_character.GetComponent<S_Player>());
+                if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color)) //Had to do this for enemy, might as well do for player
+                {
+                    TriggerShieldCard(_character.GetComponent<S_Player>());
+                }
             }
+            
         }
     }
 
