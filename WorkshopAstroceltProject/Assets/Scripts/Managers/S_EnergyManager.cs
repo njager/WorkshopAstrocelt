@@ -133,17 +133,20 @@ public class S_EnergyManager : MonoBehaviour
 
     public void RitualBonusEnergy(string _color)
     {
-        Debug.Log("Bonus " + _color + " energy");
+        
         if (_color == "red")
         {
+            Debug.Log("Bonus " + _color + " energy : old energy = " + i_redEnergy);
             i_redEnergy = (int)(i_redEnergy * 1.5);
         }
         if (_color == "blue")
         {
+            Debug.Log("Bonus " + _color + " energy : old energy = " +i_blueEnergy);
             i_blueEnergy = (int)(i_blueEnergy * 1.5);
         }
         if (_color == "yellow")
         {
+            Debug.Log("Bonus " + _color + " energy : old energy = " + i_yellowEnergy);
             i_yellowEnergy = (int)(i_yellowEnergy * 1.5);
         }
     }

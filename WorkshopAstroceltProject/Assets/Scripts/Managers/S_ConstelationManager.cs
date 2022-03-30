@@ -159,7 +159,10 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else //if you have not started a constellation
         {
-            //i_starSound = 0;
+            i_starSound = 0;
+
+            //clear energy since node star
+            g_global.g_energyManager.ClearEnergy();
 
             //add to the list
             AddStarToCurConstellation(_starN);

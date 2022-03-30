@@ -235,6 +235,9 @@ public class S_Card : MonoBehaviour
             {
                 if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
                 {
+                    //undo star lockout
+                    g_global.g_ConstellationManager.b_starLockout = true;
+
                     TriggerAttackCard(_character.GetComponent<S_Enemy>());
                 }
                 else
