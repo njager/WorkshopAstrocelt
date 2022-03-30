@@ -25,6 +25,7 @@ public class S_Global : MonoBehaviour
     public S_CardDatabase g_CardDatabase;
     public S_LineMultiplier g_lineMultiplierManager;
     public S_EnergyManager g_energyManager;
+    public S_PopupManager g_popupManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;

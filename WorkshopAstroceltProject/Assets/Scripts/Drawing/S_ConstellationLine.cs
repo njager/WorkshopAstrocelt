@@ -127,14 +127,13 @@ public class S_ConstellationLine : MonoBehaviour
         // Need to move parent object to the center
         gameObject.transform.position = _startPoint + (_endPoint - _startPoint) / 2;
   
-        // Calculate rotation, adapted code 
+        // Calculate rotation
         Vector3 _difference = _star.gameObject.transform.position - transform.position;
         float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
         g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
 
-        ///<summary>
-        /// https://answers.unity.com/questions/1023987/lookat-only-on-z-axis.html original code found in here
-        ///</summary>
+        // Create a popup 
+        //g_global.g_pop
     }
 }
