@@ -10,7 +10,6 @@ public class S_PopupManager : MonoBehaviour
 {
     //private variables
     private S_Global g_global;
-    [SerializeField] TextMeshProUGUI tx_textMesh;
 
     [Header("Position Data")]
     [SerializeField] Vector3 v3_startingTextPopupPosition; 
@@ -52,6 +51,9 @@ public class S_PopupManager : MonoBehaviour
     /// <param name="starType"></param>
     public void CreatePopUpForConstellation(string _starType, Vector3 _starLocation)
     {
-        //Script not set up yet for "energy balls"
+        GameObject _textPopUpObject = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+        S_TextPopUp _textPopUpScript = _textPopUpObject.GetComponent<S_TextPopUp>();
+        _textPopUpScript.SetGivenPosition(_starLocation);
+        _textPopUpScript.StartCoroutine(_textPopUpScript.MovePopUp());
     }
 }
