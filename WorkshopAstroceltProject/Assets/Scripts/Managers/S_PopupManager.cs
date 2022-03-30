@@ -59,7 +59,7 @@ public class S_PopupManager : MonoBehaviour
     /// <param name="starType"></param>
     public void CreatePopUpForStar(S_StarClass _star, Vector3 _starLocation)
     {
-        GameObject _textPopUpObject = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+        GameObject _starPopUp = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
         S_TextPopUp _textPopUpScript = _textPopUpObject.GetComponent<S_TextPopUp>();
         _textPopUpScript.SetGivenPosition(_starLocation);
         _textPopUpScript.StartCoroutine(_textPopUpScript.MovePopUp());
