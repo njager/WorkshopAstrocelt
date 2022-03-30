@@ -47,6 +47,11 @@ public class S_StarPopUp : MonoBehaviour
         yellowColorGraphic.SetActive(false);
     }
 
+    /// <summary>
+    /// Help function for deletion
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DeletionTimer()
     {
         //A delay timer for the disappear animation
@@ -65,19 +70,42 @@ public class S_StarPopUp : MonoBehaviour
         yield return b_deletionTimerFlag == true;
     }
 
+    /// <summary>
+    /// Function for S_ConstellationLine use to toggle the graphic and then allow the star object to be set
+    /// - Josh
+    /// </summary>
+    /// <param name="_color"></param>
     public void SetGraphic(string _color)
     {
         if(_color == "red")
         {
-            redColorGraphic.SetActive(true); 
+            // Toggle Graphics
+            redColorGraphic.SetActive(true);
+            blueColorGraphic.SetActive(false);
+            yellowColorGraphic.SetActive(false);
+
+            //Set Color Image
+            colorImage = redColorGraphic.GetComponent<SVGImage>(); 
         }
         if(_color == "blue")
         {
+            // Toggle Graphics
+            redColorGraphic.SetActive(false);
+            blueColorGraphic.SetActive(true);
+            yellowColorGraphic.SetActive(false);
 
+            //Set Color Image
+            colorImage = blueColorGraphic.GetComponent<SVGImage>();
         }
         if(_color == "yellow")
         {
+            // Toggle Graphics
+            redColorGraphic.SetActive(false);
+            blueColorGraphic.SetActive(false);
+            yellowColorGraphic.SetActive(true);
 
+            //Set Color Image
+            colorImage = yellowColorGraphic.GetComponent<SVGImage>();
         }
     }
 

@@ -3860,6 +3860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3d76853e7a364589b119e60280929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopupClear: 0
   v3_startingTextPopupPosition: {x: 0, y: -3.63, z: 0}
   p_v3_playerHealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy1HealthBarPosition: {x: 0, y: 0, z: 0}
@@ -6438,7 +6439,7 @@ MonoBehaviour:
   lst_p_playerDeck: 
   lst_p_playerGrave: 
   ls_p_playerHand: []
-  ls_starPopups: []
+  ls_starPopup: []
   placeholder: 
   c_i_cardIDNum: 0
   g_e_enemyPosition1: {fileID: 1282492985}
@@ -11316,8 +11317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.1269, y: 0.0374}
-  m_SizeDelta: {x: 28.699, y: 16.0559}
+  m_AnchoredPosition: {x: 0.0092, y: 0.0036}
+  m_SizeDelta: {x: 28.4649, y: 15.9882}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &871086239
 MonoBehaviour:
@@ -11353,7 +11354,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -25618,6 +25619,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 871086238}
     m_Modifications:
+    - target: {fileID: 2064829105526743150, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.106
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064829105526743150, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.101
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694868179120561578, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4694868179480249384, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
       propertyPath: m_Name
       value: EnergyBallPopup
@@ -25628,11 +25641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4694868179480249387, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1068552
+      value: -0.367
       objectReference: {fileID: 0}
     - target: {fileID: 4694868179480249387, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1190292
+      value: -0.238
       objectReference: {fileID: 0}
     - target: {fileID: 4694868179480249387, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25664,6 +25677,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4694868179480249387, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694868180945399222, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
