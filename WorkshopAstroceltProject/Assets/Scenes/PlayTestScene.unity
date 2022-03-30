@@ -3869,6 +3869,7 @@ MonoBehaviour:
   e_v3_enemy5HealthBarPosition: {x: 0, y: 0, z: 0}
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 0}
+  popUpCanvas: {fileID: 0}
 --- !u!1001 &278486993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6415,6 +6416,7 @@ MonoBehaviour:
   g_CardDatabase: {fileID: 2086421104}
   g_lineMultiplierManager: {fileID: 630261271}
   g_energyManager: {fileID: 1412184871}
+  g_popupManager: {fileID: 274638691}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -6436,6 +6438,7 @@ MonoBehaviour:
   lst_p_playerDeck: 
   lst_p_playerGrave: 
   ls_p_playerHand: []
+  ls_starPopups: []
   placeholder: 
   c_i_cardIDNum: 0
   g_e_enemyPosition1: {fileID: 1282492985}
@@ -11290,7 +11293,7 @@ GameObject:
   - component: {fileID: 871086240}
   - component: {fileID: 871086239}
   m_Layer: 0
-  m_Name: PopUpCanvas
+  m_Name: PopupCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

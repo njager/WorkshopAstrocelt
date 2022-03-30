@@ -22,7 +22,10 @@ public class S_PopupManager : MonoBehaviour
 
     [Header("Prefabs")]
     public GameObject textPopupPrefab;
-    public GameObject energyPopupPrefab; 
+    public GameObject energyPopupPrefab;
+
+    [Header("Canvas")]
+    public GameObject popUpCanvas;
 
     //get the transform component of the text
     private void Awake()
@@ -49,7 +52,7 @@ public class S_PopupManager : MonoBehaviour
     /// -Josh
     /// </summary>
     /// <param name="starType"></param>
-    public void CreatePopUpForConstellation(string _starType, Vector3 _starLocation)
+    public void CreatePopUpForStar(S_StarClass _star, Vector3 _starLocation)
     {
         GameObject _textPopUpObject = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
         S_TextPopUp _textPopUpScript = _textPopUpObject.GetComponent<S_TextPopUp>();

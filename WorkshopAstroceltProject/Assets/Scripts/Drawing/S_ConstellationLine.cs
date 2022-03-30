@@ -133,7 +133,7 @@ public class S_ConstellationLine : MonoBehaviour
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
         g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
 
-        // Create a popup 
-        //g_global.g_pop
+        // Create a popup for the first star made by the line
+        g_global.g_popupManager.CreatePopUpForStar(s_previousStar, s_previousStar.GetComponent<GameObject>().transform.position);  
     }
 }
