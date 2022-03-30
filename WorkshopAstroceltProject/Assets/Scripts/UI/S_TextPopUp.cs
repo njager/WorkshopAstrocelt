@@ -21,8 +21,7 @@ public class S_TextPopUp : MonoBehaviour
     [SerializeField] bool b_useYellow;
     [SerializeField] bool b_useBlue;
     
-
-    [Header("Given Position:")]
+    [Header("Given Position")]
     [SerializeField] Vector3 v3_givenPosition;
     private bool b_deletionTimerFlag;
 
@@ -39,7 +38,7 @@ public class S_TextPopUp : MonoBehaviour
     [SerializeField] float f_doFadeDuration;
 
     /// <summary>
-    /// Set
+    /// Set global, tje textmeshcomonent, and the timer
     /// </summary>
     void Awake()
     {
