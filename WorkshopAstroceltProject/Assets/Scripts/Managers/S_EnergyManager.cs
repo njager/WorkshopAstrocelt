@@ -84,6 +84,44 @@ public class S_EnergyManager : MonoBehaviour
         }
         else if(_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >=0)
         {
+            int _max = Mathf.Max(i_redEnergy, i_blueEnergy, i_yellowEnergy);
+
+            if(_energy-_max <= 0)
+            {
+                if(i_redEnergy == _max) { i_redEnergy -= _energy; }
+                else if (i_yellowEnergy == _max) { i_yellowEnergy -= _energy; }
+                else if (i_blueEnergy == _max) { i_blueEnergy -= _energy; }
+            }
+            else 
+            {
+                _energy -= _max;
+                int _max2 = 0;
+
+                if (i_redEnergy == _max) { i_redEnergy = 0; _max2 = Mathf.Max(i_blueEnergy, i_yellowEnergy); }
+                else if (i_yellowEnergy == _max) { i_yellowEnergy = 0; _max2 = Mathf.Max(i_blueEnergy, i_redEnergy); }
+                else if (i_blueEnergy == _max) { i_blueEnergy = 0; _max2 = Mathf.Max(i_redEnergy, i_yellowEnergy); }
+
+                if(_energy-_max2 <= 0)
+                {
+                    if(i_redEnergy == _max2) { i_redEnergy -= _energy; }
+                    else if (i_yellowEnergy == _max2) { i_yellowEnergy -= _energy; }
+                    else if (i_blueEnergy == _max2) { i_blueEnergy -= _energy; }
+                }
+                else
+                {
+                    _energy -= _max2;
+                    int _max3 = 0;
+
+                    if (i_redEnergy == _max2) { i_redEnergy = 0; }
+                    else if (i_yellowEnergy == _max2) { i_yellowEnergy = 0; }
+                    else if (i_blueEnergy == _max2) { i_blueEnergy = 0; }
+
+                    if(i_redEnergy == 0 && i_yellowEnergy == 0) { i_blueEnergy -= _energy; }
+                    else if (i_redEnergy == 0 && i_blueEnergy == 0) { i_yellowEnergy -= _energy; }
+                    else if (i_blueEnergy == 0 && i_yellowEnergy == 0) { i_redEnergy -= _energy; }
+                }
+            }
+
             return true;
         }
         else
