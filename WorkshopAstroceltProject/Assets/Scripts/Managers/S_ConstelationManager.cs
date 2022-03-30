@@ -255,7 +255,7 @@ public class S_ConstelationManager : MonoBehaviour
                 }
                 else if (_star.starType == "Energy")
                 {
-                    //get the ritual star component
+                    //get the energy star component
                     S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
 
                     //get the color

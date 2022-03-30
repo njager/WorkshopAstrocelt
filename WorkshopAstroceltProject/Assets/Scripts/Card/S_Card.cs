@@ -237,6 +237,14 @@ public class S_Card : MonoBehaviour
                 {
                     TriggerAttackCard(_character.GetComponent<S_Enemy>());
                 }
+                else
+                {
+                    ResetPosition();
+                }
+            }
+            else
+            {
+                ResetPosition();
             }
         }
         else if(c_b_shieldMainEffect == true)
@@ -247,8 +255,15 @@ public class S_Card : MonoBehaviour
                 {
                     TriggerShieldCard(_character.GetComponent<S_Player>());
                 }
+                else
+                {
+                    ResetPosition();
+                }
             }
-            
+            else
+            {
+                ResetPosition();
+            }
         }
     }
 
