@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 using CodeMonkey.Utils;
@@ -10,6 +11,9 @@ public class S_PopupManager : MonoBehaviour
 {
     //private variables
     private S_Global g_global;
+
+    [Header("Clearing Bool")]
+    public bool PopupClear; 
 
     [Header("Position Data")]
     [SerializeField] Vector3 v3_startingTextPopupPosition; 
@@ -32,6 +36,7 @@ public class S_PopupManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
         DOTween.Init();
+        PopupClear = false; 
     }
 
     /// <summary>
@@ -58,5 +63,15 @@ public class S_PopupManager : MonoBehaviour
         S_TextPopUp _textPopUpScript = _textPopUpObject.GetComponent<S_TextPopUp>();
         _textPopUpScript.SetGivenPosition(_starLocation);
         _textPopUpScript.StartCoroutine(_textPopUpScript.MovePopUp());
+    }
+
+    public IEnumerator ClearAllPopups()
+    {
+        foreach(S_StarPopUp starPop in g_global.ls_starPopup.ToList())
+        {
+            starPop.DeletePopup();
+        }
+        PopupClear = true; 
+        yield return PopupClear == true; 
     }
 }

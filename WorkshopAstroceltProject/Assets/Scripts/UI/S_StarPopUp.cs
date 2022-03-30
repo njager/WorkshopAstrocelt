@@ -32,12 +32,19 @@ public class S_StarPopUp : MonoBehaviour
 
     /// <summary>
     /// Set up global, add to list, and deletion timer
+    /// Toggle all the color graphics off to start
+    /// - Josh
     /// </summary>
     void Awake()
     {
         g_global = S_Global.Instance;
         g_global.ls_starPopup.Add(this); 
         b_deletionTimerFlag = false;
+
+        // Toggle Graphics
+        redColorGraphic.SetActive(false);
+        blueColorGraphic.SetActive(false);
+        yellowColorGraphic.SetActive(false);
     }
 
     private IEnumerator DeletionTimer()
@@ -53,6 +60,7 @@ public class S_StarPopUp : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        g_global.ls_starPopup.Remove(this);
         b_deletionTimerFlag = true;
         yield return b_deletionTimerFlag == true;
     }
@@ -61,7 +69,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         if(_color == "red")
         {
-
+            redColorGraphic.SetActive(true); 
         }
         if(_color == "blue")
         {
