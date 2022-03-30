@@ -104,12 +104,15 @@ public class S_Card : MonoBehaviour
         c_i_cardID = g_global.c_i_cardIDNum;
         c_cardBaseImage = GetComponent<Image>().sprite;
 
-        cv_canvas = GameObject.Find("GreyboxCanvas");
+        cv_canvas = GameObject.Find("MainCanvas");
+    }
 
+    private void Start()
+    {
         if (c_b_redColorType) { c_str_color = "red"; }
         else if (c_b_yellowColorType) { c_str_color = "yellow"; }
         else if (c_b_blueColorType) { c_str_color = "blue"; }
-        else if(c_b_whiteColorType) { c_str_color = "white"; }
+        else if (c_b_whiteColorType) { c_str_color = "white"; }
     }
 
     /// <summary>
@@ -228,24 +231,41 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
-            if(g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
+            if(_character.GetComponent<S_Enemy>() != null)
             {
-                if (_character.GetComponent<S_Enemy>() != null)
+                if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
                 {
+                    //undo star lockout
+                    g_global.g_ConstellationManager.b_starLockout = true;
+
                     TriggerAttackCard(_character.GetComponent<S_Enemy>());
                 }
                 else
                 {
-                    //c_cardrectTransform.position; 
+                    ResetPosition();
                 }
+            }
+            else
+            {
+                ResetPosition();
             }
         }
         else if(c_b_shieldMainEffect == true)
         {
-            g_global.g_ConstellationManager.i_energyCount -= c_i_energyCost;
-            if (_character.GetComponent<S_Player>() != null) //Had to do this for enemy, might as well do for player
+            if (_character.GetComponent<S_Player>() != null)
             {
-                TriggerShieldCard(_character.GetComponent<S_Player>());
+                if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color)) //Had to do this for enemy, might as well do for player
+                {
+                    TriggerShieldCard(_character.GetComponent<S_Player>());
+                }
+                else
+                {
+                    ResetPosition();
+                }
+            }
+            else
+            {
+                ResetPosition();
             }
         }
     }
@@ -275,6 +295,7 @@ public class S_Card : MonoBehaviour
     private void DeleteCard()
     {
         g_global.g_turnManager.attackSound.SetActive(false);
+        g_global.g_cardManager.RemoveCard();
         Destroy(gameObject); // Remove card from play
     }
 

@@ -7,7 +7,7 @@ public class S_Enemy : MonoBehaviour
 {
     private S_Global g_global;
 
-    [SerializeField] S_EnemyAttributes e_enemyAttributes;
+    public S_EnemyAttributes e_enemyAttributes;
     [SerializeField] GameObject a_audioPlayer;
 
     public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
@@ -55,12 +55,20 @@ public class S_Enemy : MonoBehaviour
         return; 
     }
 
+    /// <summary>
+    /// Enemy attacked
+    /// Update for Magician
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyType"></param>
+    /// <param name="_damageVal"></param>
+
     public void EnemyAttacked(string _enemyType, int _damageVal)
     {
         //sound effect goes here
         a_audioPlayer.SetActive(true);
 
-        if (_enemyType == "Lumberjack")
+        if (_enemyType == "Lumberjack" || _enemyType == "Magician")
         {
             if (e_enemyAttributes.e_i_shield <= 0)
             {
@@ -135,6 +143,10 @@ public class S_Enemy : MonoBehaviour
             Debug.Log("Lumberjack doesn't have a special ability!");
             return;
         }
+        if(_enemyType == "Magician")
+        {
+            g_global.g_player.PlayerStunned(g_global.g_player.p_playerAttributes.p_b_stunned, 1); 
+        }
     } 
 
 
@@ -152,15 +164,6 @@ public class S_Enemy : MonoBehaviour
     {
         //g_global.g_selectorManager.EnemySelected(this); 
     }
-
-
-    //Eventually use this? Check with designers, imported code. 
-    public void EnemyDamageChange(S_Enemy enemy)
-    {
-        int _randEnemyDamageInt = Random.Range(6, 12);
-        //enemy.enemyDamage = _randEnemyDamageInt;
-    }
-
 
     //Maybe use direct calls? Optimization decision
     private void SetEnemyHealthText(int _healthVal)

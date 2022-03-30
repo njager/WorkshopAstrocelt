@@ -106,7 +106,7 @@ public class S_DrawingManager : MonoBehaviour
     public void ConstellationReset(S_StarClass _Star)
     {
         //stop the player from clicking on stars while reseting
-        g_global.g_ConstellationManager.b_starLockout = true;
+        g_global.g_ConstellationManager.b_starLockout = false;
 
         //reset the energy, multipliers, and the sond queues
         g_global.g_lineMultiplierManager.ClearLineList();
@@ -140,7 +140,7 @@ public class S_DrawingManager : MonoBehaviour
         g_global.g_ConstellationManager.DeleteWholeCurConstellation();
 
         //done drawing now, let the player start again
-        g_global.g_ConstellationManager.b_starLockout = false;
+        g_global.g_ConstellationManager.b_starLockout = true;
     }
 
     /// <summary>
@@ -150,9 +150,9 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public IEnumerator LineDeletion()
     {
-        foreach (GameObject lineObject in g_global.g_lst_lineRendererList.ToList())
+        foreach (GameObject lineObject in g_global.g_ls_lineRendererList.ToList())
         {
-            g_global.g_lst_lineRendererList.Remove(lineObject);
+            g_global.g_ls_lineRendererList.Remove(lineObject);
             Destroy(lineObject);
             //this is bugging out when turn changes
         }

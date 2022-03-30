@@ -183,9 +183,12 @@ MonoBehaviour:
   f_boxOffsetY: 0.2
   constellationLinePrefab: {fileID: 2478283171175456657}
   i_index: 0
-  f_lineWidth: 0.175
+  f_lineWidth: 0
   f_lineLength: 0
   s_nullStarInst: {fileID: 9071395285117141641, guid: 1854591a6d64533478290a431eac38c1, type: 3}
+  b_starAdded: 0
+  f_lineWidthMin: 0.1
+  f_lineWidthMax: 0.15
 --- !u!50 &2478283171175456660
 Rigidbody2D:
   serializedVersion: 4

@@ -58,7 +58,7 @@ public class S_Global : MonoBehaviour
 
     [Header("Lists")]
     public List<S_Enemy> e_l_enemyList;
-    public List<GameObject> g_lst_lineRendererList;
+    public List<GameObject> g_ls_lineRendererList;
     public List<int> lst_p_playerDeck;
     public List<int> lst_p_playerGrave;
     public List<GameObject> ls_p_playerHand;

@@ -20,7 +20,9 @@ public class S_EnemyAttributes : MonoBehaviour
     public int e_i_shield;
     public int e_i_shieldMax;
 
-    public int e_i_enemyDamageValue;
+    public int e_i_enemyMinDamageRange;
+    public int e_i_enemyMaxDamageRange;
+    public int e_i_enemyDamageValue; 
 
     public float e_f_challengeRating;
 
@@ -29,7 +31,9 @@ public class S_EnemyAttributes : MonoBehaviour
 
     // Add more enemies to toggle on and off as needed
     [Header("Enemy Type Bools")]
-    public bool e_b_enemyIsLumberjack;
+    public bool e_b_Lumberjack;
+    public bool e_b_Magician;
+    public bool e_b_Brawler;
 
     [Header("Status Effects")]
     public bool e_b_poisoned;
@@ -42,6 +46,7 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_shocked;
 
     //It's attached enemy script
+    [Header("Attached Enemy Script")]
     public S_Enemy e_enemy;
 
     public void Awake()
@@ -49,8 +54,11 @@ public class S_EnemyAttributes : MonoBehaviour
         g_global = S_Global.Instance; 
 
         //Inform Global
-        InstanceVariables();
+        //InstanceVariables();
         e_enemy = gameObject.GetComponent<S_Enemy>();
+
+        //Calculate Damage
+        AttackDamageRoll();
     }
 
     private void Start()
@@ -142,6 +150,13 @@ public class S_EnemyAttributes : MonoBehaviour
         {
             g_global.g_enemyState.enemy5 = e_enemy;
         }
+    }
+    /// <summary>
+    /// Helper function to calculate a new damage each attack turn
+    /// </summary>
+    public void AttackDamageRoll()
+    {
+        e_i_enemyDamageValue = Random.Range(e_i_enemyMinDamageRange, e_i_enemyMaxDamageRange);
     }
 
     //Temporary

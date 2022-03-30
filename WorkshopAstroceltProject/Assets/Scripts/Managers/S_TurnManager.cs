@@ -126,7 +126,7 @@ public class S_TurnManager : MonoBehaviour
         {
             e_b_enemyDidAttack = false;
             g_global.g_energyManager.ClearEnergy();
-            EnemyAttackingOrShielding();
+            g_global.g_enemyState.EnemyAttackingOrShielding();
             
 
             if (g_global.g_enemyState.e_b_enemy1Dead != true)
@@ -136,12 +136,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy1Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if(g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet1.e_str_enemyType);
                     }
                 }
             }
@@ -152,12 +156,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy2Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy2Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy2SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy2.EnemySpecialAbility(g_global.g_enemyAttributeSheet2.e_str_enemyType);
                     }
                 }
             }
@@ -168,12 +176,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy3Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy3SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet3.e_str_enemyType);
                     }
                 }
             }
@@ -184,12 +196,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy4Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy4.EnemySpecialAbility(g_global.g_enemyAttributeSheet4.e_str_enemyType);
                     }
                 }
             }
@@ -200,12 +216,16 @@ public class S_TurnManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(10);
+                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
                     }
-                    else
+                    else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
                     {
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
                         e_b_enemyDidAttack = true;
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy5SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy5.EnemySpecialAbility(g_global.g_enemyAttributeSheet5.e_str_enemyType);
                     }
                 }
             }
@@ -220,85 +240,6 @@ public class S_TurnManager : MonoBehaviour
             }
         }
     }
-
-    
-    /// <summary>
-    /// This helper function switches whether the enemy is going to attack or defend
-    /// -Josh
-    /// </summary>
-    public void EnemyAttackingOrShielding()
-    {
-        if(g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
-        {
-            if (g_global.g_iconManager.e_b_enemy1IconCheck == true) //Enemy 1 Attack
-            {
-                g_global.g_enemyState.e_b_enemy1Attacking = true;
-                g_global.g_enemyState.e_b_enemy1Shielding = false;
-            }
-            else //Enemy 1 Shield
-            {
-                g_global.g_enemyState.e_b_enemy1Attacking = false;
-                g_global.g_enemyState.e_b_enemy1Shielding = true;
-            }
-        }
-
-        if (g_global.g_enemyAttributeSheet2 != null) // Check if enemy 2 is present
-        {
-            if (g_global.g_iconManager.e_b_enemy2IconCheck == true) // Enemy 2 Attack
-            {
-                g_global.g_enemyState.e_b_enemy2Attacking = true;
-                g_global.g_enemyState.e_b_enemy2Shielding = false;
-            }
-            else //Enemy 2 Shield
-            {
-                g_global.g_enemyState.e_b_enemy2Attacking = false;
-                g_global.g_enemyState.e_b_enemy2Shielding = true;
-            }
-        }
-
-        if (g_global.g_enemyAttributeSheet3 != null) // Check if enemy 3 is present
-        {
-            if (g_global.g_iconManager.e_b_enemy3IconCheck == true) // Enemy 3 Attack
-            {
-                g_global.g_enemyState.e_b_enemy3Attacking = true;
-                g_global.g_enemyState.e_b_enemy3Shielding = false;
-            }
-            else // Enemy 3 Shield
-            {
-                g_global.g_enemyState.e_b_enemy3Attacking = false;
-                g_global.g_enemyState.e_b_enemy3Shielding = true;
-            }
-        }
-
-        if (g_global.g_enemyAttributeSheet4 != null) // Check if enemy 4 is present
-        {
-            if (g_global.g_iconManager.e_b_enemy4IconCheck == true) // Enemy 4 Attack
-            {
-                g_global.g_enemyState.e_b_enemy4Attacking = true;
-                g_global.g_enemyState.e_b_enemy4Shielding = false;
-            }
-            else // Enemy 4 Shield
-            {
-                g_global.g_enemyState.e_b_enemy4Attacking = false;
-                g_global.g_enemyState.e_b_enemy4Shielding = true;
-            }
-        }
-
-        if (g_global.g_enemyAttributeSheet5 != null) // Check if enemy 5 is present
-        {
-            if (g_global.g_iconManager.e_b_enemy5IconCheck == true) // Enemy 5 Attack
-            {
-                g_global.g_enemyState.e_b_enemy5Attacking = true;
-                g_global.g_enemyState.e_b_enemy5Shielding = false;
-            }
-            else // Enemy 5 Shield
-            {
-                g_global.g_enemyState.e_b_enemy5Attacking = false;
-                g_global.g_enemyState.e_b_enemy5Shielding = true;
-            }
-        }
-    }
-
 
     public void PlayAttackSound()
     {

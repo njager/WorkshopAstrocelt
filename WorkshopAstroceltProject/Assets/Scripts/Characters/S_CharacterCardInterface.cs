@@ -41,11 +41,12 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
     /// <param name="_eventData"></param>
     public void OnDrop(PointerEventData _eventData)
     {
+        Debug.Log("Trying to Play the card");
+
         if (_eventData.pointerDrag != null)
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
-            //c_cardData = g_global.g_objectBeingDragged.GetComponent<S_Card>();
-            if (g_global.g_energyManager.i_energyCount >= c_cardData.c_i_energyCost) //check to see if the card can be played
+            if (c_cardData.gameObject == g_global.ls_p_playerHand[0])
             {
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
                 {
@@ -70,13 +71,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                         return;
                     }
                 }
-                else
-                {
-                    Debug.Log("Wrong Character Type!");
-                    c_cardData.ResetPosition();
-                    return;
-                }
-                if(e_b_attachedToEnemy == true) // I like to make bool checks clear in what they are checking, but could be optimized
+                else if (e_b_attachedToEnemy == true) // I like to make bool checks clear in what they are checking, but could be optimized
                 {
                     if (c_cardData.c_b_affectsOne == true) //check to see if it affects enemy
                     {
@@ -84,8 +79,14 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                         {
                             c_cardData.PlayCard(g_global.g_player.gameObject);
                         }
+                        else
+                        {
+                            Debug.Log("Not an attack card");
+                            c_cardData.ResetPosition();
+                            return;
+                        }
                     }
-                    else if(c_cardData.c_b_affectsAll == true) // Activate on all enemies
+                    else if (c_cardData.c_b_affectsAll == true) // Activate on all enemies
                     {
                         if (c_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
                         {
@@ -95,12 +96,24 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy1.gameObject);
                                 }
+                                else
+                                {
+                                    Debug.Log("Enemy is already Dead");
+                                    c_cardData.ResetPosition();
+                                    return;
+                                }
                             }
                             if (g_global.g_enemyAttributeSheet2 != null) // enemy 2
                             {
                                 if (g_global.g_enemyState.e_b_enemy2Dead == false)
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy2.gameObject);
+                                }
+                                else
+                                {
+                                    Debug.Log("Enemy is already Dead");
+                                    c_cardData.ResetPosition();
+                                    return;
                                 }
                             }
                             if (g_global.g_enemyAttributeSheet3 != null) // Enemy 3
@@ -109,12 +122,25 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy3.gameObject);
                                 }
+                                else
+                                {
+                                    Debug.Log("Enemy is already Dead");
+                                    c_cardData.ResetPosition();
+                                    return;
+                                }
                             }
                             if (g_global.g_enemyAttributeSheet4 != null) // Enemy 4
                             {
                                 if (g_global.g_enemyState.e_b_enemy4Dead == false)
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
+                                }
+
+                                else
+                                {
+                                    Debug.Log("Enemy is already Dead");
+                                    c_cardData.ResetPosition();
+                                    return;
                                 }
                             }
                             if (g_global.g_enemyAttributeSheet5 != null) // Enemy 5
@@ -123,16 +149,23 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
                                 }
+
+                                else
+                                {
+                                    Debug.Log("Enemy is already Dead");
+                                    c_cardData.ResetPosition();
+                                    return;
+                                }
                             }
                         }
                     }
                 }
-            }
-            else
-            {
-                Debug.Log("Wrong Character Type!");
-                c_cardData.ResetPosition();
-                return;
+                else
+                {
+                    Debug.Log("Wrong Character Type!");
+                    c_cardData.ResetPosition();
+                    return;
+                }
             }
         }
     }

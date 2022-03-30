@@ -113,6 +113,10 @@ public class S_CardManager : MonoBehaviour
         playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
         playerCard.transform.SetParent(c_cardHolder.gameObject.transform, false);
 
+        //control where it attaches to
+        playerCard.gameObject.transform.SetAsFirstSibling();
+        
+        //add this to the front of the list
         g_global.ls_p_playerHand.Add(playerCard);
     }
 
@@ -124,6 +128,6 @@ public class S_CardManager : MonoBehaviour
     /// <param name="_cardTemplate"></param>
     public void RemoveCard()
     {
-        g_global.ls_p_playerHand.RemoveAt(g_global.ls_p_playerHand.Count - 1);
+        g_global.ls_p_playerHand.RemoveAt(0);
     }
 }
