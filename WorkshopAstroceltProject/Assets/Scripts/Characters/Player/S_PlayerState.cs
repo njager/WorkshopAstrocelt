@@ -12,7 +12,7 @@ public class S_PlayerState : MonoBehaviour
     [Header("Status Effect Turn Counts")]
     public int p_i_bleedingTurnCount;
     public int p_i_stunnedTurnCount;
-    public int p_i_poisonedTurnCount;
+    public int p_i_resistantTurnCount;
 
     [Header("Status Effect Values")]
     public float bleedingDamageRate;
@@ -21,7 +21,7 @@ public class S_PlayerState : MonoBehaviour
     [Header("Status Effect States")]
     public bool p_b_inBleedingState;
     public bool p_b_inStunnedState;
-    public bool p_b_inPoisonedState;
+    public bool p_b_inResistantState;
 
     [Header("Audio Prefab")]
     public GameObject playerWinMusic;
@@ -63,7 +63,13 @@ public class S_PlayerState : MonoBehaviour
         }
     }
 
-    public void PlayerBleedingStatusEffect(float _damageRate)
+    public void PlayerStatusEffects()
+    {
+        PlayerResistantEffect(); 
+
+    }
+
+    private void PlayerBleedingStatusEffect(float _damageRate)
     {
         int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
         if (p_i_bleedingTurnCount <= 1)
@@ -76,7 +82,11 @@ public class S_PlayerState : MonoBehaviour
         }
     }
 
-    public void PlayerStunnedStatusEffect(int _stunnedDamageValue)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="_stunnedDamageValue"></param>
+    private void PlayerStunnedStatusEffect(int _stunnedDamageValue)
     {
         if (p_i_stunnedTurnCount <= 1)
         {
@@ -88,12 +98,27 @@ public class S_PlayerState : MonoBehaviour
         }
     }
 
-    public void PlayerResistantEffect()
+    /// <summary>
+    /// 
+    /// </summary>
+    private void PlayerResistantEffect()
     {
+        if (p_i_resistantTurnCount <=1)
+        {
+            //g_global.g_player
+        }
+        else
+        {
 
+        }
     }
 
-    public int BleedingEffectCalculator(float _damageRate)
+    /// <summary>
+    /// Helper function of a helper function
+    /// </summary>
+    /// <param name="_damageRate"></param>
+    /// <returns></returns>
+    private int BleedingEffectCalculator(float _damageRate)
     {
         int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
         return _bleedingCalc;
