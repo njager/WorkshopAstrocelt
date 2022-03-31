@@ -98,4 +98,14 @@ public class S_LineMultiplier : MonoBehaviour
             lst_lineLengthList.Remove(_lineLength);
         }
     }
+
+    /// <summary>
+    /// 
+    /// -Riley
+    /// </summary>
+    /// <param name="_line"></param>
+    public void LineMultiplier(GameObject _line)
+    {
+
+    }
 }
