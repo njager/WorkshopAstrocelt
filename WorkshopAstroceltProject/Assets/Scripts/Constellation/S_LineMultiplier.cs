@@ -5,7 +5,11 @@ using System.Linq;
 
 public class S_LineMultiplier : MonoBehaviour
 {
-    private S_Global g_global; 
+    private S_Global g_global;
+
+    [Header("Line Multiplier Breakpoint Values")]
+    public float f_mediumLength;
+    public float f_largeLength;
 
     [Header("Animation Curve")]
     public AnimationCurve animationCurveForMultiplier;
@@ -19,6 +23,8 @@ public class S_LineMultiplier : MonoBehaviour
 
     [Header("Debug Elements")]
     public float debugLineValue;
+
+    public float f_totalLineLength;
 
     // Start is called before the first frame update
     void Awake()
@@ -104,8 +110,18 @@ public class S_LineMultiplier : MonoBehaviour
     /// -Riley
     /// </summary>
     /// <param name="_line"></param>
-    public void LineMultiplier(GameObject _line)
+    public int LineMultiplier(GameObject _line)
     {
+        //get the magnitude of the line
+        var length = _line.GetComponent<S_ConstellationLine>().f_lineLength;
 
+        //add to total line length
+        f_totalLineLength += length;
+
+        Debug.Log("Line with this index: " +_line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
+
+        if(f_totalLineLength > f_largeLength) { print("Large Line Bonus"); return 3; }
+        else if (f_totalLineLength > f_mediumLength) { print("med Line Bonus"); return 2; }
+        else { print("No Line Bonus"); return 1; }
     }
 }

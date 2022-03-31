@@ -3860,7 +3860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3d76853e7a364589b119e60280929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tx_textMesh: {fileID: 0}
+  PopupClear: 0
   v3_startingTextPopupPosition: {x: 0, y: 0, z: 0}
   p_v3_playerHealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy1HealthBarPosition: {x: 0, y: 0, z: 0}
@@ -3870,6 +3870,7 @@ MonoBehaviour:
   e_v3_enemy5HealthBarPosition: {x: 0, y: 0, z: 0}
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 0}
+  popUpCanvas: {fileID: 0}
 --- !u!1001 &278486993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6483,6 +6484,7 @@ MonoBehaviour:
   g_CardDatabase: {fileID: 2086421104}
   g_lineMultiplierManager: {fileID: 630261271}
   g_energyManager: {fileID: 1412184871}
+  g_popupManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -6504,6 +6506,7 @@ MonoBehaviour:
   lst_p_playerDeck: 
   lst_p_playerGrave: 
   ls_p_playerHand: []
+  ls_starPopup: []
   placeholder: 
   c_i_cardIDNum: 0
   g_e_enemyPosition1: {fileID: 1282492985}
@@ -8844,6 +8847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0597aa3287f9ef4c94f14019a0e2b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  f_mediumLength: 75
+  f_largeLength: 125
   animationCurveForMultiplier:
     serializedVersion: 2
     m_Curve:
@@ -8872,6 +8877,7 @@ MonoBehaviour:
   upperBoundForCalculation: 0
   lst_lineLengthList: []
   debugLineValue: 0
+  f_totalLineLength: 0
 --- !u!1001 &639043598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15921,6 +15927,41 @@ MonoBehaviour:
   e_b_enemy3SpecialAbility: 0
   e_b_enemy4SpecialAbility: 0
   e_b_enemy5SpecialAbility: 0
+  e_i_bleedingTurnCountEnemy1: 0
+  e_i_stunnedTurnCountEnemy1: 0
+  e_i_resistantTurnCountEnemy1: 0
+  e_i_bleedingTurnCountEnemy2: 0
+  e_i_stunnedTurnCountEnemy2: 0
+  e_i_resistantTurnCountEnemy2: 0
+  e_i_bleedingTurnCountEnemy3: 0
+  e_i_stunnedTurnCountEnemy3: 0
+  e_i_resistantTurnCountEnemy3: 0
+  e_i_bleedingTurnCountEnemy4: 0
+  e_i_stunnedTurnCountEnemy4: 0
+  e_i_resistantTurnCountEnemy4: 0
+  e_i_bleedingTurnCountEnemy5: 0
+  e_i_stunnedTurnCountEnemy5: 0
+  e_i_resistantTurnCountEnemy5: 0
+  e_b_inBleedingStateEnemy1: 0
+  e_b_inStunnedStateEnemy1: 0
+  e_b_inResistantStateEnemy1: 0
+  e_b_inBleedingStateEnemy2: 0
+  e_b_inStunnedStateEnemy2: 0
+  e_b_inResistantStateEnemy2: 0
+  e_b_inBleedingStateEnemy3: 0
+  e_b_inStunnedStateEnemy3: 0
+  e_b_inResistantStateEnemy3: 0
+  e_b_inBleedingStateEnemy4: 0
+  e_b_inStunnedStateEnemy4: 0
+  e_b_inResistantStateEnemy4: 0
+  e_b_inBleedingStateEnemy5: 0
+  e_b_inStunnedStateEnemy5: 0
+  e_b_inResistantStateEnemy5: 0
+  e_f_currentDamageRateForBleedEnemy1: 0
+  e_f_currentDamageRateForBleedEnemy2: 0
+  e_f_currentDamageRateForBleedEnemy3: 0
+  e_f_currentDamageRateForBleedEnemy4: 0
+  e_f_currentDamageRateForBleedEnemy5: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15935,14 +15976,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p_i_bleedingTurnCount: 0
   p_i_stunnedTurnCount: 0
-  p_i_poisonedTurnCount: 0
-  bleedingDamageRate: 0
-  stunnedDamageValue: 0
+  p_i_resistantTurnCount: 0
   p_b_inBleedingState: 0
   p_b_inStunnedState: 0
-  p_b_inPoisonedState: 0
+  p_b_inResistantState: 0
   playerWinMusic: {fileID: 1885446296}
   playerLoseMusic: {fileID: 1572118200}
+  p_f_currentDamageRateForBleed: 0
 --- !u!114 &1269889775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15959,6 +15999,12 @@ MonoBehaviour:
   e_b_enemyDidAttack: 0
   b_playerInitialTurn: 1
   b_enemyInitialTurn: 0
+  playerTurnSkipped: 0
+  enemy1TurnSkipped: 0
+  enemy2TurnSkipped: 0
+  enemy3TurnSkipped: 0
+  enemy4TurnSkipped: 0
+  enemy5TurnSkipped: 0
 --- !u!1 &1282492985
 GameObject:
   m_ObjectHideFlags: 0
