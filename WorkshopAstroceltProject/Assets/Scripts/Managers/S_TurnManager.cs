@@ -16,6 +16,15 @@ public class S_TurnManager : MonoBehaviour
 
     private float spawnTimer = 5f;
 
+    [Header("Turn Skips")]
+    public bool playerTurnSkipped;
+    public bool enemy1TurnSkipped;
+    public bool enemy2TurnSkipped;
+    public bool enemy3TurnSkipped;
+    public bool enemy4TurnSkipped;
+    public bool enemy5TurnSkipped;
+
+
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
@@ -25,6 +34,14 @@ public class S_TurnManager : MonoBehaviour
         g_global = S_Global.Instance;
         g_global.g_b_playerTurn = b_playerInitialTurn;
         g_global.g_b_enemyTurn = b_enemyInitialTurn;
+
+        // Make sure turn skips are false
+        playerTurnSkipped = false;
+        enemy1TurnSkipped = false;
+        enemy2TurnSkipped = false;
+        enemy3TurnSkipped = false;
+        enemy4TurnSkipped = false;
+        enemy5TurnSkipped = false; 
     }
 
     void Update()
@@ -35,9 +52,13 @@ public class S_TurnManager : MonoBehaviour
             spawnTimer -= Time.deltaTime;
             if (spawnTimer < 0)
             {
-                g_global.g_turnManager.PlayerStateChange();
+                PlayerStateChange();
                 spawnTimer = 5f;
             }
+        }
+        if (playerTurnSkipped) // Skip player's turn
+        {
+            PlayerStateChange();
         }
     }
 
@@ -78,7 +99,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
-        //clear data for the stars when the map changes (prolly should be a function) "YES IT SHOULD, tell me what needs to be added to clean this up and its purpose -Riley"
+        //clear data for the stars when the map changes (prolly should be a function) "YES IT SHOULD, tell me what needs to be added to clean this up and its purpose -Riley" 
         //g_global.g_DrawingManager.s_nodeStarInst.s_star.m_previous = g_global.g_nullStar;
         //g_global.g_DrawingManager.s_nodeStarInst.s_star.m_next = g_global.g_nullStar;
         
@@ -127,105 +148,144 @@ public class S_TurnManager : MonoBehaviour
             e_b_enemyDidAttack = false;
             g_global.g_energyManager.ClearEnergy();
             g_global.g_enemyState.EnemyAttackingOrShielding();
-            
 
+            // Check to see if dead
             if (g_global.g_enemyState.e_b_enemy1Dead != true)
             {
-                // Turn damage for Enemy or Shield
+                // Then trigger turn if present
                 if (g_global.g_enemyAttributeSheet1 != null)
                 {
-                    if (g_global.g_enemyState.e_b_enemy1Shielding == true)
+                    if (enemy1TurnSkipped == false)
                     {
-                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_i_shieldMax);
+                        if (g_global.g_enemyState.e_b_enemy1Shielding == true)
+                        {
+                            g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_i_shieldMax);
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
+                        {
+                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
+                            e_b_enemyDidAttack = true;
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                        {
+                            g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet1.e_str_enemyType);
+                        }
                     }
-                    else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
+                    else
                     {
-                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
-                        e_b_enemyDidAttack = true;
-                    }
-                    else if(g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
-                    {
-                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet1.e_str_enemyType);
+                        Debug.Log("Enemy 1's turn is skipped!");
                     }
                 }
             }
+            // Check to see if dead
             if (g_global.g_enemyState.e_b_enemy2Dead != true)
             {
-                // Turn damage for Enemy or Shield
+                // Then trigger turn if present
                 if (g_global.g_enemyAttributeSheet2 != null)
                 {
-                    if (g_global.g_enemyState.e_b_enemy2Shielding == true)
+                    if (enemy2TurnSkipped == false)
                     {
-                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_i_shieldMax);
+                        if (g_global.g_enemyState.e_b_enemy2Shielding == true)
+                        {
+                            g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_i_shieldMax);
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy2Attacking == true)
+                        {
+                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
+                            e_b_enemyDidAttack = true;
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy2SpecialAbility == true)
+                        {
+                            g_global.g_enemyState.enemy2.EnemySpecialAbility(g_global.g_enemyAttributeSheet2.e_str_enemyType);
+                        }
                     }
-                    else if (g_global.g_enemyState.e_b_enemy2Attacking == true)
+                    else
                     {
-                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
-                        e_b_enemyDidAttack = true;
-                    }
-                    else if (g_global.g_enemyState.e_b_enemy2SpecialAbility == true)
-                    {
-                        g_global.g_enemyState.enemy2.EnemySpecialAbility(g_global.g_enemyAttributeSheet2.e_str_enemyType);
+                        Debug.Log("Enemy 2's turn is skipped!");
                     }
                 }
             }
+            // Check to see if dead
             if (g_global.g_enemyState.e_b_enemy3Dead != true)
             {
-                // Turn damage for Enemy or Shield
+                // Then trigger turn if present
                 if (g_global.g_enemyAttributeSheet3 != null)
                 {
-                    if (g_global.g_enemyState.e_b_enemy3Shielding == true)
+                    if (enemy3TurnSkipped == false)
                     {
-                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_i_shieldMax);
+                        if (g_global.g_enemyState.e_b_enemy3Shielding == true)
+                        {
+                            g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_i_shieldMax);
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
+                        {
+                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
+                            e_b_enemyDidAttack = true;
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy3SpecialAbility == true)
+                        {
+                            g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet3.e_str_enemyType);
+                        }
                     }
-                    else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
+                    else
                     {
-                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
-                        e_b_enemyDidAttack = true;
-                    }
-                    else if (g_global.g_enemyState.e_b_enemy3SpecialAbility == true)
-                    {
-                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet3.e_str_enemyType);
+                        Debug.Log("Enemy 2's turn is skipped!");
                     }
                 }
             }
+            // Check to see if dead
             if (g_global.g_enemyState.e_b_enemy4Dead != true)
             {
-                // Turn damage for Enemy 4
+                // Then trigger turn if present
                 if (g_global.g_enemyAttributeSheet4 != null)
                 {
-                    if (g_global.g_enemyState.e_b_enemy4Shielding == true)
+                    if (enemy4TurnSkipped == false)
                     {
-                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                        if (g_global.g_enemyState.e_b_enemy4Shielding == true)
+                        {
+                            g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
+                        {
+                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
+                            e_b_enemyDidAttack = true;
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                        {
+                            g_global.g_enemyState.enemy4.EnemySpecialAbility(g_global.g_enemyAttributeSheet4.e_str_enemyType);
+                        }
                     }
-                    else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
+                    else
                     {
-                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
-                        e_b_enemyDidAttack = true;
-                    }
-                    else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
-                    {
-                        g_global.g_enemyState.enemy4.EnemySpecialAbility(g_global.g_enemyAttributeSheet4.e_str_enemyType);
+                        Debug.Log("Enemy 2's turn is skipped!");
                     }
                 }
             }
+            // Check to see if dead
             if (g_global.g_enemyState.e_b_enemy5Dead != true)
             {
-                // Turn damage for Enemy 5
+                // Then trigger turn if present
                 if (g_global.g_enemyAttributeSheet5 != null)
                 {
-                    if (g_global.g_enemyState.e_b_enemy5Shielding == true)
+                    if (enemy5TurnSkipped == false)
                     {
-                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                        if (g_global.g_enemyState.e_b_enemy5Shielding == true)
+                        {
+                            g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
+                        {
+                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
+                            e_b_enemyDidAttack = true;
+                        }
+                        else if (g_global.g_enemyState.e_b_enemy5SpecialAbility == true)
+                        {
+                            g_global.g_enemyState.enemy5.EnemySpecialAbility(g_global.g_enemyAttributeSheet5.e_str_enemyType);
+                        }
                     }
-                    else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
+                    else
                     {
-                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
-                        e_b_enemyDidAttack = true;
-                    }
-                    else if (g_global.g_enemyState.e_b_enemy5SpecialAbility == true)
-                    {
-                        g_global.g_enemyState.enemy5.EnemySpecialAbility(g_global.g_enemyAttributeSheet5.e_str_enemyType);
+                        Debug.Log("Enemy 2's turn is skipped!");
                     }
                 }
             }

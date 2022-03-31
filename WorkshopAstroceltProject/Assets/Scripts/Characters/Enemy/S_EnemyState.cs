@@ -242,10 +242,14 @@ public class S_EnemyState : MonoBehaviour
     public void EnemyStatusEffectDecrement()
     {
         Enemy1StatusChecks();
+        Enemy2StatusChecks();
+        Enemy3StatusChecks();
+        Enemy4StatusChecks();
+        Enemy5StatusChecks();
     }
 
     /// <summary>
-    /// Function to trigger for Enemy Bleed
+    /// Function for initial trigger for Enemy Bleeds
     /// - Josh
     /// </summary>
     /// <param name="_damageRate"></param>
@@ -336,39 +340,158 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Function to trigger for Enemy Stun
+    /// Function for initial trigger for Enemy Stuns
     /// - Josh
     /// </summary>
     /// <param name="_turnCount"></param>
     public void EnemyStunnedStatusEffect(int _turnCount, int _enemyNum)
     {
-    
-        if (e_b_inStunnedState == false)
+        //If enemy was enemy 1
+        if(_enemyNum == 1)
         {
-            e_i_stunnedTurnCount = _turnCount;
-            e_b_inStunnedState = true;
+            if (e_b_inStunnedStateEnemy1 == false)
+            {
+                e_i_stunnedTurnCountEnemy1 = _turnCount;
+                e_b_inStunnedStateEnemy1 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
         }
-        else
+
+        //If enemy was enemy 2
+        if (_enemyNum == 2)
         {
-            Debug.Log("Effect already active!");
+            if (e_b_inStunnedStateEnemy2 == false)
+            {
+                e_i_stunnedTurnCountEnemy2 = _turnCount;
+                e_b_inStunnedStateEnemy2 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        //If enemy was enemy 3
+        if (_enemyNum == 3)
+        {
+            if (e_b_inStunnedStateEnemy3 == false)
+            {
+                e_i_stunnedTurnCountEnemy3 = _turnCount;
+                e_b_inStunnedStateEnemy3 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        //If enemy was enemy 4
+        if (_enemyNum == 4)
+        {
+            if (e_b_inStunnedStateEnemy4 == false)
+            {
+                e_i_stunnedTurnCountEnemy4 = _turnCount;
+                e_b_inStunnedStateEnemy4 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        //If enemy was enemy 5
+        if (_enemyNum == 5)
+        {
+            if (e_b_inStunnedStateEnemy5 == false)
+            {
+                e_i_stunnedTurnCountEnemy5 = _turnCount;
+                e_b_inStunnedStateEnemy5 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
         }
     }
 
     /// <summary>
-    /// Function to trigger for Player Resistance
+    /// Function for initial trigger for Enemy Resistances
     /// - Josh
     /// </summary>
     /// <param name="_turnCount"></param>
     public void EnemyResistantEffect(int _turnCount, int _enemyNum)
     {
-        if (e_b_inResistantState == false)
+        // If Enemy was Enemy 1
+        if(_enemyNum == 1)
         {
-            e_i_resistantTurnCount = _turnCount;
-            e_b_inResistantState = true;
+            if (e_b_inResistantStateEnemy1 == false)
+            {
+                e_i_resistantTurnCountEnemy1 = _turnCount;
+                e_b_inResistantStateEnemy1 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
         }
-        else
+
+        // If Enemy was Enemy 2
+        if (_enemyNum == 2)
         {
-            Debug.Log("Effect already active!");
+            if (e_b_inResistantStateEnemy2 == false)
+            {
+                e_i_resistantTurnCountEnemy2 = _turnCount;
+                e_b_inResistantStateEnemy2 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If Enemy was Enemy 3
+        if (_enemyNum == 3)
+        {
+            if (e_b_inResistantStateEnemy3 == false)
+            {
+                e_i_resistantTurnCountEnemy3 = _turnCount;
+                e_b_inResistantStateEnemy3 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If Enemy was Enemy 4
+        if (_enemyNum == 4)
+        {
+            if (e_b_inResistantStateEnemy4 == false)
+            {
+                e_i_resistantTurnCountEnemy4 = _turnCount;
+                e_b_inResistantStateEnemy4 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If Enemy was Enemy 5
+        if (_enemyNum == 5)
+        {
+            if (e_b_inResistantStateEnemy5 == false)
+            {
+                e_i_resistantTurnCountEnemy5 = _turnCount;
+                e_b_inResistantStateEnemy5 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
         }
     }
 
@@ -579,7 +702,7 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
-    // This doesn't have enemy 4 or enemy 5 added to it yet
+    // This doesn't have enemy 4 or enemy 5 added to it yet, add to Icon manager, rename icon manager to intent manager
     /// <summary>
     /// This helper function switches whether the enemy is going to attack or defend
     /// Called in S_TurnManager

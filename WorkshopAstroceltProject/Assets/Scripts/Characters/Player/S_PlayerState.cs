@@ -14,10 +14,6 @@ public class S_PlayerState : MonoBehaviour
     public int p_i_stunnedTurnCount;
     public int p_i_resistantTurnCount;
 
-    [Header("Status Effect Values")]
-    public float bleedingDamageRate;
-    public int stunnedDamageValue;
-
     [Header("Status Effect States")]
     public bool p_b_inBleedingState;
     public bool p_b_inStunnedState;
@@ -80,10 +76,12 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_i_stunnedTurnCount <= 0)
         {
+            g_global.g_turnManager.playerTurnSkipped = false;
             p_b_inStunnedState = false;
         }
         if (p_i_resistantTurnCount <= 0)
         {
+            g_global.g_playerAttributeSheet.p_b_resistant = false;
             p_b_inResistantState = false; 
         }
         
@@ -95,10 +93,12 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_b_inStunnedState)
         {
+            g_global.g_turnManager.playerTurnSkipped = true;
             p_i_stunnedTurnCount -= 1;
         }
         if (p_b_inResistantState)
         {
+            g_global.g_playerAttributeSheet.p_b_resistant = true;
             p_i_resistantTurnCount -= 1; 
         }
     }
@@ -134,6 +134,7 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inStunnedState == false)
         {
+            g_global.g_turnManager.playerTurnSkipped = true; 
             p_i_stunnedTurnCount = _turnCount;
             p_b_inStunnedState = true; 
         }
@@ -152,6 +153,7 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inResistantState == false)
         {
+            g_global.g_playerAttributeSheet.p_b_resistant = true; 
             p_i_resistantTurnCount = _turnCount;
             p_b_inResistantState = true; 
         }

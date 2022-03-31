@@ -149,8 +149,7 @@ public class S_Enemy : MonoBehaviour
         }
     } 
 
-
-    // Require enemytype in case we need to do death behavior
+    // Require enemy type in case we need to do death behavior
     public void EnemyDied(string _enemyType)
     {
         g_global.g_i_enemyCount -= 1;

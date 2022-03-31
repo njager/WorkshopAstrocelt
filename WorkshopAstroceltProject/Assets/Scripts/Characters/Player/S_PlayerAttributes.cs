@@ -28,14 +28,13 @@ public class S_PlayerAttributes : MonoBehaviour
     public bool p_b_playerHasConstellationEffects;
 
     [Header("Status Effects")]
-    public bool p_b_poisoned;
     public bool p_b_stunned;
     public bool p_b_bleeding;
-    public bool e_b_empowered;
-    public bool e_b_lucky;
-    public bool e_b_restrained;
-    public bool e_b_burned;
-    public bool e_b_shocked;
+    public bool p_b_empowered;
+    public bool p_b_lucky;
+    public bool p_b_resistant;
+    public bool p_b_burned;
+    public bool p_b_shocked;
 
     void Awake()
     {
@@ -66,7 +65,7 @@ public class S_PlayerAttributes : MonoBehaviour
 
         //Status Effects
         p_b_bleeding = false;
-        p_b_poisoned = false;
+        p_b_resistant = false;
         p_b_stunned = false;
     }
 }
