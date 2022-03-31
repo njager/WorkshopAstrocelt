@@ -63,7 +63,7 @@ public class S_PlayerState : MonoBehaviour
         }
     }
 
-    public void BleedingStatusEffectForTurn(float _damageRate)
+    public void PlayerBleedingStatusEffect(float _damageRate)
     {
         int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
         if (p_i_bleedingTurnCount <= 1)
@@ -73,13 +73,10 @@ public class S_PlayerState : MonoBehaviour
         else
         {
             Debug.Log("Effect not active!");
-            // Maybe return a bool here for a turn manager check?
-
-            //Was this riley? 
         }
     }
 
-    public void StunnedStatusEffectForTurn(int _stunnedDamageValue)
+    public void PlayerStunnedStatusEffect(int _stunnedDamageValue)
     {
         if (p_i_stunnedTurnCount <= 1)
         {
@@ -88,21 +85,12 @@ public class S_PlayerState : MonoBehaviour
         else
         {
             Debug.Log("Effect not active!");
-            // Maybe return a bool here for a turn manager check?
         }
     }
 
-    public void PoisonedStatusEffectForTurn(int _poisonedDamageValue)
+    public void PlayerResistantEffect()
     {
-        if (p_i_stunnedTurnCount <= 1)
-        {
-            g_global.g_player.PlayerAttacked(_poisonedDamageValue);
-        }
-        else
-        {
-            Debug.Log("Effect not active!");
-            // Maybe return a bool here for a turn manager check?
-        }
+
     }
 
     public int BleedingEffectCalculator(float _damageRate)

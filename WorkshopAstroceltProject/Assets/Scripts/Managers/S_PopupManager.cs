@@ -61,7 +61,9 @@ public class S_PopupManager : MonoBehaviour
     {
         GameObject _starPopup = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
         S_StarPopUp _starPopupScript = _starPopup.GetComponent<S_StarPopUp>();
-        //_starPopupScript.SetGivenPosition(_starLocation);
+        
+        // Add setup
+
         //_starPopupScript.StartCoroutine(_textPopUpScript.MovePopUp());
     }
 
