@@ -127,13 +127,13 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
+            else
+            {
+                Debug.Log("Map 1 Chosen");
+                Map1();
+            }
         }
-        else
-        {
-            Debug.Log("Map 1 Chosen");
-            Map1(); 
-        }
-
+        
         // Map 2
         if (_mapNumChosen == 2)
         {
@@ -177,13 +177,13 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
+            else
+            {
+                Debug.Log("Map 2 Chosen");
+                Map2();
+            }
         }
-        else
-        {
-            Debug.Log("Map 2 Chosen");
-            Map2();
-        }
-
+        
         // Map 3
         if (_mapNumChosen == 3) 
         {
@@ -227,11 +227,11 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Map 3 Chosen");
-            Map3();
+            else
+            {
+                Debug.Log("Map 3 Chosen");
+                Map3();
+            }
         }
 
         // Map 4
@@ -277,11 +277,11 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Map 4 Chosen");
-            Map4();
+            else
+            {
+                Debug.Log("Map 4 Chosen");
+                Map4();
+            }
         }
 
         // Map 5
@@ -327,11 +327,11 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Map 5 Chosen");
-            Map5();
+            else
+            {
+                Debug.Log("Map 5 Chosen");
+                Map5();
+            }
         }
 
         // Map 6
@@ -377,11 +377,11 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Map 6 Chosen");
-            Map6();
+            else
+            {
+                Debug.Log("Map 6 Chosen");
+                Map6();
+            }
         }
 
         // Map 7
@@ -427,11 +427,11 @@ public class S_MapGeneration : MonoBehaviour
                     Map8();
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Map 7 Chosen");
-            Map7();
+            else
+            {
+                Debug.Log("Map 7 Chosen");
+                Map7();
+            }
         }
 
         // Map 8
@@ -477,11 +477,11 @@ public class S_MapGeneration : MonoBehaviour
                     Map1();
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Map 8 Chosen");
-            Map8();
+            else
+            {
+                Debug.Log("Map 8 Chosen");
+                Map8();
+            }
         }
     }
 
