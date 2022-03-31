@@ -78,8 +78,8 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Dragger References")]
     public S_CardDragger s_c_cardDraggerReference;
-
     public int c_i_cardID;
+    public RectTransform initialCardTransform;
 
     [Header("Card Hover Height")]
     public float i_hoverHeight;
@@ -105,7 +105,9 @@ public class S_Card : MonoBehaviour
         c_cardBaseImage = GetComponent<Image>().sprite;
 
         cv_canvas = GameObject.Find("MainCanvas");
-    }
+
+        initialCardTransform = gameObject.GetComponent<RectTransform>();
+}
 
     private void Start()
     {
@@ -123,8 +125,6 @@ public class S_Card : MonoBehaviour
     public void FetchCardData(S_CardTemplate _cardData)
     {
         c_cardTemplate = _cardData;
-
-        this.GetComponent<S_CardDragger>().c_card = _cardData;
 
         //Load strings
         c_str_cardName = _cardData.CardName;
@@ -309,7 +309,7 @@ public class S_Card : MonoBehaviour
 
     public void ResetPosition()
     {
-        s_c_cardDraggerReference.c_cardTransform.position = s_c_cardDraggerReference.c_v3_initialPosition;
+        gameObject.transform.position = s_c_cardDraggerReference.c_v3_initialPosition; 
     }
 
     /// <summary>
