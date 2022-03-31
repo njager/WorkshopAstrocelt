@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 6364323939515721944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 26, y: 26, z: 0}
+  m_LocalScale: {x: 23, y: 23, z: 0}
   m_Children: []
   m_Father: {fileID: 6364323939937959181}
   m_RootOrder: 0
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  e_attachedEnemy: {fileID: 0}
   p_b_attachedToPlayer: 0
   e_b_attachedToEnemy: 0
 --- !u!1 &6364323939937959180
@@ -160,14 +161,13 @@ MonoBehaviour:
   p_b_playerHasRelicSlotted: 0
   p_b_playerHasUpgrades: 0
   p_b_playerHasConstellationEffects: 0
-  p_b_poisoned: 0
   p_b_stunned: 0
   p_b_bleeding: 0
-  e_b_empowered: 0
-  e_b_lucky: 0
-  e_b_restrained: 0
-  e_b_burned: 0
-  e_b_shocked: 0
+  p_b_empowered: 0
+  p_b_lucky: 0
+  p_b_resistant: 0
+  p_b_burned: 0
+  p_b_shocked: 0
 --- !u!114 &4749422031476742391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  e_attachedEnemy: {fileID: 0}
   p_b_attachedToPlayer: 0
   e_b_attachedToEnemy: 0
 --- !u!50 &4516814499410397528
