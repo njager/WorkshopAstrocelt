@@ -48,6 +48,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
             if (c_cardData.gameObject == g_global.ls_p_playerHand[0])
             {
+                print("Made it all the way?");
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
                 {
                     if (c_cardData.c_b_affectsPlayer == true) //check to see if it affects player
@@ -135,7 +136,6 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
                                 }
-
                                 else
                                 {
                                     Debug.Log("Enemy is already Dead");
@@ -149,7 +149,6 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                                 {
                                     c_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
                                 }
-
                                 else
                                 {
                                     Debug.Log("Enemy is already Dead");
@@ -158,6 +157,18 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                                 }
                             }
                         }
+                        else
+                        {
+                            Debug.Log("not a main attack for all");
+                            c_cardData.ResetPosition();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Doesn't effect one, doesn't effect all");
+                        c_cardData.ResetPosition();
+                        return;
                     }
                 }
                 else
@@ -167,6 +178,18 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     return;
                 }
             }
+            else
+            {
+                Debug.Log("not a main attack for all");
+                c_cardData.ResetPosition();
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log("Pointer Event Data is Null");
+            c_cardData.ResetPosition();
+            return;
         }
     }
 }
