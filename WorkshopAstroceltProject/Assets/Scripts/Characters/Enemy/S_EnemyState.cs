@@ -7,13 +7,14 @@ public class S_EnemyState : MonoBehaviour
     // Controls the state for the entierety of enemies 
     private S_Global g_global;
 
-    // Five max potential enemes, left blank for enemies to self inform themselves to. 
+    [Header("Enemy References")]
     public S_Enemy enemy1;
     public S_Enemy enemy2;
     public S_Enemy enemy3;
     public S_Enemy enemy4;
     public S_Enemy enemy5;
 
+    [Header("Enemy Types")]
     public string str_enemy1Type;
     public string str_enemy2Type;
     public string str_enemy3Type;
@@ -48,6 +49,63 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy3SpecialAbility;
     public bool e_b_enemy4SpecialAbility;
     public bool e_b_enemy5SpecialAbility;
+
+    [Header("Status Effect Turn Count For Enemy 1")]
+    public int e_i_bleedingTurnCountEnemy1;
+    public int e_i_stunnedTurnCountEnemy1;
+    public int e_i_resistantTurnCountEnemy1;
+
+    [Header("Status Effect Turn Count For Enemy 2")]
+    public int e_i_bleedingTurnCountEnemy2;
+    public int e_i_stunnedTurnCountEnemy2;
+    public int e_i_resistantTurnCountEnemy2;
+
+    [Header("Status Effect Turn Count For Enemy 3")]
+    public int e_i_bleedingTurnCountEnemy3;
+    public int e_i_stunnedTurnCountEnemy3;
+    public int e_i_resistantTurnCountEnemy3;
+
+    [Header("Status Effect Turn Count For Enemy 4")]
+    public int e_i_bleedingTurnCountEnemy4;
+    public int e_i_stunnedTurnCountEnemy4;
+    public int e_i_resistantTurnCountEnemy4;
+
+    [Header("Status Effect Turn Count For Enemy 5")]
+    public int e_i_bleedingTurnCountEnemy5;
+    public int e_i_stunnedTurnCountEnemy5;
+    public int e_i_resistantTurnCountEnemy5;
+
+    [Header("Status Effect States For Enemy 1")]
+    public bool e_b_inBleedingStateEnemy1;
+    public bool e_b_inStunnedStateEnemy1;
+    public bool e_b_inResistantStateEnemy1;
+
+    [Header("Status Effect States For Enemy 2")]
+    public bool e_b_inBleedingStateEnemy2;
+    public bool e_b_inStunnedStateEnemy2;
+    public bool e_b_inResistantStateEnemy2;
+
+    [Header("Status Effect States For Enemy 3")]
+    public bool e_b_inBleedingStateEnemy3;
+    public bool e_b_inStunnedStateEnemy3;
+    public bool e_b_inResistantStateEnemy3;
+
+    [Header("Status Effect States For Enemy 4")]
+    public bool e_b_inBleedingStateEnemy4;
+    public bool e_b_inStunnedStateEnemy4;
+    public bool e_b_inResistantStateEnemy4;
+
+    [Header("Status Effect States For Enemy 5")]
+    public bool e_b_inBleedingStateEnemy5;
+    public bool e_b_inStunnedStateEnemy5;
+    public bool e_b_inResistantStateEnemy5;
+
+    [Header("Status Effect Stores")]
+    public float e_f_currentDamageRateForBleedEnemy1;
+    public float e_f_currentDamageRateForBleedEnemy2;
+    public float e_f_currentDamageRateForBleedEnemy3;
+    public float e_f_currentDamageRateForBleedEnemy4; 
+    public float e_f_currentDamageRateForBleedEnemy5;
 
 
     void Awake()
@@ -177,6 +235,351 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Decrement the turn count for effects
+    /// Add status effects as needed, call this in turn manager at the beginning of enemy turn
+    /// </summary>
+    public void EnemyStatusEffectDecrement()
+    {
+        Enemy1StatusChecks();
+    }
+
+    /// <summary>
+    /// Function to trigger for Enemy Bleed
+    /// - Josh
+    /// </summary>
+    /// <param name="_damageRate"></param>
+    /// <param name="_turnCount"></param>
+    public void EnemyBleedingStatusEffect(float _damageRate, int _turnCount, int _enemyNum)
+    {
+        int _bleedingDamage = BleedingEffectCalculator(_damageRate);
+        
+        // If the Enemy was Enemy 1
+        if(_enemyNum == 1)
+        {
+            if (e_b_inBleedingStateEnemy1 == false)
+            {
+                enemy1.EnemyAttacked(str_enemy1Type, _bleedingDamage);
+                e_i_bleedingTurnCountEnemy1 = _turnCount;
+                e_f_currentDamageRateForBleedEnemy1 = _damageRate;
+                e_b_inBleedingStateEnemy1 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If the Enemy was Enemy 2
+        if (_enemyNum == 2)
+        {
+            if (e_b_inBleedingStateEnemy2 == false)
+            {
+                enemy2.EnemyAttacked(str_enemy2Type, _bleedingDamage);
+                e_i_bleedingTurnCountEnemy2 = _turnCount;
+                e_f_currentDamageRateForBleedEnemy2 = _damageRate;
+                e_b_inBleedingStateEnemy2 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If the Enemy was Enemy 3
+        if (_enemyNum == 3)
+        {
+            if (e_b_inBleedingStateEnemy3 == false)
+            {
+                enemy3.EnemyAttacked(str_enemy3Type, _bleedingDamage);
+                e_i_bleedingTurnCountEnemy3 = _turnCount;
+                e_f_currentDamageRateForBleedEnemy3 = _damageRate;
+                e_b_inBleedingStateEnemy1 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If the Enemy was Enemy 4
+        if (_enemyNum == 4)
+        {
+            if (e_b_inBleedingStateEnemy4 == false)
+            {
+                enemy1.EnemyAttacked(str_enemy4Type, _bleedingDamage);
+                e_i_bleedingTurnCountEnemy4 = _turnCount;
+                e_f_currentDamageRateForBleedEnemy4 = _damageRate;
+                e_b_inBleedingStateEnemy4 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+
+        // If the Enemy was Enemy 5
+        if (_enemyNum == 5)
+        {
+            if (e_b_inBleedingStateEnemy5 == false)
+            {
+                enemy5.EnemyAttacked(str_enemy5Type, _bleedingDamage);
+                e_i_bleedingTurnCountEnemy5 = _turnCount;
+                e_f_currentDamageRateForBleedEnemy5 = _damageRate;
+                e_b_inBleedingStateEnemy5 = true;
+            }
+            else
+            {
+                Debug.Log("Effect already active!");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Function to trigger for Enemy Stun
+    /// - Josh
+    /// </summary>
+    /// <param name="_turnCount"></param>
+    public void EnemyStunnedStatusEffect(int _turnCount, int _enemyNum)
+    {
+    
+        if (e_b_inStunnedState == false)
+        {
+            e_i_stunnedTurnCount = _turnCount;
+            e_b_inStunnedState = true;
+        }
+        else
+        {
+            Debug.Log("Effect already active!");
+        }
+    }
+
+    /// <summary>
+    /// Function to trigger for Player Resistance
+    /// - Josh
+    /// </summary>
+    /// <param name="_turnCount"></param>
+    public void EnemyResistantEffect(int _turnCount, int _enemyNum)
+    {
+        if (e_b_inResistantState == false)
+        {
+            e_i_resistantTurnCount = _turnCount;
+            e_b_inResistantState = true;
+        }
+        else
+        {
+            Debug.Log("Effect already active!");
+        }
+    }
+
+    /// <summary>
+    /// Helper function of a helper function, used to calculate percentage of health
+    /// - Josh
+    /// </summary>
+    /// <param name="_damageRate"></param>
+    /// <returns></returns>
+    private int BleedingEffectCalculator(float _damageRate)
+    {
+        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate);
+        return _bleedingCalc;
+    }
+
+    /// <summary>
+    /// Helper to trigger bleed after intial function
+    /// - Josh
+    /// </summary>
+    /// <param name="_damageRate"></param>
+    private void BleedEffectPerTurn(float _damageRate)
+    {
+        int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
+        g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
+    }
+
+    /// <summary>
+    /// Helper function for legibility
+    /// Controller for Enemy 1 Status Effects
+    /// - Josh
+    /// </summary>
+    private void Enemy1StatusChecks()
+    {
+        // Check for state For Enemy 1
+        if (e_i_bleedingTurnCountEnemy1 <= 0)
+        {
+            e_b_inBleedingStateEnemy1 = false;
+        }
+        if (e_i_stunnedTurnCountEnemy1 <= 0)
+        {
+            e_b_inStunnedStateEnemy1 = false;
+        }
+        if (e_i_resistantTurnCountEnemy1 <= 0)
+        {
+            e_b_inResistantStateEnemy1 = false;
+        }
+        // Trigger remaining effects
+        if (e_b_inBleedingStateEnemy1)
+        {
+            e_i_bleedingTurnCountEnemy1 -= 1;
+            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy1);
+        }
+        if (e_b_inStunnedStateEnemy1)
+        {
+            e_i_stunnedTurnCountEnemy1 -= 1;
+        }
+        if (e_b_inResistantStateEnemy1)
+        {
+            e_i_resistantTurnCountEnemy1 -= 1;
+        }
+    }
+
+    /// <summary>
+    /// Helper function for legibility
+    /// Controller for Enemy 2 Status Effects
+    /// - Josh
+    /// </summary>
+    private void Enemy2StatusChecks()
+    {
+        // Check for state For Enemy 2
+        if (e_i_bleedingTurnCountEnemy2 <= 0)
+        {
+            e_b_inBleedingStateEnemy2 = false;
+        }
+        if (e_i_stunnedTurnCountEnemy2 <= 0)
+        {
+            e_b_inStunnedStateEnemy2 = false;
+        }
+        if (e_i_resistantTurnCountEnemy2 <= 0)
+        {
+            e_b_inResistantStateEnemy2 = false;
+        }
+
+        // Trigger remaining effects
+        if (e_b_inBleedingStateEnemy2)
+        {
+            e_i_bleedingTurnCountEnemy2 -= 1;
+            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy2);
+        }
+        if (e_b_inStunnedStateEnemy2)
+        {
+            e_i_stunnedTurnCountEnemy2 -= 1;
+        }
+        if (e_b_inResistantStateEnemy2)
+        {
+            e_i_resistantTurnCountEnemy2 -= 1;
+        }
+    }
+
+    /// <summary>
+    /// Helper function for legibility
+    /// Controller for Enemy 3 Status Effects
+    /// - Josh
+    /// </summary>
+    private void Enemy3StatusChecks()
+    {
+        // Check for state For Enemy 3
+        if (e_i_bleedingTurnCountEnemy3 <= 0)
+        {
+            e_b_inBleedingStateEnemy3 = false;
+        }
+        if (e_i_stunnedTurnCountEnemy3 <= 0)
+        {
+            e_b_inStunnedStateEnemy3 = false;
+        }
+        if (e_i_resistantTurnCountEnemy3 <= 0)
+        {
+            e_b_inResistantStateEnemy3 = false;
+        }
+
+        // Trigger remaining effects
+        if (e_b_inBleedingStateEnemy3)
+        {
+            e_i_bleedingTurnCountEnemy3 -= 1;
+            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy3);
+        }
+        if (e_b_inStunnedStateEnemy3)
+        {
+            e_i_stunnedTurnCountEnemy3 -= 1;
+        }
+        if (e_b_inResistantStateEnemy3)
+        {
+            e_i_resistantTurnCountEnemy3 -= 1;
+        }
+    }
+
+    /// <summary>
+    /// Helper function for legibility
+    /// Controller for Enemy 4 Status Effects
+    /// - Josh
+    /// </summary>
+    private void Enemy4StatusChecks()
+    {
+        // Check for state For Enemy 4
+        if (e_i_bleedingTurnCountEnemy4 <= 0)
+        {
+            e_b_inBleedingStateEnemy4 = false;
+        }
+        if (e_i_stunnedTurnCountEnemy4 <= 0)
+        {
+            e_b_inStunnedStateEnemy4 = false;
+        }
+        if (e_i_resistantTurnCountEnemy4 <= 0)
+        {
+            e_b_inResistantStateEnemy4 = false;
+        }
+
+        // Trigger remaining effects
+        if (e_b_inBleedingStateEnemy4)
+        {
+            e_i_bleedingTurnCountEnemy4 -= 1;
+            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy4);
+        }
+        if (e_b_inStunnedStateEnemy4)
+        {
+            e_i_stunnedTurnCountEnemy4 -= 1;
+        }
+        if (e_b_inResistantStateEnemy4)
+        {
+            e_i_resistantTurnCountEnemy4 -= 1;
+        }
+    }
+
+    /// <summary>
+    /// Helper function for legibility
+    /// Controller for Enemy 5 Status Effects
+    /// - Josh
+    /// </summary>
+    private void Enemy5StatusChecks()
+    {
+        // Check for state For Enemy 5
+        if (e_i_bleedingTurnCountEnemy5 <= 0)
+        {
+            e_b_inBleedingStateEnemy5 = false;
+        }
+        if (e_i_stunnedTurnCountEnemy5 <= 0)
+        {
+            e_b_inStunnedStateEnemy5 = false;
+        }
+        if (e_i_resistantTurnCountEnemy5 <= 0)
+        {
+            e_b_inResistantStateEnemy5 = false;
+        }
+
+        // Trigger remaining effects
+        if (e_b_inBleedingStateEnemy5)
+        {
+            e_i_bleedingTurnCountEnemy5 -= 1;
+            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy5);
+        }
+        if (e_b_inStunnedStateEnemy5)
+        {
+            e_i_stunnedTurnCountEnemy5 -= 1;
+        }
+        if (e_b_inResistantStateEnemy5)
+        {
+            e_i_resistantTurnCountEnemy5 -= 1;
+        }
+    }
+
+    // This doesn't have enemy 4 or enemy 5 added to it yet
     /// <summary>
     /// This helper function switches whether the enemy is going to attack or defend
     /// Called in S_TurnManager

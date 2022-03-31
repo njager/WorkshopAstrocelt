@@ -71,7 +71,7 @@ public class S_PlayerState : MonoBehaviour
     /// Decrement the turn count for effects
     /// Add status effects as needed, call this in turn manager
     /// </summary>
-    public void PlayerStatusEffectDecrement()
+    public void PlayerStatusEffectForTurn()
     {
         // Check for state
         if(p_i_bleedingTurnCount <= 0)
