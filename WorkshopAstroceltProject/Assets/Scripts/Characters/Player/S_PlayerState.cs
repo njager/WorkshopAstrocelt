@@ -27,6 +27,9 @@ public class S_PlayerState : MonoBehaviour
     public GameObject playerWinMusic;
     public GameObject playerLoseMusic;
 
+    [Header("Status Effect Stores")]
+    public float p_f_currentDamageRateForBleed;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -63,58 +66,104 @@ public class S_PlayerState : MonoBehaviour
         }
     }
 
-    public void PlayerStatusEffects()
-    {
-        PlayerResistantEffect(); 
 
+    /// <summary>
+    /// Decrement the turn count for effects
+    /// Add status effects as needed, call this in turn manager
+    /// </summary>
+    public void PlayerStatusEffectDecrement()
+    {
+        // Check for state
+        if(p_i_bleedingTurnCount <= 0)
+        {
+            p_b_inBleedingState = false; 
+        }
+        if (p_i_stunnedTurnCount <= 0)
+        {
+            p_b_inStunnedState = false;
+        }
+        if (p_i_resistantTurnCount <= 0)
+        {
+            p_b_inResistantState = false; 
+        }
+        
+        // Trigger remaining effects
+        if (p_b_inBleedingState)
+        {
+            p_i_bleedingTurnCount -= 1;
+            BleedEffectPerTurn(p_f_currentDamageRateForBleed); 
+        }
+        if (p_b_inStunnedState)
+        {
+            p_i_stunnedTurnCount -= 1;
+        }
+        if (p_b_inResistantState)
+        {
+            p_i_resistantTurnCount -= 1; 
+        }
     }
 
-    private void PlayerBleedingStatusEffect(float _damageRate)
+    /// <summary>
+    /// Function to trigger for Player Bleed
+    /// - Josh
+    /// </summary>
+    /// <param name="_damageRate"></param>
+    /// <param name="_turnCount"></param>
+    public void PlayerBleedingStatusEffect(float _damageRate, int _turnCount)
     {
         int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
-        if (p_i_bleedingTurnCount <= 1)
+        if (p_b_inBleedingState == false)
         {
             g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
+            p_i_bleedingTurnCount = _turnCount;
+            p_f_currentDamageRateForBleed = _damageRate;
+            p_b_inBleedingState = true;
         }
         else
         {
-            Debug.Log("Effect not active!");
+            Debug.Log("Effect already active!");
         }
     }
 
     /// <summary>
-    /// 
+    /// Function to trigger for Player Stun
+    /// - Josh
     /// </summary>
-    /// <param name="_stunnedDamageValue"></param>
-    private void PlayerStunnedStatusEffect(int _stunnedDamageValue)
+    /// <param name="_turnCount"></param>
+    public void PlayerStunnedStatusEffect(int _turnCount)
     {
-        if (p_i_stunnedTurnCount <= 1)
+        if (p_b_inStunnedState == false)
         {
-            g_global.g_player.PlayerAttacked(_stunnedDamageValue);
+            p_i_stunnedTurnCount = _turnCount;
+            p_b_inStunnedState = true; 
         }
         else
         {
-            Debug.Log("Effect not active!");
+            Debug.Log("Effect already active!");
         }
     }
 
     /// <summary>
-    /// 
+    /// Function to trigger for Player Resistance
+    /// - Josh
     /// </summary>
-    private void PlayerResistantEffect()
+    /// <param name="_turnCount"></param>
+    public void PlayerResistantEffect(int _turnCount)
     {
-        if (p_i_resistantTurnCount <=1)
+        if (p_b_inResistantState == false)
         {
-            //g_global.g_player
+            p_i_resistantTurnCount = _turnCount;
+            p_b_inResistantState = true; 
         }
         else
         {
-
+            Debug.Log("Effect already active!");
         }
     }
 
     /// <summary>
-    /// Helper function of a helper function
+    /// Helper function of a helper function, used to calculate percentage of health
+    /// - Josh
     /// </summary>
     /// <param name="_damageRate"></param>
     /// <returns></returns>
@@ -122,6 +171,17 @@ public class S_PlayerState : MonoBehaviour
     {
         int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
         return _bleedingCalc;
+    }
+
+    /// <summary>
+    /// Helper to trigger bleed after intial function
+    /// - Josh
+    /// </summary>
+    /// <param name="_damageRate"></param>
+    private void BleedEffectPerTurn(float _damageRate)
+    {
+        int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
+        g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
     }
 
     /// <summary>
