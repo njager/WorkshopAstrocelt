@@ -135,6 +135,6 @@ public class S_ConstellationLine : MonoBehaviour
 
         // Create a popup for the first star made by the line
         //g_global.g_popupManager.CreatePopUpForStar(s_previousStar, s_previousStar.GetComponent<GameObject>().transform.position);
-        S_StarPopUp _currentPopUp = g_global.ls_starPopup[g_global.ls_starPopup.Count - 1];
+        //S_StarPopUp _currentPopUp = g_global.ls_starPopup[g_global.ls_starPopup.Count - 1];
     }
 }

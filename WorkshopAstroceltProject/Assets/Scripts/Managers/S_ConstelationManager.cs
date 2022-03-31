@@ -227,14 +227,14 @@ public class S_ConstelationManager : MonoBehaviour
 
             //trigger the star sound here
 
-            //add the line multiplier
-            //_energy = (int)Mathf.Round(_energy * g_global.g_UIManager.p_f_lineMultiplierAmount);
-
             //pass the _count to another function
             foreach (S_StarClass _star in ls_curConstellation){
 
+                //add the line multiplier
+                //_energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.);
+
                 //check the star type
-                if(_star.starType == "Ritual")
+                if (_star.starType == "Ritual")
                 {
                     //get the ritual star component
                     S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
