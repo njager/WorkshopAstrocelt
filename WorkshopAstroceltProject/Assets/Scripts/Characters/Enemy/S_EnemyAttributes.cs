@@ -41,7 +41,7 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_bleeding;
     public bool e_b_empowered;
     public bool e_b_lucky;
-    public bool e_b_restrained;
+    public bool e_b_resistant;
     public bool e_b_burned;
     public bool e_b_shocked;
 

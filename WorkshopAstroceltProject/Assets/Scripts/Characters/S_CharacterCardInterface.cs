@@ -11,6 +11,10 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
     private S_Card c_cardData;
     private S_Global g_global;
 
+    [Header("Enemy Reference")]
+    public S_Enemy e_attachedEnemy;
+
+    [Header("Bools")]
     public bool p_b_attachedToPlayer;
     public bool e_b_attachedToEnemy; 
 
@@ -79,7 +83,26 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     {
                         if (c_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
                         {
-                            c_cardData.PlayCard(g_global.g_player.gameObject);
+                            if(e_attachedEnemy == g_global.g_enemyState.enemy1)
+                            {
+                                c_cardData.PlayCard(g_global.g_enemyState.enemy1.gameObject);
+                            }
+                            else if (e_attachedEnemy == g_global.g_enemyState.enemy2)
+                            {
+                                c_cardData.PlayCard(g_global.g_enemyState.enemy2.gameObject);
+                            }
+                            else if (e_attachedEnemy == g_global.g_enemyState.enemy3)
+                            {
+                                c_cardData.PlayCard(g_global.g_enemyState.enemy3.gameObject);
+                            }
+                            else if (e_attachedEnemy == g_global.g_enemyState.enemy4)
+                            {
+                                c_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
+                            }
+                            else if (e_attachedEnemy == g_global.g_enemyState.enemy5)
+                            {
+                                c_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
+                            }
                         }
                         else
                         {
@@ -181,7 +204,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
             }
             else
             {
-                Debug.Log("not a main attack for all");
+                Debug.Log("Not the first card");
                 c_cardData.ResetPosition();
                 return;
             }

@@ -11,17 +11,16 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
   
     [Header("Useful Variables")]
     public Vector3 c_v3_initialPosition;
-    public RectTransform c_cardTransform;
-    public S_CardTemplate c_card;
-
+    public RectTransform c_cardTransform; 
+    public S_Card c_card;
 
     public int transformCounter = 0; // Use this to trigger bheavior only once;
 
     void Awake()
     {
         g_global = S_Global.Instance;
-        c_cardTransform = GetComponent<RectTransform>();
-        c_card = GetComponent<S_Card>().c_cardTemplate;
+        c_card = GetComponent<S_Card>();
+        c_cardTransform = gameObject.GetComponent<RectTransform>();
     }
 
     public void OnBeginDrag(PointerEventData _eventData)
@@ -41,7 +40,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             if (transformCounter == 0)
             {
-                c_v3_initialPosition = gameObject.transform.position;
+                c_v3_initialPosition = GetComponent<Transform>().position;
                 transformCounter++; // Increment counter to make this happen only once
             }
             c_cardTransform.anchoredPosition += _eventData.delta / g_global.g_UIManager.greyboxCanvas.GetComponent<Canvas>().scaleFactor; // Take the change in mouse position and divide it by the size of the box it's in
@@ -62,6 +61,11 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 FMODUnity.StudioEventEmitter _gameMusic = g_global.a_audioPlayer.GetComponent<FMODUnity.StudioEventEmitter>();
                 _gameMusic.SetParameter("Music_Combat_01", 1);
             }
+        }
+        else
+        {
+            c_card.ResetPosition();
+            return; 
         }
     }
 }

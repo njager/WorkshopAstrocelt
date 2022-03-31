@@ -229,7 +229,7 @@ public class S_TurnManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Enemy 2's turn is skipped!");
+                        Debug.Log("Enemy 3's turn is skipped!");
                     }
                 }
             }
@@ -257,7 +257,7 @@ public class S_TurnManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Enemy 2's turn is skipped!");
+                        Debug.Log("Enemy 4's turn is skipped!");
                     }
                 }
             }
@@ -285,7 +285,7 @@ public class S_TurnManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Enemy 2's turn is skipped!");
+                        Debug.Log("Enemy 5's turn is skipped!");
                     }
                 }
             }

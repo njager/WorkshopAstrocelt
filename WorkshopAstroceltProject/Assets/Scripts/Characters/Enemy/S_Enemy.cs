@@ -14,7 +14,9 @@ public class S_Enemy : MonoBehaviour
 
     public int e_i_enemyCount;
 
-    public GameObject e_sp_spriteIcon; 
+    public GameObject e_sp_spriteIcon;
+
+    public GameObject e_enemySprite;
 
     void Awake()
     {
@@ -25,6 +27,10 @@ public class S_Enemy : MonoBehaviour
         //Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
 
         g_global.e_l_enemyList.Add(this);
+
+        e_enemySprite.GetComponent<S_CharacterCardInterface>().e_attachedEnemy = this;
+
+        a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
     }
 
     private void Start()

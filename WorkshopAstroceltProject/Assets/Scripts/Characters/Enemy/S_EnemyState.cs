@@ -351,6 +351,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy1 == false)
             {
+                g_global.g_turnManager.enemy1TurnSkipped = true; 
                 e_i_stunnedTurnCountEnemy1 = _turnCount;
                 e_b_inStunnedStateEnemy1 = true;
             }
@@ -365,6 +366,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy2 == false)
             {
+                g_global.g_turnManager.enemy2TurnSkipped = true;
                 e_i_stunnedTurnCountEnemy2 = _turnCount;
                 e_b_inStunnedStateEnemy2 = true;
             }
@@ -379,6 +381,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy3 == false)
             {
+                g_global.g_turnManager.enemy3TurnSkipped = true;
                 e_i_stunnedTurnCountEnemy3 = _turnCount;
                 e_b_inStunnedStateEnemy3 = true;
             }
@@ -393,6 +396,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy4 == false)
             {
+                g_global.g_turnManager.enemy4TurnSkipped = true;
                 e_i_stunnedTurnCountEnemy4 = _turnCount;
                 e_b_inStunnedStateEnemy4 = true;
             }
@@ -407,6 +411,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy5 == false)
             {
+                g_global.g_turnManager.enemy5TurnSkipped = true;
                 e_i_stunnedTurnCountEnemy5 = _turnCount;
                 e_b_inStunnedStateEnemy5 = true;
             }
