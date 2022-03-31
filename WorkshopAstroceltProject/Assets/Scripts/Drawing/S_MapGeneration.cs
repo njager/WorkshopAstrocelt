@@ -7,6 +7,7 @@ public class S_MapGeneration : MonoBehaviour
     //Private variables
     private S_Global global;
 
+    [Header("Nodestar Reference")]
     public S_NodeStar nodeStar; 
 
     [Header("Temporary grid")]
@@ -17,21 +18,16 @@ public class S_MapGeneration : MonoBehaviour
     public GameObject blackBar5;
     public GameObject blackBar6;
 
-    [Header("Temporary Booleans")]
-    public bool map_b_map1Used;
-    public bool map_b_map2Used;
-    public bool map_b_map3Used;
-    public bool map_b_map4Used;
-    public bool map_b_map5Used;
-
     [Header("Map References")]
     public GameObject map1;
     public GameObject map2;
     public GameObject map3;
     public GameObject map4;
     public GameObject map5;
+    public GameObject map6;
+    public GameObject map7;
+    public GameObject map8;
 
-    //Thinking of adding mp_ as a designator for maps
     //Will grab chunks here
     private void Awake()
     {
@@ -43,7 +39,11 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(false);
         map4.SetActive(false);
         map5.SetActive(false);
-        Map1(); 
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+
+        RandomMapSelector();
     }
 
     private void Start()
@@ -67,8 +67,13 @@ public class S_MapGeneration : MonoBehaviour
     }
 
     ////Temporary Map Toggling and Placements\\\\
+    
+    public void RandomMapSelector()
+    {
 
-    //Designer Map 1
+    }
+
+    // Designer Map 1
     public void Map1()
     {
         //Move nodestar
@@ -81,16 +86,12 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(false);
         map4.SetActive(false);
         map5.SetActive(false);
-
-        //Toggle Booleans
-        map_b_map1Used = true;
-        map_b_map2Used = false;
-        map_b_map3Used = true;
-        map_b_map4Used = true;
-        map_b_map5Used = true;
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
     }
 
-    //Designer Map 2
+    // Designer Map 2
     public void Map2()
     {
         //Move nodestar
@@ -103,16 +104,12 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(false);
         map4.SetActive(false);
         map5.SetActive(false);
-
-        //Toggle Booleans
-        map_b_map1Used = true;
-        map_b_map2Used = true;
-        map_b_map3Used = false;
-        map_b_map4Used = true;
-        map_b_map5Used = true;
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
     }
 
-    //Designer Map 3
+    // Designer Map 3
     public void Map3()
     {
         //Move nodestar
@@ -125,16 +122,12 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(true);
         map4.SetActive(false);
         map5.SetActive(false);
-
-        //Toggle Booleans
-        map_b_map1Used = true;
-        map_b_map2Used = true;
-        map_b_map3Used = true;
-        map_b_map4Used = false;
-        map_b_map5Used = true;
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
     }
 
-    //Designer Map 4
+    // Designer Map 4
     public void Map4()
     {
         //Move nodestar
@@ -147,16 +140,12 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(false);
         map4.SetActive(true);
         map5.SetActive(false);
-
-        //Toggle Booleans
-        map_b_map1Used = true;
-        map_b_map2Used = true;
-        map_b_map3Used = true;
-        map_b_map4Used = true;
-        map_b_map5Used = false;
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
     }
 
-    //Designer Map 5
+    // Designer Map 5
     public void Map5()
     {
         //Move nodestar
@@ -169,12 +158,62 @@ public class S_MapGeneration : MonoBehaviour
         map3.SetActive(false);
         map4.SetActive(false);
         map5.SetActive(true);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+    }
 
-        //Toggle Booleans
-        map_b_map1Used = false; //Restart at Map 1
-        map_b_map2Used = true;
-        map_b_map3Used = true;
-        map_b_map4Used = true;
-        map_b_map5Used = true;
+    // Designer Map 6
+    public void Map6()
+    {
+        //Move nodestar
+        Vector3 newNodeStarPosition = new Vector3(-1.21f, 4.87f, 0f);
+        nodeStar.gameObject.transform.position = newNodeStarPosition;
+
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(true);
+        map7.SetActive(false);
+        map8.SetActive(false);
+    }
+
+    // Designer Map 7
+    public void Map7()
+    {
+        //Move nodestar
+        Vector3 newNodeStarPosition = new Vector3(-1.21f, 4.87f, 0f);
+        nodeStar.gameObject.transform.position = newNodeStarPosition;
+
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(true);
+        map8.SetActive(false);
+    }
+
+    // Designer Map 8
+    public void Map8()
+    {
+        //Move nodestar
+        Vector3 newNodeStarPosition = new Vector3(-1.21f, 4.87f, 0f);
+        nodeStar.gameObject.transform.position = newNodeStarPosition;
+
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(true);
     }
 }

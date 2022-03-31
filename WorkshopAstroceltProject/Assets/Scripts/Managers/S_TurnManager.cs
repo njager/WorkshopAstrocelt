@@ -73,27 +73,8 @@ public class S_TurnManager : MonoBehaviour
         //give the player a new hand
         g_global.g_cardManager.NewHand();
 
-        //Temporary map switching triggered by UIManager
-        if (g_global.g_mapManager.map_b_map1Used != true)
-        {
-            g_global.g_mapManager.Map1(); 
-        }
-        else if(g_global.g_mapManager.map_b_map2Used != true)
-        {
-            g_global.g_mapManager.Map2();
-        }
-        else if (g_global.g_mapManager.map_b_map3Used != true)
-        {
-            g_global.g_mapManager.Map3();
-        }
-        else if (g_global.g_mapManager.map_b_map4Used != true)
-        {
-            g_global.g_mapManager.Map4();
-        }
-        else if (g_global.g_mapManager.map_b_map5Used != true)
-        {
-            g_global.g_mapManager.Map5();
-        }
+        //Map Switching
+        g_global.g_mapManager.RandomMapSelector();
 
         // Temp line removal 
         g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
