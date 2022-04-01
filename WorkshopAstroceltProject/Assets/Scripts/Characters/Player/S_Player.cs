@@ -30,28 +30,55 @@ public class S_Player : MonoBehaviour
     /// <param name="_damageValue"></param>
     public void PlayerAttacked(int _damageValue)
     {
-        if(p_playerAttributes.p_i_shield <= 0)
+        if(p_playerAttributes.p_b_resistant == true)
         {
-            p_playerAttributes.p_i_health -= _damageValue;
-            Debug.Log("Player Attacked!");
-        }
-        else
-        {
-            int _tempVal = _damageValue - p_playerAttributes.p_i_shield;
-            Debug.Log("Temp Val: " + _tempVal);
-            if (_tempVal > 0)
+            int _newDamageValue = (int)_damageValue / 2;
+            if (p_playerAttributes.p_i_shield <= 0)
             {
-                p_playerAttributes.p_i_shield -= _damageValue;
-                p_playerAttributes.p_i_health -= _tempVal; 
-                Debug.Log("Player didn't have enough shields!");
+                p_playerAttributes.p_i_health -= _newDamageValue;
+                Debug.Log("Player Attacked!");
             }
             else
             {
-                p_playerAttributes.p_i_shield -= _damageValue;
-                Debug.Log("Player had shields!");
+                int _tempVal = _newDamageValue - p_playerAttributes.p_i_shield;
+                Debug.Log("Temp Val: " + _tempVal);
+                if (_tempVal > 0)
+                {
+                    p_playerAttributes.p_i_shield -= _newDamageValue;
+                    p_playerAttributes.p_i_health -= _tempVal;
+                    Debug.Log("Player didn't have enough shields!");
+                }
+                else
+                {
+                    p_playerAttributes.p_i_shield -= _newDamageValue;
+                    Debug.Log("Player had shields!");
+                }
             }
         }
-        
+        else
+        {
+            if (p_playerAttributes.p_i_shield <= 0)
+            {
+                p_playerAttributes.p_i_health -= _damageValue;
+                Debug.Log("Player Attacked!");
+            }
+            else
+            {
+                int _tempVal = _damageValue - p_playerAttributes.p_i_shield;
+                Debug.Log("Temp Val: " + _tempVal);
+                if (_tempVal > 0)
+                {
+                    p_playerAttributes.p_i_shield -= _damageValue;
+                    p_playerAttributes.p_i_health -= _tempVal;
+                    Debug.Log("Player didn't have enough shields!");
+                }
+                else
+                {
+                    p_playerAttributes.p_i_shield -= _damageValue;
+                    Debug.Log("Player had shields!");
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -73,91 +100,5 @@ public class S_Player : MonoBehaviour
     public void PlayerHealed(int _healedValue)
     {
         p_playerAttributes.p_i_health += _healedValue; 
-    }
-
-
-    /// <summary>
-    /// Status Effect Trigger function for when the player is bleeding
-    /// </summary>
-    /// <param name="_statusEffect"></param>
-    /// <param name="bleedingRate"></param>
-    /// <param name="_turnCount"></param>
-    public void PlayerBleeding(bool _statusEffect, float bleedingRate, int _turnCount)
-    {
-        if(_statusEffect == p_playerAttributes.p_b_bleeding)
-        {
-            _statusEffect = p_playerAttributes.p_b_bleeding;
-            if (_statusEffect == false)
-            {
-                // These effects need to be fleshed out first
-            }
-            else
-            {
-                Debug.Log("Status Already Active!");
-                return;
-            }
-        }
-        else
-        {
-            Debug.Log("Wrong Status Effect!");
-            return; 
-        }
-    }
-
-    /// <summary>
-    /// Status Effect Trigger function for when the player is stunned
-    /// </summary>
-    /// <param name="_statusEffect"></param>
-    /// <param name="_turnCount"></param>
-    public void PlayerStunned(bool _statusEffect, int _turnCount)
-    {
-        if (_statusEffect == p_playerAttributes.p_b_stunned)
-        {
-            _statusEffect = p_playerAttributes.p_b_stunned;
-            if (_statusEffect == false)
-            {
-                // These effects need to be fleshed out first
-
-                //Use turn count, in S_TurnMannager?
-            }
-            else
-            {
-                Debug.Log("Status Already Active!");
-                return;
-            }
-        }
-        else
-        {
-            Debug.Log("Wrong Status Effect!");
-            return;
-        }
-    }
-
-    /// <summary>
-    /// Status Effect Trigger function for when the player is poisoned
-    /// </summary>
-    /// <param name="_statusEffect"></param>
-    /// <param name="_poisonVal"></param>
-    /// <param name="_turnCount"></param>
-    public void PlayerPoisoned(bool _statusEffect,int _poisonVal, int _turnCount)
-    {
-        if (_statusEffect == p_playerAttributes.p_b_stunned)
-        {
-            _statusEffect = p_playerAttributes.p_b_stunned;
-            if (_statusEffect == false)
-            {
-                // These effects need to be fleshed out first
-            }
-            else
-            {
-                Debug.Log("Status Already Active!");
-                return; 
-            }
-        }
-        else
-        {
-            Debug.Log("Wrong Status Effect!");
-            return; 
-        }
     }
 }
