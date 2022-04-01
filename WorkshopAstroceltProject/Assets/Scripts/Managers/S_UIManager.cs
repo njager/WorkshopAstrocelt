@@ -78,6 +78,33 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] GameObject e_enemy3ShieldIcon;
     [SerializeField] GameObject e_enemy4ShieldIcon;
     [SerializeField] GameObject e_enemy5ShieldIcon;
+
+    [Header("Player Status Effect References")]
+    public GameObject p_playerBleedEffect;
+    public GameObject p_playerStunEffect;
+    public GameObject p_playerResistantEffect;
+
+    [Header("Enemy Bleed Status Effect References")]
+    public GameObject e_enemy1BleedEffect;
+    public GameObject e_enemy2BleedEffect;
+    public GameObject e_enemy3BleedEffect;
+    public GameObject e_enemy4BleedEffect;
+    public GameObject e_enemy5BleedEffect;
+
+    [Header("Enemy Stun Status Effect References")]
+    public GameObject e_enemy1StunEffect;
+    public GameObject e_enemy2StunEffect;
+    public GameObject e_enemy3StunEffect;
+    public GameObject e_enemy4StunEffect;
+    public GameObject e_enemy5StunEffect;
+
+    [Header("Enemy Resistant Status Effect References")]
+    public GameObject e_enemy1ResistantEffect;
+    public GameObject e_enemy2ResistantEffect;
+    public GameObject e_enemy3ResistantEffect;
+    public GameObject e_enemy4ResistantEffect;
+    public GameObject e_enemy5ResistantEffect;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -309,6 +336,173 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
             e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
+        }
+    }
+
+
+    // Health Bars method toggles
+
+    /// <summary>
+    /// Toggle the Bleed UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleBleedPlayerUI(bool _state) // True for on, false for off
+    {
+        if(_state == true)
+        {
+            p_playerBleedEffect.SetActive(true);
+        }
+        else if (_state == false)
+        {
+            p_playerBleedEffect.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Stun UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleStunPlayerUI(bool _state)
+    {
+        if (_state == true)
+        {
+            p_playerStunEffect.SetActive(true);
+        }
+        else if (_state == false)
+        {
+            p_playerStunEffect.SetActive(false);
+        }
+    }
+
+
+    /// <summary>
+    /// Toggle the Resistant UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleResistantPlayerUI(bool _state)
+    {
+        if (_state == true)
+        {
+            p_playerResistantEffect.SetActive(true);
+        }
+        else if (_state == false)
+        {
+            p_playerResistantEffect.SetActive(false);
+        }
+    }
+
+
+    /// <summary>
+    /// Toggle the Bleed UI element for a given enemy
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleBleedEnemyUI(bool _state, int _enemyCount)
+    {
+        if(_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy1BleedEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy1BleedEffect.SetActive(false);
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy2BleedEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy2BleedEffect.SetActive(false);
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy3BleedEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy3BleedEffect.SetActive(false);
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+
+        }
+        else if (_enemyCount == 5)
+        {
+
+        }
+    }
+
+    public void ToggleStunEnemyUI(bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+
+        }
+        else if (_enemyCount == 2)
+        {
+
+        }
+        else if (_enemyCount == 3)
+        {
+
+        }
+        else if (_enemyCount == 4)
+        {
+
+        }
+        else if (_enemyCount == 5)
+        {
+
+        }
+    }
+
+    public void ToggleResistantEnemyUI(bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+
+        }
+        else if (_enemyCount == 2)
+        {
+
+        }
+        else if (_enemyCount == 3)
+        {
+
+        }
+        else if (_enemyCount == 4)
+        {
+
+        }
+        else if (_enemyCount == 5)
+        {
+
         }
     }
 }

@@ -151,7 +151,11 @@ public class S_Enemy : MonoBehaviour
         }
         if(_enemyType == "Magician")
         {
-            g_global.g_player.PlayerStunned(g_global.g_player.p_playerAttributes.p_b_stunned, 1); 
+            g_global.g_playerState.PlayerStunnedStatusEffect(1);
+        }
+        if(_enemyType == "Beast")
+        {
+            g_global.g_playerState.PlayerBleedingStatusEffect(.10f, 3);
         }
     } 
 
