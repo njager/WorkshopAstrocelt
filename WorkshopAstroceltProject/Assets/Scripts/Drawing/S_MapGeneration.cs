@@ -488,10 +488,6 @@ public class S_MapGeneration : MonoBehaviour
     // Designer Map 1
     public void Map1()
     {
-        //Move nodestar
-        Vector3 newNodeStarPosition = new Vector3(-0.39f, 0.07f, 0f);
-        nodeStar.gameObject.transform.position = newNodeStarPosition;
-
         //Toggle maps
         map1.SetActive(true);
         map2.SetActive(false);
@@ -509,10 +505,6 @@ public class S_MapGeneration : MonoBehaviour
     // Designer Map 2
     public void Map2()
     {
-        //Move nodestar
-        Vector3 newNodeStarPosition = new Vector3(0.02f, 1.888f, 0f);
-        nodeStar.gameObject.transform.position = newNodeStarPosition;
-
         //Toggle maps
         map1.SetActive(false);
         map2.SetActive(true);
@@ -530,10 +522,6 @@ public class S_MapGeneration : MonoBehaviour
     // Designer Map 3
     public void Map3()
     {
-        //Move nodestar
-        Vector3 newNodeStarPosition = new Vector3(-1.88f, 4.07f, 0f);
-        nodeStar.gameObject.transform.position = newNodeStarPosition;
-
         //Toggle maps
         map1.SetActive(false);
         map2.SetActive(false);
@@ -551,10 +539,6 @@ public class S_MapGeneration : MonoBehaviour
     // Designer Map 4
     public void Map4()
     {
-        //Move nodestar
-        Vector3 newNodeStarPosition = new Vector3(0.17f, 5.4f, 0f);
-        nodeStar.gameObject.transform.position = newNodeStarPosition;
-
         //Toggle maps
         map1.SetActive(false);
         map2.SetActive(false);
@@ -572,10 +556,6 @@ public class S_MapGeneration : MonoBehaviour
     // Designer Map 5
     public void Map5()
     {
-        //Move nodestar
-        Vector3 newNodeStarPosition = new Vector3(-1.21f, 4.87f, 0f);
-        nodeStar.gameObject.transform.position = newNodeStarPosition;
-
         //Toggle maps
         map1.SetActive(false);
         map2.SetActive(false);
