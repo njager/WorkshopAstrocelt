@@ -404,6 +404,7 @@ public class S_UIManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_state"></param>
+    /// /// <param name="_enemyCount"></param>
     public void ToggleBleedEnemyUI(bool _state, int _enemyCount)
     {
         if(_enemyCount == 1)
@@ -478,51 +479,166 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggle the Stun UI element for a given enemy (_enemycount)
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// <param name="_enemyCount"></param>
     public void ToggleStunEnemyUI(bool _state, int _enemyCount)
     {
         if (_enemyCount == 1)
         {
-
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy1StunEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy1StunEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 2)
         {
-
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy2StunEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy2StunEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 3)
         {
-
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy3StunEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy3StunEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 4)
         {
-
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy4StunEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy4StunEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 5)
         {
-
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy5StunEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy5StunEffect.SetActive(false);
+                }
+            }
         }
     }
 
+
+    /// <summary>
+    /// Toggle the Resistant UI element for a given enemy (_enemycount)
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// <param name="_enemyCount"></param>
     public void ToggleResistantEnemyUI(bool _state, int _enemyCount)
     {
         if (_enemyCount == 1)
         {
-
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy1ResistantEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy1ResistantEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 2)
         {
-
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy2ResistantEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy2ResistantEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 3)
         {
-
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy3ResistantEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy3ResistantEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 4)
         {
-
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy4ResistantEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy4ResistantEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 5)
         {
-
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy5ResistantEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy5ResistantEffect.SetActive(false);
+                }
+            }
         }
     }
 }
