@@ -20,7 +20,7 @@ public class S_Global : MonoBehaviour
     public S_ConstelationManager g_ConstellationManager;
     public S_UIManager g_UIManager;
     public S_SelectorManager g_selectorManager;
-    public S_IconManager g_iconManager; 
+    public S_IntentManager g_iconManager; 
     public S_CardManager g_cardManager;
     public S_CardDatabase g_CardDatabase;
     public S_LineMultiplier g_lineMultiplierManager;

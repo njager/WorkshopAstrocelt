@@ -450,11 +450,31 @@ public class S_UIManager : MonoBehaviour
         }
         else if (_enemyCount == 4)
         {
-
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy4BleedEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy4BleedEffect.SetActive(false);
+                }
+            }
         }
         else if (_enemyCount == 5)
         {
-
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                if (_state == true)
+                {
+                    e_enemy5BleedEffect.SetActive(true);
+                }
+                else if (_state == false)
+                {
+                    e_enemy5BleedEffect.SetActive(false);
+                }
+            }
         }
     }
 

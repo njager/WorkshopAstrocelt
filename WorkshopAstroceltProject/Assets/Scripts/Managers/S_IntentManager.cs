@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_IconManager : MonoBehaviour
+public class S_IntentManager : MonoBehaviour
 {
     private S_Global g_global;
 
