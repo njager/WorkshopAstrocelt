@@ -69,35 +69,66 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemyType"></param>
     /// <param name="_damageVal"></param>
 
-    public void EnemyAttacked(string _enemyType, int _damageVal)
+    public void EnemyAttacked(string _enemyType, int _damageValue)
     {
         //sound effect goes here
         a_audioPlayer.SetActive(true);
 
         if (_enemyType == "Lumberjack" || _enemyType == "Magician")
         {
-            if (e_enemyAttributes.e_i_shield <= 0)
+            int _newDamageValue = (int)_damageValue / 2;
+            if(e_enemyAttributes.e_b_resistant == true)
             {
-                e_enemyAttributes.e_i_health -= _damageVal;
-                Debug.Log("Enemy Attacked!");
-            }
-            else
-            {
-                int _tempVal = e_enemyAttributes.e_i_shield - _damageVal;
-                if (_tempVal < 0)
+                if (e_enemyAttributes.e_i_shield <= 0)
                 {
-                    e_enemyAttributes.e_i_shield -= _damageVal;
-                    if (e_enemyAttributes.e_i_shield < 0)
-                    {
-                        e_enemyAttributes.e_i_shield = 0;
-                    }
-                    EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                    Debug.Log("Enemy didn't have enough shields!");
+                    e_enemyAttributes.e_i_health -= _newDamageValue;
+                    Debug.Log("Enemy Attacked!");
                 }
                 else
                 {
-                    e_enemyAttributes.e_i_shield -= _damageVal;
-                    Debug.Log("Enemy had shields!");
+                    int _tempVal = e_enemyAttributes.e_i_shield - _newDamageValue;
+                    if (_tempVal < 0)
+                    {
+                        e_enemyAttributes.e_i_shield -= _newDamageValue;
+                        if (e_enemyAttributes.e_i_shield < 0)
+                        {
+                            e_enemyAttributes.e_i_shield = 0;
+                        }
+                        EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                        Debug.Log("Enemy didn't have enough shields!");
+                    }
+                    else
+                    {
+                        e_enemyAttributes.e_i_shield -= _newDamageValue;
+                        Debug.Log("Enemy had shields!");
+                    }
+                }
+            }
+            else
+            {
+                if (e_enemyAttributes.e_i_shield <= 0)
+                {
+                    e_enemyAttributes.e_i_health -= _damageValue;
+                    Debug.Log("Enemy Attacked!");
+                }
+                else
+                {
+                    int _tempVal = e_enemyAttributes.e_i_shield - _damageValue;
+                    if (_tempVal < 0)
+                    {
+                        e_enemyAttributes.e_i_shield -= _damageValue;
+                        if (e_enemyAttributes.e_i_shield < 0)
+                        {
+                            e_enemyAttributes.e_i_shield = 0;
+                        }
+                        EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                        Debug.Log("Enemy didn't have enough shields!");
+                    }
+                    else
+                    {
+                        e_enemyAttributes.e_i_shield -= _damageValue;
+                        Debug.Log("Enemy had shields!");
+                    }
                 }
             }
         }
@@ -105,15 +136,15 @@ public class S_Enemy : MonoBehaviour
         {
             if (e_enemyAttributes.e_i_shield <= 0)
             {
-                e_enemyAttributes.e_i_health -= _damageVal;
+                e_enemyAttributes.e_i_health -= _damageValue;
                 Debug.Log("Enemy Attacked!");
             }
             else
             {
-                int _tempVal = e_enemyAttributes.e_i_shield - _damageVal;
+                int _tempVal = e_enemyAttributes.e_i_shield - _damageValue;
                 if (_tempVal < 0)
                 {
-                    e_enemyAttributes.e_i_shield -= _damageVal;
+                    e_enemyAttributes.e_i_shield -= _damageValue;
                     if (e_enemyAttributes.e_i_shield < 0)
                     {
                         e_enemyAttributes.e_i_shield = 0;
@@ -123,7 +154,7 @@ public class S_Enemy : MonoBehaviour
                 }
                 else
                 {
-                    e_enemyAttributes.e_i_shield -= _damageVal;
+                    e_enemyAttributes.e_i_shield -= _damageValue;
                     Debug.Log("Enemy had shields!");
                 }
             }
@@ -152,6 +183,10 @@ public class S_Enemy : MonoBehaviour
         if(_enemyType == "Magician")
         {
             g_global.g_playerState.PlayerStunnedStatusEffect(1);
+        }
+        if(_enemyType == "Brawler")
+        {
+            g_global.g_enemyState.EnemyResistantEffect(1, e_i_enemyCount); 
         }
         if(_enemyType == "Beast")
         {

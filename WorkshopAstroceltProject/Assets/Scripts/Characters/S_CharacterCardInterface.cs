@@ -111,7 +111,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                             return;
                         }
                     }
-                    else if (c_cardData.c_b_affectsAll == true) // Activate on all enemies
+                    else if (c_cardData.c_b_affectsAllEnemies == true) // Activate on all enemies
                     {
                         if (c_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
                         {

@@ -24,11 +24,27 @@ public class S_Card : MonoBehaviour
     public string c_str_bodyText;
     public string c_str_flavorText;
 
-    // Number values
+    [Header("Main Effect Numbers")]
+    public int c_i_damageValue;
+    public int c_i_shieldValue;
     public int c_i_energyCost; //Cast to a string for energy cost text
-    public int c_i_effectValue; // Takes precedence for int calculations 
+
+    [Header("Status Effect Numbers")]
+    public int c_i_effectValue1; // Effect Value 1
+    public int c_i_effectValue2; // Effect Value 2
+    public int c_i_effectValue3; // Effect Value 3
+
+    [Header("Status Effect IDs")]
+    public int c_i_statusID1; // Default is 0, meaning no effect
+    public int c_i_statusID2;
+    public int c_i_statusID3; 
+
+    [Header("Turn Counts for Status Effects")]
+    public int c_i_turnCount1;
+    public int c_i_turnCount2;
+    public int c_i_turnCount3; 
     
-    // Rarity
+    [Header("Card Rarity")]
     public float c_f_cardRarity;
 
     [Header("Color Types")]
@@ -44,10 +60,16 @@ public class S_Card : MonoBehaviour
     public Sprite c_yellowArtGraphic; // If Yellow, toggle this 
     public Sprite c_whiteArtGraphic; // If White, toggle this
 
-    [Header("Num of Characters Affected")]
+    [Header("Primary Destination")]
+    public bool c_b_affectsNone; 
     public bool c_b_affectsPlayer;
     public bool c_b_affectsOne;
-    public bool c_b_affectsAll;
+    public bool c_b_affectsAllEnemies;
+    public bool c_b_affectsAllCharacters;
+
+    [Header("Secondary Destination")]
+    public bool c_b_playerEffect;
+    public bool c_b_enemyEffect; 
 
     [Header("Main Effect Types")]
     public bool c_b_attackMainEffect;
@@ -65,6 +87,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_siphonStatusEffect;
     public bool c_b_fralitizeStatusEffect;
     public bool c_b_manipulateStatusEffect;
+    public bool c_b_thornsStatusEffect; 
 
     [Header("Potential Status Effect Values")]
     public float c_f_damagePercentage; // If not using effect value, use this
@@ -134,13 +157,21 @@ public class S_Card : MonoBehaviour
 
         //Load ints/floats
         c_i_energyCost = _cardData.EnergyCost;
-        c_i_effectValue = _cardData.EffectValue;
+        c_i_effectValue1 = _cardData.EffectValue1;
+        c_i_effectValue2 = _cardData.EffectValue2;
+        c_i_effectValue3 = _cardData.EffectValue3; 
         c_f_cardRarity = _cardData.CardRarity;
 
-        //Toggle Characters affected
+        //Toggle Primary Destination
+        c_b_affectsNone = _cardData.AffectsNone; 
         c_b_affectsPlayer = _cardData.AffectsPlayer;
         c_b_affectsOne = _cardData.Affects1Character;
-        c_b_affectsAll = _cardData.AffectsAllOtherCharacters;
+        c_b_affectsAllEnemies = _cardData.AffectsAllEnemies;
+        c_b_affectsAllCharacters = _cardData.AffectsAllCharacters;
+
+        //Toggle Secondary Destination
+        c_b_playerEffect = _cardData.PlayerEffect;
+        c_b_enemyEffect = _cardData.EnemyEffect; 
 
         //Toggle Main Effects
         c_b_attackMainEffect = _cardData.AttackEffect;
@@ -220,9 +251,6 @@ public class S_Card : MonoBehaviour
         c_tx_energyCost.text = c_i_energyCost.ToString();
     }
 
-    [Header("Unique Cards")]
-    public bool c_b_unqiuePayback;
-
     /// <summary>
     /// Play the card based on if it was dropped onto player or enemy
     /// - Josh
@@ -268,14 +296,27 @@ public class S_Card : MonoBehaviour
                 ResetPosition();
             }
         }
+        else if (c_b_uniqueMainEffect == true)
+        {
+            
+        }
     }
+
+    /// <summary>
+    /// Toggle the status effects after loading card data
+    /// </summary>
+    private void StatusEffectCheck(GameObject _characterType)
+    {
+        // Put all the bool values in a list, then check for the effect value
+    }
+
 
     /// <summary>
     /// If Milestone 1 Card type is attack, do attack function on selected enemy
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
-        _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_effectValue);
+        _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
         PlayAttackSound();
         DeleteCard();
     }
@@ -285,7 +326,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerShieldCard(S_Player _player)
     {
-        _player.PlayerShielded(c_i_effectValue);
+        _player.PlayerShielded(c_i_shieldValue);
         DeleteCard();
     }
 
