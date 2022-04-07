@@ -66,9 +66,6 @@ public class S_DrawingManager : MonoBehaviour
         //set the previous star and loc
         g_global.g_ConstellationManager.s_previousStar = _star2;
         g_global.g_ConstellationManager.v2_prevLoc = _loc2;
-
-        //Spawn popups as needed
-        g_global.g_popupManager.CreatePopUpForStar(_star1, _loc1);
     }
 
     /// <summary>

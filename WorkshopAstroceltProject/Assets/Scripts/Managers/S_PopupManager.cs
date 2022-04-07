@@ -62,10 +62,10 @@ public class S_PopupManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_star"></param>
-    /// <param name="_starLocation"></param>
-    public void CreatePopUpForStar(S_StarClass _star, Vector3 _starLocation)
+    /// <param name="_energy"></param>
+    public void CreatePopUpForStar(S_StarClass _star, int _energy)
     {
-        int _lineTier = LineTiers();
+        int _lineTier = _energy;
 
         if(_lineTier == 1)
         {
