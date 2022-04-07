@@ -13,7 +13,7 @@ public class S_StarPopUp : MonoBehaviour
 {
     private S_Global g_global;
     private bool b_deletionTimerFlag;
-    private Image colorImage;
+    private Material colorImage;
 
     [Header("Color Bools")]
     [SerializeField] bool b_redPopup;
@@ -125,7 +125,7 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = redColorGraphic.GetComponent<Image>(); 
+            colorImage = redColorGraphic.GetComponent<SpriteRenderer>().material; 
         }
         if(_color == "blue")
         {
@@ -135,7 +135,7 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = blueColorGraphic.GetComponent<Image>();
+            colorImage = blueColorGraphic.GetComponent<SpriteRenderer>().material;
         }
         if(_color == "yellow")
         {
@@ -145,7 +145,7 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(true);
 
             //Set Color Image
-            colorImage = yellowColorGraphic.GetComponent<Image>();
+            colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>().material;
         }
     }
 

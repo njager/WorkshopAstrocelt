@@ -31,9 +31,6 @@ public class S_PopupManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject popUpCanvas;
 
-    [Header("Line Multiplier Tier")]
-    public int i_lineTier; // Inform this from energy manager
-
     //get the transform component of the text
     private void Awake()
     {
@@ -84,7 +81,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
-                _starPopupScript1.SetGraphic(_star.starType);
+                _starPopupScript1.SetGraphic(_star.colorType);
 
             }
             else if (_lineTier == 2)
@@ -99,7 +96,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
-                _starPopupScript1.SetGraphic(_star.starType);
+                _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Spawn Star 2
                 GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
@@ -108,7 +105,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 2
                 _starPopupScript2.SetPosition(_popupCount, _star);
-                _starPopupScript2.SetGraphic(_star.starType);
+                _starPopupScript2.SetGraphic(_star.colorType);
 
             }
             else if (_lineTier == 3)
