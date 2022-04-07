@@ -75,6 +75,7 @@ public class S_StarPopUp : MonoBehaviour
             MoveToCard();
         }
 
+        // Can add an else here to trigger idle animation
         yield return b_keepSitting == true; 
     }
 
