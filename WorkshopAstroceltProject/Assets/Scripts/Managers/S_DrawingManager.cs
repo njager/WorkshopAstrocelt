@@ -87,14 +87,14 @@ public class S_DrawingManager : MonoBehaviour
         //reset the data for the star
         g_global.g_ConstellationManager.s_previousStar.s_star.m_next = s_nullStarInst;
         g_global.g_ConstellationManager.s_previousStar.s_star.m_nextLine = null;
-        Debug.Log("deleted a line and now cur previousStar is old");
+        Debug.Log("deleted a line and no star added to star list");
 
         //destroy the line
-        g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
+        //g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
         Destroy(_line);
 
-        //delete the star from the list
-        g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
+        //dont delete the star from the list just change to null
+        //g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
     }
 
     /// <summary>

@@ -47,7 +47,17 @@ public class S_ConstellationLine : MonoBehaviour
             g_global.g_DrawingManager.GoBackOnce(this.gameObject);
 
         }
-        if (other.CompareTag("Star")) //check if the col is a star
+        else if (other.CompareTag("Line")) //check if collider is a line
+        {
+            //Use if lines connecting to the same stars are colliding if(&& other.GetComponent<LineRenderer>() != _prevLine)
+            //LineRenderer _prevLine = s_previousStar.s_star.m_previousLine.GetComponent<LineRenderer>();
+            if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index and if it is equal to the previous line
+            {
+                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+                //g_global.g_DrawingManager.ConstellationReset();
+            }
+        }
+        else if (other.CompareTag("Star")) //check if the col is a star
         {
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
             {
@@ -58,18 +68,10 @@ public class S_ConstellationLine : MonoBehaviour
             {
                 if (!b_starAdded)
                 {
-                    g_global.g_ConstellationManager.AddStarToCurConstellation(s_nextStar);
+                    //make the line wait to go to the constellation manager too delete itself
+                    StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar));
                     b_starAdded = true;
                 }
-            }
-        }
-        if (other.CompareTag("Line")) //check if collider is a line
-        {
-            LineRenderer _prevLine = s_previousStar.s_star.m_previousLine.GetComponent<LineRenderer>();
-            if (other.GetComponent<S_ConstellationLine>().i_index < i_index && other.GetComponent<LineRenderer>()!=_prevLine) //check which one has a larger index and if it is equal to the previous line
-            {
-                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
-                //g_global.g_DrawingManager.ConstellationReset();
             }
         }
     }
@@ -132,9 +134,5 @@ public class S_ConstellationLine : MonoBehaviour
         float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
         g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
-
-        // Create a popup for the first star made by the line
-        //g_global.g_popupManager.CreatePopUpForStar(s_previousStar, s_previousStar.GetComponent<GameObject>().transform.position);
-        //S_StarPopUp _currentPopUp = g_global.ls_starPopup[g_global.ls_starPopup.Count - 1];
     }
 }
