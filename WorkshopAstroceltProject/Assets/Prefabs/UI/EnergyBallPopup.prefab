@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dce026f49417d774fa20dafd7fb3daf9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f537d048601241d4fa40267d77e825ed, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -231,17 +231,18 @@ MonoBehaviour:
   b_redPopup: 0
   b_bluePopup: 0
   b_yellowPopup: 0
-  f_disappearTimer: 0
+  f_disappearTimer: 1
   f_destroyTimer: 1
   f_doFadeAlpha: 0
   f_doFadeDuration: 0
+  f_spawnTimer: 3
+  f_doFadeAlphaSpawn: 255
+  f_doFadeDurationSpawn: 1
   b_keepSitting: 0
   redColorGraphic: {fileID: 4694868179472510042}
   blueColorGraphic: {fileID: 4694868180945399222}
   yellowColorGraphic: {fileID: 4694868179120561578}
-  redCollider: {fileID: 0}
-  blueCollider: {fileID: 0}
-  yellowCollider: {fileID: 0}
+  f_moveSpeed: 3
 --- !u!1 &4694868180945399222
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +324,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 355168c96f99fae4c9272f66c479934e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

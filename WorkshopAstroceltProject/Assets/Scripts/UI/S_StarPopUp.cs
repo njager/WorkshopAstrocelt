@@ -13,7 +13,8 @@ public class S_StarPopUp : MonoBehaviour
 {
     private S_Global g_global;
     private bool b_deletionTimerFlag;
-    private Material colorImage;
+    private bool b_spawnTimerFlag;
+    private SpriteRenderer colorImage;
 
     [Header("Color Bools")]
     [SerializeField] bool b_redPopup;
@@ -22,9 +23,14 @@ public class S_StarPopUp : MonoBehaviour
 
     [Header("Deletion Timer Attributes")]
     [SerializeField] float f_disappearTimer;
-    [SerializeField] float f_destroyTimer = 1f;
+    [SerializeField] float f_destroyTimer;
     [SerializeField] float f_doFadeAlpha;
     [SerializeField] float f_doFadeDuration;
+
+    [Header("Spawn Fade Timer")]
+    [SerializeField] float f_spawnTimer;
+    [SerializeField] float f_doFadeAlphaSpawn;
+    [SerializeField] float f_doFadeDurationSpawn;
 
     [Header("Sit at Position Attributes")]
     public bool b_keepSitting; 
@@ -53,11 +59,25 @@ public class S_StarPopUp : MonoBehaviour
         blueColorGraphic.SetActive(false);
         yellowColorGraphic.SetActive(false);
 
-        // Get timer ready for use
+        // Get timers ready for use
         b_deletionTimerFlag = false;
+        b_spawnTimerFlag = false; 
+    }
 
-        // Get ready to hold
-        b_keepSitting = false; 
+    /// <summary>
+    /// A coroutine for triggering a fade in effect
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator SpawnFadeTimer()
+    {
+        f_spawnTimer -= Time.deltaTime;
+        if(f_spawnTimer < 0)
+        {
+            colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
+            b_spawnTimerFlag = true;
+        }
+        yield return b_spawnTimerFlag == true; 
     }
 
  
@@ -110,7 +130,9 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = redColorGraphic.GetComponent<SpriteRenderer>().material; 
+            colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
+
+            StartCoroutine(SpawnFadeTimer());
         }
         if(_color == "blue")
         {
@@ -120,7 +142,9 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = blueColorGraphic.GetComponent<SpriteRenderer>().material;
+            colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
+
+            StartCoroutine(SpawnFadeTimer());
         }
         if(_color == "yellow")
         {
@@ -130,7 +154,9 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(true);
 
             //Set Color Image
-            colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>().material;
+            colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>();
+
+            StartCoroutine(SpawnFadeTimer());
         }
     }
 
