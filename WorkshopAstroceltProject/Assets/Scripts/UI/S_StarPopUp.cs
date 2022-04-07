@@ -6,14 +6,14 @@ using System.Linq;
 using TMPro;
 using CodeMonkey.Utils;
 using DG.Tweening;
-using Unity.VectorGraphics;
+//using Unity.VectorGraphics;
 //using Unity.VectorGraphics.Editor;
 
 public class S_StarPopUp : MonoBehaviour
 {
     private S_Global g_global;
     private bool b_deletionTimerFlag;
-    private SVGImage colorImage;
+    private Image colorImage;
 
     [Header("Color Bools")]
     [SerializeField] bool b_redPopup;
@@ -33,6 +33,12 @@ public class S_StarPopUp : MonoBehaviour
     public GameObject redColorGraphic;
     public GameObject blueColorGraphic;
     public GameObject yellowColorGraphic;
+
+    [Header("Card Triggers")] // May not be needed
+    public PolygonCollider2D redCollider;
+    public PolygonCollider2D blueCollider;
+    public PolygonCollider2D yellowCollider;
+
 
     /// <summary>
     /// Set up global, add to list, and deletion timer
@@ -65,33 +71,18 @@ public class S_StarPopUp : MonoBehaviour
     {
         if(g_global.g_ConstellationManager.s_b_popupMove == true)
         {
-            b_keepSitting = true; 
+            b_keepSitting = true;
+            MoveToCard();
         }
 
         yield return b_keepSitting == true; 
     }
 
-    /// <summary>
-    /// Help function for deletion
-    /// - Josh
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator DeletionTimer()
+    private void MoveToCard()
     {
-        //A delay timer for the disappear animation
-        f_disappearTimer -= Time.deltaTime;
-        if (f_disappearTimer < 0)
-        {
-            colorImage.sprite.DOFade(f_doFadeAlpha, f_doFadeDuration);
-            f_destroyTimer -= Time.deltaTime;
-            if (f_destroyTimer < 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-        g_global.ls_starPopup.Remove(this);
-        b_deletionTimerFlag = true;
-        yield return b_deletionTimerFlag == true;
+        Vector3 _firstCardPosition = g_global.ls_p_playerHand[0].gameObject.transform.position;
+        gameObject.transform.DOMove(_firstCardPosition, 1f);
+        DeletePopup();
     }
 
     /// <summary>
@@ -108,12 +99,12 @@ public class S_StarPopUp : MonoBehaviour
         }
         else if(_positionCount == 2)
         {
-            gameObject.transform.SetParent(_star.vectorPoint1.transform);
+            gameObject.transform.SetParent(_star.vectorPoint2.transform);
             StartCoroutine(SitAtPosition());
         }
         else if(_positionCount == 3)
         {
-            gameObject.transform.SetParent(_star.vectorPoint1.transform);
+            gameObject.transform.SetParent(_star.vectorPoint3.transform);
             StartCoroutine(SitAtPosition());
         }
     }
@@ -133,7 +124,7 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = redColorGraphic.GetComponent<SVGImage>(); 
+            colorImage = redColorGraphic.GetComponent<Image>(); 
         }
         if(_color == "blue")
         {
@@ -143,7 +134,7 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = blueColorGraphic.GetComponent<SVGImage>();
+            colorImage = blueColorGraphic.GetComponent<Image>();
         }
         if(_color == "yellow")
         {
@@ -153,7 +144,7 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(true);
 
             //Set Color Image
-            colorImage = yellowColorGraphic.GetComponent<SVGImage>();
+            colorImage = yellowColorGraphic.GetComponent<Image>();
         }
     }
 
@@ -162,4 +153,26 @@ public class S_StarPopUp : MonoBehaviour
         StartCoroutine(DeletionTimer());
     }
 
+    /// <summary>
+    /// Help function for deletion
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DeletionTimer()
+    {
+        //A delay timer for the disappear animation
+        f_disappearTimer -= Time.deltaTime;
+        if (f_disappearTimer < 0)
+        {
+            colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
+            f_destroyTimer -= Time.deltaTime;
+            if (f_destroyTimer < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        g_global.ls_starPopup.Remove(this);
+        b_deletionTimerFlag = true;
+        yield return b_deletionTimerFlag == true;
+    }
 }
