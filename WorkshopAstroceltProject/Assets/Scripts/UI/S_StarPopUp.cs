@@ -81,7 +81,7 @@ public class S_StarPopUp : MonoBehaviour
 
     private void MoveToCard()
     {
-        Vector3 _firstCardPosition = g_global.ls_p_playerHand[0].gameObject.transform.position;
+        Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position; 
         gameObject.transform.DOMove(_firstCardPosition, 1f);
         DeletePopup();
     }
@@ -95,17 +95,20 @@ public class S_StarPopUp : MonoBehaviour
     {
         if(_positionCount == 1)
         {
-            gameObject.transform.SetParent(_star.vectorPoint1.transform);
+            Debug.Log("First popup!");
+            gameObject.transform.position = _star.vectorPoint1.transform.position;
             StartCoroutine(SitAtPosition());
         }
         else if(_positionCount == 2)
         {
-            gameObject.transform.SetParent(_star.vectorPoint2.transform);
+            Debug.Log("Second popup!");
+            gameObject.transform.position = _star.vectorPoint2.transform.position;
             StartCoroutine(SitAtPosition());
         }
         else if(_positionCount == 3)
         {
-            gameObject.transform.SetParent(_star.vectorPoint3.transform);
+            Debug.Log("Third popup!");
+            gameObject.transform.position = _star.vectorPoint3.transform.position;
             StartCoroutine(SitAtPosition());
         }
     }

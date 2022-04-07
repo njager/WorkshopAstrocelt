@@ -31,6 +31,9 @@ public class S_PopupManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject popUpCanvas;
 
+    [Header("Altar Position")]
+    public GameObject altarTargetPosition;
+
     //get the transform component of the text
     private void Awake()
     {
