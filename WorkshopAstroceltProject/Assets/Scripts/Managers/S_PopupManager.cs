@@ -13,7 +13,8 @@ public class S_PopupManager : MonoBehaviour
     private S_Global g_global;
 
     [Header("Clearing Bool")]
-    public bool PopupClear; 
+    public bool b_popupClear;
+    public bool b_popupMove;
 
     [Header("Position Data")]
     [SerializeField] Vector3 v3_startingTextPopupPosition; 
@@ -39,7 +40,7 @@ public class S_PopupManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
         DOTween.Init();
-        PopupClear = false; 
+        b_popupClear = false; 
     }
 
     /// <summary>
@@ -146,22 +147,22 @@ public class S_PopupManager : MonoBehaviour
         }
     }
 
-    public int LineTiers()
+    public IEnumerator TriggerPopupMove()
     {
-        foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())
+        foreach(S_StarPopUp _starPopup in g_global.ls_starPopup.ToList())
         {
-            g_global.g_lineMultiplierManager.LineMultiplier(_line);
+            _starPopup.MoveToAltar();
         }
-        return (int)g_global.g_lineMultiplierManager.f_totalLineLength; 
+        yield return b_popupMove == true;
     }
 
     public IEnumerator ClearAllPopups()
     {
-        foreach(S_StarPopUp starPop in g_global.ls_starPopup.ToList())
+        foreach(S_StarPopUp _starPop in g_global.ls_starPopup.ToList())
         {
-            starPop.DeletePopup();
+            _starPop.DeletePopup();
         }
-        PopupClear = true; 
-        yield return PopupClear == true; 
+        b_popupClear = true; 
+        yield return b_popupClear == true; 
     }
 }

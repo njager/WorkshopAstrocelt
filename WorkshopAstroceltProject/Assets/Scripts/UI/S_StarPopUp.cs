@@ -34,10 +34,8 @@ public class S_StarPopUp : MonoBehaviour
     public GameObject blueColorGraphic;
     public GameObject yellowColorGraphic;
 
-    [Header("Card Triggers")] // May not be needed
-    public PolygonCollider2D redCollider;
-    public PolygonCollider2D blueCollider;
-    public PolygonCollider2D yellowCollider;
+    [Header("Card movement speed")] 
+    public float f_moveSpeed;
 
 
     /// <summary>
@@ -62,27 +60,14 @@ public class S_StarPopUp : MonoBehaviour
         b_keepSitting = false; 
     }
 
+ 
     /// <summary>
-    /// This is a function used to get the popup to wait above the star
-    /// Only Finishes once the constellation finishes
+    /// Move the popup to the altar
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator SitAtPosition()
-    {
-        if(g_global.g_ConstellationManager.s_b_popupMove == true)
-        {
-            b_keepSitting = true;
-            MoveToCard();
-        }
-
-        // Can add an else here to trigger idle animation
-        yield return b_keepSitting == true; 
-    }
-
-    private void MoveToCard()
+    public void MoveToAltar()
     {
         Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position; 
-        gameObject.transform.DOMove(_firstCardPosition, 1f);
+        gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
         DeletePopup();
     }
 
@@ -97,19 +82,16 @@ public class S_StarPopUp : MonoBehaviour
         {
             Debug.Log("First popup!");
             gameObject.transform.position = _star.vectorPoint1.transform.position;
-            StartCoroutine(SitAtPosition());
         }
         else if(_positionCount == 2)
         {
             Debug.Log("Second popup!");
             gameObject.transform.position = _star.vectorPoint2.transform.position;
-            StartCoroutine(SitAtPosition());
         }
         else if(_positionCount == 3)
         {
             Debug.Log("Third popup!");
             gameObject.transform.position = _star.vectorPoint3.transform.position;
-            StartCoroutine(SitAtPosition());
         }
     }
 
@@ -157,6 +139,12 @@ public class S_StarPopUp : MonoBehaviour
         StartCoroutine(DeletionTimer());
     }
 
+    public void ClearPopup()
+    {
+        g_global.ls_starPopup.Remove(this);
+        Destroy(gameObject);
+    }
+
     /// <summary>
     /// Help function for deletion
     /// - Josh
@@ -166,6 +154,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
+        g_global.ls_starPopup.Remove(this);
         if (f_disappearTimer < 0)
         {
             colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
@@ -175,7 +164,6 @@ public class S_StarPopUp : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        g_global.ls_starPopup.Remove(this);
         b_deletionTimerFlag = true;
         yield return b_deletionTimerFlag == true;
     }
