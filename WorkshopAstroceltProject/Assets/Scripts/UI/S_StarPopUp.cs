@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq; 
 using TMPro;
 using CodeMonkey.Utils;
 using DG.Tweening;
 using Unity.VectorGraphics;
-using Unity.VectorGraphics.Editor;
+//using Unity.VectorGraphics.Editor;
 
 public class S_StarPopUp : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class S_StarPopUp : MonoBehaviour
         f_disappearTimer -= Time.deltaTime;
         if (f_disappearTimer < 0)
         {
-            colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
+            colorImage.sprite.DOFade(f_doFadeAlpha, f_doFadeDuration);
             f_destroyTimer -= Time.deltaTime;
             if (f_destroyTimer < 0)
             {
@@ -69,6 +70,8 @@ public class S_StarPopUp : MonoBehaviour
         b_deletionTimerFlag = true;
         yield return b_deletionTimerFlag == true;
     }
+
+    public void SetPosition()
 
     /// <summary>
     /// Function for S_ConstellationLine use to toggle the graphic and then allow the star object to be set

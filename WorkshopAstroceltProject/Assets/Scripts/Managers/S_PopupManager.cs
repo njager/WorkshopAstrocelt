@@ -31,6 +31,9 @@ public class S_PopupManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject popUpCanvas;
 
+    [Header("Line Multiplier Tier")]
+    public int i_lineTier; // Inform this from energy manager
+
     //get the transform component of the text
     private void Awake()
     {
