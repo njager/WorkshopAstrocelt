@@ -75,6 +75,9 @@ public class S_ConstelationManager : MonoBehaviour
         //add to data structure
         ls_curConstellation.Add(_star);
 
+        //get the energy for the star
+        int _energy = 0;
+
         if (_star.starType == "Node")
         {
             if (b_makingConstellation)
@@ -95,6 +98,54 @@ public class S_ConstelationManager : MonoBehaviour
             //delete the constellation with the top star
             g_global.g_DrawingManager.ConstellationReset(ls_curConstellation[ls_curConstellation.Count()-1]);
         }
+        //check the star type
+        else if (_star.starType == "Ritual")
+        {
+            //add the line multiplier
+            _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
+
+            //get the ritual star component
+            S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
+
+            //compare in hierarchy to get the color
+            if (_rStar.s_b_redColor)
+            {
+                g_global.g_energyManager.SetEnergy("red", _energy);
+            }
+            else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
+            {
+                g_global.g_energyManager.SetEnergy("yellow", _energy);
+            }
+            else if (_rStar.s_b_blueColor)
+            {
+                g_global.g_energyManager.SetEnergy("blue", _energy);
+            }
+        }
+        else if (_star.starType == "Energy")
+        {
+            //add the line multiplier
+            _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
+
+            //get the energy star component
+            S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
+
+            //get the color
+            if (_eStar.s_b_redColor)
+            {
+                g_global.g_energyManager.SetEnergy("red", _energy);
+            }
+            else if (_eStar.s_b_yellowColor)
+            {
+                g_global.g_energyManager.SetEnergy("yellow", _energy);
+            }
+            else if (_eStar.s_b_blueColor)
+            {
+                g_global.g_energyManager.SetEnergy("blue", _energy);
+            }
+        }
+
+        //Spawn popups as needed
+        g_global.g_popupManager.CreatePopUpForStar(_star, _energy);
     }
 
     /// <summary>
@@ -252,40 +303,15 @@ public class S_ConstelationManager : MonoBehaviour
                     //compare in hierarchy to get the color
                     if (_rStar.s_b_redColor)
                     {
-                        g_global.g_energyManager.SetEnergy("red", _energy);
                         _red += 1;
                     }
                     else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
-                    {
-                        g_global.g_energyManager.SetEnergy("yellow", _energy);
+                    { 
                         _yellow += 1;
                     }
                     else if (_rStar.s_b_blueColor)
                     {
-                        g_global.g_energyManager.SetEnergy("blue", _energy);
                         _blue += 1;
-                    }
-                }
-                else if (_star.starType == "Energy")
-                {
-                    //add the line multiplier
-                    _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
-
-                    //get the energy star component
-                    S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
-
-                    //get the color
-                    if (_eStar.s_b_redColor)
-                    {
-                        g_global.g_energyManager.SetEnergy("red", _energy);
-                    }
-                    else if (_eStar.s_b_yellowColor)
-                    {
-                        g_global.g_energyManager.SetEnergy("yellow", _energy);
-                    }
-                    else if (_eStar.s_b_blueColor)
-                    {
-                        g_global.g_energyManager.SetEnergy("blue", _energy);
                     }
                 }
             }
