@@ -26,6 +26,9 @@ public class S_StarPopUp : MonoBehaviour
     [SerializeField] float f_doFadeAlpha;
     [SerializeField] float f_doFadeDuration;
 
+    [Header("Sit at Position Attributes")]
+    public bool b_keepSitting; 
+
     [Header("Color Graphics")]
     public GameObject redColorGraphic;
     public GameObject blueColorGraphic;
@@ -40,12 +43,32 @@ public class S_StarPopUp : MonoBehaviour
     {
         g_global = S_Global.Instance;
         g_global.ls_starPopup.Add(this); 
-        b_deletionTimerFlag = false;
 
-        // Toggle Graphics
+        // Toggle Graphics to null position
         redColorGraphic.SetActive(false);
         blueColorGraphic.SetActive(false);
         yellowColorGraphic.SetActive(false);
+
+        // Get timer ready for use
+        b_deletionTimerFlag = false;
+
+        // Get ready to hold
+        b_keepSitting = false; 
+    }
+
+    /// <summary>
+    /// This is a function used to get the popup to wait above the star
+    /// Only Finishes once the constellation finishes
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SitAtPosition()
+    {
+        if(g_global.g_ConstellationManager.s_b_popupMove == true)
+        {
+            b_keepSitting = true; 
+        }
+
+        yield return b_keepSitting == true; 
     }
 
     /// <summary>
@@ -71,7 +94,29 @@ public class S_StarPopUp : MonoBehaviour
         yield return b_deletionTimerFlag == true;
     }
 
-    public void SetPosition()
+    /// <summary>
+    /// Adjust the popups position based off the line system, get them to place properly
+    /// Trigger timer for down time 
+    /// </summary>
+    /// <param name="_positionCount"></param>
+    public void SetPosition(int _positionCount, S_StarClass _star)
+    {
+        if(_positionCount == 1)
+        {
+            gameObject.transform.SetParent(_star.vectorPoint1.transform);
+            StartCoroutine(SitAtPosition());
+        }
+        else if(_positionCount == 2)
+        {
+            gameObject.transform.SetParent(_star.vectorPoint1.transform);
+            StartCoroutine(SitAtPosition());
+        }
+        else if(_positionCount == 3)
+        {
+            gameObject.transform.SetParent(_star.vectorPoint1.transform);
+            StartCoroutine(SitAtPosition());
+        }
+    }
 
     /// <summary>
     /// Function for S_ConstellationLine use to toggle the graphic and then allow the star object to be set

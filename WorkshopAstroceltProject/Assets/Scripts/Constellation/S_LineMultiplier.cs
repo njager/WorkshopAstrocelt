@@ -97,17 +97,22 @@ public class S_LineMultiplier : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updated for new line multiplier function, clears line list, and resets total tally for line tier system
+    /// - Josh
+    /// </summary>
     public void ClearLineList()
     {
-        foreach(float _lineLength in lst_lineLengthList.ToList())
+        foreach(GameObject _line in g_global.g_ls_lineRendererList.ToList())
         {
-            lst_lineLengthList.Remove(_lineLength);
+            g_global.g_ls_lineRendererList.Remove(_line);
         }
+        f_totalLineLength = 0;
     }
 
     /// <summary>
-    /// 
-    /// -Riley
+    /// Seems to compute one line at a time and add them to a tally outside the function - Josh
+    /// Made by -Riley
     /// </summary>
     /// <param name="_line"></param>
     public int LineMultiplier(GameObject _line)
@@ -118,7 +123,7 @@ public class S_LineMultiplier : MonoBehaviour
         //add to total line length
         f_totalLineLength += length;
 
-        Debug.Log("Line with this index: " +_line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
+        Debug.Log("Line with this index: " + _line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
 
         if(f_totalLineLength > f_largeLength) { print("Large Line Bonus"); return 3; }
         else if (f_totalLineLength > f_mediumLength) { print("med Line Bonus"); return 2; }

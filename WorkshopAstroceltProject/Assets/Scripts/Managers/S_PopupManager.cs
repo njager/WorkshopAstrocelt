@@ -55,19 +55,100 @@ public class S_PopupManager : MonoBehaviour
         _textPopUpScript.StartCoroutine(_textPopUpScript.MovePopUp());
     }
 
+
     /// <summary>
     /// Create and activate a popup for the constellation
-    /// -Josh
+    /// Use current line tier from the constellation to generate the proper star amounts
+    /// - Josh
     /// </summary>
-    /// <param name="starType"></param>
+    /// <param name="_star"></param>
+    /// <param name="_starLocation"></param>
     public void CreatePopUpForStar(S_StarClass _star, Vector3 _starLocation)
     {
-        GameObject _starPopup = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
-        S_StarPopUp _starPopupScript = _starPopup.GetComponent<S_StarPopUp>();
-        
-        // Add setup
+        int _lineTier = LineTiers();
 
-        //_starPopupScript.StartCoroutine(_textPopUpScript.MovePopUp());
+        if(_lineTier == 1)
+        {
+            // Int for tracking how many popups there have been
+            int _popupCount = 0;
+
+            //Spawn Star 1
+            GameObject _starPopup1 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+            S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
+            _popupCount += 1;
+
+            // Set up Star 1
+            _starPopupScript1.SetPosition(_popupCount, _star);
+            _starPopupScript1.SetGraphic(_star.starType);
+
+        }
+        else if(_lineTier == 2)
+        {
+            // Int for tracking how many popups there have been
+            int _popupCount = 0;
+
+            // Spawn Star 1
+            GameObject _starPopup1 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+            S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
+            _popupCount += 1;
+
+            // Set up Star 1
+            _starPopupScript1.SetPosition(_popupCount, _star);
+            _starPopupScript1.SetGraphic(_star.starType);
+
+            // Spawn Star 2
+            GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+            S_StarPopUp _starPopupScript2 = _starPopup2.GetComponent<S_StarPopUp>();
+            _popupCount += 1;
+
+            // Set up Star 2
+            _starPopupScript2.SetPosition(_popupCount, _star);
+            _starPopupScript2.SetGraphic(_star.starType);
+
+        }
+        else if(_lineTier == 3)
+        {
+            // Int for tracking how many popups there have been
+            int _popupCount = 0;
+
+            // Spawn Star 1
+            GameObject _starPopup1 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+            S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
+            _popupCount += 1;
+
+            // Set up Star 1
+            _starPopupScript1.SetPosition(_popupCount, _star);
+            _starPopupScript1.SetGraphic(_star.starType);
+
+            // Spawn Star 2
+            GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+            S_StarPopUp _starPopupScript2 = _starPopup2.GetComponent<S_StarPopUp>();
+            _popupCount += 1;
+
+            // Set up Star 2
+            _starPopupScript2.SetPosition(_popupCount, _star);
+            _starPopupScript2.SetGraphic(_star.starType);
+
+            // Spawn Star 3
+            GameObject _starPopup3 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+            S_StarPopUp _starPopupScript3 = _starPopup3.GetComponent<S_StarPopUp>();
+            _popupCount += 1;
+
+            // Set up Star 3
+            _starPopupScript3.SetPosition(_popupCount, _star);
+            _starPopupScript3.SetGraphic(_star.starType);
+        }
+
+        
+    }
+
+    public int LineTiers()
+    {
+        foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())
+        {
+            g_global.g_lineMultiplierManager.LineMultiplier(_line);
+        }
+        return (int)g_global.g_lineMultiplierManager.f_totalLineLength; 
     }
 
     public IEnumerator ClearAllPopups()

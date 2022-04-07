@@ -12,17 +12,16 @@ public class S_ConstelationManager : MonoBehaviour
 
     //the list of the current constellation
     public List<S_StarClass> ls_curConstellation;
-
     //this is the color for the cur constellation
     public string str_curColor = "";
 
-    //bool to tell if you are making a constellation atm
+   [Header("Bool for constellation status")]
     public bool b_makingConstellation;
 
-    //bool for locking out drawing
+    [Header("Bool for Lockout")]
     public bool b_starLockout;
 
-    //previous star and previous loc
+    [Header("Previos star and location")]
     public S_StarClass s_previousStar;
     public Vector2 v2_prevLoc;
 
@@ -39,6 +38,8 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Energy Count")]
     public int i_energyCount;
 
+    [Header("Constellation Finished Bool for Popup")]
+    public bool s_b_popupMove; 
 
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
@@ -51,6 +52,9 @@ public class S_ConstelationManager : MonoBehaviour
         g_global = S_Global.Instance;
         s_previousStar = s_nullStarInst;
         b_starLockout = true;
+
+        // Get popups to not move at first
+        s_b_popupMove = false; 
     }
 
     /// <summary>
@@ -119,6 +123,9 @@ public class S_ConstelationManager : MonoBehaviour
                 b_makingConstellation = false;
             }
         }
+
+        //Make sure popups don't move
+        s_b_popupMove = false;
     }
 
     /// <summary>
@@ -139,6 +146,9 @@ public class S_ConstelationManager : MonoBehaviour
         //reset the prvious star
         s_previousStar = s_nullStarInst;
         v2_prevLoc = new Vector2(0,0);
+
+        //Make sure popups don't move
+        s_b_popupMove = false; 
 }
 
     /// <summary>
@@ -305,6 +315,9 @@ public class S_ConstelationManager : MonoBehaviour
         ls_curConstellation.Clear();
 
         b_starLockout = true;
+
+        // Popups now move to card
+        s_b_popupMove = true;
     }
 
     /// <summary>

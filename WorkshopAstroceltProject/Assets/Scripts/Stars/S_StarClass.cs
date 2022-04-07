@@ -16,5 +16,11 @@ public class S_StarClass : MonoBehaviour
     public GameObject vectorPoint3;
 
     [Header("Counter Variable")]
-    public int positionCount; 
+    public int positionCount;
+
+    // These are used to check where to spawn based off the energy tier system 
+    [Header("Position States")]
+    public bool s_b_point1Used;
+    public bool s_b_point2Used;
+    public bool s_b_point3Used; 
 }
