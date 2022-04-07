@@ -57,6 +57,16 @@ public class S_ConstelationManager : MonoBehaviour
         s_b_popupMove = false; 
     }
 
+    public IEnumerator LineWait(S_StarClass _star)
+    {
+        //wait for checking stars
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
+        if (!_star.s_star.m_previousLine) { yield return null; }
+        else { AddStarToCurConstellation(_star); }
+    }
+
     /// <summary>
     /// This func gets called from the lines themseleves after they get spawned. 
     /// Adds the star to the data structure and checks types and constraints
@@ -65,6 +75,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
+
         //change the star sound here if the line is formed
         i_starSound++;
 
@@ -82,6 +93,10 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (b_makingConstellation)
             {
+                //do some final thing with star sound
+                _starSoundPhase1.SetActive(false);
+                PlaySound();
+
                 //finsih making the constellation
                 FinishConstellation(_star);
             }
@@ -212,10 +227,6 @@ public class S_ConstelationManager : MonoBehaviour
     {
         if (b_makingConstellation) //if you have started a constellation
         {
-            //do some final thing with star sound
-            _starSoundPhase1.SetActive(false);
-            PlaySound();
-            
             g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
         }
         else //if you have not started a constellation
