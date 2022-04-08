@@ -33,7 +33,7 @@ public class S_EnemyAttributes : MonoBehaviour
     [Header("Enemy Type Bools")]
     public bool e_b_Lumberjack;
     public bool e_b_Magician;
-    public bool e_b_Brawler;
+    public bool e_b_Beast;
 
     [Header("Status Effects")]
     public bool e_b_poisoned;

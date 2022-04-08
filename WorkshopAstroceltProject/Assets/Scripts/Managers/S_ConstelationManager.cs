@@ -213,8 +213,8 @@ public class S_ConstelationManager : MonoBehaviour
         s_previousStar = s_nullStarInst;
         v2_prevLoc = new Vector2(0,0);
 
-        //Make sure popups don't move
-        s_b_popupMove = false; 
+        // Delete popup
+        g_global.g_popupManager.ClearAllPopups();
 }
 
     /// <summary>
@@ -354,7 +354,7 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = true;
 
         // Popups now move to card
-        s_b_popupMove = true;
+        g_global.g_popupManager.TriggerPopupMove();
     }
 
     /// <summary>

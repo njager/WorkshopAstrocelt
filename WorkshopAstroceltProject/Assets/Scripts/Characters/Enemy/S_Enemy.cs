@@ -74,7 +74,7 @@ public class S_Enemy : MonoBehaviour
         //sound effect goes here
         a_audioPlayer.SetActive(true);
 
-        if (_enemyType == "Lumberjack" || _enemyType == "Magician")
+        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast")
         {
             int _newDamageValue = (int)_damageValue / 2;
             if(e_enemyAttributes.e_b_resistant == true)
