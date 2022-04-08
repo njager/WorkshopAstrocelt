@@ -49,16 +49,34 @@ public class S_ConstellationLine : MonoBehaviour
         }
         else if (other.CompareTag("Line")) //check if collider is a line
         {
+            print("Theres a line");
             //Use if lines connecting to the same stars are colliding if(&& other.GetComponent<LineRenderer>() != _prevLine)
-            //LineRenderer _prevLine = s_previousStar.s_star.m_previousLine.GetComponent<LineRenderer>();
-            if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index and if it is equal to the previous line
+            if (s_previousStar.s_star.m_previousLine)
             {
+                Debug.Log(i_index + " Line with this index");
+                S_ConstellationLine _prevLine = s_previousStar.s_star.m_previousLine;
+
+                //execute if the lines arnt next to eachother
+                if(other.GetComponent<S_ConstellationLine>().i_index != _prevLine.i_index)
+                {
+                    print("WHerere");
+                    if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index and if it is equal to the previous line
+                    {
+                        print("Not here");
+                        g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+                        //g_global.g_DrawingManager.ConstellationReset();
+                    }
+                }
+            }
+            else if (other.GetComponent<S_ConstellationLine>().i_index < i_index ) //check which one has a larger index and if it is equal to the previous line
+            {
+
                 g_global.g_DrawingManager.GoBackOnce(this.gameObject);
-                //g_global.g_DrawingManager.ConstellationReset();
             }
         }
         else if (other.CompareTag("Star")) //check if the col is a star
         {
+            print("There");
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
             {
                 Debug.Log("encountered another star in path");
