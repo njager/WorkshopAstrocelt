@@ -214,7 +214,7 @@ public class S_ConstelationManager : MonoBehaviour
         v2_prevLoc = new Vector2(0,0);
 
         // Delete popup
-        g_global.g_popupManager.ClearAllPopups();
+        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
 }
 
     /// <summary>
@@ -354,7 +354,7 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = true;
 
         // Popups now move to card
-        g_global.g_popupManager.TriggerPopupMove();
+        StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
     }
 
     /// <summary>

@@ -14,7 +14,7 @@ public class S_StarPopUp : MonoBehaviour
     private S_Global g_global;
     private bool b_deletionTimerFlag;
     private bool b_spawnTimerFlag;
-    private SpriteRenderer colorImage;
+    [SerializeField] SpriteRenderer colorImage;
 
     [Header("Color Bools")]
     [SerializeField] bool b_redPopup;
@@ -43,6 +43,10 @@ public class S_StarPopUp : MonoBehaviour
     [Header("Card movement speed")] 
     public float f_moveSpeed;
 
+    public void decrementUI()
+    {
+        // Add this when focusing on new altar
+    }
 
     /// <summary>
     /// Set up global, add to list, and deletion timer
@@ -68,13 +72,12 @@ public class S_StarPopUp : MonoBehaviour
     /// A coroutine for triggering a fade in effect
     /// - Josh
     /// </summary>
-    /// <returns></returns>
     public IEnumerator SpawnFadeTimer()
     {
         f_spawnTimer -= Time.deltaTime;
-        if(f_spawnTimer < 0)
+        colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
+        if (f_spawnTimer < 0)
         {
-            colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
             b_spawnTimerFlag = true;
         }
         yield return b_spawnTimerFlag == true; 
