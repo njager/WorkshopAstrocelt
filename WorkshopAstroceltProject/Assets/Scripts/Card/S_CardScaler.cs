@@ -34,9 +34,27 @@ public class S_CardScaler : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// AutoScaler for a card's text boxes
+    /// </summary>
+    public void SizeTextElements()
     {
-        
+        // Resize Header Text
+        RectTransform _headerRect = c_headerTextObject.GetComponent<RectTransform>();
+        _headerRect.localScale = new Vector2(_headerRect.localScale.x * 2, _headerRect.localScale.y * 2);
+
+        // Resize Description Text
+        RectTransform _descriptionRect = c_bodyTextObject.GetComponent<RectTransform>();
+        _descriptionRect.sizeDelta = new Vector2(_descriptionRect.sizeDelta.x * c_card.i_hoverX, _descriptionRect.sizeDelta.y * c_card.i_hoverY);
+
+
+        // Resize Energy Cost Text
+        RectTransform _energyCostRect = c_energyCostTextObject.GetComponent<RectTransform>();
+        _energyCostRect.sizeDelta = new Vector2(_energyCostRect.sizeDelta.x * c_card.i_hoverX, _energyCostRect.sizeDelta.y * c_card.i_hoverY);
+
+
+        // Resize Flavor text
+        RectTransform _flavorRect = c_flavorTextObject.GetComponent<RectTransform>();
+        _flavorRect.sizeDelta = new Vector2(_flavorRect.sizeDelta.x * c_card.i_hoverX, _flavorRect.sizeDelta.y * c_card.i_hoverY);
     }
 }

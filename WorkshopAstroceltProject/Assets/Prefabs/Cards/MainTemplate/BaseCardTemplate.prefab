@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06715436, y: 0.72}
   m_AnchorMax: {x: 0.8925772, y: 0.86}
-  m_AnchoredPosition: {x: 0.094573975, y: 0.7999573}
+  m_AnchoredPosition: {x: -1.7999954, y: 0.80000305}
   m_SizeDelta: {x: 2424.4788, y: 405.4424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1291470681944299839
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 200
-  m_fontSizeMax: 600
+  m_fontSizeMax: 900
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -196,8 +196,18 @@ MonoBehaviour:
   c_str_headerText: 
   c_str_bodyText: 
   c_str_flavorText: 
+  c_i_damageValue: 0
+  c_i_shieldValue: 0
   c_i_energyCost: 0
-  c_i_effectValue: 0
+  c_i_effectValue1: 0
+  c_i_effectValue2: 0
+  c_i_effectValue3: 0
+  c_i_statusID1: 0
+  c_i_statusID2: 0
+  c_i_statusID3: 0
+  c_i_turnCount1: 0
+  c_i_turnCount2: 0
+  c_i_turnCount3: 0
   c_f_cardRarity: 0
   c_b_redColorType: 0
   c_b_blueColorType: 0
@@ -208,9 +218,13 @@ MonoBehaviour:
   c_blueArtGraphic: {fileID: 21300000, guid: 15e2c75955932d74f8ffc37a8f80a66a, type: 3}
   c_yellowArtGraphic: {fileID: 21300000, guid: 6686015a7f48831468bd730444e9171e, type: 3}
   c_whiteArtGraphic: {fileID: 21300000, guid: 3cf39e4b83682234182c116324bff034, type: 3}
+  c_b_affectsNone: 0
   c_b_affectsPlayer: 0
   c_b_affectsOne: 0
-  c_b_affectsAll: 0
+  c_b_affectsAllEnemies: 0
+  c_b_affectsAllCharacters: 0
+  c_b_playerEffect: 0
+  c_b_enemyEffect: 0
   c_b_attackMainEffect: 0
   c_b_shieldMainEffect: 0
   c_b_uniqueMainEffect: 0
@@ -224,6 +238,7 @@ MonoBehaviour:
   c_b_siphonStatusEffect: 0
   c_b_fralitizeStatusEffect: 0
   c_b_manipulateStatusEffect: 0
+  c_b_thornsStatusEffect: 0
   c_f_damagePercentage: 0
   c_f_turnCount: 0
   c_tx_header: {fileID: 8519685718915682676}
@@ -237,7 +252,7 @@ MonoBehaviour:
   i_hoverX: 1.7
   i_hoverY: 1.7
   cv_canvas: {fileID: 0}
-  c_b_unqiuePayback: 0
+  c_cardScaler: {fileID: 3024136225333618356}
 --- !u!114 &3024136225333618356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +518,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 200
-  m_fontSizeMax: 30500
+  m_fontSizeMax: 900
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -711,12 +726,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 400
+  m_fontSize: 472.55
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 200
-  m_fontSizeMax: 400
+  m_fontSizeMax: 900
   m_fontStyle: 2
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -787,7 +802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.81200004, y: 0.85}
   m_AnchorMax: {x: 0.97315437, y: 0.97}
-  m_AnchoredPosition: {x: -1.46, y: 2.64}
+  m_AnchoredPosition: {x: -1.7999954, y: 2.5999985}
   m_SizeDelta: {x: 25.2263, y: 25.9357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2735765819573211809
@@ -850,7 +865,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 200
-  m_fontSizeMax: 500
+  m_fontSizeMax: 800
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
