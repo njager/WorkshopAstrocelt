@@ -13,7 +13,8 @@ public class S_StarPopUp : MonoBehaviour
 {
     private S_Global g_global;
     private bool b_deletionTimerFlag;
-    private Image colorImage;
+    private bool b_spawnTimerFlag;
+    [SerializeField] SpriteRenderer colorImage;
 
     [Header("Color Bools")]
     [SerializeField] bool b_redPopup;
@@ -22,9 +23,14 @@ public class S_StarPopUp : MonoBehaviour
 
     [Header("Deletion Timer Attributes")]
     [SerializeField] float f_disappearTimer;
-    [SerializeField] float f_destroyTimer = 1f;
+    [SerializeField] float f_destroyTimer;
     [SerializeField] float f_doFadeAlpha;
     [SerializeField] float f_doFadeDuration;
+
+    [Header("Spawn Fade Timer")]
+    [SerializeField] float f_spawnTimer;
+    [SerializeField] float f_doFadeAlphaSpawn;
+    [SerializeField] float f_doFadeDurationSpawn;
 
     [Header("Sit at Position Attributes")]
     public bool b_keepSitting; 
@@ -34,11 +40,13 @@ public class S_StarPopUp : MonoBehaviour
     public GameObject blueColorGraphic;
     public GameObject yellowColorGraphic;
 
-    [Header("Card Triggers")] // May not be needed
-    public PolygonCollider2D redCollider;
-    public PolygonCollider2D blueCollider;
-    public PolygonCollider2D yellowCollider;
+    [Header("Card movement speed")] 
+    public float f_moveSpeed;
 
+    public void decrementUI()
+    {
+        // Add this when focusing on new altar
+    }
 
     /// <summary>
     /// Set up global, add to list, and deletion timer
@@ -55,34 +63,34 @@ public class S_StarPopUp : MonoBehaviour
         blueColorGraphic.SetActive(false);
         yellowColorGraphic.SetActive(false);
 
-        // Get timer ready for use
+        // Get timers ready for use
         b_deletionTimerFlag = false;
-
-        // Get ready to hold
-        b_keepSitting = false; 
+        b_spawnTimerFlag = false; 
     }
 
     /// <summary>
-    /// This is a function used to get the popup to wait above the star
-    /// Only Finishes once the constellation finishes
+    /// A coroutine for triggering a fade in effect
+    /// - Josh
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator SitAtPosition()
+    public IEnumerator SpawnFadeTimer()
     {
-        if(g_global.g_ConstellationManager.s_b_popupMove == true)
+        f_spawnTimer -= Time.deltaTime;
+        colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
+        if (f_spawnTimer < 0)
         {
-            b_keepSitting = true;
-            MoveToCard();
+            b_spawnTimerFlag = true;
         }
-
-        // Can add an else here to trigger idle animation
-        yield return b_keepSitting == true; 
+        yield return b_spawnTimerFlag == true; 
     }
 
-    private void MoveToCard()
+ 
+    /// <summary>
+    /// Move the popup to the altar
+    /// </summary>
+    public void MoveToAltar()
     {
-        Vector3 _firstCardPosition = g_global.ls_p_playerHand[0].gameObject.transform.position;
-        gameObject.transform.DOMove(_firstCardPosition, 1f);
+        Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position; 
+        gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
         DeletePopup();
     }
 
@@ -95,18 +103,18 @@ public class S_StarPopUp : MonoBehaviour
     {
         if(_positionCount == 1)
         {
-            gameObject.transform.SetParent(_star.vectorPoint1.transform);
-            StartCoroutine(SitAtPosition());
+            Debug.Log("First popup!");
+            gameObject.transform.position = _star.vectorPoint1.transform.position;
         }
         else if(_positionCount == 2)
         {
-            gameObject.transform.SetParent(_star.vectorPoint2.transform);
-            StartCoroutine(SitAtPosition());
+            Debug.Log("Second popup!");
+            gameObject.transform.position = _star.vectorPoint2.transform.position;
         }
         else if(_positionCount == 3)
         {
-            gameObject.transform.SetParent(_star.vectorPoint3.transform);
-            StartCoroutine(SitAtPosition());
+            Debug.Log("Third popup!");
+            gameObject.transform.position = _star.vectorPoint3.transform.position;
         }
     }
 
@@ -125,7 +133,9 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = redColorGraphic.GetComponent<Image>(); 
+            colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
+
+            StartCoroutine(SpawnFadeTimer());
         }
         if(_color == "blue")
         {
@@ -135,7 +145,9 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(false);
 
             //Set Color Image
-            colorImage = blueColorGraphic.GetComponent<Image>();
+            colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
+
+            StartCoroutine(SpawnFadeTimer());
         }
         if(_color == "yellow")
         {
@@ -145,13 +157,21 @@ public class S_StarPopUp : MonoBehaviour
             yellowColorGraphic.SetActive(true);
 
             //Set Color Image
-            colorImage = yellowColorGraphic.GetComponent<Image>();
+            colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>();
+
+            StartCoroutine(SpawnFadeTimer());
         }
     }
 
     public void DeletePopup()
     {
         StartCoroutine(DeletionTimer());
+    }
+
+    public void ClearPopup()
+    {
+        g_global.ls_starPopup.Remove(this);
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -163,6 +183,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
+        g_global.ls_starPopup.Remove(this);
         if (f_disappearTimer < 0)
         {
             colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
@@ -172,7 +193,6 @@ public class S_StarPopUp : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        g_global.ls_starPopup.Remove(this);
         b_deletionTimerFlag = true;
         yield return b_deletionTimerFlag == true;
     }

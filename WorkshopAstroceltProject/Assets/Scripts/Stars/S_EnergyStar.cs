@@ -8,6 +8,9 @@ public class S_EnergyStar : MonoBehaviour
     private Color s_c_starStartColor;
     private SpriteRenderer s_starSprite;
 
+    [Header("Star Class")]
+    public S_StarClass s_starClass;
+
     [Header("Star Colors")]
     public Color s_c_redStarHoverColor;
     public Color s_c_blueStarHoverColor;
@@ -50,6 +53,7 @@ public class S_EnergyStar : MonoBehaviour
             s_b_redColor = true;
             s_b_blueColor = false;
             s_b_yellowColor = false;
+            s_starClass.colorType = "red";
         }
 
         else if (_colorIntRand == 2) // System choose blue
@@ -58,6 +62,7 @@ public class S_EnergyStar : MonoBehaviour
             s_b_redColor = false;
             s_b_blueColor = true;
             s_b_yellowColor = false;
+            s_starClass.colorType = "blue";
         }
 
         else if (_colorIntRand == 3) // System choose yellow
@@ -66,6 +71,7 @@ public class S_EnergyStar : MonoBehaviour
             s_b_redColor = false;
             s_b_blueColor = false;
             s_b_yellowColor = true;
+            s_starClass.colorType = "yellow";
         }
         else
         {

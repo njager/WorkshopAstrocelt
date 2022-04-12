@@ -13,7 +13,8 @@ public class S_PopupManager : MonoBehaviour
     private S_Global g_global;
 
     [Header("Clearing Bool")]
-    public bool PopupClear; 
+    public bool b_popupClear;
+    public bool b_popupMove;
 
     [Header("Position Data")]
     [SerializeField] Vector3 v3_startingTextPopupPosition; 
@@ -31,15 +32,15 @@ public class S_PopupManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject popUpCanvas;
 
-    [Header("Line Multiplier Tier")]
-    public int i_lineTier; // Inform this from energy manager
+    [Header("Altar Position")]
+    public GameObject altarTargetPosition;
 
     //get the transform component of the text
     private void Awake()
     {
         g_global = S_Global.Instance;
         DOTween.Init();
-        PopupClear = false; 
+        b_popupClear = false; 
     }
 
     /// <summary>
@@ -84,7 +85,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
-                _starPopupScript1.SetGraphic(_star.starType);
+                _starPopupScript1.SetGraphic(_star.colorType);
 
             }
             else if (_lineTier == 2)
@@ -99,7 +100,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
-                _starPopupScript1.SetGraphic(_star.starType);
+                _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Spawn Star 2
                 GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
@@ -108,7 +109,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 2
                 _starPopupScript2.SetPosition(_popupCount, _star);
-                _starPopupScript2.SetGraphic(_star.starType);
+                _starPopupScript2.SetGraphic(_star.colorType);
 
             }
             else if (_lineTier == 3)
@@ -146,22 +147,22 @@ public class S_PopupManager : MonoBehaviour
         }
     }
 
-    public int LineTiers()
+    public IEnumerator TriggerPopupMove()
     {
-        foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())
+        foreach(S_StarPopUp _starPopup in g_global.ls_starPopup.ToList())
         {
-            g_global.g_lineMultiplierManager.LineMultiplier(_line);
+            _starPopup.MoveToAltar();
         }
-        return (int)g_global.g_lineMultiplierManager.f_totalLineLength; 
+        yield return b_popupMove == true;
     }
 
     public IEnumerator ClearAllPopups()
     {
-        foreach(S_StarPopUp starPop in g_global.ls_starPopup.ToList())
+        foreach(S_StarPopUp _starPop in g_global.ls_starPopup.ToList())
         {
-            starPop.DeletePopup();
+            _starPop.DeletePopup();
         }
-        PopupClear = true; 
-        yield return PopupClear == true; 
+        b_popupClear = true; 
+        yield return b_popupClear == true; 
     }
 }

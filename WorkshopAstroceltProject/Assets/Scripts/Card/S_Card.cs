@@ -111,8 +111,9 @@ public class S_Card : MonoBehaviour
     public float i_hoverX;
     public float i_hoverY;
 
+    [Header("Card Scaler References")]
     public GameObject cv_canvas;
-    
+    public S_CardScaler c_cardScaler;
     private GameObject c_zoomCard;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
@@ -355,17 +356,21 @@ public class S_Card : MonoBehaviour
 
     /// <summary>
     /// Function that creates a hover card when moused over
+    /// Now adjusts text - Josh
     /// -Riley Halloran
     /// </summary>
     public void OnHoverEnter()
     {
-        //Instantiate a new card based off the location of the mouse and the hoverHeight
+        // Instantiate a new card based off the location of the mouse and the hoverHeight
         c_zoomCard = Instantiate(gameObject, new Vector2(transform.position.x, transform.position.y + i_hoverHeight), Quaternion.identity);
         c_zoomCard.transform.SetParent(cv_canvas.transform, false);
 
-        //scale the transform of the rect
+        // Scale the transform of the rect
         RectTransform _rect = c_zoomCard.GetComponent<RectTransform>();
         _rect.sizeDelta = new Vector2(_rect.sizeDelta.x * i_hoverX, _rect.sizeDelta.y * i_hoverY);
+
+        // Scale text elements
+        c_zoomCard.GetComponent<S_Card>().c_cardScaler.SizeTextElements();
     }
 
     /// <summary>

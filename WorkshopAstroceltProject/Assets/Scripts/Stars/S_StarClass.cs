@@ -6,6 +6,7 @@ public class S_StarClass : MonoBehaviour
 {
     [Header("The Star Template")]
     public string starType;
+    public string colorType; 
 
     [Header("Class Templates")]
     public S_Star s_star;
