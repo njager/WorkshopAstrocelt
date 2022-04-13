@@ -17,11 +17,26 @@ MonoBehaviour:
   BodyText: Gain 5 shield
   FlavorText: 
   EnergyCost: 3
-  EffectValue: 5
+  DamageValue: 0
+  ShieldValue: 5
+  EffectValue1: 0
+  EffectValue2: 0
+  EffectValue3: 0
+  BleedEffectValue: 0
+  TurnCountForStatusEffect1: 0
+  TurnCountForStatusEffect2: 0
+  TurnCountForStatusEffect3: 0
+  IDForStatusEffectOne: 0
+  IDForStatusEffectTwo: 0
+  IDForStatusEffectThree: 0
   CardRarity: 1
+  AffectsNone: 0
   AffectsPlayer: 1
   Affects1Character: 0
-  AffectsAllOtherCharacters: 0
+  AffectsAllEnemies: 0
+  AffectsAllCharacters: 0
+  PlayerEffect: 0
+  EnemyEffect: 0
   RedColorType: 0
   BlueColorType: 1
   YellowColorType: 0
@@ -39,7 +54,5 @@ MonoBehaviour:
   DrawStatusEffect: 0
   FralityStatusEffect: 0
   ManipulateStatusEffect: 0
-  DamagePercentage: 0
-  TurnCount: 0
-  Payback: 0
+  ThornStatusEffect: 0
   ExtraInfo: 

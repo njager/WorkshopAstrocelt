@@ -17,11 +17,26 @@ MonoBehaviour:
   BodyText: Stun Enemy for 1 Turn.
   FlavorText: 
   EnergyCost: 5
-  EffectValue: 0
+  DamageValue: 0
+  ShieldValue: 0
+  EffectValue1: 0
+  EffectValue2: 0
+  EffectValue3: 0
+  BleedEffectValue: 0
+  TurnCountForStatusEffect1: 1
+  TurnCountForStatusEffect2: 0
+  TurnCountForStatusEffect3: 0
+  IDForStatusEffectOne: 0
+  IDForStatusEffectTwo: 0
+  IDForStatusEffectThree: 0
   CardRarity: 2
+  AffectsNone: 0
   AffectsPlayer: 0
   Affects1Character: 1
-  AffectsAllOtherCharacters: 0
+  AffectsAllEnemies: 0
+  AffectsAllCharacters: 0
+  PlayerEffect: 0
+  EnemyEffect: 0
   RedColorType: 0
   BlueColorType: 0
   YellowColorType: 1
@@ -39,7 +54,5 @@ MonoBehaviour:
   DrawStatusEffect: 0
   FralityStatusEffect: 0
   ManipulateStatusEffect: 0
-  DamagePercentage: 0
-  TurnCount: 1
-  Payback: 0
+  ThornStatusEffect: 0
   ExtraInfo: 

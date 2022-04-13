@@ -150,6 +150,10 @@ public class S_Card : MonoBehaviour
     {
         c_cardTemplate = _cardData;
 
+        //set attack and defense
+        c_i_damageValue = _cardData.DamageValue;
+        c_i_shieldValue = _cardData.DamageValue;
+
         //Load strings
         c_str_cardName = _cardData.CardName;
         c_str_headerText = _cardData.HeaderText;
@@ -285,6 +289,7 @@ public class S_Card : MonoBehaviour
             {
                 if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color)) //Had to do this for enemy, might as well do for player
                 {
+                    print("Shield played?");
                     TriggerShieldCard(_character.GetComponent<S_Player>());
                 }
                 else

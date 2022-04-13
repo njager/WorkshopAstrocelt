@@ -87,6 +87,7 @@ public class S_Player : MonoBehaviour
     /// <param name="_shieldValue"></param>
     public void PlayerShielded(int _shieldValue)
     {
+        print(_shieldValue);
         //play sound effect
         a_audioPlayer.SetActive(true);
 

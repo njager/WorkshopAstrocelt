@@ -59,6 +59,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     {
                         if (c_cardData.c_b_shieldMainEffect == true) //check to see if it's a shield card
                         {
+                            print("Card played?");
                             //play the card
                             c_cardData.PlayCard(g_global.g_player.gameObject);
                         }
