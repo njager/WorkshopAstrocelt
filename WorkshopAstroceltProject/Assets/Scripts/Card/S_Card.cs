@@ -231,7 +231,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage = c_redArtGraphic;
+            c_cardBaseImage = c_yellowArtGraphic;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -245,6 +245,11 @@ public class S_Card : MonoBehaviour
             //Toggle Graphics
             c_cardBaseImage = c_whiteArtGraphic;
         }
+
+        //set the background
+        GetComponent<Image>().sprite = c_cardBaseImage;
+
+        //set the text for the card
         SetText();
     }
 
