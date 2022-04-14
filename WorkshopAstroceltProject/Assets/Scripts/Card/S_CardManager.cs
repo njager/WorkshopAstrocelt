@@ -78,6 +78,12 @@ public class S_CardManager : MonoBehaviour
     /// </summary>
     public void NewHand()
     {
+        //remove all the previous cards from the field
+        foreach(GameObject _card in g_global.ls_p_playerHand)
+        {
+            Destroy(_card);
+        }
+
         //clear the player hand
         g_global.ls_p_playerHand.Clear();
 
@@ -126,7 +132,7 @@ public class S_CardManager : MonoBehaviour
     /// -Riley Halloran
     /// </summary>
     /// <param name="_cardTemplate"></param>
-    public void RemoveCard()
+    public void RemoveFirstCard()
     {
         g_global.ls_p_playerHand.RemoveAt(0);
     }

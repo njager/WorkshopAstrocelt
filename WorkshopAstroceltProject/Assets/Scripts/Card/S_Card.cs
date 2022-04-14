@@ -347,7 +347,7 @@ public class S_Card : MonoBehaviour
     private void DeleteCard()
     {
         g_global.g_turnManager.attackSound.SetActive(false);
-        g_global.g_cardManager.RemoveCard();
+        g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
     }
 
