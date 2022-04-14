@@ -51,6 +51,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this.gameObject == g_global.ls_p_playerHand[0])
         {
+            Debug.Log(c_card.c_str_cardName + " : This card ended drag and now is in reset position");
             //reset the card if it didnt trigger the CharacterCardInterface
             //_eventData.pointerDrag.GetComponent<S_Card>().ResetPosition();
 
@@ -61,10 +62,12 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 FMODUnity.StudioEventEmitter _gameMusic = g_global.a_audioPlayer.GetComponent<FMODUnity.StudioEventEmitter>();
                 _gameMusic.SetParameter("Music_Combat_01", 1);
             }
+
+            //reset position
+            c_card.ResetPosition();
         }
         else
         {
-            c_card.ResetPosition();
             return; 
         }
     }

@@ -31,6 +31,7 @@ public class S_CardDatabase : MonoBehaviour
     public S_CardTemplate cardScript7; // Dodge, ID 7
     public S_CardTemplate cardScript8; // Dodge, ID 8
     public S_CardTemplate cardScript9; // Bulwark, ID 9
+    public S_CardTemplate cardScript10; // A colored card ID 10
 
     public Dictionary<int, S_CardTemplate> dict_CardDatabase = new Dictionary<int, S_CardTemplate>();
 
@@ -48,11 +49,20 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(7, cardScript7);
         dict_CardDatabase.Add(8, cardScript8);
         dict_CardDatabase.Add(9, cardScript9);
+        dict_CardDatabase.Add(10, cardScript10);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 11; i++)
         {
             g_global.lst_p_playerDeck.Add(i);
         }
+
+        //g_global.lst_p_playerDeck.Add(1);
+        //g_global.lst_p_playerDeck.Add(1);
+        //g_global.lst_p_playerDeck.Add(1);
+        //g_global.lst_p_playerDeck.Add(10);
+        //g_global.lst_p_playerDeck.Add(10);
+        //g_global.lst_p_playerDeck.Add(10);
+        //g_global.lst_p_playerDeck.Add(10);
     }
 
     /// <summary>
