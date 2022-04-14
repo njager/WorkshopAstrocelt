@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VectorGraphics;
-using Unity.VectorGraphics.Editor;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
