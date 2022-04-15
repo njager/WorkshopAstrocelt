@@ -69,23 +69,27 @@ public class S_PlayerState : MonoBehaviour
     /// </summary>
     public void PlayerStatusEffectDecrement()
     {
+        //-Riley I turned off all the ui references because they were bricking the game
+
+
         // Check for state
         if(p_i_bleedingTurnCount <= 0)
         {
             p_b_inBleedingState = false;
-            g_global.g_UIManager.ToggleBleedPlayerUI(false);
+            //g_global.g_UIManager.ToggleBleedPlayerUI(false);
         }
         if (p_i_stunnedTurnCount <= 0)
         {
+            Debug.Log("Never Here");
             g_global.g_turnManager.playerTurnSkipped = false;
             p_b_inStunnedState = false;
-            g_global.g_UIManager.ToggleStunPlayerUI(false);
+            //g_global.g_UIManager.ToggleStunPlayerUI(false);
         }
         if (p_i_resistantTurnCount <= 0)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = false;
             p_b_inResistantState = false;
-            g_global.g_UIManager.ToggleResistantPlayerUI(false);
+            //g_global.g_UIManager.ToggleResistantPlayerUI(false);
         }
         
         // Trigger remaining effects
@@ -93,19 +97,19 @@ public class S_PlayerState : MonoBehaviour
         {
             p_i_bleedingTurnCount -= 1;
             BleedEffectPerTurn(p_f_currentDamageRateForBleed);
-            g_global.g_UIManager.ToggleBleedPlayerUI(true);
+            //g_global.g_UIManager.ToggleBleedPlayerUI(true);
         }
         if (p_b_inStunnedState == true)
         {
             g_global.g_turnManager.playerTurnSkipped = true;
             p_i_stunnedTurnCount -= 1;
-            g_global.g_UIManager.ToggleStunPlayerUI(true);
+            //g_global.g_UIManager.ToggleStunPlayerUI(true);
         }
         if (p_b_inResistantState == true)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = true;
             p_i_resistantTurnCount -= 1;
-            g_global.g_UIManager.ToggleResistantPlayerUI(true); 
+            //g_global.g_UIManager.ToggleResistantPlayerUI(true); 
         }
     }
 

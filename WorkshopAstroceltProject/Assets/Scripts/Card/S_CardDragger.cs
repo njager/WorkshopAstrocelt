@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VectorGraphics;
-using Unity.VectorGraphics.Editor;
 using UnityEngine.EventSystems;
 
 public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
