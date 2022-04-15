@@ -182,7 +182,8 @@ public class S_Enemy : MonoBehaviour
         }
         if(_enemyType == "Magician")
         {
-            g_global.g_playerState.PlayerStunnedStatusEffect(1);
+            //g_global.g_playerState.PlayerStunnedStatusEffect(1);
+            g_global.g_enemyState.EnemyResistantEffect(1, e_i_enemyCount);
         }
         if(_enemyType == "Brawler")
         {
