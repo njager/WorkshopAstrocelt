@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using FMODUnity; 
 using FMOD.Studio; 
 
@@ -41,7 +42,9 @@ public class S_TurnManager : MonoBehaviour
         enemy2TurnSkipped = false;
         enemy3TurnSkipped = false;
         enemy4TurnSkipped = false;
-        enemy5TurnSkipped = false; 
+        enemy5TurnSkipped = false;
+
+        g_global.g_enemyState.EnemyAttackingOrShielding();
     }
 
     /// <summary>
@@ -110,6 +113,7 @@ public class S_TurnManager : MonoBehaviour
         e_b_enemyDidAttack = false;
         g_global.g_energyManager.ClearEnergy();
         g_global.g_enemyState.EnemyAttackingOrShielding();
+        RemoveShielding(); //Remove all shields first
 
         // Check to see if dead in order to actvate their moves
         if (g_global.g_enemyState.e_b_enemy1Dead != true)
@@ -252,7 +256,11 @@ public class S_TurnManager : MonoBehaviour
             }
         }
 
-        RemoveShielding(); //Remove all shields first
+        // Load the next icon
+        foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
+        {
+            _enemy.ChangeIcon();
+        }
 
         //Play sound
         if (e_b_enemyDidAttack == true)
@@ -261,13 +269,6 @@ public class S_TurnManager : MonoBehaviour
         }
 
         g_global.g_enemyState.EnemyStatusEffectDecrement();
-
-
-        // Load the next icon
-        foreach (S_Enemy _enemy in g_global.e_l_enemyList)
-        {
-            _enemy.ChangeIcon();
-        }
 
         //Switch turns
         g_global.g_b_playerTurn = false;
@@ -308,8 +309,6 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
     }
-
- 
 
     public void PlayAttackSound()
     {

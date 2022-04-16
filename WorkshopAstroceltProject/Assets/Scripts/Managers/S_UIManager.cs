@@ -123,16 +123,6 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
-    /// -Riley
-    /// </summary>
-    /// <param name="_line"></param>
-    public void LineMultiplier(GameObject _line)
-    {
-
-    }
-
-    /// <summary>
     /// Explicitly change the icons according provided energy type
     /// Use null to represent white, and white/null is present when there is no active energy for the player i.e drawing or enemy turn
     /// -Josh

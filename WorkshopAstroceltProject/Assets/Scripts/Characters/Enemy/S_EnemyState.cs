@@ -722,7 +722,6 @@ public class S_EnemyState : MonoBehaviour
                 e_b_enemy1Attacking = true;
                 e_b_enemy1Shielding = false;
                 e_b_enemy1SpecialAbility = false;
-                enemy1.e_enemyAttributes.AttackDamageRoll(); 
             }
             else if (g_global.g_iconManager.e_b_enemy1IconCheck == "shield") // Enemy 1 Shields
             {
@@ -745,7 +744,6 @@ public class S_EnemyState : MonoBehaviour
                 e_b_enemy2Attacking = true;
                 e_b_enemy2Shielding = false;
                 e_b_enemy2SpecialAbility = false;
-                enemy2.e_enemyAttributes.AttackDamageRoll();
             }
             else if (g_global.g_iconManager.e_b_enemy2IconCheck == "shield") // Enemy 1 Shields
             {
@@ -768,7 +766,6 @@ public class S_EnemyState : MonoBehaviour
                 e_b_enemy3Attacking = true;
                 e_b_enemy3Shielding = false;
                 e_b_enemy3SpecialAbility = false;
-                enemy3.e_enemyAttributes.AttackDamageRoll();
             }
             else if (g_global.g_iconManager.e_b_enemy3IconCheck == "shield") // Enemy 1 Shields
             {
@@ -791,7 +788,6 @@ public class S_EnemyState : MonoBehaviour
                 e_b_enemy4Attacking = true;
                 e_b_enemy4Shielding = false;
                 e_b_enemy4SpecialAbility = false;
-                enemy4.e_enemyAttributes.AttackDamageRoll();
             }
             else if (g_global.g_iconManager.e_b_enemy4IconCheck == "shield") // Enemy 1 Shields
             {
@@ -814,7 +810,6 @@ public class S_EnemyState : MonoBehaviour
                 e_b_enemy5Attacking = true;
                 e_b_enemy5Shielding = false;
                 e_b_enemy5SpecialAbility = false;
-                enemy5.e_enemyAttributes.AttackDamageRoll();
             }
             else if (g_global.g_iconManager.e_b_enemy5IconCheck == "shield") // Enemy 1 Shields
             {
