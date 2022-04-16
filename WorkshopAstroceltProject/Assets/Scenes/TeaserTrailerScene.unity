@@ -3268,7 +3268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &148158145
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3285,7 +3285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.81200004, y: 0.85}
   m_AnchorMax: {x: 0.97315437, y: 0.97}
-  m_AnchoredPosition: {x: 2.5999985, y: 7.6999817}
+  m_AnchoredPosition: {x: 15.39, y: 28.1}
   m_SizeDelta: {x: 25.2263, y: 25.9357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148158146
@@ -3312,8 +3312,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: df645524bc10c73439e915eedc5c39cf, type: 2}
-  m_sharedMaterial: {fileID: 5066305262922275057, guid: df645524bc10c73439e915eedc5c39cf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79c0d867bbe5f744a8aa37ee6ed10c8a, type: 2}
+  m_sharedMaterial: {fileID: 5066305262922275057, guid: 79c0d867bbe5f744a8aa37ee6ed10c8a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15821,6 +15821,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 785023632}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &790641462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1068484044281633941, guid: 9469dafe543814e71adb0c98bc761e74, type: 3}
+  m_PrefabInstance: {fileID: 70046248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &792302241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19953,8 +19958,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961603280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0483, y: -1.31, z: 0}
-  m_LocalScale: {x: 0.9209272, y: 0.91126853, z: 1}
+  m_LocalPosition: {x: -1.99, y: -1.97, z: 0}
+  m_LocalScale: {x: 0.94, y: 0.91126853, z: 1}
   m_Children: []
   m_Father: {fileID: 2102913837}
   m_RootOrder: 1
@@ -33989,7 +33994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780560768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9941, y: 0.9273, z: 0}
+  m_LocalPosition: {x: -1.9941, y: 2.05, z: 0}
   m_LocalScale: {x: 0.9242587, y: 0.93926305, z: 0.252}
   m_Children: []
   m_Father: {fileID: 2102913837}
@@ -38876,6 +38881,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 891138400}
     m_Modifications:
+    - target: {fileID: 1068484044281633899, guid: 87bbf26178b0a984686126d6412d6a4f, type: 3}
+      propertyPath: e_i_health
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068484044281633899, guid: 87bbf26178b0a984686126d6412d6a4f, type: 3}
+      propertyPath: e_i_healthMax
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1068484044281633941, guid: 87bbf26178b0a984686126d6412d6a4f, type: 3}
       propertyPath: m_Name
       value: BeastEnemy
@@ -38958,6 +38971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87bbf26178b0a984686126d6412d6a4f, type: 3}
+--- !u!1 &2077978165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1068484044281633941, guid: 87bbf26178b0a984686126d6412d6a4f, type: 3}
+  m_PrefabInstance: {fileID: 2073746698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2077978166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4333990560368920141, guid: 87bbf26178b0a984686126d6412d6a4f, type: 3}
@@ -39117,8 +39135,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083283452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9947, y: 8.7903, z: 0}
-  m_LocalScale: {x: 0.18018216, y: 0.20040312, z: 12.5997}
+  m_LocalPosition: {x: -2.02, y: 9.35, z: 0}
+  m_LocalScale: {x: 0.19, y: 0.20040312, z: 12.5997}
   m_Children: []
   m_Father: {fileID: 2102913837}
   m_RootOrder: 6
@@ -40202,6 +40220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   demoCard: {fileID: 2138381876}
+  enemy1: {fileID: 2077978165}
+  enemy2: {fileID: 790641462}
 --- !u!1001 &2117583799
 PrefabInstance:
   m_ObjectHideFlags: 0
