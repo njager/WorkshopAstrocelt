@@ -108,6 +108,7 @@ public class S_EnemyState : MonoBehaviour
     public float e_f_currentDamageRateForBleedEnemy5;
 
 
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -707,7 +708,6 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
-    // This doesn't have enemy 4 or enemy 5 added to it yet, add to Icon manager, rename icon manager to intent manager
     /// <summary>
     /// This helper function switches whether the enemy is going to attack or defend
     /// Called in S_TurnManager
@@ -830,5 +830,4 @@ public class S_EnemyState : MonoBehaviour
             }
         }
     }
-
 }

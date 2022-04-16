@@ -159,27 +159,4 @@ public class S_EnemyAttributes : MonoBehaviour
     {
         e_i_enemyDamageValue = Random.Range(e_i_enemyMinDamageRange, e_i_enemyMaxDamageRange);
     }
-
-    //Temporary
-    public void InstanceVariables()
-    {
-        // PlayerConstants
-        e_i_health = 15;
-        e_i_healthMax = 15;
-
-        e_i_shield = 0;
-        e_i_shieldMax = 10;
-
-        e_i_enemyDamageValue = 6;
-
-        e_f_challengeRating = 1.0f;
-
-        e_str_enemyType = "Lumberjack"; 
-
-        //Status Effects
-        e_b_bleeding = false;
-        e_b_poisoned = false;
-        e_b_stunned = false;
-    }
-    
 }

@@ -260,15 +260,18 @@ public class S_TurnManager : MonoBehaviour
             PlayAttackSound();
         }
 
-        //Switch turns
-        g_global.g_b_playerTurn = false;
-        g_global.g_b_enemyTurn = true;
+        g_global.g_enemyState.EnemyStatusEffectDecrement();
 
-        //Then load the next icon
+
+        // Load the next icon
         foreach (S_Enemy _enemy in g_global.e_l_enemyList)
         {
             _enemy.ChangeIcon();
         }
+
+        //Switch turns
+        g_global.g_b_playerTurn = false;
+        g_global.g_b_enemyTurn = true;
     }
 
 

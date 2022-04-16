@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq; 
 
 public class S_Enemy : MonoBehaviour
@@ -10,12 +11,18 @@ public class S_Enemy : MonoBehaviour
     public S_EnemyAttributes e_enemyAttributes;
     [SerializeField] GameObject a_audioPlayer;
 
+    [Header("Enemy Type")]
+    [Tooltip("This is a string, do not add quotes on it. - Josh")]
     public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
 
+    [Header("Enemy Count")]
     public int e_i_enemyCount;
 
+    [Header("Intent Assets")]
     public GameObject e_sp_spriteIcon;
+    public GameObject e_tx_intentTextObject;
 
+    [Header("Enemy Sprite")]
     public GameObject e_enemySprite;
 
     void Awake()
@@ -74,7 +81,7 @@ public class S_Enemy : MonoBehaviour
         //sound effect goes here
         a_audioPlayer.SetActive(true);
 
-        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast")
+        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
             if(e_enemyAttributes.e_b_resistant == true)
@@ -210,7 +217,12 @@ public class S_Enemy : MonoBehaviour
         //g_global.g_selectorManager.EnemySelected(this); 
     }
 
-    //Maybe use direct calls? Optimization decision
+    public void ChangeIcon()
+    {
+        g_global.g_iconManager.EnemyIconNextTurn(this);
+    }
+
+    // Eventually use this
     private void SetEnemyHealthText(int _healthVal)
     {
 
@@ -219,14 +231,6 @@ public class S_Enemy : MonoBehaviour
     //Only do this to 5
     private void SetEnemyShieldText(int _shieldVal)
     {
-        
-    }
 
-    public void ChangeIcon()
-    {
-        if (g_global.g_enemyState.e_b_enemy1Dead != true)
-        {
-            g_global.g_iconManager.EnemyIconNextTurn(this);
-        }
     }
 }
