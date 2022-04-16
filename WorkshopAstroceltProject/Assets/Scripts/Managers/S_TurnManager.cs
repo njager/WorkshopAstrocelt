@@ -115,6 +115,11 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_enemyState.EnemyAttackingOrShielding();
         RemoveShielding(); //Remove all shields first
 
+        foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
+        {
+            _enemy.IncreaseIntentAlpha();
+        }
+
         // Check to see if dead in order to actvate their moves
         if (g_global.g_enemyState.e_b_enemy1Dead != true)
         {

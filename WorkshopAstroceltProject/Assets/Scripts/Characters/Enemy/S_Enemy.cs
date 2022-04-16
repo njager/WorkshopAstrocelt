@@ -244,6 +244,12 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
+    public void IncreaseIntentAlpha()
+    {
+        e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
+        e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
+    }
+
     // Eventually use this
     private void SetEnemyHealthText(int _healthVal)
     {

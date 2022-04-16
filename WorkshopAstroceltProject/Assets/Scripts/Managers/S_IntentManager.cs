@@ -211,9 +211,6 @@ public class S_IntentManager : MonoBehaviour
 
     public void FlashIntentStart(S_Enemy _enemy)
     {
-        _enemy.e_sp_spriteIcon.GetComponent<Image>().color = Color.white;
-        _enemy.e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().color = Color.white;
-
         b_intentFlashBool = false;
         StartCoroutine(IntentFade(_enemy));
     }
