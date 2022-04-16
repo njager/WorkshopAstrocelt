@@ -31,8 +31,9 @@ public class S_IntentManager : MonoBehaviour
     /// <param name="_enemyToChange"></param>
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
-        int _chanceSelected = IntentDiceRoll();
-        if (_chanceSelected == 1 || _chanceSelected == 2) // Set Enemy up for Attack
+        int _chanceSelected = 100 - IntentDiceRoll();
+        Debug.Log("Roll is " + _chanceSelected + " for " + _enemyToChange.e_i_enemyCount);
+        if (_chanceSelected <= _enemyToChange.e_enemyAttributes.e_i_attackRate && _chanceSelected >= _enemyToChange.e_enemyAttributes.e_i_shieldRate) // Set Enemy up for Attack
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttack;
             if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
@@ -56,7 +57,7 @@ public class S_IntentManager : MonoBehaviour
                 e_b_enemy5IconCheck = "attack";
             }
         }
-        else if (_chanceSelected == 3)
+        else if (_chanceSelected <= _enemyToChange.e_enemyAttributes.e_i_shieldRate && _chanceSelected >= _enemyToChange.e_enemyAttributes.e_i_specialAbilityRate)
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyShield;
             if (_enemyToChange.e_i_enemyCount == 1)
@@ -80,7 +81,7 @@ public class S_IntentManager : MonoBehaviour
                 e_b_enemy5IconCheck = "shield";
             }
         }
-        else if (_chanceSelected == 4)
+        else if (_chanceSelected <= _enemyToChange.e_enemyAttributes.e_i_specialAbilityRate)
         {
             _enemyToChange.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAbility;
             if (_enemyToChange.e_i_enemyCount == 1)
@@ -108,11 +109,12 @@ public class S_IntentManager : MonoBehaviour
 
     /// <summary>
     /// This is a dice roll to see if indicators will change
+    /// - Josh
     /// </summary>
     /// <returns></returns>
     private int IntentDiceRoll()
     {
-        int _chance = Random.Range(1, 5); // Hardcoded
+        int _chance = Random.Range(0, 100); // "Die roll" is in terms of percent
         return _chance;
     }
 }

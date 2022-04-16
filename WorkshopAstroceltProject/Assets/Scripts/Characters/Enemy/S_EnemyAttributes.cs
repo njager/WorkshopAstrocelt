@@ -9,9 +9,10 @@ public class S_EnemyAttributes : MonoBehaviour
     private S_Global g_global;
 
     [Header("Frequency Rates")]
-    public float e_f_attackRate;
-    public float e_f_shieldRate;
-    public float e_f_specialAbilityRate;
+    [Tooltip("Rates are between 0 and 100, instead of decimal.")]
+    public int e_i_attackRate;
+    public int e_i_shieldRate;
+    public int e_i_specialAbilityRate;
 
     [Header("Enemy Attributes")]
     public int e_i_health;
