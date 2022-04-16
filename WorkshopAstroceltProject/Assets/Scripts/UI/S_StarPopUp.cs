@@ -76,6 +76,13 @@ public class S_StarPopUp : MonoBehaviour
     {
         f_spawnTimer -= Time.deltaTime;
         colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
+        gameObject.transform.DOShakePosition(2f, 0.1f, 6, 10f);
+        
+        gameObject.transform.DOScale(new Vector3(0.4f, 0.4f, 0), 0.2f);
+
+        yield return new WaitForSeconds(0.25f);
+
+        gameObject.transform.DOScale(new Vector3(0.3f, 0.3f, 0), 0.2f);
         if (f_spawnTimer < 0)
         {
             b_spawnTimerFlag = true;
@@ -89,8 +96,10 @@ public class S_StarPopUp : MonoBehaviour
     /// </summary>
     public void MoveToAltar()
     {
-        Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position; 
+        Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position;
+        gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
         gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
+        gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
         DeletePopup();
     }
 
