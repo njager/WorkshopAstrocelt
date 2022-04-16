@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 using System.Linq; 
 
 public class S_Enemy : MonoBehaviour
@@ -24,6 +26,9 @@ public class S_Enemy : MonoBehaviour
 
     [Header("Enemy Sprite")]
     public GameObject e_enemySprite;
+
+    [Header("Intent Duration Value")]
+    public float f_intentDuration; 
 
     void Awake()
     {
@@ -212,14 +217,31 @@ public class S_Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void OnMouseDown()
-    {
-        //g_global.g_selectorManager.EnemySelected(this); 
-    }
-
     public void ChangeIcon()
     {
         g_global.g_iconManager.EnemyIconNextTurn(this);
+    }
+
+    // Trigger intent when mouse enters
+    public void OnHoverEnter()
+    {
+        Debug.Log("Triggered Intent!");
+        if (g_global.g_iconManager.b_intentFlashBool == true)
+        {
+            e_sp_spriteIcon.GetComponent<Image>().DOFade(255, f_intentDuration);
+            e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, f_intentDuration);
+        }
+    }
+
+    // Trigger intent when mouse exits
+    public void OnHoverExit()
+    {
+        Debug.Log("Stopping Intent!");
+        if (g_global.g_iconManager.b_intentFlashBool == true)
+        {
+            e_sp_spriteIcon.GetComponent<Image>().DOFade(0, f_intentDuration);
+            e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(0, f_intentDuration);
+        }
     }
 
     // Eventually use this

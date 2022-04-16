@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VectorGraphics;
 using UnityEngine.UI;
+using DG.Tweening;
 using UnityEngine.EventSystems;
 
 public class S_CharacterCardInterface : MonoBehaviour, IDropHandler

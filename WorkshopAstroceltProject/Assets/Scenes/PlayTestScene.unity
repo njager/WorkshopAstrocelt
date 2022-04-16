@@ -20238,6 +20238,10 @@ MonoBehaviour:
   e_sp_enemyAttackLevel3: {fileID: 21300000, guid: 0845d76e0b2542243b218226d04db49c, type: 3}
   e_sp_enemyAttackLevel4: {fileID: 21300000, guid: 5f6b0b844e99f854ead3c70a7b446195, type: 3}
   e_sp_enemyAttackLevel5: {fileID: 21300000, guid: dd36bd5501d541b4aa96ecf7b90060b1, type: 3}
+  b_intentFlashBool: 0
+  f_intentTimer: 5
+  f_doIntentFadeAlpha: 0
+  f_doIntentFadeDuration: 7
 --- !u!1001 &1038279945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30006,7 +30010,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623711189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1

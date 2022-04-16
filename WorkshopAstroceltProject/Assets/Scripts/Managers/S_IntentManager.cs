@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using TMPro; 
 
 public class S_IntentManager : MonoBehaviour
@@ -26,9 +27,20 @@ public class S_IntentManager : MonoBehaviour
     public Sprite e_sp_enemyAttackLevel4;
     public Sprite e_sp_enemyAttackLevel5;
 
-    public void Awake()
+    [Header("Intent Fade Boolean")]
+    public bool b_intentFlashBool;
+
+    [Header("Intent Timer Values")]
+    [Tooltip("Jager, tweak these vaues for Tweening - Josh")] [SerializeField] float f_intentTimer;
+    private float f_intentTimerMax;
+    [SerializeField] float f_doIntentFadeAlpha;
+    [SerializeField] float f_doIntentFadeDuration;
+
+    private void Awake()
     {
         g_global = S_Global.Instance;
+
+        b_intentFlashBool = false;
     }
 
     /// <summary>
@@ -190,5 +202,33 @@ public class S_IntentManager : MonoBehaviour
             TextMeshProUGUI _textText = _textObject.GetComponent<TextMeshProUGUI>();
             _textText.text = "" + _valueNum;
         }
+
+
+        // Trigger the intent for next turn
+        FlashIntentStart(_enemy);
     }
+
+
+    public void FlashIntentStart(S_Enemy _enemy)
+    {
+        _enemy.e_sp_spriteIcon.GetComponent<Image>().color = Color.white;
+        _enemy.e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().color = Color.white;
+
+        b_intentFlashBool = false;
+        StartCoroutine(IntentFade(_enemy));
+    }
+
+    private IEnumerator IntentFade(S_Enemy _enemy)
+    {
+        while(!b_intentFlashBool) 
+        {
+            yield return new WaitForSeconds(f_intentTimer);
+            _enemy.e_sp_spriteIcon.GetComponent<Image>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
+            _enemy.e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
+
+            yield return new WaitForSeconds(f_doIntentFadeDuration);
+            b_intentFlashBool = true;
+        }
+    }
+
 }
