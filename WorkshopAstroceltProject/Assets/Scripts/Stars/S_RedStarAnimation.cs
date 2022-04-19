@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_StarAnimation : MonoBehaviour
+public class S_RedStarAnimation : MonoBehaviour
 {
     //Get the redgraphic animator
     public GameObject g_redGraphic;

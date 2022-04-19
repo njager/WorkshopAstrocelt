@@ -37,7 +37,6 @@ public class S_YellowStarAnimation : MonoBehaviour
             //Reset the "Crouch" trigger
             //a_animator.ResetTrigger("YellowAnim");
 
-            //Send the message to the Animator to activate the trigger parameter named "Jump"
             a_animator.Play("YellowAnim");
         }
         StartCoroutine(PlayYellowAnimation());

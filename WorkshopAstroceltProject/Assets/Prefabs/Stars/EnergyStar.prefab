@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 6099645957781363966}
   - component: {fileID: 6104918611974664426}
   - component: {fileID: 814299232162372484}
+  - component: {fileID: 7578060043526068616}
   m_Layer: 0
   m_Name: BlueEnergyStarGraphic
   m_TagString: EnergyStar
@@ -251,6 +252,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7578060043526068616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441416829698308630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec5dc8b01a1aa349aeee489f2f2ac81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_blueGraphic: {fileID: 3441416829698308630}
+  a_animator: {fileID: 0}
+  i_chance: 0.002
+  i_frames: 0
 --- !u!1 &4116425830792526280
 GameObject:
   m_ObjectHideFlags: 0
