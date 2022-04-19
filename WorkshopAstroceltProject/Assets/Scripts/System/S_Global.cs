@@ -65,6 +65,7 @@ public class S_Global : MonoBehaviour
     public List<int> lst_p_playerGrave;
     public List<GameObject> ls_p_playerHand;
     public List<S_StarPopUp> ls_starPopup;
+    public List<S_Cardball> ls_cardBallPrefabs;
 
     [Header("Arrays")]
     public string placeholder;
