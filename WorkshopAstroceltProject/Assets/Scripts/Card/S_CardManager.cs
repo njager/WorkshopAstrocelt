@@ -79,10 +79,10 @@ public class S_CardManager : MonoBehaviour
     public void NewHand()
     {
         //remove all the previous cards from the field
-        foreach(GameObject _card in g_global.ls_p_playerHand)
-        {
-            Destroy(_card);
-        }
+        //foreach(GameObject _card in g_global.ls_p_playerHand)
+        //{
+        //    Destroy(_card);
+        //}
 
         //clear the player hand
         g_global.ls_p_playerHand.Clear();
@@ -107,23 +107,24 @@ public class S_CardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Create the card from the template and instantiate it to the hand.
+    /// Create the card from the template and instantiate it to outside the field.
     /// This gets called from the dealcards function
     /// -Riley Halloran
     /// </summary>
     /// <param name="_cardTemplate"></param>
     public void InstanceCard(S_CardTemplate _cardTemplate)
     {
-        //print("end");
         GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
         playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
         playerCard.transform.SetParent(c_cardHolder.gameObject.transform, false);
 
         //control where it attaches to
         playerCard.gameObject.transform.SetAsFirstSibling();
-        
-        //add this to the front of the list
+
         g_global.ls_p_playerHand.Add(playerCard);
+
+        //change the altar text
+        LoadFirstCard(playerCard);
     }
 
     /// <summary>
@@ -135,5 +136,17 @@ public class S_CardManager : MonoBehaviour
     public void RemoveFirstCard()
     {
         g_global.ls_p_playerHand.RemoveAt(0);
+    }
+
+
+    /// <summary>
+    /// This is where the call to change the altar text is
+    /// -Riley Halloran
+    /// </summary>
+    public void LoadFirstCard(GameObject _card)
+    {
+        S_Card _cardScript = _card.GetComponent<S_Card>();
+
+        //g_global.g_altar.ChangeCard(_cardScript);
     }
 }

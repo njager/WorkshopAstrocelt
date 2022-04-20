@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 6229680385503282057}
   - component: {fileID: 6810628338851901374}
   - component: {fileID: 1692134530264750668}
+  - component: {fileID: 6024171280074746923}
   m_Layer: 0
   m_Name: YellowEnergyStarGraphic
   m_TagString: EnergyStar
@@ -132,6 +133,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6024171280074746923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573765103236203326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7b79e4fea7c774daa0ccc5887e1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_yellowGraphic: {fileID: 573765103236203326}
+  a_animator: {fileID: 0}
+  i_chance: 0.0002
+  i_frames: 3
 --- !u!1 &3441416829698308630
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +160,7 @@ GameObject:
   - component: {fileID: 6099645957781363966}
   - component: {fileID: 6104918611974664426}
   - component: {fileID: 814299232162372484}
+  - component: {fileID: 7578060043526068616}
   m_Layer: 0
   m_Name: BlueEnergyStarGraphic
   m_TagString: EnergyStar
@@ -234,6 +252,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7578060043526068616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441416829698308630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec5dc8b01a1aa349aeee489f2f2ac81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_blueGraphic: {fileID: 3441416829698308630}
+  a_animator: {fileID: 0}
+  i_chance: 0.002
+  i_frames: 0
 --- !u!1 &4116425830792526280
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +544,7 @@ GameObject:
   - component: {fileID: 545056092212501249}
   - component: {fileID: 7047292802453582703}
   - component: {fileID: 3473946207540630737}
+  - component: {fileID: 7537227549968956987}
   m_Layer: 0
   m_Name: RedEnergyStarGraphic
   m_TagString: EnergyStar
@@ -601,6 +636,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7537227549968956987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082527287553830910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13da5d1ae34a384dad562db95987dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_redGraphic: {fileID: 8082527287553830910}
+  a_animator: {fileID: 0}
+  i_chance: 0.0002
+  i_frames: 3
 --- !u!1 &9191981902234956182
 GameObject:
   m_ObjectHideFlags: 0

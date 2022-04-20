@@ -31,9 +31,6 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData _eventData)
     {
-        //Stop the card from having popup
-        g_global.ls_p_playerHand[0].GetComponent<S_Card>().EndHover();
-
         //only trigger if your the front card in the hand
         if (this.gameObject == g_global.ls_p_playerHand[0])
         {
