@@ -15,8 +15,8 @@ public class S_Cardball : MonoBehaviour
     [Header("Card Template Prefab")]
     public GameObject c_cardTemplate;
 
-    [Header("Card ScriptableObject")]
-    public GameObject c_cardScriptableObject;
+    [Header("Card Data Object")]
+    public S_CardTemplate c_cardData;
 
     [Header("Color Bools")]
     public bool c_b_redCardball;
@@ -117,9 +117,9 @@ public class S_Cardball : MonoBehaviour
         }
 
         // Determine the attributes from the prefab
-        //DetermineCardAttributes();
+        DetermineCardAttributes();
 
-        //May need to determeine card attributes from S_Altar
+        //May need to determeine card attributes from S_Altar, to avoid race conditions
 
         // Note: Properly parent cardballs when spawned in S_Altar
     }
@@ -132,12 +132,12 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void DetermineCardAttributes()
     {
-        S_CardTemplate c_cardData = c_cardScriptableObject.GetComponent<S_CardTemplate>();
         // First the graphic
         if (c_cardData.RedColorType) // Check if Card is Red
         {
             // Cardball is Red
             c_b_redCardball = true;
+            c_cardballImage.sprite = c_redImageAsset;
 
             // Rest are false
             c_b_blueCardball = false;
@@ -148,6 +148,7 @@ public class S_Cardball : MonoBehaviour
         {
             // Cardball is Blue
             c_b_blueCardball = true;
+            c_cardballImage.sprite = c_blueImageAsset;
 
             // Rest are false
             c_b_redCardball = false;
@@ -158,6 +159,7 @@ public class S_Cardball : MonoBehaviour
         {
             // Cardball is Yellow
             c_b_yellowCardball = true;
+            c_cardballImage.sprite = c_yellowImageAsset;
 
             // Rest are false
             c_b_blueCardball = false;
@@ -168,6 +170,7 @@ public class S_Cardball : MonoBehaviour
         {
             // Cardball is Colorless
             c_b_colorlessCardball = true;
+            c_cardballImage.sprite = c_colorlessImageAsset;
 
             // Rest are false
             c_b_blueCardball = false;
@@ -200,7 +203,7 @@ public class S_Cardball : MonoBehaviour
 
         // Load information From Template
         S_Card _cardScript = c_card.GetComponent<S_Card>();
-        _cardScript.FetchCardData(c_cardScriptableObject.GetComponent<S_CardTemplate>());
+        _cardScript.FetchCardData(c_cardData);
 
         // Fulfilled Function
         DeleteCardball();
