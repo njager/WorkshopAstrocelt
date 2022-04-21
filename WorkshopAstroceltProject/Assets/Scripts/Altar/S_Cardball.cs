@@ -188,12 +188,13 @@ public class S_Cardball : MonoBehaviour
     }
 
     /// <summary>
+    /// Cardball gets converted to card
     /// - Josh
     /// </summary>
     public void CardballToCard()
     {
         // Spawn Card 
-        GameObject c_card = Instantiate(c_cardTemplate, gameObject.transform.position, Quaternion.identity);
+        GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);
 
         // Load information From Template
@@ -203,6 +204,8 @@ public class S_Cardball : MonoBehaviour
         // Fulfilled Function
         DeleteCardball();
     }
+
+    // When card is played, slide card balls
 
     /// <summary>
     /// Now that it has built the card,
