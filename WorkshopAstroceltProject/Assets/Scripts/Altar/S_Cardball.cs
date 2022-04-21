@@ -182,8 +182,9 @@ public class S_Cardball : MonoBehaviour
         //Update text
         c_cardballText.text = "" + c_i_cardEnergyCost;
 
-        // Then lastly the card name (for altar use)
+        // Then lastly the card name and body(for altar use)
         c_cardName = c_cardData.CardName;
+        c_cardBody = c_cardData.BodyText;
     }
 
     /// <summary>
@@ -211,6 +212,7 @@ public class S_Cardball : MonoBehaviour
     public void DeleteCardball()
     {
         g_global.ls_cardBallPrefabs.Remove(this);
+        StartCoroutine(g_global.g_altar.MoveCardballPrefabs());
         Destroy(this);
     }
 }

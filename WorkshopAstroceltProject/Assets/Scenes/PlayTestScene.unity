@@ -12013,6 +12013,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 608102236}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &610277432 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1742040410479841332, guid: fb6fb0009e05907499fae36cabc61593, type: 3}
+  m_PrefabInstance: {fileID: 1341845263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &613264717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27559,7 +27564,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1341845264}
-  - {fileID: 1863014763281166986}
   m_Father: {fileID: 1043160447}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39654,12 +39658,16 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1450311302}
+    m_TransformParent: {fileID: 610277432}
     m_Modifications:
     - target: {fileID: 1863014761351679344, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_Name
       value: CardBallPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1863014761351679347, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
+      propertyPath: c_cardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 870986b7619546a4095311a16df4cb9a, type: 2}
     - target: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -39670,7 +39678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_AnchorMax.x
@@ -39726,11 +39734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -502
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -39746,11 +39754,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
---- !u!224 &1863014763281166986 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2758631838007389050, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
-  m_PrefabInstance: {fileID: 1863014763281166985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3339982877304572010
 PrefabInstance:
   m_ObjectHideFlags: 0

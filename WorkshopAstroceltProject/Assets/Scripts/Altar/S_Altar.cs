@@ -30,7 +30,10 @@ public class S_Altar : MonoBehaviour
     public GameObject cardballPosition5;
 
     [Header("Card Holder Reference")]
-    public GameObject c_cardHolder; 
+    public GameObject c_cardHolder;
+
+    [Header("Variables for cardball moving")]
+    public bool c_b_finishedMoving;
 
     private void Awake()
     {
@@ -103,37 +106,27 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// Triggers when a cardball is turned into a card
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator MoveCardballs()
-    {
-        yield return new WaitForSeconds(1f);
-    }
-
-
-
-    /// <summary>
     /// Initial Start Funciton
     /// Fill with 5 cardballs
+    /// May be fully temporary
     /// - Josh
     /// </summary>
     public void CardballFirstStart()
     {
         // Fill Position 1
-        AddNewCardBall(cardballPosition1);
+        AddNewCardBall(cardballPosition1, g_global.g_CardDatabase.cardScript0);
 
         // Fill Position 2
-        AddNewCardBall(cardballPosition2);
+        AddNewCardBall(cardballPosition2, g_global.g_CardDatabase.cardScript0);
 
         // Fill Position 3
-        AddNewCardBall(cardballPosition3);
+        AddNewCardBall(cardballPosition3, g_global.g_CardDatabase.cardScript0);
 
         // Fill Position 4
-        AddNewCardBall(cardballPosition4);
+        AddNewCardBall(cardballPosition4, g_global.g_CardDatabase.cardScript0);
 
         // Fill Position 5
-        AddNewCardBall(cardballPosition5);
+        AddNewCardBall(cardballPosition5, g_global.g_CardDatabase.cardScript0);
 
         // Feed the first cardball to change card
         ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
@@ -145,24 +138,26 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void AddingInCardballAfterStart()
     {
-
+        //Increment the database here
+        
+        AddNewCardBall(cardballPosition5, g_global.g_CardDatabase.cardScript0);
     }
 
     /// <summary>
     /// CardBall Setup and Spawning
     /// - Josh
     /// </summary>
-    public void AddNewCardBall(GameObject _cardballPosition)
+    public void AddNewCardBall(GameObject _cardballPosition, S_CardTemplate _cardTemplate)
     {
         // Instantiate Cardball
-        GameObject c_cardball = Instantiate(c_cardballPrefab, _cardballPosition.transform.position, Quaternion.identity);
+        GameObject c_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
         c_cardball.transform.SetParent(_cardballPosition.transform, false);
         
         // Grab card ball script
         S_Cardball _cardballScript = c_cardball.GetComponent<S_Cardball>();
 
         // Setup cardball (this is where it'd be loaded with it's scriptable object
-        _cardballScript.c_cardData = g_global.g_CardDatabase.cardScript0;
+        _cardballScript.c_cardData = _cardTemplate;
         _cardballScript.CardballSetup();
     }
 
@@ -170,12 +165,21 @@ public class S_Altar : MonoBehaviour
     /// First Remove the current cardball prefabs
     /// -Josh
     /// </summary>
-    public void ClearCardballs()
+    public void ClearCardballPrefabs()
     {
         foreach (S_Cardball _cardball in g_global.ls_cardBallPrefabs.ToList())
         {
             _cardball.gameObject.SetActive(false);
             g_global.ls_cardBallPrefabs.Remove(_cardball);
         }
+    }
+
+    /// <summary>
+    /// Triggers when a cardball is turned into a card
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator MoveCardballPrefabs()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
