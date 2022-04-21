@@ -19,10 +19,10 @@ public class S_Cardball : MonoBehaviour
     public bool c_b_locatedInFifthPosition;
 
     [Header("Image Assets")]
-    public Image redImageAsset;
-    public Image blueImageAsset;
-    public Image yellowImageAsset;
-    public Image colorlessImageAsset; 
+    public Image c_redImageAsset;
+    public Image c_blueImageAsset;
+    public Image c_yellowImageAsset;
+    public Image c_colorlessImageAsset; 
 
     private S_Global g_global;
 
