@@ -68,6 +68,7 @@ public class S_CardManager : MonoBehaviour
 
                 //add the card to the hand
                 g_global.ls_p_playerHand.Add(_randomCard);
+
             }
         }
     }

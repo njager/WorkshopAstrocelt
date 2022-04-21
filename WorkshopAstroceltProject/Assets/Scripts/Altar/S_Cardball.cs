@@ -215,7 +215,7 @@ public class S_Cardball : MonoBehaviour
     public void DeleteCardball()
     {
         g_global.ls_cardBallPrefabs.Remove(this);
-        StartCoroutine(g_global.g_altar.MoveCardballPrefabs());
+        g_global.g_altar.MoveCardballPrefabs();
         Destroy(this);
     }
 }

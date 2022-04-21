@@ -42,7 +42,7 @@ public class S_Altar : MonoBehaviour
 
     private void Start()
     {
-        CardballFirstStart();
+        StartCoroutine(SpawnCardballPrefabs());
     }
 
     /// <summary>
@@ -111,36 +111,9 @@ public class S_Altar : MonoBehaviour
     /// May be fully temporary
     /// - Josh
     /// </summary>
-    public void CardballFirstStart()
+    public IEnumerator SpawnCardballPrefabs()
     {
-        // Fill Position 1
-        AddNewCardBall(cardballPosition1, g_global.g_CardDatabase.cardScript0);
-
-        // Fill Position 2
-        AddNewCardBall(cardballPosition2, g_global.g_CardDatabase.cardScript0);
-
-        // Fill Position 3
-        AddNewCardBall(cardballPosition3, g_global.g_CardDatabase.cardScript0);
-
-        // Fill Position 4
-        AddNewCardBall(cardballPosition4, g_global.g_CardDatabase.cardScript0);
-
-        // Fill Position 5
-        AddNewCardBall(cardballPosition5, g_global.g_CardDatabase.cardScript0);
-
-        // Feed the first cardball to change card
-        ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
-    }
-
-    /// <summary>
-    /// For use to add in Cardball after cardball
-    /// - Josh
-    /// </summary>
-    public void AddingInCardballAfterStart()
-    {
-        //Increment the database here
-        
-        AddNewCardBall(cardballPosition5, g_global.g_CardDatabase.cardScript0);
+        yield return new WaitForSeconds(1);
     }
 
     /// <summary>
@@ -174,12 +147,27 @@ public class S_Altar : MonoBehaviour
         }
     }
 
+    public void CheckFirstCardBall()
+    {
+
+    }
+
     /// <summary>
     /// Triggers when a cardball is turned into a card
     /// </summary>
     /// <returns></returns>
-    public IEnumerator MoveCardballPrefabs()
+    public void MoveCardballPrefabs()
     {
-        yield return new WaitForSeconds(1f);
+        if (cardballPosition4.transform.childCount == 0)
+        {
+            if (cardballPosition5.transform.childCount == 1)
+            {
+
+            }
+            else
+            {
+                Debug.Log("CardBall 5 empty too!");
+            }
+        }
     }
 }
