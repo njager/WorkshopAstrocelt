@@ -270,18 +270,11 @@ public class S_Card : MonoBehaviour
         if (c_b_attackMainEffect == true)
         {
             if(_character.GetComponent<S_Enemy>() != null)
-            {
-                if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color))
-                {
-                    //undo star lockout
-                    g_global.g_ConstellationManager.b_starLockout = true;
+            {                    
+                //undo star lockout
+                g_global.g_ConstellationManager.b_starLockout = true;
 
-                    TriggerAttackCard(_character.GetComponent<S_Enemy>());
-                }
-                else
-                {
-                    ResetPosition();
-                }
+                TriggerAttackCard(_character.GetComponent<S_Enemy>());
             }
             else
             {
@@ -292,15 +285,8 @@ public class S_Card : MonoBehaviour
         {
             if (_character.GetComponent<S_Player>() != null)
             {
-                if (g_global.g_energyManager.useEnergy(c_i_energyCost, c_str_color)) //Had to do this for enemy, might as well do for player
-                {
-                    print("Shield played?");
-                    TriggerShieldCard(_character.GetComponent<S_Player>());
-                }
-                else
-                {
-                    ResetPosition();
-                }
+                print("Shield played?");
+                TriggerShieldCard(_character.GetComponent<S_Player>());
             }
             else
             {
