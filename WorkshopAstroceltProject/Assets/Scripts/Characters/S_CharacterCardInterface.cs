@@ -50,8 +50,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         if (_eventData.pointerDrag != null)
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
-            if (c_cardData.gameObject == g_global.ls_p_playerHand[0])
-            {
+
                 print("Made it to player v enemy");
                 if (p_b_attachedToPlayer == true) //check to see if this object is the player
                 {
@@ -202,13 +201,6 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     c_cardData.ResetPosition();
                     return;
                 }
-            }
-            else
-            {
-                Debug.Log("Not the first card");
-                c_cardData.ResetPosition();
-                return;
-            }
         }
         else
         {
