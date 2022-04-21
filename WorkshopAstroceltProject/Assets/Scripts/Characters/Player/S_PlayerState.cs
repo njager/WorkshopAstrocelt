@@ -230,6 +230,9 @@ public class S_PlayerState : MonoBehaviour
         PlaySoundWin();
         //playerWinMusic.SetActive(false);
 
+        //go to the new scene
+        g_global.g_sceneManager.RewardScene();
+
         // Pause The game
         //Time.timeScale = 0f;
     }

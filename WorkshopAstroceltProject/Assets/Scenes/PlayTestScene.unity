@@ -9292,7 +9292,8 @@ MonoBehaviour:
   g_lineMultiplierManager: {fileID: 630261271}
   g_energyManager: {fileID: 1412184871}
   g_popupManager: {fileID: 274638691}
-  g_altar: {fileID: 0}
+  g_altar: {fileID: 1981244727}
+  g_sceneManager: {fileID: 1510901130}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -9311,7 +9312,7 @@ MonoBehaviour:
   g_i_enemyCountMax: 0
   e_l_enemyList: []
   g_ls_lineRendererList: []
-  lst_p_playerDeck: 
+  ls_p_playerDeck: 
   lst_p_playerGrave: 
   ls_p_playerHand: []
   ls_starPopup: []
@@ -29001,6 +29002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d9063e7f7f80248ad6136229901aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i_rewardSceneIndex: 0
 --- !u!1001 &1513267749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36212,6 +36214,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974804749}
   m_CullTransparentMesh: 1
+--- !u!114 &1981244727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6609352460424729492, guid: fb6fb0009e05907499fae36cabc61593, type: 3}
+  m_PrefabInstance: {fileID: 1341845263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf6507e4d1a5484d81cfd32cd4969a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1982316447
 PrefabInstance:
   m_ObjectHideFlags: 0

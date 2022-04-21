@@ -27,6 +27,7 @@ public class S_Global : MonoBehaviour
     public S_EnergyManager g_energyManager;
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
+    public S_SceneManager g_sceneManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
