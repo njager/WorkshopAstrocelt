@@ -50,24 +50,24 @@ public class S_CardManager : MonoBehaviour
             if(g_global.ls_p_playerHand.Count() < p_i_handSizeLimit)
             {
                 //if the deck is empty move the cards over
-                if (g_global.lst_p_playerDeck.Count() <= 0)
+                if (g_global.ls_p_playerDeck.Count() <= 0)
                 {
                     ShuffleGraveToDeck();
                 }
                 
                 //get a random number and get a random key from the deck
-                int _rand = randomNumGenerator(g_global.lst_p_playerDeck.Count);
-                int _cardKey = g_global.lst_p_playerDeck[_rand];
+                int _rand = randomNumGenerator(g_global.ls_p_playerDeck.Count()-1);
+                int _cardKey = g_global.ls_p_playerDeck[_rand];
 
                 //remove a key from the deck and add it to the grave
-                g_global.lst_p_playerDeck.RemoveAt(_rand);
+                g_global.ls_p_playerDeck.RemoveAt(_rand);
                 g_global.lst_p_playerGrave.Add(_cardKey);
 
                 //get the card game object and add it to the player hand
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
 
-                //add the card to the field and then assign an int to it
-                InstanceCard(_randomCard);
+                //add the card to the hand
+                g_global.ls_p_playerHand.Add(_randomCard);
             }
         }
     }
@@ -100,7 +100,7 @@ public class S_CardManager : MonoBehaviour
         //loop through the grave and add it to the deck
         foreach (int _cardKey in g_global.lst_p_playerGrave)
         {
-            g_global.lst_p_playerDeck.Add(_cardKey);
+            g_global.ls_p_playerDeck.Add(_cardKey);
         }
         //clear the grave
         g_global.lst_p_playerGrave.Clear();
@@ -120,8 +120,6 @@ public class S_CardManager : MonoBehaviour
 
         //control where it attaches to
         playerCard.gameObject.transform.SetAsFirstSibling();
-
-        g_global.ls_p_playerHand.Add(playerCard);
 
         //change the altar text
         LoadFirstCard(playerCard);

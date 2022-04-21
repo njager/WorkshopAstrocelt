@@ -53,7 +53,7 @@ public class S_CardDatabase : MonoBehaviour
 
         for (int i = 0; i < 11; i++)
         {
-            g_global.lst_p_playerDeck.Add(i);
+            g_global.ls_p_playerDeck.Add(i);
         }
 
         //g_global.lst_p_playerDeck.Add(1);
