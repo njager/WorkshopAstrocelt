@@ -9,6 +9,9 @@ public class S_Cardball : MonoBehaviour
     [Header("Card Name")]
     public string c_cardName;
 
+    [Header("Card Body Text")]
+    public string c_cardBody;
+
     [Header("Card Energy Cost")]
     public int c_i_cardEnergyCost;
 
@@ -53,10 +56,17 @@ public class S_Cardball : MonoBehaviour
         g_global.ls_cardBallPrefabs.Add(this);
     }
 
-    private void Start()
+    // Cardballs then just need to move, probably do in S_Altar
+
+    /// <summary>
+    /// Determine the card position in the altar, then it's color, card energy cost, and card name from card template
+    /// Set those values accordingly
+    /// - Josh
+    /// </summary>
+    public void CardballSetup()
     {
         // Determine position
-        if(transform.parent.tag == "CardballPosition1")
+        if (transform.parent.tag == "CardballPosition1")
         {
             // Card ball is in first position
             c_b_locatedInFirstPosition = true;
@@ -65,7 +75,7 @@ public class S_Cardball : MonoBehaviour
             c_b_locatedInSecondPosition = false;
             c_b_locatedInThirdPosition = false;
             c_b_locatedInFourthPosition = false;
-            c_b_locatedInFifthPosition = false; 
+            c_b_locatedInFifthPosition = false;
         }
         else if (transform.parent.tag == "CardballPosition2")
         {
@@ -116,23 +126,7 @@ public class S_Cardball : MonoBehaviour
             Debug.Log("Cardball not spawned in Altar!");
         }
 
-        // Determine the attributes from the prefab
-        DetermineCardAttributes();
-
-        //May need to determeine card attributes from S_Altar, to avoid race conditions
-
-        // Note: Properly parent cardballs when spawned in S_Altar
-    }
-
-    // Cardballs then just need to move, probably do in S_Altar
-
-    /// <summary>
-    /// Determine the card color, card energy cost, and card name from ScriptableObject
-    /// - Josh
-    /// </summary>
-    public void DetermineCardAttributes()
-    {
-        // First the graphic
+        // Then the graphic
         if (c_cardData.RedColorType) // Check if Card is Red
         {
             // Cardball is Red

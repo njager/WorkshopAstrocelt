@@ -110,17 +110,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c_tx_cardName: {fileID: 222529761506494060}
-  c_tx_cardBody: {fileID: 0}
+  c_tx_cardBody: {fileID: 7284410326612905698}
   a_colorlessBorder: {fileID: 5882699145785006352}
   a_redBorder: {fileID: 5201645707173408408}
   a_blueBorder: {fileID: 9168122507814550697}
   a_yellowBorder: {fileID: 8438054621010187022}
-  cardBallPrefab: {fileID: 0}
-  ballPosition1: {fileID: 4339328601996296602}
-  ballPosition2: {fileID: 6598446946881997872}
-  ballPosition3: {fileID: 8639558663350237716}
-  ballPosition4: {fileID: 7967307474770754355}
-  ballPosition5: {fileID: 1179993545302741820}
+  c_cardballPrefab: {fileID: 1863014761351679344, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
+  cardballPosition1: {fileID: 4339328601996296602}
+  cardballPosition2: {fileID: 6598446946881997872}
+  cardballPosition3: {fileID: 8639558663350237716}
+  cardballPosition4: {fileID: 7967307474770754355}
+  cardballPosition5: {fileID: 1179993545302741820}
   c_cardHolder: {fileID: 0}
 --- !u!1 &1179993545302741820
 GameObject:
@@ -186,12 +186,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1930334467939817963}
-  m_RootOrder: 4
+  m_Father: {fileID: 2936042615411861509}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.227, y: 0}
+  m_AnchoredPosition: {x: -14.499501, y: 89.40036}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3798968048317133732
@@ -354,7 +354,6 @@ RectTransform:
   - {fileID: 4250769762365387042}
   - {fileID: 4516379716150024022}
   - {fileID: 2688965368848397587}
-  - {fileID: 7368319587337005229}
   m_Father: {fileID: 160424924111030796}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -417,7 +416,7 @@ GameObject:
   - component: {fileID: 6877617733170953912}
   - component: {fileID: 4732290533837666650}
   m_Layer: 0
-  m_Name: Card Effects
+  m_Name: CardText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,6 +433,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7368319587337005229}
   - {fileID: 4495095826164249804}
   m_Father: {fileID: 160424924111030796}
   m_RootOrder: 0
@@ -621,7 +621,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2936042615411861509}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

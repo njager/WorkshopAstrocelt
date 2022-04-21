@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.Linq; 
+using System.Linq;
+using DG.Tweening;
 
 public class S_Altar : MonoBehaviour
 {
@@ -20,14 +20,14 @@ public class S_Altar : MonoBehaviour
     public GameObject a_yellowBorder;
 
     [Header("Cardball Prefab")]
-    public GameObject cardBallPrefab; 
+    public GameObject c_cardballPrefab; 
 
     [Header("Cardball Positions")]
-    public GameObject ballPosition1;
-    public GameObject ballPosition2;
-    public GameObject ballPosition3;
-    public GameObject ballPosition4;
-    public GameObject ballPosition5;
+    public GameObject cardballPosition1;
+    public GameObject cardballPosition2;
+    public GameObject cardballPosition3;
+    public GameObject cardballPosition4;
+    public GameObject cardballPosition5;
 
     [Header("Card Holder Reference")]
     public GameObject c_cardHolder; 
@@ -37,71 +37,133 @@ public class S_Altar : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
+    private void Start()
+    {
+        CardballFirstStart();
+    }
+
     /// <summary>
-    /// THis method gets called when the first card in the altar changes
-    /// It changes all the text and the border
+    /// This method gets called when the first card in the altar changes
+    /// It changes all the text on the altar and the color borders
+    /// - Riley and Josh
     /// </summary>
     /// <param name="_card"></param>
-    public void ChangeCard(S_Card _card)
+    public void ChangeCard(GameObject _cardball)
     {
         //change the text boxes
-        c_tx_cardName.text = _card.c_str_headerText;
-        c_tx_cardBody.text = _card.c_str_bodyText;
+        S_Cardball _cardballScript = _cardball.GetComponent<S_Cardball>();
+        c_tx_cardName.text = _cardballScript.c_cardName;
+        c_tx_cardBody.text = _cardballScript.c_cardBody;
 
         //set the border color to match the cards
-        if (_card.c_b_blueColorType)
+        if (_cardballScript.c_b_redCardball)
         {
-            a_colorlessBorder.SetActive(false);
-            a_redBorder.SetActive(false);
-            a_blueBorder.SetActive(true);
-            a_yellowBorder.SetActive(false);
-        }
-        else if (_card.c_b_redColorType)
-        {
-            a_colorlessBorder.SetActive(false);
+            // Red card
             a_redBorder.SetActive(true);
+
+            // Rest are false
             a_blueBorder.SetActive(false);
             a_yellowBorder.SetActive(false);
-        }
-        else if (_card.c_b_yellowColorType)
-        {
             a_colorlessBorder.SetActive(false);
+        }
+        else if (_cardballScript.c_b_blueCardball)
+        {
+            // Blue card
+            a_blueBorder.SetActive(true);
+
+            // Rest are false
+            a_redBorder.SetActive(false);
+            a_yellowBorder.SetActive(false);
+            a_colorlessBorder.SetActive(false);
+        }
+        else if (_cardballScript.c_b_redCardball)
+        {
+            // Yellow card
+            a_yellowBorder.SetActive(true);
+
+            // Rest are false
             a_redBorder.SetActive(false);
             a_blueBorder.SetActive(false);
-            a_yellowBorder.SetActive(true);
+            a_colorlessBorder.SetActive(false);
         }
-        else 
+        else if(_cardballScript.c_b_colorlessCardball)
         {
+            // White card
             a_colorlessBorder.SetActive(true);
+
+            // rest are false
             a_redBorder.SetActive(false);
             a_blueBorder.SetActive(false);
             a_yellowBorder.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("_cardballScript was null!");
         }
     }
 
+    /// <summary>
+    /// Triggers when a cardball is turned into a card
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator MoveCardballs()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
+
 
     /// <summary>
-    /// Initial Star Funciton
+    /// Initial Start Funciton
+    /// Fill with 5 cardballs
+    /// - Josh
     /// </summary>
     public void CardballFirstStart()
     {
-        // Fill Position 5
-
-        // Fill Position 4
-
-        // Fill Position 3
+        // Fill Position 1
+        AddNewCardBall(cardballPosition1);
 
         // Fill Position 2
+        AddNewCardBall(cardballPosition2);
 
-        // Fill Position 1
+        // Fill Position 3
+        AddNewCardBall(cardballPosition3);
+
+        // Fill Position 4
+        AddNewCardBall(cardballPosition4);
+
+        // Fill Position 5
+        AddNewCardBall(cardballPosition5);
+
+        // Feed the first cardball to change card
+        ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
     }
 
     /// <summary>
-    /// Spawn at Position 5
+    /// For use to add in Cardball after cardball
+    /// - Josh
     /// </summary>
-    public void AddNewCardBall()
+    public void AddingInCardballAfterStart()
     {
 
+    }
+
+    /// <summary>
+    /// CardBall Setup and Spawning
+    /// - Josh
+    /// </summary>
+    public void AddNewCardBall(GameObject _cardballPosition)
+    {
+        // Instantiate Cardball
+        GameObject c_cardball = Instantiate(c_cardballPrefab, _cardballPosition.transform.position, Quaternion.identity);
+        c_cardball.transform.SetParent(_cardballPosition.transform, false);
+        
+        // Grab card ball script
+        S_Cardball _cardballScript = c_cardball.GetComponent<S_Cardball>();
+
+        // Setup cardball (this is where it'd be loaded with it's scriptable object
+        _cardballScript.c_cardData = g_global.g_CardDatabase.cardScript0;
+        _cardballScript.CardballSetup();
     }
 
     /// <summary>
