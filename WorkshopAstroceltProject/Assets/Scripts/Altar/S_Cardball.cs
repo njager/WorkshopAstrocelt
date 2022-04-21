@@ -2,14 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; 
 
 public class S_Cardball : MonoBehaviour
 {
+    [Header("Card Name")]
+    public string c_cardName;
+
+    [Header("Card Energy Cost")]
+    public int c_i_cardEnergyCost;
+
     [Header("Card Template Prefab")]
     public GameObject c_cardTemplate;
 
     [Header("Card ScriptableObject")]
     public GameObject c_cardScriptableObject;
+
+    [Header("Color Bools")]
+    public bool c_b_redCardball;
+    public bool c_b_blueCardball;
+    public bool c_b_yellowCardball;
+    public bool c_b_colorlessCardball;
 
     [Header("Position Status")]
     public bool c_b_locatedInFirstPosition;
@@ -18,12 +31,19 @@ public class S_Cardball : MonoBehaviour
     public bool c_b_locatedInFourthPosition;
     public bool c_b_locatedInFifthPosition;
 
-    [Header("Image Assets")]
-    public Image c_redImageAsset;
-    public Image c_blueImageAsset;
-    public Image c_yellowImageAsset;
-    public Image c_colorlessImageAsset; 
+    [Header("Image Sprite Assets")]
+    public Sprite c_redImageAsset;
+    public Sprite c_blueImageAsset;
+    public Sprite c_yellowImageAsset;
+    public Sprite c_colorlessImageAsset;
 
+    [Header("Image Reference")]
+    public Image c_cardballImage;
+
+    [Header("Text Objects")]
+    public TextMeshProUGUI c_cardballText; 
+
+    // Private variables
     private S_Global g_global;
 
     private void Awake()
@@ -35,6 +55,7 @@ public class S_Cardball : MonoBehaviour
 
     private void Start()
     {
+        // Determine position
         if(transform.parent.tag == "CardballPosition1")
         {
             // Card ball is in first position
@@ -95,15 +116,77 @@ public class S_Cardball : MonoBehaviour
             Debug.Log("Cardball not spawned in Altar!");
         }
 
-        // Add the rest of these, properly parent cardballs when spawned in S_Altar
+        // Determine the attributes from the prefab
+        //DetermineCardAttributes();
+
+        //May need to determeine card attributes from S_Altar
+
+        // Note: Properly parent cardballs when spawned in S_Altar
     }
 
-    // Add in the graphic, graphic learning it's color from prefab
     // Cardballs then just need to move, probably do in S_Altar
 
-    public void DetermineCardColor()
+    /// <summary>
+    /// Determine the card color, card energy cost, and card name from ScriptableObject
+    /// - Josh
+    /// </summary>
+    public void DetermineCardAttributes()
     {
+        S_CardTemplate c_cardData = c_cardScriptableObject.GetComponent<S_CardTemplate>();
+        // First the graphic
+        if (c_cardData.RedColorType) // Check if Card is Red
+        {
+            // Cardball is Red
+            c_b_redCardball = true;
 
+            // Rest are false
+            c_b_blueCardball = false;
+            c_b_yellowCardball = false;
+            c_b_colorlessCardball = false; 
+        }
+        else if (c_cardData.BlueColorType) // Check if card is Blue
+        {
+            // Cardball is Blue
+            c_b_blueCardball = true;
+
+            // Rest are false
+            c_b_redCardball = false;
+            c_b_yellowCardball = false;
+            c_b_colorlessCardball = false;
+        }
+        else if (c_cardData.YellowColorType) // Check if card is Yellow
+        {
+            // Cardball is Yellow
+            c_b_yellowCardball = true;
+
+            // Rest are false
+            c_b_blueCardball = false;
+            c_b_redCardball = false;
+            c_b_colorlessCardball = false;
+        }
+        else if (c_cardData.WhiteColorType) // Check if card is Colorless
+        {
+            // Cardball is Colorless
+            c_b_colorlessCardball = true;
+
+            // Rest are false
+            c_b_blueCardball = false;
+            c_b_yellowCardball = false;
+            c_b_redCardball = false;
+        }
+        else
+        {
+            Debug.Log("Card data is null!");
+        }
+
+        // Then determine the energy cost
+        c_i_cardEnergyCost = c_cardData.EnergyCost;
+
+        //Update text
+        c_cardballText.text = "" + c_i_cardEnergyCost;
+
+        // Then lastly the card name (for altar use)
+        c_cardName = c_cardData.CardName;
     }
 
     /// <summary>
