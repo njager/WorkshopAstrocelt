@@ -59,7 +59,7 @@ public class S_Cardball : MonoBehaviour
     // Cardballs then just need to move, probably do in S_Altar
 
     /// <summary>
-    /// Determine the card position in the altar, then it's color, card energy cost, and card name from card template
+    /// Determine the card position in the altar, then it's color, card energy cost, and card name from card template, set cardholder
     /// Set those values accordingly
     /// - Josh
     /// </summary>

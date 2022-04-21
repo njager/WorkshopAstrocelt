@@ -13,6 +13,9 @@ public class S_CardTemplate : ScriptableObject
     public string BodyText;
     public string FlavorText;
 
+    [Header("Color String")]
+    public string ColorString;
+
     [Header("Energy Cost")]
     public int EnergyCost;
 

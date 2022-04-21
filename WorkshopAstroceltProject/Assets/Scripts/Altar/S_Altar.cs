@@ -32,8 +32,8 @@ public class S_Altar : MonoBehaviour
     [Header("Card Holder Reference")]
     public GameObject c_cardHolder;
 
-    [Header("Variables for cardball moving")]
-    public bool c_b_finishedMoving;
+    [Header("DOTween Attributes")]
+    public float f_moveSpeed;
 
     private void Awake()
     {
@@ -147,9 +147,16 @@ public class S_Altar : MonoBehaviour
         }
     }
 
-    public void CheckFirstCardBall()
+    public void CheckFirstCardball()
     {
-
+        if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+        {
+            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+        }
+        else
+        {
+            Debug.Log("Not enough energy!");
+        }
     }
 
     /// <summary>
@@ -158,16 +165,42 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public void MoveCardballPrefabs()
     {
-        if (cardballPosition4.transform.childCount == 0)
+        if (cardballPosition1.transform.childCount == 0) // Start chain at position 1
         {
-            if (cardballPosition5.transform.childCount == 1)
+            Debug.Log("Cardball Position 1 Empty");
+            if (cardballPosition2.transform.transform.childCount == 1)
             {
-
+                Debug.Log("Cardball Position 2 Full");
+                // Move the cardball from 2 to 1
+                cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_moveSpeed);
+                cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
+                Debug.Log("Cardballs moving from 2 to 1");
             }
-            else
+            if (cardballPosition3.transform.transform.childCount == 1)
             {
-                Debug.Log("CardBall 5 empty too!");
+                // Move the cardball from 3 to 2
+                cardballPosition3.transform.GetChild(0).DOMove(cardballPosition2.transform.position, f_moveSpeed);
+                cardballPosition3.transform.GetChild(0).SetParent(cardballPosition2.transform);
+                Debug.Log("Cardballs moving from 3 to 2");
             }
+            if(cardballPosition4.transform.transform.childCount == 1)
+            {
+                // Move the cardball from 4 to 3
+                cardballPosition4.transform.GetChild(0).DOMove(cardballPosition3.transform.position, f_moveSpeed);
+                cardballPosition4.transform.GetChild(0).SetParent(cardballPosition3.transform);
+                Debug.Log("Cardballs moving from 4 to 3");
+            }
+            if (cardballPosition5.transform.transform.childCount == 1)
+            {
+                // Move the cardball from 5 to 4
+                cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_moveSpeed);
+                cardballPosition5.transform.GetChild(0).SetParent(cardballPosition4.transform);
+                Debug.Log("Cardballs moving from 5 to 4");
+            }
+        }
+        else
+        {
+            Debug.Log("Cardball Position 1 Full");
         }
     }
 }
