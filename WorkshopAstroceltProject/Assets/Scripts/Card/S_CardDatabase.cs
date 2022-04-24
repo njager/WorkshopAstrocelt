@@ -11,12 +11,12 @@ public class S_CardDatabase : MonoBehaviour
     [Header("Vertical Slice Deck")]
     public S_CardTemplate cardScript0; // Barkskin, ID 0
     public S_CardTemplate cardScript1; // Bludgeon, ID 1
-    public S_CardTemplate cardScript2; // Dig In, ID 2
-    public S_CardTemplate cardScript3; // Flair, ID 3
-    public S_CardTemplate cardScript4; // Fortify, ID 4
-    public S_CardTemplate cardScript5; // Lacerate, ID 5
-    public S_CardTemplate cardScript6; // Preserve, ID 6
-    public S_CardTemplate cardScript7; // Protect, ID 7
+    public S_CardTemplate cardScript2; // Deflect, ID 2
+    public S_CardTemplate cardScript3; // Dig In, ID 3
+    public S_CardTemplate cardScript4; // Flair, ID 4
+    public S_CardTemplate cardScript5; // Fortify, ID 5
+    public S_CardTemplate cardScript6; // Lacerate, ID 6
+    public S_CardTemplate cardScript7; // Preserve, ID 7
     public S_CardTemplate cardScript8; // Riposte, ID 8
     public S_CardTemplate cardScript9; // Stone Strike, ID 9
 
