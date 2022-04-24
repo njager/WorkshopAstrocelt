@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using FMODUnity; 
 using FMOD.Studio; 
@@ -24,6 +25,16 @@ public class S_TurnManager : MonoBehaviour
     public bool enemy3TurnSkipped;
     public bool enemy4TurnSkipped;
     public bool enemy5TurnSkipped;
+
+    [Header("Environment Assets")]
+    public Sprite a_backgroundNight;
+    public Sprite a_backgroundDay;
+    public Sprite a_hillsNight;
+    public Sprite a_hillsDay;
+
+    [Header("Environment References")]
+    public SpriteRenderer a_backgroundImage;
+    public SpriteRenderer a_hillsImage;
 
 
     /// <summary>
@@ -64,7 +75,7 @@ public class S_TurnManager : MonoBehaviour
 
                 Debug.Log("Player Turn Skipped");
                 EnemyStateChange();
-                spawnTimer = 0.5f;
+                spawnTimer = 5f;
             }
         }
         else if (g_global.g_b_playerTurn == false)
@@ -77,7 +88,7 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 PlayerStateChange();
-                spawnTimer = 0.5f;
+                spawnTimer = 5f;
             }
         }
     }
@@ -109,6 +120,9 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EnemyStateChange()
     {
+        // Toggle day
+        ChangeBackground(1);
+
         //change all the things that need to be changed for the enemies turn
         e_b_enemyDidAttack = false;
         g_global.g_energyManager.ClearEnergy();
@@ -293,6 +307,9 @@ public class S_TurnManager : MonoBehaviour
         //give the player a new hand
         g_global.g_cardManager.NewHand();
 
+        //Turn to night
+        ChangeBackground(0);
+
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
 
@@ -352,6 +369,38 @@ public class S_TurnManager : MonoBehaviour
         if (g_global.g_enemyAttributeSheet5 != null) // Strip Enemy 5 of Shielding
         {
             g_global.g_enemyAttributeSheet5.e_i_shield = 0;
+        }
+    }
+
+    /// <summary>
+    /// Background helper function to change the environment assets
+    /// Enter 0 for Night, 1 for Day
+    /// - Josh
+    /// </summary>
+    /// <param name="_environmentValue"></param>
+    private void ChangeBackground(int _environmentValue)
+    {
+        if (_environmentValue == 0) // Change to Night
+        {
+            // Change sprites
+            a_backgroundImage.sprite = a_backgroundNight;
+            a_hillsImage.sprite = a_hillsNight;
+        }
+        else if(_environmentValue == 1) // Change to Day
+        {
+            // Change sprites
+            a_backgroundImage.sprite = a_backgroundDay;
+            a_hillsImage.sprite = a_hillsDay;
+
+            // Toggle maps
+            g_global.g_mapManager.map1.SetActive(false);
+            g_global.g_mapManager.map2.SetActive(false);
+            g_global.g_mapManager.map3.SetActive(false);
+            g_global.g_mapManager.map4.SetActive(false);
+            g_global.g_mapManager.map5.SetActive(false);
+            g_global.g_mapManager.map6.SetActive(false);
+            g_global.g_mapManager.map7.SetActive(false);
+            g_global.g_mapManager.map8.SetActive(false);
         }
     }
 }
