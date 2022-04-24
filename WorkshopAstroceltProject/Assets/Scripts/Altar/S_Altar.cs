@@ -38,6 +38,16 @@ public class S_Altar : MonoBehaviour
     private void Awake()
     {
         g_global = S_Global.Instance;
+
+        // Set Altar Text for no cardballs
+        c_tx_cardName.text = "";
+        c_tx_cardBody.text = "";
+
+        // Turn off all borders
+        a_redBorder.SetActive(false);
+        a_blueBorder.SetActive(false);
+        a_yellowBorder.SetActive(false);
+        a_colorlessBorder.SetActive(false);
     }
 
     private void Start()

@@ -54,6 +54,8 @@ public class S_Cardball : MonoBehaviour
         g_global = S_Global.Instance;
 
         g_global.ls_cardBallPrefabs.Add(this);
+
+        CardballSetup();
     }
 
     // Cardballs then just need to move, probably do in S_Altar
@@ -217,5 +219,74 @@ public class S_Cardball : MonoBehaviour
         g_global.ls_cardBallPrefabs.Remove(this);
         g_global.g_altar.MoveCardballPrefabs();
         Destroy(this);
+    }
+
+    /// <summary>
+    /// Toggle altar text on when mouse enters Cardball
+    /// </summary>
+    public void OnHoverEnter()
+    {
+        Debug.Log("DEBUG: Toggle Cardball info on Altar - on");
+        g_global.g_altar.c_tx_cardName.text = c_cardName;
+        g_global.g_altar.c_tx_cardBody.text = c_cardBody;
+        
+        // Toggle Border based off cardball color
+        if(c_b_redCardball == true) // If Red
+        {
+            // Toggle Red border
+            g_global.g_altar.a_redBorder.SetActive(true);
+
+            // Make sure rest are off
+            g_global.g_altar.a_blueBorder.SetActive(false);
+            g_global.g_altar.a_yellowBorder.SetActive(false);
+            g_global.g_altar.a_colorlessBorder.SetActive(false);
+        }
+        else if (c_b_blueCardball == true) // If Blue
+        {
+            // Toggle Blue border
+            g_global.g_altar.a_blueBorder.SetActive(true);
+
+            // Make sure rest are off
+            g_global.g_altar.a_redBorder.SetActive(false);
+            g_global.g_altar.a_yellowBorder.SetActive(false);
+            g_global.g_altar.a_colorlessBorder.SetActive(false);
+        }
+        else if (c_b_yellowCardball == true) // If Yellow
+        {
+            // Toggle Yellow border
+            g_global.g_altar.a_yellowBorder.SetActive(true);
+
+            // Make sure rest are off
+            g_global.g_altar.a_redBorder.SetActive(false);
+            g_global.g_altar.a_blueBorder.SetActive(false);
+            g_global.g_altar.a_colorlessBorder.SetActive(false);
+        }
+        else if (c_b_colorlessCardball == true) // If Colorless
+        {
+            // Toggle Colorless border
+            g_global.g_altar.a_colorlessBorder.SetActive(true);
+
+            // Make sure rest are off
+            g_global.g_altar.a_redBorder.SetActive(false);
+            g_global.g_altar.a_blueBorder.SetActive(false);
+            g_global.g_altar.a_yellowBorder.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Toggle altar text off when mouse exits Cardball
+    /// - Josh
+    /// </summary>
+    public void OnHoverExit()
+    {
+        Debug.Log("DEBUG: Toggle Cardball info on Altar - off");
+        g_global.g_altar.c_tx_cardName.text = "";
+        g_global.g_altar.c_tx_cardBody.text = "";
+
+        // Turn off all borders
+        g_global.g_altar.a_redBorder.SetActive(false);
+        g_global.g_altar.a_blueBorder.SetActive(false);
+        g_global.g_altar.a_yellowBorder.SetActive(false);
+        g_global.g_altar.a_colorlessBorder.SetActive(false);
     }
 }
