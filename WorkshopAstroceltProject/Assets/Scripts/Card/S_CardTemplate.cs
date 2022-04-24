@@ -75,7 +75,13 @@ public class S_CardTemplate : ScriptableObject
     public bool DrawStatusEffect;
     public bool FralityStatusEffect;
     public bool ManipulateStatusEffect;
-    public bool ThornStatusEffect; 
+    public bool ThornStatusEffect;
+
+    [Header("Art Asset")]
+    public Sprite CardArtAsset;
+
+    [Header("Card ID")]
+    public int CardDatabaseID;
 
     [Header("Extra Info")]
     public string ExtraInfo;
