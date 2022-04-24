@@ -121,6 +121,9 @@ public class S_Card : MonoBehaviour
     public string c_str_statusEffectID2;
     public string c_str_statusEffectID3;
 
+    [Header("Card Art Image")]
+    public Image c_a_cardArtImage;
+
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
     //Functions
@@ -256,6 +259,9 @@ public class S_Card : MonoBehaviour
 
         //set the text for the card
         SetText();
+
+        // Set art asset
+        c_a_cardArtImage.sprite = _cardData.CardArtAsset;
 
         // Set String Color
         c_str_color = _cardData.ColorString;
