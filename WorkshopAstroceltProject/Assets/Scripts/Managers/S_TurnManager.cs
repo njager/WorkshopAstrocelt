@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using FMODUnity; 
-using FMOD.Studio; 
+using FMOD.Studio;
+using DG.Tweening;
 
 public class S_TurnManager : MonoBehaviour
 {
@@ -383,7 +384,7 @@ public class S_TurnManager : MonoBehaviour
         if (_environmentValue == 0) // Change to Night
         {
             // Change sprites
-            a_backgroundImage.sprite = a_backgroundNight;
+            a_backgroundImage.sprite = a_backgroundNight; // Eventually make these DOTweens
             a_hillsImage.sprite = a_hillsNight;
         }
         else if(_environmentValue == 1) // Change to Day

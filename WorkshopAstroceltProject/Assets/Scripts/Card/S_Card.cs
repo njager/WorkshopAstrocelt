@@ -116,6 +116,11 @@ public class S_Card : MonoBehaviour
     public S_CardScaler c_cardScaler;
     private GameObject c_zoomCard;
 
+    [Header("Status Effect IDs")]
+    public string c_str_statusEffectID1;
+    public string c_str_statusEffectID2;
+    public string c_str_statusEffectID3;
+
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
     //Functions
@@ -131,14 +136,6 @@ public class S_Card : MonoBehaviour
         cv_canvas = GameObject.Find("MainCanvas");
 
         initialCardTransform = gameObject.GetComponent<RectTransform>();
-}
-
-    private void Start()
-    {
-        if (c_b_redColorType) { c_str_color = "red"; }
-        else if (c_b_yellowColorType) { c_str_color = "yellow"; }
-        else if (c_b_blueColorType) { c_str_color = "blue"; }
-        else if (c_b_whiteColorType) { c_str_color = "white"; }
     }
 
     /// <summary>
@@ -193,7 +190,15 @@ public class S_Card : MonoBehaviour
         c_b_drawStatusEffect = _cardData.DrawStatusEffect;
         c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
         c_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
-        c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect; 
+        c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect;
+
+        // Bleed percentage
+        c_f_damagePercentage = _cardData.BleedEffectValue;
+
+        //Toggle turncounts
+        c_i_turnCount1 = _cardData.TurnCountForStatusEffect1;
+        c_i_turnCount2 = _cardData.TurnCountForStatusEffect2;
+        c_i_turnCount3 = _cardData.TurnCountForStatusEffect3;
 
         //Toggle Color Types, will need to adapt for synergies
 
@@ -251,6 +256,12 @@ public class S_Card : MonoBehaviour
 
         //set the text for the card
         SetText();
+
+        // Set String Color
+        c_str_color = _cardData.ColorString;
+
+        // Use helper function for Status Effect Order
+        CheckStatusEffectOrder(_cardData);
     }
 
     public void SetText()
@@ -262,6 +273,187 @@ public class S_Card : MonoBehaviour
     }
 
     /// <summary>
+    /// Determine what values correspond to what based off an ID number
+    /// Only check for IDs currently implemented
+    /// IDs are listed in proper order in cards excel doc
+    /// Can eventually do all status effects
+    /// - Josh
+    /// </summary>
+    /// <param name="_cardData"></param>
+    private void CheckStatusEffectOrder(S_CardTemplate _cardData)
+    {
+        if(c_b_noEffect == true)
+        {
+            Debug.Log("DEBUG: No status effects for the given card!");
+            return;
+        }
+        else
+        {
+            if (_cardData.IDForStatusEffectOne != 0) // Check the first ID
+            {
+                if (_cardData.IDForStatusEffectOne == 1) // Check for bleed
+                {
+                    c_str_statusEffectID1 = "bleed";
+                }
+                else if (_cardData.IDForStatusEffectOne == 4) // Check for resist
+                {
+                    c_str_statusEffectID1 = "resist";
+                }
+                else if (_cardData.IDForStatusEffectOne == 6) // Check for stun
+                {
+                    c_str_statusEffectID1 = "stun";
+                }
+            }
+
+            if (_cardData.IDForStatusEffectTwo != 0) // Check ID Two, if there isn't any it won't do anything
+            {
+                if (_cardData.IDForStatusEffectTwo == 1) // Check for bleed
+                {
+                    c_str_statusEffectID2 = "bleed";
+                }
+                else if (_cardData.IDForStatusEffectTwo == 4) // Check for resist
+                {
+                    c_str_statusEffectID2 = "resist";
+                }
+                else if (_cardData.IDForStatusEffectTwo == 6) // Check for stun
+                {
+                    c_str_statusEffectID2 = "stun";
+                }
+            }
+
+            if (_cardData.IDForStatusEffectThree != 0) // Check ID Three, , if there isn't any it won't do anything
+            {
+                if (_cardData.IDForStatusEffectThree == 1) // Check for bleed
+                {
+                    c_str_statusEffectID3 = "bleed";
+                }
+                else if (_cardData.IDForStatusEffectThree == 4) // Check for resist
+                {
+                    c_str_statusEffectID3 = "resist";
+                }
+                else if (_cardData.IDForStatusEffectThree == 6) // Check for stun
+                {
+                    c_str_statusEffectID3 = "stun";
+                }
+            }
+        }
+        
+    }
+
+    /// <summary>
+    /// Play the given Status Effects, check for player and enemy respectively
+    /// </summary>
+    private void TriggerStatusEffects(GameObject _character) 
+    {
+        if (_character.GetComponent<S_Enemy>() != null) // If the given character was an enemy
+        {
+            S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
+            if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
+            {
+                // There is empirically a bleed effect, question is where
+                if(c_str_statusEffectID1 == "bleed") // In slot 1
+                {
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                }
+                else if(c_str_statusEffectID2 == "bleed") // In slot 2
+                {
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                }
+                else if (c_str_statusEffectID3 == "bleed") // In slot 3
+                {
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                }
+
+            }
+            if (c_b_stunStatusEffect == true)
+            {
+                // Locate stun effect
+                if (c_str_statusEffectID1 == "stun") // In slot 1
+                {
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                }
+                else if (c_str_statusEffectID2 == "stun") // In slot 2
+                {
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                }
+                else if (c_str_statusEffectID3 == "stun") // In slot 3
+                {
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                }
+            }
+            if (c_b_resistStatusEffect == true)
+            {
+                // Locate stun effect
+                if (c_str_statusEffectID1 == "resist") // In slot 1
+                {
+                    g_global.g_enemyState.EnemyResistantEffect(c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                }
+                else if (c_str_statusEffectID2 == "resist") // In slot 2
+                {
+                    g_global.g_enemyState.EnemyResistantEffect(c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                }
+                else if (c_str_statusEffectID3 == "resist") // In slot 3
+                {
+                    g_global.g_enemyState.EnemyResistantEffect(c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                }
+            }
+        }
+        else if (_character.GetComponent<S_Enemy>() != null) // If the given character was the player
+        {
+            if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
+            {
+                // There is empirically a bleed effect, question is where
+                if (c_str_statusEffectID1 == "bleed") // In slot 1
+                {
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount1);
+                }
+                else if (c_str_statusEffectID2 == "bleed") // In slot 2
+                {
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount2);
+                }
+                else if (c_str_statusEffectID3 == "bleed") // In slot 3
+                {
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount3);
+                }
+
+            }
+            if (c_b_stunStatusEffect == true)
+            {
+                // Locate stun effect
+                if (c_str_statusEffectID1 == "stun") // In slot 1
+                {
+                    g_global.g_playerState.PlayerStunnedStatusEffect(c_i_turnCount1);
+                }
+                else if (c_str_statusEffectID2 == "stun") // In slot 2
+                {
+                    g_global.g_playerState.PlayerStunnedStatusEffect(c_i_turnCount2);
+                }
+                else if (c_str_statusEffectID3 == "stun") // In slot 3
+                {
+                    g_global.g_playerState.PlayerStunnedStatusEffect(c_i_turnCount3);
+                }
+            }
+            if (c_b_resistStatusEffect == true)
+            {
+                // Locate stun effect
+                if (c_str_statusEffectID1 == "resist") // In slot 1
+                {
+                    g_global.g_playerState.PlayerResistantEffect(c_i_turnCount1);
+                }
+                else if (c_str_statusEffectID2 == "resist") // In slot 2
+                {
+                    g_global.g_playerState.PlayerResistantEffect(c_i_turnCount2);
+                }
+                else if (c_str_statusEffectID3 == "resist") // In slot 3
+                {
+                    g_global.g_playerState.PlayerResistantEffect(c_i_turnCount3);
+                }
+            }
+        }
+        
+    }
+
+    /// <summary>
     /// Play the card based on if it was dropped onto player or enemy
     /// - Josh
     /// </summary>
@@ -269,47 +461,68 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_attackMainEffect == true)
         {
-            if(_character.GetComponent<S_Enemy>() != null)
-            {                    
+            if (_character.GetComponent<S_Enemy>() != null)
+            {
                 //undo star lockout
                 g_global.g_ConstellationManager.b_starLockout = true;
 
+                // Attack
                 TriggerAttackCard(_character.GetComponent<S_Enemy>());
+
+                // If there are status effects, then trigger them as well
+                if (!c_b_noEffect) 
+                {
+                    if(c_b_enemyEffect == true) // If the status effects are for the enemy
+                    {
+                        TriggerStatusEffects(_character);
+                    }
+                    else if(c_b_playerEffect == true) // If the status effects are for the player
+                    {
+                        TriggerStatusEffects(g_global.g_player.gameObject);
+                    }
+                }
             }
             else
             {
+                Debug.Log("DEBUG: Don't use an attack card on the player!");
                 ResetPosition();
             }
         }
-        else if(c_b_shieldMainEffect == true)
+        else if (c_b_shieldMainEffect == true)
         {
             if (_character.GetComponent<S_Player>() != null)
             {
-                print("Shield played?");
-                TriggerShieldCard(_character.GetComponent<S_Player>());
+                // Then shield the player
+                TriggerShieldCard();
+
+                // If there are status effects, then trigger them as well
+                if (!c_b_noEffect)
+                {
+                    if (c_b_enemyEffect == true) // If the status effects are for the enemy
+                    {
+                        TriggerStatusEffects(_character);
+                    }
+                    else if (c_b_playerEffect == true) // If the status effects are for the player
+                    {
+                        TriggerStatusEffects(g_global.g_player.gameObject);
+                    }
+                }
             }
             else
             {
+                Debug.Log("DEBUG: Don't use a shield card on an enemy!");
                 ResetPosition();
             }
         }
         else if (c_b_uniqueMainEffect == true)
         {
-            
+            // Note using any unique cards but we'd trigger special behavior here
         }
     }
 
-    /// <summary>
-    /// Toggle the status effects after loading card data
-    /// </summary>
-    private void StatusEffectCheck(GameObject _characterType)
-    {
-        // Put all the bool values in a list, then check for the effect value
-    }
-
 
     /// <summary>
-    /// If Milestone 1 Card type is attack, do attack function on selected enemy
+    /// If the main effect is attack, then attack
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
@@ -319,11 +532,11 @@ public class S_Card : MonoBehaviour
     }
 
     /// <summary>
-    /// If Milestone 1 Card type is shield, do shield function on player
+    /// If the main effect is shield, then shield
     /// </summary>
-    private void TriggerShieldCard(S_Player _player)
+    private void TriggerShieldCard()
     {
-        _player.PlayerShielded(c_i_shieldValue);
+        g_global.g_player.PlayerShielded(c_i_shieldValue);
         DeleteCard();
     }
 
@@ -345,6 +558,10 @@ public class S_Card : MonoBehaviour
         g_global.g_turnManager.attackSound.SetActive(true);
     }
 
+    /// <summary>
+    /// Does as it says, it resets the card's position
+    /// -Josh
+    /// </summary>
     public void ResetPosition()
     {
         gameObject.transform.position = s_c_cardDraggerReference.c_v3_initialPosition; 
