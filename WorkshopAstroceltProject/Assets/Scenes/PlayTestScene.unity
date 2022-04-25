@@ -9327,6 +9327,7 @@ MonoBehaviour:
   g_i_enemyCountMax: 0
   e_l_enemyList: []
   g_ls_lineRendererList: []
+  g_ls_completedLineRendererList: []
   ls_p_playerDeck: 
   lst_p_playerGrave: 
   ls_p_playerHand: []
@@ -39350,6 +39351,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 481223725}
     m_Modifications:
+    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
+      propertyPath: encounter2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
+      propertyPath: encounter3
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152267100547761434, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
       propertyPath: m_Name
       value: CardDatabaseManager
