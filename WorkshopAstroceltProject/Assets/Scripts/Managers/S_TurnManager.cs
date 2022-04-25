@@ -124,6 +124,9 @@ public class S_TurnManager : MonoBehaviour
         // Toggle day
         ChangeBackground(1);
 
+        //Clear card prefabs
+        StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
+
         //change all the things that need to be changed for the enemies turn
         e_b_enemyDidAttack = false;
         g_global.g_energyManager.ClearEnergy();
@@ -308,22 +311,18 @@ public class S_TurnManager : MonoBehaviour
         //give the player a new hand
         g_global.g_cardManager.NewHand();
 
+        // Spawn cardball prefabs
+        StartCoroutine(g_global.g_altar.SpawnCardballPrefabs());
+
         //Turn to night
         ChangeBackground(0);
 
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
 
-        // Temp line removal 
+        // Line removal 
         g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
-
-        //clear data for the stars when the map changes (prolly should be a function) doesnt work
-        //g_global.g_DrawingManager.s_nodeStarInst.s_star.m_previous = g_global.g_nullStar;
-        //g_global.g_DrawingManager.s_nodeStarInst.s_star.m_next = g_global.g_nullStar;
-        
-        //change the selector
-        g_global.g_selectorManager.SelectorReset();
 
         //stop the audio
         attackSound.SetActive(false);

@@ -34,14 +34,11 @@ public class S_Cardball : MonoBehaviour
     public bool c_b_locatedInFourthPosition;
     public bool c_b_locatedInFifthPosition;
 
-    [Header("Image Sprite Assets")]
-    public Sprite c_redImageAsset;
-    public Sprite c_blueImageAsset;
-    public Sprite c_yellowImageAsset;
-    public Sprite c_colorlessImageAsset;
-
-    [Header("Image Reference")]
-    public Image c_cardballImage;
+    [Header("Graphic References")]
+    public GameObject c_redGraphic;
+    public GameObject c_blueGraphic;
+    public GameObject c_yellowGraphic;
+    public GameObject c_whiteGraphic;
 
     [Header("Text Objects")]
     public TextMeshProUGUI c_cardballText; 
@@ -55,7 +52,7 @@ public class S_Cardball : MonoBehaviour
 
         g_global.ls_cardBallPrefabs.Add(this);
 
-        CardballSetup();
+        //CardballSetup();
     }
 
     // Cardballs then just need to move, probably do in S_Altar
@@ -128,50 +125,62 @@ public class S_Cardball : MonoBehaviour
             Debug.Log("Cardball not spawned in Altar!");
         }
 
-        // Then the graphic
+        // Then the graphics
         if (c_cardData.RedColorType) // Check if Card is Red
         {
             // Cardball is Red
             c_b_redCardball = true;
-            c_cardballImage.sprite = c_redImageAsset;
+            c_redGraphic.SetActive(true);
 
             // Rest are false
             c_b_blueCardball = false;
+            c_blueGraphic.SetActive(false);
             c_b_yellowCardball = false;
-            c_b_colorlessCardball = false; 
+            c_yellowGraphic.SetActive(false);
+            c_b_colorlessCardball = false;
+            c_whiteGraphic.SetActive(false);
         }
         else if (c_cardData.BlueColorType) // Check if card is Blue
         {
             // Cardball is Blue
             c_b_blueCardball = true;
-            c_cardballImage.sprite = c_blueImageAsset;
+            c_blueGraphic.SetActive(true);
 
             // Rest are false
             c_b_redCardball = false;
+            c_redGraphic.SetActive(false);
             c_b_yellowCardball = false;
+            c_yellowGraphic.SetActive(false);
             c_b_colorlessCardball = false;
+            c_whiteGraphic.SetActive(false);
         }
         else if (c_cardData.YellowColorType) // Check if card is Yellow
         {
             // Cardball is Yellow
             c_b_yellowCardball = true;
-            c_cardballImage.sprite = c_yellowImageAsset;
+            c_yellowGraphic.SetActive(true);
 
             // Rest are false
-            c_b_blueCardball = false;
             c_b_redCardball = false;
+            c_redGraphic.SetActive(false);
+            c_b_blueCardball = false;
+            c_blueGraphic.SetActive(false);
             c_b_colorlessCardball = false;
+            c_whiteGraphic.SetActive(false);
         }
         else if (c_cardData.WhiteColorType) // Check if card is Colorless
         {
             // Cardball is Colorless
             c_b_colorlessCardball = true;
-            c_cardballImage.sprite = c_colorlessImageAsset;
+            c_whiteGraphic.SetActive(true);
 
             // Rest are false
-            c_b_blueCardball = false;
-            c_b_yellowCardball = false;
             c_b_redCardball = false;
+            c_redGraphic.SetActive(false);
+            c_b_blueCardball = false;
+            c_blueGraphic.SetActive(false);
+            c_b_yellowCardball = false;
+            c_yellowGraphic.SetActive(false);
         }
         else
         {
@@ -226,7 +235,7 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void OnHoverEnter()
     {
-        Debug.Log("DEBUG: Toggle Cardball info on Altar - on");
+        //Debug.Log("DEBUG: Toggle Cardball info on Altar - on");
         g_global.g_altar.c_tx_cardName.text = c_cardName;
         g_global.g_altar.c_tx_cardBody.text = c_cardBody;
         
@@ -279,7 +288,7 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void OnHoverExit()
     {
-        Debug.Log("DEBUG: Toggle Cardball info on Altar - off");
+        //Debug.Log("DEBUG: Toggle Cardball info on Altar - off");
         g_global.g_altar.c_tx_cardName.text = "";
         g_global.g_altar.c_tx_cardBody.text = "";
 
