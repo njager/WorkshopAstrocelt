@@ -27,7 +27,6 @@ public class S_CardTemplate : ScriptableObject
     public int EffectValue1;
     public int EffectValue2;
     public int EffectValue3;
-    public float BleedEffectValue; 
 
     [Header("Turn Counts")]
     public int TurnCountForStatusEffect1;

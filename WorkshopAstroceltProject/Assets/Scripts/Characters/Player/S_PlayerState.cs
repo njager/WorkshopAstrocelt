@@ -24,7 +24,7 @@ public class S_PlayerState : MonoBehaviour
     public GameObject playerLoseMusic;
 
     [Header("Status Effect Stores")]
-    public float p_f_currentDamageRateForBleed;
+    public int p_i_currentDamageRateForBleed;
 
     void Awake()
     {
@@ -76,40 +76,40 @@ public class S_PlayerState : MonoBehaviour
         if(p_i_bleedingTurnCount <= 0)
         {
             p_b_inBleedingState = false;
-            //g_global.g_UIManager.ToggleBleedPlayerUI(false);
+            g_global.g_UIManager.ToggleBleedPlayerUI(false);
         }
         if (p_i_stunnedTurnCount <= 0)
         {
             Debug.Log("Never Here");
             g_global.g_turnManager.playerTurnSkipped = false;
             p_b_inStunnedState = false;
-            //g_global.g_UIManager.ToggleStunPlayerUI(false);
+            g_global.g_UIManager.ToggleStunPlayerUI(false);
         }
         if (p_i_resistantTurnCount <= 0)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = false;
             p_b_inResistantState = false;
-            //g_global.g_UIManager.ToggleResistantPlayerUI(false);
+            g_global.g_UIManager.ToggleResistantPlayerUI(false);
         }
         
         // Trigger remaining effects
         if (p_b_inBleedingState == true)
         {
             p_i_bleedingTurnCount -= 1;
-            BleedEffectPerTurn(p_f_currentDamageRateForBleed);
-            //g_global.g_UIManager.ToggleBleedPlayerUI(true);
+            g_global.g_player.PlayerAttacked(p_i_currentDamageRateForBleed);
+            g_global.g_UIManager.ToggleBleedPlayerUI(true);
         }
         if (p_b_inStunnedState == true)
         {
             g_global.g_turnManager.playerTurnSkipped = true;
             p_i_stunnedTurnCount -= 1;
-            //g_global.g_UIManager.ToggleStunPlayerUI(true);
+            g_global.g_UIManager.ToggleStunPlayerUI(true);
         }
         if (p_b_inResistantState == true)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = true;
             p_i_resistantTurnCount -= 1;
-            //g_global.g_UIManager.ToggleResistantPlayerUI(true); 
+            g_global.g_UIManager.ToggleResistantPlayerUI(true); 
         }
     }
 
@@ -119,14 +119,13 @@ public class S_PlayerState : MonoBehaviour
     /// </summary>
     /// <param name="_damageRate"></param>
     /// <param name="_turnCount"></param>
-    public void PlayerBleedingStatusEffect(float _damageRate, int _turnCount)
+    public void PlayerBleedingStatusEffect(int _damageValue, int _turnCount)
     {
-        int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
         if (p_b_inBleedingState == false)
         {
-            g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
+            g_global.g_player.PlayerAttacked(_damageValue);
             p_i_bleedingTurnCount = _turnCount;
-            p_f_currentDamageRateForBleed = _damageRate;
+            p_i_currentDamageRateForBleed = _damageValue;
             p_b_inBleedingState = true;
         }
         else
@@ -183,17 +182,6 @@ public class S_PlayerState : MonoBehaviour
     {
         int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
         return _bleedingCalc;
-    }
-
-    /// <summary>
-    /// Helper to trigger bleed after intial function
-    /// - Josh
-    /// </summary>
-    /// <param name="_damageRate"></param>
-    private void BleedEffectPerTurn(float _damageRate)
-    {
-        int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
-        g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
     }
 
     /// <summary>

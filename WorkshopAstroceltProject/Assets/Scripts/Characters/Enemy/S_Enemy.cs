@@ -203,7 +203,7 @@ public class S_Enemy : MonoBehaviour
         }
         if(_enemyType == "Beast")
         {
-            g_global.g_playerState.PlayerBleedingStatusEffect(.10f, 3);
+            g_global.g_playerState.PlayerBleedingStatusEffect(3, 3);
         }
     } 
 

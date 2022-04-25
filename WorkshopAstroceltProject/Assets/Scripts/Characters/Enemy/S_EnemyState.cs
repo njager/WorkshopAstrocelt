@@ -101,11 +101,11 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_inResistantStateEnemy5;
 
     [Header("Status Effect Stores")]
-    public float e_f_currentDamageRateForBleedEnemy1;
-    public float e_f_currentDamageRateForBleedEnemy2;
-    public float e_f_currentDamageRateForBleedEnemy3;
-    public float e_f_currentDamageRateForBleedEnemy4; 
-    public float e_f_currentDamageRateForBleedEnemy5;
+    public int e_i_currentDamageValueForBleedEnemy1;
+    public int e_i_currentDamageValueForBleedEnemy2;
+    public int e_i_currentDamageValueForBleedEnemy3;
+    public int e_i_currentDamageValueForBleedEnemy4; 
+    public int e_i_currentDamageValueForBleedEnemy5;
 
 
 
@@ -253,20 +253,21 @@ public class S_EnemyState : MonoBehaviour
     /// Function for initial trigger for Enemy Bleeds
     /// - Josh
     /// </summary>
-    /// <param name="_damageRate"></param>
+    /// <param name="_damageValue"></param>
     /// <param name="_turnCount"></param>
-    public void EnemyBleedingStatusEffect(float _damageRate, int _turnCount, int _enemyNum)
+    /// /// <param name="_enemyNum"></param>
+    public void EnemyBleedingStatusEffect(int _damageValue, int _turnCount, int _enemyNum)
     {
-        int _bleedingDamage = BleedingEffectCalculator(_damageRate);
+        //int _bleedingDamage = BleedingEffectCalculator(_damageRate);
         
         // If the Enemy was Enemy 1
         if(_enemyNum == 1)
         {
             if (e_b_inBleedingStateEnemy1 == false)
             {
-                enemy1.EnemyAttacked(str_enemy1Type, _bleedingDamage);
+                enemy1.EnemyAttacked(str_enemy1Type, _damageValue);
                 e_i_bleedingTurnCountEnemy1 = _turnCount;
-                e_f_currentDamageRateForBleedEnemy1 = _damageRate;
+                e_i_currentDamageValueForBleedEnemy1 = _damageValue;
                 e_b_inBleedingStateEnemy1 = true;
             }
             else
@@ -280,9 +281,9 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy2 == false)
             {
-                enemy2.EnemyAttacked(str_enemy2Type, _bleedingDamage);
+                enemy2.EnemyAttacked(str_enemy2Type, _damageValue);
                 e_i_bleedingTurnCountEnemy2 = _turnCount;
-                e_f_currentDamageRateForBleedEnemy2 = _damageRate;
+                e_i_currentDamageValueForBleedEnemy2 = _damageValue;
                 e_b_inBleedingStateEnemy2 = true;
             }
             else
@@ -296,9 +297,8 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy3 == false)
             {
-                enemy3.EnemyAttacked(str_enemy3Type, _bleedingDamage);
                 e_i_bleedingTurnCountEnemy3 = _turnCount;
-                e_f_currentDamageRateForBleedEnemy3 = _damageRate;
+                e_i_currentDamageValueForBleedEnemy3 = _damageValue;
                 e_b_inBleedingStateEnemy1 = true;
             }
             else
@@ -312,9 +312,9 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy4 == false)
             {
-                enemy1.EnemyAttacked(str_enemy4Type, _bleedingDamage);
+                enemy1.EnemyAttacked(str_enemy4Type, _damageValue);
                 e_i_bleedingTurnCountEnemy4 = _turnCount;
-                e_f_currentDamageRateForBleedEnemy4 = _damageRate;
+                e_i_currentDamageValueForBleedEnemy4 = _damageValue;
                 e_b_inBleedingStateEnemy4 = true;
             }
             else
@@ -328,9 +328,9 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy5 == false)
             {
-                enemy5.EnemyAttacked(str_enemy5Type, _bleedingDamage);
+                enemy5.EnemyAttacked(str_enemy5Type, _damageValue);
                 e_i_bleedingTurnCountEnemy5 = _turnCount;
-                e_f_currentDamageRateForBleedEnemy5 = _damageRate;
+                e_i_currentDamageValueForBleedEnemy5 = _damageValue;
                 e_b_inBleedingStateEnemy5 = true;
             }
             else
@@ -345,6 +345,7 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_turnCount"></param>
+    /// <param name="_enemyNum"></param>
     public void EnemyStunnedStatusEffect(int _turnCount, int _enemyNum)
     {
         //If enemy was enemy 1
@@ -428,6 +429,7 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_turnCount"></param>
+    /// <param name="_enemyNum"></param>
     public void EnemyResistantEffect(int _turnCount, int _enemyNum)
     {
         // If Enemy was Enemy 1
@@ -514,17 +516,6 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper to trigger bleed after intial function
-    /// - Josh
-    /// </summary>
-    /// <param name="_damageRate"></param>
-    private void BleedEffectPerTurn(float _damageRate)
-    {
-        int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate);
-        g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
-    }
-
-    /// <summary>
     /// Helper function for legibility
     /// Controller for Enemy 1 Status Effects
     /// - Josh
@@ -535,28 +526,34 @@ public class S_EnemyState : MonoBehaviour
         if (e_i_bleedingTurnCountEnemy1 <= 0)
         {
             e_b_inBleedingStateEnemy1 = false;
+            g_global.g_UIManager.ToggleBleedEnemyUI(false, 1);
         }
         if (e_i_stunnedTurnCountEnemy1 <= 0)
         {
             e_b_inStunnedStateEnemy1 = false;
+            g_global.g_UIManager.ToggleStunEnemyUI(false, 1);
         }
         if (e_i_resistantTurnCountEnemy1 <= 0)
         {
             e_b_inResistantStateEnemy1 = false;
+            g_global.g_UIManager.ToggleResistantEnemyUI(false, 1);
         }
         // Trigger remaining effects
         if (e_b_inBleedingStateEnemy1)
         {
             e_i_bleedingTurnCountEnemy1 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy1);
+            enemy1.EnemyAttacked(enemy1.e_str_enemyType, e_i_currentDamageValueForBleedEnemy1);
+            g_global.g_UIManager.ToggleBleedEnemyUI(true, 1);
         }
         if (e_b_inStunnedStateEnemy1)
         {
             e_i_stunnedTurnCountEnemy1 -= 1;
+            g_global.g_UIManager.ToggleStunEnemyUI(true, 1);
         }
         if (e_b_inResistantStateEnemy1)
         {
             e_i_resistantTurnCountEnemy1 -= 1;
+            g_global.g_UIManager.ToggleResistantEnemyUI(true, 1);
         }
     }
 
@@ -571,29 +568,35 @@ public class S_EnemyState : MonoBehaviour
         if (e_i_bleedingTurnCountEnemy2 <= 0)
         {
             e_b_inBleedingStateEnemy2 = false;
+            g_global.g_UIManager.ToggleBleedEnemyUI(false, 2);
         }
         if (e_i_stunnedTurnCountEnemy2 <= 0)
         {
             e_b_inStunnedStateEnemy2 = false;
+            g_global.g_UIManager.ToggleStunEnemyUI(false, 2);
         }
         if (e_i_resistantTurnCountEnemy2 <= 0)
         {
             e_b_inResistantStateEnemy2 = false;
+            g_global.g_UIManager.ToggleResistantEnemyUI(false, 2);
         }
 
         // Trigger remaining effects
         if (e_b_inBleedingStateEnemy2)
         {
             e_i_bleedingTurnCountEnemy2 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy2);
+            enemy2.EnemyAttacked(enemy2.e_str_enemyType, e_i_currentDamageValueForBleedEnemy2);
+            g_global.g_UIManager.ToggleBleedEnemyUI(true, 2);
         }
         if (e_b_inStunnedStateEnemy2)
         {
             e_i_stunnedTurnCountEnemy2 -= 1;
+            g_global.g_UIManager.ToggleStunEnemyUI(true, 2);
         }
         if (e_b_inResistantStateEnemy2)
         {
             e_i_resistantTurnCountEnemy2 -= 1;
+            g_global.g_UIManager.ToggleResistantEnemyUI(true, 2);
         }
     }
 
@@ -608,29 +611,35 @@ public class S_EnemyState : MonoBehaviour
         if (e_i_bleedingTurnCountEnemy3 <= 0)
         {
             e_b_inBleedingStateEnemy3 = false;
+            g_global.g_UIManager.ToggleBleedEnemyUI(false, 3);
         }
         if (e_i_stunnedTurnCountEnemy3 <= 0)
         {
             e_b_inStunnedStateEnemy3 = false;
+            g_global.g_UIManager.ToggleStunEnemyUI(false, 3);
         }
         if (e_i_resistantTurnCountEnemy3 <= 0)
         {
             e_b_inResistantStateEnemy3 = false;
+            g_global.g_UIManager.ToggleResistantEnemyUI(false, 3);
         }
 
         // Trigger remaining effects
         if (e_b_inBleedingStateEnemy3)
         {
             e_i_bleedingTurnCountEnemy3 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy3);
+            enemy3.EnemyAttacked(enemy3.e_str_enemyType, e_i_currentDamageValueForBleedEnemy3);
+            g_global.g_UIManager.ToggleBleedEnemyUI(true, 2);
         }
         if (e_b_inStunnedStateEnemy3)
         {
             e_i_stunnedTurnCountEnemy3 -= 1;
+            g_global.g_UIManager.ToggleStunEnemyUI(true, 3);
         }
         if (e_b_inResistantStateEnemy3)
         {
             e_i_resistantTurnCountEnemy3 -= 1;
+            g_global.g_UIManager.ToggleResistantEnemyUI(true, 3);
         }
     }
 
@@ -645,29 +654,35 @@ public class S_EnemyState : MonoBehaviour
         if (e_i_bleedingTurnCountEnemy4 <= 0)
         {
             e_b_inBleedingStateEnemy4 = false;
+            g_global.g_UIManager.ToggleBleedEnemyUI(false, 4);
         }
         if (e_i_stunnedTurnCountEnemy4 <= 0)
         {
             e_b_inStunnedStateEnemy4 = false;
+            g_global.g_UIManager.ToggleStunEnemyUI(false, 4);
         }
         if (e_i_resistantTurnCountEnemy4 <= 0)
         {
             e_b_inResistantStateEnemy4 = false;
+            g_global.g_UIManager.ToggleResistantEnemyUI(false, 4);
         }
 
         // Trigger remaining effects
         if (e_b_inBleedingStateEnemy4)
         {
             e_i_bleedingTurnCountEnemy4 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy4);
+            enemy4.EnemyAttacked(enemy4.e_str_enemyType, e_i_currentDamageValueForBleedEnemy4);
+            g_global.g_UIManager.ToggleBleedEnemyUI(true, 4);
         }
         if (e_b_inStunnedStateEnemy4)
         {
             e_i_stunnedTurnCountEnemy4 -= 1;
+            g_global.g_UIManager.ToggleStunEnemyUI(true, 4);
         }
         if (e_b_inResistantStateEnemy4)
         {
             e_i_resistantTurnCountEnemy4 -= 1;
+            g_global.g_UIManager.ToggleResistantEnemyUI(true, 4);
         }
     }
 
@@ -682,29 +697,35 @@ public class S_EnemyState : MonoBehaviour
         if (e_i_bleedingTurnCountEnemy5 <= 0)
         {
             e_b_inBleedingStateEnemy5 = false;
+            g_global.g_UIManager.ToggleBleedEnemyUI(false, 5);
         }
         if (e_i_stunnedTurnCountEnemy5 <= 0)
         {
             e_b_inStunnedStateEnemy5 = false;
+            g_global.g_UIManager.ToggleStunEnemyUI(false, 5);
         }
         if (e_i_resistantTurnCountEnemy5 <= 0)
         {
             e_b_inResistantStateEnemy5 = false;
+            g_global.g_UIManager.ToggleResistantEnemyUI(false, 5);
         }
 
         // Trigger remaining effects
         if (e_b_inBleedingStateEnemy5)
         {
             e_i_bleedingTurnCountEnemy5 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy5);
+            enemy5.EnemyAttacked(enemy5.e_str_enemyType, e_i_currentDamageValueForBleedEnemy5);
+            g_global.g_UIManager.ToggleBleedEnemyUI(true, 5);
         }
         if (e_b_inStunnedStateEnemy5)
         {
             e_i_stunnedTurnCountEnemy5 -= 1;
+            g_global.g_UIManager.ToggleStunEnemyUI(true, 5);
         }
         if (e_b_inResistantStateEnemy5)
         {
             e_i_resistantTurnCountEnemy5 -= 1;
+            g_global.g_UIManager.ToggleResistantEnemyUI(true, 5);
         }
     }
 

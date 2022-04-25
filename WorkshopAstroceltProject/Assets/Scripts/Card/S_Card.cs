@@ -14,9 +14,10 @@ public class S_Card : MonoBehaviour
     
     [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
+
     
-    [Header("Card Index")]
-    public int c_i_cardIndex; // Not utilized at this time, may be helpful for something like score?
+    [Header("Card Database Index")]
+    public int c_i_cardDataBaseIndex; 
 
     [Header("Card Basics")]
     public string c_str_cardName;
@@ -35,9 +36,9 @@ public class S_Card : MonoBehaviour
     public int c_i_effectValue3; // Effect Value 3
 
     [Header("Status Effect IDs")]
-    public int c_i_statusID1; // Default is 0, meaning no effect
-    public int c_i_statusID2;
-    public int c_i_statusID3; 
+    public string c_str_statusEffectID1;
+    public string c_str_statusEffectID2;
+    public string c_str_statusEffectID3;
 
     [Header("Turn Counts for Status Effects")]
     public int c_i_turnCount1;
@@ -116,11 +117,6 @@ public class S_Card : MonoBehaviour
     public S_CardScaler c_cardScaler;
     private GameObject c_zoomCard;
 
-    [Header("Status Effect IDs")]
-    public string c_str_statusEffectID1;
-    public string c_str_statusEffectID2;
-    public string c_str_statusEffectID3;
-
     [Header("Card Art Image")]
     public Image c_a_cardArtImage;
 
@@ -148,6 +144,10 @@ public class S_Card : MonoBehaviour
     /// <param name="_cardData"></param>
     public void FetchCardData(S_CardTemplate _cardData)
     {
+        // Database Index
+        c_i_cardDataBaseIndex = _cardData.CardDatabaseID;
+
+        // Template
         c_cardTemplate = _cardData;
 
         //set attack and defense
@@ -194,9 +194,6 @@ public class S_Card : MonoBehaviour
         c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
         c_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
         c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect;
-
-        // Bleed percentage
-        c_f_damagePercentage = _cardData.BleedEffectValue;
 
         //Toggle turncounts
         c_i_turnCount1 = _cardData.TurnCountForStatusEffect1;
@@ -359,15 +356,15 @@ public class S_Card : MonoBehaviour
                 // There is empirically a bleed effect, question is where
                 if(c_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_i_effectValue1, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
                 }
                 else if(c_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_i_effectValue2, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
                 }
                 else if (c_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_i_effectValue3, c_i_turnCount3, _givenEnemy.e_i_enemyCount);
                 }
 
             }
@@ -411,15 +408,15 @@ public class S_Card : MonoBehaviour
                 // There is empirically a bleed effect, question is where
                 if (c_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount1);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_i_effectValue1, c_i_turnCount1);
                 }
                 else if (c_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount2);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_i_effectValue2, c_i_turnCount2);
                 }
                 else if (c_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_damagePercentage, c_i_turnCount3);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_i_effectValue3, c_i_turnCount3);
                 }
 
             }
