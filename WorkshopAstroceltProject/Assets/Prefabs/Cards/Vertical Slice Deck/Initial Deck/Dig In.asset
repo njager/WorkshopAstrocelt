@@ -15,15 +15,14 @@ MonoBehaviour:
   CardName: Dig In
   HeaderText: Dig In
   BodyText: Deal 4 Damage. Makes Player Resistant.
-  FlavorText: 
+  FlavorText: '"Shrug off blows with ease!"'
   ColorString: red
   EnergyCost: 4
   DamageValue: 4
   ShieldValue: 0
-  EffectValue1: 30
+  EffectValue1: 0
   EffectValue2: 0
   EffectValue3: 0
-  BleedEffectValue: 0
   TurnCountForStatusEffect1: 3
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
@@ -32,8 +31,8 @@ MonoBehaviour:
   IDForStatusEffectThree: 0
   CardRarity: 1
   AffectsNone: 0
-  AffectsPlayer: 1
-  Affects1Character: 0
+  AffectsPlayer: 0
+  Affects1Character: 1
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
   PlayerEffect: 1
@@ -42,8 +41,8 @@ MonoBehaviour:
   BlueColorType: 0
   YellowColorType: 0
   WhiteColorType: 0
-  AttackEffect: 0
-  ShieldEffect: 1
+  AttackEffect: 1
+  ShieldEffect: 0
   UniqueEffect: 0
   NoEffect: 0
   BleedStatusEffect: 0
