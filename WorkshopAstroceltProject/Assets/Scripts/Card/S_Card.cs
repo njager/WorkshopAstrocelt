@@ -15,7 +15,9 @@ public class S_Card : MonoBehaviour
     public S_CardTemplate c_cardTemplate;
 
     [Header("Image Asset")]
-    public Image c_cardBaseImage;
+    public Image c_a_cardBackgroundImage;
+    public Image c_a_cardArtImage;
+    public Image c_a_cardForegroundImage;
 
     [Header("Card Database Index")]
     public int c_i_cardDataBaseIndex; 
@@ -55,12 +57,6 @@ public class S_Card : MonoBehaviour
     public bool c_b_yellowColorType;
     public bool c_b_whiteColorType;
     public string c_str_color;
-
-    [Header("Card Graphic Assets")]
-    public Sprite c_redArtGraphic; // If Red, toggle this
-    public Sprite c_blueArtGraphic; // If Blue, toggle this
-    public Sprite c_yellowArtGraphic; // If Yellow, toggle this 
-    public Sprite c_whiteArtGraphic; // If White, toggle this
 
     [Header("Primary Destination")]
     public bool c_b_affectsNone; 
@@ -118,8 +114,17 @@ public class S_Card : MonoBehaviour
     public S_CardScaler c_cardScaler;
     private GameObject c_zoomCard;
 
-    [Header("Card Art Image")]
-    public Image c_a_cardArtImage;
+    [Header("Card Background Art Assets")]
+    public Sprite c_a_redBackground;
+    public Sprite c_a_blueBackground;
+    public Sprite c_a_yellowBackground;
+    public Sprite c_a_whiteBackground;
+
+    [Header("Card Foreground Art Assets")]
+    public Sprite c_a_redForeground;
+    public Sprite c_a_blueForeground;
+    public Sprite c_a_yellowForeground;
+    public Sprite c_a_whiteForeground;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -212,7 +217,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage.sprite = c_redArtGraphic;
+            c_a_cardBackgroundImage.sprite = c_a_redBackground;
+            c_a_cardForegroundImage.sprite = c_a_redForeground;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -224,7 +230,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage.sprite = c_blueArtGraphic;
+            c_a_cardBackgroundImage.sprite = c_a_blueBackground;
+            c_a_cardForegroundImage.sprite = c_a_blueForeground;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -236,7 +243,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage.sprite = c_yellowArtGraphic;
+            c_a_cardBackgroundImage.sprite = c_a_yellowBackground;
+            c_a_cardForegroundImage.sprite = c_a_yellowForeground;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -248,14 +256,15 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = true;
 
             //Toggle Graphics
-            c_cardBaseImage.sprite = c_whiteArtGraphic;
+            c_a_cardBackgroundImage.sprite = c_a_whiteBackground;
+            c_a_cardForegroundImage.sprite = c_a_whiteForeground;
         }
 
         //set the text for the card
         SetText();
 
         // Set art asset
-        //c_a_cardArtImage.sprite = _cardData.CardArtAsset;
+        c_a_cardArtImage.sprite = _cardData.CardArtAsset;
 
         // Set String Color
         c_str_color = _cardData.ColorString;
