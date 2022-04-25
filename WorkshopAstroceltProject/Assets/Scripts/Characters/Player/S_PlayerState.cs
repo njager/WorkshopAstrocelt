@@ -123,7 +123,8 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inBleedingState == false)
         {
-            g_global.g_player.PlayerAttacked(_damageValue);
+            //g_global.g_player.PlayerAttacked(_damageValue);
+            g_global.g_UIManager.ToggleResistantPlayerUI(true);
             p_i_bleedingTurnCount = _turnCount;
             p_i_currentDamageRateForBleed = _damageValue;
             p_b_inBleedingState = true;
@@ -143,7 +144,8 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inStunnedState == false)
         {
-            g_global.g_turnManager.playerTurnSkipped = true; 
+            g_global.g_turnManager.playerTurnSkipped = true;
+            g_global.g_UIManager.ToggleStunPlayerUI(true);
             p_i_stunnedTurnCount = _turnCount;
             p_b_inStunnedState = true; 
         }
@@ -162,7 +164,8 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inResistantState == false)
         {
-            g_global.g_playerAttributeSheet.p_b_resistant = true; 
+            g_global.g_playerAttributeSheet.p_b_resistant = true;
+            g_global.g_UIManager.ToggleResistantPlayerUI(true);
             p_i_resistantTurnCount = _turnCount;
             p_b_inResistantState = true; 
         }

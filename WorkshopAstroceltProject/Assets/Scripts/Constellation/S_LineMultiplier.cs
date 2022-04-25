@@ -106,6 +106,7 @@ public class S_LineMultiplier : MonoBehaviour
         foreach(GameObject _line in g_global.g_ls_lineRendererList.ToList())
         {
             g_global.g_ls_lineRendererList.Remove(_line);
+            Destroy(_line);
         }
         f_totalLineLength = 0;
     }

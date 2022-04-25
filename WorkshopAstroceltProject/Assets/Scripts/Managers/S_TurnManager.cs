@@ -124,8 +124,9 @@ public class S_TurnManager : MonoBehaviour
         // Toggle day
         ChangeBackground(1);
 
-        //Clear card prefabs
+        //Clear card prefabs + Popups
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
+        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
 
         //change all the things that need to be changed for the enemies turn
         e_b_enemyDidAttack = false;

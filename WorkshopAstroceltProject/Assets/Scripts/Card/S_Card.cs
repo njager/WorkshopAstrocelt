@@ -9,13 +9,14 @@ using FMOD.Studio;
 public class S_Card : MonoBehaviour
 {
     //Private varibales
-    private Sprite c_cardBaseImage;
     private S_Global g_global;
     
     [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
 
-    
+    [Header("Image Asset")]
+    public Image c_cardBaseImage;
+
     [Header("Card Database Index")]
     public int c_i_cardDataBaseIndex; 
 
@@ -130,7 +131,6 @@ public class S_Card : MonoBehaviour
         //Separate cards, ended up not being needed
         g_global.c_i_cardIDNum += 1;
         c_i_cardID = g_global.c_i_cardIDNum;
-        c_cardBaseImage = GetComponent<Image>().sprite;
 
         cv_canvas = GameObject.Find("MainCanvas");
 
@@ -212,7 +212,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage = c_redArtGraphic;
+            c_cardBaseImage.sprite = c_redArtGraphic;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -224,7 +224,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage = c_blueArtGraphic;
+            c_cardBaseImage.sprite = c_blueArtGraphic;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -236,7 +236,7 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_cardBaseImage = c_yellowArtGraphic;
+            c_cardBaseImage.sprite = c_yellowArtGraphic;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -248,11 +248,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = true;
 
             //Toggle Graphics
-            c_cardBaseImage = c_whiteArtGraphic;
+            c_cardBaseImage.sprite = c_whiteArtGraphic;
         }
-
-        //set the background
-        GetComponent<Image>().sprite = c_cardBaseImage;
 
         //set the text for the card
         SetText();
