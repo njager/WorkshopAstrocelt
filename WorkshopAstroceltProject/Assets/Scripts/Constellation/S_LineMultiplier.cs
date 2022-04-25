@@ -96,17 +96,27 @@ public class S_LineMultiplier : MonoBehaviour
             return _lineMultiplier = comparatorCurve.Evaluate(_lineValue);
         }
     }
+    public void ClearLineList()
+    {
+        foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())
+        {
+            g_global.g_ls_lineRendererList.Remove(_line);
+            Destroy(_line);
+        }
+        f_totalLineLength = 0;
+    }
+
 
     /// <summary>
     /// Updated for new line multiplier function, clears line list, and resets total tally for line tier system
     /// - Josh
     /// </summary>
-    public void ClearLineList()
+    public void ChangeLineLists()
     {
         foreach(GameObject _line in g_global.g_ls_lineRendererList.ToList())
         {
-            g_global.g_ls_lineRendererList.Remove(_line);
-            Destroy(_line);
+            S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
+            _lineScript.TriggerLineTransfer();
         }
         f_totalLineLength = 0;
     }

@@ -52,7 +52,6 @@ public class S_EnergyManager : MonoBehaviour
         i_energyCount = 0;
 
         g_global.g_ConstellationManager.i_starSound = 0;
-        g_global.g_lineMultiplierManager.ClearLineList();
         g_global.g_ConstellationManager.b_starLockout = true;
     }
 

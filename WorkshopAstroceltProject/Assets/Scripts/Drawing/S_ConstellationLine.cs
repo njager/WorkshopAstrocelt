@@ -37,6 +37,15 @@ public class S_ConstellationLine : MonoBehaviour
         f_lineWidth = Random.Range(f_lineWidthMin, f_lineWidthMax);
     }
 
+    /// <summary>
+    /// Fix the problem with lines resetting
+    /// </summary>
+    public void TriggerLineTransfer()
+    {
+        g_global.g_ls_lineRendererList.Remove(gameObject);
+        g_global.g_ls_completedLineRendererList.Add(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         GameObject other = col.gameObject;

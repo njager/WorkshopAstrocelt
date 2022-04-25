@@ -235,6 +235,7 @@ public class S_ConstelationManager : MonoBehaviour
 
             //clear energy since node star
             g_global.g_energyManager.ClearEnergy();
+            g_global.g_lineMultiplierManager.ChangeLineLists();
 
             //add to the list
             AddStarToCurConstellation(_starN);

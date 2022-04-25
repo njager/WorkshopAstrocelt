@@ -108,7 +108,7 @@ public class S_DrawingManager : MonoBehaviour
         //stop the player from clicking on stars while reseting
         g_global.g_ConstellationManager.b_starLockout = false;
 
-        //reset the energy, multipliers, and the sond queues
+        //reset the energy, multipliers, and the sound queues
         g_global.g_lineMultiplierManager.ClearLineList();
         g_global.g_energyManager.ClearEnergy();
         
@@ -154,7 +154,11 @@ public class S_DrawingManager : MonoBehaviour
         {
             g_global.g_ls_lineRendererList.Remove(lineObject);
             Destroy(lineObject);
-            //this is bugging out when turn changes
+        }
+        foreach (GameObject lineObject in g_global.g_ls_completedLineRendererList.ToList())
+        {
+            g_global.g_ls_lineRendererList.Remove(lineObject);
+            Destroy(lineObject);
         }
         b_lineDeletionCompletion = true;
         yield return b_lineDeletionCompletion == true;
