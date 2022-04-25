@@ -39,8 +39,6 @@ public class S_EnergyManager : MonoBehaviour
         {
             i_blueEnergy += _energy;
         }
-
-        //call the altar
     }
 
     /// <summary>

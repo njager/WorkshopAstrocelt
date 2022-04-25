@@ -134,6 +134,11 @@ public class S_EnemyState : MonoBehaviour
             {
                 if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
                 {
+                    // Turn off status effects
+                    e_b_inBleedingStateEnemy1 = false;
+                    e_b_inStunnedStateEnemy1 = false;
+                    e_b_inResistantStateEnemy1 = false;
+
                     enemy1.EnemyDied(str_enemy1Type);
                     e_b_enemy1Dead = true; 
                 }
@@ -158,6 +163,11 @@ public class S_EnemyState : MonoBehaviour
             {
                 if (g_global.g_enemyAttributeSheet2.e_i_health <= 0)
                 {
+                    // Turn off status effects
+                    e_b_inBleedingStateEnemy2 = false;
+                    e_b_inStunnedStateEnemy2 = false;
+                    e_b_inResistantStateEnemy2 = false;
+
                     enemy2.EnemyDied(str_enemy2Type);
                     e_b_enemy2Dead = true;
                 }
@@ -181,6 +191,11 @@ public class S_EnemyState : MonoBehaviour
             {
                 if (g_global.g_enemyAttributeSheet3.e_i_health <= 0)
                 {
+                    // Turn off status effects
+                    e_b_inBleedingStateEnemy3 = false;
+                    e_b_inStunnedStateEnemy3 = false;
+                    e_b_inResistantStateEnemy3 = false;
+
                     enemy3.EnemyDied(str_enemy3Type);
                     e_b_enemy3Dead = true; 
                 }
@@ -204,6 +219,11 @@ public class S_EnemyState : MonoBehaviour
             {
                 if (g_global.g_enemyAttributeSheet4.e_i_health <= 0)
                 {
+                    // Turn off status effects
+                    e_b_inBleedingStateEnemy4 = false;
+                    e_b_inStunnedStateEnemy4 = false;
+                    e_b_inResistantStateEnemy4 = false;
+
                     enemy4.EnemyDied(str_enemy4Type);
                     e_b_enemy4Dead = true;
                 }
@@ -229,6 +249,11 @@ public class S_EnemyState : MonoBehaviour
             {
                 if (g_global.g_enemyAttributeSheet5.e_i_health <= 0)
                 {
+                    // Turn off status effects
+                    e_b_inBleedingStateEnemy5 = false;
+                    e_b_inStunnedStateEnemy5 = false;
+                    e_b_inResistantStateEnemy5 = false;
+
                     enemy5.EnemyDied(str_enemy5Type);
                     e_b_enemy5Dead = true;
                 }
@@ -245,8 +270,8 @@ public class S_EnemyState : MonoBehaviour
         Enemy1StatusChecks();
         Enemy2StatusChecks();
         Enemy3StatusChecks();
-        Enemy4StatusChecks();
-        Enemy5StatusChecks();
+        //Enemy4StatusChecks();
+        //Enemy5StatusChecks();
     }
 
     /// <summary>
@@ -265,7 +290,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy1 == false)
             {
-                enemy1.EnemyAttacked(str_enemy1Type, _damageValue);
+                //enemy1.EnemyAttacked(str_enemy1Type, _damageValue);
                 e_i_bleedingTurnCountEnemy1 = _turnCount;
                 e_i_currentDamageValueForBleedEnemy1 = _damageValue;
                 e_b_inBleedingStateEnemy1 = true;
@@ -281,7 +306,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy2 == false)
             {
-                enemy2.EnemyAttacked(str_enemy2Type, _damageValue);
+                //enemy2.EnemyAttacked(str_enemy2Type, _damageValue);
                 e_i_bleedingTurnCountEnemy2 = _turnCount;
                 e_i_currentDamageValueForBleedEnemy2 = _damageValue;
                 e_b_inBleedingStateEnemy2 = true;
@@ -312,7 +337,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy4 == false)
             {
-                enemy1.EnemyAttacked(str_enemy4Type, _damageValue);
+                //enemy1.EnemyAttacked(str_enemy4Type, _damageValue);
                 e_i_bleedingTurnCountEnemy4 = _turnCount;
                 e_i_currentDamageValueForBleedEnemy4 = _damageValue;
                 e_b_inBleedingStateEnemy4 = true;
@@ -328,7 +353,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inBleedingStateEnemy5 == false)
             {
-                enemy5.EnemyAttacked(str_enemy5Type, _damageValue);
+               // enemy5.EnemyAttacked(str_enemy5Type, _damageValue);
                 e_i_bleedingTurnCountEnemy5 = _turnCount;
                 e_i_currentDamageValueForBleedEnemy5 = _damageValue;
                 e_b_inBleedingStateEnemy5 = true;

@@ -152,7 +152,7 @@ public class S_Card : MonoBehaviour
 
         //set attack and defense
         c_i_damageValue = _cardData.DamageValue;
-        c_i_shieldValue = _cardData.DamageValue;
+        c_i_shieldValue = _cardData.ShieldValue;
 
         //Load strings
         c_str_cardName = _cardData.CardName;
@@ -258,7 +258,7 @@ public class S_Card : MonoBehaviour
         SetText();
 
         // Set art asset
-        c_a_cardArtImage.sprite = _cardData.CardArtAsset;
+        //c_a_cardArtImage.sprite = _cardData.CardArtAsset;
 
         // Set String Color
         c_str_color = _cardData.ColorString;
@@ -549,6 +549,7 @@ public class S_Card : MonoBehaviour
     private void DeleteCard()
     {
         g_global.g_turnManager.attackSound.SetActive(false);
+        g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
     }
@@ -578,15 +579,15 @@ public class S_Card : MonoBehaviour
     public void OnHoverEnter()
     {
         // Instantiate a new card based off the location of the mouse and the hoverHeight
-        c_zoomCard = Instantiate(gameObject, new Vector2(transform.position.x, transform.position.y + i_hoverHeight), Quaternion.identity);
-        c_zoomCard.transform.SetParent(cv_canvas.transform, false);
+        //c_zoomCard = Instantiate(gameObject, new Vector2(transform.position.x, transform.position.y + i_hoverHeight), Quaternion.identity);
+        //c_zoomCard.transform.SetParent(cv_canvas.transform, false);
 
         // Scale the transform of the rect
-        RectTransform _rect = c_zoomCard.GetComponent<RectTransform>();
-        _rect.sizeDelta = new Vector2(_rect.sizeDelta.x * i_hoverX, _rect.sizeDelta.y * i_hoverY);
+        //RectTransform _rect = c_zoomCard.GetComponent<RectTransform>();
+        //_rect.sizeDelta = new Vector2(_rect.sizeDelta.x * i_hoverX, _rect.sizeDelta.y * i_hoverY);
 
         // Scale text elements
-        c_zoomCard.GetComponent<S_Card>().c_cardScaler.SizeTextElements();
+        //c_zoomCard.GetComponent<S_Card>().c_cardScaler.SizeTextElements();
     }
 
     /// <summary>
@@ -595,7 +596,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void OnHoverExit()
     {
-        if (c_zoomCard != null) { Destroy(c_zoomCard); }
+        //if (c_zoomCard != null) { Destroy(c_zoomCard); }
     }
 
     /// <summary>
@@ -604,6 +605,6 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void EndHover()
     {
-        Destroy(c_zoomCard);
+        //Destroy(c_zoomCard);
     }
 }

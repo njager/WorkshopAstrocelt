@@ -225,7 +225,7 @@ public class S_Enemy : MonoBehaviour
     // Trigger intent when mouse enters
     public void OnHoverEnter()
     {
-        Debug.Log("Triggered Intent!");
+        //Debug.Log("Triggered Intent!");
         if (g_global.g_iconManager.b_intentFlashBool == true)
         {
             e_sp_spriteIcon.GetComponent<Image>().DOFade(255, f_intentDuration);
@@ -236,7 +236,7 @@ public class S_Enemy : MonoBehaviour
     // Trigger intent when mouse exits
     public void OnHoverExit()
     {
-        Debug.Log("Stopping Intent!");
+        //Debug.Log("Stopping Intent!");
         if (g_global.g_iconManager.b_intentFlashBool == true)
         {
             e_sp_spriteIcon.GetComponent<Image>().DOFade(0, f_intentDuration);

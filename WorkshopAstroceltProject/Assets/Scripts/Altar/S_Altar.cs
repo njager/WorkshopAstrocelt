@@ -32,6 +32,9 @@ public class S_Altar : MonoBehaviour
     [Header("Card Holder Reference")]
     public GameObject c_cardHolder;
 
+    [Header("Card Spawned Flag")]
+    public bool c_b_cardSpawned;
+
     [Header("DOTween Attributes")]
     public float f_moveSpeed;
 
@@ -184,6 +187,7 @@ public class S_Altar : MonoBehaviour
         if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+            ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
         else
         {
@@ -225,6 +229,39 @@ public class S_Altar : MonoBehaviour
             cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_moveSpeed);
             cardballPosition5.transform.GetChild(0).SetParent(cardballPosition4.transform);
             Debug.Log("Cardballs moving from 5 to 4");
+        }
+    }
+
+    /// <summary>
+    /// Can't delete itself and trigger proper moving
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator WaitForCardballDeletionToMove(GameObject _cardball)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(_cardball);
+        MoveCardballPrefabs();
+    }
+
+    /// <summary>
+    /// Toggle card visiblity
+    /// </summary>
+    public void OnHoverEnter()
+    {
+        if (c_b_cardSpawned)
+        {
+            c_cardHolder.transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Toggle card visiblity
+    /// </summary>
+    public void OnHoverExit()
+    {
+        if (c_b_cardSpawned)
+        {
+            c_cardHolder.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }

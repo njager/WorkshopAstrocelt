@@ -172,12 +172,12 @@ public class S_StarPopUp : MonoBehaviour
         }
     }
 
-    public void DeletePopup()
+    public void ClearPopup()
     {
         StartCoroutine(DeletionTimer());
     }
 
-    public void ClearPopup()
+    public void DeletePopup()
     {
         g_global.ls_starPopup.Remove(this);
         Destroy(gameObject);

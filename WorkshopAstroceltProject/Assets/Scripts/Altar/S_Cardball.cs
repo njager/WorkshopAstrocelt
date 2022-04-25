@@ -211,12 +211,22 @@ public class S_Cardball : MonoBehaviour
         // Load information From Template
         S_Card _cardScript = c_card.GetComponent<S_Card>();
         _cardScript.FetchCardData(c_cardData);
+        g_global.g_altar.c_b_cardSpawned = true;
+
+        // Fulfilled Function
+        //StartCoroutine(WaitToHide(c_card));
+
+        DeleteCardball();
+    }
+
+    public IEnumerator WaitToHide(GameObject _card)
+    {
+        yield return new WaitForSeconds(3f);
+        _card.SetActive(false);
 
         // Fulfilled Function
         DeleteCardball();
     }
-
-    // When card is played, slide card balls
 
     /// <summary>
     /// Now that it has built the card,
@@ -225,9 +235,9 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void DeleteCardball()
     {
+        Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.ls_cardBallPrefabs.Remove(this);
-        g_global.g_altar.MoveCardballPrefabs();
-        Destroy(this);
+        StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
     }
 
     /// <summary>
@@ -235,50 +245,53 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void OnHoverEnter()
     {
-        //Debug.Log("DEBUG: Toggle Cardball info on Altar - on");
-        g_global.g_altar.c_tx_cardName.text = c_cardName;
-        g_global.g_altar.c_tx_cardBody.text = c_cardBody;
-        
-        // Toggle Border based off cardball color
-        if(c_b_redCardball == true) // If Red
+        if (g_global.g_altar.c_b_cardSpawned == false)
         {
-            // Toggle Red border
-            g_global.g_altar.a_redBorder.SetActive(true);
+            //Debug.Log("DEBUG: Toggle Cardball info on Altar - on");
+            g_global.g_altar.c_tx_cardName.text = c_cardName;
+            g_global.g_altar.c_tx_cardBody.text = c_cardBody;
 
-            // Make sure rest are off
-            g_global.g_altar.a_blueBorder.SetActive(false);
-            g_global.g_altar.a_yellowBorder.SetActive(false);
-            g_global.g_altar.a_colorlessBorder.SetActive(false);
-        }
-        else if (c_b_blueCardball == true) // If Blue
-        {
-            // Toggle Blue border
-            g_global.g_altar.a_blueBorder.SetActive(true);
+            // Toggle Border based off cardball color
+            if (c_b_redCardball == true) // If Red
+            {
+                // Toggle Red border
+                g_global.g_altar.a_redBorder.SetActive(true);
 
-            // Make sure rest are off
-            g_global.g_altar.a_redBorder.SetActive(false);
-            g_global.g_altar.a_yellowBorder.SetActive(false);
-            g_global.g_altar.a_colorlessBorder.SetActive(false);
-        }
-        else if (c_b_yellowCardball == true) // If Yellow
-        {
-            // Toggle Yellow border
-            g_global.g_altar.a_yellowBorder.SetActive(true);
+                // Make sure rest are off
+                g_global.g_altar.a_blueBorder.SetActive(false);
+                g_global.g_altar.a_yellowBorder.SetActive(false);
+                g_global.g_altar.a_colorlessBorder.SetActive(false);
+            }
+            else if (c_b_blueCardball == true) // If Blue
+            {
+                // Toggle Blue border
+                g_global.g_altar.a_blueBorder.SetActive(true);
 
-            // Make sure rest are off
-            g_global.g_altar.a_redBorder.SetActive(false);
-            g_global.g_altar.a_blueBorder.SetActive(false);
-            g_global.g_altar.a_colorlessBorder.SetActive(false);
-        }
-        else if (c_b_colorlessCardball == true) // If Colorless
-        {
-            // Toggle Colorless border
-            g_global.g_altar.a_colorlessBorder.SetActive(true);
+                // Make sure rest are off
+                g_global.g_altar.a_redBorder.SetActive(false);
+                g_global.g_altar.a_yellowBorder.SetActive(false);
+                g_global.g_altar.a_colorlessBorder.SetActive(false);
+            }
+            else if (c_b_yellowCardball == true) // If Yellow
+            {
+                // Toggle Yellow border
+                g_global.g_altar.a_yellowBorder.SetActive(true);
 
-            // Make sure rest are off
-            g_global.g_altar.a_redBorder.SetActive(false);
-            g_global.g_altar.a_blueBorder.SetActive(false);
-            g_global.g_altar.a_yellowBorder.SetActive(false);
+                // Make sure rest are off
+                g_global.g_altar.a_redBorder.SetActive(false);
+                g_global.g_altar.a_blueBorder.SetActive(false);
+                g_global.g_altar.a_colorlessBorder.SetActive(false);
+            }
+            else if (c_b_colorlessCardball == true) // If Colorless
+            {
+                // Toggle Colorless border
+                g_global.g_altar.a_colorlessBorder.SetActive(true);
+
+                // Make sure rest are off
+                g_global.g_altar.a_redBorder.SetActive(false);
+                g_global.g_altar.a_blueBorder.SetActive(false);
+                g_global.g_altar.a_yellowBorder.SetActive(false);
+            }
         }
     }
 
@@ -288,14 +301,17 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void OnHoverExit()
     {
-        //Debug.Log("DEBUG: Toggle Cardball info on Altar - off");
-        g_global.g_altar.c_tx_cardName.text = "";
-        g_global.g_altar.c_tx_cardBody.text = "";
+        if (g_global.g_altar.c_b_cardSpawned == false)
+        {
+            //Debug.Log("DEBUG: Toggle Cardball info on Altar - off");
+            g_global.g_altar.c_tx_cardName.text = "";
+            g_global.g_altar.c_tx_cardBody.text = "";
 
-        // Turn off all borders
-        g_global.g_altar.a_redBorder.SetActive(false);
-        g_global.g_altar.a_blueBorder.SetActive(false);
-        g_global.g_altar.a_yellowBorder.SetActive(false);
-        g_global.g_altar.a_colorlessBorder.SetActive(false);
+            // Turn off all borders
+            g_global.g_altar.a_redBorder.SetActive(false);
+            g_global.g_altar.a_blueBorder.SetActive(false);
+            g_global.g_altar.a_yellowBorder.SetActive(false);
+            g_global.g_altar.a_colorlessBorder.SetActive(false);
+        }
     }
 }

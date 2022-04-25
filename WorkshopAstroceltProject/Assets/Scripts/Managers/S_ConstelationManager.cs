@@ -353,6 +353,9 @@ public class S_ConstelationManager : MonoBehaviour
 
         b_starLockout = true;
 
+        //call the altar
+        g_global.g_altar.CheckFirstCardball();
+
         // Popups now move to card
         StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
     }
