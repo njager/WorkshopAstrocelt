@@ -59,6 +59,9 @@ MonoBehaviour:
   e_str_enemyType: Lumberjack
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
+  e_tx_intentTextObject: {fileID: 0}
+  e_enemySprite: {fileID: 0}
+  f_intentDuration: 0
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,23 +74,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12576e1d2be3bcf4e883a5bb87659645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_f_attackRate: 0
-  e_f_shieldRate: 0
-  e_f_specialAbilityRate: 0
+  e_i_attackRate: 0
+  e_i_shieldRate: 0
+  e_i_specialAbilityRate: 0
   e_i_health: 0
   e_i_healthMax: 0
   e_i_shield: 0
   e_i_shieldMax: 0
+  e_i_enemyMinDamageRange: 0
+  e_i_enemyMaxDamageRange: 0
   e_i_enemyDamageValue: 0
   e_f_challengeRating: 0
   e_str_enemyType: 
-  e_b_enemyIsLumberjack: 0
+  e_b_Lumberjack: 0
+  e_b_Magician: 0
+  e_b_Beast: 0
   e_b_poisoned: 0
   e_b_stunned: 0
   e_b_bleeding: 0
   e_b_empowered: 0
   e_b_lucky: 0
-  e_b_restrained: 0
+  e_b_resistant: 0
   e_b_burned: 0
   e_b_shocked: 0
   e_enemy: {fileID: 0}
@@ -223,6 +230,7 @@ GameObject:
   - component: {fileID: 5254607161451454234}
   - component: {fileID: 3248392263734791793}
   - component: {fileID: 2843262813681667389}
+  - component: {fileID: 2254752231755098246}
   m_Layer: 0
   m_Name: EnemyPlayerGraphic
   m_TagString: Enemy
@@ -299,5 +307,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  e_attachedEnemy: {fileID: 0}
   p_b_attachedToPlayer: 0
   e_b_attachedToEnemy: 0
+--- !u!95 &2254752231755098246
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466407970463963069}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99167b1340672c349a48a79504cc02ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
