@@ -278,7 +278,6 @@ public class S_Card : MonoBehaviour
         c_tx_header.text = c_str_headerText;
         c_tx_body.text = c_str_bodyText;
         c_tx_flavor.text = c_str_flavorText;
-        c_tx_energyCost.text = c_i_energyCost.ToString();
     }
 
     /// <summary>
