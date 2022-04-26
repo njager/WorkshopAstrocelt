@@ -113,10 +113,15 @@ public class S_LineMultiplier : MonoBehaviour
     /// </summary>
     public void ChangeLineLists()
     {
-        foreach(GameObject _line in g_global.g_ls_lineRendererList.ToList())
+        //only run if there are lines in the list
+        if(g_global.g_ls_lineRendererList.Count() > 0)
         {
-            S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
-            _lineScript.TriggerLineTransfer();
+            //loop through all the lines in the line list
+            foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())
+            {
+                S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
+                _lineScript.TriggerLineTransfer();
+            }
         }
         f_totalLineLength = 0;
     }
