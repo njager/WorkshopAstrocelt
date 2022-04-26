@@ -33,8 +33,8 @@ public class S_RedStarAnimation : MonoBehaviour
 
         if (_percent < i_chance)
         {
-            print("red");
-            print(_percent);
+            //print("red");
+            //print(_percent);
             //Reset the "Crouch" trigger
             //a_animator.ResetTrigger("RedAnim");
 
