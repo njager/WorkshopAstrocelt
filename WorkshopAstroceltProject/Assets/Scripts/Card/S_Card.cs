@@ -278,7 +278,6 @@ public class S_Card : MonoBehaviour
         c_tx_header.text = c_str_headerText;
         c_tx_body.text = c_str_bodyText;
         c_tx_flavor.text = c_str_flavorText;
-        c_tx_energyCost.text = c_i_energyCost.ToString();
     }
 
     /// <summary>
@@ -527,6 +526,9 @@ public class S_Card : MonoBehaviour
         {
             // Note using any unique cards but we'd trigger special behavior here
         }
+
+        //call the altar to spawn the next card if you have energy
+        if (g_global.ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
     }
 
 

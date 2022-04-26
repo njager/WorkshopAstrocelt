@@ -76,6 +76,9 @@ public class S_DrawingManager : MonoBehaviour
     /// </summary>
     public void GoBackOnce(GameObject _line)
     {
+        //remove the deleted line from global
+        g_global.g_ls_lineRendererList.Remove(_line);
+
         //set the cur previous star to have a nullstar as a previous
         g_global.g_ConstellationManager.s_previousStar.s_star.m_previous = s_nullStarInst;
 
