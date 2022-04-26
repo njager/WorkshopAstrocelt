@@ -139,7 +139,7 @@ public class S_LineMultiplier : MonoBehaviour
         //add to total line length
         f_totalLineLength += length;
 
-        Debug.Log("Line with this index: " + _line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
+        //Debug.Log("Line with this index: " + _line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
 
         if(f_totalLineLength > f_largeLength) { print("Large Line Bonus"); return 3; }
         else if (f_totalLineLength > f_mediumLength) { print("med Line Bonus"); return 2; }

@@ -59,7 +59,13 @@ public class S_ConstelationManager : MonoBehaviour
 
     public IEnumerator LineWait(S_StarClass _star)
     {
+        Debug.Log("does this work");
+
         //wait for checking stars
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
@@ -341,24 +347,26 @@ public class S_ConstelationManager : MonoBehaviour
             {
                 g_global.g_energyManager.RitualBonusEnergy("yellow");
             }
+
+
+            //Print total line lenght, then reset to 0
+            Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
+            g_global.g_lineMultiplierManager.f_totalLineLength = 0;
+
+            //print out the energy at the end for debuggin purposes
+            Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
+
+            b_makingConstellation = false;
+            ls_curConstellation.Clear();
+
+            b_starLockout = true;
+
+            //call the altar
+            g_global.g_altar.CheckFirstCardball();
+
+            // Popups now move to card
+            StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
         }
-        //Print total line lenght, then reset to 0
-        Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
-        g_global.g_lineMultiplierManager.f_totalLineLength = 0;
-
-        //print out the energy at the end for debuggin purposes
-        Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
-
-        b_makingConstellation = false;
-        ls_curConstellation.Clear();
-
-        b_starLockout = true;
-
-        //call the altar
-        g_global.g_altar.CheckFirstCardball();
-
-        // Popups now move to card
-        StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
     }
 
     /// <summary>
