@@ -17,7 +17,7 @@ public class S_CardDatabase : MonoBehaviour
     public S_CardTemplate cardScript5; // Fortify, ID 5
     public S_CardTemplate cardScript6; // Lacerate, ID 6
     public S_CardTemplate cardScript7; // Preserve, ID 7
-    public S_CardTemplate cardScript8; // Riposte, ID 8
+    public S_CardTemplate cardScript8; // Demoralize, ID 8 // Previously reposte
     public S_CardTemplate cardScript9; // Stone Strike, ID 9
 
     [Header("Battle 1 Rewards")]
