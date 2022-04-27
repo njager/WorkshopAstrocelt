@@ -121,6 +121,10 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EnemyStateChange()
     {
+        // Line removal 
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false;
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
+
         // Toggle day
         ChangeBackground(1);
 
@@ -320,10 +324,6 @@ public class S_TurnManager : MonoBehaviour
 
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
-
-        // Line removal 
-        g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
-        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
         //stop the audio
         attackSound.SetActive(false);
