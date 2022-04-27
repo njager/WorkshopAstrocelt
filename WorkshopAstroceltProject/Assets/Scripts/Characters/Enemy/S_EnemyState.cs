@@ -14,6 +14,13 @@ public class S_EnemyState : MonoBehaviour
     public S_Enemy enemy4;
     public S_Enemy enemy5;
 
+    [Header("Enemy Turn Actions")]
+    public string e_str_enemy1Action;
+    public string e_str_enemy2Action;
+    public string e_str_enemy3Action;
+    public string e_str_enemy4Action;
+    public string e_str_enemy5Action;
+
     [Header("Enemy Types")]
     public string str_enemy1Type;
     public string str_enemy2Type;
@@ -273,6 +280,7 @@ public class S_EnemyState : MonoBehaviour
         //Enemy4StatusChecks();
         //Enemy5StatusChecks();
     }
+
 
     /// <summary>
     /// Function for initial trigger for Enemy Bleeds

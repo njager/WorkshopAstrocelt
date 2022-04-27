@@ -17,7 +17,7 @@ public class S_TurnManager : MonoBehaviour
     public bool b_playerInitialTurn = true;
     public bool b_enemyInitialTurn = false;
 
-    private float spawnTimer = 5f;
+    private float spawnTimer = 1f;
 
     [Header("Turn Skips")]
     public bool playerTurnSkipped;
@@ -75,8 +75,8 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 Debug.Log("Player Turn Skipped");
-                EnemyStateChange();
-                spawnTimer = 5f;
+                StartCoroutine(EnemyStateChange());
+                spawnTimer = 1f;
             }
         }
         else if (g_global.g_b_playerTurn == false)
@@ -89,7 +89,7 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 PlayerStateChange();
-                spawnTimer = 5f;
+                spawnTimer = 1f;
             }
         }
     }
@@ -110,7 +110,7 @@ public class S_TurnManager : MonoBehaviour
         }
         else
         {
-            EnemyStateChange(); //Then change the enemies state
+            StartCoroutine(EnemyStateChange()); //Then change the enemies state
         }
     }
 
@@ -119,8 +119,12 @@ public class S_TurnManager : MonoBehaviour
     /// Triggers the changing of the enemy ui icons
     /// - Riley & Josh
     /// </summary>
-    public void EnemyStateChange()
+    public IEnumerator EnemyStateChange()
     {
+        // Line removal 
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false;
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
+
         // Toggle day
         ChangeBackground(1);
 
@@ -132,7 +136,7 @@ public class S_TurnManager : MonoBehaviour
         e_b_enemyDidAttack = false;
         g_global.g_energyManager.ClearEnergy();
         g_global.g_enemyState.EnemyAttackingOrShielding();
-        RemoveShielding(); //Remove all shields first
+        RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
 
         foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
         {
@@ -147,9 +151,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy1TurnSkipped == false)
                 {
+                    //Doesn't stagger turn
+                    
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy1Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_i_shieldMax);
+                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_str_enemyType, g_global.g_enemyAttributeSheet1.e_i_shieldMax);
                     }
                     else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
                     {
@@ -175,9 +183,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy2TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy2Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_i_shieldMax);
+                        g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_str_enemyType, g_global.g_enemyAttributeSheet2.e_i_shieldMax);
                     }
                     else if (g_global.g_enemyState.e_b_enemy2Attacking == true)
                     {
@@ -203,9 +215,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy3TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy3Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_i_shieldMax);
+                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_str_enemyType, g_global.g_enemyAttributeSheet3.e_i_shieldMax);
                     }
                     else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
                     {
@@ -231,9 +247,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy4TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy4Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_str_enemyType, g_global.g_enemyAttributeSheet4.e_i_shieldMax);
                     }
                     else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
                     {
@@ -259,9 +279,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy5TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
                     {
-                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet5.e_str_enemyType, g_global.g_enemyAttributeSheet5.e_i_shieldMax);
                     }
                     else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
                     {
@@ -279,6 +303,9 @@ public class S_TurnManager : MonoBehaviour
                 }
             }
         }
+
+        // Represent enemy 1's turn
+        yield return new WaitForSeconds(2);
 
         // Load the next icon
         foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
@@ -318,12 +345,11 @@ public class S_TurnManager : MonoBehaviour
         //Turn to night
         ChangeBackground(0);
 
+        //Reset player
+        g_global.g_playerAttributeSheet.p_i_shield = 0;
+
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
-
-        // Line removal 
-        g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
-        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
         //stop the audio
         attackSound.SetActive(false);
@@ -341,11 +367,8 @@ public class S_TurnManager : MonoBehaviour
     /// <summary>
     /// Remove shielding as it's supposed to at end of turn
     /// </summary>
-    private void RemoveShielding()
+    private void RemoveEnemyShielding()
     {
-        //Reset player
-        g_global.g_playerAttributeSheet.p_i_shield = 0;
-
         //Reset Enemy
         if(g_global.g_enemyAttributeSheet1 != null) // Strip Enemy 1 of Shielding
         {

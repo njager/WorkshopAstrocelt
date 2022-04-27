@@ -126,6 +126,12 @@ public class S_Card : MonoBehaviour
     public Sprite c_a_yellowForeground;
     public Sprite c_a_whiteForeground;
 
+    [Header("Shield Sound Effect")]
+    public bool c_b_shieldSoundEffect;
+
+    [Header("Attack Sound Effect")]
+    public bool c_b_attackSoundEffect;
+
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
     //Functions
@@ -268,6 +274,12 @@ public class S_Card : MonoBehaviour
 
         // Set String Color
         c_str_color = _cardData.ColorString;
+
+        // Set sound effect for Shielding
+        c_b_shieldSoundEffect = _cardData.PhysicalOrMagicalBoolForShield;
+
+        // Set sound effect for Attacking
+        c_b_attackSoundEffect = _cardData.PhysicalOrMagicalBoolForAttack;
 
         // Use helper function for Status Effect Order
         CheckStatusEffectOrder(_cardData);
@@ -534,20 +546,31 @@ public class S_Card : MonoBehaviour
 
     /// <summary>
     /// If the main effect is attack, then attack
+    /// Sound effect plays here to avoid problems
+    /// If true = magic, physical = false
+    /// - Josh
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
-        PlayAttackSound();
+        if(c_b_attackSoundEffect == false) // Play physical sound
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+        }
+        else if(c_b_attackSoundEffect == true) // Play Magic sound
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+        }
         DeleteCard();
     }
 
     /// <summary>
     /// If the main effect is shield, then shield
+    /// - Josh
     /// </summary>
     private void TriggerShieldCard()
     {
-        g_global.g_player.PlayerShielded(c_i_shieldValue);
+        g_global.g_player.PlayerShielded(c_i_shieldValue, c_b_shieldSoundEffect);
         DeleteCard();
     }
 
@@ -560,14 +583,6 @@ public class S_Card : MonoBehaviour
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
-    }
-
-    /// <summary>
-    /// Attack sound
-    /// </summary>
-    public void PlayAttackSound()
-    {
-        g_global.g_turnManager.attackSound.SetActive(true);
     }
 
     /// <summary>
