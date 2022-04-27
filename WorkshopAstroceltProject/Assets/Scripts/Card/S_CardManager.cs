@@ -98,6 +98,8 @@ public class S_CardManager : MonoBehaviour
     /// </summary>
     public void ShuffleGraveToDeck()
     {
+        Debug.Log("Grave to Hand");
+
         //loop through the grave and add it to the deck
         foreach (int _cardKey in g_global.lst_p_playerGrave)
         {
