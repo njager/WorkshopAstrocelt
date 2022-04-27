@@ -342,6 +342,7 @@ public class S_UIManager : MonoBehaviour
     {
         if(_state == true)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
             p_playerBleedEffect.SetActive(true);
         }
         else if (_state == false)
@@ -360,6 +361,7 @@ public class S_UIManager : MonoBehaviour
     {
         if (_state == true)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
             p_playerStunEffect.SetActive(true);
         }
         else if (_state == false)
@@ -379,6 +381,7 @@ public class S_UIManager : MonoBehaviour
     {
         if (_state == true)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
             p_playerResistantEffect.SetActive(true);
         }
         else if (_state == false)
@@ -403,6 +406,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
                     e_enemy1BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -417,6 +421,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
                     e_enemy2BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -431,6 +436,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
                     e_enemy3BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -445,6 +451,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
                     e_enemy4BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -459,6 +466,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
                     e_enemy5BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -484,6 +492,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
                     e_enemy1StunEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -498,6 +507,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
                     e_enemy2StunEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -512,6 +522,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
                     e_enemy3StunEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -526,6 +537,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
                     e_enemy4StunEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -540,6 +552,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
                     e_enemy5StunEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -566,6 +579,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
                     e_enemy1ResistantEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -580,6 +594,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
                     e_enemy2ResistantEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -594,6 +609,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
                     e_enemy3ResistantEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -608,6 +624,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
                     e_enemy4ResistantEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -622,6 +639,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
                     e_enemy5ResistantEffect.SetActive(true);
                 }
                 else if (_state == false)
