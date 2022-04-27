@@ -418,7 +418,7 @@ public class S_Card : MonoBehaviour
                 }
             }
         }
-        else if (_character.GetComponent<S_Enemy>() != null) // If the given character was the player
+        else if (_character.GetComponent<S_Player>() != null) // If the given character was the player
         {
             if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {

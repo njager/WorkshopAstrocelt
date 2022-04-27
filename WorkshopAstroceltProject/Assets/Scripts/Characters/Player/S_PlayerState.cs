@@ -69,9 +69,6 @@ public class S_PlayerState : MonoBehaviour
     /// </summary>
     public void PlayerStatusEffectDecrement()
     {
-        //-Riley I turned off all the ui references because they were bricking the game
-
-
         // Check for state
         if(p_i_bleedingTurnCount <= 0)
         {
@@ -124,7 +121,7 @@ public class S_PlayerState : MonoBehaviour
         if (p_b_inBleedingState == false)
         {
             //g_global.g_player.PlayerAttacked(_damageValue);
-            g_global.g_UIManager.ToggleResistantPlayerUI(true);
+            g_global.g_UIManager.ToggleBleedPlayerUI(true);
             p_i_bleedingTurnCount = _turnCount;
             p_i_currentDamageRateForBleed = _damageValue;
             p_b_inBleedingState = true;
