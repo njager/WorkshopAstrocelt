@@ -113,10 +113,15 @@ public class S_LineMultiplier : MonoBehaviour
     /// </summary>
     public void ChangeLineLists()
     {
-        foreach(GameObject _line in g_global.g_ls_lineRendererList.ToList())
+        //only run if there are lines in the list
+        if(g_global.g_ls_lineRendererList.Count() > 0)
         {
-            S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
-            _lineScript.TriggerLineTransfer();
+            //loop through all the lines in the line list
+            foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())
+            {
+                S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
+                _lineScript.TriggerLineTransfer();
+            }
         }
         f_totalLineLength = 0;
     }
@@ -134,10 +139,10 @@ public class S_LineMultiplier : MonoBehaviour
         //add to total line length
         f_totalLineLength += length;
 
-        Debug.Log("Line with this index: " + _line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
+        //Debug.Log("Line with this index: " + _line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
 
-        if(f_totalLineLength > f_largeLength) { print("Large Line Bonus"); return 3; }
-        else if (f_totalLineLength > f_mediumLength) { print("med Line Bonus"); return 2; }
-        else { print("No Line Bonus"); return 1; }
+        if(f_totalLineLength > f_largeLength) { return 3; }
+        else if (f_totalLineLength > f_mediumLength) { return 2; }
+        else { return 1; }
     }
 }

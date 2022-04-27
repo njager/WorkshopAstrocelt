@@ -59,6 +59,8 @@ public class S_ConstelationManager : MonoBehaviour
 
     public IEnumerator LineWait(S_StarClass _star)
     {
+        //Debug.Log("does this work");
+
         //wait for checking stars
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
@@ -93,10 +95,6 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (b_makingConstellation)
             {
-                //do some final thing with star sound
-                _starSoundPhase1.SetActive(false);
-                PlaySound();
-
                 //finsih making the constellation
                 FinishConstellation(_star);
             }
@@ -231,6 +229,8 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else //if you have not started a constellation
         {
+            //set the sound to active and reset the star sound
+            _starSoundPhase1.SetActive(true);
             i_starSound = 0;
 
             //clear energy since node star
@@ -273,9 +273,6 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void FinishConstellation(S_StarClass _node)
     {
-        //reset the audio
-        i_starSound = 0;
-
         //lock out stars while calculating
         b_starLockout = false;
 
@@ -293,6 +290,10 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else
         {
+            //do some final thing with star sound
+            _starSoundPhase1.SetActive(false);
+            PlaySound();
+
             //bools to trigger
             int _red = 0;
             int _blue = 0;
@@ -341,24 +342,26 @@ public class S_ConstelationManager : MonoBehaviour
             {
                 g_global.g_energyManager.RitualBonusEnergy("yellow");
             }
+
+
+            //Print total line lenght, then reset to 0
+            Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
+            g_global.g_lineMultiplierManager.f_totalLineLength = 0;
+
+            //print out the energy at the end for debuggin purposes
+            Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
+
+            b_makingConstellation = false;
+            ls_curConstellation.Clear();
+
+            b_starLockout = true;
+
+            //call the altar
+            g_global.g_altar.CheckFirstCardball();
+
+            // Popups now move to card
+            StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
         }
-        //Print total line lenght, then reset to 0
-        Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
-        g_global.g_lineMultiplierManager.f_totalLineLength = 0;
-
-        //print out the energy at the end for debuggin purposes
-        Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
-
-        b_makingConstellation = false;
-        ls_curConstellation.Clear();
-
-        b_starLockout = true;
-
-        //call the altar
-        g_global.g_altar.CheckFirstCardball();
-
-        // Popups now move to card
-        StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
     }
 
     /// <summary>
