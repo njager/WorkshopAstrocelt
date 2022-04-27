@@ -65,7 +65,7 @@ public class S_ConstelationManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        if (!_star.s_star.m_previousLine) { yield return null; }
+        if (!_star.s_star.m_previousLine) { Debug.Log("line is gone so no star added"); yield return null; }
         else { AddStarToCurConstellation(_star); }
     }
 
