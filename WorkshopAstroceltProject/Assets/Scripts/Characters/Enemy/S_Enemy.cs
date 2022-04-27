@@ -278,13 +278,18 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used to make intent visable at beginning of enemy turn
+    /// A bit wonky tbh
+    /// - Josh
+    /// </summary>
     public void IncreaseIntentAlpha()
     {
         e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
     }
 
-    // Eventually use this
+    // Eventually use this for UI stuff to avoid using an update loop
     private void SetEnemyHealthText(int _healthVal)
     {
 
