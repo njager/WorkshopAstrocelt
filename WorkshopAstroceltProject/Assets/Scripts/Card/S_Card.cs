@@ -368,6 +368,7 @@ public class S_Card : MonoBehaviour
         if (_character.GetComponent<S_Enemy>() != null) // If the given character was an enemy
         {
             S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
+            Debug.Log(_givenEnemy.e_i_enemyCount);
             if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
@@ -579,7 +580,6 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void DeleteCard()
     {
-        g_global.g_turnManager.attackSound.SetActive(false);
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
