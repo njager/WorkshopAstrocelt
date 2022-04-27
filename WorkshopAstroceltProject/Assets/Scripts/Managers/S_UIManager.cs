@@ -361,7 +361,10 @@ public class S_UIManager : MonoBehaviour
     {
         if (_state == true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+            if(g_global.g_playerState.p_i_turnsPassedForStun == 1)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+            }
             p_playerStunEffect.SetActive(true);
         }
         else if (_state == false)
@@ -381,7 +384,10 @@ public class S_UIManager : MonoBehaviour
     {
         if (_state == true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+            if (g_global.g_playerState.p_i_turnsPassedForResistant == 1)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+            }
             p_playerResistantEffect.SetActive(true);
         }
         else if (_state == false)

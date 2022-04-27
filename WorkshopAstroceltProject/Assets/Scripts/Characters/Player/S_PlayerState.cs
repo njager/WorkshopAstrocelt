@@ -19,9 +19,13 @@ public class S_PlayerState : MonoBehaviour
     public bool p_b_inStunnedState;
     public bool p_b_inResistantState;
 
-    [Header("Audio Prefab")]
+    [Header("Audio Prefabs")]
     public GameObject playerWinMusic;
     public GameObject playerLoseMusic;
+
+    [Header("Turns passed for Status effects")]
+    public int p_i_turnsPassedForStun;
+    public int p_i_turnsPassedForResistant;
 
     [Header("Status Effect Stores")]
     public int p_i_currentDamageRateForBleed;
@@ -80,12 +84,14 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_turnManager.playerTurnSkipped = false;
             p_b_inStunnedState = false;
             g_global.g_UIManager.ToggleStunPlayerUI(false);
+            p_i_turnsPassedForStun = 0;
         }
         if (p_i_resistantTurnCount <= 0)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = false;
             p_b_inResistantState = false;
             g_global.g_UIManager.ToggleResistantPlayerUI(false);
+            p_i_turnsPassedForResistant = 0;
         }
         
         // Trigger remaining effects
@@ -99,12 +105,14 @@ public class S_PlayerState : MonoBehaviour
         {
             g_global.g_turnManager.playerTurnSkipped = true;
             p_i_stunnedTurnCount -= 1;
+            p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
         }
         if (p_b_inResistantState == true)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = true;
             p_i_resistantTurnCount -= 1;
+            p_i_turnsPassedForResistant += 1;
             g_global.g_UIManager.ToggleResistantPlayerUI(true); 
         }
     }
@@ -141,6 +149,7 @@ public class S_PlayerState : MonoBehaviour
         if (p_b_inStunnedState == false)
         {
             g_global.g_turnManager.playerTurnSkipped = true;
+            p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
             p_i_stunnedTurnCount = _turnCount;
             p_b_inStunnedState = true; 
@@ -161,6 +170,7 @@ public class S_PlayerState : MonoBehaviour
         if (p_b_inResistantState == false)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = true;
+            p_i_turnsPassedForResistant += 1;
             g_global.g_UIManager.ToggleResistantPlayerUI(true);
             p_i_resistantTurnCount = _turnCount;
             p_b_inResistantState = true; 
