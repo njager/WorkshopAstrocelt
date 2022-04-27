@@ -79,7 +79,6 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     /// <param name="_enemyType"></param>
     /// <param name="_damageVal"></param>
-
     public void EnemyAttacked(string _enemyType, int _damageValue)
     {
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")

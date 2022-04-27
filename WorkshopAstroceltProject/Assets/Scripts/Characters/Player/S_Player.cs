@@ -89,8 +89,8 @@ public class S_Player : MonoBehaviour
     /// <param name="_shieldValue"></param>
     public void PlayerShielded(int _shieldValue, bool _soundEffectState)
     {
-        //print(_shieldValue);
         Debug.Log("DEBUG: Player Shields: " + _shieldValue);
+
         if(_soundEffectState == false) // False = physcial
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
@@ -99,7 +99,6 @@ public class S_Player : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
         }
-        
 
         p_playerAttributes.p_i_shield += _shieldValue; 
     }

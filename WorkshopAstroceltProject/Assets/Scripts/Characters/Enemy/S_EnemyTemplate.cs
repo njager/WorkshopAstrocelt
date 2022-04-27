@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class S_EnemyTemplate : ScriptableObject 
 {
+    // Not used
+
     [Header("Frequency Rates")]
     public float e_f_attackRate;
     public float e_f_shieldRate;
