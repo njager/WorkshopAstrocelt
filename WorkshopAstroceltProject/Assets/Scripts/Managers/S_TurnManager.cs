@@ -17,7 +17,7 @@ public class S_TurnManager : MonoBehaviour
     public bool b_playerInitialTurn = true;
     public bool b_enemyInitialTurn = false;
 
-    private float spawnTimer = 5f;
+    private float spawnTimer = 1f;
 
     [Header("Turn Skips")]
     public bool playerTurnSkipped;
@@ -75,8 +75,8 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 Debug.Log("Player Turn Skipped");
-                EnemyStateChange();
-                spawnTimer = 5f;
+                StartCoroutine(EnemyStateChange());
+                spawnTimer = 1f;
             }
         }
         else if (g_global.g_b_playerTurn == false)
@@ -89,7 +89,7 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 PlayerStateChange();
-                spawnTimer = 5f;
+                spawnTimer = 1f;
             }
         }
     }
@@ -110,7 +110,7 @@ public class S_TurnManager : MonoBehaviour
         }
         else
         {
-            EnemyStateChange(); //Then change the enemies state
+            StartCoroutine(EnemyStateChange()); //Then change the enemies state
         }
     }
 
@@ -119,7 +119,7 @@ public class S_TurnManager : MonoBehaviour
     /// Triggers the changing of the enemy ui icons
     /// - Riley & Josh
     /// </summary>
-    public void EnemyStateChange()
+    public IEnumerator EnemyStateChange()
     {
         // Line removal 
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
@@ -151,6 +151,10 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy1TurnSkipped == false)
                 {
+                    //Doesn't stagger turn
+                    
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy1Shielding == true)
                     {
                         g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_i_shieldMax);
@@ -179,6 +183,10 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy2TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy2Shielding == true)
                     {
                         g_global.g_enemyAttributeSheet2.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet2.e_i_shieldMax);
@@ -207,6 +215,10 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy3TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy3Shielding == true)
                     {
                         g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_i_shieldMax);
@@ -235,6 +247,10 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy4TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy4Shielding == true)
                     {
                         g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
@@ -263,6 +279,10 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy5TurnSkipped == false)
                 {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
                     {
                         g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_i_shieldMax);
@@ -283,6 +303,9 @@ public class S_TurnManager : MonoBehaviour
                 }
             }
         }
+
+        // Represent enemy 1's turn
+        yield return new WaitForSeconds(2);
 
         // Load the next icon
         foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
