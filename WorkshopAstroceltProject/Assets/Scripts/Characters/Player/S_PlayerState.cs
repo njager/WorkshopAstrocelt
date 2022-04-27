@@ -80,7 +80,6 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_i_stunnedTurnCount <= 0)
         {
-            Debug.Log("Never Here");
             g_global.g_turnManager.playerTurnSkipped = false;
             p_b_inStunnedState = false;
             g_global.g_UIManager.ToggleStunPlayerUI(false);
