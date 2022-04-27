@@ -121,6 +121,10 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EnemyStateChange()
     {
+        // Line removal 
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false;
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
+
         // Toggle day
         ChangeBackground(1);
 
@@ -132,7 +136,7 @@ public class S_TurnManager : MonoBehaviour
         e_b_enemyDidAttack = false;
         g_global.g_energyManager.ClearEnergy();
         g_global.g_enemyState.EnemyAttackingOrShielding();
-        RemoveShielding(); //Remove all shields first
+        RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
 
         foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
         {
@@ -318,12 +322,11 @@ public class S_TurnManager : MonoBehaviour
         //Turn to night
         ChangeBackground(0);
 
+        //Reset player
+        g_global.g_playerAttributeSheet.p_i_shield = 0;
+
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
-
-        // Line removal 
-        g_global.g_DrawingManager.b_lineDeletionCompletion = false; 
-        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
         //stop the audio
         attackSound.SetActive(false);
@@ -341,11 +344,8 @@ public class S_TurnManager : MonoBehaviour
     /// <summary>
     /// Remove shielding as it's supposed to at end of turn
     /// </summary>
-    private void RemoveShielding()
+    private void RemoveEnemyShielding()
     {
-        //Reset player
-        g_global.g_playerAttributeSheet.p_i_shield = 0;
-
         //Reset Enemy
         if(g_global.g_enemyAttributeSheet1 != null) // Strip Enemy 1 of Shielding
         {
