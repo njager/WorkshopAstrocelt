@@ -267,9 +267,9 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     public void EnemyStatusEffectDecrement()
     {
-        Enemy1StatusChecks();
-        Enemy2StatusChecks();
-        Enemy3StatusChecks();
+        if (g_global.g_enemyAttributeSheet1 != null) { Enemy1StatusChecks(); }
+        if (g_global.g_enemyAttributeSheet2 != null) { Enemy2StatusChecks(); }
+        if (g_global.g_enemyAttributeSheet3 != null) { Enemy3StatusChecks(); }
         //Enemy4StatusChecks();
         //Enemy5StatusChecks();
     }

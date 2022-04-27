@@ -204,12 +204,12 @@ public class S_Altar : MonoBehaviour
     {
         if (cardballPosition2.transform.transform.childCount == 1)
         {
-            Debug.Log("Cardball Position 2 Full");
+            //Debug.Log("Cardball Position 2 Full");
             // Move the cardball from 2 to 1
             cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_moveSpeed);
             cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
-            Debug.Log("Cardballs moving from 2 to 1");
+            //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.transform.childCount == 1)
         {
@@ -217,7 +217,7 @@ public class S_Altar : MonoBehaviour
             cardballPosition3.transform.GetChild(0).DOMove(cardballPosition2.transform.position, f_moveSpeed);
             cardballPosition3.transform.GetChild(0).SetParent(cardballPosition2.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
-            Debug.Log("Cardballs moving from 3 to 2");
+            //Debug.Log("Cardballs moving from 3 to 2");
         }
         if (cardballPosition4.transform.transform.childCount == 1)
         {
@@ -225,7 +225,7 @@ public class S_Altar : MonoBehaviour
             cardballPosition4.transform.GetChild(0).DOMove(cardballPosition3.transform.position, f_moveSpeed);
             cardballPosition4.transform.GetChild(0).SetParent(cardballPosition3.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
-            Debug.Log("Cardballs moving from 4 to 3");
+            //Debug.Log("Cardballs moving from 4 to 3");
         }
         if (cardballPosition5.transform.transform.childCount == 1)
         {
@@ -233,7 +233,7 @@ public class S_Altar : MonoBehaviour
             cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_moveSpeed);
             cardballPosition5.transform.GetChild(0).SetParent(cardballPosition4.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
-            Debug.Log("Cardballs moving from 5 to 4");
+            //Debug.Log("Cardballs moving from 5 to 4");
         }
     }
 

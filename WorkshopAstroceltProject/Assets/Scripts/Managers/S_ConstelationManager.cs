@@ -59,13 +59,9 @@ public class S_ConstelationManager : MonoBehaviour
 
     public IEnumerator LineWait(S_StarClass _star)
     {
-        Debug.Log("does this work");
+        //Debug.Log("does this work");
 
         //wait for checking stars
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
@@ -99,10 +95,6 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (b_makingConstellation)
             {
-                //do some final thing with star sound
-                _starSoundPhase1.SetActive(false);
-                PlaySound();
-
                 //finsih making the constellation
                 FinishConstellation(_star);
             }
@@ -237,6 +229,8 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else //if you have not started a constellation
         {
+            //set the sound to active and reset the star sound
+            _starSoundPhase1.SetActive(true);
             i_starSound = 0;
 
             //clear energy since node star
@@ -279,9 +273,6 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void FinishConstellation(S_StarClass _node)
     {
-        //reset the audio
-        i_starSound = 0;
-
         //lock out stars while calculating
         b_starLockout = false;
 
@@ -299,6 +290,10 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else
         {
+            //do some final thing with star sound
+            _starSoundPhase1.SetActive(false);
+            PlaySound();
+
             //bools to trigger
             int _red = 0;
             int _blue = 0;

@@ -84,7 +84,6 @@ public class S_ConstellationLine : MonoBehaviour
         }
         else if (other.CompareTag("Star")) //check if the col is a star
         {
-            print("There");
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
             {
                 Debug.Log("encountered another star in path");

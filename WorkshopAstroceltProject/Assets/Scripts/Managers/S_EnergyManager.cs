@@ -109,7 +109,6 @@ public class S_EnergyManager : MonoBehaviour
                 else
                 {
                     _energy -= _max2;
-                    int _max3 = 0;
 
                     if (i_redEnergy == _max2) { i_redEnergy = 0; }
                     else if (i_yellowEnergy == _max2) { i_yellowEnergy = 0; }

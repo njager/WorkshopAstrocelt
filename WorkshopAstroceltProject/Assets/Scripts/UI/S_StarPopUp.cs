@@ -112,17 +112,17 @@ public class S_StarPopUp : MonoBehaviour
     {
         if(_positionCount == 1)
         {
-            Debug.Log("First popup!");
+            //Debug.Log("First popup!");
             gameObject.transform.position = _star.vectorPoint1.transform.position;
         }
         else if(_positionCount == 2)
         {
-            Debug.Log("Second popup!");
+            //Debug.Log("Second popup!");
             gameObject.transform.position = _star.vectorPoint2.transform.position;
         }
         else if(_positionCount == 3)
         {
-            Debug.Log("Third popup!");
+            //Debug.Log("Third popup!");
             gameObject.transform.position = _star.vectorPoint3.transform.position;
         }
     }
