@@ -82,20 +82,32 @@ public class S_Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Player shielding function for when they gain shields from play
+    /// Player shielding function for when they gain shields from cards
+    /// False for physical, True for magic
+    /// - Josh
     /// </summary>
     /// <param name="_shieldValue"></param>
-    public void PlayerShielded(int _shieldValue)
+    public void PlayerShielded(int _shieldValue, bool _soundEffectState)
     {
-        print(_shieldValue);
-        //play sound effect
-        a_audioPlayer.SetActive(true);
+        //print(_shieldValue);
+        Debug.Log("DEBUG: Player Shields: " + _shieldValue);
+        if(_soundEffectState == false) // False = physcial
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+        }
+        else if(_soundEffectState == true) // True = magic
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+        }
+        
 
         p_playerAttributes.p_i_shield += _shieldValue; 
     }
 
     /// <summary>
     /// Trigger function for when the player is healed
+    /// May never be used, who knows
+    /// - Josh
     /// </summary>
     /// <param name="_healedValue"></param>
     public void PlayerHealed(int _healedValue)

@@ -126,6 +126,9 @@ public class S_Card : MonoBehaviour
     public Sprite c_a_yellowForeground;
     public Sprite c_a_whiteForeground;
 
+    [Header("Shield Sound Effect")]
+    public bool c_b_shieldSoundEffect;
+
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
     //Functions
@@ -268,6 +271,9 @@ public class S_Card : MonoBehaviour
 
         // Set String Color
         c_str_color = _cardData.ColorString;
+
+        // Set sound effect for Shielding
+        c_b_shieldSoundEffect = _cardData.PhysicalOrMagicalBool;
 
         // Use helper function for Status Effect Order
         CheckStatusEffectOrder(_cardData);
@@ -547,7 +553,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerShieldCard()
     {
-        g_global.g_player.PlayerShielded(c_i_shieldValue);
+        g_global.g_player.PlayerShielded(c_i_shieldValue, c_b_shieldSoundEffect);
         DeleteCard();
     }
 

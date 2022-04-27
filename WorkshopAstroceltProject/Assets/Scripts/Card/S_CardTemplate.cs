@@ -79,6 +79,9 @@ public class S_CardTemplate : ScriptableObject
     [Header("Art Asset")]
     public Sprite CardArtAsset;
 
+    [Header("Shield Sound Effect: True if Magic, false if Physical")]
+    public bool PhysicalOrMagicalBool;
+
     [Header("Card ID")]
     public int CardDatabaseID;
 

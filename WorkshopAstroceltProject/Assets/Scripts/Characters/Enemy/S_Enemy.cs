@@ -11,7 +11,6 @@ public class S_Enemy : MonoBehaviour
     private S_Global g_global;
 
     public S_EnemyAttributes e_enemyAttributes;
-    [SerializeField] GameObject a_audioPlayer;
 
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
@@ -83,9 +82,6 @@ public class S_Enemy : MonoBehaviour
 
     public void EnemyAttacked(string _enemyType, int _damageValue)
     {
-        //sound effect goes here
-        a_audioPlayer.SetActive(true);
-
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
@@ -183,6 +179,15 @@ public class S_Enemy : MonoBehaviour
     public void EnemyShielded(string _enemyType, int _shieldVal)
     {
         e_enemyAttributes.e_i_shield += _shieldVal;
+        if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+        }
+        else if(_enemyType == "Brawler" || _enemyType == "Magician") // Shield Magic
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+        }
+        
         Debug.Log("Enemy Shields");
     }
 
@@ -235,7 +240,6 @@ public class S_Enemy : MonoBehaviour
     {
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
-        g_global.g_selectorManager.SelectorReset();
         e_enemyAttributes.e_i_health = 0;
         gameObject.SetActive(false);
     }
