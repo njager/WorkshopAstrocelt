@@ -57,7 +57,7 @@ public class S_ConstellationLine : MonoBehaviour
         }
         else if (other.CompareTag("Line")) //check if collider is a line
         {
-            print("Theres a line");
+            //print("Theres a line");
             //Use if lines connecting to the same stars are colliding if(&& other.GetComponent<LineRenderer>() != _prevLine)
             if (s_previousStar.s_star.m_previousLine)
             {

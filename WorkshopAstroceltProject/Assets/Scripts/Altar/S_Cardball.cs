@@ -237,6 +237,7 @@ public class S_Cardball : MonoBehaviour
     {
         Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.ls_cardBallPrefabs.Remove(this);
+        g_global.lst_p_playerGrave.Add(c_cardData.CardDatabaseID);
         StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
     }
 

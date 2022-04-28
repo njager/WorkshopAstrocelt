@@ -114,6 +114,7 @@ public class S_PopupManager : MonoBehaviour
             }
             else if (_lineTier == 3)
             {
+                print("popup?");
                 // Int for tracking how many popups there have been
                 int _popupCount = 0;
 
@@ -124,7 +125,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
-                _starPopupScript1.SetGraphic(_star.starType);
+                _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Spawn Star 2
                 GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
@@ -133,7 +134,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 2
                 _starPopupScript2.SetPosition(_popupCount, _star);
-                _starPopupScript2.SetGraphic(_star.starType);
+                _starPopupScript2.SetGraphic(_star.colorType);
 
                 // Spawn Star 3
                 GameObject _starPopup3 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
@@ -142,7 +143,7 @@ public class S_PopupManager : MonoBehaviour
 
                 // Set up Star 3
                 _starPopupScript3.SetPosition(_popupCount, _star);
-                _starPopupScript3.SetGraphic(_star.starType);
+                _starPopupScript3.SetGraphic(_star.colorType);
             }
         }
     }

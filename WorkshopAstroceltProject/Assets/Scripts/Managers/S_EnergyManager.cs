@@ -14,6 +14,10 @@ public class S_EnergyManager : MonoBehaviour
     public int i_yellowEnergy;
     public int i_blueEnergy;
 
+    public int i_redStorageEnergy;
+    public int i_yellowStorageEnergy;
+    public int i_blueStorageEnergy;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -21,24 +25,44 @@ public class S_EnergyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This function gets called in constellation manager to set the energy
+    /// This function gets called in constellation manager
+    /// Stores the energy to wait for the 
     /// </summary>
     /// <param name="_color"></param>
     /// <param name="_energy"></param>
-    public void SetEnergy(string _color, int _energy)
+    public void StoreEnergy(string _color, int _energy)
     {
+        Debug.Log("Energy Stored");
         if (_color == "red")
         {
-            i_redEnergy += _energy;
+            i_redStorageEnergy += _energy;
         }
         else if (_color == "yellow")
         {
-            i_yellowEnergy += _energy;
+            i_yellowStorageEnergy += _energy;
         }
         else if (_color == "blue")
         {
-            i_blueEnergy += _energy;
+            i_blueStorageEnergy += _energy;
         }
+    }
+
+    public void ClearStoredEnergy()
+    {
+        Debug.Log("Stored Energy Cleared");
+        i_redStorageEnergy = 0;
+        i_yellowStorageEnergy = 0;
+        i_blueStorageEnergy = 0;
+    }
+
+    public void TransferStoredEnergy()
+    {
+        Debug.Log("Stored energy transfered");
+        i_redEnergy += i_redStorageEnergy;
+        i_yellowEnergy += i_yellowStorageEnergy;
+        i_blueEnergy += i_blueStorageEnergy;
+
+        ClearStoredEnergy();
     }
 
     /// <summary>
@@ -48,8 +72,13 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     public void ClearEnergy()
     {
+        Debug.Log("Energy Cleared!");
         str_energyColor = "";
         i_energyCount = 0;
+
+        i_redEnergy = 0;
+        i_yellowEnergy = 0;
+        i_blueEnergy = 0;
 
         g_global.g_ConstellationManager.i_starSound = 0;
         g_global.g_ConstellationManager.b_starLockout = true;
@@ -134,18 +163,18 @@ public class S_EnergyManager : MonoBehaviour
         
         if (_color == "red")
         {
-            Debug.Log("Bonus " + _color + " energy : old energy = " + i_redEnergy);
-            i_redEnergy = (int)(i_redEnergy * 1.5);
+            Debug.Log("Bonus " + _color + " energy : old energy = " + i_redStorageEnergy);
+            i_redStorageEnergy = (int)(i_redStorageEnergy * 1.5);
         }
         if (_color == "blue")
         {
-            Debug.Log("Bonus " + _color + " energy : old energy = " +i_blueEnergy);
-            i_blueEnergy = (int)(i_blueEnergy * 1.5);
+            Debug.Log("Bonus " + _color + " energy : old energy = " + i_blueStorageEnergy);
+            i_blueStorageEnergy = (int)(i_blueStorageEnergy * 1.5);
         }
         if (_color == "yellow")
         {
-            Debug.Log("Bonus " + _color + " energy : old energy = " + i_yellowEnergy);
-            i_yellowEnergy = (int)(i_yellowEnergy * 1.5);
+            Debug.Log("Bonus " + _color + " energy : old energy = " + i_yellowStorageEnergy);
+            i_yellowStorageEnergy = (int)(i_yellowStorageEnergy * 1.5);
         }
     }
 }
