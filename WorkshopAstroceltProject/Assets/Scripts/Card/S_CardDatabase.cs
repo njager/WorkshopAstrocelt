@@ -51,7 +51,7 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(9, cardScript9);
 
         // Add the intitial deck to player deck
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 9; i++)
         {
             g_global.ls_p_playerDeck.Add(i);
         }
