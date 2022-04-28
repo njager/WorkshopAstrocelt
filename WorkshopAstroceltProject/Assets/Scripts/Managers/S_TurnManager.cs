@@ -155,6 +155,9 @@ public class S_TurnManager : MonoBehaviour
                     }
                     else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
                     {
+                        //play enemy animation
+                        g_global.g_enemyAttributeSheet1.e_a_animator.Play("attack");
+
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
 
                         //Then play sounds
@@ -204,18 +207,21 @@ public class S_TurnManager : MonoBehaviour
                     }
                     else if (g_global.g_enemyState.e_b_enemy2Attacking == true)
                     {
+                        //play enemy animation
+                        g_global.g_enemyAttributeSheet2.e_a_animator.Play("attack");
+
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet2.e_i_enemyDamageValue);
 
                         //Then play sounds
-                        if (g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
+                        if (g_global.g_enemyState.enemy2.e_str_enemyType == "Beast")
                         {
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
                         }
-                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
+                        else if (g_global.g_enemyState.enemy2.e_str_enemyType == "Magician")
                         {
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                         }
-                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
+                        else if (g_global.g_enemyState.enemy2.e_str_enemyType == "Brawler")
                         {
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
@@ -252,17 +258,20 @@ public class S_TurnManager : MonoBehaviour
                         }
                         else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
                         {
+                            //play enemy animation
+                            g_global.g_enemyAttributeSheet3.e_a_animator.Play("attack");
+
                             g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
                             //Then play sounds
-                            if (g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
+                            if (g_global.g_enemyState.enemy3.e_str_enemyType == "Beast")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
                             }
-                            else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
+                            else if (g_global.g_enemyState.enemy3.e_str_enemyType == "Magician")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                             }
-                            else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
+                            else if (g_global.g_enemyState.enemy3.e_str_enemyType == "Brawler")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
@@ -297,13 +306,16 @@ public class S_TurnManager : MonoBehaviour
                         }
                         else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
                         {
+                            //play enemy animation
+                            g_global.g_enemyAttributeSheet4.e_a_animator.Play("attack");
+
                             g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
                             //Then play sounds
-                            if (g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
+                            if (g_global.g_enemyState.enemy4.e_str_enemyType == "Beast")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
                             }
-                            else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
+                            else if (g_global.g_enemyState.enemy4.e_str_enemyType == "Magician")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                             }
@@ -342,17 +354,20 @@ public class S_TurnManager : MonoBehaviour
                         }
                         else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
                         {
+                            //play enemy animation
+                            g_global.g_enemyAttributeSheet5.e_a_animator.Play("attack");
+
                             g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
                             //Then play sounds
-                            if (g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
+                            if (g_global.g_enemyState.enemy5.e_str_enemyType == "Beast")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
                             }
-                            else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
+                            else if (g_global.g_enemyState.enemy5.e_str_enemyType == "Magician")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                             }
-                            else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
+                            else if (g_global.g_enemyState.enemy5.e_str_enemyType == "Brawler")
                             {
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");

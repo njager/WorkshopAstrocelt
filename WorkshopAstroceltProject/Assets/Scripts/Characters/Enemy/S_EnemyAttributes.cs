@@ -50,6 +50,12 @@ public class S_EnemyAttributes : MonoBehaviour
     [Header("Attached Enemy Script")]
     public S_Enemy e_enemy;
 
+    [Header("Particle Effect")]
+    public ParticleSystem e_pe_blood;
+
+    [Header("Animatior")]
+    public Animator e_a_animator;
+
     public void Awake()
     {
         g_global = S_Global.Instance; 

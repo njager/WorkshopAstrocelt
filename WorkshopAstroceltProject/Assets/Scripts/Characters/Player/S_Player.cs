@@ -36,6 +36,8 @@ public class S_Player : MonoBehaviour
             if (p_playerAttributes.p_i_shield <= 0)
             {
                 p_playerAttributes.p_i_health -= _newDamageValue;
+                p_playerAttributes.p_pe_blood.Play();
+                p_playerAttributes.p_a_animator.Play("Damaged");
                 Debug.Log("Player Attacked!");
             }
             else
@@ -46,6 +48,8 @@ public class S_Player : MonoBehaviour
                 {
                     p_playerAttributes.p_i_shield -= _newDamageValue;
                     p_playerAttributes.p_i_health -= _tempVal;
+                    p_playerAttributes.p_pe_blood.Play();
+                    p_playerAttributes.p_a_animator.Play("Damaged");
                     Debug.Log("Player didn't have enough shields!");
                 }
                 else
@@ -60,6 +64,8 @@ public class S_Player : MonoBehaviour
             if (p_playerAttributes.p_i_shield <= 0)
             {
                 p_playerAttributes.p_i_health -= _damageValue;
+                p_playerAttributes.p_pe_blood.Play();
+                p_playerAttributes.p_a_animator.Play("Damaged");
                 Debug.Log("Player Attacked!");
             }
             else
@@ -70,6 +76,8 @@ public class S_Player : MonoBehaviour
                 {
                     p_playerAttributes.p_i_shield -= _damageValue;
                     p_playerAttributes.p_i_health -= _tempVal;
+                    p_playerAttributes.p_pe_blood.Play();
+                    p_playerAttributes.p_a_animator.Play("Damaged");
                     Debug.Log("Player didn't have enough shields!");
                 }
                 else
