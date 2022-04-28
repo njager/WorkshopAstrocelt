@@ -182,11 +182,16 @@ public class S_Enemy : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
         }
-        else if(_enemyType == "Brawler" || _enemyType == "Magician") // Shield Magic
+        else if(_enemyType == "Brawler") // Shield Magic
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
         }
-        
+        else if(_enemyType == "Brawler")
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+        }
+
         Debug.Log("Enemy Shields");
     }
 

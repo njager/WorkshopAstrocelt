@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
 using TMPro;
 using System.Linq;
 using DG.Tweening;
@@ -208,7 +207,7 @@ public class S_Altar : MonoBehaviour
             // Move the cardball from 2 to 1
             cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_moveSpeed);
             cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.transform.childCount == 1)
@@ -216,7 +215,7 @@ public class S_Altar : MonoBehaviour
             // Move the cardball from 3 to 2
             cardballPosition3.transform.GetChild(0).DOMove(cardballPosition2.transform.position, f_moveSpeed);
             cardballPosition3.transform.GetChild(0).SetParent(cardballPosition2.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 3 to 2");
         }
         if (cardballPosition4.transform.transform.childCount == 1)
@@ -224,7 +223,7 @@ public class S_Altar : MonoBehaviour
             // Move the cardball from 4 to 3
             cardballPosition4.transform.GetChild(0).DOMove(cardballPosition3.transform.position, f_moveSpeed);
             cardballPosition4.transform.GetChild(0).SetParent(cardballPosition3.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 4 to 3");
         }
         if (cardballPosition5.transform.transform.childCount == 1)
@@ -232,7 +231,7 @@ public class S_Altar : MonoBehaviour
             // Move the cardball from 5 to 4
             cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_moveSpeed);
             cardballPosition5.transform.GetChild(0).SetParent(cardballPosition4.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UI/cardball-move");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
     }
