@@ -67,12 +67,9 @@ public class S_ConstellationLine : MonoBehaviour
                 //execute if the lines arnt next to eachother
                 if(other.GetComponent<S_ConstellationLine>().i_index != _prevLine.i_index)
                 {
-                    print("WHerere");
                     if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index and if it is equal to the previous line
                     {
-                        print("Not here");
                         g_global.g_DrawingManager.GoBackOnce(this.gameObject);
-                        //g_global.g_DrawingManager.ConstellationReset();
                     }
                 }
             }

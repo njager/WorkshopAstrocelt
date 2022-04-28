@@ -17,7 +17,7 @@ public class S_CardDatabase : MonoBehaviour
     public S_CardTemplate cardScript5; // Fortify, ID 5
     public S_CardTemplate cardScript6; // Lacerate, ID 6
     public S_CardTemplate cardScript7; // Preserve, ID 7
-    public S_CardTemplate cardScript8; // Riposte, ID 8
+    public S_CardTemplate cardScript8; // Demoralize, ID 8 // Previously reposte
     public S_CardTemplate cardScript9; // Stone Strike, ID 9
 
     [Header("Battle 1 Rewards")]
@@ -51,7 +51,7 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(9, cardScript9);
 
         // Add the intitial deck to player deck
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 10; i++)
         {
             g_global.ls_p_playerDeck.Add(i);
         }

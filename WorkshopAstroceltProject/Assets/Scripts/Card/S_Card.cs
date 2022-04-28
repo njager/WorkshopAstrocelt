@@ -37,6 +37,7 @@ public class S_Card : MonoBehaviour
     public int c_i_effectValue1; // Effect Value 1
     public int c_i_effectValue2; // Effect Value 2
     public int c_i_effectValue3; // Effect Value 3
+    public float c_f_bleedDamagePercentage;
 
     [Header("Status Effect IDs")]
     public string c_str_statusEffectID1;
@@ -125,6 +126,12 @@ public class S_Card : MonoBehaviour
     public Sprite c_a_blueForeground;
     public Sprite c_a_yellowForeground;
     public Sprite c_a_whiteForeground;
+
+    [Header("Shield Sound Effect")]
+    public bool c_b_shieldSoundEffect;
+
+    [Header("Attack Sound Effect")]
+    public bool c_b_attackSoundEffect;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -269,6 +276,34 @@ public class S_Card : MonoBehaviour
         // Set String Color
         c_str_color = _cardData.ColorString;
 
+        // Set sound effect for Shielding
+        c_b_shieldSoundEffect = _cardData.PhysicalOrMagicalBoolForShield;
+
+        // Set sound effect for Attacking
+        c_b_attackSoundEffect = _cardData.PhysicalOrMagicalBoolForAttack;
+
+        // Build bleed percentage 
+        if(c_f_cardRarity == 0) // Common
+        {
+            c_f_bleedDamagePercentage = 0.1f;
+        }
+        else if (c_f_cardRarity == 1) // Uncommon
+        {
+            c_f_bleedDamagePercentage = 0.15f;
+        }
+        else if (c_f_cardRarity == 2) // Rare
+        {
+            c_f_bleedDamagePercentage = 0.2f;
+        }
+        else if (c_f_cardRarity == 3) // Very Rare
+        {
+            c_f_bleedDamagePercentage = 0.3f;
+        }
+        else if (c_f_cardRarity == 4) // Legendary
+        {
+            c_f_bleedDamagePercentage = 0.4f;
+        }
+
         // Use helper function for Status Effect Order
         CheckStatusEffectOrder(_cardData);
     }
@@ -356,20 +391,21 @@ public class S_Card : MonoBehaviour
         if (_character.GetComponent<S_Enemy>() != null) // If the given character was an enemy
         {
             S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
+            Debug.Log(_givenEnemy.e_i_enemyCount);
             if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
                 if(c_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_i_effectValue1, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
                 }
                 else if(c_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_i_effectValue2, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
                 }
                 else if (c_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_i_effectValue3, c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount3, _givenEnemy.e_i_enemyCount);
                 }
 
             }
@@ -406,22 +442,22 @@ public class S_Card : MonoBehaviour
                 }
             }
         }
-        else if (_character.GetComponent<S_Enemy>() != null) // If the given character was the player
+        else if (_character.GetComponent<S_Player>() != null) // If the given character was the player
         {
             if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
                 if (c_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_i_effectValue1, c_i_turnCount1);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount1);
                 }
                 else if (c_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_i_effectValue2, c_i_turnCount2);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount2);
                 }
                 else if (c_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_i_effectValue3, c_i_turnCount3);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount3);
                 }
 
             }
@@ -534,20 +570,31 @@ public class S_Card : MonoBehaviour
 
     /// <summary>
     /// If the main effect is attack, then attack
+    /// Sound effect plays here to avoid problems
+    /// If true = magic, physical = false
+    /// - Josh
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
-        PlayAttackSound();
+        if(c_b_attackSoundEffect == false) // Play physical sound
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+        }
+        else if(c_b_attackSoundEffect == true) // Play Magic sound
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+        }
         DeleteCard();
     }
 
     /// <summary>
     /// If the main effect is shield, then shield
+    /// - Josh
     /// </summary>
     private void TriggerShieldCard()
     {
-        g_global.g_player.PlayerShielded(c_i_shieldValue);
+        g_global.g_player.PlayerShielded(c_i_shieldValue, c_b_shieldSoundEffect);
         DeleteCard();
     }
 
@@ -556,18 +603,9 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void DeleteCard()
     {
-        g_global.g_turnManager.attackSound.SetActive(false);
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
-    }
-
-    /// <summary>
-    /// Attack sound
-    /// </summary>
-    public void PlayAttackSound()
-    {
-        g_global.g_turnManager.attackSound.SetActive(true);
     }
 
     /// <summary>

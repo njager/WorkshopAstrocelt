@@ -11,7 +11,6 @@ public class S_Enemy : MonoBehaviour
     private S_Global g_global;
 
     public S_EnemyAttributes e_enemyAttributes;
-    [SerializeField] GameObject a_audioPlayer;
 
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
@@ -42,7 +41,7 @@ public class S_Enemy : MonoBehaviour
 
         e_enemySprite.GetComponent<S_CharacterCardInterface>().e_attachedEnemy = this;
 
-        a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
+        //a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
     }
 
     private void Start()
@@ -80,12 +79,8 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     /// <param name="_enemyType"></param>
     /// <param name="_damageVal"></param>
-
     public void EnemyAttacked(string _enemyType, int _damageValue)
     {
-        //sound effect goes here
-        a_audioPlayer.SetActive(true);
-
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
@@ -173,18 +168,51 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
-    public void EnemyShielded(int _shieldVal)
+    /// <summary>
+    /// Enemy shield function,
+    /// needs string type for differing audio behavior
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyType"></param>
+    /// <param name="_shieldVal"></param>
+    public void EnemyShielded(string _enemyType, int _shieldVal)
     {
         e_enemyAttributes.e_i_shield += _shieldVal;
+        if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+        }
+        else if(_enemyType == "Brawler") // Shield Magic
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+        }
+        else if(_enemyType == "Brawler")
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+        }
+
         Debug.Log("Enemy Shields");
     }
 
+    /// <summary>
+    /// If an enemy heals itself down the line
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthVal"></param>
     public void EnemyHealed(int _healthVal)
     {
         e_enemyAttributes.e_i_health += _healthVal;
         Debug.Log("Enemy Heals");
     }
 
+
+    /// <summary>
+    /// Enemy Special ability function
+    /// Has to be iterated upon per new enemy type
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyType"></param>
     public void EnemySpecialAbility(string _enemyType)
     {
         if(_enemyType == "Lumberjack")
@@ -205,24 +233,35 @@ public class S_Enemy : MonoBehaviour
         {
             g_global.g_playerState.PlayerBleedingStatusEffect(3, 3);
         }
-    } 
+    }
 
-    // Require enemy type in case we need to do death behavior
+    /// <summary>
+    /// Enemy death function
+    /// Require enemy type in case we need to do death behavior down the line
+    /// </summary>
+    /// <param name="_enemyType"></param>
     public void EnemyDied(string _enemyType)
     {
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
-        g_global.g_selectorManager.SelectorReset();
         e_enemyAttributes.e_i_health = 0;
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// A function just to make clear what's happening
+    /// May eventually have sound effects to it
+    /// - Josh
+    /// </summary>
     public void ChangeIcon()
     {
         g_global.g_iconManager.EnemyIconNextTurn(this);
     }
 
-    // Trigger intent when mouse enters
+    /// <summary>
+    /// Used to toggle intent when mouse enters
+    /// - Josh
+    /// </summary>
     public void OnHoverEnter()
     {
         //Debug.Log("Triggered Intent!");
@@ -233,7 +272,10 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
-    // Trigger intent when mouse exits
+    /// <summary>
+    /// Used to toggle intent when mouse enters
+    /// - Josh
+    /// </summary>
     public void OnHoverExit()
     {
         //Debug.Log("Stopping Intent!");
@@ -244,13 +286,18 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used to make intent visable at beginning of enemy turn
+    /// A bit wonky tbh
+    /// - Josh
+    /// </summary>
     public void IncreaseIntentAlpha()
     {
         e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
     }
 
-    // Eventually use this
+    // Eventually use this for UI stuff to avoid using an update loop
     private void SetEnemyHealthText(int _healthVal)
     {
 
