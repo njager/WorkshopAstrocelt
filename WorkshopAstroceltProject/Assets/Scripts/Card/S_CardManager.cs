@@ -61,7 +61,6 @@ public class S_CardManager : MonoBehaviour
 
                 //remove a key from the deck and add it to the grave
                 g_global.ls_p_playerDeck.RemoveAt(_rand);
-                g_global.lst_p_playerGrave.Add(_cardKey);
 
                 //get the card game object and add it to the player hand
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);

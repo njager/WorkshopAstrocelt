@@ -121,20 +121,12 @@ public class S_ConstelationManager : MonoBehaviour
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
 
             //compare in hierarchy to get the color
-            if (_rStar.s_b_redColor)
-            {
-                g_global.g_energyManager.SetEnergy("red", _energy);
-            }
+            if (_rStar.s_b_redColor) { g_global.g_energyManager.StoreEnergy("red", _energy); }
             else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
-            {
-                g_global.g_energyManager.SetEnergy("yellow", _energy);
-            }
-            else if (_rStar.s_b_blueColor)
-            {
-                g_global.g_energyManager.SetEnergy("blue", _energy);
-            }
+            { g_global.g_energyManager.StoreEnergy("yellow", _energy); }
+            else if (_rStar.s_b_blueColor) { g_global.g_energyManager.StoreEnergy("blue", _energy); }
         }
-        else if (_star.starType == "Energy")
+        else
         {
             //add the line multiplier
             _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
@@ -143,18 +135,9 @@ public class S_ConstelationManager : MonoBehaviour
             S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
 
             //get the color
-            if (_eStar.s_b_redColor)
-            {
-                g_global.g_energyManager.SetEnergy("red", _energy);
-            }
-            else if (_eStar.s_b_yellowColor)
-            {
-                g_global.g_energyManager.SetEnergy("yellow", _energy);
-            }
-            else if (_eStar.s_b_blueColor)
-            {
-                g_global.g_energyManager.SetEnergy("blue", _energy);
-            }
+            if (_eStar.s_b_redColor) { g_global.g_energyManager.StoreEnergy("red", _energy); }
+            else if (_eStar.s_b_yellowColor) { g_global.g_energyManager.StoreEnergy("yellow", _energy); }
+            else if (_eStar.s_b_blueColor) { g_global.g_energyManager.StoreEnergy("blue", _energy); }
         }
 
         //Spawn popups as needed
@@ -233,8 +216,6 @@ public class S_ConstelationManager : MonoBehaviour
             _starSoundPhase1.SetActive(true);
             i_starSound = 0;
 
-            //clear energy since node star
-            g_global.g_energyManager.ClearEnergy();
             g_global.g_lineMultiplierManager.ChangeLineLists();
 
             //add to the list
@@ -348,13 +329,16 @@ public class S_ConstelationManager : MonoBehaviour
             Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
             g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
-            //print out the energy at the end for debuggin purposes
-            Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
-
             b_makingConstellation = false;
             ls_curConstellation.Clear();
 
             b_starLockout = true;
+
+            //transfer the energy
+            g_global.g_energyManager.TransferStoredEnergy();
+
+            //print out the energy at the end for debuggin purposes
+            Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
 
             //call the altar
             g_global.g_altar.CheckFirstCardball();

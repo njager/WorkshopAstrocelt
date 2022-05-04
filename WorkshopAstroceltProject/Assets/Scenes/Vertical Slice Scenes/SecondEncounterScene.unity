@@ -3862,7 +3862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &186424562
 Transform:
   m_ObjectHideFlags: 0
@@ -7220,7 +7220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &395299369
 Transform:
   m_ObjectHideFlags: 0
@@ -9309,7 +9309,6 @@ MonoBehaviour:
   g_popupManager: {fileID: 274638691}
   g_altar: {fileID: 1981244727}
   g_sceneManager: {fileID: 1510901130}
-  g_cardBall: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -21484,7 +21483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1098223307
 Transform:
   m_ObjectHideFlags: 0
@@ -24497,7 +24496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1244606321
 Transform:
   m_ObjectHideFlags: 0
@@ -25093,6 +25092,11 @@ MonoBehaviour:
   enemy3: {fileID: 0}
   enemy4: {fileID: 0}
   enemy5: {fileID: 0}
+  e_str_enemy1Action: 
+  e_str_enemy2Action: 
+  e_str_enemy3Action: 
+  e_str_enemy4Action: 
+  e_str_enemy5Action: 
   str_enemy1Type: 
   str_enemy2Type: 
   str_enemy3Type: 
@@ -25148,11 +25152,21 @@ MonoBehaviour:
   e_b_inBleedingStateEnemy5: 0
   e_b_inStunnedStateEnemy5: 0
   e_b_inResistantStateEnemy5: 0
-  e_i_currentDamageValueForBleedEnemy1: 0
-  e_i_currentDamageValueForBleedEnemy2: 0
-  e_i_currentDamageValueForBleedEnemy3: 0
-  e_i_currentDamageValueForBleedEnemy4: 0
-  e_i_currentDamageValueForBleedEnemy5: 0
+  e_f_currentDamageRateForBleedEnemy1: 0
+  e_f_currentDamageRateForBleedEnemy2: 0
+  e_f_currentDamageRateForBleedEnemy3: 0
+  e_f_currentDamageRateForBleedEnemy4: 0
+  e_f_currentDamageRateForBleedEnemy5: 0
+  e_i_enemy1StunTurnsPassed: 0
+  e_i_enemy2StunTurnsPassed: 0
+  e_i_enemy3StunTurnsPassed: 0
+  e_i_enemy4StunTurnsPassed: 0
+  e_i_enemy5StunTurnsPassed: 0
+  e_i_enemy1ResistantTurnsPassed: 0
+  e_i_enemy2ResistantTurnsPassed: 0
+  e_i_enemy3ResistantTurnsPassed: 0
+  e_i_enemy4ResistantTurnsPassed: 0
+  e_i_enemy5ResistantTurnsPassed: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25173,7 +25187,9 @@ MonoBehaviour:
   p_b_inResistantState: 0
   playerWinMusic: {fileID: 1885446296}
   playerLoseMusic: {fileID: 1572118200}
-  p_i_currentDamageRateForBleed: 0
+  p_i_turnsPassedForStun: 0
+  p_i_turnsPassedForResistant: 0
+  p_f_currentDamageRateForBleed: 0
 --- !u!114 &1269889775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25186,8 +25202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 1603892938}
-  e_b_enemyDidAttack: 0
   b_playerInitialTurn: 1
   b_enemyInitialTurn: 0
   playerTurnSkipped: 0
@@ -27279,6 +27293,9 @@ MonoBehaviour:
   i_redEnergy: 0
   i_yellowEnergy: 0
   i_blueEnergy: 0
+  i_redStorageEnergy: 0
+  i_yellowStorageEnergy: 0
+  i_blueStorageEnergy: 0
 --- !u!1 &1421026600
 GameObject:
   m_ObjectHideFlags: 0
@@ -28835,7 +28852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1508326619
 Transform:
   m_ObjectHideFlags: 0
@@ -29652,7 +29669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1596312360
 Transform:
   m_ObjectHideFlags: 0
@@ -29876,11 +29893,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1599640790}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1603892938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4562677180002554325, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1604427012
 PrefabInstance:
@@ -30503,7 +30515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1656121817
 Transform:
   m_ObjectHideFlags: 0
@@ -31185,7 +31197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1684771473
 Transform:
   m_ObjectHideFlags: 0
@@ -31932,7 +31944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1715009317
 Transform:
   m_ObjectHideFlags: 0
@@ -32122,7 +32134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1723941546
 Transform:
   m_ObjectHideFlags: 0
@@ -33945,7 +33957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1851100176
 Transform:
   m_ObjectHideFlags: 0
@@ -35829,7 +35841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1958270808
 Transform:
   m_ObjectHideFlags: 0
@@ -36604,7 +36616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2021596659
 Transform:
   m_ObjectHideFlags: 0
@@ -37558,7 +37570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2082559650
 Transform:
   m_ObjectHideFlags: 0

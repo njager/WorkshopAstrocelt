@@ -36,6 +36,12 @@ public class S_PlayerAttributes : MonoBehaviour
     public bool p_b_burned;
     public bool p_b_shocked;
 
+    [Header("Particle Effect")]
+    public ParticleSystem p_pe_blood;
+
+    [Header("Animatior")]
+    public Animator p_a_animator;
+
     void Awake()
     {
         g_global = S_Global.Instance; 

@@ -89,6 +89,7 @@ public class S_Enemy : MonoBehaviour
                 if (e_enemyAttributes.e_i_shield <= 0)
                 {
                     e_enemyAttributes.e_i_health -= _newDamageValue;
+                    e_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy Attacked!");
                 }
                 else
@@ -102,6 +103,7 @@ public class S_Enemy : MonoBehaviour
                             e_enemyAttributes.e_i_shield = 0;
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                        e_enemyAttributes.e_pe_blood.Play();
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -116,6 +118,8 @@ public class S_Enemy : MonoBehaviour
                 if (e_enemyAttributes.e_i_shield <= 0)
                 {
                     e_enemyAttributes.e_i_health -= _damageValue;
+                    e_enemyAttributes.e_pe_blood.Play();
+                    e_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy Attacked!");
                 }
                 else
@@ -129,6 +133,8 @@ public class S_Enemy : MonoBehaviour
                             e_enemyAttributes.e_i_shield = 0;
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                        e_enemyAttributes.e_pe_blood.Play();
+                        e_enemyAttributes.e_a_animator.Play("Damaged");
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -144,6 +150,8 @@ public class S_Enemy : MonoBehaviour
             if (e_enemyAttributes.e_i_shield <= 0)
             {
                 e_enemyAttributes.e_i_health -= _damageValue;
+                e_enemyAttributes.e_a_animator.Play("Damaged");
+                e_enemyAttributes.e_pe_blood.Play();
                 Debug.Log("Enemy Attacked!");
             }
             else
@@ -157,6 +165,8 @@ public class S_Enemy : MonoBehaviour
                         e_enemyAttributes.e_i_shield = 0;
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+                    e_enemyAttributes.e_a_animator.Play("Damaged");
+                    e_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else

@@ -43,11 +43,6 @@ public class S_StarPopUp : MonoBehaviour
     [Header("Card movement speed")] 
     public float f_moveSpeed;
 
-    public void decrementUI()
-    {
-        // Add this when focusing on new altar
-    }
-
     /// <summary>
     /// Set up global, add to list, and deletion timer
     /// Toggle all the color graphics off to start
