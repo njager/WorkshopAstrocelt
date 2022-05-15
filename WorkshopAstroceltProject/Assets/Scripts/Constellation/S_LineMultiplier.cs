@@ -32,70 +32,10 @@ public class S_LineMultiplier : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
+
     /// <summary>
-    /// This is added here so I can see the average line length
+    /// Clears the list of lines. Used when changing the map
     /// </summary>
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if(lst_lineLengthList.Count > 0)
-            {
-                debugLineValue = LineMultiplierGrabbing(lst_lineLengthList);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            debugLineValue = 0f;
-        }
-    }
-
-    private float LineMultiplierGrabbing(List<float> _lineList) // Helper function to give me a line tally to use in the calculator 
-    {
-        float _lineLengthTally = 0f;
-        foreach (float _lineRendererLength in _lineList.ToList())
-        {
-            _lineLengthTally += _lineRendererLength;
-        }
-        return _lineLengthTally;
-    }
-
-    public float LineMultiplierCalculator() // Where the line multiplier is calculated
-    {
-        // Initial Values
-        float _lineAmount = LineMultiplierGrabbing(lst_lineLengthList);
-        float _lineMultiplier = 1.0f; // Default value to return
-
-        // Global Animation Curve values 
-        AnimationCurve comparatorCurve = animationCurveForMultiplier;
-        float _lowerBoundCurve = comparatorCurve[0].value;
-        float _upperBoundCurve = comparatorCurve[1].value;
-
-        float _lineValue = (_lineAmount - lowerBoundForCalculation) / upperBoundForCalculation; // Normalize the tally amount into a decimal values around 1.0 
-        //Debug.Log(_lineValue); 
-
-        // Compare the normalized value to the curve values 
-        if (_lineValue >= _lowerBoundCurve)
-        {
-            if (_lineValue <= _upperBoundCurve)
-            {
-                _lineMultiplier = comparatorCurve.Evaluate(_lineValue);
-                //Debug.Log(lineMultiplier);
-                return _lineMultiplier;
-            }
-            else
-            {
-                _lineMultiplier = comparatorCurve.Evaluate(_lineValue);
-                //Debug.Log(lineMultiplier);
-                return _lineMultiplier;
-            }
-        }
-        else // If it fails the conditions, it returns a 1.0 mutliplier 
-        {
-            //Debug.Log(lineMultiplier);
-            return _lineMultiplier = comparatorCurve.Evaluate(_lineValue);
-        }
-    }
     public void ClearLineList()
     {
         foreach (GameObject _line in g_global.g_ls_lineRendererList.ToList())

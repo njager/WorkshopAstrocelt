@@ -265,8 +265,6 @@ public class S_ConstelationManager : MonoBehaviour
         //lock out stars while calculating
         b_starLockout = false;
 
-        g_global.g_UIManager.p_f_lineMultiplierAmount = Mathf.Round(g_global.g_lineMultiplierManager.LineMultiplierCalculator() * 10f) / 10f; 
-
         //set up the energy
         int _energy = ls_curConstellation.Count() - 2;
 
