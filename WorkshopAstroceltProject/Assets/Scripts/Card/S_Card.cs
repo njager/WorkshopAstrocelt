@@ -616,41 +616,4 @@ public class S_Card : MonoBehaviour
     {
         gameObject.transform.position = s_c_cardDraggerReference.c_v3_initialPosition; 
     }
-
-    /// <summary>
-    /// Function that creates a hover card when moused over
-    /// Now adjusts text - Josh
-    /// -Riley Halloran
-    /// </summary>
-    public void OnHoverEnter()
-    {
-        // Instantiate a new card based off the location of the mouse and the hoverHeight
-        //c_zoomCard = Instantiate(gameObject, new Vector2(transform.position.x, transform.position.y + i_hoverHeight), Quaternion.identity);
-        //c_zoomCard.transform.SetParent(cv_canvas.transform, false);
-
-        // Scale the transform of the rect
-        //RectTransform _rect = c_zoomCard.GetComponent<RectTransform>();
-        //_rect.sizeDelta = new Vector2(_rect.sizeDelta.x * i_hoverX, _rect.sizeDelta.y * i_hoverY);
-
-        // Scale text elements
-        //c_zoomCard.GetComponent<S_Card>().c_cardScaler.SizeTextElements();
-    }
-
-    /// <summary>
-    /// Function that destroys the hover card when the mouse leavess
-    /// -Riley Halloran
-    /// </summary>
-    public void OnHoverExit()
-    {
-        //if (c_zoomCard != null) { Destroy(c_zoomCard); }
-    }
-
-    /// <summary>
-    /// Destroy the hover card if the Card starts getting dragged
-    /// -Riley Halloran
-    /// </summary>
-    public void EndHover()
-    {
-        //Destroy(c_zoomCard);
-    }
 }
