@@ -38,7 +38,7 @@ public class S_RedStarAnimation : MonoBehaviour
             //Reset the "Crouch" trigger
             //a_animator.ResetTrigger("RedAnim");
 
-            //Send the message to the Animator to activate the trigger parameter named "Jump"
+            //Send the message to the Animator to activate the trigger parameter named "RedAnim"
             a_animator.Play("RedAnim");
         }
         else

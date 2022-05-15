@@ -105,6 +105,7 @@ public class S_TurnManager : MonoBehaviour
         }
         else
         {
+            g_global.g_ConstellationManager.DeleteWholeCurConstellation();
             StartCoroutine(EnemyStateChange()); //Then change the enemies state
         }
     }
@@ -402,8 +403,6 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = true;
         
     }
-
-
 
     /// <summary>
     /// Change the state to the player turn. Gets called from update after EnemyState changes the turns

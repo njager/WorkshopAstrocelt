@@ -56,7 +56,6 @@ public class S_PopupManager : MonoBehaviour
         _textPopUpScript.StartCoroutine(_textPopUpScript.MovePopUp());
     }
 
-
     /// <summary>
     /// Create and activate a popup for the constellation
     /// Use current line tier from the constellation to generate the proper star amounts
@@ -66,14 +65,13 @@ public class S_PopupManager : MonoBehaviour
     /// <param name="_energy"></param>
     public void CreatePopUpForStar(S_StarClass _star, int _energy)
     {
-        int _lineTier = _energy;
         if(_star.starType == "NodeStar")
         {
             return; 
         }
         else
         {
-            if (_lineTier == 1)
+            if (_energy == 1)
             {
                 // Int for tracking how many popups there have been
                 int _popupCount = 0;
@@ -88,7 +86,7 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript1.SetGraphic(_star.colorType);
 
             }
-            else if (_lineTier == 2)
+            else if (_energy == 2)
             {
                 // Int for tracking how many popups there have been
                 int _popupCount = 0;
@@ -112,9 +110,8 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript2.SetGraphic(_star.colorType);
 
             }
-            else if (_lineTier == 3)
+            else if (_energy == 3)
             {
-                print("popup?");
                 // Int for tracking how many popups there have been
                 int _popupCount = 0;
 
@@ -148,6 +145,10 @@ public class S_PopupManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// move all popups to the altar
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
         foreach(S_StarPopUp _starPopup in g_global.ls_starPopup.ToList())
@@ -157,6 +158,10 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupMove == true;
     }
 
+    /// <summary>
+    /// remove all popups from the scene
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator ClearAllPopups()
     {
         foreach(S_StarPopUp _starPop in g_global.ls_starPopup.ToList())

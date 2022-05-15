@@ -35,7 +35,7 @@ public class S_BlueStarAnimation : MonoBehaviour
         {
             //print("Blue");
 
-            //Send the message to the Animator to activate the trigger parameter named "Jump"
+            //Send the message to the Animator to activate the trigger parameter named "BlueAnim"
             a_animator.Play("BlueAnim");
         }
         StartCoroutine(PlayBlueAnimation());

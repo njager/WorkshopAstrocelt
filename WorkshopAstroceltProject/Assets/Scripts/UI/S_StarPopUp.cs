@@ -133,8 +133,6 @@ public class S_StarPopUp : MonoBehaviour
         {
             // Toggle Graphics
             redColorGraphic.SetActive(true);
-            blueColorGraphic.SetActive(false);
-            yellowColorGraphic.SetActive(false);
 
             //Set Color Image
             colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
@@ -144,9 +142,7 @@ public class S_StarPopUp : MonoBehaviour
         if(_color == "blue")
         {
             // Toggle Graphics
-            redColorGraphic.SetActive(false);
             blueColorGraphic.SetActive(true);
-            yellowColorGraphic.SetActive(false);
 
             //Set Color Image
             colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
@@ -156,8 +152,6 @@ public class S_StarPopUp : MonoBehaviour
         if(_color == "yellow")
         {
             // Toggle Graphics
-            redColorGraphic.SetActive(false);
-            blueColorGraphic.SetActive(false);
             yellowColorGraphic.SetActive(true);
 
             //Set Color Image
@@ -167,11 +161,17 @@ public class S_StarPopUp : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggers the Coroutine that removes the popups
+    /// </summary>
     public void ClearPopup()
     {
         StartCoroutine(DeletionTimer());
     }
 
+    /// <summary>
+    /// Function that actually deletes popups.
+    /// </summary>
     public void DeletePopup()
     {
         g_global.ls_starPopup.Remove(this);
