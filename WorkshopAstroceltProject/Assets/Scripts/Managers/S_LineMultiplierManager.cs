@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; 
 
-public class S_LineMultiplier : MonoBehaviour
+public class S_LineMultiplierManager : MonoBehaviour
 {
     private S_Global g_global;
 
