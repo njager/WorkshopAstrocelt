@@ -99,7 +99,7 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
     [Header("Card Dragger References")]
-    public S_CardDragger s_c_cardDraggerReference;
+    public S_CardDragger sc_c_cardDraggerReference;
     public int c_i_cardID;
     public RectTransform initialCardTransform;
 
@@ -112,7 +112,6 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Scaler References")]
     public GameObject cv_canvas;
-    public S_CardScaler c_cardScaler;
     private GameObject c_zoomCard;
 
     [Header("Card Background Art Assets")]
@@ -614,6 +613,6 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void ResetPosition()
     {
-        gameObject.transform.position = s_c_cardDraggerReference.c_v3_initialPosition; 
+        gameObject.transform.position = sc_c_cardDraggerReference.c_v3_initialPosition; 
     }
 }
