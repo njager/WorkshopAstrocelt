@@ -57,6 +57,13 @@ public class S_ConstelationManager : MonoBehaviour
         s_b_popupMove = false; 
     }
 
+    /// <summary>
+    /// Make the adding to the constellation list wait for a couple of frames to make sure the line doesnt delete itself
+    /// Gets called from the line script, and passes the star to use if the line still exists
+    /// -Riley
+    /// </summary>
+    /// <param name="_star"></param>
+    /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star)
     {
         //Debug.Log("does this work");
@@ -178,6 +185,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <summary>
     /// This function gets called internally if a constraint gets triggered and the constellation needs resetting, 
     /// or after a constellation is finished and everything needs reset to normal.  
+    /// -Riley
     /// </summary>
     public void DeleteWholeCurConstellation()
     {
