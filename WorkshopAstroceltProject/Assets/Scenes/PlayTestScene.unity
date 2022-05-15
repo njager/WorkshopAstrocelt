@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 72613876}
   m_Layer: 0
   m_Name: MapManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 274638691}
   m_Layer: 0
   m_Name: PopupManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5648,7 +5648,7 @@ Transform:
   m_Children:
   - {fileID: 1520619805}
   m_Father: {fileID: 481223725}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &274638691
 MonoBehaviour:
@@ -8604,10 +8604,8 @@ Transform:
   - {fileID: 1330287151}
   - {fileID: 72613875}
   - {fileID: 1598542222}
-  - {fileID: 2107212522}
   - {fileID: 1451117615}
   - {fileID: 2086421103}
-  - {fileID: 1455212356}
   - {fileID: 1037513593}
   - {fileID: 274638690}
   - {fileID: 1510901129}
@@ -8770,7 +8768,6 @@ MonoBehaviour:
   yellowEnergyIcon: {fileID: 21300000, guid: 4fc6b498172feb943be88fd71d88c29a, type: 3}
   nullEnergyIcon: {fileID: 21300000, guid: f3064a0170d4a09458c89fa244deacf5, type: 3}
   p_tx_lineMultiplierText: {fileID: 0}
-  p_f_lineMultiplierAmount: 0
   b_redEnergy: 0
   b_blueEnergy: 0
   b_yellowEnergy: 0
@@ -9300,7 +9297,7 @@ MonoBehaviour:
   g_DrawingManager: {fileID: 2099707690}
   g_ConstellationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
-  g_selectorManager: {fileID: 1455212357}
+  g_selectorManager: {fileID: 0}
   g_iconManager: {fileID: 1037513594}
   g_cardManager: {fileID: 1451117616}
   g_CardDatabase: {fileID: 2086421104}
@@ -9309,7 +9306,6 @@ MonoBehaviour:
   g_popupManager: {fileID: 274638691}
   g_altar: {fileID: 1981244727}
   g_sceneManager: {fileID: 1510901130}
-  g_cardBall: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -12353,7 +12349,7 @@ GameObject:
   - component: {fileID: 630261271}
   m_Layer: 0
   m_Name: LineMultiplierManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12370,7 +12366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481223725}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &630261271
 MonoBehaviour:
@@ -20161,7 +20157,7 @@ GameObject:
   - component: {fileID: 1037513594}
   m_Layer: 0
   m_Name: IntentManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20178,7 +20174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481223725}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1037513594
 MonoBehaviour:
@@ -25153,11 +25149,21 @@ MonoBehaviour:
   e_b_inBleedingStateEnemy5: 0
   e_b_inStunnedStateEnemy5: 0
   e_b_inResistantStateEnemy5: 0
-  e_i_currentDamageValueForBleedEnemy1: 0
-  e_i_currentDamageValueForBleedEnemy2: 0
-  e_i_currentDamageValueForBleedEnemy3: 0
-  e_i_currentDamageValueForBleedEnemy4: 0
-  e_i_currentDamageValueForBleedEnemy5: 0
+  e_f_currentDamageRateForBleedEnemy1: 0
+  e_f_currentDamageRateForBleedEnemy2: 0
+  e_f_currentDamageRateForBleedEnemy3: 0
+  e_f_currentDamageRateForBleedEnemy4: 0
+  e_f_currentDamageRateForBleedEnemy5: 0
+  e_i_enemy1StunTurnsPassed: 0
+  e_i_enemy2StunTurnsPassed: 0
+  e_i_enemy3StunTurnsPassed: 0
+  e_i_enemy4StunTurnsPassed: 0
+  e_i_enemy5StunTurnsPassed: 0
+  e_i_enemy1ResistantTurnsPassed: 0
+  e_i_enemy2ResistantTurnsPassed: 0
+  e_i_enemy3ResistantTurnsPassed: 0
+  e_i_enemy4ResistantTurnsPassed: 0
+  e_i_enemy5ResistantTurnsPassed: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25178,7 +25184,9 @@ MonoBehaviour:
   p_b_inResistantState: 0
   playerWinMusic: {fileID: 1885446296}
   playerLoseMusic: {fileID: 1572118200}
-  p_i_currentDamageRateForBleed: 0
+  p_i_turnsPassedForStun: 0
+  p_i_turnsPassedForResistant: 0
+  p_f_currentDamageRateForBleed: 0
 --- !u!114 &1269889775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25191,8 +25199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 1603892938}
-  e_b_enemyDidAttack: 0
   b_playerInitialTurn: 1
   b_enemyInitialTurn: 0
   playerTurnSkipped: 0
@@ -26248,7 +26254,7 @@ GameObject:
   - component: {fileID: 1330287152}
   m_Layer: 0
   m_Name: ConstellationManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27248,7 +27254,7 @@ GameObject:
   - component: {fileID: 1412184871}
   m_Layer: 0
   m_Name: EnergyManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27265,7 +27271,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481223725}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1412184871
 MonoBehaviour:
@@ -27284,6 +27290,9 @@ MonoBehaviour:
   i_redEnergy: 0
   i_yellowEnergy: 0
   i_blueEnergy: 0
+  i_redStorageEnergy: 0
+  i_yellowStorageEnergy: 0
+  i_blueStorageEnergy: 0
 --- !u!1 &1421026600
 GameObject:
   m_ObjectHideFlags: 0
@@ -27593,7 +27602,7 @@ GameObject:
   - component: {fileID: 1451117616}
   m_Layer: 0
   m_Name: CardManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27610,7 +27619,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481223725}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1451117616
 MonoBehaviour:
@@ -27793,50 +27802,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1453881765}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1455212355
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1455212356}
-  - component: {fileID: 1455212357}
-  m_Layer: 0
-  m_Name: SelectorManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1455212356
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455212355}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 481223725}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1455212357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455212355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4acf4195bdb074eb9bdeb4dff9ebd95f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selector: {fileID: 29678253}
 --- !u!1001 &1459895050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28918,7 +28883,7 @@ GameObject:
   - component: {fileID: 1510901130}
   m_Layer: 0
   m_Name: SceneManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28935,7 +28900,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481223725}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1510901130
 MonoBehaviour:
@@ -29781,7 +29746,7 @@ GameObject:
   - component: {fileID: 1598542222}
   m_Layer: 0
   m_Name: VFXManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29881,11 +29846,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1599640790}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1603892938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4562677180002554325, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1604427012
 PrefabInstance:
@@ -38533,49 +38493,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 2103285782}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2107212521
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2107212522}
-  - component: {fileID: 2107212523}
-  m_Layer: 0
-  m_Name: ButtonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2107212522
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107212521}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 481223725}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2107212523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107212521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f61e543086ebc94b9655c7f7aa1c84e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2110704299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39383,7 +39300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 152267100547761435, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 152267100547761435, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
       propertyPath: m_LocalPosition.x
