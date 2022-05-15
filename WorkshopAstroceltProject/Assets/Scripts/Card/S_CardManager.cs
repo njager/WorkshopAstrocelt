@@ -94,12 +94,12 @@ public class S_CardManager : MonoBehaviour
         Debug.Log("Grave to Hand");
 
         //loop through the grave and add it to the deck
-        foreach (int _cardKey in g_global.lst_p_playerGrave)
+        foreach (int _cardKey in g_global.ls_p_playerGrave)
         {
             g_global.ls_p_playerDeck.Add(_cardKey);
         }
         //clear the grave
-        g_global.lst_p_playerGrave.Clear();
+        g_global.ls_p_playerGrave.Clear();
     }
 
     /// <summary>
