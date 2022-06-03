@@ -10,6 +10,7 @@ using TMPro;
 
 public class S_Global : MonoBehaviour
 {
+    [Header("Static instance for Singleton usage of S_Global")]
     public static S_Global Instance;
 
     [Header("Script References")]
@@ -27,7 +28,6 @@ public class S_Global : MonoBehaviour
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
     public S_SceneManager g_sceneManager;
-    //public S_Cardball g_cardBall;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -39,6 +39,7 @@ public class S_Global : MonoBehaviour
     [Header("Character Control")]
     public int g_i_sceneIndex;
 
+    [Header("State Machine Object References")]
     public S_PlayerAttributes g_playerAttributeSheet;
     public S_PlayerState g_playerState;
     public S_EnemyState g_enemyState;
@@ -63,17 +64,11 @@ public class S_Global : MonoBehaviour
     public List<S_Enemy> e_ls_enemyList;
     public List<GameObject> g_ls_lineRendererList;
     public List<GameObject> g_ls_completedLineRendererList;
-    public List<int> ls_p_playerDeck;
-    public List<int> ls_p_playerGrave;
-    public List<S_CardTemplate> ls_p_playerHand;
-    public List<S_StarPopUp> ls_starPopup;
-    public List<S_Cardball> ls_cardBallPrefabs;
-
-    [Header("Arrays")]
-    public string placeholder;
-
-    [Header("Card IDs")]
-    public int c_i_cardIDNum;
+    public List<int> g_ls_p_playerDeck;
+    public List<int> g_ls_p_playerGrave;
+    public List<S_CardTemplate> g_ls_p_playerHand;
+    public List<S_StarPopUp> g_ls_starPopup;
+    public List<S_Cardball> g_ls_cardBallPrefabs;
 
     [Header("Enemy Positions")]
     public GameObject g_e_enemyPosition1;
@@ -81,11 +76,10 @@ public class S_Global : MonoBehaviour
     public GameObject g_e_enemyPosition3;
 
     [Header("Card Dragging")]
-    public GameObject g_objectBeingDragged;
-    public bool b_firstCard = true;
+    public bool g_c_b_firstCard = true;
 
-    [Header("Audio")]
-    public GameObject a_audioPlayer;
+    [Header("Required Audio Object For Now")]
+    public GameObject g_a_audioPlayer;
 
     private void Awake()
     {
@@ -110,10 +104,14 @@ public class S_Global : MonoBehaviour
         //Debug.Log("Enemy Count Max: " + g_i_enemyCountMax.ToString());
 
         //start the combat music loop
-        a_audioPlayer.SetActive(true);
+        g_a_audioPlayer.SetActive(true);
     }
 
-    //Adding cheat buttons
+    /// <summary>
+    /// Cheat buttons, nothing else should really be in update here. 
+    /// Add as needed
+    /// - Josh
+    /// </summary>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))

@@ -100,7 +100,7 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Dragger References")]
     public S_CardDragger sc_c_cardDraggerReference;
-    public int c_i_cardID;
+    //public int c_i_cardID;
     public RectTransform initialCardTransform;
 
     [Header("Card Hover Height")]
@@ -140,8 +140,8 @@ public class S_Card : MonoBehaviour
         g_global = S_Global.Instance;
 
         //Separate cards, ended up not being needed
-        g_global.c_i_cardIDNum += 1;
-        c_i_cardID = g_global.c_i_cardIDNum;
+       // g_global.c_i_cardIDNum += 1;
+        //c_i_cardID = g_global.c_i_cardIDNum;
 
         cv_canvas = GameObject.Find("MainCanvas");
 
@@ -563,7 +563,7 @@ public class S_Card : MonoBehaviour
         }
 
         //call the altar to spawn the next card if you have energy
-        if (g_global.ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
+        if (g_global.g_ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
     }
 
 

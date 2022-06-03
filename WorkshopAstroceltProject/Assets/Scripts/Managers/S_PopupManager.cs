@@ -164,7 +164,7 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
-        foreach(S_StarPopUp _starPopup in g_global.ls_starPopup.ToList())
+        foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
             _starPopup.MoveToAltar();
         }
@@ -178,7 +178,7 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearAllPopups()
     {
-        foreach(S_StarPopUp _starPop in g_global.ls_starPopup.ToList())
+        foreach(S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             _starPop.DeletePopup();
         }

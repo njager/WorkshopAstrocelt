@@ -51,7 +51,7 @@ public class S_StarPopUp : MonoBehaviour
     void Awake()
     {
         g_global = S_Global.Instance;
-        g_global.ls_starPopup.Add(this); 
+        g_global.g_ls_starPopup.Add(this); 
 
         // Toggle Graphics to null position
         redColorGraphic.SetActive(false);
@@ -174,7 +174,7 @@ public class S_StarPopUp : MonoBehaviour
     /// </summary>
     public void DeletePopup()
     {
-        g_global.ls_starPopup.Remove(this);
+        g_global.g_ls_starPopup.Remove(this);
         Destroy(gameObject);
     }
 
@@ -187,7 +187,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
-        g_global.ls_starPopup.Remove(this);
+        g_global.g_ls_starPopup.Remove(this);
         if (f_disappearTimer < 0)
         {
             colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);

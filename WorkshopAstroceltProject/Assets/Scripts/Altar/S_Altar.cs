@@ -95,26 +95,26 @@ public class S_Altar : MonoBehaviour
     {
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
-        AddNewCardBall(cardballPosition5, g_global.ls_p_playerHand[0]);
+        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[0]);
         MoveCardballPrefabs();
 
         // Spawn cardball 2
         yield return new WaitForSeconds(1 + f_moveSpeed);
-        AddNewCardBall(cardballPosition5, g_global.ls_p_playerHand[1]);
+        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[1]);
         MoveCardballPrefabs();
 
         // Spawn cardball 3
         yield return new WaitForSeconds(1 + f_moveSpeed + 0.1f);
-        AddNewCardBall(cardballPosition5, g_global.ls_p_playerHand[2]);
+        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[2]);
         MoveCardballPrefabs();
 
         // Spawn cardball 4
         yield return new WaitForSeconds(1 + f_moveSpeed + 0.2f);
-        AddNewCardBall(cardballPosition5, g_global.ls_p_playerHand[3]);
+        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[3]);
         MoveCardballPrefabs();
 
         yield return new WaitForSeconds(1 + f_moveSpeed + 0.3f);
-        AddNewCardBall(cardballPosition5, g_global.ls_p_playerHand[4]);
+        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[4]);
     }
 
     /// <summary>
@@ -141,10 +141,10 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator ClearCardballPrefabs()
     {
-        foreach (S_Cardball _cardball in g_global.ls_cardBallPrefabs.ToList())
+        foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             yield return new WaitForSeconds(0.5f);
-            g_global.ls_cardBallPrefabs.Remove(_cardball);
+            g_global.g_ls_cardBallPrefabs.Remove(_cardball);
             Destroy(_cardball.gameObject);
         }
     }
