@@ -26,7 +26,7 @@ public class S_EnergyManager : MonoBehaviour
 
     /// <summary>
     /// This function gets called in constellation manager
-    /// Stores the energy to wait for the 
+    /// Stores the energy to wait for the constellation to be finished
     /// </summary>
     /// <param name="_color"></param>
     /// <param name="_energy"></param>
@@ -47,6 +47,11 @@ public class S_EnergyManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Set all the stored energy to 0
+    /// -Riley
+    /// </summary>
     public void ClearStoredEnergy()
     {
         Debug.Log("Stored Energy Cleared");
@@ -55,6 +60,10 @@ public class S_EnergyManager : MonoBehaviour
         i_blueStorageEnergy = 0;
     }
 
+    /// <summary>
+    /// Transfer all the stored energy into real energy and then clear all the stored energy
+    /// -Riley
+    /// </summary>
     public void TransferStoredEnergy()
     {
         Debug.Log("Stored energy transfered");
@@ -66,7 +75,7 @@ public class S_EnergyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This Function gets rid of the stored energy in the constellation manager
+    /// This Function resets all the energy in the scene
     /// Gets cleared from turnManager and drawingManager
     /// - Riley
     /// </summary>
@@ -149,6 +158,7 @@ public class S_EnergyManager : MonoBehaviour
                 }
             }
 
+            //the card is playable and the energy has already been used
             return true;
         }
         else
@@ -158,6 +168,12 @@ public class S_EnergyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Give a 1.5 times bonus to the stored energy of a given color
+    /// Gets called in finishconstellation in constellation manager
+    /// -Riley
+    /// </summary>
+    /// <param name="_color"></param>
     public void RitualBonusEnergy(string _color)
     {
         

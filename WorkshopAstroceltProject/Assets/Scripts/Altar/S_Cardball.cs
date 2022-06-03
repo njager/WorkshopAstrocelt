@@ -64,128 +64,55 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballSetup()
     {
-        // Determine position
-        if (transform.parent.tag == "CardballPosition1")
-        {
-            // Card ball is in first position
-            c_b_locatedInFirstPosition = true;
+        // set all positions to false and then turn on based off of the tags
+        c_b_locatedInFirstPosition = false;
+        c_b_locatedInSecondPosition = false;
+        c_b_locatedInThirdPosition = false;
+        c_b_locatedInFourthPosition = false;
+        c_b_locatedInFifthPosition = false;
 
-            // Not in any other positions
-            c_b_locatedInSecondPosition = false;
-            c_b_locatedInThirdPosition = false;
-            c_b_locatedInFourthPosition = false;
-            c_b_locatedInFifthPosition = false;
-        }
-        else if (transform.parent.tag == "CardballPosition2")
-        {
-            // Card ball is in first position
-            c_b_locatedInSecondPosition = true;
+        if (transform.parent.tag == "CardballPosition1") { c_b_locatedInFirstPosition = true; }
+        else if (transform.parent.tag == "CardballPosition2") { c_b_locatedInSecondPosition = true; }
+        else if (transform.parent.tag == "CardballPosition3") { c_b_locatedInThirdPosition = true; }
+        else if (transform.parent.tag == "CardballPosition4") { c_b_locatedInFourthPosition = true; }
+        else if (transform.parent.tag == "CardballPosition5") { c_b_locatedInFifthPosition = true; }
+        else { Debug.Log("Cardball not spawned in Altar!"); }
 
-            // Not in any other positions
-            c_b_locatedInFirstPosition = false;
-            c_b_locatedInThirdPosition = false;
-            c_b_locatedInFourthPosition = false;
-            c_b_locatedInFifthPosition = false;
-        }
-        else if (transform.parent.tag == "CardballPosition3")
-        {
-            // Card ball is in first position
-            c_b_locatedInThirdPosition = true;
+        // Then set the graphics
+        c_b_redCardball = false;
+        c_redGraphic.SetActive(false);
+        c_b_blueCardball = false;
+        c_blueGraphic.SetActive(false);
+        c_b_yellowCardball = false;
+        c_yellowGraphic.SetActive(false);
+        c_b_colorlessCardball = false;
+        c_whiteGraphic.SetActive(false);
 
-            // Not in any other positions
-            c_b_locatedInFirstPosition = false;
-            c_b_locatedInSecondPosition = false;
-            c_b_locatedInFourthPosition = false;
-            c_b_locatedInFifthPosition = false;
-        }
-        else if (transform.parent.tag == "CardballPosition4")
-        {
-            // Card ball is in first position
-            c_b_locatedInFourthPosition = true;
-
-            // Not in any other positions
-            c_b_locatedInFirstPosition = false;
-            c_b_locatedInSecondPosition = false;
-            c_b_locatedInThirdPosition = false;
-            c_b_locatedInFifthPosition = false;
-        }
-        else if (transform.parent.tag == "CardballPosition5")
-        {
-            // Card ball is in first position
-            c_b_locatedInFifthPosition = true;
-
-            // Not in any other positions
-            c_b_locatedInFirstPosition = false;
-            c_b_locatedInSecondPosition = false;
-            c_b_locatedInThirdPosition = false;
-            c_b_locatedInFourthPosition = false;
-        }
-        else
-        {
-            Debug.Log("Cardball not spawned in Altar!");
-        }
-
-        // Then the graphics
         if (c_cardData.RedColorType) // Check if Card is Red
         {
             // Cardball is Red
             c_b_redCardball = true;
             c_redGraphic.SetActive(true);
-
-            // Rest are false
-            c_b_blueCardball = false;
-            c_blueGraphic.SetActive(false);
-            c_b_yellowCardball = false;
-            c_yellowGraphic.SetActive(false);
-            c_b_colorlessCardball = false;
-            c_whiteGraphic.SetActive(false);
         }
         else if (c_cardData.BlueColorType) // Check if card is Blue
         {
             // Cardball is Blue
             c_b_blueCardball = true;
             c_blueGraphic.SetActive(true);
-
-            // Rest are false
-            c_b_redCardball = false;
-            c_redGraphic.SetActive(false);
-            c_b_yellowCardball = false;
-            c_yellowGraphic.SetActive(false);
-            c_b_colorlessCardball = false;
-            c_whiteGraphic.SetActive(false);
         }
         else if (c_cardData.YellowColorType) // Check if card is Yellow
         {
             // Cardball is Yellow
             c_b_yellowCardball = true;
             c_yellowGraphic.SetActive(true);
-
-            // Rest are false
-            c_b_redCardball = false;
-            c_redGraphic.SetActive(false);
-            c_b_blueCardball = false;
-            c_blueGraphic.SetActive(false);
-            c_b_colorlessCardball = false;
-            c_whiteGraphic.SetActive(false);
         }
         else if (c_cardData.WhiteColorType) // Check if card is Colorless
         {
             // Cardball is Colorless
             c_b_colorlessCardball = true;
             c_whiteGraphic.SetActive(true);
-
-            // Rest are false
-            c_b_redCardball = false;
-            c_redGraphic.SetActive(false);
-            c_b_blueCardball = false;
-            c_blueGraphic.SetActive(false);
-            c_b_yellowCardball = false;
-            c_yellowGraphic.SetActive(false);
         }
-        else
-        {
-            Debug.Log("Card data is null!");
-        }
+        else { Debug.Log("Card data is null!"); }
 
         // Then determine the energy cost
         c_i_cardEnergyCost = c_cardData.EnergyCost;
@@ -219,6 +146,11 @@ public class S_Cardball : MonoBehaviour
         DeleteCardball();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="_card"></param>
+    /// <returns></returns>
     public IEnumerator WaitToHide(GameObject _card)
     {
         yield return new WaitForSeconds(3f);
@@ -237,12 +169,13 @@ public class S_Cardball : MonoBehaviour
     {
         Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.ls_cardBallPrefabs.Remove(this);
-        g_global.lst_p_playerGrave.Add(c_cardData.CardDatabaseID);
+        g_global.ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
         StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
     }
 
     /// <summary>
     /// Toggle altar text on when mouse enters Cardball
+    /// also adjust the borders based off of the color
     /// </summary>
     public void OnHoverEnter()
     {
@@ -252,52 +185,39 @@ public class S_Cardball : MonoBehaviour
             g_global.g_altar.c_tx_cardName.text = c_cardName;
             g_global.g_altar.c_tx_cardBody.text = c_cardBody;
 
+            //turn all borders off
+            g_global.g_altar.a_redBorder.SetActive(false);
+            g_global.g_altar.a_blueBorder.SetActive(false);
+            g_global.g_altar.a_yellowBorder.SetActive(false);
+            g_global.g_altar.a_colorlessBorder.SetActive(false);
+
             // Toggle Border based off cardball color
             if (c_b_redCardball == true) // If Red
             {
                 // Toggle Red border
                 g_global.g_altar.a_redBorder.SetActive(true);
-
-                // Make sure rest are off
-                g_global.g_altar.a_blueBorder.SetActive(false);
-                g_global.g_altar.a_yellowBorder.SetActive(false);
-                g_global.g_altar.a_colorlessBorder.SetActive(false);
             }
             else if (c_b_blueCardball == true) // If Blue
             {
                 // Toggle Blue border
                 g_global.g_altar.a_blueBorder.SetActive(true);
-
-                // Make sure rest are off
-                g_global.g_altar.a_redBorder.SetActive(false);
-                g_global.g_altar.a_yellowBorder.SetActive(false);
-                g_global.g_altar.a_colorlessBorder.SetActive(false);
             }
             else if (c_b_yellowCardball == true) // If Yellow
             {
                 // Toggle Yellow border
                 g_global.g_altar.a_yellowBorder.SetActive(true);
-
-                // Make sure rest are off
-                g_global.g_altar.a_redBorder.SetActive(false);
-                g_global.g_altar.a_blueBorder.SetActive(false);
-                g_global.g_altar.a_colorlessBorder.SetActive(false);
             }
             else if (c_b_colorlessCardball == true) // If Colorless
             {
                 // Toggle Colorless border
                 g_global.g_altar.a_colorlessBorder.SetActive(true);
-
-                // Make sure rest are off
-                g_global.g_altar.a_redBorder.SetActive(false);
-                g_global.g_altar.a_blueBorder.SetActive(false);
-                g_global.g_altar.a_yellowBorder.SetActive(false);
             }
         }
     }
 
     /// <summary>
     /// Toggle altar text off when mouse exits Cardball
+    /// turn off the borders
     /// - Josh
     /// </summary>
     public void OnHoverExit()

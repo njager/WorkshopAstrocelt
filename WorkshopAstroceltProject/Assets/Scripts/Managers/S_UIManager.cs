@@ -60,7 +60,6 @@ public class S_UIManager : MonoBehaviour
 
     [Header("Line Multiplier")]
     public TextMeshProUGUI p_tx_lineMultiplierText;
-    public float p_f_lineMultiplierAmount;
     public bool b_redEnergy = false;
     public bool b_blueEnergy = false;
     public bool b_yellowEnergy = false;

@@ -105,6 +105,7 @@ public class S_TurnManager : MonoBehaviour
         }
         else
         {
+            g_global.g_ConstellationManager.DeleteWholeCurConstellation();
             StartCoroutine(EnemyStateChange()); //Then change the enemies state
         }
     }
@@ -132,7 +133,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_enemyState.EnemyAttackingOrShielding();
         RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
 
-        foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
+        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
         {
             _enemy.IncreaseIntentAlpha();
         }
@@ -237,172 +238,171 @@ public class S_TurnManager : MonoBehaviour
                     }
                 }
             }
-            // Check to see if dead
-            if (g_global.g_enemyState.e_b_enemy3Dead != true)
-            {
-                // Then trigger turn if present
-                if (g_global.g_enemyAttributeSheet3 != null)
-                {
-                    if (enemy3TurnSkipped == false)
-                    {
-                        //Stagger the turn, as long as enemy 3 isn't first
-                        if (g_global.g_enemyState.e_b_enemy1Dead != true && g_global.g_enemyState.e_b_enemy2Dead != true)
-                        {
-                            yield return new WaitForSeconds(2);
-                        }
-
-                        //Do your action
-                        if (g_global.g_enemyState.e_b_enemy3Shielding == true)
-                        {
-                            g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_str_enemyType, g_global.g_enemyAttributeSheet3.e_i_shieldMax);
-                        }
-                        else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
-                        {
-                            //play enemy animation
-                            g_global.g_enemyAttributeSheet3.e_a_animator.Play("attack");
-
-                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
-                            //Then play sounds
-                            if (g_global.g_enemyState.enemy3.e_str_enemyType == "Beast")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                            }
-                            else if (g_global.g_enemyState.enemy3.e_str_enemyType == "Magician")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                            }
-                            else if (g_global.g_enemyState.enemy3.e_str_enemyType == "Brawler")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                            }
-                        }
-                        else if (g_global.g_enemyState.e_b_enemy3SpecialAbility == true)
-                        {
-                            g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet3.e_str_enemyType);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Enemy 3's turn is skipped!");
-                    }
-                }
-            }
-            // Check to see if dead
-            if (g_global.g_enemyState.e_b_enemy4Dead != true)
-            {
-                // Then trigger turn if present
-                if (g_global.g_enemyAttributeSheet4 != null)
-                {
-                    if (enemy4TurnSkipped == false)
-                    {
-                        //Stagger the turn
-                        yield return new WaitForSeconds(2);
-
-                        //Do your action
-                        if (g_global.g_enemyState.e_b_enemy4Shielding == true)
-                        {
-                            g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_str_enemyType, g_global.g_enemyAttributeSheet4.e_i_shieldMax);
-                        }
-                        else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
-                        {
-                            //play enemy animation
-                            g_global.g_enemyAttributeSheet4.e_a_animator.Play("attack");
-
-                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
-                            //Then play sounds
-                            if (g_global.g_enemyState.enemy4.e_str_enemyType == "Beast")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                            }
-                            else if (g_global.g_enemyState.enemy4.e_str_enemyType == "Magician")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                            }
-                            else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                            }
-                        }
-                        else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
-                        {
-                            g_global.g_enemyState.enemy4.EnemySpecialAbility(g_global.g_enemyAttributeSheet4.e_str_enemyType);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Enemy 4's turn is skipped!");
-                    }
-                }
-            }
-            // Check to see if dead
-            if (g_global.g_enemyState.e_b_enemy5Dead != true)
-            {
-                // Then trigger turn if present
-                if (g_global.g_enemyAttributeSheet5 != null)
-                {
-                    if (enemy5TurnSkipped == false)
-                    {
-                        //Stagger the turn
-                        yield return new WaitForSeconds(2);
-
-                        //Do your action
-                        if (g_global.g_enemyState.e_b_enemy5Shielding == true)
-                        {
-                            g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet5.e_str_enemyType, g_global.g_enemyAttributeSheet5.e_i_shieldMax);
-                        }
-                        else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
-                        {
-                            //play enemy animation
-                            g_global.g_enemyAttributeSheet5.e_a_animator.Play("attack");
-
-                            g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
-                            //Then play sounds
-                            if (g_global.g_enemyState.enemy5.e_str_enemyType == "Beast")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                            }
-                            else if (g_global.g_enemyState.enemy5.e_str_enemyType == "Magician")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                            }
-                            else if (g_global.g_enemyState.enemy5.e_str_enemyType == "Brawler")
-                            {
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                            }
-                        }
-                        else if (g_global.g_enemyState.e_b_enemy5SpecialAbility == true)
-                        {
-                            g_global.g_enemyState.enemy5.EnemySpecialAbility(g_global.g_enemyAttributeSheet5.e_str_enemyType);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Enemy 5's turn is skipped!");
-                    }
-                }
-            }
-
-            // Represent the first enemy's turn
-            yield return new WaitForSeconds(2);
-
-            // Load the next icon
-            foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
-            {
-                _enemy.ChangeIcon();
-            }
-
-            g_global.g_enemyState.EnemyStatusEffectDecrement();
-
-            //Switch turns
-            g_global.g_b_playerTurn = false;
-            g_global.g_b_enemyTurn = true;
         }
+        // Check to see if dead
+        if (g_global.g_enemyState.e_b_enemy3Dead != true)
+        {
+            // Then trigger turn if present
+            if (g_global.g_enemyAttributeSheet3 != null)
+            {
+                if (enemy3TurnSkipped == false)
+                {
+                    //Stagger the turn, as long as enemy 3 isn't first
+                    if (g_global.g_enemyState.e_b_enemy1Dead != true && g_global.g_enemyState.e_b_enemy2Dead != true)
+                    {
+                        yield return new WaitForSeconds(2);
+                    }
+
+                    //Do your action
+                    if (g_global.g_enemyState.e_b_enemy3Shielding == true)
+                    {
+                        g_global.g_enemyAttributeSheet3.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet3.e_str_enemyType, g_global.g_enemyAttributeSheet3.e_i_shieldMax);
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy3Attacking == true)
+                    {
+                        //play enemy animation
+                        g_global.g_enemyAttributeSheet3.e_a_animator.Play("attack");
+
+                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet3.e_i_enemyDamageValue);
+                        //Then play sounds
+                        if (g_global.g_enemyState.enemy3.e_str_enemyType == "Beast")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                        }
+                        else if (g_global.g_enemyState.enemy3.e_str_enemyType == "Magician")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                        }
+                        else if (g_global.g_enemyState.enemy3.e_str_enemyType == "Brawler")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                        }
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy3SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet3.e_str_enemyType);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Enemy 3's turn is skipped!");
+                }
+            }
+        }
+        // Check to see if dead
+        if (g_global.g_enemyState.e_b_enemy4Dead != true)
+        {
+            // Then trigger turn if present
+            if (g_global.g_enemyAttributeSheet4 != null)
+            {
+                if (enemy4TurnSkipped == false)
+                {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
+                    if (g_global.g_enemyState.e_b_enemy4Shielding == true)
+                    {
+                        g_global.g_enemyAttributeSheet4.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet4.e_str_enemyType, g_global.g_enemyAttributeSheet4.e_i_shieldMax);
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy4Attacking == true)
+                    {
+                        //play enemy animation
+                        g_global.g_enemyAttributeSheet4.e_a_animator.Play("attack");
+
+                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet4.e_i_enemyDamageValue);
+                        //Then play sounds
+                        if (g_global.g_enemyState.enemy4.e_str_enemyType == "Beast")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                        }
+                        else if (g_global.g_enemyState.enemy4.e_str_enemyType == "Magician")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                        }
+                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                        }
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy4.EnemySpecialAbility(g_global.g_enemyAttributeSheet4.e_str_enemyType);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Enemy 4's turn is skipped!");
+                }
+            }
+        }
+        // Check to see if dead
+        if (g_global.g_enemyState.e_b_enemy5Dead != true)
+        {
+            // Then trigger turn if present
+            if (g_global.g_enemyAttributeSheet5 != null)
+            {
+                if (enemy5TurnSkipped == false)
+                {
+                    //Stagger the turn
+                    yield return new WaitForSeconds(2);
+
+                    //Do your action
+                    if (g_global.g_enemyState.e_b_enemy5Shielding == true)
+                    {
+                        g_global.g_enemyAttributeSheet5.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet5.e_str_enemyType, g_global.g_enemyAttributeSheet5.e_i_shieldMax);
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy5Attacking == true)
+                    {
+                        //play enemy animation
+                        g_global.g_enemyAttributeSheet5.e_a_animator.Play("attack");
+
+                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet5.e_i_enemyDamageValue);
+                        //Then play sounds
+                        if (g_global.g_enemyState.enemy5.e_str_enemyType == "Beast")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                        }
+                        else if (g_global.g_enemyState.enemy5.e_str_enemyType == "Magician")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                        }
+                        else if (g_global.g_enemyState.enemy5.e_str_enemyType == "Brawler")
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                        }
+                    }
+                    else if (g_global.g_enemyState.e_b_enemy5SpecialAbility == true)
+                    {
+                        g_global.g_enemyState.enemy5.EnemySpecialAbility(g_global.g_enemyAttributeSheet5.e_str_enemyType);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Enemy 5's turn is skipped!");
+                }
+            }
+        }
+
+        // Represent the first enemy's turn
+        yield return new WaitForSeconds(2);
+
+        // Load the next icon
+        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
+        {
+            _enemy.ChangeIcon();
+        }
+
+        g_global.g_enemyState.EnemyStatusEffectDecrement();
+
+        //Switch turns
+        g_global.g_b_playerTurn = false;
+        g_global.g_b_enemyTurn = true;
+        
     }
-
-
 
     /// <summary>
     /// Change the state to the player turn. Gets called from update after EnemyState changes the turns

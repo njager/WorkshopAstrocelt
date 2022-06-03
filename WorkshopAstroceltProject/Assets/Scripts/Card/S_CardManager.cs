@@ -78,12 +78,6 @@ public class S_CardManager : MonoBehaviour
     /// </summary>
     public void NewHand()
     {
-        //remove all the previous cards from the field
-        //foreach(GameObject _card in g_global.ls_p_playerHand)
-        //{
-        //    Destroy(_card);
-        //}
-
         //clear the player hand
         g_global.ls_p_playerHand.Clear();
 
@@ -100,53 +94,22 @@ public class S_CardManager : MonoBehaviour
         Debug.Log("Grave to Hand");
 
         //loop through the grave and add it to the deck
-        foreach (int _cardKey in g_global.lst_p_playerGrave)
+        foreach (int _cardKey in g_global.ls_p_playerGrave)
         {
             g_global.ls_p_playerDeck.Add(_cardKey);
         }
         //clear the grave
-        g_global.lst_p_playerGrave.Clear();
+        g_global.ls_p_playerGrave.Clear();
     }
 
     /// <summary>
-    /// Create the card from the template and instantiate it to outside the field.
-    /// This gets called from the dealcards function
-    /// -Riley Halloran
-    /// </summary>
-    /// <param name="_cardTemplate"></param>
-    public void InstanceCard(S_CardTemplate _cardTemplate)
-    {
-        GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
-        playerCard.transform.SetParent(c_cardHolder.gameObject.transform, false);
-
-        //control where it attaches to
-        playerCard.gameObject.transform.SetAsFirstSibling();
-
-        //change the altar text
-        LoadFirstCard(playerCard);
-    }
-
-    /// <summary>
-    /// This method removes the first card from the list (Which is the last card). 
-    /// This gets called from the Card Dragger function
+    /// This method removes the first card from the list
+    /// This gets called from global
     /// -Riley Halloran
     /// </summary>
     /// <param name="_cardTemplate"></param>
     public void RemoveFirstCard()
     {
         g_global.ls_p_playerHand.RemoveAt(0);
-    }
-
-
-    /// <summary>
-    /// This is where the call to change the altar text is
-    /// -Riley Halloran
-    /// </summary>
-    public void LoadFirstCard(GameObject _card)
-    {
-        S_Card _cardScript = _card.GetComponent<S_Card>();
-
-        //g_global.g_altar.ChangeCard(_cardScript);
     }
 }

@@ -71,51 +71,18 @@ public class S_Altar : MonoBehaviour
         c_tx_cardName.text = _cardballScript.c_cardName;
         c_tx_cardBody.text = _cardballScript.c_cardBody;
 
+        //set all the borders to false
+        a_blueBorder.SetActive(false);
+        a_redBorder.SetActive(false);
+        a_yellowBorder.SetActive(false);
+        a_colorlessBorder.SetActive(false);
+
         //set the border color to match the cards
-        if (_cardballScript.c_b_redCardball)
-        {
-            // Red card
-            a_redBorder.SetActive(true);
-
-            // Rest are false
-            a_blueBorder.SetActive(false);
-            a_yellowBorder.SetActive(false);
-            a_colorlessBorder.SetActive(false);
-        }
-        else if (_cardballScript.c_b_blueCardball)
-        {
-            // Blue card
-            a_blueBorder.SetActive(true);
-
-            // Rest are false
-            a_redBorder.SetActive(false);
-            a_yellowBorder.SetActive(false);
-            a_colorlessBorder.SetActive(false);
-        }
-        else if (_cardballScript.c_b_redCardball)
-        {
-            // Yellow card
-            a_yellowBorder.SetActive(true);
-
-            // Rest are false
-            a_redBorder.SetActive(false);
-            a_blueBorder.SetActive(false);
-            a_colorlessBorder.SetActive(false);
-        }
-        else if(_cardballScript.c_b_colorlessCardball)
-        {
-            // White card
-            a_colorlessBorder.SetActive(true);
-
-            // rest are false
-            a_redBorder.SetActive(false);
-            a_blueBorder.SetActive(false);
-            a_yellowBorder.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("_cardballScript was null!");
-        }
+        if (_cardballScript.c_b_redCardball) { a_redBorder.SetActive(true); }
+        else if (_cardballScript.c_b_blueCardball) { a_blueBorder.SetActive(true); }
+        else if (_cardballScript.c_b_redCardball) { a_yellowBorder.SetActive(true); }
+        else if(_cardballScript.c_b_colorlessCardball) { a_colorlessBorder.SetActive(true); }
+        else { Debug.Log("_cardballScript was null!"); }
     }
 
     /// <summary>
@@ -182,8 +149,12 @@ public class S_Altar : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check if the first card can be played and converted into a card
+    /// </summary>
     public void CheckFirstCardball()
     {
+        //check if the card can be played by referencing the useEnergy function
         if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
@@ -245,27 +216,5 @@ public class S_Altar : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(_cardball);
         MoveCardballPrefabs();
-    }
-
-    /// <summary>
-    /// Toggle card visiblity
-    /// </summary>
-    public void OnHoverEnter()
-    {
-        if (c_b_cardSpawned)
-        {
-            c_cardHolder.transform.GetChild(0).gameObject.SetActive(true);
-        }
-    }
-
-    /// <summary>
-    /// Toggle card visiblity
-    /// </summary>
-    public void OnHoverExit()
-    {
-        if (c_b_cardSpawned)
-        {
-            c_cardHolder.transform.GetChild(0).gameObject.SetActive(false);
-        }
     }
 }

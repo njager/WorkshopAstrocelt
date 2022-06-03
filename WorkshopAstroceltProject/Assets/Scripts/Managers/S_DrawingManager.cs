@@ -23,7 +23,7 @@ public class S_DrawingManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
         i_index = 0;
-    }    
+    }
 
     /// <summary>
     /// This is the func that spawns the line renderer for the star map
@@ -31,6 +31,10 @@ public class S_DrawingManager : MonoBehaviour
     /// sets the previous and next line in each script to be the line created
     /// - Riley and Josh
     /// </summary>
+    /// <param name="_star1"></param>
+    /// <param name="_star2"></param>
+    /// <param name="_loc1"></param>
+    /// <param name="_loc2"></param>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
         //Instiate the linePrefab and grab it's objects

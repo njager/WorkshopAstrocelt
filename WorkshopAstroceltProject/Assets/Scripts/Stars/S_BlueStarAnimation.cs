@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class S_BlueStarAnimation : MonoBehaviour
@@ -7,7 +6,7 @@ public class S_BlueStarAnimation : MonoBehaviour
     //Get the redgraphic animator
     public GameObject g_blueGraphic;
 
-    public Animator a_animator;
+    public Animator an_animator;
 
     [Header("percent chance that the Animation plays")]
     public double i_chance = 0.0000002;
@@ -17,7 +16,7 @@ public class S_BlueStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        a_animator = g_blueGraphic.GetComponent<Animator>();
+        an_animator = g_blueGraphic.GetComponent<Animator>();
 
         StartCoroutine(PlayBlueAnimation());
     }
@@ -35,8 +34,8 @@ public class S_BlueStarAnimation : MonoBehaviour
         {
             //print("Blue");
 
-            //Send the message to the Animator to activate the trigger parameter named "Jump"
-            a_animator.Play("BlueAnim");
+            //Send the message to the Animator to activate the trigger parameter named "BlueAnim"
+            an_animator.Play("BlueAnim");
         }
         StartCoroutine(PlayBlueAnimation());
     }

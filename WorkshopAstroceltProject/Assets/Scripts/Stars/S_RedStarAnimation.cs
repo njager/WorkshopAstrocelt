@@ -7,7 +7,7 @@ public class S_RedStarAnimation : MonoBehaviour
     //Get the redgraphic animator
     public GameObject g_redGraphic;
 
-    public Animator a_animator;
+    public Animator an_animator;
 
     [Header("percent chance that the Animation plays")]
     public double i_chance = 0.0000002;
@@ -17,7 +17,7 @@ public class S_RedStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        a_animator = g_redGraphic.GetComponent<Animator>();
+        an_animator = g_redGraphic.GetComponent<Animator>();
 
         StartCoroutine(PlayAnimation());
     }
@@ -38,8 +38,8 @@ public class S_RedStarAnimation : MonoBehaviour
             //Reset the "Crouch" trigger
             //a_animator.ResetTrigger("RedAnim");
 
-            //Send the message to the Animator to activate the trigger parameter named "Jump"
-            a_animator.Play("RedAnim");
+            //Send the message to the Animator to activate the trigger parameter named "RedAnim"
+            an_animator.Play("RedAnim");
         }
         else
         {
