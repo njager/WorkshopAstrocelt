@@ -133,7 +133,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_enemyState.EnemyAttackingOrShielding();
         RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
 
-        foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
+        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
         {
             _enemy.IncreaseIntentAlpha();
         }
@@ -391,7 +391,7 @@ public class S_TurnManager : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         // Load the next icon
-        foreach (S_Enemy _enemy in g_global.e_l_enemyList.ToList())
+        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
         {
             _enemy.ChangeIcon();
         }

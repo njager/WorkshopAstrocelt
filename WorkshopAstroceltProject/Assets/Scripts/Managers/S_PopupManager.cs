@@ -24,6 +24,7 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] Vector3 e_v3_enemy3HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy4HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy5HealthBarPosition;
+    [SerializeField] Transform v3_vfxContainer; 
 
     [Header("Prefabs")]
     public GameObject textPopupPrefab;
@@ -84,6 +85,8 @@ public class S_PopupManager : MonoBehaviour
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
                 _starPopupScript1.SetGraphic(_star.colorType);
+                // Move to container
+                _starPopup1.transform.SetParent(v3_vfxContainer, true);
 
             }
             else if (_energy == 2)
@@ -108,6 +111,10 @@ public class S_PopupManager : MonoBehaviour
                 // Set up Star 2
                 _starPopupScript2.SetPosition(_popupCount, _star);
                 _starPopupScript2.SetGraphic(_star.colorType);
+
+                // Move to container
+                _starPopup1.transform.SetParent(v3_vfxContainer, true);
+                _starPopup2.transform.SetParent(v3_vfxContainer, true);
 
             }
             else if (_energy == 3)
@@ -141,17 +148,23 @@ public class S_PopupManager : MonoBehaviour
                 // Set up Star 3
                 _starPopupScript3.SetPosition(_popupCount, _star);
                 _starPopupScript3.SetGraphic(_star.colorType);
+
+                // Move to container
+                _starPopup1.transform.SetParent(v3_vfxContainer, true);
+                _starPopup2.transform.SetParent(v3_vfxContainer, true);
+                _starPopup3.transform.SetParent(v3_vfxContainer, true);
             }
         }
     }
 
     /// <summary>
-    /// move all popups to the altar
+    /// Move all popups currently spawned to the altar
+    /// - Josh
     /// </summary>
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
-        foreach(S_StarPopUp _starPopup in g_global.ls_starPopup.ToList())
+        foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
             _starPopup.MoveToAltar();
         }
@@ -159,12 +172,13 @@ public class S_PopupManager : MonoBehaviour
     }
 
     /// <summary>
-    /// remove all popups from the scene
+    /// Remove all popups currently spawned from the scene
+    /// - Josh
     /// </summary>
     /// <returns></returns>
     public IEnumerator ClearAllPopups()
     {
-        foreach(S_StarPopUp _starPop in g_global.ls_starPopup.ToList())
+        foreach(S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             _starPop.DeletePopup();
         }

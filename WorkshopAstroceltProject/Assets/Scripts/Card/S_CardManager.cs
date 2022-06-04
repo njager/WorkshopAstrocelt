@@ -47,26 +47,26 @@ public class S_CardManager : MonoBehaviour
         for(int i=0; i<_deal; i++)
         {
             //prevent deck drawing if hand is too big
-            if(g_global.ls_p_playerHand.Count() < p_i_handSizeLimit)
+            if(g_global.g_ls_p_playerHand.Count() < p_i_handSizeLimit)
             {
                 //if the deck is empty move the cards over
-                if (g_global.ls_p_playerDeck.Count() <= 0)
+                if (g_global.g_ls_p_playerDeck.Count() <= 0)
                 {
                     ShuffleGraveToDeck();
                 }
                 
                 //get a random number and get a random key from the deck
-                int _rand = randomNumGenerator(g_global.ls_p_playerDeck.Count()-1);
-                int _cardKey = g_global.ls_p_playerDeck[_rand];
+                int _rand = randomNumGenerator(g_global.g_ls_p_playerDeck.Count()-1);
+                int _cardKey = g_global.g_ls_p_playerDeck[_rand];
 
                 //remove a key from the deck and add it to the grave
-                g_global.ls_p_playerDeck.RemoveAt(_rand);
+                g_global.g_ls_p_playerDeck.RemoveAt(_rand);
 
                 //get the card game object and add it to the player hand
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
 
                 //add the card to the hand
-                g_global.ls_p_playerHand.Add(_randomCard);
+                g_global.g_ls_p_playerHand.Add(_randomCard);
 
             }
         }
@@ -79,7 +79,7 @@ public class S_CardManager : MonoBehaviour
     public void NewHand()
     {
         //clear the player hand
-        g_global.ls_p_playerHand.Clear();
+        g_global.g_ls_p_playerHand.Clear();
 
         //deal the new cards
         DealCards(p_i_drawPerTurn);
@@ -94,12 +94,12 @@ public class S_CardManager : MonoBehaviour
         Debug.Log("Grave to Hand");
 
         //loop through the grave and add it to the deck
-        foreach (int _cardKey in g_global.lst_p_playerGrave)
+        foreach (int _cardKey in g_global.g_ls_p_playerGrave)
         {
-            g_global.ls_p_playerDeck.Add(_cardKey);
+            g_global.g_ls_p_playerDeck.Add(_cardKey);
         }
         //clear the grave
-        g_global.lst_p_playerGrave.Clear();
+        g_global.g_ls_p_playerGrave.Clear();
     }
 
     /// <summary>
@@ -110,6 +110,6 @@ public class S_CardManager : MonoBehaviour
     /// <param name="_cardTemplate"></param>
     public void RemoveFirstCard()
     {
-        g_global.ls_p_playerHand.RemoveAt(0);
+        g_global.g_ls_p_playerHand.RemoveAt(0);
     }
 }

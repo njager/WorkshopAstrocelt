@@ -50,7 +50,7 @@ public class S_Cardball : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        g_global.ls_cardBallPrefabs.Add(this);
+        g_global.g_ls_cardBallPrefabs.Add(this);
 
         //CardballSetup();
     }
@@ -168,8 +168,8 @@ public class S_Cardball : MonoBehaviour
     public void DeleteCardball()
     {
         Debug.Log("DEBUG: Cardball Deletion Triggered");
-        g_global.ls_cardBallPrefabs.Remove(this);
-        g_global.lst_p_playerGrave.Add(c_cardData.CardDatabaseID);
+        g_global.g_ls_cardBallPrefabs.Remove(this);
+        g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
         StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
     }
 
