@@ -26,6 +26,9 @@ public class S_Enemy : MonoBehaviour
     [Header("Enemy Sprite")]
     public GameObject e_enemySprite;
 
+    [Header("Enemy Default Scale Vector3")]
+    public Vector3 e_v3_defaultScale;
+
     [Header("Intent Duration Value")]
     public float f_intentDuration; 
 
@@ -73,8 +76,8 @@ public class S_Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Enemy attacked
-    /// Update for Magician
+    /// Enemy was attacked
+    /// Updated for Magician
     /// - Josh
     /// </summary>
     /// <param name="_enemyType"></param>
@@ -305,6 +308,43 @@ public class S_Enemy : MonoBehaviour
     {
         e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
+    }
+
+    /// <summary>
+    /// Toggle the highlight element for the enemy
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemy"></param>
+    public void EnemyHighlightToggle()
+    {
+
+    }
+
+    /// <summary>
+    /// Set the enemy sprite to being a smaller size when it's not their turn
+    /// - Josh
+    /// </summary>
+    public void SetToInactiveTurnScale() 
+    {
+        //e_enemySprite
+    }
+
+    /// <summary>
+    /// Set the enemy sprite to being a larger size when it is their turn
+    /// - Josh
+    /// </summary>
+    public void SetToActiveTurnScale() 
+    {
+
+    }
+
+    /// <summary>
+    /// Set the enemy sprite to "default" size when it's the player's turn
+    /// - Josh
+    /// </summary>
+    public void SetToPlayerTurnScale() 
+    {
+        
     }
 
     // Eventually use this for UI stuff to avoid using an update loop

@@ -686,16 +686,6 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggle the highlight element on the passed through EnemyObject
-    /// - Josh
-    /// </summary>
-    /// <param name="_enemy"></param>
-    public void EnemyHighlightToggle(S_EnemyAttributes _enemyData)
-    {
-
-    }
-
-    /// <summary>
     /// Change the name on the turn bar
     /// - Josh
     /// </summary>
