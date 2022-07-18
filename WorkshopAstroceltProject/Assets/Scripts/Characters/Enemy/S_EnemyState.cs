@@ -948,4 +948,38 @@ public class S_EnemyState : MonoBehaviour
             }
         }
     }
+
+
+   /// <summary>
+   /// Useful to see what enemy's turn should be active
+   /// - Josh
+   /// </summary>
+   /// <returns></returns>
+    public int CurrentEnemyTurnNumber()
+    {
+        if (e_b_enemy1Turn == true)
+        {
+            return 1;
+        }
+        else if (e_b_enemy2Turn == true)
+        {
+            return 2;
+        }
+        else if (e_b_enemy3Turn == true)
+        {
+            return 3;
+        }
+        else if (e_b_enemy4Turn == true)
+        {
+            return 4;
+        }
+        else if (e_b_enemy5Turn == true)
+        {
+            return 5;
+        }
+        else 
+        {
+            return 0; 
+        }
+    }
 }
