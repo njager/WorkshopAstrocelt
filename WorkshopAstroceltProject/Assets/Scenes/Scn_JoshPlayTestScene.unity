@@ -9312,6 +9312,8 @@ MonoBehaviour:
   g_popupManager: {fileID: 274638691}
   g_altar: {fileID: 1981244727}
   g_sceneManager: {fileID: 1510901130}
+  g_backgroundManager: {fileID: 0}
+  g_turnEffectManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -19128,11 +19130,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 960127656}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &961603282 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3560364168460321924, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
-  m_PrefabInstance: {fileID: 3560364167540744790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &970400213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22427,6 +22424,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8966667278a24f9498e8999d0987594d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a_backgroundNight: {fileID: 0}
+  a_backgroundDay: {fileID: 0}
+  a_hillsNight: {fileID: 0}
+  a_hillsDay: {fileID: 0}
+  a_backgroundImage: {fileID: 0}
+  a_hillsImage: {fileID: 0}
 --- !u!1001 &1127326504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25095,6 +25098,11 @@ MonoBehaviour:
   e_b_enemy3Dead: 0
   e_b_enemy4Dead: 0
   e_b_enemy5Dead: 0
+  e_b_enemy1Turn: 0
+  e_b_enemy2Turn: 0
+  e_b_enemy3Turn: 0
+  e_b_enemy4Turn: 0
+  e_b_enemy5Turn: 0
   e_b_enemy1Shielding: 0
   e_b_enemy2Shielding: 0
   e_b_enemy3Shielding: 0
@@ -25198,12 +25206,6 @@ MonoBehaviour:
   enemy3TurnSkipped: 0
   enemy4TurnSkipped: 0
   enemy5TurnSkipped: 0
-  a_backgroundNight: {fileID: 21300000, guid: 0558e7594c262fc4aa6a8b70cc696d98, type: 3}
-  a_backgroundDay: {fileID: 21300000, guid: 69398a19e0f3f894696fe7b56af1f2c5, type: 3}
-  a_hillsNight: {fileID: 21300000, guid: 8d0e419fa973764439ef710897f6c9a5, type: 3}
-  a_hillsDay: {fileID: 21300000, guid: 45e0971efbd4523439e2b76d939e4285, type: 3}
-  a_backgroundImage: {fileID: 1780560770}
-  a_hillsImage: {fileID: 961603282}
 --- !u!1 &1272361799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8989632453072894049, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
@@ -29730,6 +29732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1598542222}
+  - component: {fileID: 1598542223}
   m_Layer: 0
   m_Name: VFXManager
   m_TagString: Manager
@@ -29751,6 +29754,18 @@ Transform:
   m_Father: {fileID: 481223725}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1598542223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598542221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb2d5aa79181d24c8583667f7836fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1599640790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32809,11 +32824,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
   m_PrefabInstance: {fileID: 1775284832}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1780560770 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3560364167173673428, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
-  m_PrefabInstance: {fileID: 3560364167540744790}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781165284
 PrefabInstance:

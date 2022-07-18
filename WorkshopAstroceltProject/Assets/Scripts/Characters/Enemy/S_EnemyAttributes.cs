@@ -53,8 +53,11 @@ public class S_EnemyAttributes : MonoBehaviour
     [Header("Particle Effect")]
     public ParticleSystem e_pe_blood;
 
-    [Header("Animatior")]
+    [Header("Animator")]
     public Animator e_a_animator;
+
+    [Header("Highlight Circle")]
+    public GameObject e_highlightCircle;
 
     public void Awake()
     {
