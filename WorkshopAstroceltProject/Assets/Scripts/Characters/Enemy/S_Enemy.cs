@@ -47,8 +47,6 @@ public class S_Enemy : MonoBehaviour
         // Grab and set default scale
         e_v3_defaultScale = gameObject.transform.localScale;
 
-        e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
-
         // Left over code, leaving
         //a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
     }

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_enemyAttributes: {fileID: 1068484044281633899}
+  e_sc_enemyAttributes: {fileID: 0}
   e_str_enemyType: Magician
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
@@ -5640,6 +5640,10 @@ PrefabInstance:
     - target: {fileID: 5149136608773721842, guid: ef38721e8af91864b886473800980bc6, type: 3}
       propertyPath: m_Name
       value: Pf_HighlightCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149136608773721842, guid: ef38721e8af91864b886473800980bc6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef38721e8af91864b886473800980bc6, type: 3}
