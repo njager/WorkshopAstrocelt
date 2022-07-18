@@ -51,7 +51,6 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-
         if (g_global.g_b_playerTurn == false && playerTurnSkipped) // Skip player's turn it it is th
         {
             //Simulating the enemy turn behavior "waiting" before changing back
@@ -138,8 +137,15 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy1TurnSkipped == false)
                 {
-                    //Doesn't stagger turn
-                    
+                    // Start the turn
+                    g_global.g_enemyState.e_b_enemy1Turn = true;
+                    g_global.g_enemyState.e_b_enemy2Turn = false;
+                    g_global.g_enemyState.e_b_enemy3Turn = false;
+                    g_global.g_enemyState.e_b_enemy4Turn = false;
+                    g_global.g_enemyState.e_b_enemy5Turn = false;
+
+                    //Can't stagger turn here
+
 
                     //Do your action
                     if (g_global.g_enemyState.e_b_enemy1Shielding == true)
@@ -187,6 +193,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy2TurnSkipped == false)
                 {
+                    // Start the turn
+                    g_global.g_enemyState.e_b_enemy1Turn = false;
+                    g_global.g_enemyState.e_b_enemy2Turn = true;
+                    g_global.g_enemyState.e_b_enemy3Turn = false;
+                    g_global.g_enemyState.e_b_enemy4Turn = false;
+                    g_global.g_enemyState.e_b_enemy5Turn = false;
+
                     //Stagger the turn, as long as enemy 2 isn't first
                     if (g_global.g_enemyState.e_b_enemy1Dead != true)
                     {
@@ -239,6 +252,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy3TurnSkipped == false)
                 {
+                    // Start the turn
+                    g_global.g_enemyState.e_b_enemy1Turn = false;
+                    g_global.g_enemyState.e_b_enemy2Turn = false;
+                    g_global.g_enemyState.e_b_enemy3Turn = true;
+                    g_global.g_enemyState.e_b_enemy4Turn = false;
+                    g_global.g_enemyState.e_b_enemy5Turn = false;
+
                     //Stagger the turn, as long as enemy 3 isn't first
                     if (g_global.g_enemyState.e_b_enemy1Dead != true && g_global.g_enemyState.e_b_enemy2Dead != true)
                     {
@@ -290,6 +310,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy4TurnSkipped == false)
                 {
+                    // Start the turn
+                    g_global.g_enemyState.e_b_enemy1Turn = false;
+                    g_global.g_enemyState.e_b_enemy2Turn = false;
+                    g_global.g_enemyState.e_b_enemy3Turn = false;
+                    g_global.g_enemyState.e_b_enemy4Turn = true;
+                    g_global.g_enemyState.e_b_enemy5Turn = false;
+
                     //Stagger the turn
                     yield return new WaitForSeconds(2);
 
@@ -338,6 +365,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy5TurnSkipped == false)
                 {
+                    // Start the turn
+                    g_global.g_enemyState.e_b_enemy1Turn = false;
+                    g_global.g_enemyState.e_b_enemy2Turn = false;
+                    g_global.g_enemyState.e_b_enemy3Turn = false;
+                    g_global.g_enemyState.e_b_enemy4Turn = false;
+                    g_global.g_enemyState.e_b_enemy5Turn = true;
+
                     //Stagger the turn
                     yield return new WaitForSeconds(2);
 
@@ -378,6 +412,13 @@ public class S_TurnManager : MonoBehaviour
                 }
             }
         }
+
+        //end all turn checks
+        g_global.g_enemyState.e_b_enemy1Turn = false;
+        g_global.g_enemyState.e_b_enemy2Turn = false;
+        g_global.g_enemyState.e_b_enemy3Turn = false;
+        g_global.g_enemyState.e_b_enemy4Turn = false;
+        g_global.g_enemyState.e_b_enemy5Turn = false;
 
         // Represent the first enemy's turn
         yield return new WaitForSeconds(2);

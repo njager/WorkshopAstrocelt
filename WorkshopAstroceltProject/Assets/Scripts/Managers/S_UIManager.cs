@@ -723,5 +723,9 @@ public class S_UIManager : MonoBehaviour
         {
             debugTurnbarText.text = "Current Character's Turn is: Enemy 5";
         }
+        else 
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Player";
+        }
     }
 }

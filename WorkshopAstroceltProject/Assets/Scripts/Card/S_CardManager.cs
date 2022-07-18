@@ -28,12 +28,12 @@ public class S_CardManager : MonoBehaviour
     /// <summary>
     /// This Function returns a random int from 0 to the given range
     /// this is used for getting cards from the deck
-    /// - Riley
+    /// System.Random kept getting negative values, unsure how, changed to different Random usage
+    /// - Riley & Josh
     /// </summary>
     public int randomNumGenerator(int _num)
     {
-        System.Random rand = new System.Random();
-        int _number = rand.Next(0, _num);
+        int _number = Random.Range(0, _num);
         return _number;
     }
 
@@ -79,7 +79,7 @@ public class S_CardManager : MonoBehaviour
     public void NewHand()
     {
         //clear the player hand
-        g_global.g_ls_p_playerHand.Clear();
+        ClearPlayerHand();
 
         //deal the new cards
         DealCards(p_i_drawPerTurn);
@@ -98,8 +98,9 @@ public class S_CardManager : MonoBehaviour
         {
             g_global.g_ls_p_playerDeck.Add(_cardKey);
         }
+
         //clear the grave
-        g_global.g_ls_p_playerGrave.Clear();
+        ClearPlayerGrave();
     }
 
     /// <summary>
@@ -111,5 +112,29 @@ public class S_CardManager : MonoBehaviour
     public void RemoveFirstCard()
     {
         g_global.g_ls_p_playerHand.RemoveAt(0);
+    }
+
+    /// <summary>
+    /// Manual clear function, other one wasn't working
+    /// - Josh
+    /// </summary>
+    private void ClearPlayerHand() 
+    {
+        foreach( S_CardTemplate _card in g_global.g_ls_p_playerHand.ToList())
+        {
+            g_global.g_ls_p_playerHand.Remove(_card);
+        }
+    }
+
+    /// <summary>
+    /// Manual clear function, other one wasn't working
+    /// - Josh
+    /// </summary>
+    private void ClearPlayerGrave()
+    {
+        foreach (int _number in g_global.g_ls_p_playerGrave.ToList())
+        {
+            g_global.g_ls_p_playerGrave.Remove(_number);
+        }
     }
 }

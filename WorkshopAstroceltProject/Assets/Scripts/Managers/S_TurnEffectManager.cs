@@ -13,6 +13,15 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
         g_global = S_Global.Instance;
     }
 
+    // If the team likes - move out of update loop
+    private void Update()
+    {
+        if(g_global.g_b_playerTurn == false) 
+        {
+            EnemyTurnEffects();
+        }
+    }
+
     /// <summary>
     /// Major trigger function for helper functions in this script for the current enemy turn
     /// - Josh
