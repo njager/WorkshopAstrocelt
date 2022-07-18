@@ -28,12 +28,19 @@ public class S_EnemyState : MonoBehaviour
     public string str_enemy4Type;
     public string str_enemy5Type;
 
-    [Header("Bool Check")]
+    [Header("Bool Living Status Check")]
     public bool e_b_enemy1Dead;
     public bool e_b_enemy2Dead;
     public bool e_b_enemy3Dead;
     public bool e_b_enemy4Dead;
     public bool e_b_enemy5Dead;
+
+    [Header("Current Enemys' Turn Check")]
+    public bool e_b_enemy1Turn;
+    public bool e_b_enemy2Turn;
+    public bool e_b_enemy3Turn;
+    public bool e_b_enemy4Turn;
+    public bool e_b_enemy5Turn;
 
     //Check thse for their next turn actions 
     [Header("Enemy Shielding Bools")]

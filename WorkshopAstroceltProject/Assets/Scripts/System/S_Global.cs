@@ -28,6 +28,8 @@ public class S_Global : MonoBehaviour
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
     public S_SceneManager g_sceneManager;
+    public S_BackgroundManager g_backgroundManager;
+    public S_TurnEffectManager g_turnEffectManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;

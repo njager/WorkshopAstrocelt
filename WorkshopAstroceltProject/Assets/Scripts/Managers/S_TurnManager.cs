@@ -22,17 +22,7 @@ public class S_TurnManager : MonoBehaviour
     public bool enemy4TurnSkipped;
     public bool enemy5TurnSkipped;
 
-    [Header("Environment Assets")]
-    public Sprite a_backgroundNight;
-    public Sprite a_backgroundDay;
-    public Sprite a_hillsNight;
-    public Sprite a_hillsDay;
-
-    [Header("Environment References")]
-    public SpriteRenderer a_backgroundImage;
-    public SpriteRenderer a_hillsImage;
-
-
+    
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
@@ -122,7 +112,7 @@ public class S_TurnManager : MonoBehaviour
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
         // Toggle day
-        ChangeBackground(1);
+        g_global.g_backgroundManager.ChangeBackground(1);
 
         //Clear card prefabs + Popups
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
@@ -419,7 +409,7 @@ public class S_TurnManager : MonoBehaviour
         StartCoroutine(g_global.g_altar.SpawnCardballPrefabs());
 
         //Turn to night
-        ChangeBackground(0);
+        g_global.g_backgroundManager.ChangeBackground(0);
 
         //Reset player
         g_global.g_playerAttributeSheet.p_i_shield = 0;
@@ -461,38 +451,6 @@ public class S_TurnManager : MonoBehaviour
         if (g_global.g_enemyAttributeSheet5 != null) // Strip Enemy 5 of Shielding
         {
             g_global.g_enemyAttributeSheet5.e_i_shield = 0;
-        }
-    }
-
-    /// <summary>
-    /// Background helper function to change the environment assets
-    /// Enter 0 for Night, 1 for Day
-    /// - Josh
-    /// </summary>
-    /// <param name="_environmentValue"></param>
-    private void ChangeBackground(int _environmentValue)
-    {
-        if (_environmentValue == 0) // Change to Night
-        {
-            // Change sprites
-            a_backgroundImage.sprite = a_backgroundNight; // Eventually make these DOTweens
-            a_hillsImage.sprite = a_hillsNight;
-        }
-        else if(_environmentValue == 1) // Change to Day
-        {
-            // Change sprites
-            a_backgroundImage.sprite = a_backgroundDay;
-            a_hillsImage.sprite = a_hillsDay;
-
-            // Toggle maps
-            g_global.g_mapManager.map1.SetActive(false);
-            g_global.g_mapManager.map2.SetActive(false);
-            g_global.g_mapManager.map3.SetActive(false);
-            g_global.g_mapManager.map4.SetActive(false);
-            g_global.g_mapManager.map5.SetActive(false);
-            g_global.g_mapManager.map6.SetActive(false);
-            g_global.g_mapManager.map7.SetActive(false);
-            g_global.g_mapManager.map8.SetActive(false);
         }
     }
 }
