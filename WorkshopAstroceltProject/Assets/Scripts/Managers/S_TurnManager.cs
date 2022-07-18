@@ -46,6 +46,8 @@ public class S_TurnManager : MonoBehaviour
 
     /// <summary>
     /// This update is used to simulate some time after the turn change. If the player's turn gets skipped, immediately trigger the end turn
+    /// Being used as the IEnumerator loop for the player
+    /// - Josh
     /// </summary>
     void Update()
     {
