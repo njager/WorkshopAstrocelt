@@ -51,7 +51,7 @@ public class S_IntentManager : MonoBehaviour
     {
         int _chanceSelected = 100 - IntentDiceRoll();
         //Debug.Log("Roll is " + _chanceSelected + " for " + _enemyToChange.e_i_enemyCount);
-        if (_chanceSelected <= _enemyToChange.e_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Special Ability
+        if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Special Ability
         {
             UIChangesForIntent(_enemyToChange, 3);
             if (_enemyToChange.e_i_enemyCount == 1) // Enemy 1 special ability next turn
@@ -75,7 +75,7 @@ public class S_IntentManager : MonoBehaviour
                 e_b_enemy5IconCheck = "ability";
             }
         }
-        else if (_chanceSelected <= _enemyToChange.e_enemyAttributes.e_i_shieldRate && _chanceSelected >= _enemyToChange.e_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Shield
+        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Shield
         {
             UIChangesForIntent(_enemyToChange, 2);
             if (_enemyToChange.e_i_enemyCount == 1) // Enemy 1 shielding next turn
@@ -99,7 +99,7 @@ public class S_IntentManager : MonoBehaviour
                 e_b_enemy5IconCheck = "shield";
             }
         }
-        else if (_chanceSelected <= _enemyToChange.e_enemyAttributes.e_i_attackRate && _chanceSelected >= _enemyToChange.e_enemyAttributes.e_i_shieldRate) // Set Enemy up for Attack
+        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_attackRate && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate) // Set Enemy up for Attack
         {
             UIChangesForIntent(_enemyToChange, 1);
             if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
@@ -143,7 +143,7 @@ public class S_IntentManager : MonoBehaviour
     /// </summary>
     public void UIChangesForIntent(S_Enemy _enemy, int _enemyAction)
     {
-        S_EnemyAttributes _enemyAttributeSheet = _enemy.e_enemyAttributes;
+        S_EnemyAttributes _enemyAttributeSheet = _enemy.e_sc_enemyAttributes;
         if(_enemyAction == 1)
         {
             _enemyAttributeSheet.AttackDamageRoll();

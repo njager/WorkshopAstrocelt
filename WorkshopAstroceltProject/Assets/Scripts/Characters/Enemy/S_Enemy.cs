@@ -10,7 +10,7 @@ public class S_Enemy : MonoBehaviour
 {
     private S_Global g_global;
 
-    public S_EnemyAttributes e_enemyAttributes;
+    public S_EnemyAttributes e_sc_enemyAttributes;
 
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
@@ -44,6 +44,12 @@ public class S_Enemy : MonoBehaviour
 
         e_enemySprite.GetComponent<S_CharacterCardInterface>().e_attachedEnemy = this;
 
+        // Grab and set default scale
+        e_v3_defaultScale = gameObject.transform.localScale;
+
+        e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
+
+        // Left over code, leaving
         //a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
     }
 
@@ -82,67 +88,67 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     /// <param name="_enemyType"></param>
     /// <param name="_damageVal"></param>
-    public void EnemyAttacked(string _enemyType, int _damageValue)
+    public void EnemyAttacked(string _enemyType, int _damageValue) 
     {
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if(e_enemyAttributes.e_b_resistant == true)
+            if(e_sc_enemyAttributes.e_b_resistant == true)
             {
-                if (e_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.e_i_shield <= 0)
                 {
-                    e_enemyAttributes.e_i_health -= _newDamageValue;
-                    e_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_i_health -= _newDamageValue;
+                    e_sc_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy Attacked!");
                 }
                 else
                 {
-                    int _tempVal = e_enemyAttributes.e_i_shield - _newDamageValue;
+                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _newDamageValue;
                     if (_tempVal < 0)
                     {
-                        e_enemyAttributes.e_i_shield -= _newDamageValue;
-                        if (e_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
+                        if (e_sc_enemyAttributes.e_i_shield < 0)
                         {
-                            e_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.e_i_shield = 0;
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                        e_enemyAttributes.e_pe_blood.Play();
+                        e_sc_enemyAttributes.e_pe_blood.Play();
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
-                        e_enemyAttributes.e_i_shield -= _newDamageValue;
+                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
             else
             {
-                if (e_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.e_i_shield <= 0)
                 {
-                    e_enemyAttributes.e_i_health -= _damageValue;
-                    e_enemyAttributes.e_pe_blood.Play();
-                    e_enemyAttributes.e_a_animator.Play("Damaged");
+                    e_sc_enemyAttributes.e_i_health -= _damageValue;
+                    e_sc_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy Attacked!");
                 }
                 else
                 {
-                    int _tempVal = e_enemyAttributes.e_i_shield - _damageValue;
+                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
                     if (_tempVal < 0)
                     {
-                        e_enemyAttributes.e_i_shield -= _damageValue;
-                        if (e_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                        if (e_sc_enemyAttributes.e_i_shield < 0)
                         {
-                            e_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.e_i_shield = 0;
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                        e_enemyAttributes.e_pe_blood.Play();
-                        e_enemyAttributes.e_a_animator.Play("Damaged");
+                        e_sc_enemyAttributes.e_pe_blood.Play();
+                        e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
-                        e_enemyAttributes.e_i_shield -= _damageValue;
+                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
                         Debug.Log("Enemy had shields!");
                     }
                 }
@@ -150,31 +156,31 @@ public class S_Enemy : MonoBehaviour
         }
         else
         {
-            if (e_enemyAttributes.e_i_shield <= 0)
+            if (e_sc_enemyAttributes.e_i_shield <= 0)
             {
-                e_enemyAttributes.e_i_health -= _damageValue;
-                e_enemyAttributes.e_a_animator.Play("Damaged");
-                e_enemyAttributes.e_pe_blood.Play();
+                e_sc_enemyAttributes.e_i_health -= _damageValue;
+                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+                e_sc_enemyAttributes.e_pe_blood.Play();
                 Debug.Log("Enemy Attacked!");
             }
             else
             {
-                int _tempVal = e_enemyAttributes.e_i_shield - _damageValue;
+                int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
                 if (_tempVal < 0)
                 {
-                    e_enemyAttributes.e_i_shield -= _damageValue;
-                    if (e_enemyAttributes.e_i_shield < 0)
+                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                    if (e_sc_enemyAttributes.e_i_shield < 0)
                     {
-                        e_enemyAttributes.e_i_shield = 0;
+                        e_sc_enemyAttributes.e_i_shield = 0;
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                    e_enemyAttributes.e_a_animator.Play("Damaged");
-                    e_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+                    e_sc_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else
                 {
-                    e_enemyAttributes.e_i_shield -= _damageValue;
+                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
                     Debug.Log("Enemy had shields!");
                 }
             }
@@ -190,7 +196,7 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_shieldVal"></param>
     public void EnemyShielded(string _enemyType, int _shieldVal)
     {
-        e_enemyAttributes.e_i_shield += _shieldVal;
+        e_sc_enemyAttributes.e_i_shield += _shieldVal;
         if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
@@ -215,7 +221,7 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_healthVal"></param>
     public void EnemyHealed(int _healthVal)
     {
-        e_enemyAttributes.e_i_health += _healthVal;
+        e_sc_enemyAttributes.e_i_health += _healthVal;
         Debug.Log("Enemy Heals");
     }
 
@@ -257,7 +263,7 @@ public class S_Enemy : MonoBehaviour
     {
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
-        e_enemyAttributes.e_i_health = 0;
+        e_sc_enemyAttributes.e_i_health = 0;
         gameObject.SetActive(false);
     }
 
@@ -304,7 +310,7 @@ public class S_Enemy : MonoBehaviour
     /// A bit wonky tbh
     /// - Josh
     /// </summary>
-    public void IncreaseIntentAlpha()
+    public void IncreaseIntentIconAlpha()
     {
         e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);

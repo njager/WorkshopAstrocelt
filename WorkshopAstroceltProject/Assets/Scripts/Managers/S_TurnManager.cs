@@ -127,7 +127,7 @@ public class S_TurnManager : MonoBehaviour
 
         foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
         {
-            _enemy.IncreaseIntentAlpha();
+            _enemy.IncreaseIntentIconAlpha();
         }
 
         // Check to see if dead in order to actvate their moves

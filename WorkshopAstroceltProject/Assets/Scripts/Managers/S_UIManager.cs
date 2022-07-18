@@ -684,13 +684,4 @@ public class S_UIManager : MonoBehaviour
             }
         }
     }
-
-    /// <summary>
-    /// Change the name on the turn bar
-    /// - Josh
-    /// </summary>
-    public void TurnNameBarUpdate()
-    {
-
-    }
 }
