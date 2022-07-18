@@ -104,6 +104,10 @@ public class S_UIManager : MonoBehaviour
     public GameObject e_enemy4ResistantEffect;
     public GameObject e_enemy5ResistantEffect;
 
+    [Header("Debug Turnbar")]
+    public GameObject debugTurnbar;
+    public TextMeshProUGUI debugTurnbarText;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -112,6 +116,9 @@ public class S_UIManager : MonoBehaviour
         winText.SetActive(false);
         loseText.SetActive(false);
         resetCanvas.SetActive(false);
+
+        // Turn off debug elements
+        debugTurnbar.SetActive(false);
     }
 
     //Some of this should be in turn manager?, probably
@@ -325,6 +332,11 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
             e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
+        }
+
+        if(debugTurnbar.activeInHierarchy == true) 
+        {
+            DebugTurnBarUpdate();
         }
     }
 
@@ -682,6 +694,34 @@ public class S_UIManager : MonoBehaviour
                     e_enemy5ResistantEffect.SetActive(false);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Change the name on the turn bar
+    /// - Josh
+    /// </summary>
+    public void DebugTurnBarUpdate()
+    {
+        if(g_global.g_enemyState.e_b_enemy1Turn == true) 
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 1";
+        }
+        else if (g_global.g_enemyState.e_b_enemy2Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 2";
+        }
+        else if (g_global.g_enemyState.e_b_enemy3Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 3";
+        }
+        else if (g_global.g_enemyState.e_b_enemy4Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 4";
+        }
+        else if (g_global.g_enemyState.e_b_enemy5Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 5";
         }
     }
 }

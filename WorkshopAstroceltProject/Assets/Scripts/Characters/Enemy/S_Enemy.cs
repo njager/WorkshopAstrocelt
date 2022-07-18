@@ -321,7 +321,14 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemy"></param>
     public void EnemyHighlightToggle()
     {
-
+        if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
+        {
+            e_sc_enemyAttributes.e_highlightCircle.SetActive(true);
+        }
+        else 
+        {
+            e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
+        }
     }
 
     /// <summary>

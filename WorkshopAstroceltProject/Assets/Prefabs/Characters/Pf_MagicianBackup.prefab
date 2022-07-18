@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7052261342896429276}
   - component: {fileID: 7867464087033945086}
   m_Layer: 0
-  m_Name: Pf_MagicianEnemy
+  m_Name: Pf_MagicianBackup
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,12 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_enemyAttributes: {fileID: 1068484044281633899}
+  e_sc_enemyAttributes: {fileID: 1068484044281633899}
   e_str_enemyType: Magician
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
   e_tx_intentTextObject: {fileID: 6073267529116700214}
   e_enemySprite: {fileID: 4466407970463963069}
+  e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 1
 --- !u!114 &1068484044281633899
 MonoBehaviour:
@@ -97,6 +98,7 @@ MonoBehaviour:
   e_enemy: {fileID: 0}
   e_pe_blood: {fileID: 6734889760687528100}
   e_a_animator: {fileID: 1358277532405405128}
+  e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

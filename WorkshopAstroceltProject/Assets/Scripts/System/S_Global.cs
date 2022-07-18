@@ -135,5 +135,16 @@ public class S_Global : MonoBehaviour
         {
             g_playerAttributeSheet.p_i_health = 0;
         }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (g_UIManager.debugTurnbar.activeInHierarchy == false)
+            {
+                g_UIManager.debugTurnbar.SetActive(true);
+            }
+            else 
+            {
+                g_UIManager.debugTurnbar.SetActive(false);
+            }
+        }
     }
 }

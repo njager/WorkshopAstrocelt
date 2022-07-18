@@ -55,12 +55,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_enemyAttributes: {fileID: 1068484044281633899}
+  e_sc_enemyAttributes: {fileID: 1068484044281633899}
   e_str_enemyType: Lumberjack
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
   e_tx_intentTextObject: {fileID: 0}
   e_enemySprite: {fileID: 0}
+  e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 0
 --- !u!114 &1068484044281633899
 MonoBehaviour:
@@ -98,6 +99,9 @@ MonoBehaviour:
   e_b_burned: 0
   e_b_shocked: 0
   e_enemy: {fileID: 0}
+  e_pe_blood: {fileID: 0}
+  e_a_animator: {fileID: 0}
+  e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
