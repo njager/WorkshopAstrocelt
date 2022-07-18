@@ -19130,6 +19130,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 960127656}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &961603282 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3560364168460321924, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
+  m_PrefabInstance: {fileID: 3560364167540744790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &970400213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22424,12 +22429,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8966667278a24f9498e8999d0987594d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a_backgroundNight: {fileID: 0}
-  a_backgroundDay: {fileID: 0}
-  a_hillsNight: {fileID: 0}
-  a_hillsDay: {fileID: 0}
-  a_backgroundImage: {fileID: 0}
-  a_hillsImage: {fileID: 0}
+  a_backgroundNight: {fileID: 21300000, guid: 7981233c00040aa4d999a836a22854bd, type: 3}
+  a_backgroundDay: {fileID: 21300000, guid: 64de3cd713ec2684eb817af8e82fc594, type: 3}
+  a_hillsNight: {fileID: 21300000, guid: 9d53c1f4fec10ea4b936197a1bf78874, type: 3}
+  a_hillsDay: {fileID: 21300000, guid: fdc6c1d802a814440a026a883491530f, type: 3}
+  a_backgroundImage: {fileID: 1780560770}
+  a_hillsImage: {fileID: 961603282}
 --- !u!1001 &1127326504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32824,6 +32829,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
   m_PrefabInstance: {fileID: 1775284832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1780560770 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3560364167173673428, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
+  m_PrefabInstance: {fileID: 3560364167540744790}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781165284
 PrefabInstance:
