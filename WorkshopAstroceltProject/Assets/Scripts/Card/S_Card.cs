@@ -608,7 +608,7 @@ public class S_Card : MonoBehaviour
     }
 
     /// <summary>
-    /// Does as it says, it resets the card's position
+    /// Does as it says, it resets the card to it's initial position
     /// -Josh
     /// </summary>
     public void ResetPosition()
