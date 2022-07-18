@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_BackgroundManager : MonoBehaviour
+public class S_TurnAffectManager : MonoBehaviour
 {
-    //global script
     private S_Global g_global;
 
     // Start is called before the first frame update
@@ -13,9 +12,5 @@ public class S_BackgroundManager : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Enemy Highlighting Script
 }
