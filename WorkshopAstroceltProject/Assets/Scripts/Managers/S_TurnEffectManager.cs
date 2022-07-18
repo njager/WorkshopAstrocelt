@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Script
+public class S_TurnAffectManager : MonoBehaviour
 {
     private S_Global g_global;
 
@@ -12,8 +12,5 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
         g_global = S_Global.Instance;
     }
 
-    public void EnemyHighlightToggle(GameObject _enemy) 
-    { 
-
-    }
+    // Enemy Highlighting Script
 }
