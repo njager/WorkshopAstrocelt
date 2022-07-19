@@ -193,18 +193,18 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy2TurnSkipped == false)
                 {
+                    //Stagger the turn, as long as enemy 2 isn't first
+                    if (g_global.g_enemyState.e_b_enemy1Dead != true)
+                    {
+                        new WaitForSeconds(2);
+                    }
+
                     // Start the turn
                     g_global.g_enemyState.e_b_enemy1Turn = false;
                     g_global.g_enemyState.e_b_enemy2Turn = true;
                     g_global.g_enemyState.e_b_enemy3Turn = false;
                     g_global.g_enemyState.e_b_enemy4Turn = false;
                     g_global.g_enemyState.e_b_enemy5Turn = false;
-
-                    //Stagger the turn, as long as enemy 2 isn't first
-                    if (g_global.g_enemyState.e_b_enemy1Dead != true)
-                    {
-                        yield return new WaitForSeconds(2);
-                    }
 
                     //Do your action
                     if (g_global.g_enemyState.e_b_enemy2Shielding == true)
@@ -252,18 +252,18 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy3TurnSkipped == false)
                 {
+                    //Stagger the turn, as long as enemy 3 isn't first
+                    if (g_global.g_enemyState.e_b_enemy1Dead != true && g_global.g_enemyState.e_b_enemy2Dead != true)
+                    {
+                        new WaitForSeconds(2);
+                    }
+
                     // Start the turn
                     g_global.g_enemyState.e_b_enemy1Turn = false;
                     g_global.g_enemyState.e_b_enemy2Turn = false;
                     g_global.g_enemyState.e_b_enemy3Turn = true;
                     g_global.g_enemyState.e_b_enemy4Turn = false;
                     g_global.g_enemyState.e_b_enemy5Turn = false;
-
-                    //Stagger the turn, as long as enemy 3 isn't first
-                    if (g_global.g_enemyState.e_b_enemy1Dead != true && g_global.g_enemyState.e_b_enemy2Dead != true)
-                    {
-                        yield return new WaitForSeconds(2);
-                    }
 
                     //Do your action
                     if (g_global.g_enemyState.e_b_enemy3Shielding == true)
@@ -310,15 +310,15 @@ public class S_TurnManager : MonoBehaviour
             {
                 if (enemy4TurnSkipped == false)
                 {
+                    //Stagger the turn
+                     new WaitForSeconds(2);
+
                     // Start the turn
                     g_global.g_enemyState.e_b_enemy1Turn = false;
                     g_global.g_enemyState.e_b_enemy2Turn = false;
                     g_global.g_enemyState.e_b_enemy3Turn = false;
                     g_global.g_enemyState.e_b_enemy4Turn = true;
                     g_global.g_enemyState.e_b_enemy5Turn = false;
-
-                    //Stagger the turn
-                    yield return new WaitForSeconds(2);
 
                     //Do your action
                     if (g_global.g_enemyState.e_b_enemy4Shielding == true)
@@ -373,7 +373,7 @@ public class S_TurnManager : MonoBehaviour
                     g_global.g_enemyState.e_b_enemy5Turn = true;
 
                     //Stagger the turn
-                    yield return new WaitForSeconds(2);
+                    new WaitForSeconds(2);
 
                     //Do your action
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
