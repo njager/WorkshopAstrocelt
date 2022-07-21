@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening;
@@ -22,7 +23,7 @@ public class S_TurnManager : MonoBehaviour
     public bool enemy4TurnSkipped;
     public bool enemy5TurnSkipped;
 
-    
+
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
@@ -160,15 +161,15 @@ public class S_TurnManager : MonoBehaviour
                         g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
 
                         //Then play sounds
-                        if(g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
+                        if (g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
                         {
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
                         }
-                        else if(g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
+                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
                         {
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                         }
-                        else if(g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
+                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
                         {
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
                             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
@@ -196,7 +197,7 @@ public class S_TurnManager : MonoBehaviour
                     //Stagger the turn, as long as enemy 2 isn't first
                     if (g_global.g_enemyState.e_b_enemy1Dead != true)
                     {
-                        new WaitForSeconds(2);
+                        yield return new WaitForSeconds(2);
                     }
 
                     // Start the turn
@@ -255,7 +256,7 @@ public class S_TurnManager : MonoBehaviour
                     //Stagger the turn, as long as enemy 3 isn't first
                     if (g_global.g_enemyState.e_b_enemy1Dead != true && g_global.g_enemyState.e_b_enemy2Dead != true)
                     {
-                        new WaitForSeconds(2);
+                        yield return new WaitForSeconds(2);
                     }
 
                     // Start the turn
@@ -311,7 +312,7 @@ public class S_TurnManager : MonoBehaviour
                 if (enemy4TurnSkipped == false)
                 {
                     //Stagger the turn
-                     new WaitForSeconds(2);
+                    yield return new WaitForSeconds(2);
 
                     // Start the turn
                     g_global.g_enemyState.e_b_enemy1Turn = false;
@@ -434,7 +435,7 @@ public class S_TurnManager : MonoBehaviour
         //Switch turns
         g_global.g_b_playerTurn = false;
         g_global.g_b_enemyTurn = true;
-        
+
     }
 
     /// <summary>
@@ -471,7 +472,7 @@ public class S_TurnManager : MonoBehaviour
     private void RemoveEnemyShielding()
     {
         //Reset Enemy
-        if(g_global.g_enemyAttributeSheet1 != null) // Strip Enemy 1 of Shielding
+        if (g_global.g_enemyAttributeSheet1 != null) // Strip Enemy 1 of Shielding
         {
             g_global.g_enemyAttributeSheet1.e_i_shield = 0;
         }
@@ -497,6 +498,135 @@ public class S_TurnManager : MonoBehaviour
         }
     }
 
+    delegate IEnumerator Enemy1TurnDelegate();
+    delegate IEnumerator Enemy2TurnDelegate();
+    delegate IEnumerator Enemy3TurnDelegate();
+    delegate IEnumerator Enemy4TurnDelegate();
+    delegate IEnumerator Enemy5TurnDelegate();
 
+    public List<UnityAction> g_ls_enemyPhase; // A List of Delegates for each enemy 
 
+    public void SetTurn()
+    {
+        
+    }
+
+    public void EnemyPhase()
+    {
+        foreach (UnityAction _enemyTurn in g_ls_enemyPhase.ToList())
+        {
+            if (_enemyTurn != null)
+            {
+                _enemyTurn.Invoke();
+            }
+        }
+    }
+
+    public bool EnemyStateCheck(int _enemyNum)
+    {
+        if(_enemyNum == 1)
+        {
+            if (g_global.g_enemyState.enemy1 != null)
+            {
+                if(g_global.g_enemyState.e_b_enemy1Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false; 
+                }
+            }
+            else
+            {
+                return false; 
+            }
+        }
+        else if(_enemyNum == 2)
+        {
+            if (g_global.g_enemyState.enemy2 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy2Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if(_enemyNum == 3)
+        {
+            if (g_global.g_enemyState.enemy3 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy3Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (_enemyNum == 4)
+        {
+            if (g_global.g_enemyState.enemy4 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy4Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (_enemyNum == 5)
+        {
+            if (g_global.g_enemyState.enemy5 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy5Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false; 
+        }
+    }
+
+    public IEnumerator IndividualEnemyTurn()
+    {
+        yield return new WaitForSeconds(2);
+    }
+
+    public IEnumerator TurnTimer()
+    {
+        yield return new WaitForSecondsRealtime(2);
+    }
 }
