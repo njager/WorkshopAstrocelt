@@ -373,7 +373,7 @@ public class S_TurnManager : MonoBehaviour
                     g_global.g_enemyState.e_b_enemy5Turn = true;
 
                     //Stagger the turn
-                    new WaitForSeconds(2);
+                    yield return new WaitForSeconds(2);
 
                     //Do your action
                     if (g_global.g_enemyState.e_b_enemy5Shielding == true)
@@ -496,4 +496,7 @@ public class S_TurnManager : MonoBehaviour
             g_global.g_enemyAttributeSheet5.e_i_shield = 0;
         }
     }
+
+
+
 }
