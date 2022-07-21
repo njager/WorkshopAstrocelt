@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -136,54 +137,7 @@ public class S_TurnManager : MonoBehaviour
             // Then trigger turn if present
             if (g_global.g_enemyAttributeSheet1 != null)
             {
-                if (enemy1TurnSkipped == false)
-                {
-                    // Start the turn
-                    g_global.g_enemyState.e_b_enemy1Turn = true;
-                    g_global.g_enemyState.e_b_enemy2Turn = false;
-                    g_global.g_enemyState.e_b_enemy3Turn = false;
-                    g_global.g_enemyState.e_b_enemy4Turn = false;
-                    g_global.g_enemyState.e_b_enemy5Turn = false;
-
-                    //Can't stagger turn here
-
-
-                    //Do your action
-                    if (g_global.g_enemyState.e_b_enemy1Shielding == true)
-                    {
-                        g_global.g_enemyAttributeSheet1.e_enemy.EnemyShielded(g_global.g_enemyAttributeSheet1.e_str_enemyType, g_global.g_enemyAttributeSheet1.e_i_shieldMax);
-                    }
-                    else if (g_global.g_enemyState.e_b_enemy1Attacking == true)
-                    {
-                        //play enemy animation
-                        g_global.g_enemyAttributeSheet1.e_a_animator.Play("attack");
-
-                        g_global.g_player.PlayerAttacked(g_global.g_enemyAttributeSheet1.e_i_enemyDamageValue);
-
-                        //Then play sounds
-                        if (g_global.g_enemyState.enemy1.e_str_enemyType == "Beast")
-                        {
-                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                        }
-                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Magician")
-                        {
-                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                        }
-                        else if (g_global.g_enemyState.enemy1.e_str_enemyType == "Brawler")
-                        {
-                            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
-                        }
-                    }
-                    else if (g_global.g_enemyState.e_b_enemy1SpecialAbility == true)
-                    {
-                        g_global.g_enemyState.enemy1.EnemySpecialAbility(g_global.g_enemyAttributeSheet1.e_str_enemyType);
-                    }
-                }
-                else
-                {
-                    Debug.Log("Enemy 1's turn is skipped!");
-                }
+                
             }
         }
         // Check to see if dead
@@ -487,6 +441,8 @@ public class S_TurnManager : MonoBehaviour
 
     public delegate IEnumerator EnemyTurnDelegate(int x);
 
+
+    [Header("Enemy Delegate Objects")]
     public EnemyTurnDelegate e_enemy1TurnDelegate; // Stays here or goes to S_EnemyState
     public EnemyTurnDelegate e_enemy2TurnDelegate;
     public EnemyTurnDelegate e_enemy3TurnDelegate;
@@ -499,7 +455,7 @@ public class S_TurnManager : MonoBehaviour
 
     private EnemyTurnDelegate myDelegate; // goes in enemy
 
-    // Goes in enemy
+    // Goes in S_EnemyState
     public void SetDelegate()
     {
         if (enemyNumber == 1)
@@ -534,8 +490,7 @@ public class S_TurnManager : MonoBehaviour
     {
         if (g_global.g_turnManager.EnemyStateCheck(enemyNumber) == true)
         {
-            myDelegate += g_global.g_turnManager.OverallEnemyTurn;
-            myDelegate += g_global.g_turnManager.TurnTimer;
+            myDelegate = g_global.g_turnManager.OverallEnemyTurn;
         }
         else
         {
@@ -554,59 +509,51 @@ public class S_TurnManager : MonoBehaviour
         // Enemy Phase Begin
         EnemyPhaseBegin();
 
+        
         foreach(EnemyTurnDelegate _enemyTurnDelegate in g_ls_enemyPhase)
         {
-            if (e_enemy1TurnDelegate != null)
+            string _enemyStringNum = _enemyTurnDelegate.ToString().Substring(6, 7);
+            int _enemyNum = Int32.Parse(_enemyStringNum);
+            if(GetEnemyActiveState(_enemyNum) == true)
             {
-                yield return StartCoroutine(e_enemy1TurnDelegate.Invoke(1));
+                yield return StartCoroutine(_enemyTurnDelegate.Invoke(_enemyNum));
+            }
+            if(timerChecks == -1)
+            {
+                StartCoroutine(TurnTimer(2));
+                // Only one enemy left
+            }
+            else if (timerChecks + 1 == g_ls_activeEnemies.Count)
+            {
+                Debug.Log("First enemy - do nothing");
+            }
+            else if (timerChecks > 0)
+            {
+                timerChecks -= 1;
+                StartCoroutine(TurnTimer(2));
             }
         }
 
-        // Potentially Execute Enemy 1's Turn
-        
-
-        // Potentially Execute Enemy 2's Turn
-        if (e_enemy2TurnDelegate != null)
-        {
-            yield return StartCoroutine(e_enemy2TurnDelegate.Invoke(2));
-        }
-
-        // Potentially Execute Enemy 3's Turn
-        if (e_enemy3TurnDelegate != null)
-        {
-            yield return StartCoroutine(e_enemy3TurnDelegate.Invoke(3));
-        }
-
-        // Potentially Execute Enemy 4's Turn
-        if (e_enemy4TurnDelegate != null)
-        {
-            yield return StartCoroutine(e_enemy4TurnDelegate.Invoke(4));
-        }
-
-        // Potentially Execute Enemy 5's Turnif(e_enemy1TurnDelegate != null)
-        if (e_enemy5TurnDelegate != null)
-        {
-            yield return StartCoroutine(e_enemy5TurnDelegate.Invoke(5));
-        }
-
+        // Enemy Phase End
         EnemyPhaseEnd();
     }
+
+    public int timerChecks;
+
+    
 
     public void EnemyPhaseBegin()
     {
         // Update Active Enemies
-        UpdateActiveEnemies(); 
+        UpdateActiveEnemies();
+
+        timerChecks = g_ls_activeEnemies.Count - 1;
 
         // Have each enemy set their state
         foreach(S_Enemy _activeEnemy in g_ls_activeEnemies.ToList())
         {
            // _activeEnemy.SetTurnState();
         }
-        //g_global.g_enemyState.enemy1.SetTurnState();
-        //g_global.g_enemyState.enemy2.SetTurnState();
-        //g_global.g_enemyState.enemy3.SetTurnState();
-        //g_global.g_enemyState.enemy4.SetTurnState();
-        //g_global.g_enemyState.enemy5.SetTurnState();
 
         // Line removal
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
@@ -650,9 +597,201 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = true;
     }
 
-    public void EnemyTurnAction(int _enemyNum)
+    public void EnemyTurnAction(int _enemyNum, S_Enemy _enemyScript)
     {
+        if(EnemySkipTurnCheck(_enemyNum))
+        {
+            // Declare Turn for UI
+            DeclareCurrentTurn(_enemyNum);
 
+            //Do your action
+            if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 6) // Check shielding
+            {
+                g_global.g_turnManager.GetEnemyScript(_enemyNum).EnemyShielded(g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_i_shieldMax);
+            }
+            else if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 7) // Check attacking
+            {
+                //play enemy animation
+                g_global.g_enemyAttributeSheet1.e_a_animator.Play("attack");
+
+                g_global.g_player.PlayerAttacked(g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_i_enemyDamageValue);
+
+                //Then play sounds
+                if (g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Beast")
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                }
+                else if (g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Magician")
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                }
+                else if (g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Brawler")
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                }
+            }
+            else if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 8) // Check special ability
+            {
+                g_global.g_turnManager.GetEnemyScript(_enemyNum).EnemySpecialAbility(g_global.g_turnManager.GetEnemyDataSheet(_enemyNum).e_str_enemyType);
+            }
+        }
+        else
+        {
+            Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
+        }
+    }
+
+    /// <summary>
+    /// 6 for shield,
+    /// 7 for attack,
+    /// 8 for Special Ability
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public int GetEnemyAction(int _enemyNum)
+    {
+        if(_enemyNum == 1)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Shielding)
+            {
+                return 6; 
+            }
+            else if (g_global.g_enemyState.e_b_enemy1Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy1SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if(_enemyNum == 2)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy2Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy2SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 3)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy3Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy3SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 4)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy4Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy4SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 5)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy5Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy5SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else
+        {
+            Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+            return 0;
+        }
+    }
+
+    [Header("Active (true) or Inactive (false) Bool Check for Enemies")]
+    public bool e_b_enemy1IsActive;
+    public bool e_b_enemy2IsActive;
+    public bool e_b_enemy3IsActive;
+    public bool e_b_enemy4IsActive;
+    public bool e_b_enemy5IsActive;
+
+    public bool GetEnemyActiveState(int _enemyNum)
+    {
+        if(_enemyNum == 1)
+        {
+            return e_b_enemy1IsActive;
+        }
+        else if(_enemyNum == 2)
+        {
+            return e_b_enemy2IsActive;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_b_enemy3IsActive;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_b_enemy4IsActive;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_b_enemy5IsActive;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL FALSE");
+            return false;
+        }
     }
 
     public S_EnemyAttributes GetEnemyDataSheet(int _enemyNum)
@@ -680,6 +819,65 @@ public class S_TurnManager : MonoBehaviour
         else
         {
             return null; 
+        }
+    }
+
+    // State Check functions for S_EnemyState
+    public bool EnemySkipTurnCheck(int _enemyNum)
+    {
+        if(_enemyNum == 1)
+        {
+            return g_global.g_turnManager.enemy1TurnSkipped;
+        }
+        else if(_enemyNum == 2)
+        {
+            return g_global.g_turnManager.enemy2TurnSkipped;
+        }
+        else if (_enemyNum == 3)
+        {
+            return g_global.g_turnManager.enemy3TurnSkipped;
+        }
+        else if (_enemyNum == 4)
+        {
+            return g_global.g_turnManager.enemy4TurnSkipped;
+        }
+        else if (_enemyNum == 5)
+        {
+            return g_global.g_turnManager.enemy5TurnSkipped;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL FALSE");
+            return false;
+        }
+    }
+
+    public S_Enemy GetEnemyScript(int _enemyNum)
+    {
+        if(_enemyNum == 1)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 2)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 3)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 4)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 5)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        else
+        {
+            Debug.Log("DEBUG: Returned null enemy script!");
+            return null;
         }
     }
 
@@ -751,15 +949,18 @@ public class S_TurnManager : MonoBehaviour
             if (g_global.g_enemyState.e_b_enemy1Dead == false)
             {
                 g_ls_activeEnemies.Add(g_global.g_enemyState.enemy1);
+                g_global.g_turnManager.e_b_enemy1IsActive = true; 
             }
             else
             {
                 g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
+                g_global.g_turnManager.e_b_enemy1IsActive = false;
             }
         }
         else
         {
             g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
+            g_global.g_turnManager.e_b_enemy1IsActive = false;
         }
 
         // Check Enemy 2
@@ -768,15 +969,18 @@ public class S_TurnManager : MonoBehaviour
             if (g_global.g_enemyState.e_b_enemy2Dead == false)
             {
                 g_ls_activeEnemies.Add(g_global.g_enemyState.enemy2);
+                g_global.g_turnManager.e_b_enemy2IsActive = true;
             }
             else
             {
                 g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
+                g_global.g_turnManager.e_b_enemy2IsActive = false;
             }
         }
         else
         {
             g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
+            g_global.g_turnManager.e_b_enemy3IsActive = false;
         }
 
         // Check Enemy 3
@@ -785,15 +989,18 @@ public class S_TurnManager : MonoBehaviour
             if (g_global.g_enemyState.e_b_enemy3Dead == false)
             {
                 g_ls_activeEnemies.Add(g_global.g_enemyState.enemy3);
+                g_global.g_turnManager.e_b_enemy3IsActive = true;
             }
             else
             {
                 g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
+                g_global.g_turnManager.e_b_enemy3IsActive = false;
             }
         }
         else
         {
             g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
+            g_global.g_turnManager.e_b_enemy3IsActive = false;
         }
 
         // Check Enemy 4
@@ -802,15 +1009,18 @@ public class S_TurnManager : MonoBehaviour
             if (g_global.g_enemyState.e_b_enemy4Dead == false)
             {
                 g_ls_activeEnemies.Add(g_global.g_enemyState.enemy4);
+                g_global.g_turnManager.e_b_enemy4IsActive = true;
             }
             else
             {
                 g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
+                g_global.g_turnManager.e_b_enemy4IsActive = false;
             }
         }
         else
         {
             g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
+            g_global.g_turnManager.e_b_enemy4IsActive = false;
         }
 
         // Check Enemy 5
@@ -819,15 +1029,18 @@ public class S_TurnManager : MonoBehaviour
             if (g_global.g_enemyState.e_b_enemy5Dead == false)
             {
                 g_ls_activeEnemies.Add(g_global.g_enemyState.enemy5);
+                g_global.g_turnManager.e_b_enemy5IsActive = true;
             }
             else
             {
                 g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
+                g_global.g_turnManager.e_b_enemy5IsActive = false;
             }
         }
         else
         {
             g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
+            g_global.g_turnManager.e_b_enemy5IsActive = false;
         }
     }
 
@@ -932,8 +1145,8 @@ public class S_TurnManager : MonoBehaviour
 
     public IEnumerator OverallEnemyTurn(int _enemyNum)
     {
-        EnemyTurnAction(_enemyNum);
-        yield return StartCoroutine(TurnTimer(2)); // - maybe?
+        EnemyTurnAction(_enemyNum, GetEnemyScript(_enemyNum));
+        yield return new WaitForSeconds(0);
     }
 
     public IEnumerator TurnTimer(int _time)
