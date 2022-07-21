@@ -5662,6 +5662,7 @@ MonoBehaviour:
   e_v3_enemy3HealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy4HealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy5HealthBarPosition: {x: 0, y: 0, z: 0}
+  v3_vfxContainer: {fileID: 0}
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 4694868179480249384, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
   popUpCanvas: {fileID: 0}
@@ -8756,7 +8757,6 @@ MonoBehaviour:
   yellowEnergyIcon: {fileID: 21300000, guid: 4fc6b498172feb943be88fd71d88c29a, type: 3}
   nullEnergyIcon: {fileID: 21300000, guid: f3064a0170d4a09458c89fa244deacf5, type: 3}
   p_tx_lineMultiplierText: {fileID: 0}
-  p_f_lineMultiplierAmount: 0
   b_redEnergy: 0
   b_blueEnergy: 0
   b_yellowEnergy: 0
@@ -8790,6 +8790,8 @@ MonoBehaviour:
   e_enemy3ResistantEffect: {fileID: 0}
   e_enemy4ResistantEffect: {fileID: 0}
   e_enemy5ResistantEffect: {fileID: 0}
+  debugTurnbar: {fileID: 0}
+  debugTurnbarText: {fileID: 0}
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9286,13 +9288,16 @@ MonoBehaviour:
   g_DrawingManager: {fileID: 2099707690}
   g_ConstellationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
-  g_selectorManager: {fileID: 1455212357}
   g_iconManager: {fileID: 1037513594}
   g_cardManager: {fileID: 1451117616}
   g_CardDatabase: {fileID: 2086421104}
   g_lineMultiplierManager: {fileID: 630261271}
   g_energyManager: {fileID: 1412184871}
   g_popupManager: {fileID: 274638691}
+  g_altar: {fileID: 0}
+  g_sceneManager: {fileID: 0}
+  g_backgroundManager: {fileID: 0}
+  g_turnEffectManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -9309,20 +9314,19 @@ MonoBehaviour:
   g_b_playerLost: 0
   g_i_enemyCount: 0
   g_i_enemyCountMax: 0
-  e_l_enemyList: []
+  e_ls_enemyList: []
   g_ls_lineRendererList: []
-  lst_p_playerDeck: 
-  lst_p_playerGrave: 
-  ls_p_playerHand: []
-  ls_starPopup: []
-  placeholder: 
-  c_i_cardIDNum: 0
+  g_ls_completedLineRendererList: []
+  g_ls_p_playerDeck: 
+  g_ls_p_playerGrave: 
+  g_ls_p_playerHand: []
+  g_ls_starPopup: []
+  g_ls_cardBallPrefabs: []
   g_e_enemyPosition1: {fileID: 1282492985}
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
-  g_objectBeingDragged: {fileID: 0}
-  b_firstCard: 1
-  a_audioPlayer: {fileID: 1787920205}
+  g_c_b_firstCard: 1
+  g_a_audioPlayer: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -25226,6 +25230,11 @@ MonoBehaviour:
   enemy3: {fileID: 0}
   enemy4: {fileID: 0}
   enemy5: {fileID: 0}
+  e_str_enemy1Action: 
+  e_str_enemy2Action: 
+  e_str_enemy3Action: 
+  e_str_enemy4Action: 
+  e_str_enemy5Action: 
   str_enemy1Type: 
   str_enemy2Type: 
   str_enemy3Type: 
@@ -25236,6 +25245,11 @@ MonoBehaviour:
   e_b_enemy3Dead: 0
   e_b_enemy4Dead: 0
   e_b_enemy5Dead: 0
+  e_b_enemy1Turn: 0
+  e_b_enemy2Turn: 0
+  e_b_enemy3Turn: 0
+  e_b_enemy4Turn: 0
+  e_b_enemy5Turn: 0
   e_b_enemy1Shielding: 0
   e_b_enemy2Shielding: 0
   e_b_enemy3Shielding: 0
@@ -25286,6 +25300,16 @@ MonoBehaviour:
   e_f_currentDamageRateForBleedEnemy3: 0
   e_f_currentDamageRateForBleedEnemy4: 0
   e_f_currentDamageRateForBleedEnemy5: 0
+  e_i_enemy1StunTurnsPassed: 0
+  e_i_enemy2StunTurnsPassed: 0
+  e_i_enemy3StunTurnsPassed: 0
+  e_i_enemy4StunTurnsPassed: 0
+  e_i_enemy5StunTurnsPassed: 0
+  e_i_enemy1ResistantTurnsPassed: 0
+  e_i_enemy2ResistantTurnsPassed: 0
+  e_i_enemy3ResistantTurnsPassed: 0
+  e_i_enemy4ResistantTurnsPassed: 0
+  e_i_enemy5ResistantTurnsPassed: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25306,6 +25330,8 @@ MonoBehaviour:
   p_b_inResistantState: 0
   playerWinMusic: {fileID: 1885446296}
   playerLoseMusic: {fileID: 1572118200}
+  p_i_turnsPassedForStun: 0
+  p_i_turnsPassedForResistant: 0
   p_f_currentDamageRateForBleed: 0
 --- !u!114 &1269889775
 MonoBehaviour:
@@ -25319,8 +25345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 1603892938}
-  e_b_enemyDidAttack: 0
   b_playerInitialTurn: 1
   b_enemyInitialTurn: 0
   playerTurnSkipped: 0
@@ -27251,6 +27275,9 @@ MonoBehaviour:
   i_redEnergy: 0
   i_yellowEnergy: 0
   i_blueEnergy: 0
+  i_redStorageEnergy: 0
+  i_yellowStorageEnergy: 0
+  i_blueStorageEnergy: 0
 --- !u!1 &1418691786
 GameObject:
   m_ObjectHideFlags: 0
@@ -27734,7 +27761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acf4195bdb074eb9bdeb4dff9ebd95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 29678253}
 --- !u!1001 &1459895050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28847,6 +28873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d9063e7f7f80248ad6136229901aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i_rewardSceneIndex: 0
 --- !u!1001 &1513267749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29778,11 +29805,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1599640790}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1603892938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4562677180002554325, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1604427012
 PrefabInstance:
@@ -33073,11 +33095,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1784680357}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1787920205 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8963451779003273411, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1791052888
 PrefabInstance:
@@ -37783,13 +37800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0883779ae71a4eddb5dcdacfa2a2d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i_cardCount: 10
-  c_cardPrefabTemplate: {fileID: 1134803473554262698, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
-  topPosition: {fileID: 0}
-  nextPosition: {fileID: 0}
-  afterPosition: {fileID: 0}
-  closePosition: {fileID: 0}
-  bottomPosition: {fileID: 0}
   cardScript0: {fileID: 11400000, guid: 8e72ce57dcbe21548a5d67e8387e08f6, type: 2}
   cardScript1: {fileID: 11400000, guid: 8e72ce57dcbe21548a5d67e8387e08f6, type: 2}
   cardScript2: {fileID: 11400000, guid: 22c62dee45460e0469c858e047f70c44, type: 2}
@@ -37800,7 +37810,12 @@ MonoBehaviour:
   cardScript7: {fileID: 11400000, guid: b4ebdc664aa8f894685112b66b455e2a, type: 2}
   cardScript8: {fileID: 11400000, guid: b4ebdc664aa8f894685112b66b455e2a, type: 2}
   cardScript9: {fileID: 11400000, guid: d573a2113622771488766f35f6dc4778, type: 2}
-  cardScript10: {fileID: 0}
+  battleRewardCard1: {fileID: 0}
+  battleRewardCard2: {fileID: 0}
+  battleRewardCard3: {fileID: 0}
+  battleRewardCard4: {fileID: 0}
+  encounter2: 0
+  encounter3: 0
 --- !u!1001 &2092353970
 PrefabInstance:
   m_ObjectHideFlags: 0
