@@ -143,11 +143,12 @@ public class S_Cardball : MonoBehaviour
         // Fulfilled Function
         //StartCoroutine(WaitToHide(c_card));
 
+        //delete the cardball and add the card to the grave
         DeleteCardball();
     }
 
     /// <summary>
-    /// 
+    /// -Josh
     /// </summary>
     /// <param name="_card"></param>
     /// <returns></returns>
@@ -169,6 +170,8 @@ public class S_Cardball : MonoBehaviour
     {
         Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.g_ls_cardBallPrefabs.Remove(this);
+
+        //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
         StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
     }
