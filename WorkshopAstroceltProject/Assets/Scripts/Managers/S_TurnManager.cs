@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+//using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening;
@@ -421,20 +421,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_enemyState.e_b_enemy4Turn = false;
         g_global.g_enemyState.e_b_enemy5Turn = false;
 
-        // Represent the first enemy's turn
-        yield return new WaitForSeconds(2);
-
-        // Load the next icon
-        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
-        {
-            _enemy.ChangeIcon();
-        }
-
-        g_global.g_enemyState.EnemyStatusEffectDecrement();
-
-        //Switch turns
-        g_global.g_b_playerTurn = false;
-        g_global.g_b_enemyTurn = true;
+        
 
     }
 
@@ -498,30 +485,353 @@ public class S_TurnManager : MonoBehaviour
         }
     }
 
-    delegate IEnumerator Enemy1TurnDelegate();
-    delegate IEnumerator Enemy2TurnDelegate();
-    delegate IEnumerator Enemy3TurnDelegate();
-    delegate IEnumerator Enemy4TurnDelegate();
-    delegate IEnumerator Enemy5TurnDelegate();
+    public delegate IEnumerator EnemyTurnDelegate(int x);
 
-    public List<UnityAction> g_ls_enemyPhase; // A List of Delegates for each enemy 
+    public EnemyTurnDelegate e_enemy1TurnDelegate; // Stays here or goes to S_EnemyState
+    public EnemyTurnDelegate e_enemy2TurnDelegate;
+    public EnemyTurnDelegate e_enemy3TurnDelegate;
+    public EnemyTurnDelegate e_enemy4TurnDelegate;
+    public EnemyTurnDelegate e_enemy5TurnDelegate;
 
-    public void SetTurn()
+    public List<EnemyTurnDelegate> g_ls_enemyPhase; // A List of Delegates for each enemy, unused for now, but can be called in list fashion 
+    public List<S_Enemy> g_ls_activeEnemies; 
+    private int enemyNumber; // Placeholder, enemy value
+
+    private EnemyTurnDelegate myDelegate; // goes in enemy
+
+    // Goes in enemy
+    public void SetDelegate()
     {
-        
-    }
-
-    public void EnemyPhase()
-    {
-        foreach (UnityAction _enemyTurn in g_ls_enemyPhase.ToList())
+        if (enemyNumber == 1)
         {
-            if (_enemyTurn != null)
-            {
-                _enemyTurn.Invoke();
-            }
+            g_global.g_turnManager.e_enemy1TurnDelegate = myDelegate;
+        }
+        else if (enemyNumber == 2)
+        {
+            g_global.g_turnManager.e_enemy2TurnDelegate = myDelegate;
+        }
+        else if (enemyNumber == 3)
+        {
+            g_global.g_turnManager.e_enemy3TurnDelegate = myDelegate;
+        }
+        else if (enemyNumber == 4)
+        {
+            g_global.g_turnManager.e_enemy4TurnDelegate = myDelegate;
+        }
+        else if (enemyNumber == 5)
+        {
+            g_global.g_turnManager.e_enemy5TurnDelegate = myDelegate;
         }
     }
 
+    public void Start()
+    {
+        SetDelegate(); // IMPORTANT TO GO IN ENEMY
+    }
+
+    // Goes in Enemy
+    public void SetTurnState()
+    {
+        if (g_global.g_turnManager.EnemyStateCheck(enemyNumber) == true)
+        {
+            myDelegate += g_global.g_turnManager.OverallEnemyTurn;
+            myDelegate += g_global.g_turnManager.TurnTimer;
+        }
+        else
+        {
+            myDelegate = null;
+        }
+    }
+
+
+    /// <summary>
+    /// New enemy phase execution loop
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator EnemyPhase()
+    {
+        // Enemy Phase Begin
+        EnemyPhaseBegin();
+
+        foreach(EnemyTurnDelegate _enemyTurnDelegate in g_ls_enemyPhase)
+        {
+            if (e_enemy1TurnDelegate != null)
+            {
+                yield return StartCoroutine(e_enemy1TurnDelegate.Invoke(1));
+            }
+        }
+
+        // Potentially Execute Enemy 1's Turn
+        
+
+        // Potentially Execute Enemy 2's Turn
+        if (e_enemy2TurnDelegate != null)
+        {
+            yield return StartCoroutine(e_enemy2TurnDelegate.Invoke(2));
+        }
+
+        // Potentially Execute Enemy 3's Turn
+        if (e_enemy3TurnDelegate != null)
+        {
+            yield return StartCoroutine(e_enemy3TurnDelegate.Invoke(3));
+        }
+
+        // Potentially Execute Enemy 4's Turn
+        if (e_enemy4TurnDelegate != null)
+        {
+            yield return StartCoroutine(e_enemy4TurnDelegate.Invoke(4));
+        }
+
+        // Potentially Execute Enemy 5's Turnif(e_enemy1TurnDelegate != null)
+        if (e_enemy5TurnDelegate != null)
+        {
+            yield return StartCoroutine(e_enemy5TurnDelegate.Invoke(5));
+        }
+
+        EnemyPhaseEnd();
+    }
+
+    public void EnemyPhaseBegin()
+    {
+        // Update Active Enemies
+        UpdateActiveEnemies(); 
+
+        // Have each enemy set their state
+        foreach(S_Enemy _activeEnemy in g_ls_activeEnemies.ToList())
+        {
+           // _activeEnemy.SetTurnState();
+        }
+        //g_global.g_enemyState.enemy1.SetTurnState();
+        //g_global.g_enemyState.enemy2.SetTurnState();
+        //g_global.g_enemyState.enemy3.SetTurnState();
+        //g_global.g_enemyState.enemy4.SetTurnState();
+        //g_global.g_enemyState.enemy5.SetTurnState();
+
+        // Line removal
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false;
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
+
+        // Toggle day
+        g_global.g_backgroundManager.ChangeBackground(1);
+
+        //Clear card prefabs + Popups
+        StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
+        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+
+        //change all the things that need to be changed for the enemies turn
+        g_global.g_energyManager.ClearEnergy();
+        g_global.g_enemyState.EnemyAttackingOrShielding();
+        RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
+
+
+        // Brighten alpha for intent icons 
+        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
+        {
+            _enemy.IncreaseIntentIconAlpha();
+        }
+    }
+
+    public void EnemyPhaseEnd()
+    {
+        // Declare player's turn for debug
+        DeclareCurrentTurn(0);
+
+        // Load the next icon
+        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
+        {
+            _enemy.ChangeIcon();
+        }
+
+        g_global.g_enemyState.EnemyStatusEffectDecrement();
+
+        //Switch turns
+        g_global.g_b_playerTurn = false;
+        g_global.g_b_enemyTurn = true;
+    }
+
+    public void EnemyTurnAction(int _enemyNum)
+    {
+
+    }
+
+    public S_EnemyAttributes GetEnemyDataSheet(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return g_global.g_enemyAttributeSheet1;
+        }
+        else if (_enemyNum == 2)
+        {
+            return g_global.g_enemyAttributeSheet2;
+        }
+        else if (_enemyNum == 3)
+        {
+            return g_global.g_enemyAttributeSheet3;
+        }
+        else if (_enemyNum == 4)
+        {
+            return g_global.g_enemyAttributeSheet4;
+        }
+        else if (_enemyNum == 5)
+        {
+            return g_global.g_enemyAttributeSheet2;
+        }
+        else
+        {
+            return null; 
+        }
+    }
+
+    /// <summary>
+    /// If _characterIdentifier == 0, player's turn
+    /// Else if _characterIdentifier == 1, 2, 3, 4, 5, it's that enemies turn
+    /// For Debug Purposes
+    /// - Josh
+    /// </summary>
+    /// <param name="_characterIdentifier"></param>
+    public void DeclareCurrentTurn(int _characterIdentifier)
+    {
+        if(_characterIdentifier == 0) // Player's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 1) // Enemy 1's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = true;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 2) // Enemy 2's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = true;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 3) // Enemy 3's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = true;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 4) // Enemy 4's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = true;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 5) // Enemy 5's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = true;
+        }
+    }
+
+
+    public void UpdateActiveEnemies()
+    {
+        // Check Enemy 1
+        if (g_global.g_enemyState.enemy1 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                g_ls_activeEnemies.Add(g_global.g_enemyState.enemy1);
+            }
+            else
+            {
+                g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
+            }
+        }
+        else
+        {
+            g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
+        }
+
+        // Check Enemy 2
+        if (g_global.g_enemyState.enemy2 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                g_ls_activeEnemies.Add(g_global.g_enemyState.enemy2);
+            }
+            else
+            {
+                g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
+            }
+        }
+        else
+        {
+            g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
+        }
+
+        // Check Enemy 3
+        if (g_global.g_enemyState.enemy3 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                g_ls_activeEnemies.Add(g_global.g_enemyState.enemy3);
+            }
+            else
+            {
+                g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
+            }
+        }
+        else
+        {
+            g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
+        }
+
+        // Check Enemy 4
+        if (g_global.g_enemyState.enemy4 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                g_ls_activeEnemies.Add(g_global.g_enemyState.enemy4);
+            }
+            else
+            {
+                g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
+            }
+        }
+        else
+        {
+            g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
+        }
+
+        // Check Enemy 5
+        if (g_global.g_enemyState.enemy5 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                g_ls_activeEnemies.Add(g_global.g_enemyState.enemy5);
+            }
+            else
+            {
+                g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
+            }
+        }
+        else
+        {
+            g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
+        }
+    }
+
+    // goes in S_EnemyState
     public bool EnemyStateCheck(int _enemyNum)
     {
         if(_enemyNum == 1)
@@ -620,13 +930,14 @@ public class S_TurnManager : MonoBehaviour
         }
     }
 
-    public IEnumerator IndividualEnemyTurn()
+    public IEnumerator OverallEnemyTurn(int _enemyNum)
     {
-        yield return new WaitForSeconds(2);
+        EnemyTurnAction(_enemyNum);
+        yield return StartCoroutine(TurnTimer(2)); // - maybe?
     }
 
-    public IEnumerator TurnTimer()
+    public IEnumerator TurnTimer(int _time)
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(_time);
     }
 }
