@@ -38,7 +38,7 @@ public class S_CardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This Function gets cards from the deck and adds them to the player hand
+    /// This Function removes cards from the deck and adds them to the player hand
     /// - Riley
     /// </summary>
     public void DealCards(int _deal)
@@ -59,7 +59,7 @@ public class S_CardManager : MonoBehaviour
                 int _rand = randomNumGenerator(g_global.g_ls_p_playerDeck.Count()-1);
                 int _cardKey = g_global.g_ls_p_playerDeck[_rand];
 
-                //remove a key from the deck and add it to the grave
+                //remove a key from the deck (gets added to the grave when it gets deleted)
                 g_global.g_ls_p_playerDeck.RemoveAt(_rand);
 
                 //get the card game object and add it to the player hand
@@ -78,10 +78,10 @@ public class S_CardManager : MonoBehaviour
     /// </summary>
     public void NewHand()
     {
-        //clear the player hand
+        //clear the hand
         ClearPlayerHand();
 
-        //deal the new cards
+        //deal the new cards now that all cards are in the deck
         DealCards(p_i_drawPerTurn);
     }
 
@@ -118,23 +118,17 @@ public class S_CardManager : MonoBehaviour
     /// Manual clear function, other one wasn't working
     /// - Josh
     /// </summary>
-    private void ClearPlayerHand() 
+    public void ClearPlayerHand() 
     {
-        foreach( S_CardTemplate _card in g_global.g_ls_p_playerHand.ToList())
-        {
-            g_global.g_ls_p_playerHand.Remove(_card);
-        }
+        g_global.g_ls_p_playerHand.Clear();
     }
 
     /// <summary>
     /// Manual clear function, other one wasn't working
     /// - Josh
     /// </summary>
-    private void ClearPlayerGrave()
+    public void ClearPlayerGrave()
     {
-        foreach (int _number in g_global.g_ls_p_playerGrave.ToList())
-        {
-            g_global.g_ls_p_playerGrave.Remove(_number);
-        }
+        g_global.g_ls_p_playerGrave.Clear();
     }
 }

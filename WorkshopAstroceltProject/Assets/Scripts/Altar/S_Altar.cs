@@ -38,6 +38,9 @@ public class S_Altar : MonoBehaviour
     [Header("DOTween Attributes")]
     public float f_moveSpeed;
 
+    [Header("Spawning Cardballs")]
+    public bool b_spawningCardballs = false;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -93,6 +96,8 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnCardballPrefabs()
     {
+        b_spawningCardballs = true;
+
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
         AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[0]);
@@ -115,6 +120,8 @@ public class S_Altar : MonoBehaviour
 
         yield return new WaitForSeconds(1 + f_moveSpeed + 0.3f);
         AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[4]);
+
+        b_spawningCardballs = false;
     }
 
     /// <summary>
@@ -136,17 +143,22 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// First Remove the current cardball prefabs
+    /// First Remove the current cardball prefabs from the field
+    /// gets called from the main turn loop in card manager
     /// -Josh
     /// </summary>
     public IEnumerator ClearCardballPrefabs()
     {
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
+            //wait and then remove the cardball from the list and delete it from the game
             yield return new WaitForSeconds(0.5f);
             g_global.g_ls_cardBallPrefabs.Remove(_cardball);
-            Destroy(_cardball.gameObject);
+            _cardball.DeleteCardball();
         }
+
+        //clear the player hand since none of these cards were played
+        g_global.g_cardManager.ClearPlayerHand();
     }
 
     /// <summary>
@@ -157,6 +169,7 @@ public class S_Altar : MonoBehaviour
         //check if the card can be played by referencing the useEnergy function
         if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
+            //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }

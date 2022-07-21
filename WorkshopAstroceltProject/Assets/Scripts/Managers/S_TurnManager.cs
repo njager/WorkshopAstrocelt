@@ -88,17 +88,24 @@ public class S_TurnManager : MonoBehaviour
     public void EndTurn()
     {
         Debug.Log("pressed");
-
-        if (g_global.g_b_enemyTurn == true)
+        if(g_global.g_altar.b_spawningCardballs == false)
         {
-            Debug.Log("Not your turn!");
-            return;
+            if (g_global.g_b_enemyTurn == true)
+            {
+                Debug.Log("Not your turn!");
+                return;
+            }
+            else
+            {
+                g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+                StartCoroutine(EnemyStateChange()); //Then change the enemies state
+            }
         }
         else
         {
-            g_global.g_ConstellationManager.DeleteWholeCurConstellation();
-            StartCoroutine(EnemyStateChange()); //Then change the enemies state
-        }
+            Debug.Log("pressed when spawning cardballs");
+            return;
+        }            
     }
 
     /// <summary>
@@ -445,7 +452,7 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
-        //give the player a new hand
+        //give the player a new hand (remove all old cards)
         g_global.g_cardManager.NewHand();
 
         // Spawn cardball prefabs
