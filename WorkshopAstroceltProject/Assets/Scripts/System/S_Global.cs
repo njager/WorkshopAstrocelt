@@ -71,6 +71,8 @@ public class S_Global : MonoBehaviour
     public List<S_CardTemplate> g_ls_p_playerHand;
     public List<S_StarPopUp> g_ls_starPopup;
     public List<S_Cardball> g_ls_cardBallPrefabs;
+    public List<EnemyTurnDelegate> g_ls_enemyPhase; // A List of Delegates for each enemy, unused for now, but can be called in list fashion 
+    public List<S_Enemy> g_ls_activeEnemies;
 
     [Header("Enemy Positions")]
     public GameObject g_e_enemyPosition1;
@@ -82,6 +84,9 @@ public class S_Global : MonoBehaviour
 
     [Header("Required Audio Object For Now")]
     public GameObject g_a_audioPlayer;
+
+    //Enemy Turn Delegate
+    public delegate IEnumerator EnemyTurnDelegate(int x);
 
     private void Awake()
     {
