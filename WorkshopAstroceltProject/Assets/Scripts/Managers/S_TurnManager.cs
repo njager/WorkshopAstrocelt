@@ -24,15 +24,12 @@ public class S_TurnManager : MonoBehaviour
     public bool enemy4TurnSkipped;
     public bool enemy5TurnSkipped;
 
-    //Enemy Turn Delegate
-    public delegate IEnumerator EnemyTurnDelegate(int x);
-
     [Header("Enemy Delegate Objects")]
-    public EnemyTurnDelegate e_enemy1TurnDelegate; // Stays here or goes to S_EnemyState
-    public EnemyTurnDelegate e_enemy2TurnDelegate;
-    public EnemyTurnDelegate e_enemy3TurnDelegate;
-    public EnemyTurnDelegate e_enemy4TurnDelegate;
-    public EnemyTurnDelegate e_enemy5TurnDelegate;
+    public S_EventManager.EnemyTurnDelegate e_enemy1TurnDelegate; 
+    public S_EventManager.EnemyTurnDelegate e_enemy2TurnDelegate;
+    public S_EventManager.EnemyTurnDelegate e_enemy3TurnDelegate;
+    public S_EventManager.EnemyTurnDelegate e_enemy4TurnDelegate;
+    public S_EventManager.EnemyTurnDelegate e_enemy5TurnDelegate;
 
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
@@ -181,23 +178,27 @@ public class S_TurnManager : MonoBehaviour
         }
     }
 
-    
 
-
-    
-
-    
-
-    
-
-    
-
+    /// <summary>
+    /// Just a way to make sure that there's a function to fit within the delegate.
+    /// Sort of cheating the system
+    ///  - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
     public IEnumerator OverallEnemyTurn(int _enemyNum)
     {
         EnemyTurnAction(_enemyNum, g_global.g_enemyState.GetEnemyScript(_enemyNum));
         yield return new WaitForSeconds(0);
     }
 
+
+    /// <summary>
+    /// The turn timer deteremines execution between the enemies turns,
+    /// Was testing to see if it should be stored as a delegate in the delegate list as it fits the mold
+    /// </summary>
+    /// <param name="_time"></param>
+    /// <returns></returns>
     public IEnumerator TurnTimer(int _time)
     {
         yield return new WaitForSecondsRealtime(_time);
@@ -215,7 +216,7 @@ public class S_TurnManager : MonoBehaviour
         EnemyPhaseBegin();
 
         
-        foreach(EnemyTurnDelegate _enemyTurnDelegate in g_ls_enemyPhase)
+        foreach(S_EventManager.EnemyTurnDelegate _enemyTurnDelegate in g_global.g_ls_enemyPhase.ToList())
         {
             string _enemyStringNum = _enemyTurnDelegate.ToString().Substring(6, 7);
             int _enemyNum = Int32.Parse(_enemyStringNum);
@@ -228,7 +229,7 @@ public class S_TurnManager : MonoBehaviour
                 StartCoroutine(TurnTimer(2));
                 // Only one enemy left
             }
-            else if (timerChecks + 1 == g_ls_activeEnemies.Count)
+            else if (timerChecks + 1 == g_global.g_ls_activeEnemies.Count)
             {
                 Debug.Log("First enemy - do nothing");
             }
@@ -237,7 +238,7 @@ public class S_TurnManager : MonoBehaviour
                 timerChecks -= 1;
                 StartCoroutine(TurnTimer(2));
             }
-            g_ls_enemyPhase.Remove(_enemyTurnDelegate);
+            g_global.g_ls_enemyPhase.Remove(_enemyTurnDelegate);
         }
 
         // Enemy Phase End
@@ -256,12 +257,12 @@ public class S_TurnManager : MonoBehaviour
         // Update Active Enemies
         g_global.g_enemyState.UpdateActiveEnemies();
 
-        timerChecks = g_ls_activeEnemies.Count - 1;
+        timerChecks = g_global.g_ls_activeEnemies.Count - 1;
 
         // Have each enemy set their state
-        foreach(S_Enemy _activeEnemy in g_ls_activeEnemies.ToList())
+        foreach(S_Enemy _activeEnemy in g_global.g_ls_activeEnemies.ToList())
         {
-           // _activeEnemy.SetTurnState();
+            _activeEnemy.SetTurnState();
         }
 
         // Line removal

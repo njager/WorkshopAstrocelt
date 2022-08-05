@@ -33,8 +33,7 @@ public class S_Enemy : MonoBehaviour
     public float f_intentDuration;
 
     // Enemy Turn Delegate
-    private delegate IEnumerator EnemyTurnDelegate(int x);
-    private EnemyTurnDelegate e_turnDelegate; // goes in enemy
+    private S_EventManager.EnemyTurnDelegate e_turnDelegate; // goes in enemy
 
     void Awake()
     {
