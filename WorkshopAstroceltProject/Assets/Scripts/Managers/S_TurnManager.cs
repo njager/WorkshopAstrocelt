@@ -31,6 +31,9 @@ public class S_TurnManager : MonoBehaviour
     public S_EventManager.EnemyTurnDelegate e_enemy4TurnDelegate;
     public S_EventManager.EnemyTurnDelegate e_enemy5TurnDelegate;
 
+    [Header("Enemy Turn Timer Int")]
+    public int e_i_timerChecks;
+
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
@@ -69,7 +72,7 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 Debug.Log("Player Turn Skipped");
-                StartCoroutine(EnemyPhase());
+                //StartCoroutine(EnemyPhase());
                 spawnTimer = 1f;
             }
         }
@@ -188,8 +191,9 @@ public class S_TurnManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator OverallEnemyTurn(int _enemyNum)
     {
-        EnemyTurnAction(_enemyNum, g_global.g_enemyState.GetEnemyScript(_enemyNum));
-        yield return new WaitForSeconds(0);
+        Debug.Log("OverallEnemyTurn triggered for test case!");
+        g_global.g_turnManager.EnemyTurnAction(_enemyNum, g_global.g_enemyState.GetEnemyScript(_enemyNum));
+        yield return new WaitForSeconds(2);
     }
 
 
@@ -215,27 +219,33 @@ public class S_TurnManager : MonoBehaviour
         // Enemy Phase Begin
         EnemyPhaseBegin();
 
-        
+        S_EventManager.EnemyPhaseEventTrigger(1);
+        Debug.Log("Made it past the event stack");
+
+        // Use active enemy list for enemy num if the above works
+
+        // Breaking here
         foreach(S_EventManager.EnemyTurnDelegate _enemyTurnDelegate in g_global.g_ls_enemyPhase.ToList())
         {
             string _enemyStringNum = _enemyTurnDelegate.ToString().Substring(6, 7);
+            Debug.Log("Enemy String Num: " +_enemyStringNum);
             int _enemyNum = Int32.Parse(_enemyStringNum);
             if(g_global.g_enemyState.GetEnemyActiveState(_enemyNum) == true)
             {
                 yield return StartCoroutine(_enemyTurnDelegate.Invoke(_enemyNum));
             }
-            if(timerChecks == -1)
+            if(e_i_timerChecks == -1)
             {
                 StartCoroutine(TurnTimer(2));
                 // Only one enemy left
             }
-            else if (timerChecks + 1 == g_global.g_ls_activeEnemies.Count)
+            else if (e_i_timerChecks + 1 == g_global.g_ls_activeEnemies.Count)
             {
                 Debug.Log("First enemy - do nothing");
             }
-            else if (timerChecks > 0)
+            else if (e_i_timerChecks > 0)
             {
-                timerChecks -= 1;
+                e_i_timerChecks -= 1;
                 StartCoroutine(TurnTimer(2));
             }
             g_global.g_ls_enemyPhase.Remove(_enemyTurnDelegate);
@@ -244,9 +254,6 @@ public class S_TurnManager : MonoBehaviour
         // Enemy Phase End
         EnemyPhaseEnd();
     }
-
-    public int timerChecks;
-
 
     /// <summary>
     /// Explicit function for the beginning of the Enemy Phase
@@ -257,12 +264,13 @@ public class S_TurnManager : MonoBehaviour
         // Update Active Enemies
         g_global.g_enemyState.UpdateActiveEnemies();
 
-        timerChecks = g_global.g_ls_activeEnemies.Count - 1;
+        e_i_timerChecks = g_global.g_ls_activeEnemies.Count - 1;
 
         // Have each enemy set their state
         foreach(S_Enemy _activeEnemy in g_global.g_ls_activeEnemies.ToList())
         {
             _activeEnemy.SetTurnState();
+            Debug.Log("Setting Turn State");
         }
 
         // Line removal

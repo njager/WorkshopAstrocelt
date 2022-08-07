@@ -87,6 +87,9 @@ public class S_Enemy : MonoBehaviour
         return; 
     }
 
+    /// <summary>
+    /// Set the delegate of the enemy to itself
+    /// </summary>
     public void SetDelegate()
     {
         if (e_i_enemyCount == 1)
@@ -111,13 +114,16 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
- 
-    // Goes in Enemy
+    /// <summary>
+    /// Set the turn state for the enemy, from the enemy
+    /// - Josh
+    /// </summary>
     public void SetTurnState()
     {
         if (g_global.g_enemyState.EnemyStateCheck(e_i_enemyCount) == true)
         {
             e_turnDelegate = g_global.g_turnManager.OverallEnemyTurn;
+            S_EventManager.e_enemyPhaseEvent += e_turnDelegate; 
         }
         else
         {
