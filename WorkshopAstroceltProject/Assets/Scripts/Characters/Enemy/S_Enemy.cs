@@ -30,7 +30,10 @@ public class S_Enemy : MonoBehaviour
     public Vector3 e_v3_defaultScale;
 
     [Header("Intent Duration Value")]
-    public float f_intentDuration; 
+    public float f_intentDuration;
+
+    // Enemy Turn Delegate
+    private S_EventManager.EnemyTurnDelegate e_turnDelegate; // goes in enemy
 
     void Awake()
     {
@@ -70,6 +73,11 @@ public class S_Enemy : MonoBehaviour
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition3.transform, false);
         }
+
+        // Need to add in enemy 4 and 5 placement and the scene knowing if it should have 3 enemies or 5 enemies from S_GameManager or even get something set initially as a bool in S_Global we toggle
+        // - Josh
+
+        SetDelegate();
     }
 
     void SetCount()
@@ -77,6 +85,50 @@ public class S_Enemy : MonoBehaviour
         g_global.g_i_enemyCount += 1;
         e_i_enemyCount = g_global.g_i_enemyCount;
         return; 
+    }
+
+    /// <summary>
+    /// Set the delegate of the enemy to itself
+    /// </summary>
+    public void SetDelegate()
+    {
+        if (e_i_enemyCount == 1)
+        {
+            g_global.g_turnManager.e_enemy1TurnDelegate = e_turnDelegate;
+        }
+        else if (e_i_enemyCount == 2)
+        {
+            g_global.g_turnManager.e_enemy2TurnDelegate = e_turnDelegate;
+        }
+        else if (e_i_enemyCount == 3)
+        {
+            g_global.g_turnManager.e_enemy3TurnDelegate = e_turnDelegate;
+        }
+        else if (e_i_enemyCount == 4)
+        {
+            g_global.g_turnManager.e_enemy4TurnDelegate = e_turnDelegate;
+        }
+        else if (e_i_enemyCount == 5)
+        {
+            g_global.g_turnManager.e_enemy5TurnDelegate = e_turnDelegate;
+        }
+    }
+
+    /// <summary>
+    /// Set the turn state for the enemy, from the enemy
+    /// - Josh
+    /// </summary>
+    public void SetTurnState()
+    {
+        if (g_global.g_enemyState.EnemyStateCheck(e_i_enemyCount) == true)
+        {
+            e_turnDelegate = g_global.g_turnManager.OverallEnemyTurn;
+            S_EventManager.e_enemyPhaseEvent += e_turnDelegate; 
+        }
+        else
+        {
+            e_turnDelegate = null;
+        }
     }
 
     /// <summary>
