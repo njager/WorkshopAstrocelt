@@ -218,6 +218,8 @@ public class S_Altar : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
+
+        g_global.g_enemyState.UpdateActiveEnemies();
     }
 
     /// <summary>

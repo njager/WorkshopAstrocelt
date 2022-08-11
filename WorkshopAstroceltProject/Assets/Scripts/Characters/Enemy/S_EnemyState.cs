@@ -1002,18 +1002,15 @@ public class S_EnemyState : MonoBehaviour
         {
             if (g_global.g_enemyState.e_b_enemy1Dead == false)
             {
-                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy1);
                 g_global.g_enemyState.e_b_enemy1IsActive = true; 
             }
             else
             {
-                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
                 g_global.g_enemyState.e_b_enemy1IsActive = false;
             }
         }
         else
         {
-            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
             g_global.g_enemyState.e_b_enemy1IsActive = false;
         }
 
@@ -1022,18 +1019,15 @@ public class S_EnemyState : MonoBehaviour
         {
             if (g_global.g_enemyState.e_b_enemy2Dead == false)
             {
-                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy2);
                 g_global.g_enemyState.e_b_enemy2IsActive = true;
             }
             else
             {
-                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
                 g_global.g_enemyState.e_b_enemy2IsActive = false;
             }
         }
         else
         {
-            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
             g_global.g_enemyState.e_b_enemy3IsActive = false;
         }
 
@@ -1042,18 +1036,15 @@ public class S_EnemyState : MonoBehaviour
         {
             if (g_global.g_enemyState.e_b_enemy3Dead == false)
             {
-                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy3);
                 g_global.g_enemyState.e_b_enemy3IsActive = true;
             }
             else
             {
-                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
                 g_global.g_enemyState.e_b_enemy3IsActive = false;
             }
         }
         else
         {
-            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
             g_global.g_enemyState.e_b_enemy3IsActive = false;
         }
 
@@ -1062,18 +1053,15 @@ public class S_EnemyState : MonoBehaviour
         {
             if (g_global.g_enemyState.e_b_enemy4Dead == false)
             {
-                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy4);
                 g_global.g_enemyState.e_b_enemy4IsActive = true;
             }
             else
             {
-                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
                 g_global.g_enemyState.e_b_enemy4IsActive = false;
             }
         }
         else
         {
-            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
             g_global.g_enemyState.e_b_enemy4IsActive = false;
         }
 
@@ -1082,18 +1070,15 @@ public class S_EnemyState : MonoBehaviour
         {
             if (g_global.g_enemyState.e_b_enemy5Dead == false)
             {
-                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy5);
                 g_global.g_enemyState.e_b_enemy5IsActive = true;
             }
             else
             {
-                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
                 g_global.g_enemyState.e_b_enemy5IsActive = false;
             }
         }
         else
         {
-            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
             g_global.g_enemyState.e_b_enemy5IsActive = false;
         }
     }
