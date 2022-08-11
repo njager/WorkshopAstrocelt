@@ -24,6 +24,7 @@ public class S_TurnManager : MonoBehaviour
     public bool enemy4TurnSkipped;
     public bool enemy5TurnSkipped;
 
+
     [Header("Enemy Delegate Objects")]
     public S_EventManager.EnemyTurnDelegate e_enemy1TurnDelegate; 
     public S_EventManager.EnemyTurnDelegate e_enemy2TurnDelegate;
@@ -189,11 +190,10 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     /// <param name="_enemyNum"></param>
     /// <returns></returns>
-    public IEnumerator OverallEnemyTurn(int _enemyNum)
+    public void OverallEnemyTurn(int _enemyNum)
     {
         Debug.Log("OverallEnemyTurn triggered for test case!");
         g_global.g_turnManager.EnemyTurnAction(_enemyNum, g_global.g_enemyState.GetEnemyScript(_enemyNum));
-        yield return new WaitForSeconds(2);
     }
 
 
@@ -221,60 +221,20 @@ public class S_TurnManager : MonoBehaviour
 
         foreach(S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
         {
+            e_i_timerChecks -= 1;
             EnemyPhaseEventTrigger(_enemy.e_i_enemyCount);
 
-            if (e_i_timerChecks == -1)
-            {
-                StartCoroutine(TurnTimer(2));
-                // Only one enemy left
-            }
-            else if (e_i_timerChecks + 1 == g_global.g_ls_activeEnemies.Count)
-            {
-                Debug.Log("First enemy - do nothing");
-            }
-            else if (e_i_timerChecks > 0)
-            {
-                e_i_timerChecks -= 1;
-                StartCoroutine(TurnTimer(2));
-            }
+            StartCoroutine(TurnTimer(2));
         }
         
         Debug.Log("Made it past the event stack");
 
-        // Use active enemy list for enemy num if the above works
 
-        // Breaking here
-        /*
-        foreach(S_EventManager.EnemyTurnDelegate _enemyTurnDelegate in g_global.g_ls_enemyPhase.ToList())
-        {
-            string _enemyStringNum = _enemyTurnDelegate.ToString().Substring(6, 7);
-            Debug.Log("Enemy String Num: " +_enemyStringNum);
-            int _enemyNum = Int32.Parse(_enemyStringNum);
-            if(g_global.g_enemyState.GetEnemyActiveState(_enemyNum) == true)
-            {
-                yield return StartCoroutine(_enemyTurnDelegate.Invoke(_enemyNum));
-            }
-            if(e_i_timerChecks == -1)
-            {
-                StartCoroutine(TurnTimer(2));
-                // Only one enemy left
-            }
-            else if (e_i_timerChecks + 1 == g_global.g_ls_activeEnemies.Count)
-            {
-                Debug.Log("First enemy - do nothing");
-            }
-            else if (e_i_timerChecks > 0)
-            {
-                e_i_timerChecks -= 1;
-                StartCoroutine(TurnTimer(2));
-            }
-            g_global.g_ls_enemyPhase.Remove(_enemyTurnDelegate);
-        }
-        */
+        int x = g_global.g_ls_activeEnemies.Count * 2;
+        yield return new WaitForSeconds(x);
 
         // Enemy Phase End
         EnemyPhaseEnd();
-        yield return new WaitForSeconds(0.1f);
     }
 
     /// <summary>
@@ -286,7 +246,7 @@ public class S_TurnManager : MonoBehaviour
         // Update Active Enemies
         g_global.g_enemyState.UpdateActiveEnemies();
 
-        e_i_timerChecks = g_global.g_ls_activeEnemies.Count - 1;
+        e_i_timerChecks = g_global.g_ls_activeEnemies.Count;
 
         // Have each enemy set their state
         foreach(S_Enemy _activeEnemy in g_global.g_ls_activeEnemies.ToList())
@@ -336,6 +296,8 @@ public class S_TurnManager : MonoBehaviour
 
         g_global.g_enemyState.EnemyStatusEffectDecrement();
 
+        S_EventManager.ClearEnemyEvents();
+
         //Switch turns
         g_global.g_b_playerTurn = false;
         g_global.g_b_enemyTurn = true;
@@ -343,7 +305,7 @@ public class S_TurnManager : MonoBehaviour
 
     public void EnemyTurnAction(int _enemyNum, S_Enemy _enemyScript)
     {
-        if(g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
+        if(!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
         {
             // Declare Turn for UI
             DeclareCurrentTurn(_enemyNum);
@@ -568,10 +530,30 @@ public class S_TurnManager : MonoBehaviour
     /// <param name="_enemyNum"></param>
     public void EnemyPhaseEventTrigger(int _enemyNum)
     {
-        if(_enemyNum != 0)
+        if(_enemyNum == 1)
         {
-            S_EventManager.Broadcast(_enemyNum);
-            Debug.Log("Triggered for enemy - log!");
+            S_EventManager.BroadcastForEnemy1();
+            Debug.Log("Triggered for enemy 1 - log!");
+        }
+        else if(_enemyNum == 2)
+        {
+            S_EventManager.BroadcastForEnemy2();
+            Debug.Log("Triggered for enemy 2 - log!");
+        }
+        else if (_enemyNum == 3)
+        {
+            S_EventManager.BroadcastForEnemy3();
+            Debug.Log("Triggered for enemy 3 - log!");
+        }
+        else if (_enemyNum == 4)
+        {
+            S_EventManager.BroadcastForEnemy4();
+            Debug.Log("Triggered for enemy 4 - log!");
+        }
+        else if (_enemyNum == 5)
+        {
+            S_EventManager.BroadcastForEnemy5();
+            Debug.Log("Triggered for enemy 5 - log!");
         }
         else
         {

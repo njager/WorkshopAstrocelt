@@ -52,6 +52,8 @@ public class S_Enemy : MonoBehaviour
 
         // Left over code, leaving
         //a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
+
+        g_global.g_ls_activeEnemies.Add(this);
     }
 
     private void Start()
@@ -78,8 +80,6 @@ public class S_Enemy : MonoBehaviour
         // - Josh
 
         SetDelegate();
-
-        SetTurnState();
     }
 
     void SetCount()
@@ -118,17 +118,53 @@ public class S_Enemy : MonoBehaviour
 
     /// <summary>
     /// Set the turn state for the enemy, from the enemy
+    /// Check to see if already done
     /// - Josh
     /// </summary>
     public void SetTurnState()
     {
         if (g_global.g_enemyState.EnemyStateCheck(e_i_enemyCount) == true)
         {
-            S_EventManager.e_enemyPhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
-        }
-        else
-        {
-            e_turnDelegate = null;
+            if(e_i_enemyCount == 1)
+            {
+                if(S_EventManager.e_b_enemy1PhaseNull == false)
+                {
+                    S_EventManager.e_enemy1PhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
+                    S_EventManager.e_b_enemy1PhaseNull = true;
+                }
+            }
+            else if(e_i_enemyCount == 2)
+            {
+                if(S_EventManager.e_b_enemy2PhaseNull == false)
+                {
+                    S_EventManager.e_enemy2PhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
+                    S_EventManager.e_b_enemy2PhaseNull = true;
+                }
+            }
+            else if (e_i_enemyCount == 3)
+            {
+                if(S_EventManager.e_b_enemy3PhaseNull == false)
+                {
+                    S_EventManager.e_enemy3PhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
+                    S_EventManager.e_b_enemy3PhaseNull = true;
+                }
+            }
+            else if (e_i_enemyCount == 4)
+            {
+                if(S_EventManager.e_b_enemy4PhaseNull == false)
+                {
+                    S_EventManager.e_enemy4PhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
+                    S_EventManager.e_b_enemy4PhaseNull = true;
+                }
+            }
+            else if (e_i_enemyCount == 5)
+            {
+                if(S_EventManager.e_b_enemy5PhaseNull == false)
+                {
+                    S_EventManager.e_enemy5PhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
+                    S_EventManager.e_b_enemy5PhaseNull = true;
+                }
+            }
         }
     }
 
@@ -315,6 +351,7 @@ public class S_Enemy : MonoBehaviour
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
         e_sc_enemyAttributes.e_i_health = 0;
+        g_global.g_ls_activeEnemies.Remove(this);
         gameObject.SetActive(false);
     }
 
