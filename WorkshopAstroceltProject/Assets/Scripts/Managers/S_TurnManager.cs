@@ -219,12 +219,32 @@ public class S_TurnManager : MonoBehaviour
         // Enemy Phase Begin
         EnemyPhaseBegin();
 
-        S_EventManager.EnemyPhaseEventTrigger(1);
+        foreach(S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
+        {
+            EnemyPhaseEventTrigger(_enemy.e_i_enemyCount);
+
+            if (e_i_timerChecks == -1)
+            {
+                StartCoroutine(TurnTimer(2));
+                // Only one enemy left
+            }
+            else if (e_i_timerChecks + 1 == g_global.g_ls_activeEnemies.Count)
+            {
+                Debug.Log("First enemy - do nothing");
+            }
+            else if (e_i_timerChecks > 0)
+            {
+                e_i_timerChecks -= 1;
+                StartCoroutine(TurnTimer(2));
+            }
+        }
+        
         Debug.Log("Made it past the event stack");
 
         // Use active enemy list for enemy num if the above works
 
         // Breaking here
+        /*
         foreach(S_EventManager.EnemyTurnDelegate _enemyTurnDelegate in g_global.g_ls_enemyPhase.ToList())
         {
             string _enemyStringNum = _enemyTurnDelegate.ToString().Substring(6, 7);
@@ -250,9 +270,11 @@ public class S_TurnManager : MonoBehaviour
             }
             g_global.g_ls_enemyPhase.Remove(_enemyTurnDelegate);
         }
+        */
 
         // Enemy Phase End
         EnemyPhaseEnd();
+        yield return new WaitForSeconds(0.1f);
     }
 
     /// <summary>
@@ -538,5 +560,22 @@ public class S_TurnManager : MonoBehaviour
             g_global.g_enemyState.e_b_enemy5Turn = true;
         }
     }
-    
+
+    /// <summary>
+    /// Function used for trigger the stored coroutine in the delegates
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    public void EnemyPhaseEventTrigger(int _enemyNum)
+    {
+        if(_enemyNum != 0)
+        {
+            S_EventManager.Broadcast(_enemyNum);
+            Debug.Log("Triggered for enemy - log!");
+        }
+        else
+        {
+            Debug.Log("Invalid value for method EnemyPhaseEventTrigger");
+        }
+    }
 }

@@ -78,6 +78,8 @@ public class S_Enemy : MonoBehaviour
         // - Josh
 
         SetDelegate();
+
+        SetTurnState();
     }
 
     void SetCount()
@@ -122,8 +124,7 @@ public class S_Enemy : MonoBehaviour
     {
         if (g_global.g_enemyState.EnemyStateCheck(e_i_enemyCount) == true)
         {
-            e_turnDelegate = g_global.g_turnManager.OverallEnemyTurn;
-            S_EventManager.e_enemyPhaseEvent += e_turnDelegate; 
+            S_EventManager.e_enemyPhaseEvent += g_global.g_turnManager.OverallEnemyTurn;
         }
         else
         {

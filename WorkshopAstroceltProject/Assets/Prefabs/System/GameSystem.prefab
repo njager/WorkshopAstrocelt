@@ -374,6 +374,7 @@ MonoBehaviour:
   enemy3TurnSkipped: 0
   enemy4TurnSkipped: 0
   enemy5TurnSkipped: 0
+  e_i_timerChecks: 0
 --- !u!114 &8047176380236070990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +495,11 @@ MonoBehaviour:
   e_i_enemy3ResistantTurnsPassed: 0
   e_i_enemy4ResistantTurnsPassed: 0
   e_i_enemy5ResistantTurnsPassed: 0
+  e_b_enemy1IsActive: 0
+  e_b_enemy2IsActive: 0
+  e_b_enemy3IsActive: 0
+  e_b_enemy4IsActive: 0
+  e_b_enemy5IsActive: 0
 --- !u!1 &8047176380363508961
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,11 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   e_sp_enemyShield: {fileID: 21300000, guid: 7c67c5a62b45a874a942e88b9fed3a91, type: 3}
   e_sp_enemyAbility: {fileID: 21300000, guid: 4341b65dbd8e32b4c990639f0ba02392, type: 3}
-  e_b_enemy1IconCheck: 
-  e_b_enemy2IconCheck: 
-  e_b_enemy3IconCheck: 
-  e_b_enemy4IconCheck: 
-  e_b_enemy5IconCheck: 
+  ls_e_statusStrings: []
   e_sp_enemyAttackLevel1: {fileID: 21300000, guid: a1b0217d785fb654aaad227fda6ed4b3, type: 3}
   e_sp_enemyAttackLevel2: {fileID: 21300000, guid: 06dde3cc782875b4b95ee0d90c78d464, type: 3}
   e_sp_enemyAttackLevel3: {fileID: 21300000, guid: 0845d76e0b2542243b218226d04db49c, type: 3}
@@ -899,6 +901,7 @@ MonoBehaviour:
   g_ls_p_playerHand: []
   g_ls_starPopup: []
   g_ls_cardBallPrefabs: []
+  g_ls_activeEnemies: []
   g_e_enemyPosition1: {fileID: 0}
   g_e_enemyPosition2: {fileID: 0}
   g_e_enemyPosition3: {fileID: 0}
