@@ -602,6 +602,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void DeleteCard()
     {
+        //if a cardball persists
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play

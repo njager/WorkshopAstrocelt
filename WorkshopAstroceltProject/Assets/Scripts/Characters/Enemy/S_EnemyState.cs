@@ -135,6 +135,13 @@ public class S_EnemyState : MonoBehaviour
     public int e_i_enemy4ResistantTurnsPassed;
     public int e_i_enemy5ResistantTurnsPassed;
 
+    [Header("Active (true) or Inactive (false) Bool Check for Enemies")]
+    public bool e_b_enemy1IsActive;
+    public bool e_b_enemy2IsActive;
+    public bool e_b_enemy3IsActive;
+    public bool e_b_enemy4IsActive;
+    public bool e_b_enemy5IsActive;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -840,19 +847,19 @@ public class S_EnemyState : MonoBehaviour
     {
         if (g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
         {
-            if (g_global.g_iconManager.e_b_enemy1IconCheck == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[0] == "attack") //Enemy 1 Attack
             {
                 e_b_enemy1Attacking = true;
                 e_b_enemy1Shielding = false;
                 e_b_enemy1SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy1IconCheck == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[0] == "shield") // Enemy 1 Shields
             {
                 e_b_enemy1Attacking = false;
                 e_b_enemy1Shielding = true;
                 e_b_enemy1SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy1IconCheck == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[0] == "ability") // Enemy 1 does their ability
             {
                 e_b_enemy1Attacking = false;
                 e_b_enemy1Shielding = false;
@@ -862,19 +869,19 @@ public class S_EnemyState : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet2 != null) // Check if enemy 2 is present
         {
-            if (g_global.g_iconManager.e_b_enemy2IconCheck == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[1] == "attack") //Enemy 1 Attack
             {
                 e_b_enemy2Attacking = true;
                 e_b_enemy2Shielding = false;
                 e_b_enemy2SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy2IconCheck == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[1] == "shield") // Enemy 1 Shields
             {
                 e_b_enemy2Attacking = false;
                 e_b_enemy2Shielding = true;
                 e_b_enemy2SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy2IconCheck == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[1] == "ability") // Enemy 1 does their ability
             {
                 e_b_enemy2Attacking = false;
                 e_b_enemy2Shielding = false;
@@ -884,19 +891,19 @@ public class S_EnemyState : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet3 != null) // Check if enemy 3 is present
         {
-            if (g_global.g_iconManager.e_b_enemy3IconCheck == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[2] == "attack") //Enemy 1 Attack
             {
                 e_b_enemy3Attacking = true;
                 e_b_enemy3Shielding = false;
                 e_b_enemy3SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy3IconCheck == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[2] == "shield") // Enemy 1 Shields
             {
                 e_b_enemy3Attacking = false;
                 e_b_enemy3Shielding = true;
                 e_b_enemy3SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy3IconCheck == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[2] == "ability") // Enemy 1 does their ability
             {
                 e_b_enemy3Attacking = false;
                 e_b_enemy3Shielding = false;
@@ -906,19 +913,19 @@ public class S_EnemyState : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet4 != null) // Check if enemy 4 is present
         {
-            if (g_global.g_iconManager.e_b_enemy4IconCheck == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[3] == "attack") //Enemy 1 Attack
             {
                 e_b_enemy4Attacking = true;
                 e_b_enemy4Shielding = false;
                 e_b_enemy4SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy4IconCheck == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[3] == "shield") // Enemy 1 Shields
             {
                 e_b_enemy4Attacking = false;
                 e_b_enemy4Shielding = true;
                 e_b_enemy4SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy4IconCheck == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[3] == "ability") // Enemy 1 does their ability
             {
                 e_b_enemy4Attacking = false;
                 e_b_enemy4Shielding = false;
@@ -928,19 +935,19 @@ public class S_EnemyState : MonoBehaviour
 
         if (g_global.g_enemyAttributeSheet5 != null) // Check if enemy 5 is present
         {
-            if (g_global.g_iconManager.e_b_enemy5IconCheck == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[4] == "attack") //Enemy 1 Attack
             {
                 e_b_enemy5Attacking = true;
                 e_b_enemy5Shielding = false;
                 e_b_enemy5SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy5IconCheck == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[4] == "shield") // Enemy 1 Shields
             {
                 e_b_enemy5Attacking = false;
                 e_b_enemy5Shielding = true;
                 e_b_enemy5SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.e_b_enemy5IconCheck == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[4] == "ability") // Enemy 1 does their ability
             {
                 e_b_enemy5Attacking = false;
                 e_b_enemy5Shielding = false;
@@ -980,6 +987,356 @@ public class S_EnemyState : MonoBehaviour
         else 
         {
             return 0; 
+        }
+    }
+
+
+    /// <summary>
+    /// Let the delegate list know which enemies should be considered in play or not
+    /// - Josh
+    /// </summary>
+    public void UpdateActiveEnemies()
+    {
+        // Check Enemy 1
+        if (g_global.g_enemyState.enemy1 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy1);
+                g_global.g_enemyState.e_b_enemy1IsActive = true; 
+            }
+            else
+            {
+                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
+                g_global.g_enemyState.e_b_enemy1IsActive = false;
+            }
+        }
+        else
+        {
+            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy1);
+            g_global.g_enemyState.e_b_enemy1IsActive = false;
+        }
+
+        // Check Enemy 2
+        if (g_global.g_enemyState.enemy2 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy2);
+                g_global.g_enemyState.e_b_enemy2IsActive = true;
+            }
+            else
+            {
+                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
+                g_global.g_enemyState.e_b_enemy2IsActive = false;
+            }
+        }
+        else
+        {
+            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy2);
+            g_global.g_enemyState.e_b_enemy3IsActive = false;
+        }
+
+        // Check Enemy 3
+        if (g_global.g_enemyState.enemy3 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy3);
+                g_global.g_enemyState.e_b_enemy3IsActive = true;
+            }
+            else
+            {
+                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
+                g_global.g_enemyState.e_b_enemy3IsActive = false;
+            }
+        }
+        else
+        {
+            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy3);
+            g_global.g_enemyState.e_b_enemy3IsActive = false;
+        }
+
+        // Check Enemy 4
+        if (g_global.g_enemyState.enemy4 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy4);
+                g_global.g_enemyState.e_b_enemy4IsActive = true;
+            }
+            else
+            {
+                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
+                g_global.g_enemyState.e_b_enemy4IsActive = false;
+            }
+        }
+        else
+        {
+            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy4);
+            g_global.g_enemyState.e_b_enemy4IsActive = false;
+        }
+
+        // Check Enemy 5
+        if (g_global.g_enemyState.enemy5 != null)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                g_global.g_ls_activeEnemies.Add(g_global.g_enemyState.enemy5);
+                g_global.g_enemyState.e_b_enemy5IsActive = true;
+            }
+            else
+            {
+                g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
+                g_global.g_enemyState.e_b_enemy5IsActive = false;
+            }
+        }
+        else
+        {
+            g_global.g_ls_activeEnemies.Remove(g_global.g_enemyState.enemy5);
+            g_global.g_enemyState.e_b_enemy5IsActive = false;
+        }
+    }
+
+    /// <summary>
+    /// Return the current state of the given enemy based off enemy number
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public bool EnemyStateCheck(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            if (g_global.g_enemyState.enemy1 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy1Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (_enemyNum == 2)
+        {
+            if (g_global.g_enemyState.enemy2 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy2Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (_enemyNum == 3)
+        {
+            if (g_global.g_enemyState.enemy3 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy3Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (_enemyNum == 4)
+        {
+            if (g_global.g_enemyState.enemy4 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy4Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (_enemyNum == 5)
+        {
+            if (g_global.g_enemyState.enemy5 != null)
+            {
+                if (g_global.g_enemyState.e_b_enemy5Dead == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    ///  Check to see if the enemy's turn should be skipped for a given enemy based off number
+    ///  - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public bool EnemySkipTurnCheck(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return g_global.g_turnManager.enemy1TurnSkipped;
+        }
+        else if (_enemyNum == 2)
+        {
+            return g_global.g_turnManager.enemy2TurnSkipped;
+        }
+        else if (_enemyNum == 3)
+        {
+            return g_global.g_turnManager.enemy3TurnSkipped;
+        }
+        else if (_enemyNum == 4)
+        {
+            return g_global.g_turnManager.enemy4TurnSkipped;
+        }
+        else if (_enemyNum == 5)
+        {
+            return g_global.g_turnManager.enemy5TurnSkipped;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL FALSE");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Return the state of the bool for if an enemy is active or not
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public bool GetEnemyActiveState(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_b_enemy1IsActive;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_b_enemy2IsActive;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_b_enemy3IsActive;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_b_enemy4IsActive;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_b_enemy5IsActive;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL FALSE");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Return the data sheet for a given enemy help
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public S_EnemyAttributes GetEnemyDataSheet(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return g_global.g_enemyAttributeSheet1;
+        }
+        else if (_enemyNum == 2)
+        {
+            return g_global.g_enemyAttributeSheet2;
+        }
+        else if (_enemyNum == 3)
+        {
+            return g_global.g_enemyAttributeSheet3;
+        }
+        else if (_enemyNum == 4)
+        {
+            return g_global.g_enemyAttributeSheet4;
+        }
+        else if (_enemyNum == 5)
+        {
+            return g_global.g_enemyAttributeSheet2;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+
+    /// <summary>
+    /// Return the enemy script based off the given number
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public S_Enemy GetEnemyScript(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 2)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 3)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 4)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        if (_enemyNum == 5)
+        {
+            return g_global.g_enemyState.enemy1;
+        }
+        else
+        {
+            Debug.Log("DEBUG: Returned null enemy script!");
+            return null;
         }
     }
 }
