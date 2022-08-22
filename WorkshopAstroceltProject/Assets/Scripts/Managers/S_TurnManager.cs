@@ -193,7 +193,7 @@ public class S_TurnManager : MonoBehaviour
     public void OverallEnemyTurn(int _enemyNum)
     {
         Debug.Log("OverallEnemyTurn triggered for test case!");
-        g_global.g_turnManager.EnemyTurnAction(_enemyNum, g_global.g_enemyState.GetEnemyScript(_enemyNum));
+        g_global.g_turnManager.EnemyTurnAction(_enemyNum);
     }
 
 
@@ -319,7 +319,14 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = true;
     }
 
-    public bool EnemyTurnAction(int _enemyNum, S_Enemy _enemyScript)
+
+    /// <summary>
+    /// Function for enemy action within their turn phase to be triggered
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public bool EnemyTurnAction(int _enemyNum)
     {
         if(!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
         {
