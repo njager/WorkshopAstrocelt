@@ -90,29 +90,29 @@ public class S_Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the delegate of the enemy to itself
+    /// Set the delegate of the enemy to the pregrabbed delegate already on it
     /// </summary>
     public void SetDelegate()
     {
         if (e_i_enemyCount == 1)
         {
-            g_global.g_turnManager.e_enemy1TurnDelegate = e_turnDelegate;
+            S_EventManager.e_enemy1PhaseEvent += e_turnDelegate;
         }
         else if (e_i_enemyCount == 2)
         {
-            g_global.g_turnManager.e_enemy2TurnDelegate = e_turnDelegate;
+            S_EventManager.e_enemy2PhaseEvent += e_turnDelegate;
         }
         else if (e_i_enemyCount == 3)
         {
-            g_global.g_turnManager.e_enemy3TurnDelegate = e_turnDelegate;
+            S_EventManager.e_enemy3PhaseEvent += e_turnDelegate;
         }
         else if (e_i_enemyCount == 4)
         {
-            g_global.g_turnManager.e_enemy4TurnDelegate = e_turnDelegate;
+            S_EventManager.e_enemy4PhaseEvent += e_turnDelegate;
         }
         else if (e_i_enemyCount == 5)
         {
-            g_global.g_turnManager.e_enemy5TurnDelegate = e_turnDelegate;
+            S_EventManager.e_enemy5PhaseEvent += e_turnDelegate;
         }
     }
 
