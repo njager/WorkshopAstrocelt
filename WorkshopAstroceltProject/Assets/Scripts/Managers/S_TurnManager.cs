@@ -288,6 +288,23 @@ public class S_TurnManager : MonoBehaviour
         // Declare player's turn for debug
         DeclareCurrentTurn(0);
 
+
+        // Temporary debug
+        int _invocationCount1 = e_enemy1TurnDelegate.GetInvocationList().GetLength(0);
+        Debug.Log("Delegate amount in Enemy 1 Turn Delegate: " + _invocationCount1);
+
+        int _invocationCount2 = e_enemy2TurnDelegate.GetInvocationList().GetLength(0);
+        Debug.Log("Delegate amount in Enemy 2 Turn Delegate: " + _invocationCount2);
+
+        int _invocationCount3 = e_enemy3TurnDelegate.GetInvocationList().GetLength(0);
+        Debug.Log("Delegate amount in Enemy 3 Turn Delegate: " + _invocationCount3);
+
+        int _invocationCount4 = e_enemy4TurnDelegate.GetInvocationList().GetLength(0);
+        Debug.Log("Delegate amount in Enemy 4 Turn Delegate: " + _invocationCount4);
+
+        int _invocationCount5 = e_enemy5TurnDelegate.GetInvocationList().GetLength(0);
+        Debug.Log("Delegate amount in Enemy 5 Turn Delegate: " + _invocationCount5);
+
         // Load the next icon
         foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
         {
