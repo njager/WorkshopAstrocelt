@@ -255,6 +255,22 @@ public class S_TurnManager : MonoBehaviour
             Debug.Log("Setting Turn State");
         }
 
+        // Temporary debug
+        //int _invocationCount1 = S_EventManager.e_enemy1PhaseEvent.GetInvocationList().GetLength(0);
+        //Debug.Log("Delegate amount in Enemy 1 Turn Delegate: " + _invocationCount1);
+
+        //int _invocationCount2 = e_enemy2TurnDelegate.GetInvocationList().GetLength(0);
+        //Debug.Log("Delegate amount in Enemy 2 Turn Delegate: " + _invocationCount2);
+
+        //int _invocationCount3 = e_enemy3TurnDelegate.GetInvocationList().GetLength(0);
+        //Debug.Log("Delegate amount in Enemy 3 Turn Delegate: " + _invocationCount3);
+
+        //int _invocationCount4 = e_enemy4TurnDelegate.GetInvocationList().GetLength(0);
+        //Debug.Log("Delegate amount in Enemy 4 Turn Delegate: " + _invocationCount4);
+
+        //int _invocationCount5 = e_enemy5TurnDelegate.GetInvocationList().GetLength(0);
+        //Debug.Log("Delegate amount in Enemy 5 Turn Delegate: " + _invocationCount5);
+
         // Line removal
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
@@ -288,23 +304,6 @@ public class S_TurnManager : MonoBehaviour
         // Declare player's turn for debug
         DeclareCurrentTurn(0);
 
-
-        // Temporary debug
-        int _invocationCount1 = e_enemy1TurnDelegate.GetInvocationList().GetLength(0);
-        Debug.Log("Delegate amount in Enemy 1 Turn Delegate: " + _invocationCount1);
-
-        int _invocationCount2 = e_enemy2TurnDelegate.GetInvocationList().GetLength(0);
-        Debug.Log("Delegate amount in Enemy 2 Turn Delegate: " + _invocationCount2);
-
-        int _invocationCount3 = e_enemy3TurnDelegate.GetInvocationList().GetLength(0);
-        Debug.Log("Delegate amount in Enemy 3 Turn Delegate: " + _invocationCount3);
-
-        int _invocationCount4 = e_enemy4TurnDelegate.GetInvocationList().GetLength(0);
-        Debug.Log("Delegate amount in Enemy 4 Turn Delegate: " + _invocationCount4);
-
-        int _invocationCount5 = e_enemy5TurnDelegate.GetInvocationList().GetLength(0);
-        Debug.Log("Delegate amount in Enemy 5 Turn Delegate: " + _invocationCount5);
-
         // Load the next icon
         foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
         {
@@ -320,7 +319,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = true;
     }
 
-    public void EnemyTurnAction(int _enemyNum, S_Enemy _enemyScript)
+    public bool EnemyTurnAction(int _enemyNum, S_Enemy _enemyScript)
     {
         if(!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
         {
@@ -358,10 +357,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_turnManager.g_global.g_enemyState.GetEnemyScript(_enemyNum).EnemySpecialAbility(g_global.g_turnManager.g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType);
             }
+
+            return true;
         }
         else
         {
             Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
+            return true;
         }
     }
 
