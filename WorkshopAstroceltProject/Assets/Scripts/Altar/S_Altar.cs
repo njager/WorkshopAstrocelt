@@ -28,6 +28,7 @@ public class S_Altar : MonoBehaviour
     public GameObject cardballPosition3;
     public GameObject cardballPosition4;
     public GameObject cardballPosition5;
+    public GameObject cardballSpawnPosition;
 
     [Header("Card Holder Reference")]
     public GameObject c_cardHolder;
@@ -218,6 +219,8 @@ public class S_Altar : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
+
+        g_global.g_enemyState.UpdateActiveEnemies();
     }
 
     /// <summary>

@@ -14,11 +14,7 @@ public class S_IntentManager : MonoBehaviour
     public Sprite e_sp_enemyAbility; 
 
     [Header("Enemy Status Strings")]
-    public string e_b_enemy1IconCheck;
-    public string e_b_enemy2IconCheck;
-    public string e_b_enemy3IconCheck;
-    public string e_b_enemy4IconCheck;
-    public string e_b_enemy5IconCheck;
+    public List<string> ls_e_statusStrings;
 
     [Header("Intent UI Elements")]
     public Sprite e_sp_enemyAttackLevel1;
@@ -41,6 +37,12 @@ public class S_IntentManager : MonoBehaviour
         g_global = S_Global.Instance;
 
         b_intentFlashBool = false;
+
+        ls_e_statusStrings.Add("first");
+        ls_e_statusStrings.Add("second");
+        ls_e_statusStrings.Add("third");
+        ls_e_statusStrings.Add("fourth");
+        ls_e_statusStrings.Add("fifth");
     }
 
     /// <summary>
@@ -54,74 +56,21 @@ public class S_IntentManager : MonoBehaviour
         if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Special Ability
         {
             UIChangesForIntent(_enemyToChange, 3);
-            if (_enemyToChange.e_i_enemyCount == 1) // Enemy 1 special ability next turn
-            {
-                e_b_enemy1IconCheck = "ability";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 2) // Enemy 2 special ability next turn
-            {
-                e_b_enemy2IconCheck = "ability";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 3) // Enemy 3 special ability next turn
-            {
-                e_b_enemy3IconCheck = "ability";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 4) // Enemy 4 special ability next turn
-            {
-                e_b_enemy4IconCheck = "ability";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 5) // Enemy 5 special ability next turn
-            {
-                e_b_enemy5IconCheck = "ability";
-            }
+
+            ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "ability";
         }
-        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Shield
+        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate + _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate
+            && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Shield
         {
             UIChangesForIntent(_enemyToChange, 2);
-            if (_enemyToChange.e_i_enemyCount == 1) // Enemy 1 shielding next turn
-            {
-                e_b_enemy1IconCheck = "shield";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 2) // Enemy 2 shielding next turn
-            {
-                e_b_enemy2IconCheck = "shield";
-            } 
-            else if (_enemyToChange.e_i_enemyCount == 3) // Enemy 3 shielding next turn
-            {
-                e_b_enemy3IconCheck = "shield";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 4) // Enemy 4 shielding next turn
-            {
-                e_b_enemy4IconCheck = "shield";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 5) // Enemy 5 shielding next turn
-            {
-                e_b_enemy5IconCheck = "shield";
-            }
+
+            ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "shield";
         }
-        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_attackRate && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate) // Set Enemy up for Attack
+        else  // Set Enemy up for Attack
         {
             UIChangesForIntent(_enemyToChange, 1);
-            if (_enemyToChange.e_i_enemyCount == 1) //Enemy 1 is attacking next turn
-            {
-                e_b_enemy1IconCheck = "attack";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 2) //Enemy 2 is attacking next turn
-            {
-                e_b_enemy2IconCheck = "attack";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 3) //Enemy 3 is attacking next turn
-            {
-                e_b_enemy3IconCheck = "attack";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 4) //Enemy 4 is attacking next turn
-            {
-                e_b_enemy4IconCheck = "attack";
-            }
-            else if (_enemyToChange.e_i_enemyCount == 5) //Enemy 5 is attacking next turn
-            {
-                e_b_enemy5IconCheck = "attack";
-            }
+
+            ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "attack";
         }
 
     }
