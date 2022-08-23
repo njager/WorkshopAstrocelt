@@ -298,7 +298,7 @@ public class S_Enemy : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
         }
 
-        Debug.Log("Enemy Shields");
+        //Debug.Log("Enemy Shields");
     }
 
     /// <summary>

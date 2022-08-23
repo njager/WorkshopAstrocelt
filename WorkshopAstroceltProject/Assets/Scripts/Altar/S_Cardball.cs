@@ -168,7 +168,7 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void DeleteCardball()
     {
-        Debug.Log("DEBUG: Cardball Deletion Triggered");
+        //Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.g_ls_cardBallPrefabs.Remove(this);
 
         //add the card to the grave
