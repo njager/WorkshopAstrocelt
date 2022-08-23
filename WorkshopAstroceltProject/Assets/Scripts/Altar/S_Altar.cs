@@ -28,6 +28,7 @@ public class S_Altar : MonoBehaviour
     public GameObject cardballPosition3;
     public GameObject cardballPosition4;
     public GameObject cardballPosition5;
+    public GameObject cardballSpawnPosition;
 
     [Header("Card Holder Reference")]
     public GameObject c_cardHolder;

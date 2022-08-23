@@ -24,14 +24,6 @@ public class S_TurnManager : MonoBehaviour
     public bool enemy4TurnSkipped;
     public bool enemy5TurnSkipped;
 
-
-    [Header("Enemy Delegate Objects")]
-    public S_EventManager.EnemyTurnDelegate e_enemy1TurnDelegate; 
-    public S_EventManager.EnemyTurnDelegate e_enemy2TurnDelegate;
-    public S_EventManager.EnemyTurnDelegate e_enemy3TurnDelegate;
-    public S_EventManager.EnemyTurnDelegate e_enemy4TurnDelegate;
-    public S_EventManager.EnemyTurnDelegate e_enemy5TurnDelegate;
-
     [Header("Enemy Turn Timer Int")]
     public int e_i_timerChecks;
 
@@ -87,6 +79,7 @@ public class S_TurnManager : MonoBehaviour
                 g_global.g_playerState.PlayerStatusEffectDecrement();
 
                 PlayerStateChange();
+
                 spawnTimer = 1f;
             }
         }
@@ -110,6 +103,10 @@ public class S_TurnManager : MonoBehaviour
             else
             {
                 g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+                foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
+                {
+                    _enemy.SetDelegate();
+                }
                 StartCoroutine(EnemyPhase()); //Then change the enemies state
             }
         }
@@ -193,7 +190,7 @@ public class S_TurnManager : MonoBehaviour
     public void OverallEnemyTurn(int _enemyNum)
     {
         Debug.Log("OverallEnemyTurn triggered for test case!");
-        g_global.g_turnManager.EnemyTurnAction(_enemyNum, g_global.g_enemyState.GetEnemyScript(_enemyNum));
+        g_global.g_turnManager.EnemyTurnAction(_enemyNum);
     }
 
 
@@ -303,7 +300,14 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = true;
     }
 
-    public void EnemyTurnAction(int _enemyNum, S_Enemy _enemyScript)
+
+    /// <summary>
+    /// Function for enemy action within their turn phase to be triggered
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public bool EnemyTurnAction(int _enemyNum)
     {
         if(!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
         {
@@ -341,10 +345,13 @@ public class S_TurnManager : MonoBehaviour
             {
                 g_global.g_turnManager.g_global.g_enemyState.GetEnemyScript(_enemyNum).EnemySpecialAbility(g_global.g_turnManager.g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType);
             }
+
+            return true;
         }
         else
         {
             Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
+            return true;
         }
     }
 
