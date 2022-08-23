@@ -49,52 +49,18 @@ public class S_TurnManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This update is used to simulate some time after the turn change. If the player's turn gets skipped, immediately trigger the end turn
-    /// Being used as the IEnumerator loop for the player
-    /// - Josh
-    /// </summary>
-    void Update()
-    {
-        if (g_global.g_b_playerTurn == false && playerTurnSkipped) // Skip player's turn it it is th
-        {
-            //Simulating the enemy turn behavior "waiting" before changing back
-            spawnTimer -= Time.deltaTime;
-            if (spawnTimer < 0)
-            {
-                //decrement the player's status effect
-                g_global.g_playerState.PlayerStatusEffectDecrement();
-
-                Debug.Log("Player Turn Skipped");
-                //StartCoroutine(EnemyPhase());
-                spawnTimer = 1f;
-            }
-        }
-        else if (g_global.g_b_playerTurn == false)
-        {
-            //Simulating the enemy turn behavior "waiting" before changing back
-            spawnTimer -= Time.deltaTime;
-            if (spawnTimer < 0)
-            {
-                //decrement the player's status effect
-                g_global.g_playerState.PlayerStatusEffectDecrement();
-
-                PlayerStateChange();
-
-                spawnTimer = 1f;
-            }
-        }
-    }
-
-    /// <summary>
     /// This the function that gets triggered when the end turn button is pressed. 
     /// It is the start of the chain and leads into enemystate change
     /// -Josh and Riley
     /// </summary>
     public void EndTurn()
     {
-        Debug.Log("pressed");
+        //Debug.Log("pressed");
         if(g_global.g_altar.b_spawningCardballs == false)
         {
+            //set here to prevent queueing up end turns
+            g_global.g_altar.b_spawningCardballs = true;
+
             if (g_global.g_b_enemyTurn == true)
             {
                 Debug.Log("Not your turn!");
@@ -102,6 +68,7 @@ public class S_TurnManager : MonoBehaviour
             }
             else
             {
+                
                 g_global.g_ConstellationManager.DeleteWholeCurConstellation();
                 foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
                 {
@@ -115,36 +82,6 @@ public class S_TurnManager : MonoBehaviour
             Debug.Log("pressed when spawning cardballs");
             return;
         }            
-    }
-
-    
-
-    /// <summary>
-    /// Change the state to the player turn. Gets called from update after EnemyState changes the turns
-    /// trigger the map generation for the new player turn
-    /// Reset the selector so the enemy has to be selected again
-    /// - Riley & Josh
-    /// </summary>
-    public void PlayerStateChange()
-    {
-        //give the player a new hand (remove all old cards)
-        g_global.g_cardManager.NewHand();
-
-        // Spawn cardball prefabs
-        StartCoroutine(g_global.g_altar.SpawnCardballPrefabs());
-
-        //Turn to night
-        g_global.g_backgroundManager.ChangeBackground(0);
-
-        //Reset player
-        g_global.g_playerAttributeSheet.p_i_shield = 0;
-
-        //Map Switching
-        g_global.g_mapManager.RandomMapSelector();
-
-        //switch turns
-        g_global.g_b_playerTurn = true;
-        g_global.g_b_enemyTurn = false;
     }
 
     /// <summary>
@@ -213,6 +150,10 @@ public class S_TurnManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator EnemyPhase()
     {
+        //Switch turns
+        g_global.g_b_playerTurn = false;
+        g_global.g_b_enemyTurn = true;
+
         // Enemy Phase Begin
         EnemyPhaseBegin();
 
@@ -259,10 +200,6 @@ public class S_TurnManager : MonoBehaviour
         // Toggle day
         g_global.g_backgroundManager.ChangeBackground(1);
 
-        //Clear card prefabs + Popups
-        StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
-        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
-
         //change all the things that need to be changed for the enemies turn
         g_global.g_energyManager.ClearEnergy();
         g_global.g_enemyState.EnemyActionCheck();
@@ -293,11 +230,62 @@ public class S_TurnManager : MonoBehaviour
 
         g_global.g_enemyState.EnemyStatusEffectDecrement();
 
+
+        //Clear card prefabs + Popups
+        StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
+        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+
         S_EventManager.ClearEnemyEvents();
 
-        //Switch turns
-        g_global.g_b_playerTurn = false;
-        g_global.g_b_enemyTurn = true;
+        //Check if the player turn starts
+        PlayerTurnCheck();
+    }
+
+    private void PlayerTurnCheck()
+    {
+        if (g_global.g_b_playerTurn == false && playerTurnSkipped)
+        {
+            //decrement the player's status effect
+            g_global.g_playerState.PlayerStatusEffectDecrement();
+
+            Debug.Log("Player Turn Skipped");
+            StartCoroutine(EnemyPhase());
+        }
+        else if (g_global.g_b_playerTurn == false)
+        {
+            //decrement the player's status effect
+            g_global.g_playerState.PlayerStatusEffectDecrement();
+
+            PlayerStateChange();
+        }
+    }
+
+    /// <summary>
+    /// Change the state to the player turn. 
+    /// trigger the map generation for the new player turn
+    /// Reset the selector so the enemy has to be selected again
+    /// - Riley & Josh
+    /// </summary>
+    public void PlayerStateChange()
+    {
+        //give the player a new hand (remove all old cards)
+        g_global.g_cardManager.NewHand();
+
+        //Turn to night
+        g_global.g_backgroundManager.ChangeBackground(0);
+
+        //Reset player
+        g_global.g_playerAttributeSheet.p_i_shield = 0;
+
+        //Map Switching
+        g_global.g_mapManager.RandomMapSelector();
+
+        // Spawn cardball prefabs
+        //StartCoroutine(g_global.g_altar.SpawnCardballPrefabs());
+
+        //switch turns
+        g_global.g_b_playerTurn = true;
+        g_global.g_b_enemyTurn = false;
     }
 
 

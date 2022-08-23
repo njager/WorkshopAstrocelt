@@ -40,7 +40,7 @@ public class S_Altar : MonoBehaviour
     public float f_moveSpeed;
 
     [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = false;
+    public bool b_spawningCardballs = true; //dont let the player press end turn before cardballs begin spawning
 
     private void Awake()
     {
@@ -97,8 +97,6 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnCardballPrefabs()
     {
-        b_spawningCardballs = true;
-
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
         AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[0]);
