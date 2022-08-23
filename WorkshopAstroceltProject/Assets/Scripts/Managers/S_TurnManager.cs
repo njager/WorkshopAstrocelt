@@ -45,7 +45,7 @@ public class S_TurnManager : MonoBehaviour
         enemy4TurnSkipped = false;
         enemy5TurnSkipped = false;
 
-        g_global.g_enemyState.EnemyAttackingOrShielding();
+        g_global.g_enemyState.EnemyActionCheck();
     }
 
     /// <summary>
@@ -265,7 +265,7 @@ public class S_TurnManager : MonoBehaviour
 
         //change all the things that need to be changed for the enemies turn
         g_global.g_energyManager.ClearEnergy();
-        g_global.g_enemyState.EnemyAttackingOrShielding();
+        g_global.g_enemyState.EnemyActionCheck();
         RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
 
 
@@ -322,7 +322,7 @@ public class S_TurnManager : MonoBehaviour
             else if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
                 //play enemy animation
-                g_global.g_enemyAttributeSheet1.e_a_animator.Play("attack");
+                g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_a_animator.Play("attack");
 
                 g_global.g_player.PlayerAttacked(g_global.g_turnManager.g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_enemyDamageValue);
 
