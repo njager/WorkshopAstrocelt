@@ -32,7 +32,7 @@ public class S_EnergyManager : MonoBehaviour
     /// <param name="_energy"></param>
     public void StoreEnergy(string _color, int _energy)
     {
-        Debug.Log("Energy Stored");
+        //Debug.Log("Energy Stored");
         if (_color == "red")
         {
             i_redStorageEnergy += _energy;
@@ -54,7 +54,7 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     public void ClearStoredEnergy()
     {
-        Debug.Log("Stored Energy Cleared");
+        //Debug.Log("Stored Energy Cleared");
         i_redStorageEnergy = 0;
         i_yellowStorageEnergy = 0;
         i_blueStorageEnergy = 0;
@@ -66,7 +66,7 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     public void TransferStoredEnergy()
     {
-        Debug.Log("Stored energy transfered");
+        //Debug.Log("Stored energy transfered");
         i_redEnergy += i_redStorageEnergy;
         i_yellowEnergy += i_yellowStorageEnergy;
         i_blueEnergy += i_blueStorageEnergy;
@@ -81,7 +81,7 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     public void ClearEnergy()
     {
-        Debug.Log("Energy Cleared!");
+        //Debug.Log("Energy Cleared!");
         str_energyColor = "";
         i_energyCount = 0;
 
@@ -179,17 +179,17 @@ public class S_EnergyManager : MonoBehaviour
         
         if (_color == "red")
         {
-            Debug.Log("Bonus " + _color + " energy : old energy = " + i_redStorageEnergy);
+            //Debug.Log("Bonus " + _color + " energy : old energy = " + i_redStorageEnergy);
             i_redStorageEnergy = (int)(i_redStorageEnergy * 1.5);
         }
         if (_color == "blue")
         {
-            Debug.Log("Bonus " + _color + " energy : old energy = " + i_blueStorageEnergy);
+            //Debug.Log("Bonus " + _color + " energy : old energy = " + i_blueStorageEnergy);
             i_blueStorageEnergy = (int)(i_blueStorageEnergy * 1.5);
         }
         if (_color == "yellow")
         {
-            Debug.Log("Bonus " + _color + " energy : old energy = " + i_yellowStorageEnergy);
+            //Debug.Log("Bonus " + _color + " energy : old energy = " + i_yellowStorageEnergy);
             i_yellowStorageEnergy = (int)(i_yellowStorageEnergy * 1.5);
         }
     }

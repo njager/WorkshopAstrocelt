@@ -175,7 +175,7 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough energy!");
+            //Debug.Log("Not enough energy!");
         }
     }
 
