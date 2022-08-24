@@ -9,11 +9,11 @@ public static class S_EventManager // Has to be static because we need to use th
     public delegate void EnemyTurnDelegate(int x);
 
     // Enemy Events for Delegates
-    public static event EnemyTurnDelegate e_enemy1PhaseEvent;
-    public static event EnemyTurnDelegate e_enemy2PhaseEvent;
-    public static event EnemyTurnDelegate e_enemy3PhaseEvent;
-    public static event EnemyTurnDelegate e_enemy4PhaseEvent;
-    public static event EnemyTurnDelegate e_enemy5PhaseEvent;
+    public static EnemyTurnDelegate e_enemy1PhaseEvent;
+    public static EnemyTurnDelegate e_enemy2PhaseEvent;
+    public static EnemyTurnDelegate e_enemy3PhaseEvent;
+    public static EnemyTurnDelegate e_enemy4PhaseEvent;
+    public static EnemyTurnDelegate e_enemy5PhaseEvent;
     public enum Events {};
 
     // Null Bools
