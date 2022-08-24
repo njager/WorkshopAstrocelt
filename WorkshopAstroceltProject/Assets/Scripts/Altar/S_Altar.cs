@@ -143,11 +143,15 @@ public class S_Altar : MonoBehaviour
 
     /// <summary>
     /// First Remove the current cardball prefabs from the field
-    /// gets called from the main turn loop in card manager
+    /// gets called from the turn loop when the player is getting updated
+    /// pass in true inorder to trigger dealing the cards
     /// -Josh
     /// </summary>
-    public IEnumerator ClearCardballPrefabs()
+    /// <param name="_newCardBalls"></param>
+    /// <returns></returns>
+    public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
+        Debug.Log("Tiriggerd2");
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             //wait and then remove the cardball from the list and delete it from the game
@@ -158,6 +162,17 @@ public class S_Altar : MonoBehaviour
 
         //clear the player hand since none of these cards were played
         g_global.g_cardManager.ClearPlayerHand();
+
+        //Trigger if the bool is passed
+        if (_newCardBalls)
+        {
+            yield return new WaitForSeconds(1f);
+
+            //give the player cards to load
+            g_global.g_cardManager.DealCards(g_global.g_cardManager.p_i_drawPerTurn);
+
+            StartCoroutine(SpawnCardballPrefabs());
+        }
     }
 
     /// <summary>
