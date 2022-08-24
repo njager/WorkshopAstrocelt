@@ -68,7 +68,6 @@ public class S_TurnManager : MonoBehaviour
             }
             else
             {
-                
                 g_global.g_ConstellationManager.DeleteWholeCurConstellation();
                 foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
                 {
@@ -230,12 +229,10 @@ public class S_TurnManager : MonoBehaviour
 
         g_global.g_enemyState.EnemyStatusEffectDecrement();
 
-
-        //Clear card prefabs + Popups
-        StartCoroutine(g_global.g_altar.ClearCardballPrefabs());
-        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
-
         S_EventManager.ClearEnemyEvents();
+
+        //Clear Popups
+        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
 
         //Check if the player turn starts
         PlayerTurnCheck();
@@ -268,8 +265,9 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
-        //give the player a new hand (remove all old cards)
-        g_global.g_cardManager.NewHand();
+        Debug.Log("Tiriggerd");
+        //clear the card balls and deal a new hand
+        StartCoroutine(g_global.g_altar.ClearCardballPrefabs(true));
 
         //Turn to night
         g_global.g_backgroundManager.ChangeBackground(0);
@@ -279,9 +277,6 @@ public class S_TurnManager : MonoBehaviour
 
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
-
-        // Spawn cardball prefabs
-        //StartCoroutine(g_global.g_altar.SpawnCardballPrefabs());
 
         //switch turns
         g_global.g_b_playerTurn = true;
