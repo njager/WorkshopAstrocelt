@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public static class S_EventManager // Has to be static because we need to use the same delegate type across multiple scripts -Josh
 {
     // Delegate template to be used interscript as the same reference type as defined here -Josh
@@ -13,6 +14,7 @@ public static class S_EventManager // Has to be static because we need to use th
     public static event EnemyTurnDelegate e_enemy3PhaseEvent;
     public static event EnemyTurnDelegate e_enemy4PhaseEvent;
     public static event EnemyTurnDelegate e_enemy5PhaseEvent;
+    public enum Events {};
 
     // Null Bools
     public static bool e_b_enemy1PhaseNull;
@@ -21,6 +23,29 @@ public static class S_EventManager // Has to be static because we need to use th
     public static bool e_b_enemy4PhaseNull;
     public static bool e_b_enemy5PhaseNull;
 
+    // Private elements
+    private static Dictionary<Events, EnemyTurnDelegate> dict_eventTable = new Dictionary<Events, EnemyTurnDelegate>();
+
+    public static void AddMethodToEventTable(Events _event, EnemyTurnDelegate _enemyTurnDelegate)
+    {
+        if (dict_eventTable.ContainsKey(_event) == false)
+        {
+            dict_eventTable[_event] = _enemyTurnDelegate;
+        }
+        else
+        {
+            dict_eventTable[_event] += _enemyTurnDelegate;
+        }
+    }
+
+
+    public static void EnemyBroadcast(Events _event, int _enemyNum)
+    {
+        if (dict_eventTable[_event] != null)
+        {
+            dict_eventTable[_event](_enemyNum);
+        } 
+    }
 
     /// <summary>
     /// Broadcast is a borrowed term, trigger function for the event delegate for enemy 1
@@ -93,6 +118,15 @@ public static class S_EventManager // Has to be static because we need to use th
         e_b_enemy3PhaseNull = true;
         e_b_enemy4PhaseNull = true;
         e_b_enemy5PhaseNull = true;
+    }
+
+    /// <summary>
+    /// Function to clear the event table
+    ///  - Josh
+    /// </summary>
+    public static void ClearEventTable()
+    {
+        dict_eventTable.Clear();
     }
 }
 
