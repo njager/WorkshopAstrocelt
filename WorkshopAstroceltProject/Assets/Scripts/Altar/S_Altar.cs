@@ -166,6 +166,8 @@ public class S_Altar : MonoBehaviour
         //Trigger if the bool is passed
         if (_newCardBalls)
         {
+            yield return new WaitForSeconds(1f);
+
             //give the player cards to load
             g_global.g_cardManager.DealCards(g_global.g_cardManager.p_i_drawPerTurn);
 
