@@ -352,11 +352,11 @@ public class S_Enemy : MonoBehaviour
             g_global.g_enemyState.DeclareCurrentTurn(_enemyNum);
 
             //Do your action
-            if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 6) // Check shielding
+            if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 6) // Check shielding
             {
                 EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_shieldMax);
             }
-            else if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 7) // Check attacking
+            else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
                 //play enemy animation
                 g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_a_animator.Play("attack");
@@ -378,7 +378,7 @@ public class S_Enemy : MonoBehaviour
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
                 }
             }
-            else if (g_global.g_turnManager.GetEnemyAction(_enemyNum) == 8) // Check special ability
+            else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 8) // Check special ability
             {
                 g_global.g_enemyState.GetEnemyScript(_enemyNum).EnemySpecialAbility(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType);
             }

@@ -411,7 +411,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy1 == false)
             {
-                g_global.g_turnManager.enemy1TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy1TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 1);
                 e_i_stunnedTurnCountEnemy1 = _turnCount;
@@ -428,7 +428,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy2 == false)
             {
-                g_global.g_turnManager.enemy2TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy2TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 2);
                 e_i_stunnedTurnCountEnemy2 = _turnCount;
@@ -445,7 +445,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy3 == false)
             {
-                g_global.g_turnManager.enemy3TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy3TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 3);
                 e_i_stunnedTurnCountEnemy3 = _turnCount;
@@ -462,7 +462,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy4 == false)
             {
-                g_global.g_turnManager.enemy4TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy4TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 4);
                 e_i_stunnedTurnCountEnemy4 = _turnCount;
@@ -479,7 +479,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy5 == false)
             {
-                g_global.g_turnManager.enemy5TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy5TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 5);
                 e_i_stunnedTurnCountEnemy5 = _turnCount;
