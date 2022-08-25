@@ -513,6 +513,35 @@ public class S_TurnManager : MonoBehaviour
         }
     }
 
+
+    public S_EventManager.EnemyTurnDelegate GetEnemyEventTrigger(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return S_EventManager.e_enemy1PhaseEvent;
+        }
+        else if (_enemyNum == 2)
+        {
+            return S_EventManager.e_enemy2PhaseEvent;
+        }
+        else if (_enemyNum == 3)
+        {
+            return S_EventManager.e_enemy3PhaseEvent;
+        }
+        else if (_enemyNum == 4)
+        {
+            return S_EventManager.e_enemy4PhaseEvent;
+        }
+        else if (_enemyNum == 5)
+        {
+            return S_EventManager.e_enemy5PhaseEvent;
+        }
+        else
+        {
+            return null; 
+        }
+    }
+
     /// <summary>
     /// Function used for trigger the stored coroutine in the delegates
     /// - Josh
@@ -520,34 +549,8 @@ public class S_TurnManager : MonoBehaviour
     /// <param name="_enemyNum"></param>
     public void EnemyPhaseEventTrigger(int _enemyNum)
     {
-        if(_enemyNum == 1)
-        {
-            S_EventManager.BroadcastForEnemy1();
-            Debug.Log("Triggered for enemy 1 - log!");
-        }
-        else if(_enemyNum == 2)
-        {
-            S_EventManager.BroadcastForEnemy2();
-            Debug.Log("Triggered for enemy 2 - log!");
-        }
-        else if (_enemyNum == 3)
-        {
-            S_EventManager.BroadcastForEnemy3();
-            Debug.Log("Triggered for enemy 3 - log!");
-        }
-        else if (_enemyNum == 4)
-        {
-            S_EventManager.BroadcastForEnemy4();
-            Debug.Log("Triggered for enemy 4 - log!");
-        }
-        else if (_enemyNum == 5)
-        {
-            S_EventManager.BroadcastForEnemy5();
-            Debug.Log("Triggered for enemy 5 - log!");
-        }
-        else
-        {
-            Debug.Log("Invalid value for method EnemyPhaseEventTrigger");
-        }
+        S_EventManager.EnemyTurnDelegate _enemyTurnDelegate = GetEnemyEventTrigger(_enemyNum);
+        //S_EventManager.EnemyBroadcast(S_EventManager.Events._enemyTurnDelegate, _enemyNum);
+        Debug.Log("Triggered for enemy " + _enemyNum + " - log!");
     }
 }
