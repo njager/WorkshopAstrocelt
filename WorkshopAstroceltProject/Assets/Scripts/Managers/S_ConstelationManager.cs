@@ -331,7 +331,7 @@ public class S_ConstelationManager : MonoBehaviour
 
 
             //Print total line lenght, then reset to 0
-            Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
+            //Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
             g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
             b_makingConstellation = false;

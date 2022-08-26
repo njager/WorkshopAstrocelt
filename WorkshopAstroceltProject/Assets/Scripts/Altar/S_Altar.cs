@@ -40,7 +40,7 @@ public class S_Altar : MonoBehaviour
     public float f_moveSpeed;
 
     [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = false;
+    public bool b_spawningCardballs = true; //dont let the player press end turn before cardballs begin spawning
 
     private void Awake()
     {
@@ -97,8 +97,6 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnCardballPrefabs()
     {
-        b_spawningCardballs = true;
-
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
         AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[0]);
@@ -145,11 +143,15 @@ public class S_Altar : MonoBehaviour
 
     /// <summary>
     /// First Remove the current cardball prefabs from the field
-    /// gets called from the main turn loop in card manager
+    /// gets called from the turn loop when the player is getting updated
+    /// pass in true inorder to trigger dealing the cards
     /// -Josh
     /// </summary>
-    public IEnumerator ClearCardballPrefabs()
+    /// <param name="_newCardBalls"></param>
+    /// <returns></returns>
+    public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
+        Debug.Log("Tiriggerd2");
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             //wait and then remove the cardball from the list and delete it from the game
@@ -160,6 +162,17 @@ public class S_Altar : MonoBehaviour
 
         //clear the player hand since none of these cards were played
         g_global.g_cardManager.ClearPlayerHand();
+
+        //Trigger if the bool is passed
+        if (_newCardBalls)
+        {
+            yield return null; //euivalent but slightly faster for optimization for one second
+
+            //give the player cards to load
+            g_global.g_cardManager.DealCards(g_global.g_cardManager.p_i_drawPerTurn);
+
+            StartCoroutine(SpawnCardballPrefabs());
+        }
     }
 
     /// <summary>
@@ -176,7 +189,7 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough energy!");
+            //Debug.Log("Not enough energy!");
         }
     }
 

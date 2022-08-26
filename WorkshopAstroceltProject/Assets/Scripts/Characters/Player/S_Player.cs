@@ -38,24 +38,24 @@ public class S_Player : MonoBehaviour
                 p_playerAttributes.p_i_health -= _newDamageValue;
                 p_playerAttributes.p_pe_blood.Play();
                 p_playerAttributes.p_a_animator.Play("Damaged");
-                Debug.Log("Player Attacked!");
+                //Debug.Log("Player Attacked!");
             }
             else
             {
                 int _tempVal = _newDamageValue - p_playerAttributes.p_i_shield;
-                Debug.Log("Temp Val: " + _tempVal);
+                //Debug.Log("Temp Val: " + _tempVal);
                 if (_tempVal > 0)
                 {
                     p_playerAttributes.p_i_shield -= _newDamageValue;
                     p_playerAttributes.p_i_health -= _tempVal;
                     p_playerAttributes.p_pe_blood.Play();
                     p_playerAttributes.p_a_animator.Play("Damaged");
-                    Debug.Log("Player didn't have enough shields!");
+                    //Debug.Log("Player didn't have enough shields!");
                 }
                 else
                 {
                     p_playerAttributes.p_i_shield -= _newDamageValue;
-                    Debug.Log("Player had shields!");
+                    //Debug.Log("Player had shields!");
                 }
             }
         }
@@ -66,24 +66,24 @@ public class S_Player : MonoBehaviour
                 p_playerAttributes.p_i_health -= _damageValue;
                 p_playerAttributes.p_pe_blood.Play();
                 p_playerAttributes.p_a_animator.Play("Damaged");
-                Debug.Log("Player Attacked!");
+                //Debug.Log("Player Attacked!");
             }
             else
             {
                 int _tempVal = _damageValue - p_playerAttributes.p_i_shield;
-                Debug.Log("Temp Val: " + _tempVal);
+                //Debug.Log("Temp Val: " + _tempVal);
                 if (_tempVal > 0)
                 {
                     p_playerAttributes.p_i_shield -= _damageValue;
                     p_playerAttributes.p_i_health -= _tempVal;
                     p_playerAttributes.p_pe_blood.Play();
                     p_playerAttributes.p_a_animator.Play("Damaged");
-                    Debug.Log("Player didn't have enough shields!");
+                    //Debug.Log("Player didn't have enough shields!");
                 }
                 else
                 {
                     p_playerAttributes.p_i_shield -= _damageValue;
-                    Debug.Log("Player had shields!");
+                    //Debug.Log("Player had shields!");
                 }
             }
         }
@@ -97,7 +97,7 @@ public class S_Player : MonoBehaviour
     /// <param name="_shieldValue"></param>
     public void PlayerShielded(int _shieldValue, bool _soundEffectState)
     {
-        Debug.Log("DEBUG: Player Shields: " + _shieldValue);
+        //Debug.Log("DEBUG: Player Shields: " + _shieldValue);
 
         if(_soundEffectState == false) // False = physcial
         {
