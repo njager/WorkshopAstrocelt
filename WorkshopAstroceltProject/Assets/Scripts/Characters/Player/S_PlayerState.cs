@@ -20,8 +20,8 @@ public class S_PlayerState : MonoBehaviour
     public bool p_b_inResistantState;
 
     [Header("Audio Prefabs")]
-    public GameObject playerWinMusic;
-    public GameObject playerLoseMusic;
+    public GameObject p_playerWinMusic;
+    public GameObject p_playerLoseMusic;
 
     [Header("Turns passed for Status effects")]
     public int p_i_turnsPassedForStun;
@@ -81,7 +81,7 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_i_stunnedTurnCount <= 0)
         {
-            g_global.g_turnManager.playerTurnSkipped = false;
+            g_global.g_turnManager.p_b_playerTurnSkipped = false;
             p_b_inStunnedState = false;
             g_global.g_UIManager.ToggleStunPlayerUI(false);
             p_i_turnsPassedForStun = 0;
@@ -103,7 +103,7 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_b_inStunnedState == true)
         {
-            g_global.g_turnManager.playerTurnSkipped = true;
+            g_global.g_turnManager.p_b_playerTurnSkipped = true;
             p_i_stunnedTurnCount -= 1;
             p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
@@ -147,7 +147,7 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inStunnedState == false)
         {
-            g_global.g_turnManager.playerTurnSkipped = true;
+            g_global.g_turnManager.p_b_playerTurnSkipped = true;
             p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
             p_i_stunnedTurnCount = _turnCount;
@@ -246,12 +246,12 @@ public class S_PlayerState : MonoBehaviour
 
     private void PlaySoundWin()
     {
-        playerWinMusic.SetActive(true);
+        p_playerWinMusic.SetActive(true);
     }
 
     private void PlaySoundLose()
     {
-        playerLoseMusic.SetActive(true);
+        p_playerLoseMusic.SetActive(true);
     }
 
 }

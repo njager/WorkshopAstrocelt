@@ -71,7 +71,6 @@ public class S_Global : MonoBehaviour
     public List<S_CardTemplate> g_ls_p_playerHand;
     public List<S_StarPopUp> g_ls_starPopup;
     public List<S_Cardball> g_ls_cardBallPrefabs;
-    public List<S_EventManager.EnemyTurnDelegate> g_ls_enemyPhase; // A List of Delegates for each enemy, unused for now, but can be called in list fashion 
     public List<S_Enemy> g_ls_activeEnemies;
 
     [Header("Enemy Positions")]

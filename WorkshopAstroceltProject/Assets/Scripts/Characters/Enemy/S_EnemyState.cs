@@ -411,7 +411,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy1 == false)
             {
-                g_global.g_turnManager.enemy1TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy1TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 1);
                 e_i_stunnedTurnCountEnemy1 = _turnCount;
@@ -428,7 +428,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy2 == false)
             {
-                g_global.g_turnManager.enemy2TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy2TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 2);
                 e_i_stunnedTurnCountEnemy2 = _turnCount;
@@ -445,7 +445,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy3 == false)
             {
-                g_global.g_turnManager.enemy3TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy3TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 3);
                 e_i_stunnedTurnCountEnemy3 = _turnCount;
@@ -462,7 +462,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy4 == false)
             {
-                g_global.g_turnManager.enemy4TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy4TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 4);
                 e_i_stunnedTurnCountEnemy4 = _turnCount;
@@ -479,7 +479,7 @@ public class S_EnemyState : MonoBehaviour
         {
             if (e_b_inStunnedStateEnemy5 == false)
             {
-                g_global.g_turnManager.enemy5TurnSkipped = true;
+                g_global.g_turnManager.e_b_enemy5TurnSkipped = true;
                 e_i_enemy1StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 5);
                 e_i_stunnedTurnCountEnemy5 = _turnCount;
@@ -843,7 +843,7 @@ public class S_EnemyState : MonoBehaviour
     /// Called in S_TurnManager
     /// -Josh
     /// </summary>
-    public void EnemyAttackingOrShielding() // Rename to EnemyActionCheck() ?
+    public void EnemyActionCheck() // Rename to EnemyActionCheck() ?
     {
         if (g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
         {
@@ -1196,23 +1196,23 @@ public class S_EnemyState : MonoBehaviour
     {
         if (_enemyNum == 1)
         {
-            return g_global.g_turnManager.enemy1TurnSkipped;
+            return g_global.g_turnManager.e_b_enemy1TurnSkipped;
         }
         else if (_enemyNum == 2)
         {
-            return g_global.g_turnManager.enemy2TurnSkipped;
+            return g_global.g_turnManager.e_b_enemy2TurnSkipped;
         }
         else if (_enemyNum == 3)
         {
-            return g_global.g_turnManager.enemy3TurnSkipped;
+            return g_global.g_turnManager.e_b_enemy3TurnSkipped;
         }
         else if (_enemyNum == 4)
         {
-            return g_global.g_turnManager.enemy4TurnSkipped;
+            return g_global.g_turnManager.e_b_enemy4TurnSkipped;
         }
         else if (_enemyNum == 5)
         {
-            return g_global.g_turnManager.enemy5TurnSkipped;
+            return g_global.g_turnManager.e_b_enemy5TurnSkipped;
         }
         else
         {
@@ -1322,6 +1322,181 @@ public class S_EnemyState : MonoBehaviour
         {
             Debug.Log("DEBUG: Returned null enemy script!");
             return null;
+        }
+    }
+
+    /// <summary>
+    /// 6 for shield,
+    /// 7 for attack,
+    /// 8 for Special Ability
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public int GetEnemyAction(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy1Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy1SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 2)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy2Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy2SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 3)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy3Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy3SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 4)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy4Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy4SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else if (_enemyNum == 5)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Shielding)
+            {
+                return 6;
+            }
+            else if (g_global.g_enemyState.e_b_enemy5Attacking)
+            {
+                return 7;
+            }
+            else if (g_global.g_enemyState.e_b_enemy5SpecialAbility)
+            {
+                return 8;
+            }
+            else
+            {
+                Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+                return 0;
+            }
+        }
+        else
+        {
+            Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// If _characterIdentifier == 0, player's turn
+    /// Else if _characterIdentifier == 1, 2, 3, 4, 5, it's that enemies turn
+    /// For Debug Purposes
+    /// - Josh
+    /// </summary>
+    /// <param name="_characterIdentifier"></param>
+    public void DeclareCurrentTurn(int _characterIdentifier)
+    {
+        if (_characterIdentifier == 0) // Player's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 1) // Enemy 1's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = true;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 2) // Enemy 2's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = true;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 3) // Enemy 3's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = true;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 4) // Enemy 4's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = true;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 5) // Enemy 5's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = true;
         }
     }
 }
