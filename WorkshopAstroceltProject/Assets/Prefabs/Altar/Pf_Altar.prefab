@@ -38,6 +38,7 @@ RectTransform:
   - {fileID: 5960983143940500142}
   - {fileID: 1546034292565228197}
   - {fileID: 1742040410479841332}
+  - {fileID: 5248093268267546726}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,9 +121,10 @@ MonoBehaviour:
   cardballPosition3: {fileID: 8639558663350237716}
   cardballPosition4: {fileID: 7967307474770754355}
   cardballPosition5: {fileID: 1179993545302741820}
+  cardballSpawnPosition: {fileID: 1791186187675438867}
   c_cardHolder: {fileID: 0}
   c_b_cardSpawned: 0
-  f_moveSpeed: 0.5
+  f_cardballMoveSpeed: 0.5
   b_spawningCardballs: 0
 --- !u!1 &1179993545302741820
 GameObject:
@@ -157,6 +159,41 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 124.8, y: -113.6}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1791186187675438867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5248093268267546726}
+  m_Layer: 0
+  m_Name: CardballSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5248093268267546726
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791186187675438867}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 160424924111030796}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -28.3, y: -118.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2278883063600250313

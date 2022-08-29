@@ -30,17 +30,17 @@ public class S_Altar : MonoBehaviour
     public GameObject cardballPosition5;
     public GameObject cardballSpawnPosition;
 
-    [Header("Card Holder Reference")]
+    [Header("Card Holder Reference (In Engine)")]
     public GameObject c_cardHolder;
 
     [Header("Card Spawned Flag")]
     public bool c_b_cardSpawned;
 
     [Header("DOTween Attributes")]
-    public float f_moveSpeed;
+    public float f_cardballMoveSpeed;
 
     [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = true; //dont let the player press end turn before cardballs begin spawning
+    public bool b_spawningCardballs = true; //Used to not let the player press end turn before cardballs begin spawning
 
     private void Awake()
     {
@@ -57,6 +57,12 @@ public class S_Altar : MonoBehaviour
         a_colorlessBorder.SetActive(false);
     }
 
+    /// <summary>
+    /// Need to stagger from Awake since it relies on other awake calls to be already set up to start.
+    /// Don't want to start too early and get null reference conditions.
+    /// Could focribly change script execution of awake calls like done for S_Global though. 
+    /// - Josh
+    /// </summary>
     private void Start()
     {
         StartCoroutine(SpawnCardballPrefabs());
@@ -99,32 +105,32 @@ public class S_Altar : MonoBehaviour
     {
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
-        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[0]);
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[0]);
         MoveCardballPrefabs();
 
         // Spawn cardball 2
-        yield return new WaitForSeconds(1 + f_moveSpeed);
-        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[1]);
+        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[1]);
         MoveCardballPrefabs();
 
         // Spawn cardball 3
-        yield return new WaitForSeconds(1 + f_moveSpeed + 0.1f);
-        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[2]);
+        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.15f);
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[2]);
         MoveCardballPrefabs();
 
         // Spawn cardball 4
-        yield return new WaitForSeconds(1 + f_moveSpeed + 0.2f);
-        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[3]);
+        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.25f);
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[3]);
         MoveCardballPrefabs();
 
-        yield return new WaitForSeconds(1 + f_moveSpeed + 0.3f);
-        AddNewCardBall(cardballPosition5, g_global.g_ls_p_playerHand[4]);
+        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.35f);
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[4]);
 
         b_spawningCardballs = false;
     }
 
     /// <summary>
-    /// CardBall Setup and Spawning
+    /// CardBall Setup and Spawning for when new Cardballs are needed for the altar. 
     /// - Josh
     /// </summary>
     public void AddNewCardBall(GameObject _cardballPosition, S_CardTemplate _cardTemplate)
@@ -151,7 +157,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
-        Debug.Log("Tiriggerd2");
+        Debug.Log(" Debug - Triggered 2");
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             //wait and then remove the cardball from the list and delete it from the game
@@ -176,7 +182,9 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if the first card can be played and converted into a card
+    /// Check if the first card can be played and converted into a card based off the current constellation energy that the player has generated.
+    /// The trigger mechanism for Cardball to cards.
+    /// - Josh
     /// </summary>
     public void CheckFirstCardball()
     {
@@ -194,50 +202,67 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// Triggers when a cardball is turned into a card
+    /// Move the cardballs to seek up the position chain, should be using the state when called which should prevent problems.
+    /// Could be an optimization problem down the line. Perhaps we should detach visuals from this based off MVC advice from Will, and fill from 1-5 otherwise.
+    /// Also triggers when a cardball is turned into a card, used to move cardballs up the chain as they get used.
+    /// - Josh
     /// </summary>
     /// <returns></returns>
     public void MoveCardballPrefabs()
     {
-        if (cardballPosition2.transform.transform.childCount == 1)
+        if (cardballPosition2.transform.childCount == 1)
         {
             //Debug.Log("Cardball Position 2 Full");
             // Move the cardball from 2 to 1
-            cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_moveSpeed);
+            cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 2 to 1");
         }
-        if (cardballPosition3.transform.transform.childCount == 1)
+        if (cardballPosition3.transform.childCount == 1)
         {
             // Move the cardball from 3 to 2
-            cardballPosition3.transform.GetChild(0).DOMove(cardballPosition2.transform.position, f_moveSpeed);
+            cardballPosition3.transform.GetChild(0).DOMove(cardballPosition2.transform.position, f_cardballMoveSpeed);
             cardballPosition3.transform.GetChild(0).SetParent(cardballPosition2.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 3 to 2");
         }
-        if (cardballPosition4.transform.transform.childCount == 1)
+        if (cardballPosition4.transform.childCount == 1)
         {
             // Move the cardball from 4 to 3
-            cardballPosition4.transform.GetChild(0).DOMove(cardballPosition3.transform.position, f_moveSpeed);
+            cardballPosition4.transform.GetChild(0).DOMove(cardballPosition3.transform.position, f_cardballMoveSpeed);
             cardballPosition4.transform.GetChild(0).SetParent(cardballPosition3.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 4 to 3");
         }
-        if (cardballPosition5.transform.transform.childCount == 1)
+        if (cardballPosition5.transform.childCount == 1)
         {
             // Move the cardball from 5 to 4
-            cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_moveSpeed);
+            cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_cardballMoveSpeed);
             cardballPosition5.transform.GetChild(0).SetParent(cardballPosition4.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
+        //if (cardballSpawnPosition.transform.childCount == 1)
+        //{
+            // Move the cardball from Spawn to 5
+            //cardballSpawnPosition.transform.GetChild(0).SetParent(cardballPosition5.transform);
+            //cardballSpawnPosition.transform.GetChild(0).DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
+            //Debug.Log("Cardballs moving from 5 to 4");
+        //}
+        else
+        {
+            Debug.Log("DEBUG: No more cardballs to spawn!");
+        }
 
+        // May not be necessary, check later, part of race condition debugging between turns. 
         g_global.g_enemyState.UpdateActiveEnemies();
     }
 
     /// <summary>
-    /// Can't delete itself and trigger proper moving
+    /// Used so the cardball can't delete itself too early and and so we can trigger proper moving of the cardballs
+    /// - Josh
     /// </summary>
     /// <returns></returns>
     public IEnumerator WaitForCardballDeletionToMove(GameObject _cardball)
