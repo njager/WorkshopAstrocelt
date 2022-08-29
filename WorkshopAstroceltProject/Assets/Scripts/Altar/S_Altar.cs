@@ -125,6 +125,9 @@ public class S_Altar : MonoBehaviour
 
         yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.35f);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[4]);
+        MoveCardballPrefabs();
+
+        // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         b_spawningCardballs = false;
     }
@@ -243,14 +246,14 @@ public class S_Altar : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
-        //if (cardballSpawnPosition.transform.childCount == 1)
-        //{
+        if (cardballSpawnPosition.transform.childCount == 1)
+        {
             // Move the cardball from Spawn to 5
-            //cardballSpawnPosition.transform.GetChild(0).SetParent(cardballPosition5.transform);
-            //cardballSpawnPosition.transform.GetChild(0).DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
-            //Debug.Log("Cardballs moving from 5 to 4");
-        //}
+            cardballSpawnPosition.transform.GetChild(0).DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
+            cardballSpawnPosition.transform.GetChild(0).SetParent(cardballPosition5.transform);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
+            Debug.Log("Cardballs moving from 5 to 4");
+        }
         else
         {
             Debug.Log("DEBUG: No more cardballs to spawn!");
