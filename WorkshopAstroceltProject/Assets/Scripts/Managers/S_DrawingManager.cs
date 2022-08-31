@@ -9,7 +9,7 @@ public class S_DrawingManager : MonoBehaviour
     private S_Global g_global;
 
     //index for the lines
-    public int i_index;
+    private int i_index;
 
     [Header("Add the ConstellationLine")]
     public GameObject l_constelationLine;
@@ -68,8 +68,7 @@ public class S_DrawingManager : MonoBehaviour
         _star2.s_star.m_previousLine = _lineScript;
 
         //set the previous star and loc
-        g_global.g_ConstellationManager.s_previousStar = _star2;
-        g_global.g_ConstellationManager.v2_prevLoc = _loc2;
+        g_global.g_ConstellationManager.ChangePrevStarAndLoc(_star2, _loc2);
     }
 
     /// <summary>
@@ -97,10 +96,9 @@ public class S_DrawingManager : MonoBehaviour
         Debug.Log("deleted a line and no star added to star list");
 
         //destroy the line
-        //g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
         Destroy(_line);
 
-        //dont delete the star from the list just change to null
+        //dont delete the star from the list just cha   nge to null
         //g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
     }
 
