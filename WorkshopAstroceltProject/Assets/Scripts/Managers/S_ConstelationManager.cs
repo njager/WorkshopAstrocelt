@@ -12,6 +12,7 @@ public class S_ConstelationManager : MonoBehaviour
 
     //the list of the current constellation
     public List<S_StarClass> ls_curConstellation;
+
     //this is the color for the cur constellation
     public string str_curColor = "";
 
@@ -199,8 +200,7 @@ public class S_ConstelationManager : MonoBehaviour
         str_curColor = "";
 
         //reset the prvious star
-        s_previousStar = s_nullStarInst;
-        v2_prevLoc = new Vector2(0,0);
+        ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
         // Delete popup
         StartCoroutine(g_global.g_popupManager.ClearAllPopups());
@@ -230,8 +230,7 @@ public class S_ConstelationManager : MonoBehaviour
             AddStarToCurConstellation(_starN);
 
             //set all of the previous star stuff as the node
-            s_previousStar = _starN;
-            v2_prevLoc = _locN;
+            ChangePrevStarAndLoc(_starN, _locN);
 
             //set node star's previous as null
             _starN.s_star.m_previous = s_nullStarInst;
@@ -361,5 +360,11 @@ public class S_ConstelationManager : MonoBehaviour
         _starSoundPhase2.SetActive(true);
         var emitter = _starSoundPhase2.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Note Order", i_starSound);
+    }
+
+    public void ChangePrevStarAndLoc(S_StarClass _star, Vector2 _loc)
+    {
+        s_previousStar = _star;
+        v2_prevLoc = _loc;
     }
 }
