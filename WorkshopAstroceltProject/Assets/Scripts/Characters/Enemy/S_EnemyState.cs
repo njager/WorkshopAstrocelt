@@ -500,6 +500,8 @@ public class S_EnemyState : MonoBehaviour
     /// <param name="_enemyNum"></param>
     public void EnemyResistantEffect(int _turnCount, int _enemyNum)
     {
+        print(_enemyNum);
+
         // If Enemy was Enemy 1
         if(_enemyNum == 1)
         {
@@ -1304,19 +1306,19 @@ public class S_EnemyState : MonoBehaviour
         }
         if (_enemyNum == 2)
         {
-            return g_global.g_enemyState.enemy1;
+            return g_global.g_enemyState.enemy2;
         }
         if (_enemyNum == 3)
         {
-            return g_global.g_enemyState.enemy1;
+            return g_global.g_enemyState.enemy3;
         }
         if (_enemyNum == 4)
         {
-            return g_global.g_enemyState.enemy1;
+            return g_global.g_enemyState.enemy4;
         }
         if (_enemyNum == 5)
         {
-            return g_global.g_enemyState.enemy1;
+            return g_global.g_enemyState.enemy5;
         }
         else
         {

@@ -33,7 +33,6 @@ public class S_YellowStarAnimation : MonoBehaviour
 
         if (_percent < i_chance)
         {
-            print("Yellow");
             //Reset the "Crouch" trigger
             //a_animator.ResetTrigger("YellowAnim");
 

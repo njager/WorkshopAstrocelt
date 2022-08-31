@@ -78,7 +78,7 @@ public class S_Cardball : MonoBehaviour
         else if (transform.parent.tag == "CardballPosition3") { c_b_locatedInThirdPosition = true; }
         else if (transform.parent.tag == "CardballPosition4") { c_b_locatedInFourthPosition = true; }
         else if (transform.parent.tag == "CardballPosition5") { c_b_locatedInFifthPosition = true; }
-        else if (transform.parent.tag == "CardballSpawnPosition") { c_b_locatedInSpawn = true; Debug.Log("DEBUG: Still in spawn."); }
+        else if (transform.parent.tag == "CardballSpawnPosition") { c_b_locatedInSpawn = true; }
         else { Debug.Log("Cardball not spawned in Altar!"); }
 
         // Then set the graphics
