@@ -101,7 +101,7 @@ public class S_Card : MonoBehaviour
     [Header("Card Dragger References")]
     public S_CardDragger sc_c_cardDraggerReference;
     //public int c_i_cardID;
-    public RectTransform initialCardTransform;
+    public RectTransform initialCardTransform; // Will turn to V3 for 0s
 
     [Header("Card Hover Height")]
     public float i_hoverHeight;
