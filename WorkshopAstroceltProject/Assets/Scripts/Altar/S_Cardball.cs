@@ -134,9 +134,12 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballToCard()
     {
+        
+        StartCoroutine(WaitToHide());
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);
+
 
         // Load information From Template
         S_Card _cardScript = c_card.GetComponent<S_Card>();
@@ -144,7 +147,7 @@ public class S_Cardball : MonoBehaviour
         g_global.g_altar.c_b_cardSpawned = true;
 
         // Fulfilled Function
-        StartCoroutine(WaitToHide());
+        //StartCoroutine(WaitToHide());
 
         //delete the cardball and add the card to the grave
         //DeleteCardball();
