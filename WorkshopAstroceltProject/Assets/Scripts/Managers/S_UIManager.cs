@@ -737,6 +737,6 @@ public class S_UIManager : MonoBehaviour
 
     public void energyUI()
     {
-        en_tx_enemytext.text = "1";
+        en_tx_enemytext.text = "Red Energy: " + g_global.g_energyManager.i_redEnergy + '\n' + "Blue Energy: " + g_global.g_energyManager.i_blueEnergy + '\n' + "Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy;
     }
 }
