@@ -155,9 +155,25 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     /// <param name="_card"></param>
     /// <returns></returns>
+    /// 
+
+
+    /// <summary>
+    /// loops for the size of the cardball value
+    /// decrements each iteration
+    /// delays the countdown until zero and then calls delete cardball
+    /// -Thoman
+    /// </summary>
+    
     public IEnumerator WaitToHide()
     {
-        yield return new WaitForSeconds(4f);
+
+        int energy_constant = c_i_cardEnergyCost;
+        for (int i = energy_constant; i >=0; i--)
+        {
+            c_cardballText.text = "" + i;
+            yield return new WaitForSeconds(.5f);
+        }
 
         // Fulfilled Function
         DeleteCardball();
