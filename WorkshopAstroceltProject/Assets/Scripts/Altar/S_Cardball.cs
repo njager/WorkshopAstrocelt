@@ -144,10 +144,10 @@ public class S_Cardball : MonoBehaviour
         g_global.g_altar.c_b_cardSpawned = true;
 
         // Fulfilled Function
-        //StartCoroutine(WaitToHide(c_card));
+        StartCoroutine(WaitToHide());
 
         //delete the cardball and add the card to the grave
-        DeleteCardball();
+        //DeleteCardball();
     }
 
     /// <summary>
@@ -155,10 +155,9 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     /// <param name="_card"></param>
     /// <returns></returns>
-    public IEnumerator WaitToHide(GameObject _card)
+    public IEnumerator WaitToHide()
     {
-        yield return new WaitForSeconds(3f);
-        _card.SetActive(false);
+        yield return new WaitForSeconds(4f);
 
         // Fulfilled Function
         DeleteCardball();
