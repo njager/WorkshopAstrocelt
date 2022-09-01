@@ -33,6 +33,7 @@ public class S_Cardball : MonoBehaviour
     public bool c_b_locatedInThirdPosition;
     public bool c_b_locatedInFourthPosition;
     public bool c_b_locatedInFifthPosition;
+    public bool c_b_locatedInSpawn; 
 
     [Header("Graphic References")]
     public GameObject c_redGraphic;
@@ -70,12 +71,14 @@ public class S_Cardball : MonoBehaviour
         c_b_locatedInThirdPosition = false;
         c_b_locatedInFourthPosition = false;
         c_b_locatedInFifthPosition = false;
+        c_b_locatedInSpawn = false;
 
         if (transform.parent.tag == "CardballPosition1") { c_b_locatedInFirstPosition = true; }
         else if (transform.parent.tag == "CardballPosition2") { c_b_locatedInSecondPosition = true; }
         else if (transform.parent.tag == "CardballPosition3") { c_b_locatedInThirdPosition = true; }
         else if (transform.parent.tag == "CardballPosition4") { c_b_locatedInFourthPosition = true; }
         else if (transform.parent.tag == "CardballPosition5") { c_b_locatedInFifthPosition = true; }
+        else if (transform.parent.tag == "CardballSpawnPosition") { c_b_locatedInSpawn = true; Debug.Log("DEBUG: Still in spawn."); }
         else { Debug.Log("Cardball not spawned in Altar!"); }
 
         // Then set the graphics
@@ -141,10 +144,10 @@ public class S_Cardball : MonoBehaviour
         g_global.g_altar.c_b_cardSpawned = true;
 
         // Fulfilled Function
-        //StartCoroutine(WaitToHide(c_card));
+        StartCoroutine(WaitToHide());
 
         //delete the cardball and add the card to the grave
-        DeleteCardball();
+        //DeleteCardball();
     }
 
     /// <summary>
@@ -152,10 +155,9 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     /// <param name="_card"></param>
     /// <returns></returns>
-    public IEnumerator WaitToHide(GameObject _card)
+    public IEnumerator WaitToHide()
     {
-        yield return new WaitForSeconds(3f);
-        _card.SetActive(false);
+        yield return new WaitForSeconds(4f);
 
         // Fulfilled Function
         DeleteCardball();

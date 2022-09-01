@@ -95,7 +95,6 @@ public class S_StarPopUp : MonoBehaviour
         gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
         gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
         gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
-        DeletePopup();
     }
 
     /// <summary>
