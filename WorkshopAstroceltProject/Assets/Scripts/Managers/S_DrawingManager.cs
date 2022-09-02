@@ -9,7 +9,7 @@ public class S_DrawingManager : MonoBehaviour
     private S_Global g_global;
 
     //index for the lines
-    public int i_index;
+    private int i_index;
 
     [Header("Add the ConstellationLine")]
     public GameObject l_constelationLine;
@@ -23,7 +23,7 @@ public class S_DrawingManager : MonoBehaviour
     {
         g_global = S_Global.Instance;
         i_index = 0;
-    }    
+    }
 
     /// <summary>
     /// This is the func that spawns the line renderer for the star map
@@ -31,6 +31,10 @@ public class S_DrawingManager : MonoBehaviour
     /// sets the previous and next line in each script to be the line created
     /// - Riley and Josh
     /// </summary>
+    /// <param name="_star1"></param>
+    /// <param name="_star2"></param>
+    /// <param name="_loc1"></param>
+    /// <param name="_loc2"></param>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
         //Instiate the linePrefab and grab it's objects
@@ -64,8 +68,7 @@ public class S_DrawingManager : MonoBehaviour
         _star2.s_star.m_previousLine = _lineScript;
 
         //set the previous star and loc
-        g_global.g_ConstellationManager.s_previousStar = _star2;
-        g_global.g_ConstellationManager.v2_prevLoc = _loc2;
+        g_global.g_ConstellationManager.ChangePrevStarAndLoc(_star2, _loc2);
     }
 
     /// <summary>
@@ -93,10 +96,9 @@ public class S_DrawingManager : MonoBehaviour
         Debug.Log("deleted a line and no star added to star list");
 
         //destroy the line
-        //g_global.g_lineMultiplierManager.lst_lineLengthList.Remove(_lineScript.f_lineLength);
         Destroy(_line);
 
-        //dont delete the star from the list just change to null
+        //dont delete the star from the list just cha   nge to null
         //g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
     }
 

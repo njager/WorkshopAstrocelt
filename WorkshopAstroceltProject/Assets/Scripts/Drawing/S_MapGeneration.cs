@@ -59,17 +59,6 @@ public class S_MapGeneration : MonoBehaviour
         blackBar5.SetActive(false);
         blackBar6.SetActive(false);
     }
-
-    /// <summary>
-    /// Not to be used yet, milestone 2
-    /// - Josh
-    /// </summary>
-    public void NewMapGeneration()
-    {
-        
-    }
-
-    ////Temporary Map Toggling and Placements\\\\
     
 
     /// <summary>

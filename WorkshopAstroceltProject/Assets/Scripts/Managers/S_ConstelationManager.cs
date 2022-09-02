@@ -12,6 +12,7 @@ public class S_ConstelationManager : MonoBehaviour
 
     //the list of the current constellation
     public List<S_StarClass> ls_curConstellation;
+
     //this is the color for the cur constellation
     public string str_curColor = "";
 
@@ -57,6 +58,13 @@ public class S_ConstelationManager : MonoBehaviour
         s_b_popupMove = false; 
     }
 
+    /// <summary>
+    /// Make the adding to the constellation list wait for a couple of frames to make sure the line doesnt delete itself
+    /// Gets called from the line script, and passes the star to use if the line still exists
+    /// -Riley
+    /// </summary>
+    /// <param name="_star"></param>
+    /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star)
     {
         //Debug.Log("does this work");
@@ -178,6 +186,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <summary>
     /// This function gets called internally if a constraint gets triggered and the constellation needs resetting, 
     /// or after a constellation is finished and everything needs reset to normal.  
+    /// -Riley
     /// </summary>
     public void DeleteWholeCurConstellation()
     {
@@ -191,8 +200,7 @@ public class S_ConstelationManager : MonoBehaviour
         str_curColor = "";
 
         //reset the prvious star
-        s_previousStar = s_nullStarInst;
-        v2_prevLoc = new Vector2(0,0);
+        ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
         // Delete popup
         StartCoroutine(g_global.g_popupManager.ClearAllPopups());
@@ -222,8 +230,7 @@ public class S_ConstelationManager : MonoBehaviour
             AddStarToCurConstellation(_starN);
 
             //set all of the previous star stuff as the node
-            s_previousStar = _starN;
-            v2_prevLoc = _locN;
+            ChangePrevStarAndLoc(_starN, _locN);
 
             //set node star's previous as null
             _starN.s_star.m_previous = s_nullStarInst;
@@ -256,9 +263,6 @@ public class S_ConstelationManager : MonoBehaviour
     {
         //lock out stars while calculating
         b_starLockout = false;
-
-        g_global.g_UIManager.p_f_lineMultiplierAmount = Mathf.Round(g_global.g_lineMultiplierManager.LineMultiplierCalculator() * 10f) / 10f;
-        //g_global.g_UIManager.p_tx_lineMultiplierText.text = "Line Multiplier: " + g_global.g_UIManager.p_f_lineMultiplierAmount + "x";
 
         //set up the energy
         int _energy = ls_curConstellation.Count() - 2;
@@ -326,7 +330,7 @@ public class S_ConstelationManager : MonoBehaviour
 
 
             //Print total line lenght, then reset to 0
-            Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
+            //Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
             g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
             b_makingConstellation = false;
@@ -341,7 +345,7 @@ public class S_ConstelationManager : MonoBehaviour
             Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
 
             //call the altar
-            g_global.g_altar.CheckFirstCardball();
+            StartCoroutine(g_global.g_altar.CheckFirstCardball());
 
             // Popups now move to card
             StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
@@ -356,5 +360,11 @@ public class S_ConstelationManager : MonoBehaviour
         _starSoundPhase2.SetActive(true);
         var emitter = _starSoundPhase2.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Note Order", i_starSound);
+    }
+
+    public void ChangePrevStarAndLoc(S_StarClass _star, Vector2 _loc)
+    {
+        s_previousStar = _star;
+        v2_prevLoc = _loc;
     }
 }

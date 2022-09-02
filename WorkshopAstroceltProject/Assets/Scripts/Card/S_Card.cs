@@ -99,9 +99,9 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
     [Header("Card Dragger References")]
-    public S_CardDragger s_c_cardDraggerReference;
-    public int c_i_cardID;
-    public RectTransform initialCardTransform;
+    public S_CardDragger sc_c_cardDraggerReference;
+    //public int c_i_cardID;
+    public RectTransform initialCardTransform; // Will turn to V3 for 0s
 
     [Header("Card Hover Height")]
     public float i_hoverHeight;
@@ -112,7 +112,6 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Scaler References")]
     public GameObject cv_canvas;
-    public S_CardScaler c_cardScaler;
     private GameObject c_zoomCard;
 
     [Header("Card Background Art Assets")]
@@ -141,8 +140,8 @@ public class S_Card : MonoBehaviour
         g_global = S_Global.Instance;
 
         //Separate cards, ended up not being needed
-        g_global.c_i_cardIDNum += 1;
-        c_i_cardID = g_global.c_i_cardIDNum;
+       // g_global.c_i_cardIDNum += 1;
+        //c_i_cardID = g_global.c_i_cardIDNum;
 
         cv_canvas = GameObject.Find("MainCanvas");
 
@@ -564,7 +563,7 @@ public class S_Card : MonoBehaviour
         }
 
         //call the altar to spawn the next card if you have energy
-        if (g_global.ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
+        //if (g_global.g_ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
     }
 
 
@@ -603,54 +602,18 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void DeleteCard()
     {
+        //if a cardball persists
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
     }
 
     /// <summary>
-    /// Does as it says, it resets the card's position
+    /// Does as it says, it resets the card to it's initial position
     /// -Josh
     /// </summary>
     public void ResetPosition()
     {
-        gameObject.transform.position = s_c_cardDraggerReference.c_v3_initialPosition; 
-    }
-
-    /// <summary>
-    /// Function that creates a hover card when moused over
-    /// Now adjusts text - Josh
-    /// -Riley Halloran
-    /// </summary>
-    public void OnHoverEnter()
-    {
-        // Instantiate a new card based off the location of the mouse and the hoverHeight
-        //c_zoomCard = Instantiate(gameObject, new Vector2(transform.position.x, transform.position.y + i_hoverHeight), Quaternion.identity);
-        //c_zoomCard.transform.SetParent(cv_canvas.transform, false);
-
-        // Scale the transform of the rect
-        //RectTransform _rect = c_zoomCard.GetComponent<RectTransform>();
-        //_rect.sizeDelta = new Vector2(_rect.sizeDelta.x * i_hoverX, _rect.sizeDelta.y * i_hoverY);
-
-        // Scale text elements
-        //c_zoomCard.GetComponent<S_Card>().c_cardScaler.SizeTextElements();
-    }
-
-    /// <summary>
-    /// Function that destroys the hover card when the mouse leavess
-    /// -Riley Halloran
-    /// </summary>
-    public void OnHoverExit()
-    {
-        //if (c_zoomCard != null) { Destroy(c_zoomCard); }
-    }
-
-    /// <summary>
-    /// Destroy the hover card if the Card starts getting dragged
-    /// -Riley Halloran
-    /// </summary>
-    public void EndHover()
-    {
-        //Destroy(c_zoomCard);
+        gameObject.transform.position = sc_c_cardDraggerReference.c_v3_initialPosition; 
     }
 }

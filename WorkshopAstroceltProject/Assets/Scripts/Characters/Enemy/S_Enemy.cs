@@ -10,7 +10,7 @@ public class S_Enemy : MonoBehaviour
 {
     private S_Global g_global;
 
-    public S_EnemyAttributes e_enemyAttributes;
+    public S_EnemyAttributes e_sc_enemyAttributes;
 
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
@@ -26,8 +26,11 @@ public class S_Enemy : MonoBehaviour
     [Header("Enemy Sprite")]
     public GameObject e_enemySprite;
 
+    [Header("Enemy Default Scale Vector3")]
+    public Vector3 e_v3_defaultScale;
+
     [Header("Intent Duration Value")]
-    public float f_intentDuration; 
+    public float f_intentDuration;
 
     void Awake()
     {
@@ -37,109 +40,118 @@ public class S_Enemy : MonoBehaviour
         
         //Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
 
-        g_global.e_l_enemyList.Add(this);
+        g_global.e_ls_enemyList.Add(this);
 
         e_enemySprite.GetComponent<S_CharacterCardInterface>().e_attachedEnemy = this;
 
-        //a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Attack/Vanilla");
+        // Grab and set default scale
+        e_v3_defaultScale = gameObject.transform.localScale;
+
+        g_global.g_ls_activeEnemies.Add(this);
     }
 
     private void Start()
     {
-        //If enemy 1 move spots
+        //If enemy 1, move spots
         if (e_i_enemyCount == 1)
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition1.transform, false);
         }
 
-        //If enemy 2 move spots
+        //If enemy 2, move spots
         if (e_i_enemyCount == 2)
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition2.transform, false);
         }
 
-        //If enemy 3 move spots
+        //If enemy 3, move spots
         if (e_i_enemyCount == 3)
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition3.transform, false);
         }
-    }
 
-    void SetCount()
-    {
-        g_global.g_i_enemyCount += 1;
-        e_i_enemyCount = g_global.g_i_enemyCount;
-        return; 
+        // Need to add in enemy 4 and 5 placement and the scene knowing if it should have 3 enemies or 5 enemies from S_GameManager or even get something set initially as a bool in S_Global we toggle
+        // - Josh
     }
 
     /// <summary>
-    /// Enemy attacked
-    /// Update for Magician
+    /// Determine the Enemy Number
+    /// - Josh
+    /// </summary>
+    private void SetCount()
+    {
+        g_global.g_i_enemyCount += 1;
+        e_i_enemyCount = g_global.g_i_enemyCount;
+    }
+
+    /// <summary>
+    /// Enemy was attacked
+    /// Updated for Magician
     /// - Josh
     /// </summary>
     /// <param name="_enemyType"></param>
     /// <param name="_damageVal"></param>
-    public void EnemyAttacked(string _enemyType, int _damageValue)
+    public void EnemyAttacked(string _enemyType, int _damageValue) 
     {
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if(e_enemyAttributes.e_b_resistant == true)
+            if(e_sc_enemyAttributes.e_b_resistant == true)
             {
-                if (e_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.e_i_shield <= 0)
                 {
-                    e_enemyAttributes.e_i_health -= _newDamageValue;
-                    e_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_i_health -= _newDamageValue;
+                    e_sc_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy Attacked!");
                 }
                 else
                 {
-                    int _tempVal = e_enemyAttributes.e_i_shield - _newDamageValue;
+                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _newDamageValue;
                     if (_tempVal < 0)
                     {
-                        e_enemyAttributes.e_i_shield -= _newDamageValue;
-                        if (e_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
+                        if (e_sc_enemyAttributes.e_i_shield < 0)
                         {
-                            e_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.e_i_shield = 0;
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                        e_enemyAttributes.e_pe_blood.Play();
+                        e_sc_enemyAttributes.e_pe_blood.Play();
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
-                        e_enemyAttributes.e_i_shield -= _newDamageValue;
+                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
             else
             {
-                if (e_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.e_i_shield <= 0)
                 {
-                    e_enemyAttributes.e_i_health -= _damageValue;
-                    e_enemyAttributes.e_pe_blood.Play();
-                    e_enemyAttributes.e_a_animator.Play("Damaged");
+                    e_sc_enemyAttributes.e_i_health -= _damageValue;
+                    e_sc_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy Attacked!");
                 }
                 else
                 {
-                    int _tempVal = e_enemyAttributes.e_i_shield - _damageValue;
+                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
                     if (_tempVal < 0)
                     {
-                        e_enemyAttributes.e_i_shield -= _damageValue;
-                        if (e_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                        if (e_sc_enemyAttributes.e_i_shield < 0)
                         {
-                            e_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.e_i_shield = 0;
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                        e_enemyAttributes.e_pe_blood.Play();
-                        e_enemyAttributes.e_a_animator.Play("Damaged");
+                        e_sc_enemyAttributes.e_pe_blood.Play();
+                        e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
-                        e_enemyAttributes.e_i_shield -= _damageValue;
+                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
                         Debug.Log("Enemy had shields!");
                     }
                 }
@@ -147,31 +159,31 @@ public class S_Enemy : MonoBehaviour
         }
         else
         {
-            if (e_enemyAttributes.e_i_shield <= 0)
+            if (e_sc_enemyAttributes.e_i_shield <= 0)
             {
-                e_enemyAttributes.e_i_health -= _damageValue;
-                e_enemyAttributes.e_a_animator.Play("Damaged");
-                e_enemyAttributes.e_pe_blood.Play();
+                e_sc_enemyAttributes.e_i_health -= _damageValue;
+                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+                e_sc_enemyAttributes.e_pe_blood.Play();
                 Debug.Log("Enemy Attacked!");
             }
             else
             {
-                int _tempVal = e_enemyAttributes.e_i_shield - _damageValue;
+                int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
                 if (_tempVal < 0)
                 {
-                    e_enemyAttributes.e_i_shield -= _damageValue;
-                    if (e_enemyAttributes.e_i_shield < 0)
+                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                    if (e_sc_enemyAttributes.e_i_shield < 0)
                     {
-                        e_enemyAttributes.e_i_shield = 0;
+                        e_sc_enemyAttributes.e_i_shield = 0;
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                    e_enemyAttributes.e_a_animator.Play("Damaged");
-                    e_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+                    e_sc_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else
                 {
-                    e_enemyAttributes.e_i_shield -= _damageValue;
+                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
                     Debug.Log("Enemy had shields!");
                 }
             }
@@ -187,7 +199,7 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_shieldVal"></param>
     public void EnemyShielded(string _enemyType, int _shieldVal)
     {
-        e_enemyAttributes.e_i_shield += _shieldVal;
+        e_sc_enemyAttributes.e_i_shield += _shieldVal;
         if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
@@ -202,7 +214,7 @@ public class S_Enemy : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
         }
 
-        Debug.Log("Enemy Shields");
+        //Debug.Log("Enemy Shields");
     }
 
     /// <summary>
@@ -212,7 +224,7 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_healthVal"></param>
     public void EnemyHealed(int _healthVal)
     {
-        e_enemyAttributes.e_i_health += _healthVal;
+        e_sc_enemyAttributes.e_i_health += _healthVal;
         Debug.Log("Enemy Heals");
     }
 
@@ -254,7 +266,8 @@ public class S_Enemy : MonoBehaviour
     {
         g_global.g_i_enemyCount -= 1;
         Debug.Log("Enemy Perished");
-        e_enemyAttributes.e_i_health = 0;
+        e_sc_enemyAttributes.e_i_health = 0;
+        g_global.g_ls_activeEnemies.Remove(this);
         gameObject.SetActive(false);
     }
 
@@ -301,10 +314,113 @@ public class S_Enemy : MonoBehaviour
     /// A bit wonky tbh
     /// - Josh
     /// </summary>
-    public void IncreaseIntentAlpha()
+    public void IncreaseIntentIconAlpha()
     {
         e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
+    }
+
+    /// <summary>
+    /// Toggle the highlight element for the enemy
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemy"></param>
+    public void EnemyHighlightToggle()
+    {
+        if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
+        {
+            e_sc_enemyAttributes.e_highlightCircle.SetActive(true);
+        }
+        else 
+        {
+            e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Function for enemy action within their turn phase to be triggered
+    /// Now in S_Enemy  
+    /// - Josh
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    /// <returns></returns>
+    public IEnumerator EnemyTurnAction(int _enemyNum)
+    {
+        if (!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
+        {
+            // Declare Turn for UI
+            g_global.g_enemyState.DeclareCurrentTurn(_enemyNum);
+
+            //Do your action
+            if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 6) // Check shielding
+            {
+                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_shieldMax);
+            }
+            else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
+            {
+                //play enemy animation
+                g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_a_animator.Play("attack");
+
+                g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_enemyDamageValue);
+
+                //Then play sounds
+                if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Beast")
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                }
+                else if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Magician")
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                }
+                else if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Brawler")
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                }
+            }
+            else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 8) // Check special ability
+            {
+                g_global.g_enemyState.GetEnemyScript(_enemyNum).EnemySpecialAbility(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType);
+            }
+
+            yield return new WaitForSeconds(4);
+
+            // Set the active enemy bool to clear so the next enemy can do their turn
+            g_global.g_turnManager.e_b_enemyIsActive = true;
+            Debug.Log("Returned!");
+        }
+        else
+        {
+            Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
+            yield return new WaitForSeconds(4);
+        }
+    }
+
+    /// <summary>
+    /// Set the enemy sprite to being a smaller size when it's not their turn
+    /// - Josh
+    /// </summary>
+    public void SetToInactiveTurnScale() 
+    {
+        //e_enemySprite
+    }
+
+    /// <summary>
+    /// Set the enemy sprite to being a larger size when it is their turn
+    /// - Josh
+    /// </summary>
+    public void SetToActiveTurnScale() 
+    {
+
+    }
+
+    /// <summary>
+    /// Set the enemy sprite to "default" size when it's the player's turn
+    /// - Josh
+    /// </summary>
+    public void SetToPlayerTurnScale() 
+    {
+        
     }
 
     // Eventually use this for UI stuff to avoid using an update loop

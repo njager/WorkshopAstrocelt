@@ -51,7 +51,7 @@ public class S_StarPopUp : MonoBehaviour
     void Awake()
     {
         g_global = S_Global.Instance;
-        g_global.ls_starPopup.Add(this); 
+        g_global.g_ls_starPopup.Add(this); 
 
         // Toggle Graphics to null position
         redColorGraphic.SetActive(false);
@@ -95,7 +95,6 @@ public class S_StarPopUp : MonoBehaviour
         gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
         gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
         gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
-        DeletePopup();
     }
 
     /// <summary>
@@ -133,8 +132,6 @@ public class S_StarPopUp : MonoBehaviour
         {
             // Toggle Graphics
             redColorGraphic.SetActive(true);
-            blueColorGraphic.SetActive(false);
-            yellowColorGraphic.SetActive(false);
 
             //Set Color Image
             colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
@@ -144,9 +141,7 @@ public class S_StarPopUp : MonoBehaviour
         if(_color == "blue")
         {
             // Toggle Graphics
-            redColorGraphic.SetActive(false);
             blueColorGraphic.SetActive(true);
-            yellowColorGraphic.SetActive(false);
 
             //Set Color Image
             colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
@@ -156,8 +151,6 @@ public class S_StarPopUp : MonoBehaviour
         if(_color == "yellow")
         {
             // Toggle Graphics
-            redColorGraphic.SetActive(false);
-            blueColorGraphic.SetActive(false);
             yellowColorGraphic.SetActive(true);
 
             //Set Color Image
@@ -167,14 +160,20 @@ public class S_StarPopUp : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggers the Coroutine that removes the popups
+    /// </summary>
     public void ClearPopup()
     {
         StartCoroutine(DeletionTimer());
     }
 
+    /// <summary>
+    /// Function that actually deletes popups.
+    /// </summary>
     public void DeletePopup()
     {
-        g_global.ls_starPopup.Remove(this);
+        g_global.g_ls_starPopup.Remove(this);
         Destroy(gameObject);
     }
 
@@ -187,7 +186,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
-        g_global.ls_starPopup.Remove(this);
+        g_global.g_ls_starPopup.Remove(this);
         if (f_disappearTimer < 0)
         {
             colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);

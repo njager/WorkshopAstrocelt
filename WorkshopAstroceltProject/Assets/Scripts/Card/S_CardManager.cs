@@ -28,17 +28,17 @@ public class S_CardManager : MonoBehaviour
     /// <summary>
     /// This Function returns a random int from 0 to the given range
     /// this is used for getting cards from the deck
-    /// - Riley
+    /// System.Random kept getting negative values, unsure how, changed to different Random usage
+    /// - Riley & Josh
     /// </summary>
     public int randomNumGenerator(int _num)
     {
-        System.Random rand = new System.Random();
-        int _number = rand.Next(0, _num);
+        int _number = Random.Range(0, _num);
         return _number;
     }
 
     /// <summary>
-    /// This Function gets cards from the deck and adds them to the player hand
+    /// This Function removes cards from the deck and adds them to the player hand
     /// - Riley
     /// </summary>
     public void DealCards(int _deal)
@@ -47,26 +47,27 @@ public class S_CardManager : MonoBehaviour
         for(int i=0; i<_deal; i++)
         {
             //prevent deck drawing if hand is too big
-            if(g_global.ls_p_playerHand.Count() < p_i_handSizeLimit)
+            if(g_global.g_ls_p_playerHand.Count() < p_i_handSizeLimit)
             {
                 //if the deck is empty move the cards over
-                if (g_global.ls_p_playerDeck.Count() <= 0)
+                if (g_global.g_ls_p_playerDeck.Count() <= 0)
                 {
                     ShuffleGraveToDeck();
                 }
                 
                 //get a random number and get a random key from the deck
-                int _rand = randomNumGenerator(g_global.ls_p_playerDeck.Count()-1);
-                int _cardKey = g_global.ls_p_playerDeck[_rand];
+                int _rand = randomNumGenerator(g_global.g_ls_p_playerDeck.Count()-1);
+                int _cardKey = g_global.g_ls_p_playerDeck[_rand];
 
-                //remove a key from the deck and add it to the grave
-                g_global.ls_p_playerDeck.RemoveAt(_rand);
+                //remove a key from the deck (gets added to the grave when it gets deleted)
+                g_global.g_ls_p_playerDeck.RemoveAt(_rand);
 
                 //get the card game object and add it to the player hand
+                Debug.Log("The card key is " + _cardKey);
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
 
                 //add the card to the hand
-                g_global.ls_p_playerHand.Add(_randomCard);
+                g_global.g_ls_p_playerHand.Add(_randomCard);
 
             }
         }
@@ -78,16 +79,10 @@ public class S_CardManager : MonoBehaviour
     /// </summary>
     public void NewHand()
     {
-        //remove all the previous cards from the field
-        //foreach(GameObject _card in g_global.ls_p_playerHand)
-        //{
-        //    Destroy(_card);
-        //}
+        //clear the hand
+        ClearPlayerHand();
 
-        //clear the player hand
-        g_global.ls_p_playerHand.Clear();
-
-        //deal the new cards
+        //deal the new cards now that all cards are in the deck
         DealCards(p_i_drawPerTurn);
     }
 
@@ -100,53 +95,41 @@ public class S_CardManager : MonoBehaviour
         Debug.Log("Grave to Hand");
 
         //loop through the grave and add it to the deck
-        foreach (int _cardKey in g_global.lst_p_playerGrave)
+        foreach (int _cardKey in g_global.g_ls_p_playerGrave)
         {
-            g_global.ls_p_playerDeck.Add(_cardKey);
+            g_global.g_ls_p_playerDeck.Add(_cardKey);
         }
+
         //clear the grave
-        g_global.lst_p_playerGrave.Clear();
+        ClearPlayerGrave();
     }
 
     /// <summary>
-    /// Create the card from the template and instantiate it to outside the field.
-    /// This gets called from the dealcards function
-    /// -Riley Halloran
-    /// </summary>
-    /// <param name="_cardTemplate"></param>
-    public void InstanceCard(S_CardTemplate _cardTemplate)
-    {
-        GameObject playerCard = Instantiate(c_cardPrefabTemplate, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        playerCard.GetComponent<S_Card>().FetchCardData(_cardTemplate);
-        playerCard.transform.SetParent(c_cardHolder.gameObject.transform, false);
-
-        //control where it attaches to
-        playerCard.gameObject.transform.SetAsFirstSibling();
-
-        //change the altar text
-        LoadFirstCard(playerCard);
-    }
-
-    /// <summary>
-    /// This method removes the first card from the list (Which is the last card). 
-    /// This gets called from the Card Dragger function
+    /// This method removes the first card from the list
+    /// This gets called from global
     /// -Riley Halloran
     /// </summary>
     /// <param name="_cardTemplate"></param>
     public void RemoveFirstCard()
     {
-        g_global.ls_p_playerHand.RemoveAt(0);
+        g_global.g_ls_p_playerHand.RemoveAt(0);
     }
 
+    /// <summary>
+    /// Manual clear function, other one wasn't working
+    /// - Josh
+    /// </summary>
+    public void ClearPlayerHand() 
+    {
+        g_global.g_ls_p_playerHand.Clear();
+    }
 
     /// <summary>
-    /// This is where the call to change the altar text is
-    /// -Riley Halloran
+    /// Manual clear function, other one wasn't working
+    /// - Josh
     /// </summary>
-    public void LoadFirstCard(GameObject _card)
+    public void ClearPlayerGrave()
     {
-        S_Card _cardScript = _card.GetComponent<S_Card>();
-
-        //g_global.g_altar.ChangeCard(_cardScript);
+        g_global.g_ls_p_playerGrave.Clear();
     }
 }

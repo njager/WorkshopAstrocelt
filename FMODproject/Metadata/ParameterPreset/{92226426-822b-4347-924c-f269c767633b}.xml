@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{92226426-822b-4347-924c-f269c767633b}">
+		<property name="name">
+			<value>Pitch Variation</value>
+		</property>
+		<relationship name="folder">
+			<destination>{cbf9a51e-fb0a-47d4-a575-bc6db8027917}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{88d104ad-f191-43d5-875f-465c407841a8}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{88d104ad-f191-43d5-875f-465c407841a8}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

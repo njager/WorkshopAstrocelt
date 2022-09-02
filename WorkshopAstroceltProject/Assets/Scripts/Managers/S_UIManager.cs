@@ -60,7 +60,6 @@ public class S_UIManager : MonoBehaviour
 
     [Header("Line Multiplier")]
     public TextMeshProUGUI p_tx_lineMultiplierText;
-    public float p_f_lineMultiplierAmount;
     public bool b_redEnergy = false;
     public bool b_blueEnergy = false;
     public bool b_yellowEnergy = false;
@@ -105,6 +104,13 @@ public class S_UIManager : MonoBehaviour
     public GameObject e_enemy4ResistantEffect;
     public GameObject e_enemy5ResistantEffect;
 
+    [Header("Debug Turnbar")]
+    public GameObject debugTurnbar;
+    public TextMeshProUGUI debugTurnbarText;
+
+    [Header("Energy Text")]
+    public TextMeshProUGUI en_tx_enemytext;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -113,13 +119,17 @@ public class S_UIManager : MonoBehaviour
         winText.SetActive(false);
         loseText.SetActive(false);
         resetCanvas.SetActive(false);
+
+        // Turn off debug elements
+        debugTurnbar.SetActive(false);
     }
 
     //Some of this should be in turn manager?, probably
     void Update()
     {
         SetElements();
-        ShieldingUI(); //Temporary
+        ShieldingUI();//Temporary
+        energyUI();
     }
 
     /// <summary>
@@ -326,6 +336,11 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
             e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
+        }
+
+        if(debugTurnbar.activeInHierarchy == true) 
+        {
+            DebugTurnBarUpdate();
         }
     }
 
@@ -684,5 +699,44 @@ public class S_UIManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Change the name on the turn bar
+    /// - Josh
+    /// </summary>
+    public void DebugTurnBarUpdate()
+    {
+        if(g_global.g_enemyState.e_b_enemy1Turn == true) 
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 1";
+        }
+        else if (g_global.g_enemyState.e_b_enemy2Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 2";
+        }
+        else if (g_global.g_enemyState.e_b_enemy3Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 3";
+        }
+        else if (g_global.g_enemyState.e_b_enemy4Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 4";
+        }
+        else if (g_global.g_enemyState.e_b_enemy5Turn == true)
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Enemy 5";
+        }
+        else 
+        {
+            debugTurnbarText.text = "Current Character's Turn is: Player";
+        }
+    }
+
+
+
+    public void energyUI()
+    {
+        en_tx_enemytext.text = "Red Energy: " + g_global.g_energyManager.i_redEnergy + '\n' + "Blue Energy: " + g_global.g_energyManager.i_blueEnergy + '\n' + "Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy;
     }
 }

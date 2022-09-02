@@ -45,20 +45,20 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
     /// <param name="_eventData"></param>
     public void OnDrop(PointerEventData _eventData)
     {
-        Debug.Log("Trying to Play the card");
+        //Debug.Log("Trying to Play the card");
 
         if (_eventData.pointerDrag != null)
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
 
-            print("Made it to player v enemy");
+            //print("Made it to player v enemy");
             if (p_b_attachedToPlayer == true) //check to see if this object is the player
             {
                 if (c_cardData.c_b_affectsPlayer == true) //check to see if it affects player
                 {
                     if (c_cardData.c_b_shieldMainEffect == true) //check to see if it's a shield card
                     {
-                        print("Card played?");
+                        //print("Card played?");
                         //play the card
                         c_cardData.PlayCard(g_global.g_player.gameObject);
                     }
@@ -78,7 +78,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
             }
             else if (e_b_attachedToEnemy == true) // I like to make bool checks clear in what they are checking, but could be optimized
             {
-                print("Affecting Enemy");
+                //print("Affecting Enemy");
                 if (c_cardData.c_b_affectsOne == true) //check to see if it affects enemy
                 {
                     if (c_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card

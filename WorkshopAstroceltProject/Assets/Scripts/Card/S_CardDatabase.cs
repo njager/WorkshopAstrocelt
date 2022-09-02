@@ -51,9 +51,9 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(9, cardScript9);
 
         // Add the intitial deck to player deck
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 10; i++)
         {
-            g_global.ls_p_playerDeck.Add(i);
+            g_global.g_ls_p_playerDeck.Add(i);
         }
 
         // If player beat the first encounter add reward cards to deck
@@ -91,8 +91,8 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(11, battleRewardCard2); // Add Thornshield
 
         // Add them to deck
-        g_global.ls_p_playerDeck.Add(10);
-        g_global.ls_p_playerDeck.Add(11);
+        g_global.g_ls_p_playerDeck.Add(10);
+        g_global.g_ls_p_playerDeck.Add(11);
     }
 
 
@@ -106,8 +106,8 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(13, battleRewardCard2); // Add Reflect
 
         // Add them to deck
-        g_global.ls_p_playerDeck.Add(12);
-        g_global.ls_p_playerDeck.Add(13);
+        g_global.g_ls_p_playerDeck.Add(12);
+        g_global.g_ls_p_playerDeck.Add(13);
     }
 
 }
