@@ -108,6 +108,9 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
+    [Header("Energy Text")]
+    public TextMeshProUGUI en_tx_enemytext;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -125,7 +128,8 @@ public class S_UIManager : MonoBehaviour
     void Update()
     {
         SetElements();
-        ShieldingUI(); //Temporary
+        ShieldingUI();//Temporary
+        energyUI();
     }
 
     /// <summary>
@@ -727,5 +731,12 @@ public class S_UIManager : MonoBehaviour
         {
             debugTurnbarText.text = "Current Character's Turn is: Player";
         }
+    }
+
+
+
+    public void energyUI()
+    {
+        en_tx_enemytext.text = "Red Energy: " + g_global.g_energyManager.i_redEnergy + '\n' + "Blue Energy: " + g_global.g_energyManager.i_blueEnergy + '\n' + "Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy;
     }
 }
