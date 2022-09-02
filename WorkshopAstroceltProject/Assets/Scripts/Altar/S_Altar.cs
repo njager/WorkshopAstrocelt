@@ -189,19 +189,16 @@ public class S_Altar : MonoBehaviour
     /// The trigger mechanism for Cardball to cards.
     /// - Josh
     /// </summary>
-    public void CheckFirstCardball()
+    public IEnumerator CheckFirstCardball()
     {
         //check if the card can be played by referencing the useEnergy function
         if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             //turn the cardball into a card and move over the rest of the cardballs
-            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+            StartCoroutine(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard());
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
-        else
-        {
-            //Debug.Log("Not enough energy!");
-        }
+        yield return null;
     }
 
     /// <summary>
