@@ -345,7 +345,7 @@ public class S_ConstelationManager : MonoBehaviour
             Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
 
             //call the altar
-            g_global.g_altar.CheckFirstCardball();
+            StartCoroutine(g_global.g_altar.CheckFirstCardball());
 
             // Popups now move to card
             StartCoroutine(g_global.g_popupManager.TriggerPopupMove());

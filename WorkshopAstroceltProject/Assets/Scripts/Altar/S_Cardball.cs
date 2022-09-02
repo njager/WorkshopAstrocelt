@@ -47,6 +47,8 @@ public class S_Cardball : MonoBehaviour
     // Private variables
     private S_Global g_global;
 
+    private bool c_b_pauseBool; 
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -132,10 +134,12 @@ public class S_Cardball : MonoBehaviour
     /// Cardball gets converted to card
     /// - Josh
     /// </summary>
-    public void CardballToCard()
+    public IEnumerator CardballToCard()
     {
-        
+        c_b_pauseBool = false; 
         StartCoroutine(WaitToHide());
+
+        yield return c_b_pauseBool == true;
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);
@@ -150,7 +154,7 @@ public class S_Cardball : MonoBehaviour
         //StartCoroutine(WaitToHide());
 
         //delete the cardball and add the card to the grave
-        //DeleteCardball();
+        DeleteCardball();
     }
 
     /// <summary>
@@ -170,16 +174,18 @@ public class S_Cardball : MonoBehaviour
     
     public IEnumerator WaitToHide()
     {
-
+        int refer = -1;
         int energy_constant = c_i_cardEnergyCost;
         for (int i = energy_constant; i >=0; i--)
         {
+            refer = i;
             c_cardballText.text = "" + i;
             yield return new WaitForSeconds(.5f);
         }
-
+        yield return refer == 0;
+        c_b_pauseBool = true;
+        
         // Fulfilled Function
-        DeleteCardball();
     }
 
     /// <summary>
