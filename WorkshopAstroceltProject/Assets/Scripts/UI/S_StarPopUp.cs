@@ -87,14 +87,33 @@ public class S_StarPopUp : MonoBehaviour
 
  
     /// <summary>
-    /// Move the popup to the altar
+    /// Move the popup to the appropriate energy tracking UI depending on color
+    /// - Josh
     /// </summary>
-    public void MoveToAltar()
+    public void MovePopupToEnergyTracker()
     {
-        Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position;
-        gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
-        gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
-        gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        if (b_redPopup) // If a Red Popup
+        {
+            Vector3 _movementPosition = g_global.g_popupManager.GetRedEnergyUITargetPosition();
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
+            gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        }
+        else if (b_bluePopup) // If a Blue Popup
+        {
+            Vector3 _movementPosition = g_global.g_popupManager.GetBlueEnergyUITargetPosition();
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
+            gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        }
+        else if (b_yellowPopup) // If a Yellow Popup
+        {
+            Vector3 _movementPosition = g_global.g_popupManager.GetYellowEnergyUITargetPosition();
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
+            gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        }
+
     }
 
     /// <summary>

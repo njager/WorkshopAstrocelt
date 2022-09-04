@@ -34,9 +34,9 @@ public class S_PopupManager : MonoBehaviour
     public GameObject popUpCanvas;
 
     [Header("Altar Popup Target Positions")]
-    public GameObject redEnergyTargetPosition;
-    public GameObject blueEnergyTargetPosition;
-    public GameObject yellowEnergyTargetPosition;
+    public GameObject redEnergyUITargetPosition;
+    public GameObject blueEnergyUITargetPosition;
+    public GameObject yellowEnergyUITargetPosition;
 
     //get the transform component of the text
     private void Awake()
@@ -168,7 +168,7 @@ public class S_PopupManager : MonoBehaviour
     {
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
-            _starPopup.MoveToAltar();
+            _starPopup.MovePopupToEnergyTracker();
         }
         yield return b_popupMove == true;
     }
@@ -186,5 +186,48 @@ public class S_PopupManager : MonoBehaviour
         }
         b_popupClear = true; 
         yield return b_popupClear == true; 
+    }
+
+    // Setters \\ // Not yet implemented
+
+
+
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.redEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.redEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetRedEnergyUITargetPosition()
+    {
+        return redEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.blueEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.blueEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetBlueEnergyUITargetPosition()
+    {
+        return blueEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.yellowEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.yellowEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetYellowEnergyUITargetPosition()
+    {
+        return yellowEnergyUITargetPosition.transform.position;
     }
 }

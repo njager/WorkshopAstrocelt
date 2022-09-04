@@ -100,7 +100,7 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     /// <param name="_energy"></param>
     /// <param name="_color"></param>
-    public bool useEnergy(int _energy, string _color)
+    public bool UseEnergy(int _energy, string _color)
     {
         //make sure the colors match before using energy
         //remove the card if it actually gets played
@@ -195,7 +195,7 @@ public class S_EnergyManager : MonoBehaviour
     }
 
 
-    // Setters \\
+    // Setters \\ // Not yet implemented
 
     /// <summary>
     /// Set the int value of S_EnergyManager.i_redEnergy; 
