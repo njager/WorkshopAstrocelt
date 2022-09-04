@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class S_RedStarAnimation : MonoBehaviour
 {
-    //Get the redgraphic animator
-    public GameObject g_redGraphic;
+    //Get the red graphic animator
+    public GameObject a_redGraphic;
 
     public Animator an_animator;
 
@@ -17,7 +17,7 @@ public class S_RedStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        an_animator = g_redGraphic.GetComponent<Animator>();
+        an_animator = a_redGraphic.GetComponent<Animator>();
 
         StartCoroutine(PlayAnimation());
     }

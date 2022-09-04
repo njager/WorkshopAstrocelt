@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class S_BlueStarAnimation : MonoBehaviour
 {
-    //Get the redgraphic animator
-    public GameObject g_blueGraphic;
+    //Get the blue graphic animator
+    public GameObject a_blueGraphic;
 
     public Animator an_animator;
 
@@ -16,7 +16,7 @@ public class S_BlueStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        an_animator = g_blueGraphic.GetComponent<Animator>();
+        an_animator = a_blueGraphic.GetComponent<Animator>();
 
         StartCoroutine(PlayBlueAnimation());
     }
