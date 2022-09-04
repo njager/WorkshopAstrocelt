@@ -16,7 +16,7 @@ public class S_MainMenu: MonoBehaviour
         {
             if (GameIsPaused)
             {
-                Resume();
+                //Resume();
             }
             else
             {
@@ -28,7 +28,7 @@ public class S_MainMenu: MonoBehaviour
     public void Play()
     {
         //SceneManger.LoadScene(7);
-        SceneManger.LoadScene(SceneManager.GetActiveScene());
+        //SceneManger.LoadScene(SceneManager.GetActiveScene());
     }
 
     void Pause()

@@ -367,4 +367,19 @@ public class S_ConstelationManager : MonoBehaviour
         s_previousStar = _star;
         v2_prevLoc = _loc;
     }
+
+    // Setters \\ 
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Get the bool state of S_ConstelationManager.b_starLockout
+    /// </summary>
+    /// <returns>
+    /// S_ConstelationManager.b_starLockout
+    /// </returns>
+    public bool GetStarLockOutBool() 
+    {
+        return b_starLockout;
+    }
 }

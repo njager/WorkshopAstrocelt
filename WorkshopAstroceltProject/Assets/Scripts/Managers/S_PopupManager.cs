@@ -166,11 +166,11 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
+        yield return new S_WaitForConstellationFinish();
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
             _starPopup.MovePopupToEnergyTracker();
         }
-        yield return b_popupMove == true;
     }
 
     /// <summary>
