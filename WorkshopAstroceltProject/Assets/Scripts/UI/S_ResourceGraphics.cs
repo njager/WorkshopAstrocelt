@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_ResourceGraphics : S_UIManager
+public class S_ResourceGraphics : MonoBehaviour
 {
-    // g_global is inhereited from S_UIManager, as is Monobehavior
+    private S_Global g_global;
+
+    private void Awake()
+    {
+        g_global = S_Global.Instance;
+    }
 
     void Update()
     {
@@ -19,10 +24,10 @@ public class S_ResourceGraphics : S_UIManager
     public void EnergyTrackingUIUpdate()
     {
         // Update red energy
-        GetRedEnergyTrackerText().text = "" + g_global.g_energyManager.GetRedEnergyInt();
+        g_global.g_UIManager.GetRedEnergyTrackerText().text = "" + g_global.g_energyManager.GetRedEnergyInt();
         // Update blue energy
-        GetBlueEnergyTrackerText().text = "" + g_global.g_energyManager.GetBlueEnergyInt();
+        g_global.g_UIManager.GetBlueEnergyTrackerText().text = ""  + g_global.g_energyManager.GetBlueEnergyInt();
         //Update yellow energy
-        GetYellowEnergyTrackerText().text = "" + g_global.g_energyManager.GetYellowEnergyInt();
+        g_global.g_UIManager.GetYellowEnergyTrackerText().text = ""  + g_global.g_energyManager.GetYellowEnergyInt();
     }
 }

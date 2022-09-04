@@ -741,7 +741,7 @@ public class S_UIManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.en_tx_redText;
+    /// S_UIManager.en_tx_redEnergyTrackerText;
     /// </returns>
     public TextMeshProUGUI GetRedEnergyTrackerText()
     {
@@ -753,7 +753,7 @@ public class S_UIManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.en_tx_blueText;
+    /// S_UIManager.en_tx_blueEnergyTrackerText;
     /// </returns>
     public TextMeshProUGUI GetBlueEnergyTrackerText()
     {
@@ -765,7 +765,7 @@ public class S_UIManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.en_tx_yellowText;
+    /// S_UIManager.en_tx_yellowEnergyTrackerText;
     /// </returns>
     public TextMeshProUGUI GetYellowEnergyTrackerText()
     {
