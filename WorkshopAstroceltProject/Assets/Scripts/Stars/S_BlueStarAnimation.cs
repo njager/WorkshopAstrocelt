@@ -6,7 +6,7 @@ public class S_BlueStarAnimation : MonoBehaviour
     //Get the blue graphic animator
     public GameObject a_blueGraphic;
 
-    public Animator an_animator;
+    public Animator an_blueStarAnimator;
 
     [Header("percent chance that the Animation plays")]
     public double i_chance = 0.0000002;
@@ -16,8 +16,6 @@ public class S_BlueStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        an_animator = a_blueGraphic.GetComponent<Animator>();
-
         StartCoroutine(PlayBlueAnimation());
     }
 
@@ -35,7 +33,7 @@ public class S_BlueStarAnimation : MonoBehaviour
             //print("Blue");
 
             //Send the message to the Animator to activate the trigger parameter named "BlueAnim"
-            an_animator.Play("BlueAnim");
+            an_blueStarAnimator.Play("BlueAnim");
         }
         StartCoroutine(PlayBlueAnimation());
     }
