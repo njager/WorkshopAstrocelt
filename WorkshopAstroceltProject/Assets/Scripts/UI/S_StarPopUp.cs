@@ -94,21 +94,21 @@ public class S_StarPopUp : MonoBehaviour
     {
         if (b_isRedPopup) // If a Red Popup
         {
-            Vector3 _movementPosition = g_global.g_popupManager.GetRedPopUpTargetPosition();
+            Vector3 _movementPosition = g_global.g_popupManager.GetRedPopupTargetPosition();
             gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
             gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
             gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
         }
         else if (b_isBluePopup) // If a Blue Popup
         {
-            Vector3 _movementPosition = g_global.g_popupManager.GetBluePopUpTargetPosition();
+            Vector3 _movementPosition = g_global.g_popupManager.GetBluePopupTargetPosition();
             gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
             gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
             gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
         }
         else if (b_isYellowPopup) // If a Yellow Popup
         {
-            Vector3 _movementPosition = g_global.g_popupManager.GetYellowPopUpTargetPosition();
+            Vector3 _movementPosition = g_global.g_popupManager.GetYellowPopupTargetPosition();
             gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
             gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
             gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
