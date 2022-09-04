@@ -1115,7 +1115,7 @@ RectTransform:
   m_Children:
   - {fileID: 1994405796}
   m_Father: {fileID: 1506181500}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28378,8 +28378,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2111837698}
   - {fileID: 68864009}
+  - {fileID: 2111837698}
   - {fileID: 1368700185}
   m_Father: {fileID: 933933133}
   m_RootOrder: 10
@@ -38509,7 +38509,7 @@ RectTransform:
   m_Children:
   - {fileID: 1269106177}
   m_Father: {fileID: 1506181500}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -39984,6 +39984,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: winText
+      value: 
+      objectReference: {fileID: 1343041395}
+    - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: loseText
+      value: 
+      objectReference: {fileID: 579670013}
+    - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: resetCanvas
+      value: 
+      objectReference: {fileID: 1845475216}
+    - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: debugTurnbar
+      value: 
+      objectReference: {fileID: 1160059243}
+    - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: debugTurnbarText
+      value: 
+      objectReference: {fileID: 1973806048}
+    - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: p_tx_playerHealthText
+      value: 
+      objectReference: {fileID: 73390825}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: winText
+      value: 
+      objectReference: {fileID: 1343041395}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: loseText
+      value: 
+      objectReference: {fileID: 579670013}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: resetCanvas
+      value: 
+      objectReference: {fileID: 1845475216}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: debugTurnbar
+      value: 
+      objectReference: {fileID: 1160059243}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: debugTurnbarText
+      value: 
+      objectReference: {fileID: 1973806048}
     - target: {fileID: 8047176379390002570, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: s_nullStarInst
       value: 
@@ -40089,13 +40133,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1160059243}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: en_tx_redText
+      value: 
+      objectReference: {fileID: 1994405797}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: greyboxCanvas
       value: 
       objectReference: {fileID: 933933132}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: en_tx_blueText
+      value: 
+      objectReference: {fileID: 1269106178}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbarText
       value: 
       objectReference: {fileID: 1973806048}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: en_tx_yellowText
+      value: 
+      objectReference: {fileID: 1685864546}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: e_enemy1HealthBar
       value: 
