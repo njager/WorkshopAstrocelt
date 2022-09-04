@@ -7,7 +7,7 @@ public class S_WaitForEnemyTurn : CustomYieldInstruction
     private S_Global g_global;
 
     // Set the g_global variable
-    private void Awake() 
+    private void SetGlobal() 
     {
         g_global = S_Global.Instance;
     }
@@ -28,6 +28,7 @@ public class S_WaitForEnemyTurn : CustomYieldInstruction
     // Constructor 
     public S_WaitForEnemyTurn() 
     {
+        SetGlobal();
         Debug.Log("Creating a new yield instruction for enemy turn");
     }
 }

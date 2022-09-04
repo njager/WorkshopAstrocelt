@@ -155,12 +155,12 @@ public class S_TurnManager : MonoBehaviour
 
         foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
         {
-            yield return new S_WaitForEnemyTurn();
             e_b_enemyIsActive = false;
             
             StartCoroutine(_enemy.EnemyTurnAction(_enemy.e_i_enemyCount));
 
             Debug.Log("Triggered for enemy " + _enemy.e_i_enemyCount + " - log!");
+            yield return new S_WaitForEnemyTurn();
         }
 
         Debug.Log("Made it past the event stack");
