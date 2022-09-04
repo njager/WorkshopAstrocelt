@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class S_ResourceGraphics : S_UIManager
 {
-    // g_global is inhereited from S_UIManager
+    // g_global is inhereited from S_UIManager, as is Monobehavior
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
     }
 
     /// <summary>
