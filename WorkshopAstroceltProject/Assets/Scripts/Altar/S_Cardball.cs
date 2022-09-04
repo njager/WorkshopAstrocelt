@@ -134,11 +134,8 @@ public class S_Cardball : MonoBehaviour
     /// Cardball gets converted to card
     /// - Josh
     /// </summary>
-    public IEnumerator CardballToCard()
+    public void CardballToCard()
     {
-        c_b_pauseBool = false; 
-
-        yield return c_b_pauseBool == true;
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);

@@ -191,9 +191,37 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupClear == true; 
     }
 
-    // Setters \\ // Not yet implemented
+    // Setters \\ 
 
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.redEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetRedPopupTargetPosition(Vector3 _newPosition) 
+    {
+        redEnergyUITargetPosition.transform.position = _newPosition;
+    }
 
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.blueEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetBluePopupTargetPosition(Vector3 _newPosition)
+    {
+        blueEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.yellowEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetYellowPopupTargetPosition(Vector3 _newPosition)
+    {
+        yellowEnergyUITargetPosition.transform.position = _newPosition;
+    }
 
 
     // Getters \\ 
@@ -205,7 +233,7 @@ public class S_PopupManager : MonoBehaviour
     /// <returns>
     /// S_PopupManager.redEnergyTargetPosition.transform.position
     /// </returns>
-    public Vector3 GetRedEnergyUITargetPosition()
+    public Vector3 GetRedPopupTargetPosition()
     {
         return redEnergyUITargetPosition.transform.position;
     }
@@ -217,7 +245,7 @@ public class S_PopupManager : MonoBehaviour
     /// <returns>
     /// S_PopupManager.blueEnergyTargetPosition.transform.position
     /// </returns>
-    public Vector3 GetBlueEnergyUITargetPosition()
+    public Vector3 GetBluePopupTargetPosition()
     {
         return blueEnergyUITargetPosition.transform.position;
     }
@@ -229,7 +257,7 @@ public class S_PopupManager : MonoBehaviour
     /// <returns>
     /// S_PopupManager.yellowEnergyTargetPosition.transform.position
     /// </returns>
-    public Vector3 GetYellowEnergyUITargetPosition()
+    public Vector3 GetYellowPopupTargetPosition()
     {
         return yellowEnergyUITargetPosition.transform.position;
     }

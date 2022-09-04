@@ -195,7 +195,7 @@ public class S_Altar : MonoBehaviour
         if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             //turn the cardball into a card and move over the rest of the cardballs
-            StartCoroutine(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard());
+            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
     }
@@ -269,5 +269,67 @@ public class S_Altar : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(_cardball);
         MoveCardballPrefabs();
+    }
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition1
+    /// </returns>
+    public GameObject GetChildOfFirstAltarPosition() 
+    {
+        return cardballPosition1.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition2
+    /// </returns>
+    public GameObject GetChildOfSecondAltarPosition()
+    {
+        return cardballPosition2.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition3
+    /// </returns>
+    public GameObject GetChildOfThirdAltarPosition()
+    {
+        return cardballPosition1.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition4
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition4
+    /// </returns>
+    public GameObject GetChildOfFourthAltarPosition()
+    {
+        return cardballPosition4.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition5
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition5
+    /// </returns>
+    public GameObject GetChildOfFifthAltarPosition()
+    {
+        return cardballPosition5.transform.GetChild(0).gameObject;
     }
 }
