@@ -155,10 +155,11 @@ public class S_TurnManager : MonoBehaviour
 
         foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
         {
+            yield return new S_WaitForEnemyTurn();
             e_b_enemyIsActive = false;
+            
             StartCoroutine(_enemy.EnemyTurnAction(_enemy.e_i_enemyCount));
 
-            yield return e_b_enemyIsActive = true;
             Debug.Log("Triggered for enemy " + _enemy.e_i_enemyCount + " - log!");
         }
 
@@ -235,5 +236,19 @@ public class S_TurnManager : MonoBehaviour
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
+    }
+
+    // Getters \\
+
+    /// <summary>
+    /// Return the bool value of S_TurnManager.e_b_enemyIsActive;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_TurnManager.e_b_enemyIsActive
+    /// </returns>
+    public bool GetEnemyActiveBool()
+    {
+        return e_b_enemyIsActive;
     }
 }
