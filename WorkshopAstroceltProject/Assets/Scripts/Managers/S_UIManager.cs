@@ -131,7 +131,6 @@ public class S_UIManager : MonoBehaviour
     {
         SetElements();
         ShieldingUI();//Temporary
-        energyUI(); // Temporary
     }
 
     /// <summary>
