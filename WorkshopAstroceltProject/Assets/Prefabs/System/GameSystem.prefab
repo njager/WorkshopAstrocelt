@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i_index: 0
   l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
   s_nullStarInst: {fileID: 0}
   b_lineDeletionCompletion: 0
@@ -134,36 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_rewardSceneIndex: 3
---- !u!1 &8047176379985341372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8047176379985341373}
-  m_Layer: 0
-  m_Name: AltarTargetPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8047176379985341373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8047176379985341372}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.26, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8047176381211925954}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8047176380039575182
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,15 +335,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_playerInitialTurn: 1
-  b_enemyInitialTurn: 0
-  playerTurnSkipped: 0
-  enemy1TurnSkipped: 0
-  enemy2TurnSkipped: 0
-  enemy3TurnSkipped: 0
-  enemy4TurnSkipped: 0
-  enemy5TurnSkipped: 0
-  e_i_timerChecks: 0
+  p_b_playerInitialTurn: 1
+  e_b_enemyInitialTurn: 0
+  p_b_playerTurnSkipped: 0
+  e_b_enemy1TurnSkipped: 0
+  e_b_enemy2TurnSkipped: 0
+  e_b_enemy3TurnSkipped: 0
+  e_b_enemy4TurnSkipped: 0
+  e_b_enemy5TurnSkipped: 0
+  e_b_enemyIsActive: 0
 --- !u!114 &8047176380236070990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,8 +362,8 @@ MonoBehaviour:
   p_b_inBleedingState: 0
   p_b_inStunnedState: 0
   p_b_inResistantState: 0
-  playerWinMusic: {fileID: 0}
-  playerLoseMusic: {fileID: 0}
+  p_playerWinMusic: {fileID: 0}
+  p_playerLoseMusic: {fileID: 0}
   p_i_turnsPassedForStun: 0
   p_i_turnsPassedForResistant: 0
   p_f_currentDamageRateForBleed: 0
@@ -818,6 +787,7 @@ MonoBehaviour:
   e_enemy5ResistantEffect: {fileID: 0}
   debugTurnbar: {fileID: 0}
   debugTurnbarText: {fileID: 0}
+  en_tx_enemytext: {fileID: 0}
 --- !u!1 &8047176381002654253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,8 +1014,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8047176379985341373}
+  m_Children: []
   m_Father: {fileID: 8047176381026311821}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1074,7 +1043,7 @@ MonoBehaviour:
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 4694868179480249384, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
   popUpCanvas: {fileID: 0}
-  altarTargetPosition: {fileID: 8047176379985341372}
+  altarTargetPosition: {fileID: 0}
 --- !u!1 &8047176381412509010
 GameObject:
   m_ObjectHideFlags: 0

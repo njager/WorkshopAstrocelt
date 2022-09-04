@@ -6,7 +6,7 @@ using TMPro;
 
 public class S_UIManager : MonoBehaviour
 {
-    private S_Global g_global;
+    protected S_Global g_global;
 
     // Anything under here is just to help flesh out the greybox
     [Header("Initial GreyBox UI")]
@@ -108,8 +108,10 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
-    [Header("Energy Text")]
-    public TextMeshProUGUI en_tx_enemytext;
+    [Header("Energy UI Text Elements")]
+    public TextMeshProUGUI en_tx_redText;
+    public TextMeshProUGUI en_tx_blueText;
+    public TextMeshProUGUI en_tx_yellowText;
 
     void Awake()
     {
@@ -129,7 +131,7 @@ public class S_UIManager : MonoBehaviour
     {
         SetElements();
         ShieldingUI();//Temporary
-        energyUI();
+        energyUI(); // Temporary
     }
 
     /// <summary>
@@ -731,12 +733,5 @@ public class S_UIManager : MonoBehaviour
         {
             debugTurnbarText.text = "Current Character's Turn is: Player";
         }
-    }
-
-
-
-    public void energyUI()
-    {
-        en_tx_enemytext.text = "Red Energy: " + g_global.g_energyManager.i_redEnergy + '\n' + "Blue Energy: " + g_global.g_energyManager.i_blueEnergy + '\n' + "Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy;
     }
 }
