@@ -19,10 +19,10 @@ public class S_ResourceGraphics : S_UIManager
     public void EnergyTrackingUIUpdate()
     {
         // Update red energy
-        en_tx_redText.text = "" + g_global.g_energyManager.GetRedEnergyInt();
+        GetRedEnergyTrackerText().text = "" + g_global.g_energyManager.GetRedEnergyInt();
         // Update blue energy
-        en_tx_redText.text = "" + g_global.g_energyManager.GetBlueEnergyInt();
+        GetBlueEnergyTrackerText().text = "" + g_global.g_energyManager.GetBlueEnergyInt();
         //Update yellow energy
-        en_tx_redText.text = "" + g_global.g_energyManager.GetYellowEnergyInt();
+        GetYellowEnergyTrackerText().text = "" + g_global.g_energyManager.GetYellowEnergyInt();
     }
 }

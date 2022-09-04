@@ -108,10 +108,10 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
-    [Header("Energy UI Text Elements")]
-    public TextMeshProUGUI en_tx_redText;
-    public TextMeshProUGUI en_tx_blueText;
-    public TextMeshProUGUI en_tx_yellowText;
+    [Header("Energy UI Text Elements")] // Keep en_?
+    public TextMeshProUGUI en_tx_redEnergyTrackerText;
+    public TextMeshProUGUI en_tx_blueEnergyTrackerText;
+    public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
 
     void Awake()
     {
@@ -732,5 +732,43 @@ public class S_UIManager : MonoBehaviour
         {
             debugTurnbarText.text = "Current Character's Turn is: Player";
         }
+    }
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_redText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_redText;
+    /// </returns>
+    public TextMeshProUGUI GetRedEnergyTrackerText()
+    {
+        return en_tx_redEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_blueText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_blueText;
+    /// </returns>
+    public TextMeshProUGUI GetBlueEnergyTrackerText()
+    {
+        return en_tx_blueEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_yellowText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_yellowText;
+    /// </returns>
+    public TextMeshProUGUI GetYellowEnergyTrackerText()
+    {
+        return en_tx_yellowEnergyTrackerText;
     }
 }
