@@ -137,7 +137,6 @@ public class S_Cardball : MonoBehaviour
     public IEnumerator CardballToCard()
     {
         c_b_pauseBool = false; 
-        StartCoroutine(WaitToHide());
 
         yield return c_b_pauseBool == true;
         // Spawn Card 
@@ -172,20 +171,16 @@ public class S_Cardball : MonoBehaviour
     /// -Thoman
     /// </summary>
     
-    public IEnumerator WaitToHide()
+    public IEnumerator EnergyTextDecrement()
     {
-        int refer = -1;
         int energy_constant = c_i_cardEnergyCost;
         for (int i = energy_constant; i >=0; i--)
         {
-            refer = i;
             c_cardballText.text = "" + i;
             yield return new WaitForSeconds(.5f);
         }
-        yield return refer == 0;
         c_b_pauseBool = true;
-        
-        // Fulfilled Function
+        yield return c_b_pauseBool == true;
     }
 
     /// <summary>

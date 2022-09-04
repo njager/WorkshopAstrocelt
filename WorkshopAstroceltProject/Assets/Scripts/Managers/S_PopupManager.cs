@@ -38,6 +38,9 @@ public class S_PopupManager : MonoBehaviour
     public GameObject blueEnergyUITargetPosition;
     public GameObject yellowEnergyUITargetPosition;
 
+    [Header("Popup Visual Decrement Bool")]
+    public bool b_visualPopupFinished;
+
     //get the transform component of the text
     private void Awake()
     {
@@ -229,5 +232,17 @@ public class S_PopupManager : MonoBehaviour
     public Vector3 GetYellowEnergyUITargetPosition()
     {
         return yellowEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the bool value of S_PopupManager.b_visualPopupFinished;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.b_visualPopupFinished
+    /// </returns>
+    public bool GetPopupVisualDecrementBool()
+    {
+        return b_visualPopupFinished;
     }
 }
