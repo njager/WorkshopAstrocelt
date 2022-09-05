@@ -40,7 +40,7 @@ public class S_Altar : MonoBehaviour
     public float f_cardballMoveSpeed;
 
     [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = true; //Used to not let the player press end turn before cardballs begin spawning
+    public bool b_spawningCardballs = true; 
 
     private void Awake()
     {
@@ -129,7 +129,7 @@ public class S_Altar : MonoBehaviour
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
-        b_spawningCardballs = false;
+        Set_b_spawningCardballs(false);
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
-        Debug.Log(" Debug - Triggered 2");
+        //Debug.Log(" Debug - Triggered 2");
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             //wait and then remove the cardball from the list and delete it from the game
@@ -248,7 +248,7 @@ public class S_Altar : MonoBehaviour
             cardballSpawnPosition.transform.GetChild(0).DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
             cardballSpawnPosition.transform.GetChild(0).SetParent(cardballPosition5.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
-            Debug.Log("Cardballs moving from 5 to 4");
+            //Debug.Log("Cardballs moving from 5 to 4");
         }
         else
         {
@@ -270,6 +270,7 @@ public class S_Altar : MonoBehaviour
         Destroy(_cardball);
         MoveCardballPrefabs();
     }
+
 
     // Getters \\ 
 

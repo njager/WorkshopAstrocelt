@@ -387,7 +387,7 @@ public class S_Enemy : MonoBehaviour
 
             // Set the active enemy bool to clear so the next enemy can do their turn
             g_global.g_turnManager.e_b_enemyIsActive = true;
-            Debug.Log("Returned!");
+            //Debug.Log("Returned!");
         }
         else
         {

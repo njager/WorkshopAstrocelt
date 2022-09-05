@@ -63,7 +63,7 @@ public class S_CardManager : MonoBehaviour
                 g_global.g_ls_p_playerDeck.RemoveAt(_rand);
 
                 //get the card game object and add it to the player hand
-                Debug.Log("The card key is " + _cardKey);
+                //Debug.Log("The card key is " + _cardKey);
                 S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
 
                 //add the card to the hand
