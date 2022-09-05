@@ -272,7 +272,17 @@ public class S_Altar : MonoBehaviour
     }
 
 
-    // Getters \\ 
+    // Getters & Setters \\ 
+
+    public void Set_b_spawningCardballs(bool _spawining)
+    {
+        b_spawningCardballs = _spawining;
+    }
+
+    public bool Get_b_spawningCardballs()
+    {
+        return b_spawningCardballs;
+    }
 
     /// <summary>
     /// Return the child object of S_Altar.cardballPosition1
