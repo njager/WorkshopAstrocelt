@@ -189,18 +189,14 @@ public class S_Altar : MonoBehaviour
     /// The trigger mechanism for Cardball to cards.
     /// - Josh
     /// </summary>
-    public void CheckFirstCardball()
+    public IEnumerator CheckFirstCardball()
     {
-        //check if the card can be played by referencing the useEnergy function
-        if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+        yield return new S_WaitForEnergyTextDecrement();
+        if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
-        }
-        else
-        {
-            //Debug.Log("Not enough energy!");
         }
     }
 
@@ -276,17 +272,65 @@ public class S_Altar : MonoBehaviour
     }
 
 
+    // Getters \\ 
 
-    // __________________________________________________________________________________________________
-    // Getters and Setters
-
-    public void Set_b_spawningCardballs(bool state)
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition1
+    /// </returns>
+    public GameObject GetChildOfFirstAltarPosition() 
     {
-        b_spawningCardballs = state;
+        return cardballPosition1.transform.GetChild(0).gameObject;
     }
 
-    public bool Get_b_spawningCardballs()
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition2
+    /// </returns>
+    public GameObject GetChildOfSecondAltarPosition()
     {
-        return b_spawningCardballs;
+        return cardballPosition2.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition3
+    /// </returns>
+    public GameObject GetChildOfThirdAltarPosition()
+    {
+        return cardballPosition1.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition4
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition4
+    /// </returns>
+    public GameObject GetChildOfFourthAltarPosition()
+    {
+        return cardballPosition4.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition5
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition5
+    /// </returns>
+    public GameObject GetChildOfFifthAltarPosition()
+    {
+        return cardballPosition5.transform.GetChild(0).gameObject;
     }
 }

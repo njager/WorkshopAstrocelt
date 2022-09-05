@@ -6,7 +6,7 @@ using TMPro;
 
 public class S_UIManager : MonoBehaviour
 {
-    private S_Global g_global;
+    protected S_Global g_global;
 
     // Anything under here is just to help flesh out the greybox
     [Header("Initial GreyBox UI")]
@@ -108,6 +108,11 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
+    [Header("Energy UI Text Elements")] // Keep en_?
+    public TextMeshProUGUI en_tx_redEnergyTrackerText;
+    public TextMeshProUGUI en_tx_blueEnergyTrackerText;
+    public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -125,7 +130,7 @@ public class S_UIManager : MonoBehaviour
     void Update()
     {
         SetElements();
-        ShieldingUI(); //Temporary
+        ShieldingUI();//Temporary
     }
 
     /// <summary>
@@ -727,5 +732,43 @@ public class S_UIManager : MonoBehaviour
         {
             debugTurnbarText.text = "Current Character's Turn is: Player";
         }
+    }
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_redText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_redEnergyTrackerText;
+    /// </returns>
+    public TextMeshProUGUI GetRedEnergyTrackerText()
+    {
+        return en_tx_redEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_blueText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_blueEnergyTrackerText;
+    /// </returns>
+    public TextMeshProUGUI GetBlueEnergyTrackerText()
+    {
+        return en_tx_blueEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_yellowText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_yellowEnergyTrackerText;
+    /// </returns>
+    public TextMeshProUGUI GetYellowEnergyTrackerText()
+    {
+        return en_tx_yellowEnergyTrackerText;
     }
 }

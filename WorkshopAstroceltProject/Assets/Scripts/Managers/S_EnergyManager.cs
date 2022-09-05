@@ -10,9 +10,9 @@ public class S_EnergyManager : MonoBehaviour
     public string str_energyColor;
     public float i_energyCount;
 
-    public int i_redEnergy;
-    public int i_yellowEnergy;
-    public int i_blueEnergy;
+    private int i_redEnergy;
+    private int i_yellowEnergy;
+    private int i_blueEnergy;
 
     public int i_redStorageEnergy;
     public int i_yellowStorageEnergy;
@@ -100,7 +100,7 @@ public class S_EnergyManager : MonoBehaviour
     /// </summary>
     /// <param name="_energy"></param>
     /// <param name="_color"></param>
-    public bool useEnergy(int _energy, string _color)
+    public bool UseEnergy(int _energy, string _color)
     {
         //make sure the colors match before using energy
         //remove the card if it actually gets played
@@ -192,5 +192,77 @@ public class S_EnergyManager : MonoBehaviour
             //Debug.Log("Bonus " + _color + " energy : old energy = " + i_yellowStorageEnergy);
             i_yellowStorageEnergy = (int)(i_yellowStorageEnergy * 1.5);
         }
+    }
+
+
+    // Setters \\ // Not yet implemented
+
+    /// <summary>
+    /// Set the int value of S_EnergyManager.i_redEnergy; 
+    /// - Josh
+    /// </summary>
+    /// <param name="_energyCount"></param>
+    public void SetRedEnergyInt(int _energyCount)
+    {
+        i_redEnergy = _energyCount;
+    }
+
+    /// <summary>
+    /// Set the int value of S_EnergyManager.i_blueEnergy
+    /// - Josh
+    /// </summary>
+    /// <param name="_energyCoun"></param>
+    public void SetBlueEnergyInt(int _energyCount)
+    {
+        i_blueEnergy = _energyCount;
+    }
+
+    /// <summary>
+    /// Set the int value of S_EnergyManager.i_yellowEnergy
+    /// - Josh
+    /// </summary>
+    /// <param name="_energyCoun"></param>
+    public void SetYellowEnergyInt(int _energyCount)
+    {
+        i_yellowEnergy = _energyCount;
+    }
+
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the int value of S_EnergyManager.i_redEnergy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnergyManager.i_redEnergy
+    /// </returns>
+    public int GetRedEnergyInt()
+    {
+        return i_redEnergy;
+    }
+
+    /// <summary>
+    /// Return the int value of S_EnergyManager.i_blueEnergy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnergyManager.i_blueEnergy
+    /// </returns>
+    public int GetBlueEnergyInt()
+    {
+        return i_blueEnergy;
+    }
+
+    /// <summary>
+    /// Return the int value of S_EnergyManager.i_yellowEnergy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnergyManager.i_yellowEnergy
+    /// </returns>
+    public int GetYellowEnergyInt()
+    {
+        return i_yellowEnergy;
     }
 }

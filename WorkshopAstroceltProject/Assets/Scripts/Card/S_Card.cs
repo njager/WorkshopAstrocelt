@@ -563,7 +563,7 @@ public class S_Card : MonoBehaviour
         }
 
         //call the altar to spawn the next card if you have energy
-        if (g_global.g_ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
+        //if (g_global.g_ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
     }
 
 
