@@ -80,7 +80,7 @@ public class S_Cardball : MonoBehaviour
         else if (transform.parent.tag == "CardballPosition3") { c_b_locatedInThirdPosition = true; }
         else if (transform.parent.tag == "CardballPosition4") { c_b_locatedInFourthPosition = true; }
         else if (transform.parent.tag == "CardballPosition5") { c_b_locatedInFifthPosition = true; }
-        else if (transform.parent.tag == "CardballSpawnPosition") { c_b_locatedInSpawn = true; Debug.Log("DEBUG: Still in spawn."); }
+        else if (transform.parent.tag == "CardballSpawnPosition") { c_b_locatedInSpawn = true; }
         else { Debug.Log("Cardball not spawned in Altar!"); }
 
         // Then set the graphics
@@ -134,12 +134,8 @@ public class S_Cardball : MonoBehaviour
     /// Cardball gets converted to card
     /// - Josh
     /// </summary>
-    public IEnumerator CardballToCard()
+    public void CardballToCard()
     {
-        c_b_pauseBool = false; 
-        StartCoroutine(WaitToHide());
-
-        yield return c_b_pauseBool == true;
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);
@@ -172,20 +168,16 @@ public class S_Cardball : MonoBehaviour
     /// -Thoman
     /// </summary>
     
-    public IEnumerator WaitToHide()
+    public IEnumerator EnergyTextDecrement()
     {
-        int refer = -1;
         int energy_constant = c_i_cardEnergyCost;
         for (int i = energy_constant; i >=0; i--)
         {
-            refer = i;
             c_cardballText.text = "" + i;
             yield return new WaitForSeconds(.5f);
         }
-        yield return refer == 0;
         c_b_pauseBool = true;
-        
-        // Fulfilled Function
+        yield return c_b_pauseBool == true;
     }
 
     /// <summary>

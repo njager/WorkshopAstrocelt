@@ -6,7 +6,7 @@ using TMPro;
 
 public class S_UIManager : MonoBehaviour
 {
-    private S_Global g_global;
+    protected S_Global g_global;
 
     // Anything under here is just to help flesh out the greybox
     [Header("Initial GreyBox UI")]
@@ -108,8 +108,10 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
-    [Header("Energy Text")]
-    public TextMeshProUGUI en_tx_enemytext;
+    [Header("Energy UI Text Elements")] // Keep en_?
+    public TextMeshProUGUI en_tx_redEnergyTrackerText;
+    public TextMeshProUGUI en_tx_blueEnergyTrackerText;
+    public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
 
     void Awake()
     {
@@ -129,7 +131,6 @@ public class S_UIManager : MonoBehaviour
     {
         SetElements();
         ShieldingUI();//Temporary
-        energyUI();
     }
 
     /// <summary>
@@ -733,10 +734,41 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
+    // Getters \\ 
 
-
-    public void energyUI()
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_redText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_redEnergyTrackerText;
+    /// </returns>
+    public TextMeshProUGUI GetRedEnergyTrackerText()
     {
-        en_tx_enemytext.text = "Red Energy: " + g_global.g_energyManager.i_redEnergy + '\n' + "Blue Energy: " + g_global.g_energyManager.i_blueEnergy + '\n' + "Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy;
+        return en_tx_redEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_blueText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_blueEnergyTrackerText;
+    /// </returns>
+    public TextMeshProUGUI GetBlueEnergyTrackerText()
+    {
+        return en_tx_blueEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_yellowText;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_yellowEnergyTrackerText;
+    /// </returns>
+    public TextMeshProUGUI GetYellowEnergyTrackerText()
+    {
+        return en_tx_yellowEnergyTrackerText;
     }
 }

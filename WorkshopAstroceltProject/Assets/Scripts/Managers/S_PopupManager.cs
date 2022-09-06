@@ -33,8 +33,13 @@ public class S_PopupManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject popUpCanvas;
 
-    [Header("Altar Position")]
-    public GameObject altarTargetPosition;
+    [Header("Altar Popup Target Positions")]
+    public GameObject redEnergyUITargetPosition;
+    public GameObject blueEnergyUITargetPosition;
+    public GameObject yellowEnergyUITargetPosition;
+
+    [Header("Popup Visual Decrement Bool")]
+    public bool b_visualPopupFinished;
 
     //get the transform component of the text
     private void Awake()
@@ -164,11 +169,11 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
+        yield return new S_WaitForConstellationFinish();
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
-            _starPopup.MoveToAltar();
+            _starPopup.MovePopupToEnergyTracker();
         }
-        yield return b_popupMove == true;
     }
 
     /// <summary>
@@ -184,5 +189,88 @@ public class S_PopupManager : MonoBehaviour
         }
         b_popupClear = true; 
         yield return b_popupClear == true; 
+    }
+
+    // Setters \\ 
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.redEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetRedPopupTargetPosition(Vector3 _newPosition) 
+    {
+        redEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.blueEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetBluePopupTargetPosition(Vector3 _newPosition)
+    {
+        blueEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.yellowEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetYellowPopupTargetPosition(Vector3 _newPosition)
+    {
+        yellowEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.redEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.redEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetRedPopupTargetPosition()
+    {
+        return redEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.blueEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.blueEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetBluePopupTargetPosition()
+    {
+        return blueEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.yellowEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.yellowEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetYellowPopupTargetPosition()
+    {
+        return yellowEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the bool value of S_PopupManager.b_visualPopupFinished;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.b_visualPopupFinished
+    /// </returns>
+    public bool GetPopupVisualDecrementBool()
+    {
+        return b_visualPopupFinished;
     }
 }

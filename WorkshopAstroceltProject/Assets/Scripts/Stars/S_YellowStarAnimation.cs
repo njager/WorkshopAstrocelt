@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class S_YellowStarAnimation : MonoBehaviour
 {
-    //Get the redgraphic animator
-    public GameObject g_yellowGraphic;
+    //Get the yellow graphic animator
+    public GameObject a_yellowGraphic;
 
-    public Animator an_animator;
+    public Animator an_yellowStarAnimator;
 
     [Header("percent chance that the Animation plays")]
     public double i_chance = 0.0000002;
@@ -17,8 +17,6 @@ public class S_YellowStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        an_animator = g_yellowGraphic.GetComponent<Animator>();
-
         StartCoroutine(PlayYellowAnimation());
     }
 
@@ -33,11 +31,11 @@ public class S_YellowStarAnimation : MonoBehaviour
 
         if (_percent < i_chance)
         {
-            print("Yellow");
+            //print("Yellow");
             //Reset the "Crouch" trigger
             //a_animator.ResetTrigger("YellowAnim");
 
-            an_animator.Play("YellowAnim");
+            an_yellowStarAnimator.Play("YellowAnim");
         }
         StartCoroutine(PlayYellowAnimation());
     }

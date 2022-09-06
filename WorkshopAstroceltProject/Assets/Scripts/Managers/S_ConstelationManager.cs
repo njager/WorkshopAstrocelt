@@ -342,7 +342,7 @@ public class S_ConstelationManager : MonoBehaviour
             g_global.g_energyManager.TransferStoredEnergy();
 
             //print out the energy at the end for debuggin purposes
-            Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
+            Debug.Log("Red Energy: " + g_global.g_energyManager.GetRedEnergyInt() + "  Yellow Energy: " + g_global.g_energyManager.GetYellowEnergyInt() + "  Blue Energy: " + g_global.g_energyManager.GetRedEnergyInt());
 
             //call the altar
             StartCoroutine(g_global.g_altar.CheckFirstCardball());
@@ -366,5 +366,20 @@ public class S_ConstelationManager : MonoBehaviour
     {
         s_previousStar = _star;
         v2_prevLoc = _loc;
+    }
+
+    // Setters \\ 
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Get the bool state of S_ConstelationManager.b_starLockout
+    /// </summary>
+    /// <returns>
+    /// S_ConstelationManager.b_starLockout
+    /// </returns>
+    public bool GetStarLockOutBool() 
+    {
+        return b_starLockout;
     }
 }

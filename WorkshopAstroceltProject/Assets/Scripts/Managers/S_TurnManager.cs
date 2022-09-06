@@ -55,10 +55,10 @@ public class S_TurnManager : MonoBehaviour
     public void EndTurn()
     {
         //Debug.Log("pressed");
-        if (g_global.g_altar.b_spawningCardballs == false)
+        if (g_global.g_altar.Get_b_spawningCardballs() == false)
         {
             //set here to prevent queueing up end turns
-            g_global.g_altar.b_spawningCardballs = true;
+            g_global.g_altar.Set_b_spawningCardballs(true);
 
             if (g_global.g_b_enemyTurn == true)
             {
@@ -156,13 +156,14 @@ public class S_TurnManager : MonoBehaviour
         foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
         {
             e_b_enemyIsActive = false;
+            
             StartCoroutine(_enemy.EnemyTurnAction(_enemy.e_i_enemyCount));
 
             yield return e_b_enemyIsActive = true;
-            Debug.Log("Triggered for enemy " + _enemy.e_i_enemyCount + " - log!");
+            //Debug.Log("Triggered for enemy " + _enemy.e_i_enemyCount + " - log!");
         }
 
-        Debug.Log("Made it past the event stack");
+        //Debug.Log("Made it past the event stack");
 
         // Enemy Phase End
         EnemyPhaseEnd();
@@ -219,7 +220,7 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
-        Debug.Log("Triggerd");
+        //Debug.Log("Triggerd");
         //clear the card balls and deal a new hand
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs(true));
 
@@ -235,5 +236,19 @@ public class S_TurnManager : MonoBehaviour
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
+    }
+
+    // Getters \\
+
+    /// <summary>
+    /// Return the bool value of S_TurnManager.e_b_enemyIsActive;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_TurnManager.e_b_enemyIsActive
+    /// </returns>
+    public bool GetEnemyActiveBool()
+    {
+        return e_b_enemyIsActive;
     }
 }

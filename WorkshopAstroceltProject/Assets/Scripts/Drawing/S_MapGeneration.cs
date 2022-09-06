@@ -79,42 +79,42 @@ public class S_MapGeneration : MonoBehaviour
         {
             if (_mapNumChosen == 1) // Map 1
             {
-                Debug.Log("Map 1 Chosen");
+                //Debug.Log("Map 1 Chosen");
                 Map1();
             }
             else if (_mapNumChosen == 2) // Map 2
             {
-                Debug.Log("Map 3 Chosen");
+                //Debug.Log("Map 3 Chosen");
                 Map2();
             }
             else if (_mapNumChosen == 3) // Map 3
             {
-                Debug.Log("Map 4 Chosen");
+                //Debug.Log("Map 4 Chosen");
                 Map3();
             }
             else if (_mapNumChosen == 4) // Map 4
             {
-                Debug.Log("Map 5 Chosen");
+                //Debug.Log("Map 5 Chosen");
                 Map4();
             }
             else if (_mapNumChosen == 5) // Map 5
             {
-                Debug.Log("Map 6 Chosen");
+                //Debug.Log("Map 6 Chosen");
                 Map5();
             }
             else if (_mapNumChosen == 6) // Map 6
             {
-                Debug.Log("Map 7 Chosen");
+                //Debug.Log("Map 7 Chosen");
                 Map6();
             }
             else if (_mapNumChosen == 7) // Map 7
             {
-                Debug.Log("Map 1 Chosen");
+                //Debug.Log("Map 1 Chosen");
                 Map7();
             }
             else if (_mapNumChosen == 8) // Map 8
             {
-                Debug.Log("Map 1 Chosen");
+                //Debug.Log("Map 1 Chosen");
                 Map8();
             }
         }

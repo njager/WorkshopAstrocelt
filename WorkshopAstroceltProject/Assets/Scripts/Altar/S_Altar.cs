@@ -40,7 +40,7 @@ public class S_Altar : MonoBehaviour
     public float f_cardballMoveSpeed;
 
     [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = true; //Used to not let the player press end turn before cardballs begin spawning
+    public bool b_spawningCardballs = true; 
 
     private void Awake()
     {
@@ -129,7 +129,7 @@ public class S_Altar : MonoBehaviour
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
-        b_spawningCardballs = false;
+        Set_b_spawningCardballs(false);
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
-        Debug.Log(" Debug - Triggered 2");
+        //Debug.Log(" Debug - Triggered 2");
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             //wait and then remove the cardball from the list and delete it from the game
@@ -191,14 +191,13 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator CheckFirstCardball()
     {
-        //check if the card can be played by referencing the useEnergy function
-        if(g_global.g_energyManager.useEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+        yield return new S_WaitForEnergyTextDecrement();
+        if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             //turn the cardball into a card and move over the rest of the cardballs
-            StartCoroutine(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard());
+            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
-        yield return null;
     }
 
     /// <summary>
@@ -249,7 +248,7 @@ public class S_Altar : MonoBehaviour
             cardballSpawnPosition.transform.GetChild(0).DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
             cardballSpawnPosition.transform.GetChild(0).SetParent(cardballPosition5.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/cardball-move");
-            Debug.Log("Cardballs moving from 5 to 4");
+            //Debug.Log("Cardballs moving from 5 to 4");
         }
         else
         {
@@ -270,5 +269,78 @@ public class S_Altar : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(_cardball);
         MoveCardballPrefabs();
+    }
+
+
+    // Getters & Setters \\ 
+
+    public void Set_b_spawningCardballs(bool _spawining)
+    {
+        b_spawningCardballs = _spawining;
+    }
+
+    public bool Get_b_spawningCardballs()
+    {
+        return b_spawningCardballs;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition1
+    /// </returns>
+    public GameObject GetChildOfFirstAltarPosition() 
+    {
+        return cardballPosition1.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition2
+    /// </returns>
+    public GameObject GetChildOfSecondAltarPosition()
+    {
+        return cardballPosition2.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition3
+    /// </returns>
+    public GameObject GetChildOfThirdAltarPosition()
+    {
+        return cardballPosition1.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition4
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition4
+    /// </returns>
+    public GameObject GetChildOfFourthAltarPosition()
+    {
+        return cardballPosition4.transform.GetChild(0).gameObject;
+    }
+
+    /// <summary>
+    /// Return the child object of S_Altar.cardballPosition5
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cardballPosition5
+    /// </returns>
+    public GameObject GetChildOfFifthAltarPosition()
+    {
+        return cardballPosition5.transform.GetChild(0).gameObject;
     }
 }
