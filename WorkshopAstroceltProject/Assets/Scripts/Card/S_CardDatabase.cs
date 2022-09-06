@@ -49,24 +49,10 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(7, cardScript7);
         dict_CardDatabase.Add(8, cardScript8);
         dict_CardDatabase.Add(9, cardScript9);
-
-        // Add the intitial deck to player deck
-        for (int i = 0; i < 10; i++)
-        {
-            g_global.g_ls_p_playerDeck.Add(i);
-        }
-
-        // If player beat the first encounter add reward cards to deck
-        if (encounter2 == true) 
-        {
-            AddBattle1RewardCards();
-        }
-
-        // If player beat the second encounter also add reward cards to deck
-        if (encounter3 == true) 
-        {
-            AddBattle2RewardCards();
-        }
+        dict_CardDatabase.Add(10, battleRewardCard1); // Add Fury
+        dict_CardDatabase.Add(11, battleRewardCard2); // Add Thornshield
+        dict_CardDatabase.Add(12, battleRewardCard1); // Add Freeze
+        dict_CardDatabase.Add(13, battleRewardCard2); // Add Reflect
     }
 
     /// <summary>
@@ -87,8 +73,6 @@ public class S_CardDatabase : MonoBehaviour
     /// </summary>
     public void AddBattle1RewardCards()
     {
-        dict_CardDatabase.Add(10, battleRewardCard1); // Add Fury
-        dict_CardDatabase.Add(11, battleRewardCard2); // Add Thornshield
 
         // Add them to deck
         g_global.g_ls_p_playerDeck.Add(10);
@@ -102,8 +86,6 @@ public class S_CardDatabase : MonoBehaviour
     /// </summary>
     public void AddBattle2RewardCards()
     {
-        dict_CardDatabase.Add(12, battleRewardCard1); // Add Freeze
-        dict_CardDatabase.Add(13, battleRewardCard2); // Add Reflect
 
         // Add them to deck
         g_global.g_ls_p_playerDeck.Add(12);
