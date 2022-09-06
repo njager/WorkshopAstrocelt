@@ -13,6 +13,9 @@ public class S_Global : MonoBehaviour
     [Header("Static instance for Singleton usage of S_Global")]
     public static S_Global Instance;
 
+    [Header("GameManager")]
+    public S_GameManager g_gameManager;
+
     [Header("Script References")]
     public S_TurnManager g_turnManager;
     public S_Player g_player;
@@ -94,9 +97,6 @@ public class S_Global : MonoBehaviour
         {
             Instance = this;
         }
-
-        //May be needed for gamemanager later
-        g_i_sceneIndex = 0;
     }
 
     void Start()
@@ -108,6 +108,13 @@ public class S_Global : MonoBehaviour
 
         //start the combat music loop
         g_a_audioPlayer.SetActive(true);
+
+        //GameManager variable changing
+        g_gameManager = S_GameManager.Instance;
+        foreach (int card in g_gameManager.gm_ls_p_playerDeck)
+        {
+            g_ls_p_playerDeck.Add(card);
+        }
     }
 
     /// <summary>

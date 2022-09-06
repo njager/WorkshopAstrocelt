@@ -1038,6 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d2fbe7dca504d41bda1349f81155a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_gameManager: {fileID: 0}
   g_turnManager: {fileID: 8047176380236070991}
   g_player: {fileID: 0}
   g_mapManager: {fileID: 8047176381412509012}
@@ -1057,7 +1058,7 @@ MonoBehaviour:
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 0}
-  g_i_sceneIndex: 0
+  g_i_sceneIndex: 1
   g_playerAttributeSheet: {fileID: 0}
   g_playerState: {fileID: 8047176380236070990}
   g_enemyState: {fileID: 8047176380236070989}
@@ -1256,6 +1257,7 @@ MonoBehaviour:
   redEnergyUITargetPosition: {fileID: 0}
   blueEnergyUITargetPosition: {fileID: 0}
   yellowEnergyUITargetPosition: {fileID: 0}
+  b_visualPopupFinished: 0
 --- !u!1 &8047176381412509010
 GameObject:
   m_ObjectHideFlags: 0
