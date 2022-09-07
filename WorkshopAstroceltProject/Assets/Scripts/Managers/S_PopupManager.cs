@@ -174,6 +174,7 @@ public class S_PopupManager : MonoBehaviour
         {
             _starPopup.MovePopupToEnergyTracker();
         }
+        StartCoroutine(ClearPopupsForRound());
     }
 
     /// <summary>
@@ -190,6 +191,23 @@ public class S_PopupManager : MonoBehaviour
         b_popupClear = true; 
         yield return b_popupClear == true; 
     }
+
+    /// <summary>
+    /// Remove all popups currently spawned from the scene
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ClearPopupsForRound()
+    {
+        b_popupClear = false;
+        foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
+        {
+            _starPop.ClearPopup();
+        }
+        b_popupClear = true;
+        yield return b_popupClear == true;
+    }
+
 
     // Setters \\ 
 
