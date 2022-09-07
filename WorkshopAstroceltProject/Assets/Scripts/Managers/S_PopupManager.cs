@@ -41,6 +41,10 @@ public class S_PopupManager : MonoBehaviour
     [Header("Popup Visual Decrement Bool")]
     public bool b_visualPopupFinished;
 
+    [Header("Int test value")]
+
+    public int i_popupUpClearInt;
+
     //get the transform component of the text
     private void Awake()
     {
@@ -170,10 +174,13 @@ public class S_PopupManager : MonoBehaviour
     public IEnumerator TriggerPopupMove()
     {
         yield return new S_WaitForConstellationFinish();
+        b_visualPopupFinished = true;
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
             _starPopup.MovePopupToEnergyTracker();
         }
+        b_popupClear = false;
+        i_popupUpClearInt = g_global.g_ls_starPopup.Count;
         StartCoroutine(ClearPopupsForRound());
     }
 
@@ -188,6 +195,7 @@ public class S_PopupManager : MonoBehaviour
         {
             _starPop.DeletePopup();
         }
+
         b_popupClear = true; 
         yield return b_popupClear == true; 
     }
@@ -199,12 +207,16 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearPopupsForRound()
     {
-        b_popupClear = false;
         foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             _starPop.ClearPopup();
         }
-        b_popupClear = true;
+
+        if (i_popupUpClearInt == 0)
+        {
+            b_popupClear = true;
+        }
+        
         yield return b_popupClear == true;
     }
 

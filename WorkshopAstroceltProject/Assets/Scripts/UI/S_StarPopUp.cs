@@ -191,9 +191,22 @@ public class S_StarPopUp : MonoBehaviour
     /// <summary>
     /// Triggers the Coroutine that removes the popups
     /// </summary>
-    public void ClearPopup()
+    public IEnumerator ClearPopup()
     {
         StartCoroutine(DeletionTimer());
+
+        CounterDecrement();
+        
+        yield return b_deletionTimerFlag == true;
+    }
+
+    /// <summary>
+    /// Decrement the list count tracker
+    /// - Josh
+    /// </summary>
+    public void CounterDecrement()
+    {
+        g_global.g_popupManager.i_popupUpClearInt -= 1;
     }
 
     /// <summary>
@@ -212,7 +225,6 @@ public class S_StarPopUp : MonoBehaviour
     /// <returns></returns>
     private IEnumerator DeletionTimer()
     {
-        yield return b_deletionTimerFlag == true;
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
         g_global.g_ls_starPopup.Remove(this);
@@ -226,6 +238,7 @@ public class S_StarPopUp : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        yield return b_deletionTimerFlag == true;
     }
 
     // Setters \\
