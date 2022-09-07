@@ -7731,17 +7731,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 447426110}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &453143673 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 33449495328791505, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
-  m_PrefabInstance: {fileID: 1276164755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275e7e6bf7d1db545ad6e850806e50f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &457155867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24755,6 +24744,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791505, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: i_playerHealth
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -39865,7 +39858,7 @@ PrefabInstance:
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_gameManager
       value: 
-      objectReference: {fileID: 453143673}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_a_audioPlayer
       value: 
