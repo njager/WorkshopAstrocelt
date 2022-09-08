@@ -154,5 +154,10 @@ public class S_Global : MonoBehaviour
                 g_UIManager.debugTurnbar.SetActive(false);
             }
         }
+        if (Input.GetMouseButtonDown(2))
+        {
+            Debug.Log("we made it here");
+            g_ConstellationManager.DeleteWholeCurConstellation();
+        }
     }
 }

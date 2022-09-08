@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class EventEncounter 
 {
+    public string s_eventName;
+
     public string s_eventSummary;
+
+
 
 
 }
