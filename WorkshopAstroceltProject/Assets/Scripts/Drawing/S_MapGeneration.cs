@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class S_MapGeneration : MonoBehaviour
 {
+    /// <summary>
+    /// Temporary map script eventually this will be deleted
+    /// - Josh
+    /// </summary>
+
     //Private variables
     private S_Global global;
 
