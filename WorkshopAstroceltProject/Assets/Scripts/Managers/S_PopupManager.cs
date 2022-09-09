@@ -209,7 +209,8 @@ public class S_PopupManager : MonoBehaviour
     {
         foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
-            _starPop.ClearPopup();
+            StartCoroutine(_starPop.DeletionTimer());
+            yield return new WaitForSeconds(1);
         }
 
         if (i_popupUpClearInt == 0)
