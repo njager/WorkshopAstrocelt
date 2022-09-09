@@ -16,7 +16,7 @@ MonoBehaviour:
   HeaderText: Pierce
   BodyText: Deal 6 damage
   FlavorText: 
-  ColorString: 
+  ColorString: white
   EnergyCost: 3
   DamageValue: 6
   ShieldValue: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   CardRarity: 0
   AffectsNone: 0
   AffectsPlayer: 0
-  Affects1Character: 0
+  Affects1Character: 1
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
   PlayerEffect: 0
@@ -40,11 +40,11 @@ MonoBehaviour:
   RedColorType: 0
   BlueColorType: 0
   YellowColorType: 0
-  WhiteColorType: 0
-  AttackEffect: 0
+  WhiteColorType: 1
+  AttackEffect: 1
   ShieldEffect: 0
   UniqueEffect: 0
-  NoEffect: 0
+  NoEffect: 1
   BleedStatusEffect: 0
   AcidStatusEffect: 0
   BurnStatusEffect: 0
@@ -57,6 +57,6 @@ MonoBehaviour:
   ThornStatusEffect: 0
   CardArtAsset: {fileID: 0}
   PhysicalOrMagicalBoolForShield: 0
-  PhysicalOrMagicalBoolForAttack: 0
-  CardDatabaseID: 0
+  PhysicalOrMagicalBoolForAttack: 1
+  CardDatabaseID: 22
   ExtraInfo: 

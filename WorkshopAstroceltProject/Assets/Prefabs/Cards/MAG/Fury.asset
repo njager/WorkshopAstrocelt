@@ -14,23 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Fury
   HeaderText: Fury
-  BodyText: Deals 10 Damage. Causes Bleeding.
+  BodyText: Deals 14 Damage. Causes Bleeding.
   FlavorText: 
   ColorString: red
-  EnergyCost: 7
-  DamageValue: 10
+  EnergyCost: 9
+  DamageValue: 14
   ShieldValue: 0
-  EffectValue1: 1
+  EffectValue1: 2
   EffectValue2: 0
   EffectValue3: 0
-  BleedEffectValue: 0
   TurnCountForStatusEffect1: 3
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
   IDForStatusEffectOne: 1
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
-  CardRarity: 2
+  CardRarity: 3
   AffectsNone: 0
   AffectsPlayer: 0
   Affects1Character: 1
@@ -57,5 +56,7 @@ MonoBehaviour:
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
   CardArtAsset: {fileID: 21300000, guid: 3bcffebd751c7f64baf8c6158425149a, type: 3}
+  PhysicalOrMagicalBoolForShield: 0
+  PhysicalOrMagicalBoolForAttack: 1
   CardDatabaseID: 10
   ExtraInfo: 
