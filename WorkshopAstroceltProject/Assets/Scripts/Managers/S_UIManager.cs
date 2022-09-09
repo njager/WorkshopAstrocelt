@@ -9,8 +9,6 @@ public class S_UIManager : MonoBehaviour
     protected S_Global g_global;
 
     // Anything under here is just to help flesh out the greybox
-    [Header("Initial GreyBox UI")]
-    public TextMeshProUGUI p_tx_energyText;
     
     [Header("Player UI")]
     public TextMeshProUGUI p_tx_playerHealthText;
