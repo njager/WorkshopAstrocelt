@@ -233,12 +233,16 @@ public class S_PlayerState : MonoBehaviour
         g_global.g_UIManager.resetCanvas.SetActive(true);
         g_global.g_UIManager.winText.SetActive(true);
 
+        g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.p_i_health;
+        Debug.Log("Did this hit?");
+        Debug.Log(g_global.g_gameManager.i_playerHealth);
+
         //Play win sound
         PlaySoundWin();
         //playerWinMusic.SetActive(false);
 
         //go to the new scene
-        g_global.g_sceneManager.RewardScene();
+        g_global.g_sceneManager.ChangeScene();
 
         // Pause The game
         //Time.timeScale = 0f;

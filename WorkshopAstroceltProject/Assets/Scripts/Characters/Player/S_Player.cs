@@ -16,9 +16,12 @@ public class S_Player : MonoBehaviour
     {
         g_global = S_Global.Instance;
 
-        p_playerAttributes = g_global.g_playerAttributeSheet;
-
         a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Shield/Vanilla");
+    }
+
+    private void Start()
+    {
+        p_playerAttributes = g_global.g_playerAttributeSheet;
     }
 
 

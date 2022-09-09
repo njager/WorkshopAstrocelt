@@ -1674,7 +1674,7 @@ Transform:
   - {fileID: 1801794520}
   - {fileID: 809883115}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &105398796
 PrefabInstance:
@@ -24733,6 +24733,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1273179032}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1276164755
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 33449495328791504, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791505, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: i_playerHealth
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.64929193
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1183922
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.3773656
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33449495328791510, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
 --- !u!1 &1282492985
 GameObject:
   m_ObjectHideFlags: 0
@@ -25993,6 +26054,10 @@ PrefabInstance:
       propertyPath: cardBallPrefab
       value: 
       objectReference: {fileID: 2097397753}
+    - target: {fileID: 6609352460424729492, guid: fb6fb0009e05907499fae36cabc61593, type: 3}
+      propertyPath: b_spawningCardballs
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb6fb0009e05907499fae36cabc61593, type: 3}
 --- !u!224 &1341845264 stripped
@@ -39514,6 +39579,10 @@ PrefabInstance:
       propertyPath: s_nullStarInst
       value: 
       objectReference: {fileID: 826952977}
+    - target: {fileID: 8047176379975663402, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: i_rewardSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379985341372, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Name
       value: AltarTargetPosition1
@@ -39786,6 +39855,10 @@ PrefabInstance:
       propertyPath: g_nullStar
       value: 
       objectReference: {fileID: 826952977}
+    - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: g_gameManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_a_audioPlayer
       value: 
