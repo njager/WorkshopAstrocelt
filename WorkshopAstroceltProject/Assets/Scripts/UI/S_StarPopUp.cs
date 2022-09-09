@@ -195,7 +195,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         StartCoroutine(DeletionTimer());
 
-        CounterDecrement();
+        //CounterDecrement();
         
         yield return b_deletionTimerFlag == true;
     }
