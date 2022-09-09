@@ -196,8 +196,8 @@ public class S_StarPopUp : MonoBehaviour
         StartCoroutine(DeletionTimer());
 
         //CounterDecrement();
-        
-        yield return b_deletionTimerFlag == true;
+
+        yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
 
     /// <summary>
