@@ -39,8 +39,8 @@ public class S_Altar : MonoBehaviour
     [Header("DOTween Attributes")]
     public float f_cardballMoveSpeed;
 
-    [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = true; 
+    [Header("Spawning Cardballs Bool")]
+    public bool b_cardballsSpawned;
 
     private void Awake()
     {
@@ -274,14 +274,26 @@ public class S_Altar : MonoBehaviour
 
     // Getters & Setters \\ 
 
-    public void Set_b_spawningCardballs(bool _spawining)
+    /// <summary>
+    /// Set the bool value of S_Altar.b_cardballsSpawned;
+    /// - Josh 
+    /// </summary>
+    /// <param name="_spawning"></param>
+    public void SetCardballsSpawnedBool(bool _spawning)
     {
-        b_spawningCardballs = _spawining;
+        b_cardballsSpawned = _spawning;
     }
 
-    public bool Get_b_spawningCardballs()
+    /// <summary>
+    /// Return the bool value of S_Altar.b_cardballsSpawned;
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Altar.b_cardballsSpawned
+    /// </returns>
+    public bool GetCardballsSpawnedBool()
     {
-        return b_spawningCardballs;
+        return b_cardballsSpawned;
     }
 
     /// <summary>
