@@ -129,7 +129,9 @@ public class S_Altar : MonoBehaviour
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
-        Set_b_spawningCardballs(false);
+        // Wait for move cardballs, and then unlock drawing
+        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
+        SetCardballsSpawnedBool(false);
     }
 
     /// <summary>

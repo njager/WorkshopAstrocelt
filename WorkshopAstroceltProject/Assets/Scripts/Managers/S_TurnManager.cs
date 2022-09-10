@@ -55,10 +55,10 @@ public class S_TurnManager : MonoBehaviour
     public void EndTurn()
     {
         //Debug.Log("pressed");
-        if (g_global.g_altar.Get_b_spawningCardballs() == false)
+        if (g_global.g_altar.GetCardballsSpawnedBool() == false)
         {
             //set here to prevent queueing up end turns
-            g_global.g_altar.Set_b_spawningCardballs(true);
+            //g_global.g_altar.Set_b_spawningCardballs(true);
 
             if (g_global.g_b_enemyTurn == true)
             {
