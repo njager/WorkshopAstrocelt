@@ -75,4 +75,41 @@ public class S_CardHolderManager : MonoBehaviour
     {
         return c_i_positionToSpawnAtNextIndex;
     }
+
+    /// <summary>
+    /// Return the transform of a given card position's index/int
+    /// - Josh
+    /// </summary>
+    /// <param name="_givenCardPositionNum"></param>
+    /// <returns>
+    /// S_CardHolderManager.c_cardPosition1.transform || S_CardHolderManager.c_cardPosition2.transform || S_CardHolderManager.c_cardPosition3.transform || S_CardHolderManager.c_cardPosition4.transform || S_CardHolderManager.c_cardPosition5.transform
+    /// </returns>
+    public Transform GetCardPositionTransform(int _givenCardPositionNum) 
+    {
+        if(_givenCardPositionNum == 1) // If given an int of 1, return c_cardPosition1.transform;
+        {
+            return c_cardPosition1.transform;
+        }
+        else if (_givenCardPositionNum == 2) // If given an int of 2, return c_cardPosition2.transform;
+        {
+            return c_cardPosition2.transform;
+        }
+        else if (_givenCardPositionNum == 3) // If given an int of 3, return c_cardPosition3.transform;
+        {
+            return c_cardPosition3.transform;
+        }
+        else if (_givenCardPositionNum == 4) // If given an int of 4, return c_cardPosition4.transform;
+        {
+            return c_cardPosition4.transform;
+        }
+        else if (_givenCardPositionNum == 5) // If given an int of 5, return c_cardPosition5.transform;
+        {
+            return c_cardPosition5.transform;
+        }
+        else
+        {
+            Debug.Log("UNEXPECTED RETURN IN S_CARDHOLDER!");
+            return null;
+        }
+    }
 }
