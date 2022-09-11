@@ -357,7 +357,7 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_UIManager.ToggleBleedEnemyUI(true, 3);
                 e_i_bleedingTurnCountEnemy3 = _turnCount;
                 e_f_currentDamageRateForBleedEnemy3 = _damageRate;
-                e_b_inBleedingStateEnemy1 = true;
+                e_b_inBleedingStateEnemy3 = true;
             }
             else
             {
@@ -429,7 +429,7 @@ public class S_EnemyState : MonoBehaviour
             if (e_b_inStunnedStateEnemy2 == false)
             {
                 g_global.g_turnManager.e_b_enemy2TurnSkipped = true;
-                e_i_enemy1StunTurnsPassed += 1;
+                e_i_enemy2StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 2);
                 e_i_stunnedTurnCountEnemy2 = _turnCount;
                 e_b_inStunnedStateEnemy2 = true;
@@ -446,7 +446,7 @@ public class S_EnemyState : MonoBehaviour
             if (e_b_inStunnedStateEnemy3 == false)
             {
                 g_global.g_turnManager.e_b_enemy3TurnSkipped = true;
-                e_i_enemy1StunTurnsPassed += 1;
+                e_i_enemy3StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 3);
                 e_i_stunnedTurnCountEnemy3 = _turnCount;
                 e_b_inStunnedStateEnemy3 = true;
@@ -463,7 +463,7 @@ public class S_EnemyState : MonoBehaviour
             if (e_b_inStunnedStateEnemy4 == false)
             {
                 g_global.g_turnManager.e_b_enemy4TurnSkipped = true;
-                e_i_enemy1StunTurnsPassed += 1;
+                e_i_enemy4StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 4);
                 e_i_stunnedTurnCountEnemy4 = _turnCount;
                 e_b_inStunnedStateEnemy4 = true;
@@ -480,7 +480,7 @@ public class S_EnemyState : MonoBehaviour
             if (e_b_inStunnedStateEnemy5 == false)
             {
                 g_global.g_turnManager.e_b_enemy5TurnSkipped = true;
-                e_i_enemy1StunTurnsPassed += 1;
+                e_i_enemy5StunTurnsPassed += 1;
                 g_global.g_UIManager.ToggleStunEnemyUI(true, 5);
                 e_i_stunnedTurnCountEnemy5 = _turnCount;
                 e_b_inStunnedStateEnemy5 = true;
@@ -1030,7 +1030,7 @@ public class S_EnemyState : MonoBehaviour
         }
         else
         {
-            g_global.g_enemyState.e_b_enemy3IsActive = false;
+            g_global.g_enemyState.e_b_enemy2IsActive = false;
         }
 
         // Check Enemy 3
@@ -1283,7 +1283,7 @@ public class S_EnemyState : MonoBehaviour
         }
         else if (_enemyNum == 5)
         {
-            return g_global.g_enemyAttributeSheet2;
+            return g_global.g_enemyAttributeSheet5;
         }
         else
         {
