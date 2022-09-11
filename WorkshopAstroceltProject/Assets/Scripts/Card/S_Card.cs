@@ -112,7 +112,7 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Scaler References")]
     public GameObject cv_canvas;
-    private GameObject c_zoomCard;
+    //private GameObject c_zoomCard;
 
     [Header("Card Background Art Assets")]
     public Sprite c_a_redBackground;
@@ -136,6 +136,9 @@ public class S_Card : MonoBehaviour
     public int c_i_cardPositionIndex;
     public Canvas c_cardCanvasComponent;
     public Vector3 c_v3_initialCardPosition;
+
+    [Header("CardDrag Bool")]
+    public bool c_b_cardIsDragged; 
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -629,7 +632,14 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void OnHoverEnter()
     {
-        c_cardCanvasComponent.sortingOrder = 6;
+        if (c_b_cardIsDragged == false) 
+        {
+            c_cardCanvasComponent.sortingOrder = 6;
+        }
+        else
+        {
+            return;
+        }
     }
 
     /// <summary>
@@ -638,7 +648,14 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void OnHoverExit() 
     {
-        c_cardCanvasComponent.sortingOrder = c_i_cardPositionIndex;
+        if (c_b_cardIsDragged == false)
+        {
+            c_cardCanvasComponent.sortingOrder = c_i_cardPositionIndex;
+        }
+        else
+        {
+            return;
+        }
     }
 
     // Setters \\ 

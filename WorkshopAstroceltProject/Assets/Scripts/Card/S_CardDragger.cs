@@ -28,7 +28,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="_eventData"></param>
     public void OnBeginDrag(PointerEventData _eventData)
     {
-
+        c_card.c_b_cardIsDragged = true;
     }
 
     /// <summary>
@@ -38,6 +38,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="_eventData"></param>
     public void OnDrag(PointerEventData _eventData)
     {
+        c_card.c_cardCanvasComponent.sortingOrder = 0;
         if (transformCounter == 0)
         {
             c_v3_initialPosition = GetComponent<Transform>().position;
@@ -53,7 +54,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="_eventData"></param>
     public void OnEndDrag(PointerEventData _eventData)
     {
-        Debug.Log(c_card.c_str_cardName + " : This card ended drag and now is in reset position");
+        //Debug.Log(c_card.c_str_cardName + " : This card ended drag and now is in reset position");
         //reset the card if it didnt trigger the CharacterCardInterface
         //_eventData.pointerDrag.GetComponent<S_Card>().ResetPosition();
 
@@ -62,11 +63,11 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             g_global.g_c_b_firstCard = false;
             FMODUnity.StudioEventEmitter _gameMusic = g_global.g_a_audioPlayer.GetComponent<FMODUnity.StudioEventEmitter>();
-            _gameMusic.SetParameter("Music_Combat_01", 1);
+            //_gameMusic.SetParameter("Music_Combat_01", 1);
         }
 
         //reset position
-        c_card.ResetPosition();
+        //c_card.ResetPosition();
 
     }
 }
