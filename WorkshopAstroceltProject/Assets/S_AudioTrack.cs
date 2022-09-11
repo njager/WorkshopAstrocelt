@@ -12,9 +12,11 @@ public class S_AudioTrack : MonoBehaviour
     [Header("Time Interval")]
     [SerializeField] public float f_intensityBreakpoint;
 
-    private float f_timeInScene = 0;
+    public float f_timeInScene = 0;
 
-    private int i_intensity = 0;
+    public int i_intensity = 0;
+
+    private bool b_changed = false;
 
     public GameObject _sceneAudio;
 
@@ -38,9 +40,11 @@ public class S_AudioTrack : MonoBehaviour
     {
         f_timeInScene += Time.deltaTime;
 
-        if(f_timeInScene >= f_intensityBreakpoint && b_eventScene)
+        if(f_timeInScene >= f_intensityBreakpoint && b_eventScene && (!b_changed))
         {
             i_intensity = 1;
+
+            b_changed = true;
         }
     }
 }
