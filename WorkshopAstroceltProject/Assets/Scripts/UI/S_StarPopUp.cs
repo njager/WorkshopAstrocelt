@@ -191,13 +191,13 @@ public class S_StarPopUp : MonoBehaviour
     /// <summary>
     /// Triggers the Coroutine that removes the popups
     /// </summary>
-    public IEnumerator ClearPopup()
+    public void ClearPopup()
     {
         StartCoroutine(DeletionTimer());
 
         CounterDecrement();
-        
-        yield return b_deletionTimerFlag == true;
+
+        //yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
 
     /// <summary>
@@ -223,22 +223,26 @@ public class S_StarPopUp : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DeletionTimer()
+    public IEnumerator DeletionTimer()
     {
+        //Debug.Log("deletion timer called");
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
         g_global.g_ls_starPopup.Remove(this);
         if (f_disappearTimer <= 0)
         {
+            
             colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
             f_destroyTimer -= Time.deltaTime;
             if (f_destroyTimer < 0)
             {
                 b_deletionTimerFlag = true;
                 Destroy(gameObject);
+                yield return new WaitUntil(() => b_deletionTimerFlag == true);
             }
+           
         }
-        yield return b_deletionTimerFlag == true;
+        
     }
 
     // Setters \\
