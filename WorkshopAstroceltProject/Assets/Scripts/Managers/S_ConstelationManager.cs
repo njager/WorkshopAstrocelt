@@ -217,6 +217,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         yield return new S_WaitForCardballSpawn();
         c_cardballsSpawned = true;
+        b_starLockout = true;
     }
 
     /// <summary>
