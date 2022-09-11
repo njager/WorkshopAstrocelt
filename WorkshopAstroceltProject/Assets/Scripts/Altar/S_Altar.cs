@@ -103,6 +103,8 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnCardballPrefabs()
     {
+        StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck()); 
+
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[0]);
@@ -130,9 +132,8 @@ public class S_Altar : MonoBehaviour
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         // Wait for move cardballs, and then unlock drawing
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
-        SetCardballsSpawnedBool(false);
-        g_global.g_ConstellationManager.SetStarLockOutBool(false);
+        //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
+        SetCardballsSpawnedBool(true);
     }
 
     /// <summary>

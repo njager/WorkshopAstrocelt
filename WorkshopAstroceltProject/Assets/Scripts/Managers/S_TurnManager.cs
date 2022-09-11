@@ -62,7 +62,7 @@ public class S_TurnManager : MonoBehaviour
 
             g_global.g_altar.SetCardballsSpawnedBool(true);
 
-            g_global.g_ConstellationManager.SetStarLockOutBool(true);
+            //g_global.g_ConstellationManager.SetStarLockOutBool(true);
 
 
             if (g_global.g_b_enemyTurn == true)
