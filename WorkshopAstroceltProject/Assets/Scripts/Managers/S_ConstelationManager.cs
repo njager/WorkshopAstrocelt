@@ -45,6 +45,8 @@ public class S_ConstelationManager : MonoBehaviour
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
 
+    public bool c_cardballsSpawned;
+
     public int i_starSound = 0;
 
     private void Awake()
@@ -52,7 +54,7 @@ public class S_ConstelationManager : MonoBehaviour
         //fetch global, get set previous as null, and start with star lockout
         g_global = S_Global.Instance;
         s_previousStar = s_nullStarInst;
-        b_starLockout = true;
+        b_starLockout = false;
 
         // Get popups to not move at first
         s_b_popupMove = false; 
@@ -209,7 +211,14 @@ public class S_ConstelationManager : MonoBehaviour
 
         // Delete popup
         StartCoroutine(g_global.g_popupManager.ClearAllPopups());
-}
+    }
+
+    public IEnumerator CardballSpawnCheck()
+    {
+        yield return new S_WaitForCardballSpawn();
+        c_cardballsSpawned = true;
+        b_starLockout = true;
+    }
 
     /// <summary>
     /// This Function deals with whenever the player clicks on a node star
@@ -219,26 +228,33 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void NodeStarClicked(S_StarClass _starN, Vector2 _locN)
     {
-        if (b_makingConstellation) //if you have started a constellation
+        if (c_cardballsSpawned == true)
         {
-            g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
+            if (b_makingConstellation) //if you have started a constellation
+            {
+                g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
+            }
+            else //if you have not started a constellation
+            {
+                //set the sound to active and reset the star sound
+                _starSoundPhase1.SetActive(true);
+                i_starSound = 0;
+
+                g_global.g_lineMultiplierManager.ChangeLineLists();
+
+                //add to the list
+                AddStarToCurConstellation(_starN);
+
+                //set all of the previous star stuff as the node
+                ChangePrevStarAndLoc(_starN, _locN);
+
+                //set node star's previous as null
+                _starN.s_star.m_previous = s_nullStarInst;
+            }
         }
-        else //if you have not started a constellation
+        else
         {
-            //set the sound to active and reset the star sound
-            _starSoundPhase1.SetActive(true);
-            i_starSound = 0;
-
-            g_global.g_lineMultiplierManager.ChangeLineLists();
-
-            //add to the list
-            AddStarToCurConstellation(_starN);
-
-            //set all of the previous star stuff as the node
-            ChangePrevStarAndLoc(_starN, _locN);
-
-            //set node star's previous as null
-            _starN.s_star.m_previous = s_nullStarInst;
+            return;
         }
     }
 
