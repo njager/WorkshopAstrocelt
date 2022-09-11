@@ -5,4 +5,6 @@ using UnityEngine;
 public class S_EventManager : MonoBehaviour
 {
     public EventEncounter e_event;
+
+
 }
