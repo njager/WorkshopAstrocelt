@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Reflect
   HeaderText: Reflect
-  BodyText: Gives 15 Shields. Stuns an enemy.
+  BodyText: Gives 15 Shields.
   FlavorText: 
   ColorString: yellow
   EnergyCost: 12
@@ -23,11 +23,10 @@ MonoBehaviour:
   EffectValue1: 0
   EffectValue2: 0
   EffectValue3: 0
-  BleedEffectValue: 0
   TurnCountForStatusEffect1: 1
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
-  IDForStatusEffectOne: 6
+  IDForStatusEffectOne: 0
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
   CardRarity: 3
@@ -57,5 +56,7 @@ MonoBehaviour:
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
   CardArtAsset: {fileID: 21300000, guid: dfffa4ac270bbca4e8357f4e2eb4f66c, type: 3}
+  PhysicalOrMagicalBoolForShield: 1
+  PhysicalOrMagicalBoolForAttack: 0
   CardDatabaseID: 13
   ExtraInfo: 

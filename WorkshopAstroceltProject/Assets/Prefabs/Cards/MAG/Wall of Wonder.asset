@@ -16,7 +16,7 @@ MonoBehaviour:
   HeaderText: Wall of Wonder
   BodyText: Gain 10 shield
   FlavorText: 
-  ColorString: 
+  ColorString: yellow
   EnergyCost: 5
   DamageValue: 0
   ShieldValue: 10
@@ -31,7 +31,7 @@ MonoBehaviour:
   IDForStatusEffectThree: 0
   CardRarity: 0
   AffectsNone: 0
-  AffectsPlayer: 0
+  AffectsPlayer: 1
   Affects1Character: 0
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
@@ -39,12 +39,12 @@ MonoBehaviour:
   EnemyEffect: 0
   RedColorType: 0
   BlueColorType: 0
-  YellowColorType: 0
+  YellowColorType: 1
   WhiteColorType: 0
   AttackEffect: 0
-  ShieldEffect: 0
+  ShieldEffect: 1
   UniqueEffect: 0
-  NoEffect: 0
+  NoEffect: 1
   BleedStatusEffect: 0
   AcidStatusEffect: 0
   BurnStatusEffect: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
   CardArtAsset: {fileID: 0}
-  PhysicalOrMagicalBoolForShield: 0
+  PhysicalOrMagicalBoolForShield: 1
   PhysicalOrMagicalBoolForAttack: 0
-  CardDatabaseID: 0
+  CardDatabaseID: 25
   ExtraInfo: 
