@@ -132,6 +132,7 @@ public class S_Altar : MonoBehaviour
         // Wait for move cardballs, and then unlock drawing
         yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(false);
+        g_global.g_ConstellationManager.SetStarLockOutBool(false);
     }
 
     /// <summary>
