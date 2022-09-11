@@ -190,6 +190,11 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void DeleteWholeCurConstellation()
     {
+        //reset the star sound
+        i_starSound = 0;
+        _starSoundPhase1.SetActive(false);
+
+
         //clear the constellation
         ls_curConstellation.Clear();
 
