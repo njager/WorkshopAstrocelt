@@ -41,6 +41,7 @@ public class S_Player : MonoBehaviour
                 p_playerAttributes.p_i_health -= _newDamageValue;
                 p_playerAttributes.p_pe_blood.Play();
                 p_playerAttributes.p_a_animator.Play("Damaged");
+
                 //Debug.Log("Player Attacked!");
             }
             else

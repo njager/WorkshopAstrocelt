@@ -42,6 +42,10 @@ public class S_Altar : MonoBehaviour
     [Header("Spawning Cardballs Bool")]
     public bool b_cardballsSpawned;
 
+    [Header("Movement Counter")]
+    public int c_i_movementInt;
+    public bool c_b_movementBool;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -103,6 +107,9 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnCardballPrefabs()
     {
+        c_i_movementInt = 0;
+        StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck()); 
+
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[0]);
@@ -129,10 +136,11 @@ public class S_Altar : MonoBehaviour
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
+        yield return new S_WaitForCardballMovement();
+
         // Wait for move cardballs, and then unlock drawing
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
-        SetCardballsSpawnedBool(false);
-        g_global.g_ConstellationManager.SetStarLockOutBool(false);
+        //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
+        SetCardballsSpawnedBool(true);
     }
 
     /// <summary>
@@ -183,6 +191,9 @@ public class S_Altar : MonoBehaviour
             //give the player cards to load
             g_global.g_cardManager.DealCards(g_global.g_cardManager.p_i_drawPerTurn);
 
+            c_i_movementInt = 0;
+            c_b_movementBool = false;
+
             StartCoroutine(SpawnCardballPrefabs());
         }
     }
@@ -216,6 +227,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public void MoveCardballPrefabs()
     {
+        c_i_movementInt += 1;
         if (cardballPosition2.transform.childCount == 1)
         {
             //Debug.Log("Cardball Position 2 Full");
@@ -262,6 +274,11 @@ public class S_Altar : MonoBehaviour
             Debug.Log("DEBUG: No more cardballs to spawn!");
         }
 
+        if (c_i_movementInt == 5)
+        {
+            c_b_movementBool = true;
+        }
+
         // May not be necessary, check later, part of race condition debugging between turns. 
         g_global.g_enemyState.UpdateActiveEnemies();
     }
@@ -301,6 +318,18 @@ public class S_Altar : MonoBehaviour
     public bool GetCardballsSpawnedBool()
     {
         return b_cardballsSpawned;
+    }
+
+    /// <summary>
+    /// Return the bool value of S_Altar.c_b_movementBool
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Altar.c_b_movementBool
+    /// </returns>
+    public bool GetCardballMovementBool()
+    {
+        return c_b_movementBool;
     }
 
     /// <summary>
