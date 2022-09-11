@@ -190,6 +190,11 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void DeleteWholeCurConstellation()
     {
+        //reset the star sound
+        i_starSound = 0;
+        _starSoundPhase1.SetActive(false);
+
+
         //clear the constellation
         ls_curConstellation.Clear();
 
@@ -368,7 +373,17 @@ public class S_ConstelationManager : MonoBehaviour
         v2_prevLoc = _loc;
     }
 
-    // Setters \\ 
+    // Setters \\
+
+    /// <summary>
+    /// Set the bool value of S_ConstelationManager.b_starLockout;
+    /// - Josh
+    /// </summary>
+    /// <param name="_boolState"></param>
+    public void SetStarLockOutBool(bool _boolState)
+    {
+        b_starLockout = _boolState;
+    }
 
     // Getters \\ 
 

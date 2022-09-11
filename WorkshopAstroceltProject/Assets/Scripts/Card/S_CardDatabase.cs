@@ -19,6 +19,23 @@ public class S_CardDatabase : MonoBehaviour
     public S_CardTemplate cardScript7; // Preserve, ID 7
     public S_CardTemplate cardScript8; // Demoralize, ID 8 // Previously reposte
     public S_CardTemplate cardScript9; // Stone Strike, ID 9
+    public S_CardTemplate cardScript10; // Fury, ID 10
+    public S_CardTemplate cardScript11; // Thornshield, ID 11
+    public S_CardTemplate cardScript12; // Freeze, ID 12
+    public S_CardTemplate cardScript13; // Refelect, ID 13
+    public S_CardTemplate cardScript14; // Agonizing Spirit, ID 14
+    public S_CardTemplate cardScript15; // Ambush, ID 15
+    public S_CardTemplate cardScript16; // Zealous Storm, ID 16  
+    public S_CardTemplate cardScript17; // Barkskin, ID 17
+    public S_CardTemplate cardScript18; // Bolster, ID 18
+    public S_CardTemplate cardScript19; // Fervoured, ID 19
+    public S_CardTemplate cardScript20; // Impair, ID 20
+    public S_CardTemplate cardScript21; // Earthy Bastion, ID 21
+    public S_CardTemplate cardScript22; // Pierce, ID 22
+    public S_CardTemplate cardScript23; // Protect, ID 23
+    public S_CardTemplate cardScript24; // Shielded, ID 24
+    public S_CardTemplate cardScript25; // Wall of Wonder, ID 25
+    public S_CardTemplate cardScript26; // Windbreaker, ID 26
 
     [Header("Battle 1 Rewards")]
     public S_CardTemplate battleRewardCard1; // Fury, ID 10
@@ -39,20 +56,34 @@ public class S_CardDatabase : MonoBehaviour
         g_global = S_Global.Instance;
 
         // Add initial cards to dictionary
-        dict_CardDatabase.Add(0, cardScript0);
-        dict_CardDatabase.Add(1, cardScript1);
-        dict_CardDatabase.Add(2, cardScript2);
-        dict_CardDatabase.Add(3, cardScript3);
-        dict_CardDatabase.Add(4, cardScript4);
-        dict_CardDatabase.Add(5, cardScript5);
-        dict_CardDatabase.Add(6, cardScript6);
-        dict_CardDatabase.Add(7, cardScript7);
-        dict_CardDatabase.Add(8, cardScript8);
-        dict_CardDatabase.Add(9, cardScript9);
-        dict_CardDatabase.Add(10, battleRewardCard1); // Add Fury
-        dict_CardDatabase.Add(11, battleRewardCard2); // Add Thornshield
-        dict_CardDatabase.Add(12, battleRewardCard1); // Add Freeze
-        dict_CardDatabase.Add(13, battleRewardCard2); // Add Reflect
+        dict_CardDatabase.Add(0, cardScript0); // Barkskin
+        dict_CardDatabase.Add(1, cardScript1); // Bludgeon
+        dict_CardDatabase.Add(2, cardScript2); // Deflect
+        dict_CardDatabase.Add(3, cardScript3); // Dig In
+        dict_CardDatabase.Add(4, cardScript4); // Flair
+        dict_CardDatabase.Add(5, cardScript5); // Fortifiy
+        dict_CardDatabase.Add(6, cardScript6); // Lacerate
+        dict_CardDatabase.Add(7, cardScript7); // Preserve
+        dict_CardDatabase.Add(8, cardScript8); // Demoralize
+        dict_CardDatabase.Add(9, cardScript9); // Stone Strike
+        dict_CardDatabase.Add(10, cardScript10); // Fury
+        dict_CardDatabase.Add(11, cardScript11); // Thornshield
+        dict_CardDatabase.Add(12, cardScript12); // Freeze
+        dict_CardDatabase.Add(13, cardScript13); // Reflect
+        dict_CardDatabase.Add(14, cardScript14); // Agonizing
+        dict_CardDatabase.Add(15, cardScript15); // Ambush
+        dict_CardDatabase.Add(16, cardScript16); // Zealous Storm
+        dict_CardDatabase.Add(17, cardScript17); //Barkskin
+        dict_CardDatabase.Add(18, cardScript18); // Bolster
+        dict_CardDatabase.Add(19, cardScript19); // Fervoured
+        dict_CardDatabase.Add(20, cardScript20); // Impair
+        dict_CardDatabase.Add(21, cardScript21); // Earthy Bastion
+        dict_CardDatabase.Add(22, cardScript22); // Pierce
+        dict_CardDatabase.Add(23, cardScript23); // Protect
+        dict_CardDatabase.Add(24, cardScript24); // Shielded
+        dict_CardDatabase.Add(25, cardScript25); // Wall of Wonder
+        dict_CardDatabase.Add(26, cardScript26); // Windbreaker
+
     }
 
     /// <summary>
@@ -66,30 +97,4 @@ public class S_CardDatabase : MonoBehaviour
         S_CardTemplate _returnCard = dict_CardDatabase[_index];
         return _returnCard;
     }
-
-    /// <summary>
-    /// Add the battle 1 reward cards to the deck for use in hand
-    /// - Josh
-    /// </summary>
-    public void AddBattle1RewardCards()
-    {
-
-        // Add them to deck
-        g_global.g_ls_p_playerDeck.Add(10);
-        g_global.g_ls_p_playerDeck.Add(11);
-    }
-
-
-    /// <summary>
-    /// Add the battle 2 reward cards to the deck for use in hand
-    /// - Josh
-    /// </summary>
-    public void AddBattle2RewardCards()
-    {
-
-        // Add them to deck
-        g_global.g_ls_p_playerDeck.Add(12);
-        g_global.g_ls_p_playerDeck.Add(13);
-    }
-
 }

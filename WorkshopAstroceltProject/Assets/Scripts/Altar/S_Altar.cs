@@ -39,8 +39,8 @@ public class S_Altar : MonoBehaviour
     [Header("DOTween Attributes")]
     public float f_cardballMoveSpeed;
 
-    [Header("Spawning Cardballs")]
-    public bool b_spawningCardballs = true; 
+    [Header("Spawning Cardballs Bool")]
+    public bool b_cardballsSpawned;
 
     private void Awake()
     {
@@ -129,7 +129,10 @@ public class S_Altar : MonoBehaviour
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
-        Set_b_spawningCardballs(false);
+        // Wait for move cardballs, and then unlock drawing
+        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
+        SetCardballsSpawnedBool(false);
+        g_global.g_ConstellationManager.SetStarLockOutBool(false);
     }
 
     /// <summary>
@@ -194,8 +197,12 @@ public class S_Altar : MonoBehaviour
         yield return new S_WaitForEnergyTextDecrement();
         if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
+            //Check the card position in S_CardHolderManager 
+            g_global.g_cardHolder.SetCardPositionInt(g_global.g_cardHolder.NextCardPosition());
+            // Now grab it
+            int _cardballPosition = g_global.g_cardHolder.GetCardPositionInt();
             //turn the cardball into a card and move over the rest of the cardballs
-            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard(_cardballPosition);
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
     }
@@ -274,14 +281,26 @@ public class S_Altar : MonoBehaviour
 
     // Getters & Setters \\ 
 
-    public void Set_b_spawningCardballs(bool _spawining)
+    /// <summary>
+    /// Set the bool value of S_Altar.b_cardballsSpawned;
+    /// - Josh 
+    /// </summary>
+    /// <param name="_spawning"></param>
+    public void SetCardballsSpawnedBool(bool _spawning)
     {
-        b_spawningCardballs = _spawining;
+        b_cardballsSpawned = _spawning;
     }
 
-    public bool Get_b_spawningCardballs()
+    /// <summary>
+    /// Return the bool value of S_Altar.b_cardballsSpawned;
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Altar.b_cardballsSpawned
+    /// </returns>
+    public bool GetCardballsSpawnedBool()
     {
-        return b_spawningCardballs;
+        return b_cardballsSpawned;
     }
 
     /// <summary>

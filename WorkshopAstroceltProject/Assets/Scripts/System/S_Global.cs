@@ -25,11 +25,12 @@ public class S_Global : MonoBehaviour
     public S_UIManager g_UIManager;
     public S_IntentManager g_iconManager; 
     public S_CardManager g_cardManager;
-    public S_CardDatabase g_CardDatabase;
+    public S_CardDatabase g_cardDatabase;
     public S_LineMultiplierManager g_lineMultiplierManager;
     public S_EnergyManager g_energyManager;
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
+    public S_CardHolder g_cardHolder;
     public S_SceneManager g_sceneManager;
     public S_BackgroundManager g_backgroundManager;
     public S_TurnEffectManager g_turnEffectManager;
@@ -154,10 +155,9 @@ public class S_Global : MonoBehaviour
                 g_UIManager.debugTurnbar.SetActive(false);
             }
         }
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("we made it here");
-            g_ConstellationManager.DeleteWholeCurConstellation();
+            g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
         }
     }
 }
