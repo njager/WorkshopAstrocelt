@@ -630,6 +630,8 @@ public class S_Card : MonoBehaviour
     /// Make it so when one card is hovered by another the layer moves up
     /// - Josh
     /// </summary>
+    
+    /*
     public void OnHoverEnter()
     {
         if (c_b_cardIsDragged == false) 
@@ -657,6 +659,7 @@ public class S_Card : MonoBehaviour
             return;
         }
     }
+    */
 
     // Setters \\ 
 

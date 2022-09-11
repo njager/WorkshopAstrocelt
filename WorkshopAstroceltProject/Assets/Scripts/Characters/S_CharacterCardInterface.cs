@@ -51,6 +51,11 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         {
             c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
 
+            if(c_cardData == null) 
+            {
+                return;
+            }
+
             //print("Made it to player v enemy");
             if (p_b_attachedToPlayer == true) //check to see if this object is the player
             {
