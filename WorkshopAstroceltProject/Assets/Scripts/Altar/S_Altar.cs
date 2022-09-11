@@ -196,8 +196,12 @@ public class S_Altar : MonoBehaviour
         yield return new S_WaitForEnergyTextDecrement();
         if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
+            //Check the card position in S_CardHolderManager 
+            g_global.g_cardHolder.SetCardPositionInt(g_global.g_cardHolder.NextCardPosition());
+            // Now grab it
+            int _cardballPosition = g_global.g_cardHolder.GetCardPositionInt();
             //turn the cardball into a card and move over the rest of the cardballs
-            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard(_cardballPosition);
             ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
     }

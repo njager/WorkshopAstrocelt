@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_CardHolderManager : MonoBehaviour
+public class S_CardHolder : MonoBehaviour
 {
     // Left to right which doesn't follow this order for spawning
 
@@ -15,11 +15,6 @@ public class S_CardHolderManager : MonoBehaviour
 
     [Header("Next Position Index")]
     public int c_i_positionToSpawnAtNextIndex;
-
-    private void Update()
-    {
-        SetCardPositionInt(NextCardPosition()); // Move to where card's spawn
-    }
 
     public int NextCardPosition() 
     {

@@ -64,7 +64,7 @@ public class S_CardManager : MonoBehaviour
 
                 //get the card game object and add it to the player hand
                 //Debug.Log("The card key is " + _cardKey);
-                S_CardTemplate _randomCard = g_global.g_CardDatabase.GetCard(_cardKey);
+                S_CardTemplate _randomCard = g_global.g_cardDatabase.GetCard(_cardKey);
 
                 //add the card to the hand
                 g_global.g_ls_p_playerHand.Add(_randomCard);

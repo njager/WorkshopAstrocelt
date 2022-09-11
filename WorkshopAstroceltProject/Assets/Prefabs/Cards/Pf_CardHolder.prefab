@@ -233,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007638271285778737}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34, y: -40.688477, z: -197.44376}
+  m_LocalPosition: {x: -34, y: -40.688477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2864601997118588963}
@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 5919860928290079150}
   - component: {fileID: 8527311591827911668}
   - component: {fileID: 7034964083574437796}
+  - component: {fileID: 6111719449406500623}
   m_Layer: 0
   m_Name: BaseCardTemplate(Clone) (4)
   m_TagString: Card
@@ -501,6 +502,8 @@ MonoBehaviour:
   c_a_whiteForeground: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 1
+  c_i_CardPositionIndex: 0
+  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &4786850392606548730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +612,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!223 &6111719449406500623
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118551228412334090}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 5
+  m_TargetDisplay: 0
 --- !u!1 &1185260318588229844
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560402868777132650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 130.40625, y: -40.688477, z: -197.44376}
+  m_LocalPosition: {x: 130.40625, y: -40.688477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2986816382451771090}
@@ -1026,7 +1050,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2442704325487212928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 210, y: -40.688477, z: -197.44376}
+  m_LocalPosition: {x: 210, y: -40.688477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4238851054126666229}
@@ -1266,7 +1290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2731119415866457471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49, y: -40.688477, z: -197.44376}
+  m_LocalPosition: {x: 49, y: -40.688477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2701077968008277834}
@@ -1421,6 +1445,7 @@ GameObject:
   - component: {fileID: 7102490092786406249}
   - component: {fileID: 4093423118604634613}
   - component: {fileID: 1864133260376931227}
+  - component: {fileID: 8922814434273977380}
   m_Layer: 0
   m_Name: BaseCardTemplate(Clone) (2)
   m_TagString: Card
@@ -1534,6 +1559,8 @@ MonoBehaviour:
   c_a_whiteForeground: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 1
+  c_i_CardPositionIndex: 0
+  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &566545376269225051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,6 +1669,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!223 &8922814434273977380
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3591451433036652622}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 3
+  m_TargetDisplay: 0
 --- !u!1 &3648098949248536904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1838,7 @@ GameObject:
   - component: {fileID: 4315785776295912132}
   - component: {fileID: 4135667534316010659}
   - component: {fileID: 7637582492402638902}
+  - component: {fileID: 7192102769161001772}
   m_Layer: 0
   m_Name: BaseCardTemplate(Clone) (1)
   m_TagString: Card
@@ -1903,6 +1952,8 @@ MonoBehaviour:
   c_a_whiteForeground: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 1
+  c_i_CardPositionIndex: 0
+  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6442780121621188666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,6 +2062,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!223 &7192102769161001772
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712430643705195724}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
 --- !u!1 &3864180497452089795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4572754212912768109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 292, y: -40.688477, z: -197.44376}
+  m_LocalPosition: {x: 292, y: -40.688477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6212895654918680019}
@@ -2622,6 +2694,7 @@ MonoBehaviour:
   c_cardPosition3: {fileID: 1560402868777132650}
   c_cardPosition4: {fileID: 2442704325487212928}
   c_cardPosition5: {fileID: 4572754212912768109}
+  c_i_positionToSpawnAtNextIndex: 0
 --- !u!1 &5542512665674435176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,6 +3452,7 @@ GameObject:
   - component: {fileID: 2836090528989357717}
   - component: {fileID: 7851092227882308212}
   - component: {fileID: 3812634816954322220}
+  - component: {fileID: 6677167513460850562}
   m_Layer: 0
   m_Name: BaseCardTemplate(Clone)
   m_TagString: Card
@@ -3395,7 +3469,7 @@ RectTransform:
   m_GameObject: {fileID: 7518563427655604057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 197.44376}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 3}
   m_Children:
   - {fileID: 111046741180156252}
   - {fileID: 968840663783640519}
@@ -3492,6 +3566,8 @@ MonoBehaviour:
   c_a_whiteForeground: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 1
+  c_i_CardPositionIndex: 0
+  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &4094048309071203799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3600,6 +3676,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!223 &6677167513460850562
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518563427655604057}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &7589784392767287979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4225,6 +4322,7 @@ GameObject:
   - component: {fileID: 8376136837545424697}
   - component: {fileID: 7481224505495955065}
   - component: {fileID: 7715291884595369971}
+  - component: {fileID: 8623679804551264885}
   m_Layer: 0
   m_Name: BaseCardTemplate(Clone) (3)
   m_TagString: Card
@@ -4338,6 +4436,8 @@ MonoBehaviour:
   c_a_whiteForeground: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 1
+  c_i_CardPositionIndex: 0
+  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5994424054992389697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4446,6 +4546,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!223 &8623679804551264885
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158240591604246092}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 4
+  m_TargetDisplay: 0
 --- !u!1 &8173830676660554518
 GameObject:
   m_ObjectHideFlags: 0
