@@ -23,6 +23,7 @@ public class RewardVisualScript : MonoBehaviour
         lReward.SetActive(true);
 
         s_gameManager.gm_ls_p_playerDeck.Add(11);
+        s_gameManager.gm_ls_p_playerDeck.Add(11);
     }
     public void RightRewardButtonClick()
     {
@@ -31,5 +32,6 @@ public class RewardVisualScript : MonoBehaviour
         rReward.SetActive(true);
 
         s_gameManager.gm_ls_p_playerDeck.Add(10);
+        s_gameManager.gm_ls_p_playerDeck.Add(11);
     }
 }
