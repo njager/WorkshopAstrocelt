@@ -13,6 +13,7 @@ public class S_PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("esc hit");
             if (GameIsPaused)
             {
                 Resume();
