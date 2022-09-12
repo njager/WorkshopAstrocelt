@@ -157,13 +157,6 @@ public class S_Cardball : MonoBehaviour
         DeleteCardball();
     }
 
-    /// <summary>
-    /// -Josh
-    /// </summary>
-    /// <param name="_card"></param>
-    /// <returns></returns>
-    /// 
-
 
     /// <summary>
     /// loops for the size of the cardball value
