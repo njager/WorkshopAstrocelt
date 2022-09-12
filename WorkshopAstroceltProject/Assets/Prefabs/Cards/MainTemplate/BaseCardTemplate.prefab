@@ -164,7 +164,7 @@ Transform:
   m_GameObject: {fileID: 1134803473554262698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -65.02905, y: 0, z: 0}
-  m_LocalScale: {x: 0.225, y: 0.225, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 2781915797769924074}
   - {fileID: 4343152012685629169}
@@ -186,9 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c_cardTemplate: {fileID: 0}
-  c_a_cardBackgroundImage: {fileID: 0}
-  c_a_cardArtImage: {fileID: 0}
-  c_a_cardForegroundImage: {fileID: 0}
+  c_a_cardBackgroundArtAsset: {fileID: 0}
+  c_a_cardArtAsset: {fileID: 0}
+  c_a_cardForegroundArtAsset: {fileID: 0}
   c_i_cardDataBaseIndex: 0
   c_str_cardName: 
   c_str_headerText: 
@@ -241,11 +241,7 @@ MonoBehaviour:
   c_tx_flavor: {fileID: 6248408915480781643}
   c_tx_energyCost: {fileID: 0}
   sc_c_cardDraggerReference: {fileID: 0}
-  initialCardTransform: {fileID: 0}
-  i_hoverHeight: 350
-  i_hoverX: 1.7
-  i_hoverY: 1.7
-  cv_canvas: {fileID: 0}
+  initialCardTransform: {x: 0, y: 0, z: 0}
   c_a_redBackground: {fileID: 21300000, guid: 1626f6c673ee893458534f9de00ab01b, type: 3}
   c_a_blueBackground: {fileID: 21300000, guid: dc941db29ad9f6c41a6e364b8b597854, type: 3}
   c_a_yellowBackground: {fileID: 21300000, guid: 9b1281adcff6b354b83ea45a513884aa, type: 3}
@@ -257,7 +253,7 @@ MonoBehaviour:
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 0
   c_i_cardPositionIndex: 0
-  c_cardCanvasComponent: {fileID: 0}
+  c_cardSpriteRendererComponent: {fileID: 0}
   c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
   c_b_cardIsDragged: 0
 --- !u!114 &8596015523136984958

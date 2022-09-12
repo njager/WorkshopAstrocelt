@@ -14,10 +14,10 @@ public class S_Card : MonoBehaviour
     [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
 
-    [Header("Image Asset")]
-    public Image c_a_cardBackgroundImage;
-    public Image c_a_cardArtImage;
-    public Image c_a_cardForegroundImage;
+    [Header("Sprite Asset")]
+    public SpriteRenderer c_a_cardBackgroundArtAsset;
+    public SpriteRenderer c_a_cardArtAsset;
+    public SpriteRenderer c_a_cardForegroundArtAsset;
 
     [Header("Card Database Index")]
     public int c_i_cardDataBaseIndex;
@@ -101,18 +101,7 @@ public class S_Card : MonoBehaviour
     [Header("Card Dragger References")]
     public S_CardDragger sc_c_cardDraggerReference;
     //public int c_i_cardID;
-    public RectTransform initialCardTransform; // Will turn to V3 for 0s
-
-    [Header("Card Hover Height")]
-    public float i_hoverHeight;
-
-    [Header("Zoom Card Scalars")]
-    public float i_hoverX;
-    public float i_hoverY;
-
-    [Header("Card Scaler References")]
-    public GameObject cv_canvas;
-    //private GameObject c_zoomCard;
+    public Vector3 initialCardTransform; // Will turn to V3 for 0s
 
     [Header("Card Background Art Assets")]
     public Sprite c_a_redBackground;
@@ -134,7 +123,7 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Position Index and Position")]
     public int c_i_cardPositionIndex;
-    public Canvas c_cardCanvasComponent;
+    public SpriteRenderer c_cardSpriteRendererComponent;
     public Vector3 c_v3_initialCardPosition;
 
     [Header("CardDrag Bool")]
@@ -151,9 +140,7 @@ public class S_Card : MonoBehaviour
         // g_global.c_i_cardIDNum += 1;
         //c_i_cardID = g_global.c_i_cardIDNum;
 
-        cv_canvas = GameObject.Find("MainCanvas");
-
-        initialCardTransform = gameObject.GetComponent<RectTransform>();
+        initialCardTransform = gameObject.GetComponent<Transform>().position;
     }
 
     /// <summary>
@@ -231,8 +218,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_redBackground;
-            c_a_cardForegroundImage.sprite = c_a_redForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_redBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_redForeground;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -244,8 +231,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_blueBackground;
-            c_a_cardForegroundImage.sprite = c_a_blueForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_blueBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_blueForeground;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -257,8 +244,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_yellowBackground;
-            c_a_cardForegroundImage.sprite = c_a_yellowForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_yellowBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_yellowForeground;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -270,15 +257,15 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = true;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_whiteBackground;
-            c_a_cardForegroundImage.sprite = c_a_whiteForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_whiteBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_whiteForeground;
         }
 
         //set the text for the card
         SetText();
 
         // Set art asset
-        c_a_cardArtImage.sprite = _cardData.CardArtAsset;
+        c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
 
         // Set String Color
         c_str_color = _cardData.ColorString;

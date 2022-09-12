@@ -137,7 +137,7 @@ public class S_Cardball : MonoBehaviour
     public void CardballToCard(int _cardPositionIndex)
     {
         // Determine transform
-        Transform _whereToSpawnCard = g_global.g_cardHolder.GetCardPositionTransform(_cardPositionIndex);
+        Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
         
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
