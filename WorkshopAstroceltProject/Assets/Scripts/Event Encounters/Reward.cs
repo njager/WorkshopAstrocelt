@@ -17,11 +17,4 @@ public class Reward
     public bool b_boneReward;
     public bool b_healthReward;
     public bool b_cardReward;
-
-    private S_GameManager s_gameManager;
-
-    private void Start()
-    {
-        s_gameManager = S_GameManager.Instance;
-    }
 }

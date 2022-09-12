@@ -38,7 +38,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="_eventData"></param>
     public void OnDrag(PointerEventData _eventData)
     {
-        c_card.c_cardCanvasComponent.sortingOrder = 0;
+        c_card.c_cardSpriteRendererComponent.sortingOrder = 0;
         if (transformCounter == 0)
         {
             c_v3_initialPosition = GetComponent<Transform>().position;
