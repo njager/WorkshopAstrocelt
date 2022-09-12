@@ -281,7 +281,7 @@ public class S_UIManager : MonoBehaviour
                 else
                 {
                     e_tx_enemy5ShieldText.gameObject.SetActive(true);
-                    e_enemy4ShieldIcon.SetActive(true);
+                    e_enemy5ShieldIcon.SetActive(true);
                     e_enemy5ShieldOverlay.SetActive(true);
                 }
             }
