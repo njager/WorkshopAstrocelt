@@ -29,11 +29,15 @@ public class S_EventManager : MonoBehaviour
             //instantiat the prefab, parent it to the vlg, and change its scale to fit the vgl
             GameObject _newResponse = Instantiate(g_reponsePrefab);
             Vector3 _scale = _newResponse.transform.localScale;
-            _newResponse.transform.parent = v_verticalGrid.transform;
+            _newResponse.transform.SetParent(v_verticalGrid.transform);
             _newResponse.transform.localScale = _scale;
 
             //get the text box of the child
             _newResponse.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _response.s_responseText;
+
+            //set the variables fot the response manager
+            _newResponse.GetComponent<S_ResponseManager>().r_response = _response;
+            _newResponse.GetComponent<S_ResponseManager>().s_eventManager = this;
         }
     }
 

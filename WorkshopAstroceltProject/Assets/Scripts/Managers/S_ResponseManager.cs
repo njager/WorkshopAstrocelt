@@ -63,6 +63,7 @@ public class S_ResponseManager : MonoBehaviour
     /// </summary>
     public void TriggerResponse()
     {
+        Debug.Log("Here");
         int _random = Random.Range(0, 100);
 
         //if below the percent chance then trigger a failure otherwise give them a reward
