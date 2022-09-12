@@ -14,10 +14,6 @@ public class S_AudioTrack : MonoBehaviour
 
     public float f_timeInScene = 0;
 
-    public int i_intensity = 0;
-
-    private bool b_changed = false;
-
     public GameObject _sceneAudio;
 
     void Awake()
@@ -25,13 +21,12 @@ public class S_AudioTrack : MonoBehaviour
         if (b_eventScene)
         {
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("TimeInScene", i_intensity);
+            emitter.SetParameter("TimeInScene", f_timeInScene);
         }
         else if (b_combatScene)
         {
-            i_intensity = 2;
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("TimeInScene", i_intensity);
+            emitter.SetParameter("TimeInScene", f_timeInScene);
         }
         else { Debug.Log("No scene music selected"); }
     }
@@ -39,12 +34,5 @@ public class S_AudioTrack : MonoBehaviour
     void Update()
     {
         f_timeInScene += Time.deltaTime;
-
-        if(f_timeInScene >= f_intensityBreakpoint && b_eventScene && (!b_changed))
-        {
-            i_intensity = 1;
-
-            b_changed = true;
-        }
     }
 }

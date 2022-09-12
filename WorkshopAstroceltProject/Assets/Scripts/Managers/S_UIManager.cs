@@ -14,6 +14,8 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI p_tx_playerHealthText;
     public TextMeshProUGUI p_tx_playerShieldText;
     public Image p_playerHealthBar;
+    public TextMeshProUGUI p_playerHealthResourceBarText;
+    public TextMeshProUGUI c_cardCount;
 
     [Header("Enemy Health Textboxes")]
     public TextMeshProUGUI e_tx_enemy1HealthText;
@@ -122,6 +124,8 @@ public class S_UIManager : MonoBehaviour
 
         // Turn off debug elements
         debugTurnbar.SetActive(false);
+
+        c_cardCount.text = g_global.g_ls_p_playerHand.Count.ToString();
     }
 
     //Some of this should be in turn manager?, probably
@@ -297,6 +301,7 @@ public class S_UIManager : MonoBehaviour
     {
         // Text
         p_tx_playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
+        p_playerHealthResourceBarText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
 
         //p_tx_energyText.text = "Current Energy: " + g_global.g_energyManager.i_energyCount.ToString();
 

@@ -570,6 +570,8 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
+        StartCoroutine(g_global.g_player.ChangeAttackSprite());
+
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
         if (c_b_attackSoundEffect == false) // Play physical sound
         {
