@@ -17,6 +17,11 @@ public class S_EventManager : MonoBehaviour
     [Header("Response Prefab")]
     public GameObject g_reponsePrefab;
 
+    [Header("ID for the next Scene")]
+    public int i_sceneID;
+
+    public List<GameObject> ls_responses;
+
     public EventEncounter e_event;
 
     private void Start()
@@ -38,6 +43,8 @@ public class S_EventManager : MonoBehaviour
             //set the variables fot the response manager
             _newResponse.GetComponent<S_ResponseManager>().r_response = _response;
             _newResponse.GetComponent<S_ResponseManager>().s_eventManager = this;
+
+            ls_responses.Add(_newResponse);
         }
     }
 
@@ -55,6 +62,36 @@ public class S_EventManager : MonoBehaviour
     /// </summary>
     public void DeleteResponses()
     {
+        //loop through and delete all the responses from the scene
+        foreach(GameObject _response in ls_responses)
+        {
+            Destroy(_response);
+        }
 
+        //clear the list
+        ls_responses.Clear();
+    }
+
+    public void NewResopnse(string _str)
+    {
+        //instantiat the prefab, parent it to the vlg, and change its scale to fit the vgl
+        GameObject _newResponse = Instantiate(g_reponsePrefab);
+        Vector3 _scale = _newResponse.transform.localScale;
+        _newResponse.transform.SetParent(v_verticalGrid.transform);
+        _newResponse.transform.localScale = _scale;
+
+        //get the text box of the child
+        _newResponse.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _str;
+
+        //set the variables fot the response manager
+        _newResponse.GetComponent<S_ResponseManager>().s_eventManager = this;
+
+        //set this var so that the scene changes when clicked again
+        _newResponse.GetComponent<S_ResponseManager>().b_clicked = true;
+
+        //set the scene id
+        _newResponse.GetComponent<S_ResponseManager>().i_sceneID = i_sceneID;
+
+        ls_responses.Add(_newResponse);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class S_ResponseManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class S_ResponseManager : MonoBehaviour
     public Response r_response;
 
     public S_EventManager s_eventManager;
+
+    //Vars for changing the scene in the event encounter
+    public bool b_clicked = false;
+    public int i_sceneID;
 
     private S_GameManager s_gameManager;
 
@@ -29,6 +34,12 @@ public class S_ResponseManager : MonoBehaviour
     {
         //set the text for the event description 
         s_eventManager.SetDescriptionBox(r_response.s_failureText);
+
+        //remove all the responses
+        s_eventManager.DeleteResponses();
+
+        //load in the new response that will change the scene
+        s_eventManager.NewResopnse("You failed, click to go to the next level");
     }
 
     /// <summary>
@@ -53,7 +64,14 @@ public class S_ResponseManager : MonoBehaviour
             Debug.Log("This response doesnt have a reward type");
         }
 
+        //set the text box
         s_eventManager.SetDescriptionBox(r_response.r_reward.s_rewardString);
+
+        //delete all the other responses
+        s_eventManager.DeleteResponses();
+
+        //create the next turn and scene text
+        s_eventManager.NewResopnse("You got a reward, click to go to the next level");
     }
 
 
@@ -63,17 +81,24 @@ public class S_ResponseManager : MonoBehaviour
     /// </summary>
     public void TriggerResponse()
     {
-        Debug.Log("Here");
-        int _random = Random.Range(0, 100);
-
-        //if below the percent chance then trigger a failure otherwise give them a reward
-        if (_random >= r_response.f_failureChance)
+        //if this is the second response, jut trigger the scene manager
+        if (b_clicked)
         {
-            Failure();
+            SceneManager.LoadScene(i_sceneID);
         }
         else
         {
-            Rewarding();
+            int _random = Random.Range(0, 100);
+
+            //if below the percent chance then trigger a failure otherwise give them a reward
+            if (_random <= r_response.f_failureChance)
+            {
+                Failure();
+            }
+            else
+            {
+                Rewarding();
+            }
         }
     }
 
@@ -82,7 +107,6 @@ public class S_ResponseManager : MonoBehaviour
     /// </summary>
     public void ChangeHoverColor()
     {
-        Debug.Log("Hover");
         i_responseBackground.color = cl_responseColor;
     }
 
@@ -91,7 +115,6 @@ public class S_ResponseManager : MonoBehaviour
     /// </summary>
     public void RestoreHoverColor()
     {
-        Debug.Log("EndHover");
         i_responseBackground.color = cl_responseNormalColor;
     }
 }
