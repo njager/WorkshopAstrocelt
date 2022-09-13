@@ -131,34 +131,31 @@ public class S_Cardball : MonoBehaviour
     }
 
     /// <summary>
-    /// Cardball gets converted to card
+    /// Method to take a cardball and convert it to a card
     /// - Josh
     /// </summary>
-    public void CardballToCard()
+    public void CardballToCard(int _cardPositionIndex)
     {
+        // Determine transform
+        Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
+        
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
-        c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);
+        c_card.transform.SetParent(_whereToSpawnCard, false);
 
-
-        // Load information From Template
+        // Grab the script from this cardball
         S_Card _cardScript = c_card.GetComponent<S_Card>();
+
+        // Pass over card position index
+        _cardScript.SetCardPositionIndex(_cardPositionIndex);
+
+        // Send information From Template
         _cardScript.FetchCardData(c_cardData);
         g_global.g_altar.c_b_cardSpawned = true;
 
-        // Fulfilled Function
-        //StartCoroutine(WaitToHide());
-
-        //delete the cardball and add the card to the grave
+        // Delete the cardball and add the card to the grave
         DeleteCardball();
     }
-
-    /// <summary>
-    /// -Josh
-    /// </summary>
-    /// <param name="_card"></param>
-    /// <returns></returns>
-    /// 
 
 
     /// <summary>

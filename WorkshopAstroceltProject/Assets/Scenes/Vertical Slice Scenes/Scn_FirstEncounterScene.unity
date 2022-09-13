@@ -5570,7 +5570,11 @@ MonoBehaviour:
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 4694868179480249384, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
   popUpCanvas: {fileID: 0}
-  altarTargetPosition: {fileID: 1520619804}
+  redEnergyUITargetPosition: {fileID: 0}
+  blueEnergyUITargetPosition: {fileID: 0}
+  yellowEnergyUITargetPosition: {fileID: 0}
+  b_visualPopupFinished: 0
+  i_popupUpClearInt: 0
 --- !u!1001 &278486993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8689,7 +8693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eddcf0d11338944baa637a7f1c9297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_tx_energyText: {fileID: 0}
   p_tx_playerHealthText: {fileID: 73390825}
   p_tx_playerShieldText: {fileID: 238214977}
   p_playerHealthBar: {fileID: 97589811}
@@ -8753,6 +8756,9 @@ MonoBehaviour:
   e_enemy5ResistantEffect: {fileID: 0}
   debugTurnbar: {fileID: 0}
   debugTurnbarText: {fileID: 0}
+  en_tx_redEnergyTrackerText: {fileID: 0}
+  en_tx_blueEnergyTrackerText: {fileID: 0}
+  en_tx_yellowEnergyTrackerText: {fileID: 0}
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9243,6 +9249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d2fbe7dca504d41bda1349f81155a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_gameManager: {fileID: 0}
   g_turnManager: {fileID: 1269889775}
   g_player: {fileID: 2082358049}
   g_mapManager: {fileID: 72613876}
@@ -9251,11 +9258,12 @@ MonoBehaviour:
   g_UIManager: {fileID: 487312183}
   g_iconManager: {fileID: 1037513594}
   g_cardManager: {fileID: 1451117616}
-  g_CardDatabase: {fileID: 2086421104}
+  g_cardDatabase: {fileID: 0}
   g_lineMultiplierManager: {fileID: 630261271}
   g_energyManager: {fileID: 1412184871}
   g_popupManager: {fileID: 274638691}
   g_altar: {fileID: 1981244727}
+  g_cardHolder: {fileID: 0}
   g_sceneManager: {fileID: 1510901130}
   g_backgroundManager: {fileID: 0}
   g_turnEffectManager: {fileID: 0}
@@ -13460,7 +13468,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275e7e6bf7d1db545ad6e850806e50f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm_ls_p_playerDeck: 
+  gm_ls_p_playerDeck: 00000000010000000200000003000000000000000000000000000000000000000000000000000000
+  i_playerHealth: 35
+  i_healthMax: 35
+  i_shield: 0
+  i_shieldMax: 100
+  f_playerEnergyGenerationRate: 1
+  i_bones: 0
+  b_bleeding: 0
+  b_resistant: 0
+  b_stunned: 0
 --- !u!4 &696429322
 Transform:
   m_ObjectHideFlags: 0
@@ -27165,9 +27182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   str_energyColor: 
   i_energyCount: 0
-  i_redEnergy: 0
-  i_yellowEnergy: 0
-  i_blueEnergy: 0
   i_redStorageEnergy: 0
   i_yellowStorageEnergy: 0
   i_blueStorageEnergy: 0
@@ -37497,17 +37511,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 152267100547761435, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
   m_PrefabInstance: {fileID: 152267102499932020}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2086421104 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-  m_PrefabInstance: {fileID: 152267102499932020}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0883779ae71a4eddb5dcdacfa2a2d7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2092353970
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,9 @@ public class S_Global : MonoBehaviour
     [Header("Static instance for Singleton usage of S_Global")]
     public static S_Global Instance;
 
+    [Header("GameManager")]
+    public S_GameManager g_gameManager;
+
     [Header("Script References")]
     public S_TurnManager g_turnManager;
     public S_Player g_player;
@@ -22,11 +25,12 @@ public class S_Global : MonoBehaviour
     public S_UIManager g_UIManager;
     public S_IntentManager g_iconManager; 
     public S_CardManager g_cardManager;
-    public S_CardDatabase g_CardDatabase;
+    public S_CardDatabase g_cardDatabase;
     public S_LineMultiplierManager g_lineMultiplierManager;
     public S_EnergyManager g_energyManager;
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
+    public S_CardHolder g_cardHolder;
     public S_SceneManager g_sceneManager;
     public S_BackgroundManager g_backgroundManager;
     public S_TurnEffectManager g_turnEffectManager;
@@ -94,9 +98,6 @@ public class S_Global : MonoBehaviour
         {
             Instance = this;
         }
-
-        //May be needed for gamemanager later
-        g_i_sceneIndex = 0;
     }
 
     void Start()
@@ -108,6 +109,13 @@ public class S_Global : MonoBehaviour
 
         //start the combat music loop
         g_a_audioPlayer.SetActive(true);
+
+        //GameManager variable changing
+        g_gameManager = S_GameManager.Instance;
+        foreach (int card in g_gameManager.gm_ls_p_playerDeck)
+        {
+            g_ls_p_playerDeck.Add(card);
+        }
     }
 
     /// <summary>
@@ -146,6 +154,10 @@ public class S_Global : MonoBehaviour
             {
                 g_UIManager.debugTurnbar.SetActive(false);
             }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
         }
     }
 }

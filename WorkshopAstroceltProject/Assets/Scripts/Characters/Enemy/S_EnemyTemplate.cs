@@ -22,8 +22,4 @@ public class S_EnemyTemplate : ScriptableObject
 
     // Set this to identify which enemy
     public string e_str_enemyType; 
-
-    // Add more enemies to toggle on and off as needed
-    [Header("Enemy Type Bools")]
-    public bool e_b_enemyIsLumberjack; 
 }

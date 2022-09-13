@@ -12,8 +12,8 @@ using DG.Tweening;
 public class S_StarPopUp : MonoBehaviour
 {
     private S_Global g_global;
-    private bool b_deletionTimerFlag;
-    private bool b_spawnTimerFlag;
+    [SerializeField] bool b_deletionTimerFlag;
+    [SerializeField] bool b_spawnTimerFlag;
     [SerializeField] SpriteRenderer colorImage;
 
     [Header("Color Bools")]
@@ -78,7 +78,7 @@ public class S_StarPopUp : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         gameObject.transform.DOScale(new Vector3(0.3f, 0.3f, 0), 0.2f);
-        if (f_spawnTimer < 0)
+        if (f_spawnTimer <= 0)
         {
             b_spawnTimerFlag = true;
         }
@@ -194,6 +194,19 @@ public class S_StarPopUp : MonoBehaviour
     public void ClearPopup()
     {
         StartCoroutine(DeletionTimer());
+
+        CounterDecrement();
+
+        //yield return new WaitUntil(() => b_deletionTimerFlag == true);
+    }
+
+    /// <summary>
+    /// Decrement the list count tracker
+    /// - Josh
+    /// </summary>
+    public void CounterDecrement()
+    {
+        g_global.g_popupManager.i_popupUpClearInt -= 1;
     }
 
     /// <summary>
@@ -210,22 +223,26 @@ public class S_StarPopUp : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DeletionTimer()
+    public IEnumerator DeletionTimer()
     {
+        //Debug.Log("deletion timer called");
         //A delay timer for the disappear animation
         f_disappearTimer -= Time.deltaTime;
         g_global.g_ls_starPopup.Remove(this);
-        if (f_disappearTimer < 0)
+        if (f_disappearTimer <= 0)
         {
+            
             colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
             f_destroyTimer -= Time.deltaTime;
             if (f_destroyTimer < 0)
             {
+                b_deletionTimerFlag = true;
                 Destroy(gameObject);
+                yield return new WaitUntil(() => b_deletionTimerFlag == true);
             }
+           
         }
-        b_deletionTimerFlag = true;
-        yield return b_deletionTimerFlag == true;
+        
     }
 
     // Setters \\
