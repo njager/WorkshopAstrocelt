@@ -9,6 +9,10 @@ public class RewardVisualScript : MonoBehaviour
     [SerializeField] GameObject lRewardCover;
     [SerializeField] GameObject rRewardCover;
 
+    [SerializeField] int[] ls_cardBundle1;
+    [SerializeField] int[] ls_cardBundle2;
+
+
     public S_GameManager s_gameManager;
 
     private void Start()
@@ -22,7 +26,10 @@ public class RewardVisualScript : MonoBehaviour
         rRewardCover.SetActive(false);
         lReward.SetActive(true);
 
-        s_gameManager.gm_ls_p_playerDeck.Add(11);
+        foreach(int _cardID in ls_cardBundle1) 
+        {
+            s_gameManager.gm_ls_p_playerDeck.Add(_cardID);
+        }
     }
     public void RightRewardButtonClick()
     {
@@ -30,6 +37,9 @@ public class RewardVisualScript : MonoBehaviour
         rRewardCover.SetActive(false);
         rReward.SetActive(true);
 
-        s_gameManager.gm_ls_p_playerDeck.Add(10);
+        foreach (int _cardID in ls_cardBundle2)
+        {
+            s_gameManager.gm_ls_p_playerDeck.Add(_cardID);
+        }
     }
 }

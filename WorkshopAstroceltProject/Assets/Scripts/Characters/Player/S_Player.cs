@@ -9,6 +9,14 @@ public class S_Player : MonoBehaviour
     public S_PlayerAttributes p_playerAttributes;
     [SerializeField] GameObject a_audioPlayer;
 
+    [Header("Player Sprites")]
+    public SpriteRenderer playerSprite;
+
+    public Sprite idleSprite;
+    public Sprite attackSprite;
+    public Sprite blockSprite;
+    public Sprite damagedSprite;
+
     /// <summary>
     /// Basic Start S_Global setup, grabbing playerAttributes; 
     /// </summary>
@@ -40,7 +48,10 @@ public class S_Player : MonoBehaviour
             {
                 p_playerAttributes.p_i_health -= _newDamageValue;
                 p_playerAttributes.p_pe_blood.Play();
-                p_playerAttributes.p_a_animator.Play("Damaged");
+
+                //trigger a coroutine to change sprite and go back
+                StartCoroutine(ChangeDamageSprite());
+
                 //Debug.Log("Player Attacked!");
             }
             else
@@ -52,8 +63,10 @@ public class S_Player : MonoBehaviour
                     p_playerAttributes.p_i_shield -= _newDamageValue;
                     p_playerAttributes.p_i_health -= _tempVal;
                     p_playerAttributes.p_pe_blood.Play();
-                    p_playerAttributes.p_a_animator.Play("Damaged");
                     //Debug.Log("Player didn't have enough shields!");
+
+                    //trigger a coroutine to change sprite and go back
+                    StartCoroutine(ChangeDamageSprite());
                 }
                 else
                 {
@@ -68,8 +81,10 @@ public class S_Player : MonoBehaviour
             {
                 p_playerAttributes.p_i_health -= _damageValue;
                 p_playerAttributes.p_pe_blood.Play();
-                p_playerAttributes.p_a_animator.Play("Damaged");
                 //Debug.Log("Player Attacked!");
+
+                //trigger a coroutine to change sprite and go back
+                StartCoroutine(ChangeDamageSprite());
             }
             else
             {
@@ -80,8 +95,10 @@ public class S_Player : MonoBehaviour
                     p_playerAttributes.p_i_shield -= _damageValue;
                     p_playerAttributes.p_i_health -= _tempVal;
                     p_playerAttributes.p_pe_blood.Play();
-                    p_playerAttributes.p_a_animator.Play("Damaged");
                     //Debug.Log("Player didn't have enough shields!");
+
+                    //trigger a coroutine to change sprite and go back
+                    StartCoroutine(ChangeDamageSprite());
                 }
                 else
                 {
@@ -102,7 +119,7 @@ public class S_Player : MonoBehaviour
     {
         //Debug.Log("DEBUG: Player Shields: " + _shieldValue);
 
-        if(_soundEffectState == false) // False = physcial
+        if (_soundEffectState == false) // False = physcial
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
         }
@@ -111,7 +128,10 @@ public class S_Player : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
         }
 
-        p_playerAttributes.p_i_shield += _shieldValue; 
+        p_playerAttributes.p_i_shield += _shieldValue;
+
+        //trigger a coroutine to change back to og sprite
+        StartCoroutine(ChangeBlockSprite());
     }
 
     /// <summary>
@@ -123,5 +143,39 @@ public class S_Player : MonoBehaviour
     public void PlayerHealed(int _healedValue)
     {
         p_playerAttributes.p_i_health += _healedValue; 
+    }
+
+
+
+
+    public IEnumerator ChangeAttackSprite()
+    {
+        playerSprite.sprite = attackSprite;
+
+        p_playerAttributes.p_a_AttackAnimator.Play("attack");
+
+        yield return new WaitForSeconds(2);
+
+        playerSprite.sprite = idleSprite;
+    }
+
+    public IEnumerator ChangeBlockSprite()
+    {
+        playerSprite.sprite = blockSprite;
+
+        yield return new WaitForSeconds(2);
+
+        playerSprite.sprite = idleSprite;
+    }
+
+    public IEnumerator ChangeDamageSprite()
+    {
+        playerSprite.sprite = damagedSprite;
+
+        p_playerAttributes.p_a_AttackAnimator.Play("Damaged");
+
+        yield return new WaitForSeconds(2);
+
+        playerSprite.sprite = idleSprite;
     }
 }
