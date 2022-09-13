@@ -227,22 +227,22 @@ public class S_StarPopUp : MonoBehaviour
     {
         //Debug.Log("deletion timer called");
         //A delay timer for the disappear animation
-        f_disappearTimer -= Time.deltaTime;
-        g_global.g_ls_starPopup.Remove(this);
-        if (f_disappearTimer <= 0)
+        b_deletionTimerFlag = true;
+        if (f_disappearTimer > 0) 
         {
-            
-            colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
-            f_destroyTimer -= Time.deltaTime;
-            if (f_destroyTimer < 0)
-            {
-                b_deletionTimerFlag = true;
-                Destroy(gameObject);
-                yield return new WaitUntil(() => b_deletionTimerFlag == true);
-            }
-           
+            f_disappearTimer -= Time.deltaTime;
         }
         
+        g_global.g_ls_starPopup.Remove(this);
+
+        colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
+        if (f_disappearTimer > 0)
+        {
+            f_destroyTimer -= Time.deltaTime;
+        }
+
+        Destroy(gameObject);
+        yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
 
     // Setters \\
