@@ -236,7 +236,7 @@ public class S_StarPopUp : MonoBehaviour
         g_global.g_ls_starPopup.Remove(this);
 
         colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
-        if (f_disappearTimer > 0)
+        if (f_destroyTimer > 0)
         {
             f_destroyTimer -= Time.deltaTime;
         }
