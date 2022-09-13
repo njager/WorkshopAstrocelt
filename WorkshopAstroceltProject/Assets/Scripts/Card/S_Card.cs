@@ -101,7 +101,6 @@ public class S_Card : MonoBehaviour
     [Header("Card Dragger References")]
     public S_CardDragger sc_c_cardDraggerReference;
     //public int c_i_cardID;
-    public Vector3 initialCardTransform; // Will turn to V3 for 0s
 
     [Header("Card Background Art Assets")]
     public Sprite c_a_redBackground;
@@ -123,7 +122,8 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Position Index and Position")]
     public int c_i_cardPositionIndex;
-    public SpriteRenderer c_cardSpriteRendererComponent;
+    public float c_v3_intialPositionZ;
+    public Vector3 c_v3_CardPosition;
     public Vector3 c_v3_initialCardPosition;
 
     [Header("CardDrag Bool")]
@@ -140,7 +140,7 @@ public class S_Card : MonoBehaviour
         // g_global.c_i_cardIDNum += 1;
         //c_i_cardID = g_global.c_i_cardIDNum;
 
-        initialCardTransform = gameObject.GetComponent<Transform>().position;
+        c_v3_intialPositionZ = gameObject.transform.position.z;
     }
 
     /// <summary>
@@ -619,7 +619,7 @@ public class S_Card : MonoBehaviour
     /// Make it so when one card is hovered by another the layer moves up
     /// - Josh
     /// </summary>
-    
+
     /*
     public void OnHoverEnter()
     {
@@ -653,13 +653,13 @@ public class S_Card : MonoBehaviour
     // Setters \\ 
 
     /// <summary>
-    /// Set the bool value of S_Card.c_i_cardPositionIndex;
+    /// Set the bool value of S_Card.c_v3_initialCardPosition;
     /// - Josh 
     /// </summary>
-    /// <param name="_cardPositionIndex"></param>
-    public void SetCardPositionIndex(int _cardPositionIndex) 
+    /// <param name="_cardInitialPosition"></param>
+    public void SetCardInitialPosition(Vector3 _cardInitialPosition) 
     {
-        c_i_cardPositionIndex = _cardPositionIndex;
+        c_v3_initialCardPosition = _cardInitialPosition;
     }
 
     // Getters \\ 

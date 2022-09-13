@@ -69,7 +69,8 @@ public class S_StarPopUp : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnFadeTimer()
     {
-        f_spawnTimer -= Time.deltaTime;
+        b_spawnTimerFlag = true;
+        
         colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
         gameObject.transform.DOShakePosition(2f, 0.1f, 6, 10f);
         
@@ -78,11 +79,11 @@ public class S_StarPopUp : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         gameObject.transform.DOScale(new Vector3(0.3f, 0.3f, 0), 0.2f);
-        if (f_spawnTimer <= 0)
+
+        if (f_spawnTimer > 0)
         {
-            b_spawnTimerFlag = true;
+            f_spawnTimer -= Time.deltaTime;
         }
-        yield return b_spawnTimerFlag == true; 
     }
 
  

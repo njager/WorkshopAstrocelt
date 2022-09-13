@@ -146,8 +146,8 @@ public class S_Cardball : MonoBehaviour
         // Grab the script from this cardball
         S_Card _cardScript = c_card.GetComponent<S_Card>();
 
-        // Pass over card position index
-        _cardScript.SetCardPositionIndex(_cardPositionIndex);
+        // Pass over the parent postion for initial position
+        _cardScript.SetCardInitialPosition(_whereToSpawnCard.position);
 
         // Send information From Template
         _cardScript.FetchCardData(c_cardData);

@@ -9,16 +9,14 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
   
     [Header("Useful Variables")]
     public Vector3 c_v3_initialPosition;
-    public RectTransform c_cardTransform; 
+    public Transform c_cardTransform; 
     public S_Card c_card;
-
-    public int transformCounter = 0; // Use this to trigger bheavior only once;
 
     void Awake()
     {
         g_global = S_Global.Instance;
         c_card = GetComponent<S_Card>();
-        c_cardTransform = gameObject.GetComponent<RectTransform>();
+        c_cardTransform = gameObject.GetComponent<Transform>();
     }
 
     /// <summary>
@@ -32,20 +30,13 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     /// <summary>
-    /// Grab the initial position data, and facilitate drag correlative to mouse position OnDrag
+    /// Facilitate drag correlative to mouse position OnDrag
     /// - Josh
     /// </summary>
     /// <param name="_eventData"></param>
     public void OnDrag(PointerEventData _eventData)
     {
-        c_card.c_cardSpriteRendererComponent.sortingOrder = 0;
-        if (transformCounter == 0)
-        {
-            c_v3_initialPosition = GetComponent<Transform>().position;
-            transformCounter++; // Increment counter to make this happen only once
-        }
-        c_cardTransform.anchoredPosition += _eventData.delta / g_global.g_UIManager.greyboxCanvas.GetComponent<Canvas>().scaleFactor; // Take the change in mouse position and divide it by the size of the box it's in
-        
+        c_cardTransform.position += new Vector3(_eventData.delta.x, _eventData.delta.y, 0f);
     }
 
     /// <summary>
