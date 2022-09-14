@@ -32,6 +32,9 @@ public class S_Enemy : MonoBehaviour
     [Header("Intent Duration Value")]
     public float f_intentDuration;
 
+    //getting cardball object
+    public GameObject cardball;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -394,6 +397,22 @@ public class S_Enemy : MonoBehaviour
             Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
             yield return new WaitForSeconds(4);
         }
+    }
+
+
+
+    //magiciain unique ablility
+    //gnerates random number from 1-5
+    //deletes that card
+    //resets list
+
+    public void MagicianSpecialAbility()
+    {
+
+        int numDelete = Random.Range(1, 6);
+
+        S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
+        _cardball.DeleteCardball();
     }
 
     /// <summary>
