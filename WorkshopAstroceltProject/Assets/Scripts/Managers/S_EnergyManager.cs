@@ -10,9 +10,9 @@ public class S_EnergyManager : MonoBehaviour
     public string str_energyColor;
     public float i_energyCount;
 
-    private int i_redEnergy;
-    private int i_yellowEnergy;
-    private int i_blueEnergy;
+    [SerializeField] int i_redEnergy;
+    [SerializeField] int i_yellowEnergy;
+    [SerializeField] int i_blueEnergy;
 
     public int i_redStorageEnergy;
     public int i_yellowStorageEnergy;
