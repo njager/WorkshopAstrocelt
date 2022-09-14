@@ -12,8 +12,8 @@ public class Response : ScriptableObject
 
     public Reward r_reward;
 
-    [Header("Percent chance that the player fails")]
-    public float f_failureChance;
+    [Header("Percent chance that the player fails as an int from 1-100")]
+    public int f_failureChance;
 
     [Header("Text if Player fails")]
     [TextArea(3, 10)]

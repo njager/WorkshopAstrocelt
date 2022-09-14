@@ -125,7 +125,7 @@ public class S_UIManager : MonoBehaviour
         // Turn off debug elements
         debugTurnbar.SetActive(false);
 
-        c_cardCount.text = g_global.g_ls_p_playerHand.Count.ToString();
+        
     }
 
     //Some of this should be in turn manager?, probably
@@ -346,6 +346,10 @@ public class S_UIManager : MonoBehaviour
         {
             DebugTurnBarUpdate();
         }
+
+
+        // Anurag's UI element
+        //c_cardCount.text = g_global.g_ls_p_playerHand.Count.ToString();
     }
 
 

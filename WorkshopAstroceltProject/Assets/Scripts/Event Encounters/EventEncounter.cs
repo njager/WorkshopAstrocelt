@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EventEncounter 
 {
     [Header("Image for the Event")]
-    public Image a_eventImage;
+    public Sprite a_eventImage;
 
     [Header("Name for the Event")]
     [TextArea(3, 10)]

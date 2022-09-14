@@ -30,7 +30,7 @@ public class S_CardPosition : MonoBehaviour
         {
             if (c_card.c_b_cardIsDragged == false)
             {
-                c_card.c_cardCanvasComponent.sortingOrder = 6;
+                c_card.c_v3_CardPosition.z = -10;
                 c_b_cardHovered = true;
             }
             else
@@ -50,7 +50,7 @@ public class S_CardPosition : MonoBehaviour
         {
             if (c_card.c_b_cardIsDragged == false)
             {
-                c_card.c_cardCanvasComponent.sortingOrder = c_card.c_i_cardPositionIndex;
+                c_card.c_v3_CardPosition.z = c_card.c_v3_intialPositionZ;
                 c_b_cardHovered = false;
             }
             else
