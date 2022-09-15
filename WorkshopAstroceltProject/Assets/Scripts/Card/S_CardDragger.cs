@@ -72,7 +72,7 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (g_global.g_c_b_firstCard)
         {
             g_global.g_c_b_firstCard = false;
-            FMODUnity.StudioEventEmitter _gameMusic = g_global.g_a_audioPlayer.GetComponent<FMODUnity.StudioEventEmitter>();
+            //FMODUnity.StudioEventEmitter _gameMusic = g_global.g_a_audioPlayer.GetComponent<FMODUnity.StudioEventEmitter>();
             //_gameMusic.SetParameter("Music_Combat_01", 1);
         }
 
