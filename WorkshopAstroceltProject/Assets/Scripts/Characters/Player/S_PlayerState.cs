@@ -210,8 +210,7 @@ public class S_PlayerState : MonoBehaviour
     public void PlayerLoses()
     {
         //Player lost so trigger lose text and reset canvas
-        g_global.g_UIManager.greyboxCanvas.SetActive(false);
-        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.cn_resetCanvas.SetActive(true);
         g_global.g_UIManager.loseText.SetActive(true);
 
         //Play lose sound
@@ -229,8 +228,8 @@ public class S_PlayerState : MonoBehaviour
     public void PlayerWins()
     {
         //Player won so trigger win text and reset canvas
-        g_global.g_UIManager.greyboxCanvas.SetActive(false);
-        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.cn_characterCanvas.SetActive(false);
+        g_global.g_UIManager.cn_resetCanvas.SetActive(true);
         g_global.g_UIManager.winText.SetActive(true);
 
         g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.p_i_health;

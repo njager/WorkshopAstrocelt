@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 1068484044281633899}
   - component: {fileID: 684450524107534984}
   - component: {fileID: 5554066982219315847}
-  - component: {fileID: 7052261342896429276}
-  - component: {fileID: 7867464087033945086}
+  - component: {fileID: 8903467734209327839}
   m_Layer: 0
   m_Name: Pf_MagicianBackup
   m_TagString: Enemy
@@ -57,9 +56,10 @@ MonoBehaviour:
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
   e_tx_intentTextObject: {fileID: 6073267529116700214}
-  e_enemySprite: {fileID: 4466407970463963069}
+  e_cd_sc_characterCardInterface: {fileID: 8903467734209327839}
   e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 1
+  cardball: {fileID: 0}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,15 +136,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!222 &7052261342896429276
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068484044281633941}
-  m_CullTransparentMesh: 1
---- !u!114 &7867464087033945086
+--- !u!114 &8903467734209327839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,42 +145,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068484044281633941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1068484044281633896}
-          m_TargetAssemblyTypeName: S_Enemy, Assembly-CSharp
-          m_MethodName: OnHoverEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1068484044281633896}
-          m_TargetAssemblyTypeName: S_Enemy, Assembly-CSharp
-          m_MethodName: OnHoverExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  e_attachedEnemy: {fileID: 0}
+  p_b_attachedToPlayer: 0
+  e_b_attachedToEnemy: 0
 --- !u!1 &1211010528336425680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5094,7 +5056,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7102296418157329942}
   - component: {fileID: 5254607161451454234}
-  - component: {fileID: 2843262813681667389}
   - component: {fileID: 1358277532405405128}
   - component: {fileID: 3738832767961254711}
   m_Layer: 0
@@ -5126,21 +5087,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4466407970463963069}
   m_CullTransparentMesh: 1
---- !u!114 &2843262813681667389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4466407970463963069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  e_attachedEnemy: {fileID: 0}
-  p_b_attachedToPlayer: 0
-  e_b_attachedToEnemy: 0
 --- !u!95 &1358277532405405128
 Animator:
   serializedVersion: 3

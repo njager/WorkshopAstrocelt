@@ -47,8 +47,8 @@ public class S_UIManager : MonoBehaviour
     [Header("Win Lose Elements")]
     public GameObject winText;
     public GameObject loseText;
-    public GameObject resetCanvas;
-    public GameObject greyboxCanvas;
+    public GameObject cn_resetCanvas;
+    public GameObject cn_characterCanvas;
 
     //Will never be a white energy icon
     [Header("Energy Generation Elements")]
@@ -120,7 +120,7 @@ public class S_UIManager : MonoBehaviour
         //Set all three to false to start
         winText.SetActive(false);
         loseText.SetActive(false);
-        resetCanvas.SetActive(false);
+        cn_resetCanvas.SetActive(false);
 
         // Turn off debug elements
         debugTurnbar.SetActive(false);

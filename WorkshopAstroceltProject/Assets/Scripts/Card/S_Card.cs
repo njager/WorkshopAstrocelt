@@ -605,6 +605,7 @@ public class S_Card : MonoBehaviour
         Destroy(gameObject); // Remove card from play
     }
 
+    public bool cd_b_resetPositionFlag;
 
     /// <summary>
     /// Does as it says, it resets the card to it's initial position
@@ -613,6 +614,7 @@ public class S_Card : MonoBehaviour
     public void ResetPosition()
     {
         gameObject.transform.position = c_v3_initialCardPosition;
+        cd_b_resetPositionFlag = false;
     }
 
     /// <summary>

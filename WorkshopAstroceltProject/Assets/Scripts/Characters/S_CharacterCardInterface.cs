@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
+public class S_CharacterCardInterface : MonoBehaviour
 {
     private S_Card c_cardData;
     private S_Global g_global;
@@ -43,13 +43,13 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
     /// Used in conjunction with S_CardDragger
     /// </summary>
     /// <param name="_eventData"></param>
-    public void OnDrop(PointerEventData _eventData)
+    public void OnTriggerEnter2D(Collider2D _collider)
     {
         //Debug.Log("Trying to Play the card");
 
-        if (_eventData.pointerDrag != null)
+        if (_collider != null)
         {
-            c_cardData = _eventData.pointerDrag.GetComponent<S_Card>();
+            c_cardData = _collider.GetComponent<S_Card>();
 
             if(c_cardData == null) 
             {
@@ -70,14 +70,14 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     else
                     {
                         Debug.Log("Wrong effect type!");
-                        c_cardData.ResetPosition();
+                        c_cardData.cd_b_resetPositionFlag = true;
                         return;
                     }
                 }
                 else
                 {
                     Debug.Log("Card Cannot affect player!");
-                    c_cardData.ResetPosition();
+                    c_cardData.cd_b_resetPositionFlag = true;
                     return;
                 }
             }
@@ -112,7 +112,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     else
                     {
                         Debug.Log("Not an attack card");
-                        c_cardData.ResetPosition();
+                        c_cardData.cd_b_resetPositionFlag = true;
                         return;
                     }
                 }
@@ -129,7 +129,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.ResetPosition();
+                                c_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -142,7 +142,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.ResetPosition();
+                                c_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -155,7 +155,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.ResetPosition();
+                                c_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -168,7 +168,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.ResetPosition();
+                                c_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -181,7 +181,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.ResetPosition();
+                                c_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -189,21 +189,21 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
                     else
                     {
                         Debug.Log("not a main attack for all");
-                        c_cardData.ResetPosition();
+                        c_cardData.cd_b_resetPositionFlag = true;
                         return;
                     }
                 }
                 else
                 {
                     Debug.Log("Doesn't effect one, doesn't effect all");
-                    c_cardData.ResetPosition();
+                    c_cardData.cd_b_resetPositionFlag = true;
                     return;
                 }
             }
             else
             {
                 Debug.Log("Wrong Character Type!");
-                c_cardData.ResetPosition();
+                c_cardData.cd_b_resetPositionFlag = true;
                 return;
             }
 
@@ -211,7 +211,7 @@ public class S_CharacterCardInterface : MonoBehaviour, IDropHandler
         else
         {
             Debug.Log("Pointer Event Data is Null");
-            c_cardData.ResetPosition();
+            c_cardData.cd_b_resetPositionFlag = true;
             return;
         }
     }

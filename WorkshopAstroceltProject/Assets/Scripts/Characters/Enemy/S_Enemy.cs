@@ -23,8 +23,8 @@ public class S_Enemy : MonoBehaviour
     public GameObject e_sp_spriteIcon;
     public GameObject e_tx_intentTextObject;
 
-    [Header("Enemy Sprite")]
-    public GameObject e_enemySprite;
+    [Header("Character Card Interface")]
+    public S_CharacterCardInterface e_cd_sc_characterCardInterface;
 
     [Header("Enemy Default Scale Vector3")]
     public Vector3 e_v3_defaultScale;
@@ -45,7 +45,7 @@ public class S_Enemy : MonoBehaviour
 
         g_global.e_ls_enemyList.Add(this);
 
-        e_enemySprite.GetComponent<S_CharacterCardInterface>().e_attachedEnemy = this;
+        e_cd_sc_characterCardInterface.e_attachedEnemy = this;
 
         // Grab and set default scale
         e_v3_defaultScale = gameObject.transform.localScale;
