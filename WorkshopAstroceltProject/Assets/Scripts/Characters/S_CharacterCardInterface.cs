@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class S_CharacterCardInterface : MonoBehaviour
 {
-    private S_Card c_cardData;
+    private S_Card cd_cardData;
     private S_Global g_global;
 
     [Header("Enemy Reference")]
@@ -41,17 +41,30 @@ public class S_CharacterCardInterface : MonoBehaviour
     {
         if(_collider != null) 
         {
-            c_cardData = _collider.GetComponent<S_Card>();
+            cd_cardData = _collider.GetComponent<S_Card>();
 
             //Debug.Log("Exit");
 
-            if(c_cardData != null) 
+            if(cd_cardData != null) 
             {
-                if (c_cardData.c_b_cardIsDragged == false)
+                if(e_b_attachedToEnemy == true) 
+                {
+                    cd_cardData.e_cd_grabbedEnemy = e_attachedEnemy;
+                }
+
+                if (cd_cardData.c_b_cardIsDragged == false)
                 {
                     Debug.Log("MouseLetGo");
-                    c_cardData.cd_b_resetPositionFlag = true;
-                    PlayCard(c_cardData);
+                    cd_cardData.cd_b_resetPositionFlag = true;
+
+                    if(cd_cardData.e_cd_grabbedEnemy != e_attachedEnemy) 
+                    {
+                        return;
+                    }
+                    else 
+                    {
+                        PlayCard(cd_cardData);
+                    }
                 }
             }
         }
@@ -72,77 +85,77 @@ public class S_CharacterCardInterface : MonoBehaviour
             //print("Made it to player v enemy");
             if (p_b_attachedToPlayer == true) //check to see if this object is the player
             {
-                if (c_cardData.c_b_affectsPlayer == true) //check to see if it affects player
+                if (cd_cardData.c_b_affectsPlayer == true) //check to see if it affects player
                 {
-                    if (c_cardData.c_b_shieldMainEffect == true) //check to see if it's a shield card
+                    if (cd_cardData.c_b_shieldMainEffect == true) //check to see if it's a shield card
                     {
                         //print("Card played?");
                         //play the card
-                        c_cardData.PlayCard(g_global.g_player.gameObject);
+                        cd_cardData.PlayCard(g_global.g_player.gameObject);
                     }
                     else
                     {
                         Debug.Log("Wrong effect type!");
-                        c_cardData.cd_b_resetPositionFlag = true;
+                        cd_cardData.cd_b_resetPositionFlag = true;
                         return;
                     }
                 }
                 else
                 {
                     Debug.Log("Card Cannot affect player!");
-                    c_cardData.cd_b_resetPositionFlag = true;
+                    cd_cardData.cd_b_resetPositionFlag = true;
                     return;
                 }
             }
             else if (e_b_attachedToEnemy == true) // I like to make bool checks clear in what they are checking, but could be optimized
             {
                 //print("Affecting Enemy");
-                if (c_cardData.c_b_affectsOne == true) //check to see if it affects enemy
+                if (cd_cardData.c_b_affectsOne == true) //check to see if it affects enemy
                 {
-                    if (c_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
+                    if (cd_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
                     {
                         if (e_attachedEnemy == g_global.g_enemyState.enemy1)
                         {
-                            c_cardData.PlayCard(g_global.g_enemyState.enemy1.gameObject);
+                            cd_cardData.PlayCard(g_global.g_enemyState.enemy1.gameObject);
                         }
                         else if (e_attachedEnemy == g_global.g_enemyState.enemy2)
                         {
-                            c_cardData.PlayCard(g_global.g_enemyState.enemy2.gameObject);
+                            cd_cardData.PlayCard(g_global.g_enemyState.enemy2.gameObject);
                         }
                         else if (e_attachedEnemy == g_global.g_enemyState.enemy3)
                         {
-                            c_cardData.PlayCard(g_global.g_enemyState.enemy3.gameObject);
+                            cd_cardData.PlayCard(g_global.g_enemyState.enemy3.gameObject);
                         }
                         else if (e_attachedEnemy == g_global.g_enemyState.enemy4)
                         {
-                            c_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
+                            cd_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
                         }
                         else if (e_attachedEnemy == g_global.g_enemyState.enemy5)
                         {
-                            c_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
+                            cd_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
                         }
                     }
                     else
                     {
                         Debug.Log("Not an attack card");
-                        c_cardData.cd_b_resetPositionFlag = true;
+                        cd_cardData.cd_b_resetPositionFlag = true;
                         return;
                     }
                 }
-                else if (c_cardData.c_b_affectsAllEnemies == true) // Activate on all enemies
+                else if (cd_cardData.c_b_affectsAllEnemies == true) // Activate on all enemies
                 {
-                    if (c_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
+                    if (cd_cardData.c_b_attackMainEffect == true) //check to see if it's an attack card
                     {
                         if (g_global.g_enemyAttributeSheet1 != null) // Activate on all enemies then
                         {
                             if (g_global.g_enemyState.e_b_enemy1Dead == false)
                             {
-                                c_cardData.PlayCard(g_global.g_enemyState.enemy1.gameObject);
+                                cd_cardData.PlayCard(g_global.g_enemyState.enemy1.gameObject);
                             }
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.cd_b_resetPositionFlag = true;
+                                cd_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -150,12 +163,12 @@ public class S_CharacterCardInterface : MonoBehaviour
                         {
                             if (g_global.g_enemyState.e_b_enemy2Dead == false)
                             {
-                                c_cardData.PlayCard(g_global.g_enemyState.enemy2.gameObject);
+                                cd_cardData.PlayCard(g_global.g_enemyState.enemy2.gameObject);
                             }
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.cd_b_resetPositionFlag = true;
+                                cd_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -163,12 +176,12 @@ public class S_CharacterCardInterface : MonoBehaviour
                         {
                             if (g_global.g_enemyState.e_b_enemy3Dead == false)
                             {
-                                c_cardData.PlayCard(g_global.g_enemyState.enemy3.gameObject);
+                                cd_cardData.PlayCard(g_global.g_enemyState.enemy3.gameObject);
                             }
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.cd_b_resetPositionFlag = true;
+                                cd_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -176,12 +189,12 @@ public class S_CharacterCardInterface : MonoBehaviour
                         {
                             if (g_global.g_enemyState.e_b_enemy4Dead == false)
                             {
-                                c_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
+                                cd_cardData.PlayCard(g_global.g_enemyState.enemy4.gameObject);
                             }
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.cd_b_resetPositionFlag = true;
+                                cd_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -189,12 +202,12 @@ public class S_CharacterCardInterface : MonoBehaviour
                         {
                             if (g_global.g_enemyState.e_b_enemy5Dead == false)
                             {
-                                c_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
+                                cd_cardData.PlayCard(g_global.g_enemyState.enemy5.gameObject);
                             }
                             else
                             {
                                 Debug.Log("Enemy is already Dead");
-                                c_cardData.cd_b_resetPositionFlag = true;
+                                cd_cardData.cd_b_resetPositionFlag = true;
                                 return;
                             }
                         }
@@ -202,28 +215,28 @@ public class S_CharacterCardInterface : MonoBehaviour
                     else
                     {
                         Debug.Log("not a main attack for all");
-                        c_cardData.cd_b_resetPositionFlag = true;
+                        cd_cardData.cd_b_resetPositionFlag = true;
                         return;
                     }
                 }
                 else
                 {
                     Debug.Log("Doesn't effect one, doesn't effect all");
-                    c_cardData.cd_b_resetPositionFlag = true;
+                    cd_cardData.cd_b_resetPositionFlag = true;
                     return;
                 }
             }
             else
             {
                 Debug.Log("Wrong Character Type!");
-                c_cardData.cd_b_resetPositionFlag = true;
+                cd_cardData.cd_b_resetPositionFlag = true;
                 return;
             }
         }
         else
         {
             Debug.Log("Pointer Event Data is Null");
-            c_cardData.cd_b_resetPositionFlag = true;
+            cd_cardData.cd_b_resetPositionFlag = true;
             return;
         }
     }

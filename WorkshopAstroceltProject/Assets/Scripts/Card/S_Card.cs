@@ -100,7 +100,7 @@ public class S_Card : MonoBehaviour
 
     [Header("Card Dragger References")]
     public S_CardDragger sc_c_cardDraggerReference;
-    //public int c_i_cardID;
+    public S_Enemy e_cd_grabbedEnemy;
 
     [Header("Card Background Art Assets")]
     public Sprite c_a_redBackground;
@@ -121,8 +121,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_attackSoundEffect;
 
     [Header("Card Position Index and Position")]
-    public int c_i_cardPositionIndex;
-    public float c_v3_intialPositionZ;
+    public bool cd_b_resetPositionFlag;
     public Vector3 c_v3_CardPosition;
     public Vector3 c_v3_initialCardPosition;
 
@@ -139,8 +138,6 @@ public class S_Card : MonoBehaviour
         //Separate cards, ended up not being needed
         // g_global.c_i_cardIDNum += 1;
         //c_i_cardID = g_global.c_i_cardIDNum;
-
-        c_v3_intialPositionZ = gameObject.transform.position.z;
     }
 
     /// <summary>
@@ -604,8 +601,6 @@ public class S_Card : MonoBehaviour
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
     }
-
-    public bool cd_b_resetPositionFlag;
 
     /// <summary>
     /// Does as it says, it resets the card to it's initial position
