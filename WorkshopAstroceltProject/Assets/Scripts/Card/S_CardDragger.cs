@@ -19,6 +19,15 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         c_cardTransform = gameObject.GetComponent<Transform>();
     }
 
+    private void Update()
+    {
+        if (c_card.c_b_cardIsDragged == false)
+        {
+            Vector2 _newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            transform.Translate(_newPosition);
+        }
+    }
+
     /// <summary>
     /// Empty for right now
     /// - Josh
@@ -27,6 +36,16 @@ public class S_CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData _eventData)
     {
         c_card.c_b_cardIsDragged = true;
+    }
+
+    public void OnMouseDown()
+    {
+        c_card.c_b_cardIsDragged = true;
+    }
+
+    public void OnMouseUp()
+    {
+        c_card.c_b_cardIsDragged = false;
     }
 
     /// <summary>

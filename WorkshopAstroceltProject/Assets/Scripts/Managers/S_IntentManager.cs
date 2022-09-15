@@ -98,34 +98,34 @@ public class S_IntentManager : MonoBehaviour
             _enemyAttributeSheet.AttackDamageRoll();
             if (_enemyAttributeSheet.e_i_enemyDamageValue == 1 || _enemyAttributeSheet.e_i_enemyDamageValue == 2) // If Attack Damage will be 1 or 2
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel1;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel1;
             }
             else if (_enemyAttributeSheet.e_i_enemyDamageValue == 3 || _enemyAttributeSheet.e_i_enemyDamageValue == 4) // If Attack Damage will be 3 or 4
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel2;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel2;
             }
             else if (_enemyAttributeSheet.e_i_enemyDamageValue == 5 || _enemyAttributeSheet.e_i_enemyDamageValue == 6) // If Attack Damage will be 5 or 6
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel3;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel3;
             }
             else if (_enemyAttributeSheet.e_i_enemyDamageValue == 7 || _enemyAttributeSheet.e_i_enemyDamageValue == 8) // If Attack Damage will be 7 or 8
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel4;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel4;
             }
             else if (_enemyAttributeSheet.e_i_enemyDamageValue >= 9) // If Attack Damage will be 9+
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel5;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel5;
             }
             ChangeIntentTextUI(_enemyAttributeSheet.e_i_enemyDamageValue, _enemy);
         }
         else if(_enemyAction == 2)
         {
-            _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyShield;
+            _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyShield;
             ChangeIntentTextUI(_enemyAttributeSheet.e_i_shieldMax, _enemy);
         }
         else if (_enemyAction == 3)
         {
-            _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAbility;
+            _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAbility;
             ChangeIntentTextUI(-1, _enemy);
         }
     }
@@ -169,7 +169,7 @@ public class S_IntentManager : MonoBehaviour
         while(!b_intentFlashBool) 
         {
             yield return new WaitForSeconds(f_intentTimer);
-            _enemy.e_sp_spriteIcon.GetComponent<Image>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
+            _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
             _enemy.e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
 
             yield return new WaitForSeconds(f_doIntentFadeDuration);
