@@ -154,7 +154,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 8
   m_TargetDisplay: 0
 --- !u!1 &1134803473554262698
 GameObject:
@@ -277,6 +277,7 @@ MonoBehaviour:
   c_v3_CardPosition: {x: 0, y: 0, z: 0}
   c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
   c_b_cardIsDragged: 0
+  cd_b_resetPositionFlag: 0
 --- !u!114 &8596015523136984958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c_v3_initialPosition: {x: 0, y: 0, z: 0}
   c_cardTransform: {fileID: 0}
-  c_card: {fileID: 0}
+  cd_cardData: {fileID: 0}
 --- !u!50 &1732291931699124592
 Rigidbody2D:
   serializedVersion: 4
@@ -323,7 +324,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -584,7 +585,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 8
   m_TargetDisplay: 0
 --- !u!1 &4266961717965404367
 GameObject:
@@ -645,7 +646,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1667290103487321013
 MonoBehaviour:
@@ -818,7 +819,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 8
   m_TargetDisplay: 0
 --- !u!1 &7252364082510179137
 GameObject:

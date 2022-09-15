@@ -288,12 +288,12 @@ public class S_Enemy : MonoBehaviour
     /// Used to toggle intent when mouse enters
     /// - Josh
     /// </summary>
-    public void OnHoverEnter()
+    public void OnMouseEnter()
     {
         //Debug.Log("Triggered Intent!");
         if (g_global.g_iconManager.b_intentFlashBool == true)
         {
-            e_sp_spriteIcon.GetComponent<Image>().DOFade(255, f_intentDuration);
+            e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(255, f_intentDuration);
             e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, f_intentDuration);
         }
     }
@@ -302,12 +302,12 @@ public class S_Enemy : MonoBehaviour
     /// Used to toggle intent when mouse enters
     /// - Josh
     /// </summary>
-    public void OnHoverExit()
+    public void OnMouseExit()
     {
         //Debug.Log("Stopping Intent!");
         if (g_global.g_iconManager.b_intentFlashBool == true)
         {
-            e_sp_spriteIcon.GetComponent<Image>().DOFade(0, f_intentDuration);
+            e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(0, f_intentDuration);
             e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(0, f_intentDuration);
         }
     }
@@ -319,7 +319,7 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     public void IncreaseIntentIconAlpha()
     {
-        e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
+        e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
     }
 
@@ -330,14 +330,14 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemy"></param>
     public void EnemyHighlightToggle()
     {
-        if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
+        /*if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
         {
             e_sc_enemyAttributes.e_highlightCircle.SetActive(true);
         }
         else 
         {
             e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
-        }
+        }*/
     }
 
     /// <summary>

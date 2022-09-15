@@ -34,6 +34,11 @@ public class S_CardDragger : MonoBehaviour // Event Handling to best facilitate 
                 cd_cardData.ResetPosition();
             }
         }
+
+        if(cd_cardData.cd_b_resetPositionFlag == true) 
+        {
+            cd_cardData.ResetPosition();
+        }
     }
 
     public void OnMouseDown()

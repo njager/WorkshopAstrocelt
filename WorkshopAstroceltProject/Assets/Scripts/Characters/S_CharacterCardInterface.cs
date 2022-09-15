@@ -37,25 +37,38 @@ public class S_CharacterCardInterface : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D _collider)
+    {
+        if(_collider != null) 
+        {
+            c_cardData = _collider.GetComponent<S_Card>();
+
+            //Debug.Log("Exit");
+
+            if(c_cardData != null) 
+            {
+                if (c_cardData.c_b_cardIsDragged == false)
+                {
+                    Debug.Log("MouseLetGo");
+                    c_cardData.cd_b_resetPositionFlag = true;
+                    PlayCard(c_cardData);
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// The recipricating event for OnDragEnd,
     /// this is a built-in event handler that will automatically respond to an object ending it's drag on the collision
     /// Used in conjunction with S_CardDragger
     /// </summary>
     /// <param name="_eventData"></param>
-    public void OnTriggerEnter2D(Collider2D _collider)
+    public void PlayCard(S_Card _card)
     {
         //Debug.Log("Trying to Play the card");
 
-        if (_collider != null)
+        if (_card != null)
         {
-            c_cardData = _collider.GetComponent<S_Card>();
-
-            if(c_cardData == null) 
-            {
-                return;
-            }
-
             //print("Made it to player v enemy");
             if (p_b_attachedToPlayer == true) //check to see if this object is the player
             {
@@ -206,7 +219,6 @@ public class S_CharacterCardInterface : MonoBehaviour
                 c_cardData.cd_b_resetPositionFlag = true;
                 return;
             }
-
         }
         else
         {
