@@ -12,17 +12,6 @@ public class S_MapGeneration : MonoBehaviour
     //Private variables
     private S_Global global;
 
-    [Header("Nodestar Reference")]
-    public S_NodeStar nodeStar; 
-
-    [Header("Temporary grid")]
-    public GameObject blackBar1;
-    public GameObject blackBar2;
-    public GameObject blackBar3;
-    public GameObject blackBar4;
-    public GameObject blackBar5;
-    public GameObject blackBar6;
-
     [Header("Map References")]
     public GameObject map1;
     public GameObject map2;
@@ -32,8 +21,13 @@ public class S_MapGeneration : MonoBehaviour
     public GameObject map6;
     public GameObject map7;
     public GameObject map8;
+    public GameObject map9;
+    public GameObject map10;
+    public GameObject map11;
+    public GameObject map12;
+    public GameObject map13;
 
-    [Header("Random Choosing")]
+    [Header("Map that was Choosen")]
     public int mp_i_previousMapNum;
 
     //Will grab chunks here
@@ -50,21 +44,14 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         RandomMapSelector();
     }
-
-    private void Start()
-    {
-        //Temporary Grid, shouldn't be needed for chunks
-        blackBar1.SetActive(false);
-        blackBar2.SetActive(false);
-        blackBar3.SetActive(false);
-        blackBar4.SetActive(false);
-        blackBar5.SetActive(false);
-        blackBar6.SetActive(false);
-    }
-    
 
     /// <summary>
     /// Chooses maps randomly, with no direct repeats
@@ -74,7 +61,7 @@ public class S_MapGeneration : MonoBehaviour
     public void RandomMapSelector()
     {
         // Choose map int
-        int _mapNumChosen = Random.Range(1, 9);
+        int _mapNumChosen = Random.Range(1, 14);
         
         // Toggle maps
 
@@ -122,6 +109,31 @@ public class S_MapGeneration : MonoBehaviour
                 //Debug.Log("Map 1 Chosen");
                 Map8();
             }
+            else if (_mapNumChosen == 9) // Map 9
+            {
+                //Debug.Log("Map 1 Chosen");
+                Map9();
+            }
+            else if (_mapNumChosen == 10) // Map 10
+            {
+                //Debug.Log("Map 1 Chosen");
+                Map10();
+            }
+            else if (_mapNumChosen == 11) // Map 11
+            {
+                //Debug.Log("Map 1 Chosen");
+                Map11();
+            }
+            else if (_mapNumChosen == 12) // Map 12
+            {
+                //Debug.Log("Map 1 Chosen");
+                Map12();
+            }
+            else if (_mapNumChosen == 13) // Map 13
+            {
+                //Debug.Log("Map 1 Chosen");
+                Map13();
+            }
         }
         else
         {
@@ -141,6 +153,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 1;
@@ -158,6 +175,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 2;
@@ -175,6 +197,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 3;
@@ -192,6 +219,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 4;
@@ -209,6 +241,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 5;
@@ -226,6 +263,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(true);
         map7.SetActive(false);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 6;
@@ -243,6 +285,11 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(true);
         map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 7;
@@ -260,8 +307,123 @@ public class S_MapGeneration : MonoBehaviour
         map6.SetActive(false);
         map7.SetActive(false);
         map8.SetActive(true);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 8;
+    }
+
+    // Designer Map 9
+    public void Map9()
+    {
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+        map9.SetActive(true);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
+
+        // Set previous map for non-repeating
+        mp_i_previousMapNum = 9;
+    }
+
+    // Designer Map 10
+    public void Map10()
+    {
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(true);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(false);
+
+        // Set previous map for non-repeating
+        mp_i_previousMapNum = 10;
+    }
+
+    // Designer Map 11
+    public void Map11()
+    {
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(true);
+        map12.SetActive(false);
+        map13.SetActive(false);
+
+        // Set previous map for non-repeating
+        mp_i_previousMapNum = 11;
+    }
+
+    // Designer Map 12
+    public void Map12()
+    {
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(true);
+        map13.SetActive(false);
+
+        // Set previous map for non-repeating
+        mp_i_previousMapNum = 12;
+    }
+
+    // Designer Map 13
+    public void Map13()
+    {
+        //Toggle maps
+        map1.SetActive(false);
+        map2.SetActive(false);
+        map3.SetActive(false);
+        map4.SetActive(false);
+        map5.SetActive(false);
+        map6.SetActive(false);
+        map7.SetActive(false);
+        map8.SetActive(false);
+        map9.SetActive(false);
+        map10.SetActive(false);
+        map11.SetActive(false);
+        map12.SetActive(false);
+        map13.SetActive(true);
+
+        // Set previous map for non-repeating
+        mp_i_previousMapNum = 13;
     }
 }
