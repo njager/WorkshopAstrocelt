@@ -157,7 +157,10 @@ public class S_Global : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+            if (g_ConstellationManager.GetMakingConstellation())
+            {
+                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+            }
         }
     }
 }

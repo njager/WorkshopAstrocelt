@@ -30,6 +30,9 @@ public class S_PlayerState : MonoBehaviour
     [Header("Status Effect Stores")]
     public float p_f_currentDamageRateForBleed;
 
+    [Header("Final Scene Bool")]
+    public bool b_finalScene = false;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -240,8 +243,11 @@ public class S_PlayerState : MonoBehaviour
         PlaySoundWin();
         //playerWinMusic.SetActive(false);
 
-        //go to the new scene
-        g_global.g_sceneManager.ChangeScene();
+        if (!b_finalScene)
+        {
+            //go to the new scene
+            g_global.g_sceneManager.ChangeScene();
+        }
 
         // Pause The game
         //Time.timeScale = 0f;

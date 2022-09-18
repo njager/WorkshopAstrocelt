@@ -8,6 +8,8 @@ public class S_CardDatabase : MonoBehaviour
     //Ask will how to iterate objects into a list
     private S_Global g_global;
 
+    public List<S_CardTemplate> cardList;
+
     [Header("Vertical Slice Deck")]
     public S_CardTemplate cardScript0; // Barkskin, ID 0
     public S_CardTemplate cardScript1; // Bludgeon, ID 1
@@ -83,6 +85,13 @@ public class S_CardDatabase : MonoBehaviour
         dict_CardDatabase.Add(24, cardScript24); // Shielded
         dict_CardDatabase.Add(25, cardScript25); // Wall of Wonder
         dict_CardDatabase.Add(26, cardScript26); // Windbreaker
+
+        int _key = 0;
+
+        foreach(S_CardTemplate card in cardList)
+        {
+            dict_CardDatabase.Add(_key, card);
+        }
 
     }
 

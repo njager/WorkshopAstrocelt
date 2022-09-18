@@ -401,7 +401,7 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = _boolState;
     }
 
-    // Getters \\ 
+    // Getters and Setters\\ 
 
     /// <summary>
     /// Get the bool state of S_ConstelationManager.b_starLockout
@@ -412,5 +412,14 @@ public class S_ConstelationManager : MonoBehaviour
     public bool GetStarLockOutBool() 
     {
         return b_starLockout;
+    }
+
+    /// <summary>
+    /// Gets the bool for making a constellation
+    /// </summary>
+    /// <returns></returns>
+    public bool GetMakingConstellation()
+    {
+        return b_makingConstellation;
     }
 }
