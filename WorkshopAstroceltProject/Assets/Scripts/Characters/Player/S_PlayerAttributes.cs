@@ -62,4 +62,19 @@ public class S_PlayerAttributes : MonoBehaviour
         p_b_stunned = _gameManager.b_stunned;
     }
 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the int value from S_PlayerAttributes.p_i_shield
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_i_shield 
+    /// </returns>
+    public int GetPlayerShieldValue()
+    {
+        return p_i_shield;
+    }
 }

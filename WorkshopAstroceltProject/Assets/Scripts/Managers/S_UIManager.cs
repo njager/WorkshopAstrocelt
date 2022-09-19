@@ -615,16 +615,16 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
-    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Other Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_redText;
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_redText
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.en_tx_redEnergyTrackerText;
+    /// S_UIManager.en_tx_redEnergyTrackerText
     /// </returns>
     public TextMeshProUGUI GetRedEnergyTrackerText()
     {
@@ -632,11 +632,11 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_blueText;
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_blueText
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.en_tx_blueEnergyTrackerText;
+    /// S_UIManager.en_tx_blueEnergyTrackerText
     /// </returns>
     public TextMeshProUGUI GetBlueEnergyTrackerText()
     {
@@ -644,16 +644,73 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_yellowText;
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_yellowText
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.en_tx_yellowEnergyTrackerText;
+    /// S_UIManager.en_tx_yellowEnergyTrackerText
     /// </returns>
     public TextMeshProUGUI GetYellowEnergyTrackerText()
     {
         return en_tx_yellowEnergyTrackerText;
     }
+
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.p_tx_playerHealthText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_tx_playerHealthText 
+    /// </returns>
+    public TextMeshProUGUI GetPlayerHealthText()
+    {
+        return p_tx_playerHealthText;
+    }
+
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.p_tx_playerShieldText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_tx_playerShieldText 
+    /// </returns>
+    public TextMeshProUGUI GetPlayerShieldText()
+    {
+        return p_tx_playerShieldText;
+    }
+
+    /// <summary>
+    /// Return the gameobject of S_UIManager.p_playerShieldIcon
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_playerShieldIcon
+    /// </returns>
+    public GameObject GetPlayerShieldIcon()
+    {
+        return p_playerShieldIcon;
+    }
+
+    /// <summary>
+    /// Return the gameobject of S_UIManager.p_playerShieldOverlay
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_playerShieldOverlay
+    /// </returns>
+    public GameObject GetPlayerShieldOverlay()
+    {
+        return p_playerShieldOverlay;
+    }
+
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Enemy Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the gameobject for a requested enemy's shield icon from S_UIManager

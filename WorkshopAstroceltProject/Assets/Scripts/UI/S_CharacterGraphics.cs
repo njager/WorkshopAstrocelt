@@ -64,7 +64,7 @@ public class S_CharacterGraphics : MonoBehaviour
 
     /// <summary>
     /// Toggle the shield elements for the enemy in the overall enemy UI based on their current shield value
-    /// Aka if the enemy has shields
+    /// Aka if the enemy has shields, turn them on, otherwise turn them off
     /// -Josh
     /// </summary>
     public void EnemyShieldingUI()
@@ -72,7 +72,7 @@ public class S_CharacterGraphics : MonoBehaviour
         // Toggle Shields for enemy 1
         if (g_global.g_enemyState.GetEnemyActiveState(1) == true) 
         {
-            if (g_global.g_enemyAttributeSheet1.e_i_shield <= 0)
+            if (g_global.g_enemyState.GetEnemyDataSheet(1).GetEnemyShieldValue() <= 0)
             {
                 // Turn it off
                 sc_UIManager.GetEnemyShieldText(1).gameObject.SetActive(false);
@@ -94,7 +94,7 @@ public class S_CharacterGraphics : MonoBehaviour
         // Toggle Shields for enemy 2
         if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
         {
-            if (g_global.g_enemyAttributeSheet2.e_i_shield <= 0)
+            if (g_global.g_enemyState.GetEnemyDataSheet(2).GetEnemyShieldValue() <= 0)
             {
                 // Turn it off
                 sc_UIManager.GetEnemyShieldText(2).gameObject.SetActive(false);
@@ -115,7 +115,7 @@ public class S_CharacterGraphics : MonoBehaviour
         // Toggle Shields for enemy 3
         if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
         {
-            if (g_global.g_enemyAttributeSheet3.e_i_shield <= 0)
+            if (g_global.g_enemyState.GetEnemyDataSheet(3).GetEnemyShieldValue() <= 0)
             {
                 // Turn it off
                 sc_UIManager.GetEnemyShieldText(3).gameObject.SetActive(false);
@@ -137,7 +137,7 @@ public class S_CharacterGraphics : MonoBehaviour
         // Toggle Shields for enemy 4
         if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
         {
-            if (g_global.g_enemyAttributeSheet4.e_i_shield <= 0)
+            if (g_global.g_enemyState.GetEnemyDataSheet(4).GetEnemyShieldValue() <= 0)
             {
                 // Turn it off
                 sc_UIManager.GetEnemyShieldText(4).gameObject.SetActive(false);
@@ -159,7 +159,7 @@ public class S_CharacterGraphics : MonoBehaviour
         // Toggle Shields for enemy 5
         if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
         {
-            if (g_global.g_enemyAttributeSheet5.e_i_shield <= 0)
+            if (g_global.g_enemyState.GetEnemyDataSheet(5).GetEnemyShieldValue() <= 0)
             {
                 // Turn it off
                 sc_UIManager.GetEnemyShieldText(5).gameObject.SetActive(false);
