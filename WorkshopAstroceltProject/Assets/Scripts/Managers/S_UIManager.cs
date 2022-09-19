@@ -11,38 +11,32 @@ public class S_UIManager : MonoBehaviour
     // Anything under here is just to help flesh out the greybox
     
     [Header("Player UI")]
-    public TextMeshProUGUI p_tx_playerHealthText;
-    public TextMeshProUGUI p_tx_playerShieldText;
-    public Image p_playerHealthBar;
-    public TextMeshProUGUI p_playerHealthResourceBarText;
+    [SerializeField] TextMeshProUGUI p_tx_playerHealthText;
+    [SerializeField] TextMeshProUGUI p_tx_playerShieldText;
+    [SerializeField] Image p_playerHealthBar;
+    [SerializeField] TextMeshProUGUI p_playerHealthResourceBarText;
     public TextMeshProUGUI c_cardCount;
 
     [Header("Enemy Health Textboxes")]
-    public TextMeshProUGUI e_tx_enemy1HealthText;
-    public TextMeshProUGUI e_tx_enemy2HealthText;
-    public TextMeshProUGUI e_tx_enemy3HealthText;
-
-    //Not present
-    public TextMeshProUGUI e_tx_enemy4HealthText;
-    public TextMeshProUGUI e_tx_enemy5HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy1HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy2HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy3HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy4HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy5HealthText;
 
     [Header("Enemy Shield Textboxes")]
-    public TextMeshProUGUI e_tx_enemy1ShieldText;
-    public TextMeshProUGUI e_tx_enemy2ShieldText;
-    public TextMeshProUGUI e_tx_enemy3ShieldText;
-
-    //Not present
-    public TextMeshProUGUI e_tx_enemy4ShieldText;
-    public TextMeshProUGUI e_tx_enemy5ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy1ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy2ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy3ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy4ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_enemy5ShieldText;
 
     [Header("Enemy Healthbars")]
-    public Image e_enemy1HealthBar;
-    public Image e_enemy2HealthBar;
-    public Image e_enemy3HealthBar;
-
-    //Not present
-    public Image e_enemy4HealthBar;
-    public Image e_enemy5HealthBar;
+    [SerializeField] Image e_enemy1HealthBar;
+    [SerializeField] Image e_enemy2HealthBar;
+    [SerializeField] Image e_enemy3HealthBar;
+    [SerializeField] Image e_enemy4HealthBar;
+    [SerializeField] Image e_enemy5HealthBar;
 
     [Header("Win Lose Elements")]
     public GameObject winText;
@@ -124,8 +118,6 @@ public class S_UIManager : MonoBehaviour
 
         // Turn off debug elements
         debugTurnbar.SetActive(false);
-
-        
     }
 
     //Some of this should be in turn manager?, probably
@@ -172,124 +164,6 @@ public class S_UIManager : MonoBehaviour
             b_yellowEnergy = false;
         }
 
-    }
-
-    /// <summary>
-    /// Toggle the shield elements in the UI based on if they are active or not
-    /// Will be updated alongside all other UI disintegration calls
-    /// Jager's request
-    /// -Josh
-    /// </summary>
-    public void ShieldingUI()
-    {
-        //Toggle Shields for player
-        if (g_global.g_playerAttributeSheet.p_i_shield <= 0) //If no shields don't turn on shield UI
-        {
-            p_tx_playerShieldText.gameObject.SetActive(false);
-            p_playerShieldIcon.SetActive(false);
-            p_playerShieldOverlay.SetActive(false);
-        }
-        else
-        {
-            p_tx_playerShieldText.gameObject.SetActive(true);
-            p_playerShieldIcon.SetActive(true);
-            p_playerShieldOverlay.SetActive(true);
-        }
-        // Toggle Shields for enemy 1
-        if(g_global.g_enemyAttributeSheet1 != null)
-        {
-            if (g_global.g_enemyState.e_b_enemy1Dead != true)
-            {
-                if(g_global.g_enemyAttributeSheet1.e_i_shield <= 0)
-                {
-                    e_tx_enemy1ShieldText.gameObject.SetActive(false);
-                    e_enemy1ShieldIcon.SetActive(false);
-                    e_enemy1ShieldOverlay.SetActive(false);
-                }
-                else
-                {
-                    e_tx_enemy1ShieldText.gameObject.SetActive(true);
-                    e_enemy1ShieldIcon.SetActive(true);
-                    e_enemy1ShieldOverlay.SetActive(true);
-                }
-            }
-        }
-        // Toggle Shields for enemy 2
-        if (g_global.g_enemyAttributeSheet2 != null)
-        {
-            if (g_global.g_enemyState.e_b_enemy2Dead != true)
-            {
-                if (g_global.g_enemyAttributeSheet2.e_i_shield <= 0)
-                {
-                    e_tx_enemy2ShieldText.gameObject.SetActive(false);
-                    e_enemy2ShieldIcon.SetActive(false);
-                    e_enemy2ShieldOverlay.SetActive(false);
-                }
-                else
-                {
-                    e_tx_enemy2ShieldText.gameObject.SetActive(true);
-                    e_enemy2ShieldIcon.SetActive(true);
-                    e_enemy2ShieldOverlay.SetActive(true);
-                }
-            }
-        }
-        // Toggle Shields for enemy 3
-        if (g_global.g_enemyAttributeSheet3 != null)
-        {
-            if (g_global.g_enemyState.e_b_enemy3Dead != true)
-            {
-                if (g_global.g_enemyAttributeSheet3.e_i_shield <= 0)
-                {
-                    e_tx_enemy3ShieldText.gameObject.SetActive(false);
-                    e_enemy3ShieldIcon.SetActive(false);
-                    e_enemy3ShieldOverlay.SetActive(false);
-                }
-                else
-                {
-                    e_tx_enemy3ShieldText.gameObject.SetActive(true);
-                    e_enemy3ShieldIcon.SetActive(true);
-                    e_enemy3ShieldOverlay.SetActive(true);
-                }
-            }
-        }
-        // Toggle Shields for enemy 4
-        if (g_global.g_enemyAttributeSheet4 != null)
-        {
-            if (g_global.g_enemyState.e_b_enemy4Dead != true)
-            {
-                if (g_global.g_enemyAttributeSheet4.e_i_shield <= 0)
-                {
-                    e_tx_enemy4ShieldText.gameObject.SetActive(false);
-                    e_enemy4ShieldIcon.SetActive(false);
-                    e_enemy4ShieldOverlay.SetActive(false);
-                }
-                else
-                {
-                    e_tx_enemy4ShieldText.gameObject.SetActive(true);
-                    e_enemy4ShieldIcon.SetActive(true);
-                    e_enemy4ShieldOverlay.SetActive(true);
-                }
-            }
-        }
-        // Toggle Shields for enemy 5
-        if (g_global.g_enemyAttributeSheet5 != null)
-        {
-            if (g_global.g_enemyState.e_b_enemy5Dead != true)
-            {
-                if (g_global.g_enemyAttributeSheet5.e_i_shield <= 0)
-                {
-                    e_tx_enemy5ShieldText.gameObject.SetActive(false);
-                    e_enemy5ShieldIcon.SetActive(false);
-                    e_enemy5ShieldOverlay.SetActive(false);
-                }
-                else
-                {
-                    e_tx_enemy5ShieldText.gameObject.SetActive(true);
-                    e_enemy5ShieldIcon.SetActive(true);
-                    e_enemy5ShieldOverlay.SetActive(true);
-                }
-            }
-        }
     }
 
     /// <summary>
@@ -741,7 +615,9 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
-    // Getters \\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the TextMeshProUGUI object of S_UIManager.en_tx_redText;
@@ -777,5 +653,116 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI GetYellowEnergyTrackerText()
     {
         return en_tx_yellowEnergyTrackerText;
+    }
+
+    /// <summary>
+    /// Return the gameobject for a requested enemy's shield icon from S_UIManager
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.e_enemy1ShieldIcon || S_UIManager.e_enemy2ShieldIcon || S_UIManager.e_enemy3ShieldIcon || S_UIManager.e_enemy4ShieldIcon || S_UIManager.e_enemy5ShieldIcon
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public GameObject GetEnemyShieldIcon(int _enemyNum)
+    {
+        if (_enemyNum == 1) 
+        {
+            return e_enemy1ShieldIcon;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_enemy2ShieldIcon;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_enemy3ShieldIcon;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_enemy4ShieldIcon;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_enemy5ShieldIcon;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldIcon()");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI for a requested enemy's shield text from S_UIManager
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.e_tx_enemy1ShieldText || S_UIManager.e_tx_enemy2ShieldText || S_UIManager.e_tx_enemy3ShieldText || S_UIManager.e_tx_enemy4ShieldText || S_UIManager.e_tx_enemy5ShieldText
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public TextMeshProUGUI GetEnemyShieldText(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_tx_enemy1ShieldText;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_tx_enemy2ShieldText;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_tx_enemy3ShieldText;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_tx_enemy4ShieldText;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_tx_enemy5ShieldText;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldText()");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Return the gameobject for a requested enemy's shield overlay from S_UIManager
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.e_enemy1ShieldOverlay || S_UIManager.e_enemy2ShieldOverlay || S_UIManager.e_enemy3ShieldOverlay || S_UIManager.e_enemy4ShieldOverlay || S_UIManager.e_enemy5ShieldOverlay
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public GameObject GetEnemyShieldOverlay(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_enemy1ShieldOverlay;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_enemy2ShieldOverlay;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_enemy3ShieldOverlay;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_enemy4ShieldOverlay;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_enemy5ShieldOverlay;
+        }
+        else
+        {
+            Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldOverlay()");
+            return null;
+        }
     }
 }

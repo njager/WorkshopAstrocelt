@@ -1223,6 +1223,71 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
+    
+
+    /// <summary>
+    /// If _characterIdentifier == 0, player's turn
+    /// Else if _characterIdentifier == 1, 2, 3, 4, 5, it's that enemies turn
+    /// For Debug Purposes
+    /// - Josh
+    /// </summary>
+    /// <param name="_characterIdentifier"></param>
+    public void DeclareCurrentTurn(int _characterIdentifier)
+    {
+        if (_characterIdentifier == 0) // Player's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 1) // Enemy 1's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = true;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 2) // Enemy 2's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = true;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 3) // Enemy 3's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = true;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 4) // Enemy 4's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = true;
+            g_global.g_enemyState.e_b_enemy5Turn = false;
+        }
+        else if (_characterIdentifier == 5) // Enemy 5's Turn
+        {
+            g_global.g_enemyState.e_b_enemy1Turn = false;
+            g_global.g_enemyState.e_b_enemy2Turn = false;
+            g_global.g_enemyState.e_b_enemy3Turn = false;
+            g_global.g_enemyState.e_b_enemy4Turn = false;
+            g_global.g_enemyState.e_b_enemy5Turn = true;
+        }
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+
     /// <summary>
     /// Return the state of the bool for if an enemy is active or not
     /// </summary>
@@ -1440,65 +1505,6 @@ public class S_EnemyState : MonoBehaviour
         {
             Debug.Log("DEBUG: UNWANTED NULL VALUE RETURNED!");
             return 0;
-        }
-    }
-
-    /// <summary>
-    /// If _characterIdentifier == 0, player's turn
-    /// Else if _characterIdentifier == 1, 2, 3, 4, 5, it's that enemies turn
-    /// For Debug Purposes
-    /// - Josh
-    /// </summary>
-    /// <param name="_characterIdentifier"></param>
-    public void DeclareCurrentTurn(int _characterIdentifier)
-    {
-        if (_characterIdentifier == 0) // Player's Turn
-        {
-            g_global.g_enemyState.e_b_enemy1Turn = false;
-            g_global.g_enemyState.e_b_enemy2Turn = false;
-            g_global.g_enemyState.e_b_enemy3Turn = false;
-            g_global.g_enemyState.e_b_enemy4Turn = false;
-            g_global.g_enemyState.e_b_enemy5Turn = false;
-        }
-        else if (_characterIdentifier == 1) // Enemy 1's Turn
-        {
-            g_global.g_enemyState.e_b_enemy1Turn = true;
-            g_global.g_enemyState.e_b_enemy2Turn = false;
-            g_global.g_enemyState.e_b_enemy3Turn = false;
-            g_global.g_enemyState.e_b_enemy4Turn = false;
-            g_global.g_enemyState.e_b_enemy5Turn = false;
-        }
-        else if (_characterIdentifier == 2) // Enemy 2's Turn
-        {
-            g_global.g_enemyState.e_b_enemy1Turn = false;
-            g_global.g_enemyState.e_b_enemy2Turn = true;
-            g_global.g_enemyState.e_b_enemy3Turn = false;
-            g_global.g_enemyState.e_b_enemy4Turn = false;
-            g_global.g_enemyState.e_b_enemy5Turn = false;
-        }
-        else if (_characterIdentifier == 3) // Enemy 3's Turn
-        {
-            g_global.g_enemyState.e_b_enemy1Turn = false;
-            g_global.g_enemyState.e_b_enemy2Turn = false;
-            g_global.g_enemyState.e_b_enemy3Turn = true;
-            g_global.g_enemyState.e_b_enemy4Turn = false;
-            g_global.g_enemyState.e_b_enemy5Turn = false;
-        }
-        else if (_characterIdentifier == 4) // Enemy 4's Turn
-        {
-            g_global.g_enemyState.e_b_enemy1Turn = false;
-            g_global.g_enemyState.e_b_enemy2Turn = false;
-            g_global.g_enemyState.e_b_enemy3Turn = false;
-            g_global.g_enemyState.e_b_enemy4Turn = true;
-            g_global.g_enemyState.e_b_enemy5Turn = false;
-        }
-        else if (_characterIdentifier == 5) // Enemy 5's Turn
-        {
-            g_global.g_enemyState.e_b_enemy1Turn = false;
-            g_global.g_enemyState.e_b_enemy2Turn = false;
-            g_global.g_enemyState.e_b_enemy3Turn = false;
-            g_global.g_enemyState.e_b_enemy4Turn = false;
-            g_global.g_enemyState.e_b_enemy5Turn = true;
         }
     }
 }

@@ -221,8 +221,6 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupClear == true;
     }
 
-
-
     // Setters \\ 
 
     /// <summary>
