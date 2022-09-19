@@ -363,7 +363,7 @@ public class S_ConstelationManager : MonoBehaviour
             g_global.g_energyManager.TransferStoredEnergy();
 
             //print out the energy at the end for debuggin purposes
-            Debug.Log("Red Energy: " + g_global.g_energyManager.GetRedEnergyInt() + "  Yellow Energy: " + g_global.g_energyManager.GetYellowEnergyInt() + "  Blue Energy: " + g_global.g_energyManager.GetRedEnergyInt());
+            Debug.Log("Red Energy: " + g_global.g_energyManager.GetRedEnergyInt() + "  Yellow Energy: " + g_global.g_energyManager.GetYellowEnergyInt() + "  Blue Energy: " + g_global.g_energyManager.GetBlueEnergyInt());
 
             //call the altar
             StartCoroutine(g_global.g_altar.CheckFirstCardball());
