@@ -190,6 +190,7 @@ public class S_Cardball : MonoBehaviour
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
         StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
+        StartCoroutine(CarballDestroyVFX());
     }
 
     /// <summary>
@@ -253,5 +254,15 @@ public class S_Cardball : MonoBehaviour
             g_global.g_altar.a_yellowBorder.SetActive(false);
             g_global.g_altar.a_colorlessBorder.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// Call for VFX after cardball deleted
+    /// -Thoman
+    /// </summary>
+    public IEnumerator CarballDestroyVFX()
+    {
+        Debug.Log("VFX call");
+        yield return new WaitForSeconds(2);
     }
 }

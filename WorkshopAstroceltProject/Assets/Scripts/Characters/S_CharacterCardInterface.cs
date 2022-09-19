@@ -63,7 +63,7 @@ public class S_CharacterCardInterface : MonoBehaviour
                     }
                     else 
                     {
-                        PlayCard(cd_cardData);
+                        TriggerCard(cd_cardData);
                     }
                 }
             }
@@ -76,7 +76,7 @@ public class S_CharacterCardInterface : MonoBehaviour
     /// Used in conjunction with S_CardDragger
     /// </summary>
     /// <param name="_eventData"></param>
-    public void PlayCard(S_Card _card)
+    public void TriggerCard(S_Card _card)
     {
         //Debug.Log("Trying to Play the card");
 

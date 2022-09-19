@@ -152,7 +152,7 @@ public class S_Player : MonoBehaviour
     {
         playerSprite.sprite = attackSprite;
 
-        p_playerAttributes.p_a_AttackAnimator.Play("attack");
+        //p_playerAttributes.p_a_AttackAnimator.Play("attack");
 
         yield return new WaitForSeconds(2);
 
