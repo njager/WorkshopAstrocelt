@@ -152,9 +152,14 @@ public class S_Player : MonoBehaviour
     {
         playerSprite.sprite = attackSprite;
 
-        //p_playerAttributes.p_a_AttackAnimator.Play("attack");
+        p_playerAttributes.p_a_AttackAnimator.Play("attack");
+
+
+        Debug.Log("Player will wait for 2 seconds");
 
         yield return new WaitForSeconds(2);
+
+        Debug.Log("Player will change to idle");
 
         playerSprite.sprite = idleSprite;
     }

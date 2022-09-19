@@ -205,10 +205,11 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator CheckFirstCardball()
     {
-        yield return new S_WaitForEnergyTextDecrement();
+        //yield return new S_WaitForEnergyTextDecrement();
+        yield return null;
         if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
-            Debug.Log("Do we ever make it");
+            //Debug.Log("Do we ever make it");
             //Check the card position in S_CardHolderManager 
             g_global.g_cardHolder.SetCardPositionInt(g_global.g_cardHolder.NextCardPosition());
             // Now grab it
@@ -291,7 +292,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator WaitForCardballDeletionToMove(GameObject _cardball)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         Destroy(_cardball);
         MoveCardballPrefabs();
     }
