@@ -189,6 +189,8 @@ public class S_TurnManager : MonoBehaviour
             _enemy.ChangeIcon();
         }
 
+        g_global.g_UIManager.EnemyShieldingUI();
+
         g_global.g_enemyState.EnemyStatusEffectDecrement();
 
         //Clear Popups

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using FMODUnity;
-using FMOD.Studio;
 
 public class S_Card : MonoBehaviour
 {
@@ -576,11 +575,11 @@ public class S_Card : MonoBehaviour
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
         if (c_b_attackSoundEffect == false) // Play physical sound
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
         }
         else if (c_b_attackSoundEffect == true) // Play Magic sound
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
         DeleteCard();
     }

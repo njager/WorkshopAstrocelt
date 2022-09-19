@@ -30,11 +30,12 @@ public class S_EnemyAttributes : MonoBehaviour
     [Header("Typing")]
     public string e_str_enemyType; 
 
-    // Add more enemies to toggle on and off as needed
+    // Add more enemies to toggle on and off as needed, are these even used? Perhaps there will be a use down the line
     [Header("Enemy Type Bools")]
     public bool e_b_Lumberjack;
     public bool e_b_Magician;
     public bool e_b_Beast;
+    public bool e_b_Brawler;
 
     [Header("Status Effects")]
     public bool e_b_poisoned;

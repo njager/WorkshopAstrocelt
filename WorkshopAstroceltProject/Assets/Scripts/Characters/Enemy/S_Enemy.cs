@@ -247,8 +247,7 @@ public class S_Enemy : MonoBehaviour
         }
         if(_enemyType == "Magician")
         {
-            //g_global.g_playerState.PlayerStunnedStatusEffect(1);
-            g_global.g_enemyState.EnemyResistantEffect(1, e_i_enemyCount);
+            MagicianSpecialAbility();
         }
         if(_enemyType == "Brawler")
         {
@@ -369,16 +368,16 @@ public class S_Enemy : MonoBehaviour
                 //Then play sounds
                 if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Beast")
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
                 }
                 else if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Magician")
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
                 }
                 else if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Brawler")
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
                 }
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 8) // Check special ability
@@ -399,16 +398,15 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
-
-
-    //magiciain unique ablility
-    //gnerates random number from 1-5
-    //deletes that card
-    //resets list
-
+    /// <summary>
+    /// magiciain unique ablility
+    /// gnerates random number from 1-5
+    /// deletes that card
+    /// resets list
+    /// - GOAT
+    /// </summary>
     public void MagicianSpecialAbility()
     {
-
         int numDelete = Random.Range(1, 6);
 
         S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
@@ -442,13 +440,28 @@ public class S_Enemy : MonoBehaviour
         
     }
 
-    // Eventually use this for UI stuff to avoid using an update loop
+    
+    /// <summary>
+    /// Method to update the health UI of the enemy
+    /// </summary>
+    private void UpdateHealthUI()
+    {
+        if(e_sc_enemyAttributes.e_i_shield > 0) 
+        {
+            SetEnemyShieldText(e_sc_enemyAttributes.e_i_shield);
+        }
+        else
+        {
+            SetEnemyHealthText(e_sc_enemyAttributes.e_i_health);
+        }
+    }
+    
     private void SetEnemyHealthText(int _healthVal)
     {
 
     }
 
-    //Only do this to 5
+    
     private void SetEnemyShieldText(int _shieldVal)
     {
 
