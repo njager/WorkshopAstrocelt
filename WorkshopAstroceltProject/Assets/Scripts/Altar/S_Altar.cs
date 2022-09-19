@@ -292,8 +292,8 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator WaitForCardballDeletionToMove(GameObject _cardball)
     {
-        yield return new WaitForSeconds(1);
         Destroy(_cardball);
+        yield return new WaitForSeconds(2);
         MoveCardballPrefabs();
     }
 
