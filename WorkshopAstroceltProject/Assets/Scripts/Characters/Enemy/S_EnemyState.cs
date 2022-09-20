@@ -845,7 +845,7 @@ public class S_EnemyState : MonoBehaviour
     /// Called in S_TurnManager
     /// -Josh
     /// </summary>
-    public void EnemyActionCheck() // Rename to EnemyActionCheck() ?
+    public void EnemyActionCheck() 
     {
         if (g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
         {

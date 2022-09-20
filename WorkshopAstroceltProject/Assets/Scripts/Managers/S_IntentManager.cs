@@ -46,31 +46,45 @@ public class S_IntentManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Based off the dice roll, change enemy icons to correlate to their next turn action
+    /// Changed to use the queue system
+    /// enemy atribute has a list, remove from the front for the next ability and add to the back to make it go forever
     /// </summary>
     /// <param name="_enemyToChange"></param>
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
-        int _chanceSelected = 100 - IntentDiceRoll();
-        //Debug.Log("Roll is " + _chanceSelected + " for " + _enemyToChange.e_i_enemyCount);
-        if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Special Ability
+        if (_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0] == "ability") // Set Enemy up for Special Ability
         {
+            //remove from the front, add to the back
+            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.RemoveAt(0);
+            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.Add("ability");
+
             UIChangesForIntent(_enemyToChange, 3);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "ability";
         }
-        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate + _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate
-            && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Shield
+        else if (_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0] == "shield") // Set Enemy up for Shield
         {
+            //remove from the front, add to the back
+            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.RemoveAt(0);
+            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.Add("shield");
+
             UIChangesForIntent(_enemyToChange, 2);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "shield";
         }
-        else  // Set Enemy up for Attack
+        else if(_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0] == "attack")  // Set Enemy up for Attack
         {
+            //remove from the front, add to the back
+            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.RemoveAt(0);
+            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.Add("attack");
+
             UIChangesForIntent(_enemyToChange, 1);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "attack";
+        }
+        else
+        {
+            Debug.Log("Move not recognized");
         }
 
     }
