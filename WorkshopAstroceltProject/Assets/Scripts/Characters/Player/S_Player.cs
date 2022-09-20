@@ -6,7 +6,7 @@ public class S_Player : MonoBehaviour
 {
     private S_Global g_global;
 
-    public S_PlayerAttributes p_playerAttributes;
+    public S_PlayerAttributes p_sc_playerAttributes;
 
     [Header("Player Sprites")]
     public SpriteRenderer playerSprite;
@@ -26,7 +26,7 @@ public class S_Player : MonoBehaviour
 
     private void Start()
     {
-        p_playerAttributes = g_global.g_playerAttributeSheet;
+        p_sc_playerAttributes = g_global.g_playerAttributeSheet;
     }
 
 
@@ -38,13 +38,13 @@ public class S_Player : MonoBehaviour
     /// <param name="_damageValue"></param>
     public void PlayerAttacked(int _damageValue)
     {
-        if(p_playerAttributes.p_b_resistant == true)
+        if(p_sc_playerAttributes.p_b_resistant == true)
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if (p_playerAttributes.p_i_shield <= 0)
+            if (p_sc_playerAttributes.p_i_shield <= 0)
             {
-                p_playerAttributes.p_i_health -= _newDamageValue;
-                p_playerAttributes.p_pe_blood.Play();
+                p_sc_playerAttributes.p_i_health -= _newDamageValue;
+                p_sc_playerAttributes.p_pe_blood.Play();
 
                 //trigger a coroutine to change sprite and go back
                 StartCoroutine(ChangeDamageSprite());
@@ -53,13 +53,13 @@ public class S_Player : MonoBehaviour
             }
             else
             {
-                int _tempVal = _newDamageValue - p_playerAttributes.p_i_shield;
+                int _tempVal = _newDamageValue - p_sc_playerAttributes.p_i_shield;
                 //Debug.Log("Temp Val: " + _tempVal);
                 if (_tempVal > 0)
                 {
-                    p_playerAttributes.p_i_shield -= _newDamageValue;
-                    p_playerAttributes.p_i_health -= _tempVal;
-                    p_playerAttributes.p_pe_blood.Play();
+                    p_sc_playerAttributes.p_i_shield -= _newDamageValue;
+                    p_sc_playerAttributes.p_i_health -= _tempVal;
+                    p_sc_playerAttributes.p_pe_blood.Play();
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -67,17 +67,17 @@ public class S_Player : MonoBehaviour
                 }
                 else
                 {
-                    p_playerAttributes.p_i_shield -= _newDamageValue;
+                    p_sc_playerAttributes.p_i_shield -= _newDamageValue;
                     //Debug.Log("Player had shields!");
                 }
             }
         }
         else
         {
-            if (p_playerAttributes.p_i_shield <= 0)
+            if (p_sc_playerAttributes.p_i_shield <= 0)
             {
-                p_playerAttributes.p_i_health -= _damageValue;
-                p_playerAttributes.p_pe_blood.Play();
+                p_sc_playerAttributes.p_i_health -= _damageValue;
+                p_sc_playerAttributes.p_pe_blood.Play();
                 //Debug.Log("Player Attacked!");
 
                 //trigger a coroutine to change sprite and go back
@@ -85,13 +85,13 @@ public class S_Player : MonoBehaviour
             }
             else
             {
-                int _tempVal = _damageValue - p_playerAttributes.p_i_shield;
+                int _tempVal = _damageValue - p_sc_playerAttributes.p_i_shield;
                 //Debug.Log("Temp Val: " + _tempVal);
                 if (_tempVal > 0)
                 {
-                    p_playerAttributes.p_i_shield -= _damageValue;
-                    p_playerAttributes.p_i_health -= _tempVal;
-                    p_playerAttributes.p_pe_blood.Play();
+                    p_sc_playerAttributes.p_i_shield -= _damageValue;
+                    p_sc_playerAttributes.p_i_health -= _tempVal;
+                    p_sc_playerAttributes.p_pe_blood.Play();
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -99,11 +99,14 @@ public class S_Player : MonoBehaviour
                 }
                 else
                 {
-                    p_playerAttributes.p_i_shield -= _damageValue;
+                    p_sc_playerAttributes.p_i_shield -= _damageValue;
                     //Debug.Log("Player had shields!");
                 }
             }
         }
+
+        // Update Player UI
+        UpdatePlayerHealthUI();
     }
 
     /// <summary>
@@ -125,9 +128,10 @@ public class S_Player : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
 
-        p_playerAttributes.p_i_shield += _shieldValue;
+        p_sc_playerAttributes.p_i_shield += _shieldValue;
 
-        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
+        // Update Player UI
+        UpdatePlayerHealthUI();
 
         //trigger a coroutine to change back to og sprite
         StartCoroutine(ChangeBlockSprite());
@@ -141,17 +145,14 @@ public class S_Player : MonoBehaviour
     /// <param name="_healedValue"></param>
     public void PlayerHealed(int _healedValue)
     {
-        p_playerAttributes.p_i_health += _healedValue; 
+        p_sc_playerAttributes.p_i_health += _healedValue; 
     }
-
-
-
 
     public IEnumerator ChangeAttackSprite()
     {
         playerSprite.sprite = attackSprite;
 
-        p_playerAttributes.p_a_AttackAnimator.Play("attack");
+        p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
 
 
         Debug.Log("Player will wait for 2 seconds");
@@ -176,10 +177,38 @@ public class S_Player : MonoBehaviour
     {
         playerSprite.sprite = damagedSprite;
 
-        p_playerAttributes.p_a_AttackAnimator.Play("Damaged");
+        p_sc_playerAttributes.p_a_AttackAnimator.Play("Damaged");
 
         yield return new WaitForSeconds(2);
 
         playerSprite.sprite = idleSprite;
+    }
+
+    /// <summary>
+    /// Method to update the health UI of the enemy
+    /// </summary>
+    private void UpdatePlayerHealthUI()
+    {
+        if (p_sc_playerAttributes.GetPlayerShieldValue() > 0)
+        {
+            SetPlayerShieldText(p_sc_playerAttributes.GetPlayerShieldValue());
+        }
+        else
+        {
+            SetPlayerHealthText(p_sc_playerAttributes.GetPlayerHealthValue());
+        }
+    }
+
+    private void SetPlayerHealthText(int _healthValue)
+    {
+        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerHealthBar(_healthValue);
+        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
+    }
+
+
+    private void SetPlayerShieldText(int _shieldValue)
+    {
+        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldBar(_shieldValue);
+        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
     }
 }

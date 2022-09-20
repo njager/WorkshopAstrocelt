@@ -17,14 +17,14 @@ public class S_CharacterGraphics : MonoBehaviour
 
     ///////////////////////////// Player Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 
-    public void UpdatePlayerHealthBar()
+    public void UpdatePlayerHealthBar(int _healthValue)
     {
-
+        sc_UIManager.SetPlayerHealthText(_healthValue, g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
     }
 
-    public void UpdatePlayerShieldBar()
+    public void UpdatePlayerShieldBar(int _shieldValue)
     {
-
+        sc_UIManager.SetPlayerShieldText(_shieldValue, g_global.g_playerAttributeSheet.GetPlayerMaxShieldValue());
     }
 
     public void PlayerShieldingUIToggle()

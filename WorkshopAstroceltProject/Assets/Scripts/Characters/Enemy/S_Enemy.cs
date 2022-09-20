@@ -191,6 +191,9 @@ public class S_Enemy : MonoBehaviour
                 }
             }
         }
+
+        // Update the UI
+        UpdateEnemyHealthUI();
     }
 
     /// <summary>
@@ -205,19 +208,20 @@ public class S_Enemy : MonoBehaviour
         e_sc_enemyAttributes.e_i_shield += _shieldVal;
         if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
         }
         else if(_enemyType == "Brawler") // Shield Magic
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
         else if(_enemyType == "Brawler")
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
 
-        //Debug.Log("Enemy Shields");
+        // Update the UI
+        UpdateEnemyHealthUI();
     }
 
     /// <summary>
@@ -444,7 +448,7 @@ public class S_Enemy : MonoBehaviour
     /// <summary>
     /// Method to update the health UI of the enemy
     /// </summary>
-    private void UpdateHealthUI()
+    private void UpdateEnemyHealthUI()
     {
         if(e_sc_enemyAttributes.e_i_shield > 0) 
         {
@@ -464,6 +468,6 @@ public class S_Enemy : MonoBehaviour
     
     private void SetEnemyShieldText(int _shieldVal)
     {
-
+        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
     }
 }

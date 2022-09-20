@@ -128,7 +128,6 @@ public class S_UIManager : MonoBehaviour
     void Update()
     {
         SetElements();
-        ShieldingUI();//Temporary
     }
 
     /// <summary>
@@ -178,13 +177,13 @@ public class S_UIManager : MonoBehaviour
     public void SetElements()
     {
         // Text
-        p_tx_playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
-        p_playerHealthResourceBarText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
+        //p_tx_playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
+        //p_playerHealthResourceBarText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
 
         //p_tx_energyText.text = "Current Energy: " + g_global.g_energyManager.i_energyCount.ToString();
 
         //Health and Shield Bar
-        p_playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_healthMax;
+        p_playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_maxHealth;
         p_tx_playerShieldText.text = g_global.g_playerAttributeSheet.p_i_shield.ToString();
 
 
@@ -660,21 +659,34 @@ public class S_UIManager : MonoBehaviour
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Player Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Return the TextMeshProUGUI object of S_UIManager.p_tx_playerHealthText
+    /// Set the text element of S_UIManager.p_tx_playerHealthText
     /// - Josh
     /// </summary>
-    /// <returns>
-    /// S_UIManager.p_tx_playerHealthText 
-    /// </returns>
-    public TextMeshProUGUI GetPlayerHealthText()
+    /// <param name="_health"></param>
+    /// <param name="_maxHealth"></param>
+    public void SetPlayerHealthText(int _health, int _maxHealth)
     {
-        return p_tx_playerHealthText;
+        p_tx_playerHealthText.text = _health.ToString() + " / " + _maxHealth.ToString();
     }
 
+    /// <summary>
+    /// Set the text element of S_UIManager.p_tx_playerShieldText
+    /// - Josh
+    /// </summary>
+    /// <param name="_shield"></param>
+    /// <param name="_maxShield"></param>
+    public void SetPlayerShieldText(int _shield, int _maxShield)
+    {
+        p_tx_playerHealthText.text = _shield.ToString() + " / " + _maxShield.ToString();
+    }
+
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the TextMeshProUGUI object of S_UIManager.p_tx_playerShieldText

@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d9063e7f7f80248ad6136229901aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i_rewardSceneIndex: 3
+  i_sceneIndex: 0
 --- !u!1 &8047176380039575182
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8047176380039575182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3682997, y: -0.19856387, z: -206.19994}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8047176381026311821}
@@ -408,6 +408,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   str_energyColor: 
   i_energyCount: 0
+  i_redEnergy: 0
+  i_yellowEnergy: 0
+  i_blueEnergy: 0
   i_redStorageEnergy: 0
   i_yellowStorageEnergy: 0
   i_blueStorageEnergy: 0
@@ -468,6 +471,7 @@ MonoBehaviour:
   s_b_popupMove: 0
   _starSoundPhase1: {fileID: 0}
   _starSoundPhase2: {fileID: 0}
+  c_cardballsSpawned: 0
   i_starSound: 0
 --- !u!1 &8047176380236070987
 GameObject:
@@ -546,6 +550,7 @@ MonoBehaviour:
   p_i_turnsPassedForStun: 0
   p_i_turnsPassedForResistant: 0
   p_f_currentDamageRateForBleed: 0
+  b_finalScene: 0
 --- !u!114 &8047176380236070989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,9 +909,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eddcf0d11338944baa637a7f1c9297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sc_characterGraphics: {fileID: 0}
+  sc_resourceGraphics: {fileID: 0}
   p_tx_playerHealthText: {fileID: 0}
   p_tx_playerShieldText: {fileID: 0}
   p_playerHealthBar: {fileID: 0}
+  p_playerHealthResourceBarText: {fileID: 0}
+  c_cardCount: {fileID: 0}
   e_tx_enemy1HealthText: {fileID: 0}
   e_tx_enemy2HealthText: {fileID: 0}
   e_tx_enemy3HealthText: {fileID: 0}
@@ -924,8 +933,8 @@ MonoBehaviour:
   e_enemy5HealthBar: {fileID: 0}
   winText: {fileID: 0}
   loseText: {fileID: 0}
-  resetCanvas: {fileID: 0}
-  greyboxCanvas: {fileID: 0}
+  cn_resetCanvas: {fileID: 0}
+  cn_characterCanvas: {fileID: 0}
   energyIconSprite: {fileID: 0}
   redEnergyIcon: {fileID: 21300000, guid: 2f284997dc454af4e8fb277b7f0183aa, type: 3}
   blueEnergyIcon: {fileID: 21300000, guid: 051d8e77a9aff524cba53cf2d8a5ef4b, type: 3}
@@ -982,6 +991,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5432d9e2f2179409bbe86a1a7fc2542d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  sc_UIManager: {fileID: 0}
 --- !u!114 &5126905202400489234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,13 +1313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b605fea58103e4bbb1e9dc30efa1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeStar: {fileID: 0}
-  blackBar1: {fileID: 0}
-  blackBar2: {fileID: 0}
-  blackBar3: {fileID: 0}
-  blackBar4: {fileID: 0}
-  blackBar5: {fileID: 0}
-  blackBar6: {fileID: 0}
   map1: {fileID: 0}
   map2: {fileID: 0}
   map3: {fileID: 0}
@@ -1317,6 +1321,11 @@ MonoBehaviour:
   map6: {fileID: 0}
   map7: {fileID: 0}
   map8: {fileID: 0}
+  map9: {fileID: 0}
+  map10: {fileID: 0}
+  map11: {fileID: 0}
+  map12: {fileID: 0}
+  map13: {fileID: 0}
   mp_i_previousMapNum: 0
 --- !u!1 &9177569602586923092
 GameObject:
