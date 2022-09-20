@@ -7,7 +7,6 @@ public class S_Player : MonoBehaviour
     private S_Global g_global;
 
     public S_PlayerAttributes p_playerAttributes;
-    [SerializeField] GameObject a_audioPlayer;
 
     [Header("Player Sprites")]
     public SpriteRenderer playerSprite;
@@ -23,8 +22,6 @@ public class S_Player : MonoBehaviour
     void Awake()
     {
         g_global = S_Global.Instance;
-
-        a_audioPlayer = GameObject.Find("/Audio/Sound Effects/Shield/Vanilla");
     }
 
     private void Start()
@@ -121,14 +118,16 @@ public class S_Player : MonoBehaviour
 
         if (_soundEffectState == false) // False = physcial
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
         }
         else if(_soundEffectState == true) // True = magic
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
 
         p_playerAttributes.p_i_shield += _shieldValue;
+
+        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
 
         //trigger a coroutine to change back to og sprite
         StartCoroutine(ChangeBlockSprite());

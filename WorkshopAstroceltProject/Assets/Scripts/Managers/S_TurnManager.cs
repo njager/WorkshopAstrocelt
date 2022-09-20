@@ -189,7 +189,7 @@ public class S_TurnManager : MonoBehaviour
             _enemy.ChangeIcon();
         }
 
-        g_global.g_UIManager.EnemyShieldingUI();
+        g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
 
         g_global.g_enemyState.EnemyStatusEffectDecrement();
 
@@ -236,6 +236,8 @@ public class S_TurnManager : MonoBehaviour
 
         //Reset player
         g_global.g_playerAttributeSheet.p_i_shield = 0;
+
+        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
 
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();

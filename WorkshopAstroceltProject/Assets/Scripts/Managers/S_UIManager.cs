@@ -9,7 +9,11 @@ public class S_UIManager : MonoBehaviour
     protected S_Global g_global;
 
     // Anything under here is just to help flesh out the greybox
-    
+
+    [Header("Child Script References")] // Set in inspector
+    public S_CharacterGraphics sc_characterGraphics;
+    public S_ResourceGraphics sc_resourceGraphics;
+
     [Header("Player UI")]
     [SerializeField] TextMeshProUGUI p_tx_playerHealthText;
     [SerializeField] TextMeshProUGUI p_tx_playerShieldText;

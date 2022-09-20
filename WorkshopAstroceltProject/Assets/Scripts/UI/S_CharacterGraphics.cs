@@ -27,20 +27,20 @@ public class S_CharacterGraphics : MonoBehaviour
 
     }
 
-    public void PlayerShieldingUI()
+    public void PlayerShieldingUIToggle()
     {
         //Toggle Shields for player
-        if (g_global.g_playerAttributeSheet.p_i_shield <= 0) //If no shields don't turn on shield UI
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() <= 0) //If no shields don't turn on shield UI
         {
-            sc_UIManager.p_tx_playerShieldText.gameObject.SetActive(false);
-            sc_UIManager.p_playerShieldIcon.SetActive(false);
-            sc_UIManager.p_playerShieldOverlay.SetActive(false);
+            sc_UIManager.GetPlayerShieldText().gameObject.SetActive(false);
+            sc_UIManager.GetPlayerShieldIcon().SetActive(false);
+            sc_UIManager.GetPlayerShieldOverlay().SetActive(false);
         }
         else
         {
-            sc_UIManager.p_tx_playerShieldText.gameObject.SetActive(true);
-            sc_UIManager.p_playerShieldIcon.SetActive(true);
-            sc_UIManager.p_playerShieldOverlay.SetActive(true);
+            sc_UIManager.GetPlayerShieldText().gameObject.SetActive(true);
+            sc_UIManager.GetPlayerShieldIcon().SetActive(true);
+            sc_UIManager.GetPlayerShieldOverlay().SetActive(true);
         }
     }
 
@@ -67,7 +67,7 @@ public class S_CharacterGraphics : MonoBehaviour
     /// Aka if the enemy has shields, turn them on, otherwise turn them off
     /// -Josh
     /// </summary>
-    public void EnemyShieldingUI()
+    public void EnemyShieldingUIToggle()
     {
         // Toggle Shields for enemy 1
         if (g_global.g_enemyState.GetEnemyActiveState(1) == true) 
