@@ -22,6 +22,7 @@ public class S_CardDatabase : MonoBehaviour
         foreach(S_CardTemplate card in cardList)
         {
             dict_CardDatabase.Add(_key, card);
+            _key++;
         }
 
     }
