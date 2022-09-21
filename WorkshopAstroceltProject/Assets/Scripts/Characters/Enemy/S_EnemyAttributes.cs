@@ -10,6 +10,7 @@ public class S_EnemyAttributes : MonoBehaviour
 
     [Header("Enemy Move Queue")]
     [Tooltip("Accepted Inputs (attack, shield, ability)")]
+
     public List<string> ls_e_moveQueue;
 
     [Header("Enemy Attributes")]

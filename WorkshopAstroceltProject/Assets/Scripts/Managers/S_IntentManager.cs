@@ -63,6 +63,7 @@ public class S_IntentManager : MonoBehaviour
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "ability";
         }
+
         else if (_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0].Equals("shield")) // Set Enemy up for Shield
         {
             //remove from the front, add to the back
