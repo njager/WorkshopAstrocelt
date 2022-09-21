@@ -764,6 +764,68 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the text element of a given enemy's S_UIManager.e_tx_enemy{ }HealthText
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemyHealthText(int _healthValue, int _maxHealthValue, int _enemyNum) 
+    {
+        if (_enemyNum == 1)
+        {
+            e_tx_enemy1HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 2)
+        {
+            e_tx_enemy2HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 3)
+        {
+            e_tx_enemy3HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 4)
+        {
+            e_tx_enemy4HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 5)
+        {
+            e_tx_enemy5HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+    }
+
+    /// <summary>
+    /// Set the fillAmount of a given enemy's S_UIManager.e_tx_enemy{ }HealthBar
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemyHealthBar(int _healthValue, int _maxHealthValue, int _enemyNum) 
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 2)
+        {
+            e_enemy2HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 3)
+        {
+            e_enemy3HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 4)
+        {
+            e_enemy4HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 5)
+        {
+            e_enemy5HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+    }
+
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Enemy Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
