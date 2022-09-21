@@ -8,11 +8,9 @@ public class S_EnemyAttributes : MonoBehaviour
 
     private S_Global g_global;
 
-    [Header("Frequency Rates")]
-    [Tooltip("Rates are between 0 and 100, instead of decimal.")]
-    public int e_i_attackRate;
-    public int e_i_shieldRate;
-    public int e_i_specialAbilityRate;
+    [Header("Enemy Move Queue")]
+    [Tooltip("Accepted Inputs (attack, shield, ability)")]
+    public List<string> ls_e_moveQueue;
 
     [Header("Enemy Attributes")]
     public int e_i_health;
