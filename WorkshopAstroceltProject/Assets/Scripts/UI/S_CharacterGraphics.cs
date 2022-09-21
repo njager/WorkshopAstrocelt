@@ -40,7 +40,7 @@ public class S_CharacterGraphics : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_shieldValue"></param>
-    public void UpdatePlayerShieldBar(int _shieldValue)
+    public void UpdatePlayerShieldUI(int _shieldValue)
     {
         sc_UIManager.SetPlayerShieldText(_shieldValue);
     }
@@ -76,14 +76,18 @@ public class S_CharacterGraphics : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_enemyNum"></param>
-    public void UpdateEnemyHealthBar(int _enemyNum)
+    public void UpdateEnemyHealthUI(int _enemyNum)
     {
+        // Set health text
+        sc_UIManager.SetEnemyHealthText(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue(), g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyMaxHealthValue(), _enemyNum);
 
+        // Set health bar fill
+        sc_UIManager.SetEnemyHealthBar(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue(), g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyMaxHealthValue(), _enemyNum);
     }
 
-    public void UpdateEnemyShieldBar(int _enemyNum)
+    public void UpdateEnemyShieldUI(int _enemyNum)
     {
-
+        sc_UIManager.SetEnemyShieldText(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyShieldValue(), _enemyNum);
     }
 
 
@@ -112,7 +116,7 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldOverlay(1).SetActive(true);
 
                 // Now refresh the setting of shields to make sure values update properly
-                UpdateEnemyShieldBar(1);
+                UpdateEnemyShieldUI(1);
             }
         }
 
@@ -134,7 +138,7 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldOverlay(2).SetActive(true);
 
                 // Now refresh the setting of shields to make sure values update properly
-                UpdateEnemyShieldBar(2);
+                UpdateEnemyShieldUI(2);
             }
         }
         // Toggle Shields for enemy 3
@@ -155,7 +159,7 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldOverlay(3).SetActive(true);
 
                 // Now refresh the setting of shields to make sure values update properly
-                UpdateEnemyShieldBar(3);
+                UpdateEnemyShieldUI(3);
             }
         }
 
@@ -177,7 +181,7 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldOverlay(4).SetActive(true);
 
                 // Now refresh the setting of shields to make sure values update properly
-                UpdateEnemyShieldBar(4);
+                UpdateEnemyShieldUI(4);
             }
         }
 
@@ -199,7 +203,7 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldOverlay(5).SetActive(true);
 
                 // Now refresh the setting of shields to make sure values update properly
-                UpdateEnemyShieldBar(5);
+                UpdateEnemyShieldUI(5);
             }
         }
     }

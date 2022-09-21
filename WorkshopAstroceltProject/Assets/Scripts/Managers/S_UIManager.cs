@@ -8,8 +8,6 @@ public class S_UIManager : MonoBehaviour
 {
     protected S_Global g_global;
 
-    // Anything under here is just to help flesh out the greybox
-
     [Header("Child Script References")] // Set in inspector
     public S_CharacterGraphics sc_characterGraphics;
     public S_ResourceGraphics sc_resourceGraphics;
@@ -106,7 +104,7 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
-    [Header("Energy UI Text Elements")] // Keep en_?
+    [Header("Energy UI Text Elements")] // Keep en_
     public TextMeshProUGUI en_tx_redEnergyTrackerText;
     public TextMeshProUGUI en_tx_blueEnergyTrackerText;
     public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
@@ -262,7 +260,6 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Toggle the Resistant UI element
     /// True for _state is on, false is off
@@ -284,7 +281,6 @@ public class S_UIManager : MonoBehaviour
             p_playerResistantEffect.SetActive(false);
         }
     }
-
 
     /// <summary>
     /// Toggle the Bleed UI element for a given enemy
@@ -655,32 +651,43 @@ public class S_UIManager : MonoBehaviour
     /// Set the text element of S_UIManager.p_tx_playerHealthText
     /// - Josh
     /// </summary>
-    /// <param name="_health"></param>
-    /// <param name="_maxHealth"></param>
-    public void SetPlayerHealthText(int _health, int _maxHealth)
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    public void SetPlayerHealthText(int _healthValue, int _maxHealthValue)
     {
-        p_tx_playerHealthText.text = _health.ToString() + " / " + _maxHealth.ToString();
+        p_tx_playerHealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
     }
 
     /// <summary>
     /// Set the text element of S_UIManager.p_tx_playerShieldText
     /// - Josh
     /// </summary>
-    /// <param name="_shield"></param>
-    public void SetPlayerShieldText(int _shield)
+    /// <param name="_shieldValue"></param>
+    public void SetPlayerShieldText(int _shieldValue)
     {
-        p_tx_playerShieldText.text = _shield.ToString();
+        p_tx_playerShieldText.text = _shieldValue.ToString();
     }
 
     /// <summary>
     /// Set the fillAmount of the S_UIManager.p_playerHealthBar
     /// - Josh
     /// </summary>
-    /// <param name="_health"></param>
-    /// <param name="_maxHealth"></param>
-    public void SetPlayerHealthBar(int _health, int _maxHealth) 
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    public void SetPlayerHealthBar(int _healthValue, int _maxHealthValue) 
     {
-        p_playerHealthBar.fillAmount = (float)_health / (float)_maxHealth;
+        p_playerHealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+    }
+
+    /// <summary>
+    /// Set the text element of the S_UIManager.p_playerHealthResourceBarText
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    public void SetPlayerResourceHealthText(int _healthValue, int _maxHealthValue)
+    {
+        p_playerHealthResourceBarText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -721,6 +728,102 @@ public class S_UIManager : MonoBehaviour
     public GameObject GetPlayerShieldOverlay()
     {
         return p_playerShieldOverlay;
+    }
+
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Enemy Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the text element of a given enemy's S_UIManager.e_tx_enemy{ }ShieldText
+    /// - Josh
+    /// </summary>
+    /// <param name="_shieldValue"></param>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemyShieldText(int _shieldValue, int _enemyNum)
+    {
+        if(_enemyNum == 1) 
+        {
+            e_tx_enemy1ShieldText.text = _shieldValue.ToString();
+        }
+        else if (_enemyNum == 2)
+        {
+            e_tx_enemy2ShieldText.text = _shieldValue.ToString();
+        }
+        else if (_enemyNum == 3)
+        {
+            e_tx_enemy3ShieldText.text = _shieldValue.ToString();
+        }
+        else if (_enemyNum == 4)
+        {
+            e_tx_enemy4ShieldText.text = _shieldValue.ToString();
+        }
+        else if (_enemyNum == 5)
+        {
+            e_tx_enemy5ShieldText.text = _shieldValue.ToString();
+        }
+    }
+
+    /// <summary>
+    /// Set the text element of a given enemy's S_UIManager.e_tx_enemy{ }HealthText
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemyHealthText(int _healthValue, int _maxHealthValue, int _enemyNum) 
+    {
+        if (_enemyNum == 1)
+        {
+            e_tx_enemy1HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 2)
+        {
+            e_tx_enemy2HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 3)
+        {
+            e_tx_enemy3HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 4)
+        {
+            e_tx_enemy4HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+        else if (_enemyNum == 5)
+        {
+            e_tx_enemy5HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        }
+    }
+
+    /// <summary>
+    /// Set the fillAmount of a given enemy's S_UIManager.e_tx_enemy{ }HealthBar
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    /// <param name="_maxHealthValue"></param>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemyHealthBar(int _healthValue, int _maxHealthValue, int _enemyNum) 
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 2)
+        {
+            e_enemy2HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 3)
+        {
+            e_enemy3HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 4)
+        {
+            e_enemy4HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+        else if (_enemyNum == 5)
+        {
+            e_enemy5HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
     }
 
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

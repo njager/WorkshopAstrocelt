@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class S_ResourceGraphics : MonoBehaviour
 {
-    private S_Global g_global;
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    [Header("Script Connections")]
+    [SerializeField] S_Global g_global;
+    [SerializeField] S_UIManager sc_UIManager;
 
     private void Awake()
     {
@@ -14,7 +20,12 @@ public class S_ResourceGraphics : MonoBehaviour
     void Update()
     {
         EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
+        UpdateResourceBarGraphics();
     }
+
+    /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Resource Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// EnergyTrackingUI update function
@@ -29,5 +40,11 @@ public class S_ResourceGraphics : MonoBehaviour
         g_global.g_UIManager.GetBlueEnergyTrackerText().text = ""  + g_global.g_energyManager.GetBlueEnergyInt();
         //Update yellow energy
         g_global.g_UIManager.GetYellowEnergyTrackerText().text = ""  + g_global.g_energyManager.GetYellowEnergyInt();
+    }
+
+    public void UpdateResourceBarGraphics() 
+    {
+        // Set resource bar text
+        sc_UIManager.SetPlayerResourceHealthText(g_global.g_playerAttributeSheet.GetPlayerHealthValue(), g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
     }
 }

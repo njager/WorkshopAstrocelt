@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class S_Player : MonoBehaviour
 {
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     private S_Global g_global;
 
     public S_PlayerAttributes p_sc_playerAttributes;
@@ -24,6 +28,10 @@ public class S_Player : MonoBehaviour
         g_global = S_Global.Instance;
         p_sc_playerAttributes = this.GetComponent<S_PlayerAttributes>();
     }
+
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Trigger function for when the player is attacked, first whittles shields, 
@@ -206,7 +214,8 @@ public class S_Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Method to update the health UI of the enemy
+    /// Method to update the all health and shield elements of the UI
+    /// - Josh
     /// </summary>
     private void UpdatePlayerHealthUI()
     {
@@ -220,16 +229,25 @@ public class S_Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Trigger function to set the health elements in S_CharacterGraphics
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
     private void SetPlayerHealthText(int _healthValue)
     {
         g_global.g_UIManager.sc_characterGraphics.UpdatePlayerHealthUI(_healthValue);
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
     }
 
-
+    /// <summary>
+    /// Trigger function to set the shield elements in S_CharacterGraphics
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
     private void SetPlayerShieldText(int _shieldValue)
     {
-        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldBar(_shieldValue);
+        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldUI(_shieldValue);
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
     }
 
