@@ -177,15 +177,7 @@ public class S_UIManager : MonoBehaviour
     public void SetElements()
     {
         // Text
-        //p_tx_playerHealthText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
         //p_playerHealthResourceBarText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
-
-        //p_tx_energyText.text = "Current Energy: " + g_global.g_energyManager.i_energyCount.ToString();
-
-        //Health and Shield Bar
-        p_playerHealthBar.fillAmount = (float)g_global.g_playerAttributeSheet.p_i_health / (float)g_global.g_playerAttributeSheet.p_i_maxHealth;
-        p_tx_playerShieldText.text = g_global.g_playerAttributeSheet.p_i_shield.ToString();
-
 
         //Update Enemy Health Bars
         if(g_global.g_enemyAttributeSheet1 != null) 
@@ -228,9 +220,6 @@ public class S_UIManager : MonoBehaviour
         // Anurag's UI element
         //c_cardCount.text = g_global.g_ls_p_playerHand.Count.ToString();
     }
-
-
-    // Health Bars method toggles
 
     /// <summary>
     /// Toggle the Bleed UI element
@@ -678,10 +667,20 @@ public class S_UIManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_shield"></param>
-    /// <param name="_maxShield"></param>
-    public void SetPlayerShieldText(int _shield, int _maxShield)
+    public void SetPlayerShieldText(int _shield)
     {
-        p_tx_playerHealthText.text = _shield.ToString() + " / " + _maxShield.ToString();
+        p_tx_playerShieldText.text = _shield.ToString();
+    }
+
+    /// <summary>
+    /// Set the fillAmount of the S_UIManager.p_playerHealthBar
+    /// - Josh
+    /// </summary>
+    /// <param name="_health"></param>
+    /// <param name="_maxHealth"></param>
+    public void SetPlayerHealthBar(int _health, int _maxHealth) 
+    {
+        p_playerHealthBar.fillAmount = (float)_health / (float)_maxHealth;
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

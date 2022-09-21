@@ -169,6 +169,18 @@ public class S_EnemyAttributes : MonoBehaviour
         e_i_enemyDamageValue = Random.Range(e_i_enemyMinDamageRange, e_i_enemyMaxDamageRange);
     }
 
+    /// <summary>
+    /// Return the int value from S_EnemyAttributes.e_i_health
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_i_health
+    /// </returns>
+    public int GetEnemyHealthValue()
+    {
+        return e_i_health;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

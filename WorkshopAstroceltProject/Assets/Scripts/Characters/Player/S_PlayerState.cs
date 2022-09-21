@@ -183,7 +183,7 @@ public class S_PlayerState : MonoBehaviour
     /// <returns></returns>
     private int BleedingEffectCalculator(float _damageRate)
     {
-        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
+        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.GetPlayerHealthValue() * _damageRate); 
         return _bleedingCalc;
     }
 
@@ -227,7 +227,7 @@ public class S_PlayerState : MonoBehaviour
         g_global.g_UIManager.cn_resetCanvas.SetActive(true);
         g_global.g_UIManager.winText.SetActive(true);
 
-        g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.p_i_health;
+        g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
         Debug.Log("Did this hit?");
         Debug.Log(g_global.g_gameManager.i_playerHealth);
 

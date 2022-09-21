@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class S_CharacterGraphics : MonoBehaviour
 {
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     [Header("Script Connections")]
     [SerializeField] S_Global g_global;
@@ -15,18 +17,39 @@ public class S_CharacterGraphics : MonoBehaviour
         g_global = S_Global.Instance;    
     }
 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Player Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    public void UpdatePlayerHealthBar(int _healthValue)
+    /// <summary>
+    /// Set the health text values and health bar fill amounts for the player
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    public void UpdatePlayerHealthUI(int _healthValue)
     {
+        // Set health text
         sc_UIManager.SetPlayerHealthText(_healthValue, g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
+
+        // Set health bar fill
+        sc_UIManager.SetPlayerHealthBar(_healthValue, g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
     }
 
+    /// <summary>
+    /// Set the shield text values and shield bar fill amounts for the player
+    /// - Josh
+    /// </summary>
+    /// <param name="_shieldValue"></param>
     public void UpdatePlayerShieldBar(int _shieldValue)
     {
-        sc_UIManager.SetPlayerShieldText(_shieldValue, g_global.g_playerAttributeSheet.GetPlayerMaxShieldValue());
+        sc_UIManager.SetPlayerShieldText(_shieldValue);
     }
 
+    /// <summary>
+    /// If the player has doesn't have shields, turn those elements off
+    /// Otherwise if they have shields, turn them on
+    /// - Josh
+    /// </summary>
     public void PlayerShieldingUIToggle()
     {
         //Toggle Shields for player
@@ -36,7 +59,7 @@ public class S_CharacterGraphics : MonoBehaviour
             sc_UIManager.GetPlayerShieldIcon().SetActive(false);
             sc_UIManager.GetPlayerShieldOverlay().SetActive(false);
         }
-        else
+        else // Turn it on
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(true);
             sc_UIManager.GetPlayerShieldIcon().SetActive(true);
@@ -44,7 +67,9 @@ public class S_CharacterGraphics : MonoBehaviour
         }
     }
 
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Enemy Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Set the health text of a given enemy

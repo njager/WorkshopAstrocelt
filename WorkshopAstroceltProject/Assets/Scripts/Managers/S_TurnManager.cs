@@ -235,7 +235,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_backgroundManager.ChangeBackground(0);
 
         //Reset player
-        g_global.g_playerAttributeSheet.p_i_shield = 0;
+        g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
 
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
 

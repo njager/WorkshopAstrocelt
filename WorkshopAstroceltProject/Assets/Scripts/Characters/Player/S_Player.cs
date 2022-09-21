@@ -227,7 +227,7 @@ public class S_Player : MonoBehaviour
 
     private void SetPlayerHealthText(int _healthValue)
     {
-        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerHealthBar(_healthValue);
+        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerHealthUI(_healthValue);
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
     }
 

@@ -142,7 +142,7 @@ public class S_Global : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            g_playerAttributeSheet.p_i_health = 0;
+            g_playerAttributeSheet.SetPlayerHealthValue(0);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {

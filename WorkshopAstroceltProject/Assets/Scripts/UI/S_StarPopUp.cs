@@ -84,6 +84,8 @@ public class S_StarPopUp : MonoBehaviour
         {
             f_spawnTimer -= Time.deltaTime;
         }
+
+        yield return b_spawnTimerFlag;
     }
 
  
