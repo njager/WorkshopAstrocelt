@@ -79,10 +79,10 @@ public class S_CharacterGraphics : MonoBehaviour
     public void UpdateEnemyHealthUI(int _enemyNum)
     {
         // Set health text
-        sc_UIManager.SetPlayerHealthText(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue(), g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyMaxHealthValue(), _enemyNum);
+        sc_UIManager.SetEnemyHealthText(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue(), g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyMaxHealthValue(), _enemyNum);
 
         // Set health bar fill
-        sc_UIManager.SetPlayerHealthBar(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue(), g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyMaxHealthValue(), _enemyNum);
+        sc_UIManager.SetEnemyHealthBar(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue(), g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyMaxHealthValue(), _enemyNum);
     }
 
     public void UpdateEnemyShieldUI(int _enemyNum)
