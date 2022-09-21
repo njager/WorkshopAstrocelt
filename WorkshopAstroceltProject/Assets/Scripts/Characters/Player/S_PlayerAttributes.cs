@@ -60,6 +60,8 @@ public class S_PlayerAttributes : MonoBehaviour
         p_b_bleeding = _gameManager.b_bleeding;
         p_b_resistant = _gameManager.b_resistant;
         p_b_stunned = _gameManager.b_stunned;
+
+        g_global.g_player.PlayerValuesLimitCheck();
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
