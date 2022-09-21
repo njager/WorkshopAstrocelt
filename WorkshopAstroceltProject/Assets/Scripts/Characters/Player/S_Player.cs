@@ -126,7 +126,7 @@ public class S_Player : MonoBehaviour
         }
 
         // Update Player UI
-        UpdatePlayerHealthUI();
+        PlayerValuesLimitCheck();
     }
 
     /// <summary>
@@ -153,7 +153,7 @@ public class S_Player : MonoBehaviour
         p_sc_playerAttributes.SetPlayerShieldValue(_tempValue);
 
         // Update Player UI
-        UpdatePlayerHealthUI();
+        PlayerValuesLimitCheck();
 
         //trigger a coroutine to change back to og sprite
         StartCoroutine(ChangeBlockSprite());
@@ -171,41 +171,43 @@ public class S_Player : MonoBehaviour
         p_sc_playerAttributes.SetPlayerHealthValue(_tempValue);
     }
 
-    public IEnumerator ChangeAttackSprite()
+    /// <summary>
+    /// Check the maximums and minimum values that can be represented and set them back to their limit
+    /// Then once having set the values, trigger UI reset
+    /// - Josh
+    /// </summary>
+    public void PlayerValuesLimitCheck()
     {
-        playerSprite.sprite = attackSprite;
+        // If player went above max shields, limit to max shields
+        if (g_global.g_playerAttributeSheet.GetPlayerHealthValue() > g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue())
+        {
+            // Set value
+            g_global.g_playerAttributeSheet.SetPlayerHealthValue(g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
+        }
 
-        Debug.Log("Player will animate");
+        // If player went above max shields, limit to max shields
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() > g_global.g_playerAttributeSheet.GetPlayerMaxShieldValue())
+        {
+            // Set value
+            g_global.g_playerAttributeSheet.SetPlayerShieldValue(g_global.g_playerAttributeSheet.GetPlayerMaxShieldValue());
+        }
 
-        p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
+        // If shield value goes below 0, set back to 0
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() < 0)
+        {
+            // Set value
+            g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
+        }
 
-        Debug.Log("Player will wait for 2 seconds");
+        // If health value goes below 0, set back to 0
+        if (g_global.g_playerAttributeSheet.GetPlayerHealthValue() < 0)
+        {
+            // Set value
+            g_global.g_playerAttributeSheet.SetPlayerHealthValue(0);
+        }
 
-        yield return new WaitForSeconds(2);
-
-        Debug.Log("Player will change to idle");
-
-        playerSprite.sprite = idleSprite;
-    }
-
-    public IEnumerator ChangeBlockSprite()
-    {
-        playerSprite.sprite = blockSprite;
-
-        yield return new WaitForSeconds(2);
-
-        playerSprite.sprite = idleSprite;
-    }
-
-    public IEnumerator ChangeDamageSprite()
-    {
-        playerSprite.sprite = damagedSprite;
-
-        p_sc_playerAttributes.p_a_AttackAnimator.Play("Damaged");
-
-        yield return new WaitForSeconds(2);
-
-        playerSprite.sprite = idleSprite;
+        // Make this my blank check for UI
+        UpdatePlayerHealthUI();
     }
 
     /// <summary>
@@ -234,5 +236,61 @@ public class S_Player : MonoBehaviour
     {
         g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldBar(_shieldValue);
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
+    }
+
+    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Animation Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Change player sprite to attack sprite
+    ///  - "Riley"
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeAttackSprite()
+    {
+        playerSprite.sprite = attackSprite;
+
+        Debug.Log("Player will animate");
+
+        p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
+
+        Debug.Log("Player will wait for 2 seconds");
+
+        yield return new WaitForSeconds(2);
+
+        Debug.Log("Player will change to idle");
+
+        playerSprite.sprite = idleSprite;
+    }
+
+    /// <summary>
+    /// Change player sprite to block sprite
+    ///  - "Riley"
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeBlockSprite()
+    {
+        playerSprite.sprite = blockSprite;
+
+        yield return new WaitForSeconds(2);
+
+        playerSprite.sprite = idleSprite;
+    }
+
+    /// <summary>
+    /// Change player sprite to damaged sprite
+    ///  - "Riley"
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeDamageSprite()
+    {
+        playerSprite.sprite = damagedSprite;
+
+        p_sc_playerAttributes.p_a_AttackAnimator.Play("Damaged");
+
+        yield return new WaitForSeconds(2);
+
+        playerSprite.sprite = idleSprite;
     }
 }

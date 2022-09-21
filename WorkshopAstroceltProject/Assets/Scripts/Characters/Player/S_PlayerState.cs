@@ -40,21 +40,11 @@ public class S_PlayerState : MonoBehaviour
 
     void Update()
     {
-        // Check for health and shield limits here
-        if(g_global.g_playerAttributeSheet.p_i_health > g_global.g_playerAttributeSheet.p_i_healthMax)
-        {
-            g_global.g_playerAttributeSheet.p_i_health = g_global.g_playerAttributeSheet.p_i_healthMax;
-        }
+        
 
-        if (g_global.g_playerAttributeSheet.p_i_shield > g_global.g_playerAttributeSheet.p_i_shieldMax)
-        {
-            g_global.g_playerAttributeSheet.p_i_shield = g_global.g_playerAttributeSheet.p_i_shieldMax;
-        }
+        
 
-        if (g_global.g_playerAttributeSheet.p_i_shield <= 0)
-        {
-            g_global.g_playerAttributeSheet.p_i_shield = 0;
-        }
+        
 
         // If player lost
         if (g_global.g_playerAttributeSheet.p_i_health <= 0)
@@ -66,6 +56,36 @@ public class S_PlayerState : MonoBehaviour
         if (g_global.g_i_enemyCount <= 0)
         {
             PlayerWins();
+        }
+    }
+
+    /// <summary>
+    /// Check the maximums and minimum values that can be represented and limit them
+    /// </summary>
+    public void PlayerValuesLimitCheck() 
+    {
+        // If player went above max shields, limit to max shields
+        if (g_global.g_playerAttributeSheet.GetPlayerHealthValue() > g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue())
+        {
+            g_global.g_playerAttributeSheet.SetPlayerHealthValue(g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
+        }
+
+        // If player went above max shields, limit to max shields
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() > g_global.g_playerAttributeSheet.GetPlayerMaxShieldValue())
+        {
+            g_global.g_playerAttributeSheet.SetPlayerShieldValue(g_global.g_playerAttributeSheet.GetPlayerMaxShieldValue());
+        }
+
+        // If shield value goes below 0, set back to 0
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() < 0)
+        {
+            g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
+        }
+
+        // If health value goes below 0, set back to 0
+        if (g_global.g_playerAttributeSheet.GetPlayerHealthValue() < 0)
+        {
+            g_global.g_playerAttributeSheet.SetPlayerHealthValue(0);
         }
     }
 
