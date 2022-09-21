@@ -53,32 +53,50 @@ public class S_IntentManager : MonoBehaviour
     /// <param name="_enemyToChange"></param>
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
-        if (_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0].Equals("ability")) // Set Enemy up for Special Ability
+        //Make a temp queue
+        List<(string, int)> _tempQueue = _enemyToChange.e_sc_enemyAttributes.GetMoveQueue();
+
+        if (_tempQueue[0].Item1.Equals("ability")) // Set Enemy up for Special Ability
         {
+            //get the first element
+            (string, int) _tempElement = _tempQueue[0];
+
             //remove from the front, add to the back
-            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.RemoveAt(0);
-            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.Add("ability");
+            _tempQueue.RemoveAt(0);
+            _tempQueue.Add(_tempElement);
 
             UIChangesForIntent(_enemyToChange, 3);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "ability";
         }
 
-        else if (_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0].Equals("shield")) // Set Enemy up for Shield
+        else if (_tempQueue[0].Item1.Equals("shield")) // Set Enemy up for Shield
         {
+            //get the first element
+            (string, int) _tempElement = _tempQueue[0];
+
+            //Assign the shiled value
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyShield(_tempElement.Item2);
+
             //remove from the front, add to the back
-            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.RemoveAt(0);
-            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.Add("shield");
+            _tempQueue.RemoveAt(0);
+            _tempQueue.Add(_tempElement);
 
             UIChangesForIntent(_enemyToChange, 2);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "shield";
         }
-        else if (_enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue[0].Equals("attack"))  // Set Enemy up for Attack
+        else if (_tempQueue[0].Item1.Equals("attack"))  // Set Enemy up for Attack
         {
+            //get the first element
+            (string, int) _tempElement = _tempQueue[0];
+
+            //assign the attack value
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyDamageValue(_tempElement.Item2);
+
             //remove from the front, add to the back
-            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.RemoveAt(0);
-            _enemyToChange.e_sc_enemyAttributes.ls_e_moveQueue.Add("attack");
+            _tempQueue.RemoveAt(0);
+            _tempQueue.Add(_tempElement);
 
             UIChangesForIntent(_enemyToChange, 1);
 
@@ -88,6 +106,9 @@ public class S_IntentManager : MonoBehaviour
         {
             Debug.Log("Move not recognized");
         }
+
+        //Set the move queue 
+        _enemyToChange.e_sc_enemyAttributes.SetMoveQueue(_tempQueue);
     }
 
     /// <summary>

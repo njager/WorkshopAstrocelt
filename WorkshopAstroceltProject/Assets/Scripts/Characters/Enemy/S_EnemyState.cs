@@ -158,11 +158,6 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet1.e_i_health = g_global.g_enemyAttributeSheet1.e_i_healthMax;
             }
 
-            if (g_global.g_enemyAttributeSheet1.e_i_shield > g_global.g_enemyAttributeSheet1.e_i_shieldMax)
-            {
-                g_global.g_enemyAttributeSheet1.e_i_shield = g_global.g_enemyAttributeSheet1.e_i_shieldMax;
-            }
-
             if(e_b_enemy1Dead != true)
             {
                 if (g_global.g_enemyAttributeSheet1.e_i_health <= 0)
@@ -185,11 +180,6 @@ public class S_EnemyState : MonoBehaviour
             if (g_global.g_enemyAttributeSheet2.e_i_health > g_global.g_enemyAttributeSheet2.e_i_healthMax)
             {
                 g_global.g_enemyAttributeSheet2.e_i_health = g_global.g_enemyAttributeSheet2.e_i_healthMax;
-            }
-
-            if (g_global.g_enemyAttributeSheet2.e_i_shield > g_global.g_enemyAttributeSheet2.e_i_shieldMax)
-            {
-                g_global.g_enemyAttributeSheet2.e_i_shield = g_global.g_enemyAttributeSheet2.e_i_shieldMax;
             }
 
             if (e_b_enemy2Dead != true)
@@ -215,11 +205,6 @@ public class S_EnemyState : MonoBehaviour
                 g_global.g_enemyAttributeSheet3.e_i_health = g_global.g_enemyAttributeSheet3.e_i_healthMax;
             }
 
-            if (g_global.g_enemyAttributeSheet3.e_i_shield > g_global.g_enemyAttributeSheet3.e_i_shieldMax)
-            {
-                g_global.g_enemyAttributeSheet3.e_i_shield = g_global.g_enemyAttributeSheet3.e_i_shieldMax;
-            }
-
             if (e_b_enemy3Dead != true)
             {
                 if (g_global.g_enemyAttributeSheet3.e_i_health <= 0)
@@ -241,11 +226,6 @@ public class S_EnemyState : MonoBehaviour
             if (g_global.g_enemyAttributeSheet4.e_i_health > g_global.g_enemyAttributeSheet4.e_i_healthMax)
             {
                 g_global.g_enemyAttributeSheet4.e_i_health = g_global.g_enemyAttributeSheet4.e_i_healthMax;
-            }
-
-            if (g_global.g_enemyAttributeSheet4.e_i_shield > g_global.g_enemyAttributeSheet4.e_i_shieldMax)
-            {
-                g_global.g_enemyAttributeSheet4.e_i_shield = g_global.g_enemyAttributeSheet4.e_i_shieldMax;
             }
 
             if (e_b_enemy4Dead != true)
@@ -271,11 +251,6 @@ public class S_EnemyState : MonoBehaviour
             if (g_global.g_enemyAttributeSheet5.e_i_health > g_global.g_enemyAttributeSheet5.e_i_healthMax)
             {
                 g_global.g_enemyAttributeSheet5.e_i_health = g_global.g_enemyAttributeSheet5.e_i_healthMax;
-            }
-
-            if (g_global.g_enemyAttributeSheet5.e_i_shield > g_global.g_enemyAttributeSheet5.e_i_shieldMax)
-            {
-                g_global.g_enemyAttributeSheet5.e_i_shield = g_global.g_enemyAttributeSheet5.e_i_shieldMax;
             }
 
             if(e_b_enemy5Dead != true)
