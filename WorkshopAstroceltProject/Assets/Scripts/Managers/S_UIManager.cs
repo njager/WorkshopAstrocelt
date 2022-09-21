@@ -231,7 +231,7 @@ public class S_UIManager : MonoBehaviour
     {
         if(_state == true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
             p_playerBleedEffect.SetActive(true);
         }
         else if (_state == false)
@@ -252,7 +252,7 @@ public class S_UIManager : MonoBehaviour
         {
             if(g_global.g_playerState.p_i_turnsPassedForStun == 1)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
             }
             p_playerStunEffect.SetActive(true);
         }
@@ -275,7 +275,7 @@ public class S_UIManager : MonoBehaviour
         {
             if (g_global.g_playerState.p_i_turnsPassedForResistant == 1)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
             }
             p_playerResistantEffect.SetActive(true);
         }
@@ -301,7 +301,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
                     e_enemy1BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -316,7 +316,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
                     e_enemy2BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -331,7 +331,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
                     e_enemy3BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -346,7 +346,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
                     e_enemy4BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -361,7 +361,7 @@ public class S_UIManager : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-bleed");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
                     e_enemy5BleedEffect.SetActive(true);
                 }
                 else if (_state == false)
@@ -389,7 +389,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy1ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
                     }
                     e_enemy1StunEffect.SetActive(true);
                 }
@@ -407,7 +407,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy2ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
                     }
                     e_enemy2StunEffect.SetActive(true);
                 }
@@ -425,7 +425,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy3ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
                     }
                     e_enemy3StunEffect.SetActive(true);
                 }
@@ -443,7 +443,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy4ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
                     }
                     e_enemy4StunEffect.SetActive(true);
                 }
@@ -461,7 +461,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy5ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-stun");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
                     }
                     e_enemy5StunEffect.SetActive(true);
                 }
@@ -491,7 +491,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy1ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
                     }
                     e_enemy1ResistantEffect.SetActive(true);
                 }
@@ -509,7 +509,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy2ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
                     }
                     e_enemy2ResistantEffect.SetActive(true);
                 }
@@ -527,7 +527,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy3ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
                     }
                     e_enemy3ResistantEffect.SetActive(true);
                 }
@@ -545,7 +545,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy4ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
                     }
                     e_enemy4ResistantEffect.SetActive(true);
                 }
@@ -563,7 +563,7 @@ public class S_UIManager : MonoBehaviour
                 {
                     if (g_global.g_enemyState.e_i_enemy5ResistantTurnsPassed == 1)
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/stat-resist");
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
                     }
                     e_enemy5ResistantEffect.SetActive(true);
                 }
