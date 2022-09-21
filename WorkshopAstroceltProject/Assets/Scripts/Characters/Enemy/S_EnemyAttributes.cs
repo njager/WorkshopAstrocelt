@@ -194,13 +194,6 @@ public class S_EnemyAttributes : MonoBehaviour
             g_global.g_enemyState.enemy5 = e_enemy;
         }
     }
-    /// <summary>
-    /// Helper function to calculate a new damage each attack turn
-    /// </summary>
-    public void AttackDamageRoll()
-    {
-        e_i_enemyDamageValue = Random.Range(e_i_enemyMinDamageRange, e_i_enemyMaxDamageRange);
-    }
 
     /// <summary>
     /// Return the int value from S_EnemyAttributes.e_i_health
@@ -212,6 +205,18 @@ public class S_EnemyAttributes : MonoBehaviour
     public int GetEnemyHealthValue()
     {
         return e_i_health;
+    }
+
+    /// <summary>
+    /// Return the int value from S_EnemyAttributes.e_i_healthMax
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_i_healthMax 
+    /// </returns>
+    public int GetEnemyMaxHealthValue()
+    {
+        return e_i_healthMax;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -248,16 +253,9 @@ public class S_EnemyAttributes : MonoBehaviour
         return e_i_enemyDamageValue;
     }
 
-    /// <summary>
-    /// Get the shield value for the enemy determined from the move queue
-    /// </summary>
-    /// <returns></returns>
-    public int GetEnemyShield()
-    {
-        return e_i_shield;
-    }
-
-
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Setter for the MoveQueue
