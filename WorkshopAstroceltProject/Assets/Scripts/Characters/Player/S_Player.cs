@@ -229,7 +229,7 @@ public class S_Player : MonoBehaviour
 
     private void SetPlayerShieldText(int _shieldValue)
     {
-        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldBar(_shieldValue);
+        g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldUI(_shieldValue);
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
     }
 

@@ -40,7 +40,7 @@ public class S_CharacterGraphics : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_shieldValue"></param>
-    public void UpdatePlayerShieldBar(int _shieldValue)
+    public void UpdatePlayerShieldUI(int _shieldValue)
     {
         sc_UIManager.SetPlayerShieldText(_shieldValue);
     }

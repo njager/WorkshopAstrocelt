@@ -8,8 +8,6 @@ public class S_UIManager : MonoBehaviour
 {
     protected S_Global g_global;
 
-    // Anything under here is just to help flesh out the greybox
-
     [Header("Child Script References")] // Set in inspector
     public S_CharacterGraphics sc_characterGraphics;
     public S_ResourceGraphics sc_resourceGraphics;
@@ -106,7 +104,7 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
-    [Header("Energy UI Text Elements")] // Keep en_?
+    [Header("Energy UI Text Elements")] // Keep en_
     public TextMeshProUGUI en_tx_redEnergyTrackerText;
     public TextMeshProUGUI en_tx_blueEnergyTrackerText;
     public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
@@ -681,6 +679,17 @@ public class S_UIManager : MonoBehaviour
     public void SetPlayerHealthBar(int _health, int _maxHealth) 
     {
         p_playerHealthBar.fillAmount = (float)_health / (float)_maxHealth;
+    }
+
+    /// <summary>
+    /// Set the text element of the S_UIManager.p_playerHealthResourceBarText
+    /// - Josh
+    /// </summary>
+    /// <param name="_health"></param>
+    /// <param name="_maxHealth"></param>
+    public void SetPlayerResourceHealthText(int _health, int _maxHealth)
+    {
+        p_playerHealthResourceBarText.text = _health.ToString() + " / " + _maxHealth.ToString();
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
