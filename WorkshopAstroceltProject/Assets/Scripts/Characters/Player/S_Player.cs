@@ -22,13 +22,8 @@ public class S_Player : MonoBehaviour
     void Awake()
     {
         g_global = S_Global.Instance;
+        p_sc_playerAttributes = this.GetComponent<S_PlayerAttributes>();
     }
-
-    private void Start()
-    {
-        p_sc_playerAttributes = g_global.g_playerAttributeSheet;
-    }
-
 
     /// <summary>
     /// Trigger function for when the player is attacked, first whittles shields, 
