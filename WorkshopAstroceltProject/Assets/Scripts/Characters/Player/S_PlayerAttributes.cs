@@ -7,11 +7,11 @@ public class S_PlayerAttributes : MonoBehaviour
     private S_Global g_global; 
 
     [Header("Player Attributes")]
-    public int p_i_health;
-    public int p_i_maxHealth; 
+    [SerializeField] int p_i_health;
+    [SerializeField] int p_i_maxHealth; 
 
-    public int p_i_shield;
-    public int p_i_maxShield;
+    [SerializeField] int p_i_shield;
+    [SerializeField] int p_i_maxShield;
 
     public float p_f_playerEnergyGenerationRate;
 
@@ -112,5 +112,29 @@ public class S_PlayerAttributes : MonoBehaviour
     public int GetPlayerMaxHealthValue()
     {
         return p_i_maxHealth;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the int value of S_PlayerAttributes.p_i_shield
+    /// - Josh
+    /// </summary>
+    /// <param name="_shieldValue"></param>
+    public void SetPlayerShieldValue(int _shieldValue)
+    {
+        p_i_shield = _shieldValue;
+    }
+
+    /// <summary>
+    /// Set the int value of S_PlayerAttributes.p_i_health
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    public void SetPlayerHealthValue(int _healthValue)
+    {
+        p_i_health = _healthValue;
     }
 }
