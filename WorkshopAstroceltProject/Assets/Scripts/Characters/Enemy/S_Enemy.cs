@@ -99,23 +99,23 @@ public class S_Enemy : MonoBehaviour
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if(e_sc_enemyAttributes.e_b_resistant == true)
+            if(e_sc_enemyAttributes.e_b_resistant == true) //If the enemy is resisitant
             {
-                if (e_sc_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //The enemy has no sheilds
                 {
                     e_sc_enemyAttributes.e_i_health -= _newDamageValue;
                     e_sc_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy Attacked!");
                 }
-                else
+                else //enemy has shields
                 {
-                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _newDamageValue;
-                    if (_tempVal < 0)
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue;
+                    if (_tempVal < 0) 
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
-                        if (e_sc_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+                        if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
-                            e_sc_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.SetEnemyShield(0);
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
                         e_sc_enemyAttributes.e_pe_blood.Play();
@@ -123,29 +123,29 @@ public class S_Enemy : MonoBehaviour
                     }
                     else
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
-            else
+            else //if the enemy is not resistant
             {
-                if (e_sc_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
                     e_sc_enemyAttributes.e_pe_blood.Play();
                     e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy Attacked!");
                 }
-                else
+                else //enemy has shields
                 {
-                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue;
                     if (_tempVal < 0)
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
-                        if (e_sc_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+                        if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
-                            e_sc_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.SetEnemyShield(0);
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
                         e_sc_enemyAttributes.e_pe_blood.Play();
@@ -154,39 +154,39 @@ public class S_Enemy : MonoBehaviour
                     }
                     else
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
         }
-        else
+        else //The enemy is not a predetermined type
         {
-            if (e_sc_enemyAttributes.e_i_shield <= 0)
+            if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
             {
                 e_sc_enemyAttributes.e_i_health -= _damageValue;
-                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                 e_sc_enemyAttributes.e_pe_blood.Play();
+                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                 Debug.Log("Enemy Attacked!");
             }
-            else
+            else //enemy has shields
             {
-                int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
+                int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue;
                 if (_tempVal < 0)
                 {
-                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
-                    if (e_sc_enemyAttributes.e_i_shield < 0)
+                    e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+                    if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                     {
-                        e_sc_enemyAttributes.e_i_shield = 0;
+                        e_sc_enemyAttributes.SetEnemyShield(0);
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     e_sc_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else
                 {
-                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                    e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
                     Debug.Log("Enemy had shields!");
                 }
             }
@@ -205,7 +205,8 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_shieldVal"></param>
     public void EnemyShielded(string _enemyType, int _shieldVal)
     {
-        e_sc_enemyAttributes.e_i_shield += _shieldVal;
+        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() + _shieldVal);
+
         if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
@@ -360,14 +361,14 @@ public class S_Enemy : MonoBehaviour
             //Do your action
             if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 6) // Check shielding
             {
-                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_shieldMax);
+                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyShieldValue());
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
                 //play enemy animation
                 g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_a_animator.Play("attack");
 
-                g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_enemyDamageValue);
+                g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyDamageValue());
 
                 //Then play sounds
                 if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Beast")
@@ -450,9 +451,9 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     private void UpdateEnemyHealthUI()
     {
-        if(e_sc_enemyAttributes.e_i_shield > 0) 
+        if(e_sc_enemyAttributes.GetEnemyShieldValue() > 0) 
         {
-            SetEnemyShieldText(e_sc_enemyAttributes.e_i_shield);
+            SetEnemyShieldText(e_sc_enemyAttributes.GetEnemyShieldValue());
         }
         else
         {

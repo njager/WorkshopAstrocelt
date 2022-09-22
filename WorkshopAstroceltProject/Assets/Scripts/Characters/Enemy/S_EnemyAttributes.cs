@@ -66,9 +66,6 @@ public class S_EnemyAttributes : MonoBehaviour
         //InstanceVariables();
         e_enemy = gameObject.GetComponent<S_Enemy>();
 
-        //Calculate Damage
-        AttackDamageRoll();
-
         //add nums to the list so we dont use an unimlamented list
         List<int> _randomList = new List<int>();
 
