@@ -12,6 +12,9 @@ public class S_Enemy : MonoBehaviour
 
     public S_EnemyAttributes e_sc_enemyAttributes;
 
+    [Header("Real name identifier")]
+    public string e_str_enemyName;
+
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
     public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
