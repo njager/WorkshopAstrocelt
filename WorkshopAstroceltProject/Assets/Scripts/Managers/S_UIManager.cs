@@ -174,37 +174,34 @@ public class S_UIManager : MonoBehaviour
     /// </summary>
     public void SetElements()
     {
-        // Text
-        //p_playerHealthResourceBarText.text = g_global.g_playerAttributeSheet.p_i_health.ToString() + " / " + g_global.g_playerAttributeSheet.p_i_healthMax.ToString();
-
         //Update Enemy Health Bars
         if(g_global.g_enemyAttributeSheet1 != null) 
         {
-            e_tx_enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.e_i_shield.ToString();
+            e_tx_enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.GetEnemyShieldValue().ToString();
             e_tx_enemy1HealthText.text = g_global.g_enemyAttributeSheet1.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet1.e_i_healthMax.ToString();
             e_enemy1HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet1.e_i_health / (float)g_global.g_enemyAttributeSheet1.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet2 != null)
         {
-            e_tx_enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.e_i_shield.ToString();
+            e_tx_enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.GetEnemyShieldValue().ToString();
             e_tx_enemy2HealthText.text = g_global.g_enemyAttributeSheet2.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet2.e_i_healthMax.ToString();
             e_enemy2HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet2.e_i_health / (float)g_global.g_enemyAttributeSheet2.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet3 != null) 
         {
-            e_tx_enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.e_i_shield.ToString();
+            e_tx_enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.GetEnemyShieldValue().ToString();
             e_tx_enemy3HealthText.text = g_global.g_enemyAttributeSheet3.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet3.e_i_healthMax.ToString();
             e_enemy3HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet3.e_i_health / (float)g_global.g_enemyAttributeSheet3.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet4 != null)
         {
-            e_tx_enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.e_i_shield.ToString();
+            e_tx_enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.GetEnemyShieldValue().ToString();
             e_tx_enemy4HealthText.text = g_global.g_enemyAttributeSheet4.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet4.e_i_healthMax.ToString();
             e_enemy4HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet4.e_i_health / (float)g_global.g_enemyAttributeSheet4.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet5 != null)
         {
-            e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.e_i_shield.ToString();
+            e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.GetEnemyShieldValue().ToString();
             e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
             e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }
@@ -213,7 +210,6 @@ public class S_UIManager : MonoBehaviour
         {
             DebugTurnBarUpdate();
         }
-
 
         // Anurag's UI element
         //c_cardCount.text = g_global.g_ls_p_playerHand.Count.ToString();
