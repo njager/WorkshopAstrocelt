@@ -8,13 +8,12 @@ public class S_EnemyAttributes : MonoBehaviour
 
     private S_Global g_global;
 
-    [Header("Enemy Move Queue")]
-    [Tooltip("Accepted Inputs (attack, shield, ability) followed by an int")]
-    List<(string, int)> ls_e_moveQueue;
+    [Header("Enemy Move Queue (string names: attack, ability, shield")]
+    List<S_EnemyMoves> ls_e_moveQueue = null;
 
-    public List<(string, int)> ls_e_moveQueue1;
-    public List<(string, int)> ls_e_moveQueue2; 
-    public List<(string, int)> ls_e_moveQueue3;
+    [SerializeField] public List<S_EnemyMoves> ls_e_moveQueue1 = null;
+    [SerializeField] public List<S_EnemyMoves> ls_e_moveQueue2 = null;
+    [SerializeField] public List<S_EnemyMoves> ls_e_moveQueue3 = null;
 
     [Header("Enemy Attributes")]
     public int e_i_health;
@@ -236,7 +235,7 @@ public class S_EnemyAttributes : MonoBehaviour
     /// Getter for the MoveQueue
     /// </summary>
     /// <returns></returns>
-    public List<(string, int)> GetMoveQueue()
+    public List<S_EnemyMoves> GetMoveQueue()
     {
         return ls_e_moveQueue;
     }
@@ -258,7 +257,7 @@ public class S_EnemyAttributes : MonoBehaviour
     /// Setter for the MoveQueue
     /// </summary>
     /// <param name="_ls"></param>
-    public void SetMoveQueue(List<(string, int)> _ls)
+    public void SetMoveQueue(List<S_EnemyMoves> _ls)
     {
         ls_e_moveQueue = _ls;
     }

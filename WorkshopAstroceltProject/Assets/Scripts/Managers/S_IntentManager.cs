@@ -54,12 +54,12 @@ public class S_IntentManager : MonoBehaviour
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
         //Make a temp queue
-        List<(string, int)> _tempQueue = _enemyToChange.e_sc_enemyAttributes.GetMoveQueue();
+        List<S_EnemyMoves> _tempQueue = _enemyToChange.e_sc_enemyAttributes.GetMoveQueue();
 
-        if (_tempQueue[0].Item1.Equals("ability")) // Set Enemy up for Special Ability
+        if (_tempQueue[0].s_action.Equals("ability")) // Set Enemy up for Special Ability
         {
             //get the first element
-            (string, int) _tempElement = _tempQueue[0];
+            S_EnemyMoves _tempElement = _tempQueue[0];
 
             //remove from the front, add to the back
             _tempQueue.RemoveAt(0);
@@ -70,13 +70,13 @@ public class S_IntentManager : MonoBehaviour
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "ability";
         }
 
-        else if (_tempQueue[0].Item1.Equals("shield")) // Set Enemy up for Shield
+        else if (_tempQueue[0].s_action.Equals("shield")) // Set Enemy up for Shield
         {
             //get the first element
-            (string, int) _tempElement = _tempQueue[0];
+            S_EnemyMoves _tempElement = _tempQueue[0];
 
             //Assign the shiled value
-            _enemyToChange.e_sc_enemyAttributes.SetEnemyShield(_tempElement.Item2);
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyShield(_tempElement.i_actionValue);
 
             //remove from the front, add to the back
             _tempQueue.RemoveAt(0);
@@ -86,13 +86,13 @@ public class S_IntentManager : MonoBehaviour
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "shield";
         }
-        else if (_tempQueue[0].Item1.Equals("attack"))  // Set Enemy up for Attack
+        else if (_tempQueue[0].s_action.Equals("attack"))  // Set Enemy up for Attack
         {
             //get the first element
-            (string, int) _tempElement = _tempQueue[0];
+            S_EnemyMoves _tempElement = _tempQueue[0];
 
             //assign the attack value
-            _enemyToChange.e_sc_enemyAttributes.SetEnemyDamageValue(_tempElement.Item2);
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyDamageValue(_tempElement.i_actionValue);
 
             //remove from the front, add to the back
             _tempQueue.RemoveAt(0);

@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
+  e_str_enemyName: Puca
   e_str_enemyType: Beast
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 6794341953372043789}
@@ -228,21 +229,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12576e1d2be3bcf4e883a5bb87659645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_i_attackRate: 75
-  e_i_shieldRate: 20
-  e_i_specialAbilityRate: 5
+  ls_e_moveQueue1:
+  - s_action: attack
+    i_actionValue: 40
+  - s_action: attack
+    i_actionValue: 70
+  - s_action: shield
+    i_actionValue: 20
+  - s_action: attack
+    i_actionValue: 55
+  - s_action: attack
+    i_actionValue: 40
+  - s_action: shield
+    i_actionValue: 20
+  ls_e_moveQueue2:
+  - s_action: attack
+    i_actionValue: 70
+  - s_action: shield
+    i_actionValue: 20
+  - s_action: shield
+    i_actionValue: 20
+  - s_action: attack
+    i_actionValue: 55
+  - s_action: attack
+    i_actionValue: 40
+  - s_action: shield
+    i_actionValue: 20
+  ls_e_moveQueue3:
+  - s_action: shiled
+    i_actionValue: 20
+  - s_action: ability
+    i_actionValue: 0
+  - s_action: attack
+    i_actionValue: 65
+  - s_action: attack
+    i_actionValue: 50
+  - s_action: ability
+    i_actionValue: 0
+  - s_action: attack
+    i_actionValue: 80
   e_i_health: 50
   e_i_healthMax: 50
-  e_i_shield: 0
-  e_i_shieldMax: 15
-  e_i_enemyMinDamageRange: 40
-  e_i_enemyMaxDamageRange: 70
-  e_i_enemyDamageValue: 15
   e_f_challengeRating: 0.3
   e_str_enemyType: Beast
   e_b_Lumberjack: 0
   e_b_Magician: 0
   e_b_Beast: 1
+  e_b_Brawler: 0
   e_b_poisoned: 0
   e_b_stunned: 0
   e_b_bleeding: 0
