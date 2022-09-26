@@ -47,7 +47,7 @@ public class S_Altar : MonoBehaviour
     public bool c_b_movementBool;
 
     [Header("Delayed Card Checking Bool")]
-    public bool c_b_spawnCardAfterMovement;
+    public bool b_cardballDelay;
 
     private void Awake()
     {
@@ -341,8 +341,6 @@ public class S_Altar : MonoBehaviour
         StartCoroutine(CheckFirstCardball());
     }
 
-
-
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -364,7 +362,7 @@ public class S_Altar : MonoBehaviour
     /// <param name="_truthValue"></param>
     public void SetCardballDelaySpawnBool(bool _truthValue)
     {
-        c_b_spawnCardAfterMovement = _truthValue;
+        b_cardballDelay = _truthValue;
     }
 
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -384,15 +382,14 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the bool value of S_Altar.c_b_spawnCardAfterMovement
-    /// - Josh 
+    /// Return the bool value of S_Altar.b_cardballDelay
     /// </summary>
     /// <returns>
-    /// S_Altar.c_b_spawnCardAfterMovement
+    /// S_Altar.cardballDelay
     /// </returns>
     public bool GetCardballDelaySpawnBool()
     {
-        return c_b_spawnCardAfterMovement;
+        return b_cardballDelay;
     }
 
     /// <summary>
