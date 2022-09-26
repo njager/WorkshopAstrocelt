@@ -19,6 +19,8 @@ public class S_EnemyAttributes : MonoBehaviour
     public int e_i_health;
     public int e_i_healthMax;
 
+    //
+    int e_i_tempSheild;
     int e_i_shield;
     int e_i_enemyDamageValue; 
 
@@ -249,6 +251,11 @@ public class S_EnemyAttributes : MonoBehaviour
         return e_i_enemyDamageValue;
     }
 
+    public int GetEnemyTempShield()
+    {
+        return e_i_tempSheild;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -274,5 +281,10 @@ public class S_EnemyAttributes : MonoBehaviour
     public void SetEnemyShield(int _value)
     {
         e_i_shield = _value;
+    }
+
+    public void SetEnemyTempShield(int _value)
+    {
+        e_i_tempSheild = _value;
     }
 }
