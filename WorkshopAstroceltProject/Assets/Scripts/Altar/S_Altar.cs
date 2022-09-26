@@ -179,11 +179,11 @@ public class S_Altar : MonoBehaviour
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
         //Debug.Log(" Debug - Triggered 2");
+        SetCardBeingActiveBool(false);
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
             //wait and then remove the cardball from the list and delete it from the game
-            yield return new WaitForSeconds(0.5f);
-            g_global.g_ls_cardBallPrefabs.Remove(_cardball);
+            yield return new WaitForSeconds(0.25f);
             _cardball.DeleteCardball();
         }
 

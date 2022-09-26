@@ -19,7 +19,7 @@ public class S_EnemyAttributes : MonoBehaviour
     public int e_i_health;
     public int e_i_healthMax;
 
-    //
+    // Private variables
     int e_i_tempSheild;
     int e_i_shield;
     int e_i_enemyDamageValue; 
@@ -191,6 +191,8 @@ public class S_EnemyAttributes : MonoBehaviour
         {
             g_global.g_enemyState.enemy5 = e_enemy;
         }
+
+        e_enemy.UpdateEnemyHealthUI();
     }
 
     /// <summary>

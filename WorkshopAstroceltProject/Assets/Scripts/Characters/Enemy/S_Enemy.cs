@@ -78,8 +78,6 @@ public class S_Enemy : MonoBehaviour
 
         // Need to add in enemy 4 and 5 placement and the scene knowing if it should have 3 enemies or 5 enemies from S_GameManager or even get something set initially as a bool in S_Global we toggle
         // - Josh
-
-        UpdateEnemyHealthUI();
     }
 
     /// <summary>
@@ -457,7 +455,7 @@ public class S_Enemy : MonoBehaviour
     /// Method to update the all health and shield elements of the UI
     /// - Josh
     /// </summary>
-    private void UpdateEnemyHealthUI()
+    public void UpdateEnemyHealthUI()
     {
         if(e_sc_enemyAttributes.GetEnemyShieldValue() > 0) 
         {
@@ -465,7 +463,7 @@ public class S_Enemy : MonoBehaviour
         }
         else
         {
-            SetEnemyHealthText(e_sc_enemyAttributes.GetEnemyHealthValue());
+            SetEnemyHealthText();
         }
     }
 
@@ -474,9 +472,9 @@ public class S_Enemy : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_healthValue"></param>
-    private void SetEnemyHealthText(int _healthValue)
+    private void SetEnemyHealthText()
     {
-        g_global.g_UIManager.sc_characterGraphics.UpdateEnemyHealthUI(_healthValue);
+        g_global.g_UIManager.sc_characterGraphics.UpdateEnemyHealthUI(e_i_enemyCount);
         g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
     }
 
