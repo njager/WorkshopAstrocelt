@@ -50,19 +50,30 @@ public class S_CharacterCardInterface : MonoBehaviour
                 if(e_b_attachedToEnemy == true) 
                 {
                     cd_cardData.e_cd_grabbedEnemy = e_attachedEnemy;
-                }
 
-                if (cd_cardData.c_b_cardIsDragged == false)
-                {
-                    Debug.Log("MouseLetGo");
-                    cd_cardData.cd_b_resetPositionFlag = true;
-
-                    if(cd_cardData.e_cd_grabbedEnemy != e_attachedEnemy) 
+                    if (cd_cardData.c_b_cardIsDragged == false)
                     {
-                        return;
+                        Debug.Log("MouseLetGo");
+                        cd_cardData.cd_b_resetPositionFlag = true;
+
+                        if (cd_cardData.e_cd_grabbedEnemy != e_attachedEnemy)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            TriggerCard(cd_cardData);
+                        }
                     }
-                    else 
+                }
+                
+                if(p_b_attachedToPlayer == true) 
+                {
+                    if (cd_cardData.c_b_cardIsDragged == false)
                     {
+                        Debug.Log("MouseLetGo");
+                        cd_cardData.cd_b_resetPositionFlag = true;
+
                         TriggerCard(cd_cardData);
                     }
                 }
