@@ -320,7 +320,7 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator WaitForCardPlayToMoveAndDelete(GameObject _cardball)
+    public IEnumerator WaitForCardPlayToMoveAndDelete(GameObject _cardball, bool _activeCard)
     {
         // Hide, but don't delete just yet
         _cardball.GetComponent<S_Cardball>().c_redGraphic.SetActive(false);
@@ -328,20 +328,28 @@ public class S_Altar : MonoBehaviour
         _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
 
-        yield return new S_WaitForCardPlay();
-
-        if (GetCardballDelaySpawnBool() == true)
-        {
-            Debug.Log("Attempting to delay spawn of second card after a first");
-            yield return WaitForCardballMovementToPlay(_cardball);
-        }
-        else 
+        if(_activeCard == false) 
         {
             yield return null;
             Destroy(_cardball);
+        }
+        else 
+        {
+            yield return new S_WaitForCardPlay();
 
-            Debug.Log("MoveCardballPrefabs() Called");
-            yield return StartCoroutine(MoveCardballPrefabs());
+            if (GetCardballDelaySpawnBool() == true)
+            {
+                Debug.Log("Attempting to delay spawn of second card after a first");
+                yield return WaitForCardballMovementToPlay(_cardball);
+            }
+            else
+            {
+                yield return null;
+                Destroy(_cardball);
+
+                Debug.Log("MoveCardballPrefabs() Called");
+                yield return StartCoroutine(MoveCardballPrefabs());
+            }
         }
     }
 
