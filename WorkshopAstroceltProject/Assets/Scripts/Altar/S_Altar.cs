@@ -320,28 +320,37 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator WaitForCardPlayToMoveAndDelete(GameObject _cardball)
+    public IEnumerator WaitForCardPlayToMoveAndDelete(GameObject _cardball, bool _activeCard)
     {
         // Hide, but don't delete just yet
         _cardball.GetComponent<S_Cardball>().c_redGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_blueGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
 
-        yield return new S_WaitForCardPlay();
-
-        if (GetCardballDelaySpawnBool() == true)
-        {
-            Debug.Log("Attempting to delay spawn of second card after a first");
-            yield return WaitForCardballMovementToPlay(_cardball);
-        }
-        else 
+        if (_activeCard == false) 
         {
             yield return null;
             Destroy(_cardball);
+        }
+        else 
+        {
+            yield return new S_WaitForCardPlay();
 
-            Debug.Log("MoveCardballPrefabs() Called");
-            yield return StartCoroutine(MoveCardballPrefabs());
+            if (GetCardballDelaySpawnBool() == true)
+            {
+                Debug.Log("Attempting to delay spawn of second card after a first");
+                yield return WaitForCardballMovementToPlay(_cardball);
+            }
+            else
+            {
+                yield return null;
+                Destroy(_cardball);
+
+                Debug.Log("MoveCardballPrefabs() Called");
+                yield return StartCoroutine(MoveCardballPrefabs());
+            }
         }
     }
 
@@ -354,14 +363,13 @@ public class S_Altar : MonoBehaviour
     {
         Debug.Log("Waiting");
 
-        yield return null;
         Destroy(_cardball);
 
         c_i_movementInt -= 1;
         yield return StartCoroutine(MoveCardballPrefabs());
 
         // Set second cardball playable status to default false
-        SetCardballDelaySpawnBool(false);
+        SetCardballDelaySpawnBool(true);
 
         yield return new WaitForSeconds(3f);
         // Then try to play card

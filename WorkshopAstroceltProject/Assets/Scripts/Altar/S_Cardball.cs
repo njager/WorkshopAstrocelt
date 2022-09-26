@@ -191,7 +191,7 @@ public class S_Cardball : MonoBehaviour
 
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject));
+        StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
         //StartCoroutine(CarballDestroyVFX());
     }
 
