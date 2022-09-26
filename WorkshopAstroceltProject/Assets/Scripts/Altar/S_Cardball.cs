@@ -195,6 +195,11 @@ public class S_Cardball : MonoBehaviour
         //StartCoroutine(CarballDestroyVFX());
     }
 
+    public void TrueDeleteCardball() 
+    {
+        Destroy(this);
+    }
+
     /// <summary>
     /// Toggle altar text on when mouse enters Cardball
     /// also adjust the borders based off of the color

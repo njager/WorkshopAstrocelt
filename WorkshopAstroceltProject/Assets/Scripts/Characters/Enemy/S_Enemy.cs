@@ -418,7 +418,7 @@ public class S_Enemy : MonoBehaviour
         int numDelete = Random.Range(1, 6);
 
         S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
-        _cardball.DeleteCardball();
+        _cardball.TrueDeleteCardball();
     }
 
     /// <summary>
