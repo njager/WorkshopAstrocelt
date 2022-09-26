@@ -404,6 +404,8 @@ public class S_Enemy : MonoBehaviour
             Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
             yield return new WaitForSeconds(4);
         }
+
+        UpdateEnemyHealthUI();
     }
 
     /// <summary>
@@ -448,30 +450,40 @@ public class S_Enemy : MonoBehaviour
         
     }
 
-    
+
     /// <summary>
-    /// Method to update the health UI of the enemy
+    /// Method to update the all health and shield elements of the UI
+    /// - Josh
     /// </summary>
     private void UpdateEnemyHealthUI()
     {
         if(e_sc_enemyAttributes.GetEnemyShieldValue() > 0) 
         {
-            SetEnemyShieldText(e_sc_enemyAttributes.GetEnemyShieldValue());
+            SetEnemyShieldText();
         }
         else
         {
-            SetEnemyHealthText(e_sc_enemyAttributes.e_i_health);
+            SetEnemyHealthText(e_sc_enemyAttributes.GetEnemyHealthValue());
         }
     }
-    
-    private void SetEnemyHealthText(int _healthVal)
-    {
 
+    /// <summary>
+    /// Trigger function to set the health elements in S_CharacterGraphics
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    private void SetEnemyHealthText(int _healthValue)
+    {
+        g_global.g_UIManager.sc_characterGraphics.UpdateEnemyHealthUI(_healthValue);
+        g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
     }
 
-    
-    private void SetEnemyShieldText(int _shieldVal)
+    /// <summary>
+    /// Trigger function to set the shield elements in S_CharacterGraphics
+    /// - Josh
+    /// </summary>
+    private void SetEnemyShieldText()
     {
-        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
+        g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
     }
 }
