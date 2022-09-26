@@ -218,13 +218,14 @@ public class S_Altar : MonoBehaviour
             //Debug.Log("Made Card");
 
             // Lock Spawning
-            SetCardBeingActiveBool(false);
+            SetCardBeingActiveBool(true);
+
+            // Possibly tier up the next card
+            SetCardballDelaySpawnBool(CheckSecondCardball());
 
             //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
 
-            // Possibly tier up the next card
-            SetCardballDelaySpawnBool(CheckSecondCardball());
             //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
     }
@@ -237,7 +238,7 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public bool CheckSecondCardball()
     {
-        if (g_global.g_energyManager.UseEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString)) 
+        if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString)) 
         {
             Debug.Log("Second cardball was valid");
             return true;
@@ -356,6 +357,7 @@ public class S_Altar : MonoBehaviour
         yield return null;
         Destroy(_cardball);
 
+        c_i_movementInt -= 1;
         yield return StartCoroutine(MoveCardballPrefabs());
 
         // Set second cardball playable status to default false

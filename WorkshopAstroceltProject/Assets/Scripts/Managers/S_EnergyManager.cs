@@ -254,6 +254,8 @@ public class S_EnergyManager : MonoBehaviour
                     else if (i_blueEnergy == 0 && i_yellowEnergy == 0) { return true; }
                 }
             }
+
+            return false;
         }
         else
         {
