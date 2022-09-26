@@ -364,7 +364,7 @@ public class S_Enemy : MonoBehaviour
             //Do your action
             if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 6) // Check shielding
             {
-                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyShieldValue());
+                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyTempShield());
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {

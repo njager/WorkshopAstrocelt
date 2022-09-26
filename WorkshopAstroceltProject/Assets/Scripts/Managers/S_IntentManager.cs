@@ -76,7 +76,7 @@ public class S_IntentManager : MonoBehaviour
             S_EnemyMoves _tempElement = _tempQueue[0];
 
             //Assign the shiled value
-            _enemyToChange.e_sc_enemyAttributes.SetEnemyShield(_tempElement.i_actionValue);
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyTempShield(_tempElement.i_actionValue);
 
             //remove from the front, add to the back
             _tempQueue.RemoveAt(0);
