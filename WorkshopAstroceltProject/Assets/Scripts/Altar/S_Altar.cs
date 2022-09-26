@@ -184,7 +184,7 @@ public class S_Altar : MonoBehaviour
         {
             //wait and then remove the cardball from the list and delete it from the game
             yield return new WaitForSeconds(0.25f);
-            _cardball.DeleteCardball();
+            StartCoroutine(_cardball.DeleteCardball());
         }
 
         //clear the player hand since none of these cards were played
@@ -213,15 +213,17 @@ public class S_Altar : MonoBehaviour
     public void CheckFirstCardball()
     {
         //yield return new S_WaitForEnergyTextDecrement();
-        if (g_global.g_energyManager.UseEnergy(GetChildOfFirstAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfFirstAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
+        if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
-            //Debug.Log("Made Card");
+            Debug.Log("Made Card");
 
             // Lock Spawning
-            SetCardBeingActiveBool(true);
+            SetCardBeingActiveBool(false);
 
             // Possibly tier up the next card
             SetCardballDelaySpawnBool(CheckSecondCardball());
+
+            g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
 
             //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
@@ -238,10 +240,17 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public bool CheckSecondCardball()
     {
-        if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString)) 
+        if(GetChildOfSecondAltarPosition() != null) 
         {
-            Debug.Log("Second cardball was valid");
-            return true;
+            if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
+            {
+                Debug.Log("Second cardball was valid");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else 
         {
@@ -329,13 +338,14 @@ public class S_Altar : MonoBehaviour
         _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
 
-        if (_activeCard == false) 
+        if (_activeCard == true) 
         {
             yield return null;
             Destroy(_cardball);
         }
-        else 
+        else if (_activeCard == false)
         {
+            Debug.Log("Gonna wait for card play");
             yield return new S_WaitForCardPlay();
 
             if (GetCardballDelaySpawnBool() == true)
@@ -369,7 +379,7 @@ public class S_Altar : MonoBehaviour
         yield return StartCoroutine(MoveCardballPrefabs());
 
         // Set second cardball playable status to default false
-        SetCardballDelaySpawnBool(true);
+        SetCardballDelaySpawnBool(false);
 
         yield return new WaitForSeconds(3f);
         // Then try to play card
