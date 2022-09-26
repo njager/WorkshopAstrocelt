@@ -134,7 +134,7 @@ public class S_Cardball : MonoBehaviour
     /// Method to take a cardball and convert it to a card
     /// - Josh
     /// </summary>
-    public void CardballToCard(int _cardPositionIndex)
+    public void CardballToCard()
     {
         // Determine transform
         Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;

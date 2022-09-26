@@ -46,6 +46,9 @@ public class S_Altar : MonoBehaviour
     public int c_i_movementInt;
     public bool c_b_movementBool;
 
+    [Header("Delayed Card Checking Bool")]
+    public bool c_b_spawnCardAfterMovement;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -184,7 +187,7 @@ public class S_Altar : MonoBehaviour
         g_global.g_cardManager.ClearPlayerHand();
 
         //Trigger if the bool is passed
-        if (_newCardBalls)
+        if (_newCardBalls == true)
         {
             yield return null; //euivalent but slightly faster for optimization for one second
 
@@ -207,16 +210,35 @@ public class S_Altar : MonoBehaviour
     {
         //yield return new S_WaitForEnergyTextDecrement();
         yield return null;
-        if (g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+        if (g_global.g_energyManager.UseEnergy(GetChildOfFirstAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfFirstAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
         {
-            //Debug.Log("Do we ever make it");
-            //Check the card position in S_CardHolderManager 
-            g_global.g_cardHolder.SetCardPositionInt(g_global.g_cardHolder.NextCardPosition());
-            // Now grab it
-            int _cardballPosition = g_global.g_cardHolder.GetCardPositionInt();
+            //Debug.Log("Made Card");
+
+            // Possibly tier up the next card
+            SetCardballDelaySpawnBool(CheckSecondCardball());
+
             //turn the cardball into a card and move over the rest of the cardballs
-            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard(_cardballPosition);
-            ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+            //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Use this to get the status of viability for playing the next card
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// </returns>
+    public bool CheckSecondCardball()
+    {
+        if (g_global.g_energyManager.UseEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString)) 
+        {
+            Debug.Log("Second cardball was valid");
+            return true;
+        }
+        else 
+        {
+            return false;
         }
     }
 
@@ -237,6 +259,13 @@ public class S_Altar : MonoBehaviour
             cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+
+            if(GetCardballDelaySpawnBool() == true) 
+            {
+                Debug.Log("Attempting to delay spawn of second cardball after a first");
+                WaitForCardballMovemntToPlay();
+            }
+
             //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.childCount == 1)
@@ -297,21 +326,53 @@ public class S_Altar : MonoBehaviour
         MoveCardballPrefabs();
     }
 
+    /// <summary>
+    /// Used so the spawning of a card moves cardballs appropiately first
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator WaitForCardballMovemntToPlay()
+    {
+        yield return new WaitForSeconds(3);
 
-    // Getters & Setters \\ 
+        // Set second cardball playable status to default false
+        SetCardballDelaySpawnBool(false);
+
+        StartCoroutine(CheckFirstCardball());
+    }
+
+
+
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the bool value of S_Altar.b_cardballsSpawned;
+    /// Set the bool value of S_Altar.b_cardballsSpawned
     /// - Josh 
     /// </summary>
-    /// <param name="_spawning"></param>
-    public void SetCardballsSpawnedBool(bool _spawning)
+    /// <param name="_truthValue"></param>
+    public void SetCardballsSpawnedBool(bool _truthValue)
     {
-        b_cardballsSpawned = _spawning;
+        b_cardballsSpawned = _truthValue;
     }
 
     /// <summary>
-    /// Return the bool value of S_Altar.b_cardballsSpawned;
+    /// Set the bool value of S_Altar.c_b_spawnCardAfterMovement
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetCardballDelaySpawnBool(bool _truthValue)
+    {
+        c_b_spawnCardAfterMovement = _truthValue;
+    }
+
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the bool value of S_Altar.b_cardballsSpawned
     /// - Josh 
     /// </summary>
     /// <returns>
@@ -320,6 +381,18 @@ public class S_Altar : MonoBehaviour
     public bool GetCardballsSpawnedBool()
     {
         return b_cardballsSpawned;
+    }
+
+    /// <summary>
+    /// Return the bool value of S_Altar.c_b_spawnCardAfterMovement
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Altar.c_b_spawnCardAfterMovement
+    /// </returns>
+    public bool GetCardballDelaySpawnBool()
+    {
+        return c_b_spawnCardAfterMovement;
     }
 
     /// <summary>
