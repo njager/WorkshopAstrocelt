@@ -240,7 +240,8 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public bool CheckSecondCardball()
     {
-        if(GetChildOfSecondAltarPosition() != null) 
+        GameObject _tempObject = GetChildOfSecondAltarPosition();
+        if (_tempObject != null) 
         {
             if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
             {
@@ -350,8 +351,11 @@ public class S_Altar : MonoBehaviour
 
             if (GetCardballDelaySpawnBool() == true)
             {
+                yield return null;
+                Destroy(_cardball);
+
                 Debug.Log("Attempting to delay spawn of second card after a first");
-                yield return WaitForCardballMovementToPlay(_cardball);
+                yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
             else
             {
@@ -369,11 +373,9 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator WaitForCardballMovementToPlay(GameObject _cardball)
+    public IEnumerator WaitForCardballMovementToPlay()
     {
-        Debug.Log("Waiting");
-
-        Destroy(_cardball);
+        Debug.Log("Waiting to make a card");
 
         c_i_movementInt -= 1;
         yield return StartCoroutine(MoveCardballPrefabs());
@@ -381,7 +383,7 @@ public class S_Altar : MonoBehaviour
         // Set second cardball playable status to default false
         SetCardballDelaySpawnBool(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         // Then try to play card
         CheckFirstCardball();
     }
@@ -479,7 +481,15 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public GameObject GetChildOfFirstAltarPosition() 
     {
-        return cardballPosition1.transform.GetChild(0).gameObject;
+        GameObject _tempObject = cardballPosition1.transform.GetChild(0).gameObject;
+        if (_tempObject != null) 
+        {
+            return cardballPosition1.transform.GetChild(0).gameObject;
+        }
+        else 
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -491,7 +501,15 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public GameObject GetChildOfSecondAltarPosition()
     {
-        return cardballPosition2.transform.GetChild(0).gameObject;
+        GameObject _tempObject = cardballPosition2.transform.GetChild(0).gameObject;
+        if (_tempObject != null)
+        {
+            return cardballPosition2.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -503,7 +521,15 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public GameObject GetChildOfThirdAltarPosition()
     {
-        return cardballPosition3.transform.GetChild(0).gameObject;
+        GameObject _tempObject = cardballPosition3.transform.GetChild(0).gameObject;
+        if (_tempObject != null)
+        {
+            return cardballPosition3.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -515,7 +541,15 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public GameObject GetChildOfFourthAltarPosition()
     {
-        return cardballPosition4.transform.GetChild(0).gameObject;
+        GameObject _tempObject = cardballPosition4.transform.GetChild(0).gameObject;
+        if (_tempObject != null)
+        {
+            return cardballPosition4.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -527,6 +561,14 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public GameObject GetChildOfFifthAltarPosition()
     {
-        return cardballPosition5.transform.GetChild(0).gameObject;
+        GameObject _tempObject = cardballPosition5.transform.GetChild(0).gameObject;
+        if (_tempObject != null)
+        {
+            return cardballPosition5.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
