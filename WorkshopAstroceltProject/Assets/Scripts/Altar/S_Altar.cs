@@ -327,8 +327,9 @@ public class S_Altar : MonoBehaviour
         _cardball.GetComponent<S_Cardball>().c_blueGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
 
-        if(_activeCard == false) 
+        if (_activeCard == false) 
         {
             yield return null;
             Destroy(_cardball);
@@ -362,14 +363,13 @@ public class S_Altar : MonoBehaviour
     {
         Debug.Log("Waiting");
 
-        yield return null;
         Destroy(_cardball);
 
         c_i_movementInt -= 1;
         yield return StartCoroutine(MoveCardballPrefabs());
 
         // Set second cardball playable status to default false
-        SetCardballDelaySpawnBool(false);
+        SetCardballDelaySpawnBool(true);
 
         yield return new WaitForSeconds(3f);
         // Then try to play card
