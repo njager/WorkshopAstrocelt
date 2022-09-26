@@ -97,7 +97,7 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
     [Header("Card Dragger References")]
-    public S_CardDragger sc_c_cardDraggerReference;
+    //public S_CardDragger sc_c_cardDraggerReference;
     public S_Enemy e_cd_grabbedEnemy;
 
     [Header("Card Background Art Assets")]
@@ -260,7 +260,10 @@ public class S_Card : MonoBehaviour
         SetText();
 
         // Set art asset
-        c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
+        if(_cardData.CardArtAsset != null) 
+        {
+            c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
+        }  
 
         // Set String Color
         c_str_color = _cardData.ColorString;
