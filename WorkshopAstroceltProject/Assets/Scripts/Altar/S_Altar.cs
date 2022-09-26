@@ -49,6 +49,9 @@ public class S_Altar : MonoBehaviour
     [Header("Delayed Card Checking Bool")]
     public bool b_cardballDelay;
 
+    [Header("Active Card bool")]
+    public bool cd_b_cardIsActive;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -214,6 +217,9 @@ public class S_Altar : MonoBehaviour
         {
             //Debug.Log("Made Card");
 
+            // Lock Spawning
+            SetCardBeingActiveBool(true);
+
             // Possibly tier up the next card
             SetCardballDelaySpawnBool(CheckSecondCardball());
 
@@ -259,13 +265,6 @@ public class S_Altar : MonoBehaviour
             cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
-
-            if(GetCardballDelaySpawnBool() == true) 
-            {
-                Debug.Log("Attempting to delay spawn of second cardball after a first");
-                WaitForCardballMovemntToPlay();
-            }
-
             //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.childCount == 1)
@@ -321,8 +320,17 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator WaitForCardballDeletionToMove(GameObject _cardball)
     {
-        yield return new WaitForSeconds(2);
+        yield return null;
         Destroy(_cardball);
+
+        yield return new S_WaitForCardPlay(); 
+
+        if (GetCardballDelaySpawnBool() == true)
+        {
+            Debug.Log("Attempting to delay spawn of second cardball after a first");
+            WaitForCardballMovementToPlay();
+        }
+
         MoveCardballPrefabs();
     }
 
@@ -331,12 +339,14 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator WaitForCardballMovemntToPlay()
+    public IEnumerator WaitForCardballMovementToPlay()
     {
         yield return new WaitForSeconds(3);
 
         // Set second cardball playable status to default false
         SetCardballDelaySpawnBool(false);
+
+        Debug.Log("Waiting");
 
         StartCoroutine(CheckFirstCardball());
     }
@@ -365,6 +375,16 @@ public class S_Altar : MonoBehaviour
         b_cardballDelay = _truthValue;
     }
 
+    /// <summary>
+    /// Set the bool value of S_Altar.cd_b_cardIsActive
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetCardBeingActiveBool(bool _truthValue)
+    {
+        cd_b_cardIsActive = _truthValue;
+    }
+
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -390,6 +410,17 @@ public class S_Altar : MonoBehaviour
     public bool GetCardballDelaySpawnBool()
     {
         return b_cardballDelay;
+    }
+
+    /// <summary>
+    /// Return the bool value of S_Altar.cd_b_cardIsActive
+    /// </summary>
+    /// <returns>
+    /// S_Altar.cd_b_cardIsActive
+    /// </returns>
+    public bool GetCardBeingActiveBool()
+    {
+        return cd_b_cardIsActive;
     }
 
     /// <summary>

@@ -559,7 +559,7 @@ public class S_Card : MonoBehaviour
         if (g_global.g_ls_p_playerHand.Count > 0) 
         {
             Debug.Log("Triggered teh bool");
-            StartCoroutine(g_global.g_altar.CheckFirstCardball()); 
+            g_global.g_altar.SetCardBeingActiveBool(false);
         }
     }
 
