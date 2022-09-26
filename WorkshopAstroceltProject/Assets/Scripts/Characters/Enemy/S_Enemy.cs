@@ -78,6 +78,8 @@ public class S_Enemy : MonoBehaviour
 
         // Need to add in enemy 4 and 5 placement and the scene knowing if it should have 3 enemies or 5 enemies from S_GameManager or even get something set initially as a bool in S_Global we toggle
         // - Josh
+
+        UpdateEnemyHealthUI();
     }
 
     /// <summary>
