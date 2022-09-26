@@ -8,9 +8,9 @@ public class S_GameManager : MonoBehaviour
 
     public List<int> gm_ls_p_playerDeck;
 
-    public int i_playerHealth = 35;
+    public int i_playerHealth;
 
-    public int i_healthMax = 35;
+    public int i_healthMax;
 
     public int i_shield = 0;
     public int i_shieldMax = 100;
