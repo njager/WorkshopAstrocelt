@@ -136,6 +136,8 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballToCard()
     {
+        Debug.Log("CardballToCard() called");
+
         // Determine transform
         Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
         
@@ -189,8 +191,8 @@ public class S_Cardball : MonoBehaviour
 
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
-        StartCoroutine(CarballDestroyVFX());
+        StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject));
+        //StartCoroutine(CarballDestroyVFX());
     }
 
     /// <summary>

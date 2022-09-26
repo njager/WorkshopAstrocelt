@@ -119,26 +119,27 @@ public class S_Altar : MonoBehaviour
         // Spawn cardball 1
         yield return new WaitForSeconds(1);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[0]);
-        MoveCardballPrefabs();
+        StartCoroutine(MoveCardballPrefabs());
 
         // Spawn cardball 2
         yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[1]);
-        MoveCardballPrefabs();
+        StartCoroutine(MoveCardballPrefabs());
 
         // Spawn cardball 3
         yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.15f);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[2]);
-        MoveCardballPrefabs();
+        StartCoroutine(MoveCardballPrefabs());
 
         // Spawn cardball 4
         yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.25f);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[3]);
-        MoveCardballPrefabs();
+        StartCoroutine(MoveCardballPrefabs());
 
+        // Spawn cardball 5
         yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.35f);
         AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[4]);
-        MoveCardballPrefabs();
+        StartCoroutine(MoveCardballPrefabs());
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
@@ -209,22 +210,21 @@ public class S_Altar : MonoBehaviour
     /// The trigger mechanism for Cardball to cards.
     /// - Josh
     /// </summary>
-    public IEnumerator CheckFirstCardball()
+    public void CheckFirstCardball()
     {
         //yield return new S_WaitForEnergyTextDecrement();
-        yield return null;
         if (g_global.g_energyManager.UseEnergy(GetChildOfFirstAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfFirstAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
         {
             //Debug.Log("Made Card");
 
             // Lock Spawning
-            SetCardBeingActiveBool(true);
-
-            // Possibly tier up the next card
-            SetCardballDelaySpawnBool(CheckSecondCardball());
+            SetCardBeingActiveBool(false);
 
             //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+
+            // Possibly tier up the next card
+            SetCardballDelaySpawnBool(CheckSecondCardball());
             //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
     }
@@ -255,8 +255,9 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public void MoveCardballPrefabs()
+    public IEnumerator MoveCardballPrefabs()
     {
+        yield return null;
         c_i_movementInt += 1;
         if (cardballPosition2.transform.childCount == 1)
         {
@@ -318,20 +319,29 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator WaitForCardballDeletionToMove(GameObject _cardball)
+    public IEnumerator WaitForCardPlayToMoveAndDelete(GameObject _cardball)
     {
-        yield return null;
-        Destroy(_cardball);
+        // Hide, but don't delete just yet
+        _cardball.GetComponent<S_Cardball>().c_redGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_blueGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
 
-        yield return new S_WaitForCardPlay(); 
+        yield return new S_WaitForCardPlay();
 
         if (GetCardballDelaySpawnBool() == true)
         {
-            Debug.Log("Attempting to delay spawn of second cardball after a first");
-            WaitForCardballMovementToPlay();
+            Debug.Log("Attempting to delay spawn of second card after a first");
+            yield return WaitForCardballMovementToPlay(_cardball);
         }
+        else 
+        {
+            yield return null;
+            Destroy(_cardball);
 
-        MoveCardballPrefabs();
+            Debug.Log("MoveCardballPrefabs() Called");
+            yield return StartCoroutine(MoveCardballPrefabs());
+        }
     }
 
     /// <summary>
@@ -339,16 +349,21 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator WaitForCardballMovementToPlay()
+    public IEnumerator WaitForCardballMovementToPlay(GameObject _cardball)
     {
-        yield return new WaitForSeconds(3);
+        Debug.Log("Waiting");
+
+        yield return null;
+        Destroy(_cardball);
+
+        yield return StartCoroutine(MoveCardballPrefabs());
 
         // Set second cardball playable status to default false
         SetCardballDelaySpawnBool(false);
 
-        Debug.Log("Waiting");
-
-        StartCoroutine(CheckFirstCardball());
+        yield return new WaitForSeconds(3f);
+        // Then try to play card
+        CheckFirstCardball();
     }
 
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -468,7 +483,7 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public GameObject GetChildOfThirdAltarPosition()
     {
-        return cardballPosition1.transform.GetChild(0).gameObject;
+        return cardballPosition3.transform.GetChild(0).gameObject;
     }
 
     /// <summary>

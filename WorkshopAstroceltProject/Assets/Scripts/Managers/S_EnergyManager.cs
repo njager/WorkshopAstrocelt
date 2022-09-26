@@ -194,8 +194,78 @@ public class S_EnergyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to check energy without using it
+    /// - Josh
+    /// </summary>
+    /// <param name="_energy"></param>
+    /// <param name="_color"></param>
+    /// <returns></returns>
+    public bool CheckEnergy(int _energy, string _color)
+    {
+        //make sure the colors match before using energy
+        //remove the card if it actually gets played
+        if (_color == "red" && i_redEnergy >= 0)
+        {
+            return true;
+        }
+        else if (_color == "yellow" && i_yellowEnergy - _energy >= 0)
+        {
+            return true;
+        }
+        else if (_color == "blue" && i_blueEnergy - _energy >= 0)
+        {
+            return true;
+        }
+        else if (_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >= 0)
+        {
+            int _max = Mathf.Max(i_redEnergy, i_blueEnergy, i_yellowEnergy);
 
-    // Setters \\ // Not yet implemented
+            if (_energy - _max <= 0)
+            {
+                if (i_redEnergy == _max) { return true; }
+                else if (i_yellowEnergy == _max) { return true; }
+                else if (i_blueEnergy == _max) { return true; }
+            }
+            else
+            {
+                int _max2 = 0;
+
+                if (i_redEnergy == _max) {_max2 = Mathf.Max(i_blueEnergy, i_yellowEnergy); }
+                else if (i_yellowEnergy == _max) { _max2 = Mathf.Max(i_blueEnergy, i_redEnergy); }
+                else if (i_blueEnergy == _max) { _max2 = Mathf.Max(i_redEnergy, i_yellowEnergy); }
+
+                if (_energy - _max2 <= 0)
+                {
+                    if (i_redEnergy == _max2) { return true; }
+                    else if (i_yellowEnergy == _max2) { return true; }
+                    else if (i_blueEnergy == _max2) { return true; }
+                }
+                else
+                {
+                    _energy -= _max2;
+
+                    if (i_redEnergy == _max2) { return true; }
+                    else if (i_yellowEnergy == _max2) { return true; }
+                    else if (i_blueEnergy == _max2) { return true; }
+
+                    if (i_redEnergy == 0 && i_yellowEnergy == 0) { return true; }
+                    else if (i_redEnergy == 0 && i_blueEnergy == 0) { return true; }
+                    else if (i_blueEnergy == 0 && i_yellowEnergy == 0) { return true; }
+                }
+            }
+        }
+        else
+        {
+            //card isnt playable
+            return false;
+        }
+    }
+
+
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Set the int value of S_EnergyManager.i_redEnergy; 
@@ -228,7 +298,9 @@ public class S_EnergyManager : MonoBehaviour
     }
 
 
-    // Getters \\ 
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the int value of S_EnergyManager.i_redEnergy

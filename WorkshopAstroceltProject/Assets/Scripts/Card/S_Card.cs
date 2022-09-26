@@ -555,11 +555,11 @@ public class S_Card : MonoBehaviour
             // Note using any unique cards but we'd trigger special behavior here
         }
 
-        //call the altar to spawn the next card if you have energy
+        // Unpause IEnumerator
         if (g_global.g_ls_p_playerHand.Count > 0) 
         {
             Debug.Log("Triggered teh bool");
-            g_global.g_altar.SetCardBeingActiveBool(false);
+            g_global.g_altar.SetCardBeingActiveBool(true);
         }
     }
 

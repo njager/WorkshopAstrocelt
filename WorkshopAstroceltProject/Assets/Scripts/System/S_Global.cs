@@ -162,5 +162,12 @@ public class S_Global : MonoBehaviour
                 g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Return)) 
+        {
+            g_energyManager.SetRedEnergyInt(20);
+            g_energyManager.SetBlueEnergyInt(20);
+            g_energyManager.SetYellowEnergyInt(20);
+        }
     }
 }
