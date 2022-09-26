@@ -48,6 +48,7 @@ public class S_Altar : MonoBehaviour
 
     [Header("Delayed Card Checking Bool")]
     public bool b_cardballDelay;
+    public bool b_lastCard;
 
     [Header("Active Card bool")]
     public bool cd_b_cardIsActive;
@@ -221,7 +222,18 @@ public class S_Altar : MonoBehaviour
             SetCardBeingActiveBool(false);
 
             // Possibly tier up the next card
-            SetCardballDelaySpawnBool(CheckSecondCardball());
+
+            GameObject _tempObject = GetChildOfSecondAltarPosition();
+
+            if(_tempObject != null) 
+            {
+                SetCardballDelaySpawnBool(CheckSecondCardball());
+                b_lastCard = false;
+            }
+            else 
+            {
+                b_lastCard = true;
+            }
 
             g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
 
@@ -323,6 +335,11 @@ public class S_Altar : MonoBehaviour
 
         // May not be necessary, check later, part of race condition debugging between turns. 
         g_global.g_enemyState.UpdateActiveEnemies();
+
+        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList()) 
+        {
+            _enemy.UpdateEnemyHealthUI();
+        }
     }
 
     /// <summary>
@@ -349,19 +366,16 @@ public class S_Altar : MonoBehaviour
             Debug.Log("Gonna wait for card play");
             yield return new S_WaitForCardPlay();
 
-            if (GetCardballDelaySpawnBool() == true)
-            {
-                yield return null;
-                Destroy(_cardball);
+            yield return null;
+            Destroy(_cardball);
 
+            if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
+            {
                 Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
             else
             {
-                yield return null;
-                Destroy(_cardball);
-
                 Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }
