@@ -156,7 +156,7 @@ public class S_IntentManager : MonoBehaviour
         else if(_enemyAction == 2)
         {
             _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyShield;
-            ChangeIntentTextUI(_enemyAttributeSheet.GetEnemyShieldValue(), _enemy);
+            ChangeIntentTextUI(_enemyAttributeSheet.GetEnemyTempShield(), _enemy);
         }
         else if (_enemyAction == 3)
         {
