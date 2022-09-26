@@ -124,7 +124,9 @@ public class S_Card : MonoBehaviour
     public Vector3 c_v3_initialCardPosition;
 
     [Header("CardDrag Bool")]
-    public bool c_b_cardIsDragged; 
+    public bool c_b_cardIsDragged;
+
+    private GameObject c_hoverCharacter;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -618,6 +620,40 @@ public class S_Card : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    public void CheckResetOrPlay()
+    {
+        if(c_hoverCharacter != null)
+        {
+            Debug.Log(c_hoverCharacter);
+            PlayCard(c_hoverCharacter);
+        }
+        else
+        {
+            ResetPosition();
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.transform.tag=="Enemy" || col.transform.tag == "Player")
+        {
+            c_hoverCharacter = col.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
+        {
+            c_hoverCharacter = null;
+        }
+    }
+
+
+    /// <summary>
     /// Make it so when one card is hovered by another the layer moves up
     /// - Josh
     /// </summary>
@@ -664,5 +700,20 @@ public class S_Card : MonoBehaviour
         c_v3_initialCardPosition = _cardInitialPosition;
     }
 
+    public void SetCardDrag(bool _bool)
+    {
+        c_b_cardIsDragged = _bool;
+    }
+
     // Getters \\ 
+
+    /// <summary>
+    /// Func that returns the card drag
+    /// </summary>
+    /// <returns></returns>
+    public bool GetCardDrag()
+    {
+        return c_b_cardIsDragged;
+    }
+
 }

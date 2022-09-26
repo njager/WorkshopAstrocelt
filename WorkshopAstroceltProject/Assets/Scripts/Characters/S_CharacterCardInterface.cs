@@ -62,7 +62,7 @@ public class S_CharacterCardInterface : MonoBehaviour
                         }
                         else
                         {
-                            TriggerCard(cd_cardData);
+                            //TriggerCard(cd_cardData);
                         }
                     }
                 }
@@ -74,7 +74,7 @@ public class S_CharacterCardInterface : MonoBehaviour
                         Debug.Log("MouseLetGo");
                         cd_cardData.cd_b_resetPositionFlag = true;
 
-                        TriggerCard(cd_cardData);
+                        //TriggerCard(cd_cardData);
                     }
                 }
             }
