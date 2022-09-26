@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
-  m_Name: Impair 1
+  m_Name: Fervoured
   m_EditorClassIdentifier: 
-  CardName: Impair
-  HeaderText: Impar
-  BodyText: Deal 7 damage
+  CardName: Fervoured
+  HeaderText: Fervoured
+  BodyText: Deal 15 damage, Stun an enemy
   FlavorText: 
   ColorString: yellow
-  EnergyCost: 3
-  DamageValue: 35
+  EnergyCost: 11
+  DamageValue: 70
   ShieldValue: 0
   EffectValue1: 0
   EffectValue2: 0
   EffectValue3: 0
-  TurnCountForStatusEffect1: 0
+  TurnCountForStatusEffect1: 1
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
-  IDForStatusEffectOne: 0
+  IDForStatusEffectOne: 6
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
-  CardRarity: 0
+  CardRarity: 3
   AffectsNone: 0
   AffectsPlayer: 0
   Affects1Character: 1
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
-  PlayerEffect: 0
+  PlayerEffect: 1
   EnemyEffect: 0
   RedColorType: 0
   BlueColorType: 0
@@ -44,13 +44,13 @@ MonoBehaviour:
   AttackEffect: 1
   ShieldEffect: 0
   UniqueEffect: 0
-  NoEffect: 1
+  NoEffect: 0
   BleedStatusEffect: 0
   AcidStatusEffect: 0
   BurnStatusEffect: 0
   ResistStatusEffect: 0
   SiphonStatusEffect: 0
-  StunStatusEffect: 0
+  StunStatusEffect: 1
   DrawStatusEffect: 0
   FralityStatusEffect: 0
   ManipulateStatusEffect: 0
@@ -58,5 +58,5 @@ MonoBehaviour:
   CardArtAsset: {fileID: 0}
   PhysicalOrMagicalBoolForShield: 0
   PhysicalOrMagicalBoolForAttack: 1
-  CardDatabaseID: 20
+  CardDatabaseID: 10
   ExtraInfo: 
