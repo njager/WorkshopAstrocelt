@@ -49,5 +49,6 @@ public class S_CardDragger : MonoBehaviour // Event Handling to best facilitate 
     public void OnMouseUp()
     {
         cd_cardData.c_b_cardIsDragged = false;
+        cd_cardData.CheckResetOrPlay();
     }
 }
