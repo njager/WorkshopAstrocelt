@@ -226,6 +226,7 @@ public class S_Altar : MonoBehaviour
             if (g_global.g_ls_p_playerHand.Count == 1)
             {
                 b_lastCard = true;
+                SetCardballDelaySpawnBool(false);
             }
             else 
             {
