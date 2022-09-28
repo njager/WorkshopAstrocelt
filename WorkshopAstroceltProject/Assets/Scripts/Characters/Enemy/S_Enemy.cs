@@ -278,6 +278,7 @@ public class S_Enemy : MonoBehaviour
         Debug.Log("Enemy Perished");
         e_sc_enemyAttributes.e_i_health = 0;
         g_global.g_ls_activeEnemies.Remove(this);
+        g_global.e_ls_enemyList.Remove(this);
         gameObject.SetActive(false);
     }
 

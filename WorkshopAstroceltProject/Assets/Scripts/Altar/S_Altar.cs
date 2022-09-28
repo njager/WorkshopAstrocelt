@@ -222,17 +222,19 @@ public class S_Altar : MonoBehaviour
             SetCardBeingActiveBool(false);
 
             // Possibly tier up the next card
-
-            GameObject _tempObject = GetChildOfSecondAltarPosition();
-
-            if(_tempObject != null) 
+            if (g_global.g_ls_p_playerHand.Count == 1)
             {
-                SetCardballDelaySpawnBool(CheckSecondCardball());
-                b_lastCard = false;
+                b_lastCard = true;
             }
             else 
             {
-                b_lastCard = true;
+                GameObject _tempObject = GetChildOfSecondAltarPosition();
+
+                if (_tempObject != null)
+                {
+                    SetCardballDelaySpawnBool(CheckSecondCardball());
+                    b_lastCard = false;
+                }
             }
 
             g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);

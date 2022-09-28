@@ -165,9 +165,9 @@ public class S_Global : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Backspace)) 
         {
-            g_energyManager.SetRedEnergyInt(20);
-            g_energyManager.SetBlueEnergyInt(20);
-            g_energyManager.SetYellowEnergyInt(20);
+            g_energyManager.SetRedEnergyInt(g_energyManager.GetRedEnergyInt() + 20);
+            g_energyManager.SetBlueEnergyInt(g_energyManager.GetBlueEnergyInt() + 20);
+            g_energyManager.SetYellowEnergyInt(g_energyManager.GetYellowEnergyInt() + 20);
         }
     }
 }
