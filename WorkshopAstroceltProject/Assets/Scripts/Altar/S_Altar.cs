@@ -180,6 +180,7 @@ public class S_Altar : MonoBehaviour
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
         //Debug.Log(" Debug - Triggered 2");
+        b_lastCard = false; 
         SetCardBeingActiveBool(false);
         foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
         {
