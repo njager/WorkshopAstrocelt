@@ -20,7 +20,7 @@ public class S_ConstelationManager : MonoBehaviour
     private bool b_makingConstellation;
 
     //Bool for Lockout
-    private bool b_starLockout;
+    public bool b_starLockout;
 
     [Header("Previos star and location")]
     public S_StarClass s_previousStar;

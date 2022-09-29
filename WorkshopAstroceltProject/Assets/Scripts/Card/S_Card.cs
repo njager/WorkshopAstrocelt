@@ -557,7 +557,7 @@ public class S_Card : MonoBehaviour
         // Unpause IEnumerator
         if (g_global.g_ls_p_playerHand.Count > 0) 
         {
-            Debug.Log("Triggered teh bool");
+            Debug.Log("Triggered the bool");
             g_global.g_altar.SetCardBeingActiveBool(true);
         }
     }

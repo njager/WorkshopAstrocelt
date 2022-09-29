@@ -219,6 +219,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckFirstCardball()
     {
+        Debug.Log("We made it here for the star bool check");
         //yield return new S_WaitForEnergyTextDecrement();
         if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
@@ -275,6 +276,8 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
+                Debug.Log("Where do you lead me");
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 return false;
             }
         }
@@ -389,6 +392,7 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }
