@@ -115,6 +115,8 @@ public class S_Altar : MonoBehaviour
     public IEnumerator SpawnCardballPrefabs()
     {
         c_i_movementInt = 0;
+
+        //set the constellation manager bools until the card balls finish spawning
         StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck()); 
 
         // Spawn cardball 1
@@ -179,6 +181,9 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
+        //Prevent the player from making any constellations
+        g_global.g_ConstellationManager.c_cardballsSpawned = false;
+
         //Debug.Log(" Debug - Triggered 2");
         b_lastCard = false; 
         SetCardBeingActiveBool(false);
@@ -214,6 +219,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckFirstCardball()
     {
+        Debug.Log("We made it here for the star bool check");
         //yield return new S_WaitForEnergyTextDecrement();
         if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
@@ -246,6 +252,10 @@ public class S_Altar : MonoBehaviour
 
             //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
         }
+        else
+        {
+            g_global.g_ConstellationManager.SetStarLockOutBool(true);
+        }
     }
 
     /// <summary>
@@ -266,6 +276,8 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
+                Debug.Log("Where do you lead me");
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 return false;
             }
         }
@@ -380,6 +392,7 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }

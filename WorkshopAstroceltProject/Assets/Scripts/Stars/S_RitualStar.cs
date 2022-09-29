@@ -202,7 +202,7 @@ public class S_RitualStar : MonoBehaviour
     private void OnMouseDown()
     {
 
-        if (g_global.g_ConstellationManager.b_starLockout == true)
+        if (g_global.g_ConstellationManager.GetStarLockOutBool() == true)
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
             {

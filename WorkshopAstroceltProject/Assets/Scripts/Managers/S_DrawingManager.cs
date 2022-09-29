@@ -111,7 +111,7 @@ public class S_DrawingManager : MonoBehaviour
     public void ConstellationReset(S_StarClass _Star)
     {
         //stop the player from clicking on stars while reseting
-        g_global.g_ConstellationManager.b_starLockout = false;
+        g_global.g_ConstellationManager.SetStarLockOutBool(false);
 
         //reset the energy, multipliers, and the sound queues
         g_global.g_lineMultiplierManager.ClearLineList();
@@ -145,7 +145,7 @@ public class S_DrawingManager : MonoBehaviour
         g_global.g_ConstellationManager.DeleteWholeCurConstellation();
 
         //done drawing now, let the player start again
-        g_global.g_ConstellationManager.b_starLockout = true;
+        g_global.g_ConstellationManager.SetStarLockOutBool(true);
     }
 
     /// <summary>
