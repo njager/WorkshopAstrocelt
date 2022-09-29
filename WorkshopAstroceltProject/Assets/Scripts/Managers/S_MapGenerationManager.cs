@@ -9,11 +9,23 @@ public class S_MapGenerationManager : MonoBehaviour
     void Start()
     {
         
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// Creates basic data for the map generation to occur
+    /// -number of stars, obstacles, ritual stars
+    /// -retuns list of data to be used for placement
+    /// </summary>
+    void Create_Data()
+    {
+
+
     }
 }
