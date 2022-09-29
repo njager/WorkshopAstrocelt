@@ -16,11 +16,11 @@ public class S_ConstelationManager : MonoBehaviour
     //this is the color for the cur constellation
     public string str_curColor = "";
 
-   [Header("Bool for constellation status")]
-    public bool b_makingConstellation;
+    //Bool for constellation status
+    private bool b_makingConstellation;
 
-    [Header("Bool for Lockout")]
-    public bool b_starLockout;
+    //Bool for Lockout
+    private bool b_starLockout;
 
     [Header("Previos star and location")]
     public S_StarClass s_previousStar;
@@ -356,8 +356,6 @@ public class S_ConstelationManager : MonoBehaviour
 
             b_makingConstellation = false;
             ls_curConstellation.Clear();
-
-            b_starLockout = true;
 
             //transfer the energy
             g_global.g_energyManager.TransferStoredEnergy();

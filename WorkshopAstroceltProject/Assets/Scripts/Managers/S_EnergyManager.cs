@@ -90,7 +90,7 @@ public class S_EnergyManager : MonoBehaviour
         i_blueEnergy = 0;
 
         g_global.g_ConstellationManager.i_starSound = 0;
-        g_global.g_ConstellationManager.b_starLockout = true;
+        g_global.g_ConstellationManager.SetStarLockOutBool(true);
     }
 
     /// <summary>
@@ -104,6 +104,7 @@ public class S_EnergyManager : MonoBehaviour
     {
         //make sure the colors match before using energy
         //remove the card if it actually gets played
+        Debug.Log("Energy for card of " + _color + ": " + _energy.ToString());
         if (_color == "red" && i_redEnergy - _energy >= 0) 
         {
             i_redEnergy -= _energy;
@@ -202,10 +203,12 @@ public class S_EnergyManager : MonoBehaviour
     /// <param name="_color"></param>
     /// <returns></returns>
     public bool CheckEnergy(int _energy, string _color)
+
     {
+        Debug.Log("Energy Check for card of " + _color + ": " + _energy.ToString());
         //make sure the colors match before using energy
         //remove the card if it actually gets played
-        if (_color == "red" && i_redEnergy >= 0)
+        if (_color == "red" && i_redEnergy - _energy >= 0)
         {
             return true;
         }
@@ -219,43 +222,7 @@ public class S_EnergyManager : MonoBehaviour
         }
         else if (_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >= 0)
         {
-            int _max = Mathf.Max(i_redEnergy, i_blueEnergy, i_yellowEnergy);
-
-            if (_energy - _max <= 0)
-            {
-                if (i_redEnergy == _max) { return true; }
-                else if (i_yellowEnergy == _max) { return true; }
-                else if (i_blueEnergy == _max) { return true; }
-            }
-            else
-            {
-                int _max2 = 0;
-
-                if (i_redEnergy == _max) {_max2 = Mathf.Max(i_blueEnergy, i_yellowEnergy); }
-                else if (i_yellowEnergy == _max) { _max2 = Mathf.Max(i_blueEnergy, i_redEnergy); }
-                else if (i_blueEnergy == _max) { _max2 = Mathf.Max(i_redEnergy, i_yellowEnergy); }
-
-                if (_energy - _max2 <= 0)
-                {
-                    if (i_redEnergy == _max2) { return true; }
-                    else if (i_yellowEnergy == _max2) { return true; }
-                    else if (i_blueEnergy == _max2) { return true; }
-                }
-                else
-                {
-                    _energy -= _max2;
-
-                    if (i_redEnergy == _max2) { return true; }
-                    else if (i_yellowEnergy == _max2) { return true; }
-                    else if (i_blueEnergy == _max2) { return true; }
-
-                    if (i_redEnergy == 0 && i_yellowEnergy == 0) { return true; }
-                    else if (i_redEnergy == 0 && i_blueEnergy == 0) { return true; }
-                    else if (i_blueEnergy == 0 && i_yellowEnergy == 0) { return true; }
-                }
-            }
-
-            return false;
+            return true;
         }
         else
         {

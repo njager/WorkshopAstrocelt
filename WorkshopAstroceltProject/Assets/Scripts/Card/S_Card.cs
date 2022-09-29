@@ -501,9 +501,6 @@ public class S_Card : MonoBehaviour
         {
             if (_character.GetComponent<S_Enemy>() != null)
             {
-                //undo star lockout
-                g_global.g_ConstellationManager.b_starLockout = true;
-
                 // Attack
                 TriggerAttackCard(_character.GetComponent<S_Enemy>());
 

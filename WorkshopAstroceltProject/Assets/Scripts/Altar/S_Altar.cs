@@ -115,6 +115,8 @@ public class S_Altar : MonoBehaviour
     public IEnumerator SpawnCardballPrefabs()
     {
         c_i_movementInt = 0;
+
+        //set the constellation manager bools until the card balls finish spawning
         StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck()); 
 
         // Spawn cardball 1
@@ -179,6 +181,9 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearCardballPrefabs(bool _newCardBalls)
     {
+        //Prevent the player from making any constellations
+        g_global.g_ConstellationManager.c_cardballsSpawned = false;
+
         //Debug.Log(" Debug - Triggered 2");
         b_lastCard = false; 
         SetCardBeingActiveBool(false);
@@ -245,6 +250,10 @@ public class S_Altar : MonoBehaviour
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
 
             //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+        }
+        else
+        {
+            g_global.g_ConstellationManager.SetStarLockOutBool(true);
         }
     }
 
