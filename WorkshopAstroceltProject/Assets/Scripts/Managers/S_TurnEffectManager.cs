@@ -31,7 +31,7 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
         if (g_global.g_enemyState.CurrentEnemyTurnNumber() == 1) // Enemy 1 Turn Effects
         {
             // Highlight Circle Toggle
-            g_global.g_enemyState.enemy1.EnemyHighlightToggle();
+            //g_global.g_enemyState.enemy1.EnemyHighlightToggle();
 
             // Scale importance
             g_global.g_enemyState.enemy1.SetToActiveTurnScale();

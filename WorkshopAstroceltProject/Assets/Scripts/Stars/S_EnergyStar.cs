@@ -202,7 +202,7 @@ public class S_EnergyStar : MonoBehaviour
     public void OnMouseDown()
     {
         //if the star clicking is locked out, dont let the player click it
-        if(g_global.g_ConstellationManager.b_starLockout)
+        if(g_global.g_ConstellationManager.GetStarLockOutBool())
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
             {

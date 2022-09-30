@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using FMODUnity;
-using FMOD.Studio;
 
 public class S_Card : MonoBehaviour
 {
@@ -99,9 +97,8 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
     [Header("Card Dragger References")]
-    public S_CardDragger sc_c_cardDraggerReference;
-    //public int c_i_cardID;
-    public Vector3 initialCardTransform; // Will turn to V3 for 0s
+    //public S_CardDragger sc_c_cardDraggerReference;
+    public S_Enemy e_cd_grabbedEnemy;
 
     [Header("Card Background Art Assets")]
     public Sprite c_a_redBackground;
@@ -122,12 +119,14 @@ public class S_Card : MonoBehaviour
     public bool c_b_attackSoundEffect;
 
     [Header("Card Position Index and Position")]
-    public int c_i_cardPositionIndex;
-    public SpriteRenderer c_cardSpriteRendererComponent;
+    public bool cd_b_resetPositionFlag;
+    public Vector3 c_v3_CardPosition;
     public Vector3 c_v3_initialCardPosition;
 
     [Header("CardDrag Bool")]
-    public bool c_b_cardIsDragged; 
+    public bool c_b_cardIsDragged;
+
+    private GameObject c_hoverCharacter;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -139,8 +138,6 @@ public class S_Card : MonoBehaviour
         //Separate cards, ended up not being needed
         // g_global.c_i_cardIDNum += 1;
         //c_i_cardID = g_global.c_i_cardIDNum;
-
-        initialCardTransform = gameObject.GetComponent<Transform>().position;
     }
 
     /// <summary>
@@ -265,7 +262,10 @@ public class S_Card : MonoBehaviour
         SetText();
 
         // Set art asset
-        c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
+        if(_cardData.CardArtAsset != null) 
+        {
+            c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
+        }  
 
         // Set String Color
         c_str_color = _cardData.ColorString;
@@ -501,9 +501,6 @@ public class S_Card : MonoBehaviour
         {
             if (_character.GetComponent<S_Enemy>() != null)
             {
-                //undo star lockout
-                g_global.g_ConstellationManager.b_starLockout = true;
-
                 // Attack
                 TriggerAttackCard(_character.GetComponent<S_Enemy>());
 
@@ -557,8 +554,12 @@ public class S_Card : MonoBehaviour
             // Note using any unique cards but we'd trigger special behavior here
         }
 
-        //call the altar to spawn the next card if you have energy
-        //if (g_global.g_ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
+        // Unpause IEnumerator
+        if (g_global.g_ls_p_playerHand.Count > 0) 
+        {
+            Debug.Log("Triggered the bool");
+            g_global.g_altar.SetCardBeingActiveBool(true);
+        }
     }
 
 
@@ -575,11 +576,11 @@ public class S_Card : MonoBehaviour
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
         if (c_b_attackSoundEffect == false) // Play physical sound
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
         }
         else if (c_b_attackSoundEffect == true) // Play Magic sound
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
         DeleteCard();
     }
@@ -605,7 +606,6 @@ public class S_Card : MonoBehaviour
         Destroy(gameObject); // Remove card from play
     }
 
-
     /// <summary>
     /// Does as it says, it resets the card to it's initial position
     /// -Josh
@@ -613,13 +613,48 @@ public class S_Card : MonoBehaviour
     public void ResetPosition()
     {
         gameObject.transform.position = c_v3_initialCardPosition;
+        cd_b_resetPositionFlag = false;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void CheckResetOrPlay()
+    {
+        if(c_hoverCharacter != null)
+        {
+            Debug.Log(c_hoverCharacter);
+            PlayCard(c_hoverCharacter);
+        }
+        else
+        {
+            ResetPosition();
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.transform.tag=="Enemy" || col.transform.tag == "Player")
+        {
+            c_hoverCharacter = col.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
+        {
+            c_hoverCharacter = null;
+        }
+    }
+
 
     /// <summary>
     /// Make it so when one card is hovered by another the layer moves up
     /// - Josh
     /// </summary>
-    
+
     /*
     public void OnHoverEnter()
     {
@@ -653,14 +688,29 @@ public class S_Card : MonoBehaviour
     // Setters \\ 
 
     /// <summary>
-    /// Set the bool value of S_Card.c_i_cardPositionIndex;
+    /// Set the bool value of S_Card.c_v3_initialCardPosition;
     /// - Josh 
     /// </summary>
-    /// <param name="_cardPositionIndex"></param>
-    public void SetCardPositionIndex(int _cardPositionIndex) 
+    /// <param name="_cardInitialPosition"></param>
+    public void SetCardInitialPosition(Vector3 _cardInitialPosition) 
     {
-        c_i_cardPositionIndex = _cardPositionIndex;
+        c_v3_initialCardPosition = _cardInitialPosition;
+    }
+
+    public void SetCardDrag(bool _bool)
+    {
+        c_b_cardIsDragged = _bool;
     }
 
     // Getters \\ 
+
+    /// <summary>
+    /// Func that returns the card drag
+    /// </summary>
+    /// <returns></returns>
+    public bool GetCardDrag()
+    {
+        return c_b_cardIsDragged;
+    }
+
 }

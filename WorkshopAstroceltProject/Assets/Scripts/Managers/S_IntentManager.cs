@@ -46,33 +46,69 @@ public class S_IntentManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Based off the dice roll, change enemy icons to correlate to their next turn action
+    /// Changed to use the queue system
+    /// enemy atribute has a list, remove from the front for the next ability and add to the back to make it go forever
+    /// - Riley
     /// </summary>
     /// <param name="_enemyToChange"></param>
     public void EnemyIconNextTurn(S_Enemy _enemyToChange)
     {
-        int _chanceSelected = 100 - IntentDiceRoll();
-        //Debug.Log("Roll is " + _chanceSelected + " for " + _enemyToChange.e_i_enemyCount);
-        if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Special Ability
+        //Make a temp queue
+        List<S_EnemyMoves> _tempQueue = _enemyToChange.e_sc_enemyAttributes.GetMoveQueue();
+
+        if (_tempQueue[0].s_action.Equals("ability")) // Set Enemy up for Special Ability
         {
+            //get the first element
+            S_EnemyMoves _tempElement = _tempQueue[0];
+
+            //remove from the front, add to the back
+            _tempQueue.RemoveAt(0);
+            _tempQueue.Add(_tempElement);
+
             UIChangesForIntent(_enemyToChange, 3);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "ability";
         }
-        else if (_chanceSelected <= _enemyToChange.e_sc_enemyAttributes.e_i_shieldRate + _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate
-            && _chanceSelected >= _enemyToChange.e_sc_enemyAttributes.e_i_specialAbilityRate) // Set Enemy up for Shield
+
+        else if (_tempQueue[0].s_action.Equals("shield")) // Set Enemy up for Shield
         {
+            //get the first element
+            S_EnemyMoves _tempElement = _tempQueue[0];
+
+            //Assign the shiled value
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyTempShield(_tempElement.i_actionValue);
+
+            //remove from the front, add to the back
+            _tempQueue.RemoveAt(0);
+            _tempQueue.Add(_tempElement);
+
             UIChangesForIntent(_enemyToChange, 2);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "shield";
         }
-        else  // Set Enemy up for Attack
+        else if (_tempQueue[0].s_action.Equals("attack"))  // Set Enemy up for Attack
         {
+            //get the first element
+            S_EnemyMoves _tempElement = _tempQueue[0];
+
+            //assign the attack value
+            _enemyToChange.e_sc_enemyAttributes.SetEnemyDamageValue(_tempElement.i_actionValue);
+
+            //remove from the front, add to the back
+            _tempQueue.RemoveAt(0);
+            _tempQueue.Add(_tempElement);
+
             UIChangesForIntent(_enemyToChange, 1);
 
             ls_e_statusStrings[_enemyToChange.e_i_enemyCount - 1] = "attack";
         }
+        else
+        {
+            Debug.Log("Move not recognized");
+        }
 
+        //Set the move queue 
+        _enemyToChange.e_sc_enemyAttributes.SetMoveQueue(_tempQueue);
     }
 
     /// <summary>
@@ -95,37 +131,36 @@ public class S_IntentManager : MonoBehaviour
         S_EnemyAttributes _enemyAttributeSheet = _enemy.e_sc_enemyAttributes;
         if(_enemyAction == 1)
         {
-            _enemyAttributeSheet.AttackDamageRoll();
-            if (_enemyAttributeSheet.e_i_enemyDamageValue == 1 || _enemyAttributeSheet.e_i_enemyDamageValue == 2) // If Attack Damage will be 1 or 2
+            if (_enemyAttributeSheet.GetEnemyDamageValue() == 1 || _enemyAttributeSheet.GetEnemyDamageValue() == 2) // If Attack Damage will be 1 or 2
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel1;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel1;
             }
-            else if (_enemyAttributeSheet.e_i_enemyDamageValue == 3 || _enemyAttributeSheet.e_i_enemyDamageValue == 4) // If Attack Damage will be 3 or 4
+            else if (_enemyAttributeSheet.GetEnemyDamageValue() == 3 || _enemyAttributeSheet.GetEnemyDamageValue() == 4) // If Attack Damage will be 3 or 4
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel2;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel2;
             }
-            else if (_enemyAttributeSheet.e_i_enemyDamageValue == 5 || _enemyAttributeSheet.e_i_enemyDamageValue == 6) // If Attack Damage will be 5 or 6
+            else if (_enemyAttributeSheet.GetEnemyDamageValue() == 5 || _enemyAttributeSheet.GetEnemyDamageValue() == 6) // If Attack Damage will be 5 or 6
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel3;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel3;
             }
-            else if (_enemyAttributeSheet.e_i_enemyDamageValue == 7 || _enemyAttributeSheet.e_i_enemyDamageValue == 8) // If Attack Damage will be 7 or 8
+            else if (_enemyAttributeSheet.GetEnemyDamageValue() == 7 || _enemyAttributeSheet.GetEnemyDamageValue() == 8) // If Attack Damage will be 7 or 8
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel4;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel4;
             }
-            else if (_enemyAttributeSheet.e_i_enemyDamageValue >= 9) // If Attack Damage will be 9+
+            else if (_enemyAttributeSheet.GetEnemyDamageValue() >= 9) // If Attack Damage will be 9+
             {
-                _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAttackLevel5;
+                _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAttackLevel5;
             }
-            ChangeIntentTextUI(_enemyAttributeSheet.e_i_enemyDamageValue, _enemy);
+            ChangeIntentTextUI(_enemyAttributeSheet.GetEnemyDamageValue(), _enemy);
         }
         else if(_enemyAction == 2)
         {
-            _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyShield;
-            ChangeIntentTextUI(_enemyAttributeSheet.e_i_shieldMax, _enemy);
+            _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyShield;
+            ChangeIntentTextUI(_enemyAttributeSheet.GetEnemyTempShield(), _enemy);
         }
         else if (_enemyAction == 3)
         {
-            _enemy.e_sp_spriteIcon.GetComponent<Image>().sprite = e_sp_enemyAbility;
+            _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().sprite = e_sp_enemyAbility;
             ChangeIntentTextUI(-1, _enemy);
         }
     }
@@ -169,7 +204,7 @@ public class S_IntentManager : MonoBehaviour
         while(!b_intentFlashBool) 
         {
             yield return new WaitForSeconds(f_intentTimer);
-            _enemy.e_sp_spriteIcon.GetComponent<Image>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
+            _enemy.e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
             _enemy.e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(f_doIntentFadeAlpha, f_doIntentFadeDuration);
 
             yield return new WaitForSeconds(f_doIntentFadeDuration);

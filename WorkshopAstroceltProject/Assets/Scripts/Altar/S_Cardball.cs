@@ -134,8 +134,10 @@ public class S_Cardball : MonoBehaviour
     /// Method to take a cardball and convert it to a card
     /// - Josh
     /// </summary>
-    public void CardballToCard(int _cardPositionIndex)
+    public void CardballToCard()
     {
+        Debug.Log("CardballToCard() called");
+
         // Determine transform
         Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
         
@@ -146,15 +148,15 @@ public class S_Cardball : MonoBehaviour
         // Grab the script from this cardball
         S_Card _cardScript = c_card.GetComponent<S_Card>();
 
-        // Pass over card position index
-        _cardScript.SetCardPositionIndex(_cardPositionIndex);
+        // Pass over the parent postion for initial position
+        _cardScript.SetCardInitialPosition(_whereToSpawnCard.position);
 
         // Send information From Template
         _cardScript.FetchCardData(c_cardData);
         g_global.g_altar.c_b_cardSpawned = true;
 
         // Delete the cardball and add the card to the grave
-        DeleteCardball();
+        StartCoroutine(DeleteCardball());
     }
 
 
@@ -182,14 +184,20 @@ public class S_Cardball : MonoBehaviour
     /// delete the cardball
     /// - Josh
     /// </summary>
-    public void DeleteCardball()
+    public IEnumerator DeleteCardball()
     {
         //Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.g_ls_cardBallPrefabs.Remove(this);
 
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
+        yield return StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
+        //StartCoroutine(CarballDestroyVFX());
+    }
+
+    public void TrueDeleteCardball() 
+    {
+        Destroy(this);
     }
 
     /// <summary>
@@ -253,5 +261,15 @@ public class S_Cardball : MonoBehaviour
             g_global.g_altar.a_yellowBorder.SetActive(false);
             g_global.g_altar.a_colorlessBorder.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// Call for VFX after cardball deleted
+    /// -Thoman
+    /// </summary>
+    public IEnumerator CarballDestroyVFX()
+    {
+        Debug.Log("VFX call");
+        yield return new WaitForSeconds(2);
     }
 }

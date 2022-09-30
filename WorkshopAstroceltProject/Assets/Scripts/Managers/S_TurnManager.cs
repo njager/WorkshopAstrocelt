@@ -84,34 +84,14 @@ public class S_TurnManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Remove shielding as it's supposed to at end of turn
+    /// Strip the enemies of their shielding at the end of the turn
+    /// - Josh
     /// </summary>
     private void RemoveEnemyShielding()
     {
-        //Reset Enemy
-        if (g_global.g_enemyAttributeSheet1 != null) // Strip Enemy 1 of Shielding
+        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList()) 
         {
-            g_global.g_enemyAttributeSheet1.e_i_shield = 0;
-        }
-
-        if (g_global.g_enemyAttributeSheet2 != null) // Strip Enemy 2 of Shielding
-        {
-            g_global.g_enemyAttributeSheet2.e_i_shield = 0;
-        }
-
-        if (g_global.g_enemyAttributeSheet3 != null) // Strip Enemy 3 of Shielding
-        {
-            g_global.g_enemyAttributeSheet3.e_i_shield = 0;
-        }
-
-        if (g_global.g_enemyAttributeSheet4 != null) // Strip Enemy 4 of Shielding
-        {
-            g_global.g_enemyAttributeSheet4.e_i_shield = 0;
-        }
-
-        if (g_global.g_enemyAttributeSheet5 != null) // Strip Enemy 5 of Shielding
-        {
-            g_global.g_enemyAttributeSheet5.e_i_shield = 0;
+            _enemy.e_sc_enemyAttributes.SetEnemyShield(0);
         }
     }
 
@@ -138,7 +118,7 @@ public class S_TurnManager : MonoBehaviour
 
 
         // Brighten alpha for intent icons 
-        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
+        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
         {
             _enemy.IncreaseIntentIconAlpha();
         }
@@ -184,10 +164,12 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_enemyState.DeclareCurrentTurn(0);
 
         // Load the next icon
-        foreach (S_Enemy _enemy in g_global.e_ls_enemyList.ToList())
+        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
         {
             _enemy.ChangeIcon();
         }
+
+        g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
 
         g_global.g_enemyState.EnemyStatusEffectDecrement();
 
@@ -233,7 +215,9 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_backgroundManager.ChangeBackground(0);
 
         //Reset player
-        g_global.g_playerAttributeSheet.p_i_shield = 0;
+        g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
+
+        g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
 
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();

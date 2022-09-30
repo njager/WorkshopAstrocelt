@@ -32,6 +32,23 @@ public class S_ResponseManager : MonoBehaviour
     /// </summary>
     public void Failure()
     {
+        if (r_response.r_reward.b_healthReward)
+        {
+            s_gameManager.SetHealth(s_gameManager.GetHealth() - r_response.r_reward.i_failureValue);
+        }
+        else if (r_response.r_reward.b_boneReward)
+        {
+            s_gameManager.SetBones(s_gameManager.GetBones() - r_response.r_reward.i_failureValue);
+        }
+        else if (r_response.r_reward.b_cardReward)
+        {
+            Debug.Log("Not implamented random card removal");
+        }
+        else
+        {
+            Debug.Log("This response doesnt have a failure type");
+        }
+
         //set the text for the event description 
         s_eventManager.SetDescriptionBox(r_response.s_failureText);
 

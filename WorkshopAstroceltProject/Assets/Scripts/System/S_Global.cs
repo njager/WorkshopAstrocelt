@@ -142,7 +142,7 @@ public class S_Global : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            g_playerAttributeSheet.p_i_health = 0;
+            g_playerAttributeSheet.SetPlayerHealthValue(0);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -157,7 +157,17 @@ public class S_Global : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+            if (g_ConstellationManager.GetMakingConstellation())
+            {
+                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace)) 
+        {
+            g_energyManager.SetRedEnergyInt(g_energyManager.GetRedEnergyInt() + 20);
+            g_energyManager.SetBlueEnergyInt(g_energyManager.GetBlueEnergyInt() + 20);
+            g_energyManager.SetYellowEnergyInt(g_energyManager.GetYellowEnergyInt() + 20);
         }
     }
 }

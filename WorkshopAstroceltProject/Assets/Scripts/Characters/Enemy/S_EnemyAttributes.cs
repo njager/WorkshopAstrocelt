@@ -8,33 +8,33 @@ public class S_EnemyAttributes : MonoBehaviour
 
     private S_Global g_global;
 
-    [Header("Frequency Rates")]
-    [Tooltip("Rates are between 0 and 100, instead of decimal.")]
-    public int e_i_attackRate;
-    public int e_i_shieldRate;
-    public int e_i_specialAbilityRate;
+    [Header("Enemy Move Queue (string names: attack, ability, shield")]
+    List<S_EnemyMoves> ls_e_moveQueue = null;
+
+    [SerializeField] public List<S_EnemyMoves> ls_e_moveQueue1 = null;
+    [SerializeField] public List<S_EnemyMoves> ls_e_moveQueue2 = null;
+    [SerializeField] public List<S_EnemyMoves> ls_e_moveQueue3 = null;
 
     [Header("Enemy Attributes")]
     public int e_i_health;
     public int e_i_healthMax;
 
-    public int e_i_shield;
-    public int e_i_shieldMax;
-
-    public int e_i_enemyMinDamageRange;
-    public int e_i_enemyMaxDamageRange;
-    public int e_i_enemyDamageValue; 
+    // Private variables
+    int e_i_tempSheild;
+    int e_i_shield;
+    int e_i_enemyDamageValue; 
 
     public float e_f_challengeRating;
 
     [Header("Typing")]
     public string e_str_enemyType; 
 
-    // Add more enemies to toggle on and off as needed
+    // Add more enemies to toggle on and off as needed, are these even used? Perhaps there will be a use down the line
     [Header("Enemy Type Bools")]
     public bool e_b_Lumberjack;
     public bool e_b_Magician;
     public bool e_b_Beast;
+    public bool e_b_Brawler;
 
     [Header("Status Effects")]
     public bool e_b_poisoned;
@@ -67,8 +67,39 @@ public class S_EnemyAttributes : MonoBehaviour
         //InstanceVariables();
         e_enemy = gameObject.GetComponent<S_Enemy>();
 
-        //Calculate Damage
-        AttackDamageRoll();
+        //add nums to the list so we dont use an unimlamented list
+        List<int> _randomList = new List<int>();
+
+        //randomly select a list
+        if (ls_e_moveQueue1 != null)
+        {
+            _randomList.Add(1);
+        }
+        if (ls_e_moveQueue2 != null)
+        {
+            _randomList.Add(2);
+        }
+        if (ls_e_moveQueue3 != null)
+        {
+            _randomList.Add(3);
+        }
+
+        int _value = Random.Range(0, _randomList.Count);
+
+        //set the move queue initially
+        if (_randomList[_value] == 1)
+        {
+            SetMoveQueue(ls_e_moveQueue1);
+        }
+        else if (_randomList[_value] == 2)
+        {
+            SetMoveQueue(ls_e_moveQueue2);
+        }
+        else if (_randomList[_value] == 3)
+        {
+            SetMoveQueue(ls_e_moveQueue3);
+        }
+        else { Debug.Log("Move list never assigned"); }
     }
 
     private void Start()
@@ -160,12 +191,102 @@ public class S_EnemyAttributes : MonoBehaviour
         {
             g_global.g_enemyState.enemy5 = e_enemy;
         }
+
+        e_enemy.UpdateEnemyHealthUI();
     }
+
     /// <summary>
-    /// Helper function to calculate a new damage each attack turn
+    /// Return the int value from S_EnemyAttributes.e_i_health
+    /// - Josh
     /// </summary>
-    public void AttackDamageRoll()
+    /// <returns>
+    /// S_EnemyAttributes.e_i_health
+    /// </returns>
+    public int GetEnemyHealthValue()
     {
-        e_i_enemyDamageValue = Random.Range(e_i_enemyMinDamageRange, e_i_enemyMaxDamageRange);
+        return e_i_health;
+    }
+
+    /// <summary>
+    /// Return the int value from S_EnemyAttributes.e_i_healthMax
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_i_healthMax 
+    /// </returns>
+    public int GetEnemyMaxHealthValue()
+    {
+        return e_i_healthMax;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the int value from S_EnemyAttributes.e_i_shield
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_i_shield 
+    /// </returns>
+    public int GetEnemyShieldValue()
+    {
+        return e_i_shield;
+    }
+
+    /// <summary>
+    /// Getter for the MoveQueue
+    /// </summary>
+    /// <returns></returns>
+    public List<S_EnemyMoves> GetMoveQueue()
+    {
+        return ls_e_moveQueue;
+    }
+
+    /// <summary>
+    /// Get the Damage Value for the enemy (assigned from move queue)
+    /// </summary>
+    /// <returns></returns>
+    public int GetEnemyDamageValue()
+    {
+        return e_i_enemyDamageValue;
+    }
+
+    public int GetEnemyTempShield()
+    {
+        return e_i_tempSheild;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Setter for the MoveQueue
+    /// </summary>
+    /// <param name="_ls"></param>
+    public void SetMoveQueue(List<S_EnemyMoves> _ls)
+    {
+        ls_e_moveQueue = _ls;
+    }
+
+    /// <summary>
+    /// Set the Damage Value for the enemy
+    /// </summary>
+    /// <param name="_value"></param>
+    public void SetEnemyDamageValue(int _value)
+    {
+        e_i_enemyDamageValue = _value;
+    }
+
+    public void SetEnemyShield(int _value)
+    {
+        e_i_shield = _value;
+    }
+
+    public void SetEnemyTempShield(int _value)
+    {
+        e_i_tempSheild = _value;
     }
 }

@@ -4814,7 +4814,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7475393642849166778}
   - component: {fileID: 26254014032966250}
-  - component: {fileID: 175649242461221879}
   - component: {fileID: 6219738315216529723}
   - component: {fileID: 325896470233756983}
   m_Layer: 0
@@ -4846,21 +4845,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6364323939515721944}
   m_CullTransparentMesh: 1
---- !u!114 &175649242461221879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6364323939515721944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  e_attachedEnemy: {fileID: 0}
-  p_b_attachedToPlayer: 0
-  e_b_attachedToEnemy: 0
 --- !u!95 &6219738315216529723
 Animator:
   serializedVersion: 3
@@ -4947,7 +4931,7 @@ GameObject:
   - component: {fileID: 3012146145674270234}
   m_Layer: 0
   m_Name: Pf_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4980,8 +4964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8838d3262f4649459a4c08a2cc83e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_playerAttributes: {fileID: 6364323939937959218}
-  a_audioPlayer: {fileID: 0}
+  p_sc_playerAttributes: {fileID: 0}
   playerSprite: {fileID: 325896470233756983}
   idleSprite: {fileID: 21300000, guid: cf874d61e912240e7aca8a947d49ff52, type: 3}
   attackSprite: {fileID: 21300000, guid: 02e3e8907b0e86c46af0ba6c85ae7fae, type: 3}
@@ -5000,9 +4983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p_i_health: 0
-  p_i_healthMax: 0
+  p_i_maxHealth: 0
   p_i_shield: 0
-  p_i_shieldMax: 0
+  p_i_maxShield: 0
   p_f_playerEnergyGenerationRate: 0
   p_b_playerHasRelicSlotted: 0
   p_b_playerHasUpgrades: 0
@@ -5030,7 +5013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_attachedEnemy: {fileID: 0}
-  p_b_attachedToPlayer: 0
+  p_b_attachedToPlayer: 1
   e_b_attachedToEnemy: 0
 --- !u!50 &4516814499410397528
 Rigidbody2D:
@@ -5052,7 +5035,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 7
 --- !u!70 &3012146145674270234
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5063,7 +5046,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

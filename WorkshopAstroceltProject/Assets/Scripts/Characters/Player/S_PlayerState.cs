@@ -30,6 +30,9 @@ public class S_PlayerState : MonoBehaviour
     [Header("Status Effect Stores")]
     public float p_f_currentDamageRateForBleed;
 
+    [Header("Final Scene Bool")]
+    public bool b_finalScene = false;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -37,36 +40,28 @@ public class S_PlayerState : MonoBehaviour
 
     void Update()
     {
-        // Check for health and shield limits here
-        if(g_global.g_playerAttributeSheet.p_i_health > g_global.g_playerAttributeSheet.p_i_healthMax)
-        {
-            g_global.g_playerAttributeSheet.p_i_health = g_global.g_playerAttributeSheet.p_i_healthMax;
-        }
+        PlayerWinOrLose(); // Update isn't evil, we want some things to be instantanous - Josh
+    }
 
-        if (g_global.g_playerAttributeSheet.p_i_shield > g_global.g_playerAttributeSheet.p_i_shieldMax)
-        {
-            g_global.g_playerAttributeSheet.p_i_shield = g_global.g_playerAttributeSheet.p_i_shieldMax;
-        }
-
-        if (g_global.g_playerAttributeSheet.p_i_shield <= 0)
-        {
-            g_global.g_playerAttributeSheet.p_i_shield = 0;
-        }
-
-        // If player lost
-        if (g_global.g_playerAttributeSheet.p_i_health <= 0)
+    /// <summary>
+    /// Check to see if the player will win or lose based off the given conditions
+    /// - Josh
+    /// </summary>
+    public void PlayerWinOrLose() 
+    {
+        // Player lose condition, health has been depleated
+        if (g_global.g_playerAttributeSheet.GetPlayerHealthValue() <= 0)
         {
             PlayerLoses();
         }
 
-        //If player won
+        // Player win condition, no more enemies
         if (g_global.g_i_enemyCount <= 0)
         {
             PlayerWins();
         }
     }
-
-
+   
     /// <summary>
     /// Decrement the turn count for effects
     /// Add status effects as needed, call this in turn manager
@@ -188,7 +183,7 @@ public class S_PlayerState : MonoBehaviour
     /// <returns></returns>
     private int BleedingEffectCalculator(float _damageRate)
     {
-        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
+        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.GetPlayerHealthValue() * _damageRate); 
         return _bleedingCalc;
     }
 
@@ -210,8 +205,7 @@ public class S_PlayerState : MonoBehaviour
     public void PlayerLoses()
     {
         //Player lost so trigger lose text and reset canvas
-        g_global.g_UIManager.greyboxCanvas.SetActive(false);
-        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.cn_resetCanvas.SetActive(true);
         g_global.g_UIManager.loseText.SetActive(true);
 
         //Play lose sound
@@ -229,11 +223,11 @@ public class S_PlayerState : MonoBehaviour
     public void PlayerWins()
     {
         //Player won so trigger win text and reset canvas
-        g_global.g_UIManager.greyboxCanvas.SetActive(false);
-        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.cn_characterCanvas.SetActive(false);
+        g_global.g_UIManager.cn_resetCanvas.SetActive(true);
         g_global.g_UIManager.winText.SetActive(true);
 
-        g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.p_i_health;
+        g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
         Debug.Log("Did this hit?");
         Debug.Log(g_global.g_gameManager.i_playerHealth);
 
@@ -241,8 +235,11 @@ public class S_PlayerState : MonoBehaviour
         PlaySoundWin();
         //playerWinMusic.SetActive(false);
 
-        //go to the new scene
-        g_global.g_sceneManager.ChangeScene();
+        if (!b_finalScene)
+        {
+            //go to the new scene
+            g_global.g_sceneManager.ChangeScene();
+        }
 
         // Pause The game
         //Time.timeScale = 0f;

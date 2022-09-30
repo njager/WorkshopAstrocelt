@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7703391989198149051}
   - component: {fileID: 1291470681944299839}
   - component: {fileID: 8519685718915682676}
+  - component: {fileID: 1772309307370250178}
   m_Layer: 5
   m_Name: HeaderText
   m_TagString: Untagged
@@ -34,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06715436, y: 0.72}
   m_AnchorMax: {x: 0.8925772, y: 0.86}
-  m_AnchoredPosition: {x: 2.4, y: 10.9}
+  m_AnchoredPosition: {x: 4.4, y: 12.6}
   m_SizeDelta: {x: 2433.7336, y: 653.3534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1291470681944299839
@@ -134,6 +135,27 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!223 &1772309307370250178
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15493982483848031}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 8
+  m_TargetDisplay: 0
 --- !u!1 &1134803473554262698
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +169,6 @@ GameObject:
   - component: {fileID: 8596015523136984958}
   - component: {fileID: 1732291931699124592}
   - component: {fileID: 8070727403578559325}
-  - component: {fileID: -7867624380638338939}
   m_Layer: 0
   m_Name: BaseCardTemplate
   m_TagString: Card
@@ -163,7 +184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134803473554262698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.02905, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 2781915797769924074}
@@ -241,7 +262,6 @@ MonoBehaviour:
   c_tx_flavor: {fileID: 6248408915480781643}
   c_tx_energyCost: {fileID: 0}
   sc_c_cardDraggerReference: {fileID: 0}
-  initialCardTransform: {x: 0, y: 0, z: 0}
   c_a_redBackground: {fileID: 21300000, guid: 1626f6c673ee893458534f9de00ab01b, type: 3}
   c_a_blueBackground: {fileID: 21300000, guid: dc941db29ad9f6c41a6e364b8b597854, type: 3}
   c_a_yellowBackground: {fileID: 21300000, guid: 9b1281adcff6b354b83ea45a513884aa, type: 3}
@@ -253,9 +273,11 @@ MonoBehaviour:
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 0
   c_i_cardPositionIndex: 0
-  c_cardSpriteRendererComponent: {fileID: 0}
+  c_v3_intialPositionZ: 0
+  c_v3_CardPosition: {x: 0, y: 0, z: 0}
   c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
   c_b_cardIsDragged: 0
+  cd_b_resetPositionFlag: 0
 --- !u!114 &8596015523136984958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,8 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c_v3_initialPosition: {x: 0, y: 0, z: 0}
   c_cardTransform: {fileID: 0}
-  c_card: {fileID: 0}
-  transformCounter: 0
+  cd_cardData: {fileID: 0}
 --- !u!50 &1732291931699124592
 Rigidbody2D:
   serializedVersion: 4
@@ -303,7 +324,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -319,51 +340,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.5, y: 26}
   m_EdgeRadius: 0
---- !u!114 &-7867624380638338939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134803473554262698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4983290150367598717}
-          m_TargetAssemblyTypeName: S_Card, Assembly-CSharp
-          m_MethodName: OnHoverEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4983290150367598717}
-          m_TargetAssemblyTypeName: S_Card, Assembly-CSharp
-          m_MethodName: OnHoverExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2981723020958407617
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,8 +419,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2ed8023114ba12540ba4a0c1cd84d079, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: 21300000, guid: 7931fc1fc9c3841f6abdce43b03d3284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -466,6 +442,7 @@ GameObject:
   - component: {fileID: 497102065983880397}
   - component: {fileID: 1833782390688587723}
   - component: {fileID: 7994180667109303153}
+  - component: {fileID: 1751714997952713446}
   m_Layer: 5
   m_Name: DescriptionText
   m_TagString: Untagged
@@ -589,6 +566,27 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!223 &1751714997952713446
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088062394403323071}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 8
+  m_TargetDisplay: 0
 --- !u!1 &4266961717965404367
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +676,7 @@ GameObject:
   - component: {fileID: 7716579164897214672}
   - component: {fileID: 1076891615771206727}
   - component: {fileID: 6248408915480781643}
+  - component: {fileID: 2305601238840642317}
   m_Layer: 5
   m_Name: FlavorText
   m_TagString: Untagged
@@ -701,7 +700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08057718, y: 0.030000001}
   m_AnchorMax: {x: 0.906, y: 0.23}
-  m_AnchoredPosition: {x: 2.8, y: -62.2}
+  m_AnchoredPosition: {x: 3.9, y: -62.2}
   m_SizeDelta: {x: 2356.2, y: 665.046}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1076891615771206727
@@ -795,12 +794,33 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.17998505, y: 0, z: -93.94525, w: -84.762024}
+  m_margin: {x: -0.17998505, y: 0, z: -5.9448853, w: 3.1982117}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!223 &2305601238840642317
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661175733290701232}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 8
+  m_TargetDisplay: 0
 --- !u!1 &7252364082510179137
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +900,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: b2053c57308686449830c371da43fb50, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -971,7 +991,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13da5d1ae34a384dad562db95987dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g_redGraphic: {fileID: 776223449507903903}
-  an_animator: {fileID: 0}
-  i_chance: 0.0000002
+  a_redGraphic: {fileID: 0}
+  an_redStarAnimator: {fileID: 2460238115658184597}
+  i_chance: 0.0002
   i_frames: 3
 --- !u!95 &2460238115658184597
 Animator:
@@ -308,9 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec5dc8b01a1aa349aeee489f2f2ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g_blueGraphic: {fileID: 4154172398554925229}
-  an_animator: {fileID: 0}
-  i_chance: 0.0000002
+  a_blueGraphic: {fileID: 0}
+  an_blueStarAnimator: {fileID: 5256573893163593488}
+  i_chance: 0.0002
   i_frames: 3
 --- !u!95 &5256573893163593488
 Animator:
@@ -659,9 +659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7b79e4fea7c774daa0ccc5887e1103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g_yellowGraphic: {fileID: 6909720486647782166}
-  an_animator: {fileID: 0}
-  i_chance: 0.0000002
+  a_yellowGraphic: {fileID: 0}
+  an_yellowStarAnimator: {fileID: 8614871987291424998}
+  i_chance: 0.0002
   i_frames: 3
 --- !u!95 &8614871987291424998
 Animator:

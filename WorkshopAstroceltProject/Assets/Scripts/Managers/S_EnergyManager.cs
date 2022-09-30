@@ -10,9 +10,9 @@ public class S_EnergyManager : MonoBehaviour
     public string str_energyColor;
     public float i_energyCount;
 
-    private int i_redEnergy;
-    private int i_yellowEnergy;
-    private int i_blueEnergy;
+    [SerializeField] int i_redEnergy;
+    [SerializeField] int i_yellowEnergy;
+    [SerializeField] int i_blueEnergy;
 
     public int i_redStorageEnergy;
     public int i_yellowStorageEnergy;
@@ -90,7 +90,7 @@ public class S_EnergyManager : MonoBehaviour
         i_blueEnergy = 0;
 
         g_global.g_ConstellationManager.i_starSound = 0;
-        g_global.g_ConstellationManager.b_starLockout = true;
+        g_global.g_ConstellationManager.SetStarLockOutBool(true);
     }
 
     /// <summary>
@@ -104,6 +104,7 @@ public class S_EnergyManager : MonoBehaviour
     {
         //make sure the colors match before using energy
         //remove the card if it actually gets played
+        Debug.Log("Energy for card of " + _color + ": " + _energy.ToString());
         if (_color == "red" && i_redEnergy - _energy >= 0) 
         {
             i_redEnergy -= _energy;
@@ -194,8 +195,46 @@ public class S_EnergyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to check energy without using it
+    /// - Josh
+    /// </summary>
+    /// <param name="_energy"></param>
+    /// <param name="_color"></param>
+    /// <returns></returns>
+    public bool CheckEnergy(int _energy, string _color)
 
-    // Setters \\ // Not yet implemented
+    {
+        Debug.Log("Energy Check for card of " + _color + ": " + _energy.ToString());
+        //make sure the colors match before using energy
+        //remove the card if it actually gets played
+        if (_color == "red" && i_redEnergy - _energy >= 0)
+        {
+            return true;
+        }
+        else if (_color == "yellow" && i_yellowEnergy - _energy >= 0)
+        {
+            return true;
+        }
+        else if (_color == "blue" && i_blueEnergy - _energy >= 0)
+        {
+            return true;
+        }
+        else if (_color == "white" && i_blueEnergy + i_redEnergy + i_yellowEnergy - _energy >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            //card isnt playable
+            return false;
+        }
+    }
+
+
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Set the int value of S_EnergyManager.i_redEnergy; 
@@ -228,7 +267,9 @@ public class S_EnergyManager : MonoBehaviour
     }
 
 
-    // Getters \\ 
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the int value of S_EnergyManager.i_redEnergy

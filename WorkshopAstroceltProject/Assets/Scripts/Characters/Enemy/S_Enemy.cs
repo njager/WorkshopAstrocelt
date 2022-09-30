@@ -12,6 +12,9 @@ public class S_Enemy : MonoBehaviour
 
     public S_EnemyAttributes e_sc_enemyAttributes;
 
+    [Header("Real name identifier")]
+    public string e_str_enemyName;
+
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
     public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
@@ -23,14 +26,17 @@ public class S_Enemy : MonoBehaviour
     public GameObject e_sp_spriteIcon;
     public GameObject e_tx_intentTextObject;
 
-    [Header("Enemy Sprite")]
-    public GameObject e_enemySprite;
+    [Header("Character Card Interface")]
+    public S_CharacterCardInterface e_cd_sc_characterCardInterface;
 
     [Header("Enemy Default Scale Vector3")]
     public Vector3 e_v3_defaultScale;
 
     [Header("Intent Duration Value")]
     public float f_intentDuration;
+
+    //getting cardball object
+    public GameObject cardball;
 
     void Awake()
     {
@@ -42,7 +48,7 @@ public class S_Enemy : MonoBehaviour
 
         g_global.e_ls_enemyList.Add(this);
 
-        e_enemySprite.GetComponent<S_CharacterCardInterface>().e_attachedEnemy = this;
+        e_cd_sc_characterCardInterface.e_attachedEnemy = this;
 
         // Grab and set default scale
         e_v3_defaultScale = gameObject.transform.localScale;
@@ -96,23 +102,23 @@ public class S_Enemy : MonoBehaviour
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if(e_sc_enemyAttributes.e_b_resistant == true)
+            if(e_sc_enemyAttributes.e_b_resistant == true) //If the enemy is resisitant
             {
-                if (e_sc_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //The enemy has no sheilds
                 {
                     e_sc_enemyAttributes.e_i_health -= _newDamageValue;
                     e_sc_enemyAttributes.e_pe_blood.Play();
                     Debug.Log("Enemy Attacked!");
                 }
-                else
+                else //enemy has shields
                 {
-                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _newDamageValue;
-                    if (_tempVal < 0)
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue;
+                    if (_tempVal < 0) 
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
-                        if (e_sc_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+                        if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
-                            e_sc_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.SetEnemyShield(0);
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
                         e_sc_enemyAttributes.e_pe_blood.Play();
@@ -120,29 +126,29 @@ public class S_Enemy : MonoBehaviour
                     }
                     else
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _newDamageValue;
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
-            else
+            else //if the enemy is not resistant
             {
-                if (e_sc_enemyAttributes.e_i_shield <= 0)
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
                     e_sc_enemyAttributes.e_pe_blood.Play();
                     e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy Attacked!");
                 }
-                else
+                else //enemy has shields
                 {
-                    int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue;
                     if (_tempVal < 0)
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
-                        if (e_sc_enemyAttributes.e_i_shield < 0)
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+                        if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
-                            e_sc_enemyAttributes.e_i_shield = 0;
+                            e_sc_enemyAttributes.SetEnemyShield(0);
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
                         e_sc_enemyAttributes.e_pe_blood.Play();
@@ -151,43 +157,46 @@ public class S_Enemy : MonoBehaviour
                     }
                     else
                     {
-                        e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
         }
-        else
+        else //The enemy is not a predetermined type
         {
-            if (e_sc_enemyAttributes.e_i_shield <= 0)
+            if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
             {
                 e_sc_enemyAttributes.e_i_health -= _damageValue;
-                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                 e_sc_enemyAttributes.e_pe_blood.Play();
+                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                 Debug.Log("Enemy Attacked!");
             }
-            else
+            else //enemy has shields
             {
-                int _tempVal = e_sc_enemyAttributes.e_i_shield - _damageValue;
+                int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue;
                 if (_tempVal < 0)
                 {
-                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
-                    if (e_sc_enemyAttributes.e_i_shield < 0)
+                    e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+                    if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                     {
-                        e_sc_enemyAttributes.e_i_shield = 0;
+                        e_sc_enemyAttributes.SetEnemyShield(0);
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     e_sc_enemyAttributes.e_pe_blood.Play();
+                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else
                 {
-                    e_sc_enemyAttributes.e_i_shield -= _damageValue;
+                    e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
                     Debug.Log("Enemy had shields!");
                 }
             }
         }
+
+        // Update the UI
+        UpdateEnemyHealthUI();
     }
 
     /// <summary>
@@ -199,22 +208,24 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_shieldVal"></param>
     public void EnemyShielded(string _enemyType, int _shieldVal)
     {
-        e_sc_enemyAttributes.e_i_shield += _shieldVal;
+        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() + _shieldVal);
+
         if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
         }
         else if(_enemyType == "Brawler") // Shield Magic
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
         else if(_enemyType == "Brawler")
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-physical");
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/shield-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
 
-        //Debug.Log("Enemy Shields");
+        // Update the UI
+        UpdateEnemyHealthUI();
     }
 
     /// <summary>
@@ -244,8 +255,7 @@ public class S_Enemy : MonoBehaviour
         }
         if(_enemyType == "Magician")
         {
-            //g_global.g_playerState.PlayerStunnedStatusEffect(1);
-            g_global.g_enemyState.EnemyResistantEffect(1, e_i_enemyCount);
+            MagicianSpecialAbility();
         }
         if(_enemyType == "Brawler")
         {
@@ -268,6 +278,7 @@ public class S_Enemy : MonoBehaviour
         Debug.Log("Enemy Perished");
         e_sc_enemyAttributes.e_i_health = 0;
         g_global.g_ls_activeEnemies.Remove(this);
+        g_global.e_ls_enemyList.Remove(this);
         gameObject.SetActive(false);
     }
 
@@ -285,12 +296,12 @@ public class S_Enemy : MonoBehaviour
     /// Used to toggle intent when mouse enters
     /// - Josh
     /// </summary>
-    public void OnHoverEnter()
+    public void OnMouseEnter()
     {
         //Debug.Log("Triggered Intent!");
         if (g_global.g_iconManager.b_intentFlashBool == true)
         {
-            e_sp_spriteIcon.GetComponent<Image>().DOFade(255, f_intentDuration);
+            e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(255, f_intentDuration);
             e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, f_intentDuration);
         }
     }
@@ -299,12 +310,12 @@ public class S_Enemy : MonoBehaviour
     /// Used to toggle intent when mouse enters
     /// - Josh
     /// </summary>
-    public void OnHoverExit()
+    public void OnMouseExit()
     {
         //Debug.Log("Stopping Intent!");
         if (g_global.g_iconManager.b_intentFlashBool == true)
         {
-            e_sp_spriteIcon.GetComponent<Image>().DOFade(0, f_intentDuration);
+            e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(0, f_intentDuration);
             e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(0, f_intentDuration);
         }
     }
@@ -316,7 +327,7 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     public void IncreaseIntentIconAlpha()
     {
-        e_sp_spriteIcon.GetComponent<Image>().DOFade(255, 0);
+        e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
     }
 
@@ -327,14 +338,14 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemy"></param>
     public void EnemyHighlightToggle()
     {
-        if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
+        /*if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
         {
             e_sc_enemyAttributes.e_highlightCircle.SetActive(true);
         }
         else 
         {
             e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
-        }
+        }*/
     }
 
     /// <summary>
@@ -354,28 +365,28 @@ public class S_Enemy : MonoBehaviour
             //Do your action
             if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 6) // Check shielding
             {
-                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_shieldMax);
+                EnemyShielded(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType, g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyTempShield());
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
                 //play enemy animation
                 g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_a_animator.Play("attack");
 
-                g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_i_enemyDamageValue);
+                g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyDamageValue());
 
                 //Then play sounds
                 if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Beast")
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
                 }
                 else if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Magician")
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
                 }
                 else if (g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_str_enemyType == "Brawler")
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
                 }
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 8) // Check special ability
@@ -394,6 +405,23 @@ public class S_Enemy : MonoBehaviour
             Debug.Log("Enemy " + _enemyNum + "'s turn is skipped!");
             yield return new WaitForSeconds(4);
         }
+
+        UpdateEnemyHealthUI();
+    }
+
+    /// <summary>
+    /// magiciain unique ablility
+    /// gnerates random number from 1-5
+    /// deletes that card
+    /// resets list
+    /// - GOAT
+    /// </summary>
+    public void MagicianSpecialAbility()
+    {
+        int numDelete = Random.Range(1, 6);
+
+        S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
+        _cardball.TrueDeleteCardball();
     }
 
     /// <summary>
@@ -423,15 +451,40 @@ public class S_Enemy : MonoBehaviour
         
     }
 
-    // Eventually use this for UI stuff to avoid using an update loop
-    private void SetEnemyHealthText(int _healthVal)
-    {
 
+    /// <summary>
+    /// Method to update the all health and shield elements of the UI
+    /// - Josh
+    /// </summary>
+    public void UpdateEnemyHealthUI()
+    {
+        if(e_sc_enemyAttributes.GetEnemyShieldValue() > 0) 
+        {
+            SetEnemyShieldText();
+        }
+        else
+        {
+            SetEnemyHealthText();
+        }
     }
 
-    //Only do this to 5
-    private void SetEnemyShieldText(int _shieldVal)
+    /// <summary>
+    /// Trigger function to set the health elements in S_CharacterGraphics
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    private void SetEnemyHealthText()
     {
+        g_global.g_UIManager.sc_characterGraphics.UpdateEnemyHealthUI(e_i_enemyCount);
+        g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
+    }
 
+    /// <summary>
+    /// Trigger function to set the shield elements in S_CharacterGraphics
+    /// - Josh
+    /// </summary>
+    private void SetEnemyShieldText()
+    {
+        g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
     }
 }
