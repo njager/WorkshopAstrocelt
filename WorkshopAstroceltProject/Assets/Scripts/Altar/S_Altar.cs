@@ -247,6 +247,7 @@ public class S_Altar : MonoBehaviour
 
             g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
 
+
             //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
 
@@ -394,7 +395,8 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                g_global.g_energyManager.ClearEnergy();
                 Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }
