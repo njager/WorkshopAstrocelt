@@ -191,7 +191,7 @@ public class S_Altar : MonoBehaviour
         {
             //wait and then remove the cardball from the list and delete it from the game
             yield return new WaitForSeconds(0.25f);
-            StartCoroutine(_cardball.DeleteCardball());
+            StartCoroutine(_cardball.DeleteAllCardballs());
         }
 
         //clear the player hand since none of these cards were played
@@ -379,10 +379,54 @@ public class S_Altar : MonoBehaviour
         }
         else if (_activeCard == false)
         {
-            Debug.Log("Gonna wait for card play");
+            //Debug.Log("Gonna wait for card play");
             yield return new S_WaitForCardPlay();
 
             yield return null;
+
+            Debug.Log("Do I reach here");
+            Destroy(_cardball);
+
+            if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
+            {
+                Debug.Log("Attempting to delay spawn of second card after a first");
+                yield return StartCoroutine(WaitForCardballMovementToPlay());
+            }
+            else
+            {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                Debug.Log("MoveCardballPrefabs() Called");
+                yield return StartCoroutine(MoveCardballPrefabs());
+            }
+        }
+    }
+
+
+
+    /// <summary>
+    /// Used so the cardball can't delete itself too early and and so we can trigger proper moving of the cardballs
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator MoveAndDeleteAllCardBalls(GameObject _cardball, bool _activeCard)
+    {
+        // Hide, but don't delete just yet
+        _cardball.GetComponent<S_Cardball>().c_redGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_blueGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
+
+        if (_activeCard == true)
+        {
+            yield return null;
+            Destroy(_cardball);
+        }
+        else if (_activeCard == false)
+        {
+            yield return null;
+
+            Debug.Log("Do I reach here");
             Destroy(_cardball);
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)

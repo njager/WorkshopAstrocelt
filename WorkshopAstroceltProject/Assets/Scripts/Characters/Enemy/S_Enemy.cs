@@ -418,10 +418,10 @@ public class S_Enemy : MonoBehaviour
     /// </summary>
     public void MagicianSpecialAbility()
     {
-        int numDelete = Random.Range(1, 6);
+        //int numDelete = Random.Range(1, 6);
 
-        S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
-        _cardball.TrueDeleteCardball();
+        //S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
+        //_cardball.TrueDeleteCardball();
     }
 
     /// <summary>

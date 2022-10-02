@@ -516,6 +516,13 @@ public class S_Card : MonoBehaviour
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
                 }
+
+                // Unpause IEnumerator
+                if (g_global.g_ls_p_playerHand.Count > 0)
+                {
+                    Debug.Log("Triggered the bool");
+                    g_global.g_altar.SetCardBeingActiveBool(true);
+                }
             }
             else
             {
@@ -542,6 +549,13 @@ public class S_Card : MonoBehaviour
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
                 }
+
+                // Unpause IEnumerator
+                if (g_global.g_ls_p_playerHand.Count > 0)
+                {
+                    Debug.Log("Triggered the bool");
+                    g_global.g_altar.SetCardBeingActiveBool(true);
+                }
             }
             else
             {
@@ -552,13 +566,6 @@ public class S_Card : MonoBehaviour
         else if (c_b_uniqueMainEffect == true)
         {
             // Note using any unique cards but we'd trigger special behavior here
-        }
-
-        // Unpause IEnumerator
-        if (g_global.g_ls_p_playerHand.Count > 0) 
-        {
-            Debug.Log("Triggered the bool");
-            g_global.g_altar.SetCardBeingActiveBool(true);
         }
     }
 

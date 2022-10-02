@@ -103,15 +103,21 @@ public class S_ConstelationManager : MonoBehaviour
 
         if (_star.starType == "Node")
         {
+            S_NodeStar _node = _star.gameObject.GetComponent<S_NodeStar>();
+
             if (b_makingConstellation)
             {
                 //finsih making the constellation
+
+                _node.SetNodeClicked(false);
                 FinishConstellation(_star);
             }
             else
             {
                 //now that the node is added, change the bool
                 b_makingConstellation = true;
+                _node.NodeClickedColor();
+                _node.SetNodeClicked(true);
             }
         }
         //check if the length is greater than the max length, sub 1 for the two node stars
