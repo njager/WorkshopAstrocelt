@@ -10,42 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
-  m_Name: Wall of Wonder 1
+  m_Name: Fury
   m_EditorClassIdentifier: 
-  CardName: Wall of Wonder
-  HeaderText: Wall of Wonder
-  BodyText: Gain 50 shield
+  CardName: Fury
+  HeaderText: Fury
+  BodyText: Deals 70 Damage. Causes Bleeding.
   FlavorText: 
-  ColorString: yellow
-  EnergyCost: 5
-  DamageValue: 0
-  ShieldValue: 50
-  EffectValue1: 0
+  ColorString: red
+  EnergyCost: 7
+  DamageValue: 70
+  ShieldValue: 0
+  EffectValue1: 2
   EffectValue2: 0
   EffectValue3: 0
-  TurnCountForStatusEffect1: 0
+  TurnCountForStatusEffect1: 3
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
-  IDForStatusEffectOne: 0
+  IDForStatusEffectOne: 1
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
-  CardRarity: 0
+  CardRarity: 3
   AffectsNone: 0
-  AffectsPlayer: 1
-  Affects1Character: 0
+  AffectsPlayer: 0
+  Affects1Character: 1
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
   PlayerEffect: 0
-  EnemyEffect: 0
-  RedColorType: 0
+  EnemyEffect: 1
+  RedColorType: 1
   BlueColorType: 0
-  YellowColorType: 1
+  YellowColorType: 0
   WhiteColorType: 0
-  AttackEffect: 0
-  ShieldEffect: 1
+  AttackEffect: 1
+  ShieldEffect: 0
   UniqueEffect: 0
-  NoEffect: 1
-  BleedStatusEffect: 0
+  NoEffect: 0
+  BleedStatusEffect: 1
   AcidStatusEffect: 0
   BurnStatusEffect: 0
   ResistStatusEffect: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
   FralityStatusEffect: 0
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
-  CardArtAsset: {fileID: 0}
-  PhysicalOrMagicalBoolForShield: 1
-  PhysicalOrMagicalBoolForAttack: 0
-  CardDatabaseID: 24
+  CardArtAsset: {fileID: 21300000, guid: 3bcffebd751c7f64baf8c6158425149a, type: 3}
+  PhysicalOrMagicalBoolForShield: 0
+  PhysicalOrMagicalBoolForAttack: 1
+  CardDatabaseID: 15
   ExtraInfo: 

@@ -109,6 +109,9 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI en_tx_blueEnergyTrackerText;
     public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
 
+    [Header("Constelation Length Elements")]
+    public TextMeshProUGUI co_tx_constellationTrackerText;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -637,6 +640,16 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI GetYellowEnergyTrackerText()
     {
         return en_tx_yellowEnergyTrackerText;
+    }
+
+
+    ///<summary>
+    ///Constellation length UI gettter
+    /// -THOMAN
+    ///</summary>
+    public TextMeshProUGUI GetConstellationUI()
+    {
+        return co_tx_constellationTrackerText;
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
