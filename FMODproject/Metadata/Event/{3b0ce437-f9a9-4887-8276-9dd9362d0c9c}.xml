@@ -183,6 +183,7 @@
 		</relationship>
 		<relationship name="modules">
 			<destination>{327c7579-4935-43d6-bf77-e18c9e65d147}</destination>
+			<destination>{9d08a230-8ffd-4f97-84ce-250b57a20692}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{58294032-e4e9-45aa-991f-04ad6965e146}</destination>
@@ -202,6 +203,7 @@
 			<destination>{84a9fe9f-7c68-401e-b6a0-cf14743143bf}</destination>
 			<destination>{017419cd-f32f-4133-b1ae-2bf73c371035}</destination>
 			<destination>{327c7579-4935-43d6-bf77-e18c9e65d147}</destination>
+			<destination>{9d08a230-8ffd-4f97-84ce-250b57a20692}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{c3600f1e-0e8c-4f6d-90c7-564f9372778e}</destination>
@@ -670,6 +672,29 @@
 		</property>
 		<property name="length">
 			<value>24</value>
+		</property>
+		<property name="volume">
+			<value>-5.5</value>
+		</property>
+		<property name="looping">
+			<value>true</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{63a1189f-767b-4ddc-b18c-2d8baa83ce6a}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{9d08a230-8ffd-4f97-84ce-250b57a20692}">
+		<property name="isAsync">
+			<value>true</value>
+		</property>
+		<property name="start">
+			<value>24</value>
+		</property>
+		<property name="length">
+			<value>19.5</value>
+		</property>
+		<property name="volume">
+			<value>-5.5</value>
 		</property>
 		<property name="looping">
 			<value>true</value>
