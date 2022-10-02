@@ -412,13 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b605fea58103e4bbb1e9dc30efa1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeStar: {fileID: 1668453743}
-  blackBar1: {fileID: 0}
-  blackBar2: {fileID: 0}
-  blackBar3: {fileID: 0}
-  blackBar4: {fileID: 0}
-  blackBar5: {fileID: 0}
-  blackBar6: {fileID: 0}
   map1: {fileID: 661014102}
   map2: {fileID: 1183917245}
   map3: {fileID: 1696196298}
@@ -427,6 +420,11 @@ MonoBehaviour:
   map6: {fileID: 0}
   map7: {fileID: 0}
   map8: {fileID: 0}
+  map9: {fileID: 0}
+  map10: {fileID: 0}
+  map11: {fileID: 0}
+  map12: {fileID: 0}
+  map13: {fileID: 0}
   mp_i_previousMapNum: 0
 --- !u!1 &73390823
 GameObject:
@@ -2444,10 +2442,15 @@ MonoBehaviour:
   e_v3_enemy3HealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy4HealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy5HealthBarPosition: {x: 0, y: 0, z: 0}
+  v3_vfxContainer: {fileID: 0}
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 0}
   popUpCanvas: {fileID: 0}
-  altarTargetPosition: {fileID: 0}
+  redEnergyUITargetPosition: {fileID: 0}
+  blueEnergyUITargetPosition: {fileID: 0}
+  yellowEnergyUITargetPosition: {fileID: 0}
+  b_visualPopupFinished: 0
+  i_popupUpClearInt: 0
 --- !u!1001 &285875820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4253,10 +4256,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eddcf0d11338944baa637a7f1c9297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_tx_energyText: {fileID: 0}
+  sc_characterGraphics: {fileID: 0}
+  sc_resourceGraphics: {fileID: 0}
   p_tx_playerHealthText: {fileID: 0}
   p_tx_playerShieldText: {fileID: 0}
   p_playerHealthBar: {fileID: 0}
+  p_playerHealthResourceBarText: {fileID: 0}
+  c_cardCount: {fileID: 0}
   e_tx_enemy1HealthText: {fileID: 0}
   e_tx_enemy2HealthText: {fileID: 0}
   e_tx_enemy3HealthText: {fileID: 0}
@@ -4274,15 +4280,14 @@ MonoBehaviour:
   e_enemy5HealthBar: {fileID: 0}
   winText: {fileID: 0}
   loseText: {fileID: 0}
-  resetCanvas: {fileID: 0}
-  greyboxCanvas: {fileID: 0}
+  cn_resetCanvas: {fileID: 0}
+  cn_characterCanvas: {fileID: 0}
   energyIconSprite: {fileID: 0}
   redEnergyIcon: {fileID: 0}
   blueEnergyIcon: {fileID: 0}
   yellowEnergyIcon: {fileID: 0}
   nullEnergyIcon: {fileID: 0}
   p_tx_lineMultiplierText: {fileID: 0}
-  p_f_lineMultiplierAmount: 0
   b_redEnergy: 0
   b_blueEnergy: 0
   b_yellowEnergy: 0
@@ -4316,6 +4321,11 @@ MonoBehaviour:
   e_enemy3ResistantEffect: {fileID: 0}
   e_enemy4ResistantEffect: {fileID: 0}
   e_enemy5ResistantEffect: {fileID: 0}
+  debugTurnbar: {fileID: 0}
+  debugTurnbarText: {fileID: 0}
+  en_tx_redEnergyTrackerText: {fileID: 0}
+  en_tx_blueEnergyTrackerText: {fileID: 0}
+  en_tx_yellowEnergyTrackerText: {fileID: 0}
 --- !u!1 &489131023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4725,22 +4735,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d2fbe7dca504d41bda1349f81155a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_gameManager: {fileID: 0}
   g_turnManager: {fileID: 1269889775}
   g_player: {fileID: 2082358049}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
   g_ConstellationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
-  g_selectorManager: {fileID: 1455212357}
   g_iconManager: {fileID: 1037513594}
   g_cardManager: {fileID: 1451117616}
-  g_CardDatabase: {fileID: 2086421104}
+  g_cardDatabase: {fileID: 0}
   g_lineMultiplierManager: {fileID: 0}
   g_energyManager: {fileID: 0}
   g_popupManager: {fileID: 0}
   g_altar: {fileID: 0}
+  g_cardHolder: {fileID: 0}
   g_sceneManager: {fileID: 0}
-  g_cardBall: {fileID: 0}
+  g_backgroundManager: {fileID: 0}
+  g_turnEffectManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -4757,22 +4769,20 @@ MonoBehaviour:
   g_b_playerLost: 0
   g_i_enemyCount: 0
   g_i_enemyCountMax: 0
-  e_l_enemyList: []
+  e_ls_enemyList: []
   g_ls_lineRendererList: []
   g_ls_completedLineRendererList: []
-  ls_p_playerDeck: 
-  lst_p_playerGrave: 
-  ls_p_playerHand: []
-  ls_starPopup: []
-  ls_cardBallPrefabs: []
-  placeholder: 
-  c_i_cardIDNum: 0
+  g_ls_p_playerDeck: 
+  g_ls_p_playerGrave: 
+  g_ls_p_playerHand: []
+  g_ls_starPopup: []
+  g_ls_cardBallPrefabs: []
+  g_ls_activeEnemies: []
   g_e_enemyPosition1: {fileID: 0}
   g_e_enemyPosition2: {fileID: 0}
   g_e_enemyPosition3: {fileID: 0}
-  g_objectBeingDragged: {fileID: 0}
-  b_firstCard: 1
-  a_audioPlayer: {fileID: 0}
+  g_c_b_firstCard: 1
+  g_a_audioPlayer: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -10086,11 +10096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   e_sp_enemyShield: {fileID: 21300000, guid: b8f96861b5ed6554f88f2e1d2f43f6b8, type: 3}
   e_sp_enemyAbility: {fileID: 0}
-  e_b_enemy1IconCheck: 
-  e_b_enemy2IconCheck: 
-  e_b_enemy3IconCheck: 
-  e_b_enemy4IconCheck: 
-  e_b_enemy5IconCheck: 
+  ls_e_statusStrings: []
   e_sp_enemyAttackLevel1: {fileID: 0}
   e_sp_enemyAttackLevel2: {fileID: 0}
   e_sp_enemyAttackLevel3: {fileID: 0}
@@ -10752,8 +10758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c_v3_initialPosition: {x: 0, y: 0, z: 0}
   c_cardTransform: {fileID: 1067747213}
-  c_card: {fileID: 1067747221}
-  transformCounter: 0
+  cd_cardData: {fileID: 0}
 --- !u!114 &1067747220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10789,9 +10794,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c_cardTemplate: {fileID: 11400000, guid: b903e30478fda2d48b9b75050134f311, type: 2}
-  c_a_cardBackgroundImage: {fileID: 0}
-  c_a_cardArtImage: {fileID: 0}
-  c_a_cardForegroundImage: {fileID: 0}
+  c_a_cardBackgroundArtAsset: {fileID: 0}
+  c_a_cardArtAsset: {fileID: 0}
+  c_a_cardForegroundArtAsset: {fileID: 0}
   c_i_cardDataBaseIndex: 0
   c_str_cardName: Bludgeon
   c_str_headerText: Bludgeon
@@ -10803,6 +10808,7 @@ MonoBehaviour:
   c_i_effectValue1: 0
   c_i_effectValue2: 0
   c_i_effectValue3: 0
+  c_f_bleedDamagePercentage: 0
   c_str_statusEffectID1: 
   c_str_statusEffectID2: 
   c_str_statusEffectID3: 
@@ -10842,14 +10848,7 @@ MonoBehaviour:
   c_tx_body: {fileID: 104739661}
   c_tx_flavor: {fileID: 754368609}
   c_tx_energyCost: {fileID: 1023224806}
-  s_c_cardDraggerReference: {fileID: 1067747219}
-  c_i_cardID: 5
-  initialCardTransform: {fileID: 1067747213}
-  i_hoverHeight: 350
-  i_hoverX: 1.7
-  i_hoverY: 1.7
-  cv_canvas: {fileID: 0}
-  c_cardScaler: {fileID: 1067747220}
+  e_cd_grabbedEnemy: {fileID: 0}
   c_a_redBackground: {fileID: 0}
   c_a_blueBackground: {fileID: 0}
   c_a_yellowBackground: {fileID: 0}
@@ -10858,6 +10857,12 @@ MonoBehaviour:
   c_a_blueForeground: {fileID: 0}
   c_a_yellowForeground: {fileID: 0}
   c_a_whiteForeground: {fileID: 0}
+  c_b_shieldSoundEffect: 0
+  c_b_attackSoundEffect: 0
+  cd_b_resetPositionFlag: 0
+  c_v3_CardPosition: {x: 0, y: 0, z: 0}
+  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
+  c_b_cardIsDragged: 0
 --- !u!1001 &1069473940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12352,6 +12357,11 @@ MonoBehaviour:
   enemy3: {fileID: 0}
   enemy4: {fileID: 0}
   enemy5: {fileID: 0}
+  e_str_enemy1Action: 
+  e_str_enemy2Action: 
+  e_str_enemy3Action: 
+  e_str_enemy4Action: 
+  e_str_enemy5Action: 
   str_enemy1Type: 
   str_enemy2Type: 
   str_enemy3Type: 
@@ -12362,6 +12372,11 @@ MonoBehaviour:
   e_b_enemy3Dead: 0
   e_b_enemy4Dead: 0
   e_b_enemy5Dead: 0
+  e_b_enemy1Turn: 0
+  e_b_enemy2Turn: 0
+  e_b_enemy3Turn: 0
+  e_b_enemy4Turn: 0
+  e_b_enemy5Turn: 0
   e_b_enemy1Shielding: 0
   e_b_enemy2Shielding: 0
   e_b_enemy3Shielding: 0
@@ -12407,11 +12422,26 @@ MonoBehaviour:
   e_b_inBleedingStateEnemy5: 0
   e_b_inStunnedStateEnemy5: 0
   e_b_inResistantStateEnemy5: 0
-  e_i_currentDamageValueForBleedEnemy1: 0
-  e_i_currentDamageValueForBleedEnemy2: 0
-  e_i_currentDamageValueForBleedEnemy3: 0
-  e_i_currentDamageValueForBleedEnemy4: 0
-  e_i_currentDamageValueForBleedEnemy5: 0
+  e_f_currentDamageRateForBleedEnemy1: 0
+  e_f_currentDamageRateForBleedEnemy2: 0
+  e_f_currentDamageRateForBleedEnemy3: 0
+  e_f_currentDamageRateForBleedEnemy4: 0
+  e_f_currentDamageRateForBleedEnemy5: 0
+  e_i_enemy1StunTurnsPassed: 0
+  e_i_enemy2StunTurnsPassed: 0
+  e_i_enemy3StunTurnsPassed: 0
+  e_i_enemy4StunTurnsPassed: 0
+  e_i_enemy5StunTurnsPassed: 0
+  e_i_enemy1ResistantTurnsPassed: 0
+  e_i_enemy2ResistantTurnsPassed: 0
+  e_i_enemy3ResistantTurnsPassed: 0
+  e_i_enemy4ResistantTurnsPassed: 0
+  e_i_enemy5ResistantTurnsPassed: 0
+  e_b_enemy1IsActive: 0
+  e_b_enemy2IsActive: 0
+  e_b_enemy3IsActive: 0
+  e_b_enemy4IsActive: 0
+  e_b_enemy5IsActive: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12430,9 +12460,12 @@ MonoBehaviour:
   p_b_inBleedingState: 0
   p_b_inStunnedState: 0
   p_b_inResistantState: 0
-  playerWinMusic: {fileID: 0}
-  playerLoseMusic: {fileID: 0}
-  p_i_currentDamageRateForBleed: 0
+  p_playerWinMusic: {fileID: 0}
+  p_playerLoseMusic: {fileID: 0}
+  p_i_turnsPassedForStun: 0
+  p_i_turnsPassedForResistant: 0
+  p_f_currentDamageRateForBleed: 0
+  b_finalScene: 0
 --- !u!114 &1269889775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12445,22 +12478,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 0}
-  e_b_enemyDidAttack: 0
-  b_playerInitialTurn: 1
-  b_enemyInitialTurn: 0
-  playerTurnSkipped: 0
-  enemy1TurnSkipped: 0
-  enemy2TurnSkipped: 0
-  enemy3TurnSkipped: 0
-  enemy4TurnSkipped: 0
-  enemy5TurnSkipped: 0
-  a_backgroundNight: {fileID: 0}
-  a_backgroundDay: {fileID: 0}
-  a_hillsNight: {fileID: 0}
-  a_hillsDay: {fileID: 0}
-  a_backgroundImage: {fileID: 0}
-  a_hillsImage: {fileID: 0}
+  p_b_playerInitialTurn: 1
+  e_b_enemyInitialTurn: 0
+  p_b_playerTurnSkipped: 0
+  e_b_enemy1TurnSkipped: 0
+  e_b_enemy2TurnSkipped: 0
+  e_b_enemy3TurnSkipped: 0
+  e_b_enemy4TurnSkipped: 0
+  e_b_enemy5TurnSkipped: 0
+  e_b_enemyIsActive: 0
 --- !u!1001 &1285050335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12736,7 +12762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_curConstellation: []
   str_curColor: 
-  b_makingConstellation: 0
   b_starLockout: 0
   s_previousStar: {fileID: 0}
   v2_prevLoc: {x: 0, y: 0}
@@ -12748,6 +12773,7 @@ MonoBehaviour:
   s_b_popupMove: 0
   _starSoundPhase1: {fileID: 0}
   _starSoundPhase2: {fileID: 0}
+  c_cardballsSpawned: 0
   i_starSound: 0
 --- !u!1001 &1336605811
 PrefabInstance:
@@ -15132,17 +15158,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1667022162}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1668453743 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6955678015951239671, guid: 89f0cb3e81d13f54cb9eb0d6b84e7abd, type: 3}
-  m_PrefabInstance: {fileID: 1581272808466425744}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53fe15e004f4b34688cc16cea53eb19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1672301314
 GameObject:
   m_ObjectHideFlags: 0
@@ -17908,22 +17923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0883779ae71a4eddb5dcdacfa2a2d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardScript0: {fileID: 0}
-  cardScript1: {fileID: 0}
-  cardScript2: {fileID: 0}
-  cardScript3: {fileID: 0}
-  cardScript4: {fileID: 0}
-  cardScript5: {fileID: 0}
-  cardScript6: {fileID: 0}
-  cardScript7: {fileID: 0}
-  cardScript8: {fileID: 0}
-  cardScript9: {fileID: 0}
-  battleRewardCard1: {fileID: 0}
-  battleRewardCard2: {fileID: 0}
-  battleRewardCard3: {fileID: 0}
-  battleRewardCard4: {fileID: 0}
-  encounter2: 0
-  encounter3: 0
+  cardList: []
 --- !u!1001 &2092353970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18206,7 +18206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i_index: 0
   l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
   s_nullStarInst: {fileID: 826952977}
   b_lineDeletionCompletion: 0
@@ -18452,6 +18451,135 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 2110704299}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2111414073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111414075}
+  - component: {fileID: 2111414074}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!120 &2111414074
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111414073}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.20000002, g: 0.3137255, b: 0.8431373, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 1, g: 1, b: 1, a: 0}
+      key3: {r: 0.69803923, g: 0.6862745, b: 0.15686275, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 16384
+      ctime2: 49151
+      ctime3: 65535
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 4
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+--- !u!4 &2111414075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111414073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 947.0522, y: 579.78394, z: -24.891281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2117583799
 PrefabInstance:
   m_ObjectHideFlags: 0
