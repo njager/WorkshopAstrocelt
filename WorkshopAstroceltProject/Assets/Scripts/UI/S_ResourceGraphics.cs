@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class S_ResourceGraphics : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
         UpdateResourceBarGraphics();
+        ConstellationTracker();
     }
 
     /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -46,5 +49,23 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         // Set resource bar text
         sc_UIManager.SetPlayerResourceHealthText(g_global.g_playerAttributeSheet.GetPlayerHealthValue(), g_global.g_playerAttributeSheet.GetPlayerMaxHealthValue());
+    }
+
+    /// <summary>
+    /// Constellation Tracker UI function 
+    /// -THOMAN
+    /// </summary>
+    public void ConstellationTracker()
+    {
+        int current = g_global.g_ConstellationManager.ls_curConstellation.Count();
+        if (current <= 0)
+        {
+            g_global.g_UIManager.GetConstellationUI().text = "" + 0 + "/7";           
+        }
+        else
+        {
+            g_global.g_UIManager.GetConstellationUI().text = "" + (current - 1) + "/7";
+        }
+        
     }
 }
