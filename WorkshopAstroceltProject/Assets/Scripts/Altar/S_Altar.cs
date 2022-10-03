@@ -219,11 +219,11 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckFirstCardball()
     {
-        Debug.Log("We made it here for the star bool check");
+        //Debug.Log("We made it here for the star bool check");
         //yield return new S_WaitForEnergyTextDecrement();
         if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
-            Debug.Log("Made Card");
+            //Debug.Log("Made Card");
 
             // Lock Spawning
             SetCardBeingActiveBool(false);
@@ -390,6 +390,7 @@ public class S_Altar : MonoBehaviour
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
             {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
@@ -433,6 +434,7 @@ public class S_Altar : MonoBehaviour
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
             {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
@@ -496,6 +498,7 @@ public class S_Altar : MonoBehaviour
     /// <param name="_truthValue"></param>
     public void SetCardBeingActiveBool(bool _truthValue)
     {
+        Debug.Log("Card activity has been changed to..." + _truthValue.ToString());
         cd_b_cardIsActive = _truthValue;
     }
 

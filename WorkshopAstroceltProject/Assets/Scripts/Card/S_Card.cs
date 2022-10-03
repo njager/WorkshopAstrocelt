@@ -321,7 +321,7 @@ public class S_Card : MonoBehaviour
     {
         if (c_b_noEffect == true)
         {
-            Debug.Log("DEBUG: No status effects for the given card!");
+            //Debug.Log("DEBUG: No status effects for the given card!");
             return;
         }
         else
@@ -385,7 +385,7 @@ public class S_Card : MonoBehaviour
         if (_character.GetComponent<S_Enemy>() != null) // If the given character was an enemy
         {
             S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
-            Debug.Log(_givenEnemy.e_i_enemyCount);
+            //Debug.Log(_givenEnemy.e_i_enemyCount);
             if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
@@ -517,12 +517,7 @@ public class S_Card : MonoBehaviour
                     }
                 }
 
-                // Unpause IEnumerator
-                if (g_global.g_ls_p_playerHand.Count > 0)
-                {
-                    Debug.Log("Triggered the bool");
-                    g_global.g_altar.SetCardBeingActiveBool(true);
-                }
+                g_global.g_altar.SetCardBeingActiveBool(true);
             }
             else
             {
@@ -553,7 +548,7 @@ public class S_Card : MonoBehaviour
                 // Unpause IEnumerator
                 if (g_global.g_ls_p_playerHand.Count > 0)
                 {
-                    Debug.Log("Triggered the bool");
+                    //Debug.Log("Triggered the bool");
                     g_global.g_altar.SetCardBeingActiveBool(true);
                 }
             }

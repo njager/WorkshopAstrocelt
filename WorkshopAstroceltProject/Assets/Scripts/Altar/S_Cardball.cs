@@ -191,7 +191,7 @@ public class S_Cardball : MonoBehaviour
 
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        Debug.Log("Where does this happen from");
+        //Debug.Log("Where does this happen from");
         yield return StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
         //StartCoroutine(CarballDestroyVFX());
     }
@@ -208,7 +208,6 @@ public class S_Cardball : MonoBehaviour
 
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        Debug.Log("Where does this happen from");
         yield return StartCoroutine(g_global.g_altar.MoveAndDeleteAllCardBalls(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
         //StartCoroutine(CarballDestroyVFX())
     }
