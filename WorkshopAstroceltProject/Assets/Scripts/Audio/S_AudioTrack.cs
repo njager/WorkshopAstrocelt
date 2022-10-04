@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class S_AudioTrack : MonoBehaviour
 {
+    private S_Global g_global;
+
     [Header("Scene Music")]
     [SerializeField] public bool b_eventScene;
 
     [SerializeField] public bool b_combatScene;
+
+    [SerializeField] public bool b_bossScene;
 
     [Header("Time Interval")]
     [SerializeField] public float f_intensityBreakpoint;
@@ -16,8 +20,19 @@ public class S_AudioTrack : MonoBehaviour
 
     public GameObject _sceneAudio;
 
-    void Awake()
+    public int i_playerHealth;
+
+    void Start()
     {
+        g_global = S_Global.Instance;
+    }
+
+    void Update()
+    {
+        f_timeInScene += Time.deltaTime;
+
+        i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
+
         if (b_eventScene)
         {
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
@@ -26,13 +41,15 @@ public class S_AudioTrack : MonoBehaviour
         else if (b_combatScene)
         {
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+            emitter.SetParameter("PlayerHealth", (float)i_playerHealth);
+            emitter.SetParameter("TimeInScene", f_timeInScene);
+        }
+        else if (b_bossScene)
+        {
+            var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+            emitter.SetParameter("PlayerHealth", (float)i_playerHealth);
             emitter.SetParameter("TimeInScene", f_timeInScene);
         }
         else { Debug.Log("No scene music selected"); }
-    }
-
-    void Update()
-    {
-        f_timeInScene += Time.deltaTime;
     }
 }
