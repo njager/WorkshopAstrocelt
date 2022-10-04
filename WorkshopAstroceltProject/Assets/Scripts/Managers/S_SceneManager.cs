@@ -9,6 +9,10 @@ public class S_SceneManager : MonoBehaviour
     public int i_sceneIndex;
 
 
+    [Header("Final Scene Bool")]
+    public bool b_finalScene = false;
+
+
 
     /// <summary>
     /// Used to by end and lose screens to bring back to the first scene

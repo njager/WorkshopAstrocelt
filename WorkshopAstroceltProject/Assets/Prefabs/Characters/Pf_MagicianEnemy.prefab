@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr_enemySprite: {fileID: 3738832767961254711}
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
   e_str_enemyName: Clurichaun
   e_str_enemyType: Magician
@@ -60,6 +61,12 @@ MonoBehaviour:
   e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 1
   cardball: {fileID: 0}
+  idleSprite: {fileID: 21300000, guid: 5b0944cee76404140812b7783bba1681, type: 3}
+  attackSprite: {fileID: 21300000, guid: 711d1b1a78f2c3f4f87cc7a77ced78b5, type: 3}
+  blockSprite: {fileID: 21300000, guid: 95d90e3d9e226ec4f9297ce9a5843516, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 56e70d165425e144ca7ba148467734d8, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: 38f49ffb7cd69fe44a505a6d8b8fb464, type: 3}
+  victorySprite: {fileID: 21300000, guid: 611fa86e8f0f8fb4a9f9b68ea258ccd3, type: 3}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +136,8 @@ MonoBehaviour:
   e_b_shocked: 0
   e_enemy: {fileID: 0}
   e_pe_blood: {fileID: 6734889760687528100}
-  e_a_animator: {fileID: 1358277532405405128}
+  e_a_AttackAnimator: {fileID: 1358277532405405128}
+  e_a_DamagedAnimator: {fileID: 1358277532405405128}
   e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
@@ -144,8 +152,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 25, y: 90}
+  m_Offset: {x: 10, y: 0}
+  m_Size: {x: 50, y: 90}
   m_Direction: 0
 --- !u!50 &5554066982219315847
 Rigidbody2D:

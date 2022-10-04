@@ -21,7 +21,7 @@ public class S_WaitForConstellationFinish : CustomYieldInstruction
     {
         get
         {
-            return !g_global.g_ConstellationManager.GetStarLockOutBool();
+            return g_global.g_ConstellationManager.GetStarLockOutBool();
         }
     }
 

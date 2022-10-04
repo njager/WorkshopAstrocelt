@@ -191,7 +191,7 @@ public class S_Altar : MonoBehaviour
         {
             //wait and then remove the cardball from the list and delete it from the game
             yield return new WaitForSeconds(0.25f);
-            StartCoroutine(_cardball.DeleteCardball());
+            StartCoroutine(_cardball.DeleteAllCardballs());
         }
 
         //clear the player hand since none of these cards were played
@@ -219,11 +219,11 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckFirstCardball()
     {
-        Debug.Log("We made it here for the star bool check");
+        //Debug.Log("We made it here for the star bool check");
         //yield return new S_WaitForEnergyTextDecrement();
         if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
         {
-            Debug.Log("Made Card");
+            //Debug.Log("Made Card");
 
             // Lock Spawning
             SetCardBeingActiveBool(false);
@@ -247,6 +247,7 @@ public class S_Altar : MonoBehaviour
 
             g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
 
+
             //turn the cardball into a card and move over the rest of the cardballs
             cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
 
@@ -254,6 +255,8 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
+            //clear energy and reset the bool
+            g_global.g_energyManager.ClearEnergy();
             g_global.g_ConstellationManager.SetStarLockOutBool(true);
         }
     }
@@ -271,12 +274,12 @@ public class S_Altar : MonoBehaviour
         {
             if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
             {
-                Debug.Log("Second cardball was valid");
+                //Debug.Log("Second cardball was valid");
                 return true;
             }
             else
             {
-                Debug.Log("Where do you lead me");
+                //Debug.Log("Where do you lead me");
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 return false;
             }
@@ -341,7 +344,7 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEBUG: No more cardballs to spawn!");
+            //Debug.Log("DEBUG: No more cardballs to spawn!");
         }
 
         if (c_i_movementInt == 5)
@@ -379,14 +382,61 @@ public class S_Altar : MonoBehaviour
         }
         else if (_activeCard == false)
         {
-            Debug.Log("Gonna wait for card play");
+            //Debug.Log("Gonna wait for card play");
             yield return new S_WaitForCardPlay();
 
             yield return null;
+
+            //Debug.Log("Do I reach here");
             Destroy(_cardball);
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
             {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                //Debug.Log("Attempting to delay spawn of second card after a first");
+                yield return StartCoroutine(WaitForCardballMovementToPlay());
+            }
+            else
+            {
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                g_global.g_energyManager.ClearEnergy();
+                //Debug.Log("MoveCardballPrefabs() Called");
+                yield return StartCoroutine(MoveCardballPrefabs());
+            }
+        }
+    }
+
+
+
+    /// <summary>
+    /// Used so the cardball can't delete itself too early and and so we can trigger proper moving of the cardballs
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator MoveAndDeleteAllCardBalls(GameObject _cardball, bool _activeCard)
+    {
+        // Hide, but don't delete just yet
+        _cardball.GetComponent<S_Cardball>().c_redGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_blueGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
+        _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
+
+        if (_activeCard == true)
+        {
+            yield return null;
+            Destroy(_cardball);
+        }
+        else if (_activeCard == false)
+        {
+            yield return null;
+
+            Debug.Log("Do I reach here");
+            Destroy(_cardball);
+
+            if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
+            {
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
@@ -406,7 +456,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator WaitForCardballMovementToPlay()
     {
-        Debug.Log("Waiting to make a card");
+        //Debug.Log("Waiting to make a card");
 
         c_i_movementInt -= 1;
         yield return StartCoroutine(MoveCardballPrefabs());
@@ -450,6 +500,7 @@ public class S_Altar : MonoBehaviour
     /// <param name="_truthValue"></param>
     public void SetCardBeingActiveBool(bool _truthValue)
     {
+        //Debug.Log("Card activity has been changed to..." + _truthValue.ToString());
         cd_b_cardIsActive = _truthValue;
     }
 

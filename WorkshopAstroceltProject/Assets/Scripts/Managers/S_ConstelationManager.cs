@@ -20,7 +20,7 @@ public class S_ConstelationManager : MonoBehaviour
     private bool b_makingConstellation;
 
     //Bool for Lockout
-    public bool b_starLockout;
+    public bool b_starLockout = false;
 
     [Header("Previos star and location")]
     public S_StarClass s_previousStar;
@@ -54,7 +54,6 @@ public class S_ConstelationManager : MonoBehaviour
         //fetch global, get set previous as null, and start with star lockout
         g_global = S_Global.Instance;
         s_previousStar = s_nullStarInst;
-        b_starLockout = false;
 
         // Get popups to not move at first
         s_b_popupMove = false; 
@@ -103,15 +102,21 @@ public class S_ConstelationManager : MonoBehaviour
 
         if (_star.starType == "Node")
         {
+            S_NodeStar _node = _star.gameObject.GetComponent<S_NodeStar>();
+
             if (b_makingConstellation)
             {
                 //finsih making the constellation
+
+                _node.SetNodeClicked(false);
                 FinishConstellation(_star);
             }
             else
             {
                 //now that the node is added, change the bool
                 b_makingConstellation = true;
+                _node.NodeClickedColor();
+                _node.SetNodeClicked(true);
             }
         }
         //check if the length is greater than the max length, sub 1 for the two node stars
@@ -217,7 +222,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         yield return new S_WaitForCardballSpawn();
         c_cardballsSpawned = true;
-        b_starLockout = true;
+        SetStarLockOutBool(true);
     }
 
     /// <summary>
@@ -236,6 +241,8 @@ public class S_ConstelationManager : MonoBehaviour
             }
             else //if you have not started a constellation
             {
+                _starN.s_star.m_nextLine = null;
+
                 //set the sound to active and reset the star sound
                 _starSoundPhase1.SetActive(true);
                 i_starSound = 0;
@@ -283,7 +290,7 @@ public class S_ConstelationManager : MonoBehaviour
     public void FinishConstellation(S_StarClass _node)
     {
         //lock out stars while calculating
-        b_starLockout = false;
+        SetStarLockOutBool(false);
 
         //set up the energy
         int _energy = ls_curConstellation.Count() - 2;
@@ -396,6 +403,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_boolState"></param>
     public void SetStarLockOutBool(bool _boolState)
     {
+        //Debug.Log("Star lockout bool is..." + _boolState.ToString());
         b_starLockout = _boolState;
     }
 

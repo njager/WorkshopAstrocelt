@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
-  m_Name: Pierce 1
+  m_Name: War Cry
   m_EditorClassIdentifier: 
-  CardName: Pierce
-  HeaderText: Pierce
-  BodyText: Deal 30 damage
+  CardName: War Cry
+  HeaderText: War Cry
+  BodyText: Deal 55 damage
   FlavorText: 
-  ColorString: white
-  EnergyCost: 3
-  DamageValue: 30
+  ColorString: blue
+  EnergyCost: 5
+  DamageValue: 55
   ShieldValue: 0
   EffectValue1: 0
   EffectValue2: 0
@@ -29,18 +29,18 @@ MonoBehaviour:
   IDForStatusEffectOne: 0
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
-  CardRarity: 0
+  CardRarity: 1
   AffectsNone: 0
   AffectsPlayer: 0
   Affects1Character: 1
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
   PlayerEffect: 0
-  EnemyEffect: 0
+  EnemyEffect: 1
   RedColorType: 0
-  BlueColorType: 0
+  BlueColorType: 1
   YellowColorType: 0
-  WhiteColorType: 1
+  WhiteColorType: 0
   AttackEffect: 1
   ShieldEffect: 0
   UniqueEffect: 0
@@ -58,5 +58,5 @@ MonoBehaviour:
   CardArtAsset: {fileID: 0}
   PhysicalOrMagicalBoolForShield: 0
   PhysicalOrMagicalBoolForAttack: 1
-  CardDatabaseID: 17
+  CardDatabaseID: 0
   ExtraInfo: 
