@@ -104,7 +104,7 @@ public class S_EnergyManager : MonoBehaviour
     {
         //make sure the colors match before using energy
         //remove the card if it actually gets played
-        Debug.Log("Energy for card of " + _color + ": " + _energy.ToString());
+        //Debug.Log("Energy for card of " + _color + ": " + _energy.ToString());
         if (_color == "red" && i_redEnergy - _energy >= 0) 
         {
             i_redEnergy -= _energy;
@@ -205,7 +205,7 @@ public class S_EnergyManager : MonoBehaviour
     public bool CheckEnergy(int _energy, string _color)
 
     {
-        Debug.Log("Energy Check for card of " + _color + ": " + _energy.ToString());
+        //Debug.Log("Energy Check for card of " + _color + ": " + _energy.ToString());
         //make sure the colors match before using energy
         //remove the card if it actually gets played
         if (_color == "red" && i_redEnergy - _energy >= 0)

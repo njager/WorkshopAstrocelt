@@ -21,6 +21,7 @@ public class S_WaitForCardPlay : CustomYieldInstruction
     {
         get
         {
+            //Debug.Log("Does this show up?");
             return !g_global.g_altar.GetCardBeingActiveBool();
         }
     }

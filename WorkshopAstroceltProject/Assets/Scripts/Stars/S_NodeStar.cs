@@ -10,8 +10,11 @@ public class S_NodeStar : MonoBehaviour
 
     private SpriteRenderer s_starSprite;
 
+    private bool b_nodeClicked = false;
+
     [Header("Star Colors")]
     public Color c_starHoverColor;
+    public Color c_clickedColor;
     public GameObject s_starGraphic;
 
     /// <summary>
@@ -40,7 +43,30 @@ public class S_NodeStar : MonoBehaviour
 
     private void OnMouseExit()
     {
-        //change the color to the start color when mouse leaves
+        if (GetNodeClicked())
+        {
+            s_starSprite.color = c_clickedColor;
+        }
+        else
+        {
+            //change the color to the start color when mouse leaves
+            s_starSprite.color = c_starStartColor;
+        }
+    }
+
+    /// <summary>
+    /// Sets the color of the star to be a highlighted color
+    /// </summary>
+    public void NodeClickedColor()
+    {
+        s_starSprite.color = c_clickedColor;
+    }
+
+    /// <summary>
+    /// Set the star to its origional color
+    /// </summary>
+    public void NodeStarColor()
+    {
         s_starSprite.color = c_starStartColor;
     }
 
@@ -60,5 +86,19 @@ public class S_NodeStar : MonoBehaviour
             Debug.Log("Please finish play before drawing again.");
             return;
         }
+    }
+
+    //Getters\\
+
+    public bool GetNodeClicked()
+    {
+        return b_nodeClicked;
+    }
+
+    //Setters\\
+
+    public void SetNodeClicked(bool _bool)
+    {
+        b_nodeClicked = _bool;
     }
 }

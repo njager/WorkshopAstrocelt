@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
-  m_Name: Dig In 1
+  m_Name: Ocean Vein
   m_EditorClassIdentifier: 
-  CardName: Dig In
-  HeaderText: Dig In
-  BodyText: Deal 30 Damage. Makes Player Resistant.
-  FlavorText: '"Shrug off blows with ease!"'
-  ColorString: red
-  EnergyCost: 4
-  DamageValue: 30
+  CardName: Ocean Vein
+  HeaderText: Ocean Vein
+  BodyText: Deal 50 damage, apply acid
+  FlavorText: 
+  ColorString: blue
+  EnergyCost: 8
+  DamageValue: 50
   ShieldValue: 0
   EffectValue1: 0
   EffectValue2: 0
   EffectValue3: 0
-  TurnCountForStatusEffect1: 1
+  TurnCountForStatusEffect1: 0
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
-  IDForStatusEffectOne: 4
+  IDForStatusEffectOne: 0
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
   CardRarity: 1
@@ -35,10 +35,10 @@ MonoBehaviour:
   Affects1Character: 1
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
-  PlayerEffect: 1
-  EnemyEffect: 0
-  RedColorType: 1
-  BlueColorType: 0
+  PlayerEffect: 0
+  EnemyEffect: 1
+  RedColorType: 0
+  BlueColorType: 1
   YellowColorType: 0
   WhiteColorType: 0
   AttackEffect: 1
@@ -46,17 +46,17 @@ MonoBehaviour:
   UniqueEffect: 0
   NoEffect: 0
   BleedStatusEffect: 0
-  AcidStatusEffect: 0
+  AcidStatusEffect: 1
   BurnStatusEffect: 0
-  ResistStatusEffect: 1
+  ResistStatusEffect: 0
   SiphonStatusEffect: 0
   StunStatusEffect: 0
   DrawStatusEffect: 0
   FralityStatusEffect: 0
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
-  CardArtAsset: {fileID: 21300000, guid: 5c9bb49eb883db54581c13adf2132c10, type: 3}
+  CardArtAsset: {fileID: 0}
   PhysicalOrMagicalBoolForShield: 0
   PhysicalOrMagicalBoolForAttack: 1
-  CardDatabaseID: 8
+  CardDatabaseID: 0
   ExtraInfo: 

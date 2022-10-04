@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response3b
   m_EditorClassIdentifier: 
-  s_responseText: They deserve no such honor.
+  s_responseText: 'What disgusting creatures. Maybe they have a few interesting trinkets
+    on them! [Gain a ritual: HIGH]'
   r_reward:
     i_value: 6
     s_rewardString: You've gained a ritual
     b_boneReward: 0
     b_healthReward: 0
     b_cardReward: 1
+    i_failureValue: 0
+    b_boneFailure: 0
+    b_healthFailure: 0
+    b_cardFailure: 0
   f_failureChance: 0
   s_failureText: 

@@ -30,9 +30,6 @@ public class S_PlayerState : MonoBehaviour
     [Header("Status Effect Stores")]
     public float p_f_currentDamageRateForBleed;
 
-    [Header("Final Scene Bool")]
-    public bool b_finalScene = false;
-
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -222,27 +219,29 @@ public class S_PlayerState : MonoBehaviour
     /// </summary>
     public void PlayerWins()
     {
-        //Player won so trigger win text and reset canvas
-        g_global.g_UIManager.cn_characterCanvas.SetActive(false);
-        g_global.g_UIManager.cn_resetCanvas.SetActive(true);
-        g_global.g_UIManager.winText.SetActive(true);
-
-        g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
-        Debug.Log("Did this hit?");
-        Debug.Log(g_global.g_gameManager.i_playerHealth);
-
-        //Play win sound
-        PlaySoundWin();
-        //playerWinMusic.SetActive(false);
-
-        if (!b_finalScene)
+        if (!g_global.g_sceneManager.b_finalScene)
         {
             //go to the new scene
             g_global.g_sceneManager.ChangeScene();
         }
+        else
+        {
+            //Player won so trigger win text and reset canvas
+            g_global.g_UIManager.cn_characterCanvas.SetActive(false);
+            g_global.g_UIManager.cn_resetCanvas.SetActive(true);
+            g_global.g_UIManager.winText.SetActive(true);
 
-        // Pause The game
-        //Time.timeScale = 0f;
+            g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
+            Debug.Log("Did this hit?");
+            Debug.Log(g_global.g_gameManager.i_playerHealth);
+
+            //Play win sound
+            PlaySoundWin();
+            //playerWinMusic.SetActive(false);
+
+            // Pause The game
+            //Time.timeScale = 0f;
+        }
     }
 
     private void PlaySoundWin()

@@ -136,7 +136,7 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballToCard()
     {
-        Debug.Log("CardballToCard() called");
+        //Debug.Log("CardballToCard() called");
 
         // Determine transform
         Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
@@ -191,13 +191,31 @@ public class S_Cardball : MonoBehaviour
 
         //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
+        //Debug.Log("Where does this happen from");
         yield return StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
         //StartCoroutine(CarballDestroyVFX());
     }
 
+
+    /// <summary>
+    /// Deletes this cardball but is called when all cardballs get deleted
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator DeleteAllCardballs()
+    {
+        //Debug.Log("DEBUG: Cardball Deletion Triggered");
+        g_global.g_ls_cardBallPrefabs.Remove(this);
+
+        //add the card to the grave
+        g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
+        yield return StartCoroutine(g_global.g_altar.MoveAndDeleteAllCardBalls(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
+        //StartCoroutine(CarballDestroyVFX())
+    }
+
     public void TrueDeleteCardball() 
     {
-        Destroy(this);
+        Debug.Log("True Delete");
+        Destroy(this.gameObject);
     }
 
     /// <summary>

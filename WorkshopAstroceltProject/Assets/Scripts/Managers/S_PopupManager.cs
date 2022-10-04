@@ -24,7 +24,7 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] Vector3 e_v3_enemy3HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy4HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy5HealthBarPosition;
-    [SerializeField] Transform v3_vfxContainer; 
+    [SerializeField] public Transform v3_vfxContainer; 
 
     [Header("Prefabs")]
     public GameObject textPopupPrefab;
@@ -42,8 +42,13 @@ public class S_PopupManager : MonoBehaviour
     public bool b_visualPopupFinished;
 
     [Header("Int test value")]
-
     public int i_popupUpClearInt;
+
+    [Header("Particle effects")]
+    [SerializeField] ParticleSystem pe_redParticle;
+    [SerializeField] ParticleSystem pe_blueParticle;
+    [SerializeField] ParticleSystem pe_yellowParticle;
+
 
     //get the transform component of the text
     private void Awake()
@@ -173,15 +178,35 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
+        bool _red = false;
+        bool _blue = false;
+        bool _yellow = false;
         yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
+            if(_starPopup.b_isBluePopup) { _blue = true; }
+            if (_starPopup.b_isRedPopup) { _red = true; }
+            if (_starPopup.b_isYellowPopup) { _yellow = true; }
+
             _starPopup.MovePopupToEnergyTracker();
         }
         b_popupClear = false;
         i_popupUpClearInt = g_global.g_ls_starPopup.Count;
         StartCoroutine(ClearPopupsForRound());
+
+        if (_blue)
+        {
+            pe_blueParticle.Play();
+        }
+        else if (_red)
+        {
+            pe_redParticle.Play();
+        }
+        else if (_yellow)
+        {
+            pe_yellowParticle.Play();
+        }
     }
 
     /// <summary>
@@ -191,7 +216,10 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearAllPopups()
     {
-        foreach(S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
+
+        Debug.Log("clear popup");
+
+        foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             _starPop.DeletePopup();
         }

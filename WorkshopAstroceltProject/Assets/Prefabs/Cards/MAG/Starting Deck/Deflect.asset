@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
-  m_Name: Wall of Wonder 1
+  m_Name: Deflect
   m_EditorClassIdentifier: 
-  CardName: Wall of Wonder
-  HeaderText: Wall of Wonder
-  BodyText: Gain 50 shield
+  CardName: Deflect
+  HeaderText: Deflect
+  BodyText: Gives 25 Shields.
   FlavorText: 
-  ColorString: yellow
-  EnergyCost: 5
+  ColorString: blue
+  EnergyCost: 2
   DamageValue: 0
-  ShieldValue: 50
+  ShieldValue: 25
   EffectValue1: 0
   EffectValue2: 0
   EffectValue3: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   IDForStatusEffectOne: 0
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
-  CardRarity: 0
+  CardRarity: 1
   AffectsNone: 0
   AffectsPlayer: 1
   Affects1Character: 0
@@ -38,8 +38,8 @@ MonoBehaviour:
   PlayerEffect: 0
   EnemyEffect: 0
   RedColorType: 0
-  BlueColorType: 0
-  YellowColorType: 1
+  BlueColorType: 1
+  YellowColorType: 0
   WhiteColorType: 0
   AttackEffect: 0
   ShieldEffect: 1
@@ -55,8 +55,8 @@ MonoBehaviour:
   FralityStatusEffect: 0
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
-  CardArtAsset: {fileID: 0}
+  CardArtAsset: {fileID: 21300000, guid: 26019832f86b0784f8a287ba9fc00d0e, type: 3}
   PhysicalOrMagicalBoolForShield: 1
   PhysicalOrMagicalBoolForAttack: 0
-  CardDatabaseID: 24
+  CardDatabaseID: 7
   ExtraInfo: 
