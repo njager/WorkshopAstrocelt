@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response3a
   m_EditorClassIdentifier: 
-  s_responseText: A new life awaits them in the otherworld.
+  s_responseText: 'Even these corrupted creatures had a life. They deserve some rights
+    for whereever they are going [Gain 10 health: HIGH]'
   r_reward:
     i_value: 10
-    s_rewardString: 'You feel rejuvinated from the ceremony. '
+    s_rewardString: You feel rejuvinated from the ceremony. [Gained 10 health]
     b_boneReward: 0
     b_healthReward: 1
     b_cardReward: 0
+    i_failureValue: 0
+    b_boneFailure: 0
+    b_healthFailure: 0
+    b_cardFailure: 0
   f_failureChance: 0
   s_failureText: 

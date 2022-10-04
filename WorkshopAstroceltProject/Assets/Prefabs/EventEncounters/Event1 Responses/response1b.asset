@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response1b
   m_EditorClassIdentifier: 
-  s_responseText: A local could be willing to pay for these.
+  s_responseText: 'Their beautiful, perhaps a local herbalist would be willing to
+    trade some knowledge for them. [Gain an Uncommon Card: High]'
   r_reward:
     i_value: 12
     s_rewardString: You've gained a ritual
     b_boneReward: 0
     b_healthReward: 0
     b_cardReward: 1
+    i_failureValue: 0
+    b_boneFailure: 0
+    b_healthFailure: 0
+    b_cardFailure: 0
   f_failureChance: 0
   s_failureText: 

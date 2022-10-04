@@ -54,32 +54,31 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EndTurn()
     {
-        //Debug.Log("pressed");
-        if (g_global.g_altar.GetCardballsSpawnedBool() == true && g_global.g_ConstellationManager.GetStarLockOutBool() == true)
+        if (g_global.g_b_enemyTurn == true)
         {
-            //set here to prevent queueing up end turns
-            //g_global.g_altar.Set_b_spawningCardballs(true);
-
-            g_global.g_altar.SetCardballsSpawnedBool(false);
-
-            g_global.g_ConstellationManager.SetStarLockOutBool(false);
-
-
-            if (g_global.g_b_enemyTurn == true)
-            {
-                Debug.Log("Not your turn!");
-                return;
-            }
-            else
-            {
-                g_global.g_ConstellationManager.DeleteWholeCurConstellation();
-                StartCoroutine(EnemyPhase()); //Then change the enemies state
-            }
+            Debug.Log("Not your turn!");
+            return;
         }
         else
         {
-            Debug.Log("pressed when spawning cardballs");
-            return;
+            //Debug.Log("pressed");
+            if (g_global.g_altar.GetCardballsSpawnedBool() == true && g_global.g_ConstellationManager.GetStarLockOutBool() == true)
+            {
+                //set here to prevent queueing up end turns
+                //g_global.g_altar.Set_b_spawningCardballs(true);
+
+                g_global.g_altar.SetCardballsSpawnedBool(false);
+
+                g_global.g_ConstellationManager.SetStarLockOutBool(false);
+
+                g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+                StartCoroutine(EnemyPhase()); //Then change the enemies state
+            }
+            else
+            {
+                Debug.Log("pressed when spawning cardballs");
+                return;
+            }
         }
     }
 

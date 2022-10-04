@@ -401,7 +401,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_boolState"></param>
     public void SetStarLockOutBool(bool _boolState)
     {
-        Debug.Log("Star lockout bool is..." + _boolState.ToString());
+        //Debug.Log("Star lockout bool is..." + _boolState.ToString());
         b_starLockout = _boolState;
     }
 

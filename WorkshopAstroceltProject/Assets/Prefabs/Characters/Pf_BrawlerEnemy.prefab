@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr_enemySprite: {fileID: 3755594231986357936}
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
   e_str_enemyName: Bodach
   e_str_enemyType: Brawler
@@ -61,6 +62,12 @@ MonoBehaviour:
   e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 1
   cardball: {fileID: 0}
+  idleSprite: {fileID: 21300000, guid: d390ba9110ea7d14e92f09df24d94f0e, type: 3}
+  attackSprite: {fileID: 21300000, guid: d1cfab18ce130954dbb483dba3d9986a, type: 3}
+  blockSprite: {fileID: 21300000, guid: 6524b2ebdcdfae143ac6d5e51eaac9dc, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 7fdcd9864801a4740ab2ad7aab4f63e1, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: fbc1c58ad0a58834cb39cec395aaf894, type: 3}
+  victorySprite: {fileID: 21300000, guid: 4c308d999c6292947ad77510719b5cb6, type: 3}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +137,8 @@ MonoBehaviour:
   e_b_shocked: 0
   e_enemy: {fileID: 0}
   e_pe_blood: {fileID: 8487435199807284032}
-  e_a_animator: {fileID: 46343389639844625}
+  e_a_AttackAnimator: {fileID: 46343389639844625}
+  e_a_DamagedAnimator: {fileID: 46343389639844625}
   e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
@@ -5352,9 +5360,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 798c70bee117f0a4690738fbf8282979, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d390ba9110ea7d14e92f09df24d94f0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3.2, y: 6.08}
