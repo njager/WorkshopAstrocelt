@@ -136,7 +136,7 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballToCard()
     {
-        Debug.Log("CardballToCard() called");
+        //Debug.Log("CardballToCard() called");
 
         // Determine transform
         Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;

@@ -10,6 +10,8 @@ public class S_Enemy : MonoBehaviour
 {
     private S_Global g_global;
 
+    public SpriteRenderer sr_enemySprite;
+
     public S_EnemyAttributes e_sc_enemyAttributes;
 
     [Header("Real name identifier")]
@@ -37,6 +39,14 @@ public class S_Enemy : MonoBehaviour
 
     //getting cardball object
     public GameObject cardball;
+
+    [Header("Sprite Assets")]
+    public Sprite idleSprite;
+    public Sprite attackSprite;
+    public Sprite blockSprite;
+    public Sprite damagedSprite;
+    public Sprite defeatedSprite;
+    public Sprite victorySprite;
 
     void Awake()
     {
@@ -99,6 +109,7 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_damageVal"></param>
     public void EnemyAttacked(string _enemyType, int _damageValue) 
     {
+        Debug.Log("Enemy takes damage");
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
@@ -107,7 +118,7 @@ public class S_Enemy : MonoBehaviour
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //The enemy has no sheilds
                 {
                     e_sc_enemyAttributes.e_i_health -= _newDamageValue;
-                    e_sc_enemyAttributes.e_pe_blood.Play();
+                    StartCoroutine(ChangeDamageSprite());
                     Debug.Log("Enemy Attacked!");
                 }
                 else //enemy has shields
@@ -121,7 +132,7 @@ public class S_Enemy : MonoBehaviour
                             e_sc_enemyAttributes.SetEnemyShield(0);
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                        e_sc_enemyAttributes.e_pe_blood.Play();
+                        StartCoroutine(ChangeDamageSprite());
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -136,8 +147,9 @@ public class S_Enemy : MonoBehaviour
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
-                    e_sc_enemyAttributes.e_pe_blood.Play();
-                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+                    //trigger the sprite change and particle effects
+
+                    StartCoroutine(ChangeDamageSprite());
                     Debug.Log("Enemy Attacked!");
                 }
                 else //enemy has shields
@@ -151,8 +163,8 @@ public class S_Enemy : MonoBehaviour
                             e_sc_enemyAttributes.SetEnemyShield(0);
                         }
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                        e_sc_enemyAttributes.e_pe_blood.Play();
-                        e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+
+                        StartCoroutine(ChangeDamageSprite());
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -168,8 +180,9 @@ public class S_Enemy : MonoBehaviour
             if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
             {
                 e_sc_enemyAttributes.e_i_health -= _damageValue;
-                e_sc_enemyAttributes.e_pe_blood.Play();
-                e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+
+                //trigger the sprite change and particle effects
+                StartCoroutine(ChangeDamageSprite());
                 Debug.Log("Enemy Attacked!");
             }
             else //enemy has shields
@@ -183,8 +196,9 @@ public class S_Enemy : MonoBehaviour
                         e_sc_enemyAttributes.SetEnemyShield(0);
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-                    e_sc_enemyAttributes.e_pe_blood.Play();
-                    e_sc_enemyAttributes.e_a_animator.Play("Damaged");
+
+                    //trigger the sprite change and particle effects
+                    StartCoroutine(ChangeDamageSprite());
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else
@@ -210,7 +224,10 @@ public class S_Enemy : MonoBehaviour
     {
         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() + _shieldVal);
 
-        if(_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
+        //change the block sprite
+        StartCoroutine(ChangeBlockSprite());
+
+        if (_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
         }
@@ -370,7 +387,8 @@ public class S_Enemy : MonoBehaviour
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
                 //play enemy animation
-                g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).e_a_animator.Play("attack");
+                //trigger the sprite change and particle effects
+                StartCoroutine(ChangeAttackSprite());
 
                 g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyDamageValue());
 
@@ -486,5 +504,74 @@ public class S_Enemy : MonoBehaviour
     private void SetEnemyShieldText()
     {
         g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
+    }
+
+
+    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Animation Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Change player sprite to attack sprite
+    ///  - "Riley"
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeAttackSprite()
+    {
+        Debug.Log("Attack Here");
+        sr_enemySprite.sprite = attackSprite;
+
+        //Debug.Log("Player will animate");
+
+        e_sc_enemyAttributes.e_a_AttackAnimator.Play("attack");
+
+        //Debug.Log("Player will wait for 2 seconds");
+
+        yield return new WaitForSeconds(2f);
+
+        //Debug.Log("Player will change to idle");
+
+        sr_enemySprite.sprite = idleSprite;
+
+
+        Debug.Log("Attack After");
+    }
+
+    /// <summary>
+    /// Change player sprite to block sprite
+    ///  - "Riley"
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeBlockSprite()
+    {
+        Debug.Log("Block Here");
+        sr_enemySprite.sprite = blockSprite;
+
+        yield return new WaitForSeconds(2);
+
+        sr_enemySprite.sprite = idleSprite;
+
+        Debug.Log("Block After");
+    }
+
+    /// <summary>
+    /// Change player sprite to damaged sprite
+    ///  - "Riley"
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeDamageSprite()
+    {
+        Debug.Log("Damaged Here");
+        e_sc_enemyAttributes.e_pe_blood.Play();
+
+        sr_enemySprite.sprite = damagedSprite;
+
+        e_sc_enemyAttributes.e_a_AttackAnimator.Play("Damaged");
+
+        yield return new WaitForSeconds(2);
+
+        Debug.Log("Damaged After");
+
+        sr_enemySprite.sprite = idleSprite;
     }
 }

@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr_enemySprite: {fileID: 3755594231986357936}
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
   e_str_enemyName: Bananach
   e_str_enemyType: RealmWalker
@@ -61,6 +62,12 @@ MonoBehaviour:
   e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 1
   cardball: {fileID: 0}
+  idleSprite: {fileID: 21300000, guid: 2c2d4c4e40ba242438dba441e996e2df, type: 3}
+  attackSprite: {fileID: 21300000, guid: 23d425b15673e9546aecc4799d520aba, type: 3}
+  blockSprite: {fileID: 21300000, guid: d8cd071544e941c4d9357e03e0adbd00, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 6621791a2bef18b4ea0cc66f01767f85, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: fd2beceb32ba8c54599955af46e8c931, type: 3}
+  victorySprite: {fileID: 21300000, guid: dab16504a96e44a4daf6d3afe4b95103, type: 3}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +137,8 @@ MonoBehaviour:
   e_b_shocked: 0
   e_enemy: {fileID: 0}
   e_pe_blood: {fileID: 8487435199807284032}
-  e_a_animator: {fileID: 46343389639844625}
+  e_a_AttackAnimator: {fileID: 46343389639844625}
+  e_a_DamagedAnimator: {fileID: 46343389639844625}
   e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
@@ -5352,7 +5360,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6621791a2bef18b4ea0cc66f01767f85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c2d4c4e40ba242438dba441e996e2df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
