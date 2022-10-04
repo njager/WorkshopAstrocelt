@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_e_moveQueue1:
   - s_action: shield
-    i_actionValue: 20
+    i_actionValue: 60
   - s_action: ability
     i_actionValue: 0
   - s_action: attack
@@ -97,7 +97,7 @@ MonoBehaviour:
   - s_action: attack
     i_actionValue: 65
   - s_action: shield
-    i_actionValue: 20
+    i_actionValue: 60
   - s_action: ability
     i_actionValue: 0
   - s_action: ability
@@ -108,7 +108,7 @@ MonoBehaviour:
     i_actionValue: 0
   ls_e_moveQueue3:
   - s_action: shield
-    i_actionValue: 20
+    i_actionValue: 60
   - s_action: ability
     i_actionValue: 0
   - s_action: attack
@@ -153,8 +153,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 3}
+  m_Offset: {x: 0.5, y: 0}
+  m_Size: {x: 1.5, y: 4}
   m_Direction: 0
 --- !u!50 &5554066982219315847
 Rigidbody2D:

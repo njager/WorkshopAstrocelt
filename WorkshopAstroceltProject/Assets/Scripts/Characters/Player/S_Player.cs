@@ -270,7 +270,7 @@ public class S_Player : MonoBehaviour
 
         Debug.Log("Player will wait for 2 seconds");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2);
 
         Debug.Log("Player will change to idle");
 

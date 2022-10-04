@@ -255,6 +255,9 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
+            //clear energy and reset the bool
+            g_global.g_energyManager.ClearEnergy();
+
             g_global.g_ConstellationManager.SetStarLockOutBool(true);
         }
     }

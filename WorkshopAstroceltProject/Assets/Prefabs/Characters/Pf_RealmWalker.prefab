@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_e_moveQueue1:
   - s_action: shield
-    i_actionValue: 20
+    i_actionValue: 100
   - s_action: ability
     i_actionValue: 0
   - s_action: attack
@@ -97,7 +97,7 @@ MonoBehaviour:
   - s_action: attack
     i_actionValue: 65
   - s_action: shield
-    i_actionValue: 20
+    i_actionValue: 100
   - s_action: ability
     i_actionValue: 0
   - s_action: ability
@@ -108,7 +108,7 @@ MonoBehaviour:
     i_actionValue: 0
   ls_e_moveQueue3:
   - s_action: shield
-    i_actionValue: 20
+    i_actionValue: 100
   - s_action: ability
     i_actionValue: 0
   - s_action: attack
@@ -153,8 +153,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 3}
+  m_Offset: {x: 1, y: -1}
+  m_Size: {x: 3, y: 5}
   m_Direction: 0
 --- !u!50 &5554066982219315847
 Rigidbody2D:
@@ -5287,7 +5287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4466407970463963069}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.38, y: -0.16, z: 0}
+  m_LocalPosition: {x: 0.38, y: 1, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 4333990560368920141}

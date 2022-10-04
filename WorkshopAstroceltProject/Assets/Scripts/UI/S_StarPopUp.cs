@@ -17,9 +17,9 @@ public class S_StarPopUp : MonoBehaviour
     [SerializeField] SpriteRenderer colorImage;
 
     [Header("Color Bools")]
-    [SerializeField] bool b_isRedPopup;
-    [SerializeField] bool b_isBluePopup;
-    [SerializeField] bool b_isYellowPopup;
+    [SerializeField] public bool b_isRedPopup;
+    [SerializeField] public bool b_isBluePopup;
+    [SerializeField] public bool b_isYellowPopup;
 
     [Header("Deletion Timer Attributes")]
     [SerializeField] float f_disappearTimer;
