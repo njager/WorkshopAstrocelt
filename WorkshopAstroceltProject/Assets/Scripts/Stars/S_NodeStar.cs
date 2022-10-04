@@ -43,7 +43,7 @@ public class S_NodeStar : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (b_nodeClicked)
+        if (GetNodeClicked())
         {
             s_starSprite.color = c_clickedColor;
         }

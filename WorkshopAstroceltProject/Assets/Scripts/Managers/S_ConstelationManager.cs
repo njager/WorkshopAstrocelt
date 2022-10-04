@@ -241,6 +241,8 @@ public class S_ConstelationManager : MonoBehaviour
             }
             else //if you have not started a constellation
             {
+                _starN.s_star.m_nextLine = null;
+
                 //set the sound to active and reset the star sound
                 _starSoundPhase1.SetActive(true);
                 i_starSound = 0;
