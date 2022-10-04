@@ -123,6 +123,11 @@ public class S_DrawingManager : MonoBehaviour
 
         while (_previousStar.starType != "Null")
         {
+            if (_previousStar.starType == "Node")
+            {
+                _previousStar.gameObject.GetComponent<S_NodeStar>().NodeStarColor();
+                _previousStar.gameObject.GetComponent<S_NodeStar>().SetNodeClicked(false);
+            }
             S_StarClass _temporalStar = _previousStar.s_star.m_previous;
 
             _previousStar.s_star.m_previous = s_nullStarInst;

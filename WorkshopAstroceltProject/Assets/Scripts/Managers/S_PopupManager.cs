@@ -24,7 +24,7 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] Vector3 e_v3_enemy3HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy4HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy5HealthBarPosition;
-    [SerializeField] Transform v3_vfxContainer; 
+    [SerializeField] public Transform v3_vfxContainer; 
 
     [Header("Prefabs")]
     public GameObject textPopupPrefab;
