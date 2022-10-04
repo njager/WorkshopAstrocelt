@@ -255,6 +255,8 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
+            //clear energy and reset the bool
+            g_global.g_energyManager.ClearEnergy();
             g_global.g_ConstellationManager.SetStarLockOutBool(true);
         }
     }
@@ -272,12 +274,12 @@ public class S_Altar : MonoBehaviour
         {
             if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
             {
-                Debug.Log("Second cardball was valid");
+                //Debug.Log("Second cardball was valid");
                 return true;
             }
             else
             {
-                Debug.Log("Where do you lead me");
+                //Debug.Log("Where do you lead me");
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 return false;
             }
@@ -342,7 +344,7 @@ public class S_Altar : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEBUG: No more cardballs to spawn!");
+            //Debug.Log("DEBUG: No more cardballs to spawn!");
         }
 
         if (c_i_movementInt == 5)
@@ -385,20 +387,20 @@ public class S_Altar : MonoBehaviour
 
             yield return null;
 
-            Debug.Log("Do I reach here");
+            //Debug.Log("Do I reach here");
             Destroy(_cardball);
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
             {
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                Debug.Log("Attempting to delay spawn of second card after a first");
+                //Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
             else
             {
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 g_global.g_energyManager.ClearEnergy();
-                Debug.Log("MoveCardballPrefabs() Called");
+                //Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }
         }
@@ -454,7 +456,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator WaitForCardballMovementToPlay()
     {
-        Debug.Log("Waiting to make a card");
+        //Debug.Log("Waiting to make a card");
 
         c_i_movementInt -= 1;
         yield return StartCoroutine(MoveCardballPrefabs());
@@ -498,7 +500,7 @@ public class S_Altar : MonoBehaviour
     /// <param name="_truthValue"></param>
     public void SetCardBeingActiveBool(bool _truthValue)
     {
-        Debug.Log("Card activity has been changed to..." + _truthValue.ToString());
+        //Debug.Log("Card activity has been changed to..." + _truthValue.ToString());
         cd_b_cardIsActive = _truthValue;
     }
 

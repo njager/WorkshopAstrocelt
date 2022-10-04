@@ -241,6 +241,8 @@ public class S_ConstelationManager : MonoBehaviour
             }
             else //if you have not started a constellation
             {
+                _starN.s_star.m_nextLine = null;
+
                 //set the sound to active and reset the star sound
                 _starSoundPhase1.SetActive(true);
                 i_starSound = 0;
@@ -401,7 +403,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_boolState"></param>
     public void SetStarLockOutBool(bool _boolState)
     {
-        Debug.Log("Star lockout bool is..." + _boolState.ToString());
+        //Debug.Log("Star lockout bool is..." + _boolState.ToString());
         b_starLockout = _boolState;
     }
 

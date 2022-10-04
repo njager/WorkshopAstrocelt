@@ -647,6 +647,7 @@ public class S_Card : MonoBehaviour
     {
         if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
         {
+            Debug.Log("Left character");
             c_hoverCharacter = null;
         }
     }

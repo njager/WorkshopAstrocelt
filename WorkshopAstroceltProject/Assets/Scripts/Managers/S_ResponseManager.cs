@@ -56,7 +56,7 @@ public class S_ResponseManager : MonoBehaviour
         s_eventManager.DeleteResponses();
 
         //load in the new response that will change the scene
-        s_eventManager.NewResopnse("You failed, click to go to the next level");
+        s_eventManager.NewResopnse("Click to go to the next level");
     }
 
     /// <summary>
@@ -88,7 +88,7 @@ public class S_ResponseManager : MonoBehaviour
         s_eventManager.DeleteResponses();
 
         //create the next turn and scene text
-        s_eventManager.NewResopnse("You got a reward, click to go to the next level");
+        s_eventManager.NewResopnse("Click to go to the next level");
     }
 
 

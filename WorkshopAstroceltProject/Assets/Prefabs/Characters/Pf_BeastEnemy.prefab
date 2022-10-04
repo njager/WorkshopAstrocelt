@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194ce0574483bf40844d9de83921659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr_enemySprite: {fileID: 7160080577692477988}
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
   e_str_enemyName: Puca
   e_str_enemyType: Beast
@@ -217,6 +218,12 @@ MonoBehaviour:
   e_v3_defaultScale: {x: 0, y: 0, z: 0}
   f_intentDuration: 1
   cardball: {fileID: 0}
+  idleSprite: {fileID: 21300000, guid: 125893ba4c2e7e4448fcb9c46b094d80, type: 3}
+  attackSprite: {fileID: 21300000, guid: 71cc41474f8b2414caa3ecbcd4d1cb42, type: 3}
+  blockSprite: {fileID: 21300000, guid: 1bed12683901da94fb770a0391d8e120, type: 3}
+  damagedSprite: {fileID: 21300000, guid: bd988f4b6dbefd54aa7ef40fbabf6463, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: feaeb8fbd04925844b07687b26bf387e, type: 3}
+  victorySprite: {fileID: 21300000, guid: d5dc0af60e7dde0418733005de5860ad, type: 3}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +293,8 @@ MonoBehaviour:
   e_b_shocked: 0
   e_enemy: {fileID: 0}
   e_pe_blood: {fileID: 6382381115093645060}
-  e_a_animator: {fileID: 6011593073270241856}
+  e_a_AttackAnimator: {fileID: 6011593073270241856}
+  e_a_DamagedAnimator: {fileID: 6011593073270241856}
   e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
@@ -302,7 +310,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 20, y: 45}
+  m_Size: {x: 20, y: 35}
   m_Direction: 0
 --- !u!50 &5554066982219315847
 Rigidbody2D:

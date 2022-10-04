@@ -266,13 +266,13 @@ public class S_Player : MonoBehaviour
 
         //Debug.Log("Player will animate");
 
-        p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
+        //p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
 
-        //Debug.Log("Player will wait for 2 seconds");
+        Debug.Log("Player will wait for 2 seconds");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2);
 
-        //Debug.Log("Player will change to idle");
+        Debug.Log("Player will change to idle");
 
         playerSprite.sprite = idleSprite;
     }
