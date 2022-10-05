@@ -13,6 +13,9 @@ public class S_Global : MonoBehaviour
     [Header("Static instance for Singleton usage of S_Global")]
     public static S_Global Instance;
 
+    [Header("GameManager")]
+    public S_GameManager g_gameManager;
+
     [Header("Script References")]
     public S_TurnManager g_turnManager;
     public S_Player g_player;
@@ -22,11 +25,12 @@ public class S_Global : MonoBehaviour
     public S_UIManager g_UIManager;
     public S_IntentManager g_iconManager; 
     public S_CardManager g_cardManager;
-    public S_CardDatabase g_CardDatabase;
+    public S_CardDatabase g_cardDatabase;
     public S_LineMultiplierManager g_lineMultiplierManager;
     public S_EnergyManager g_energyManager;
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
+    public S_CardHolder g_cardHolder;
     public S_SceneManager g_sceneManager;
     public S_BackgroundManager g_backgroundManager;
     public S_TurnEffectManager g_turnEffectManager;
@@ -71,6 +75,7 @@ public class S_Global : MonoBehaviour
     public List<S_CardTemplate> g_ls_p_playerHand;
     public List<S_StarPopUp> g_ls_starPopup;
     public List<S_Cardball> g_ls_cardBallPrefabs;
+    public List<S_Enemy> g_ls_activeEnemies;
 
     [Header("Enemy Positions")]
     public GameObject g_e_enemyPosition1;
@@ -93,9 +98,6 @@ public class S_Global : MonoBehaviour
         {
             Instance = this;
         }
-
-        //May be needed for gamemanager later
-        g_i_sceneIndex = 0;
     }
 
     void Start()
@@ -107,6 +109,13 @@ public class S_Global : MonoBehaviour
 
         //start the combat music loop
         g_a_audioPlayer.SetActive(true);
+
+        //GameManager variable changing
+        g_gameManager = S_GameManager.Instance;
+        foreach (int card in g_gameManager.gm_ls_p_playerDeck)
+        {
+            g_ls_p_playerDeck.Add(card);
+        }
     }
 
     /// <summary>
@@ -133,7 +142,7 @@ public class S_Global : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            g_playerAttributeSheet.p_i_health = 0;
+            g_playerAttributeSheet.SetPlayerHealthValue(0);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -145,6 +154,20 @@ public class S_Global : MonoBehaviour
             {
                 g_UIManager.debugTurnbar.SetActive(false);
             }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (g_ConstellationManager.GetMakingConstellation())
+            {
+                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace)) 
+        {
+            g_energyManager.SetRedEnergyInt(g_energyManager.GetRedEnergyInt() + 20);
+            g_energyManager.SetBlueEnergyInt(g_energyManager.GetBlueEnergyInt() + 20);
+            g_energyManager.SetYellowEnergyInt(g_energyManager.GetYellowEnergyInt() + 20);
         }
     }
 }

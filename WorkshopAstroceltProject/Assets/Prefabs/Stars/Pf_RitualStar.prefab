@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3004275835478708033}
   - component: {fileID: 6558796421813874598}
+  - component: {fileID: 2395284878105971395}
+  - component: {fileID: 2460238115658184597}
   m_Layer: 0
   m_Name: RedRitualStarGraphic
   m_TagString: RedRitualStar
@@ -82,6 +84,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2395284878105971395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776223449507903903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13da5d1ae34a384dad562db95987dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a_redGraphic: {fileID: 0}
+  an_redStarAnimator: {fileID: 2460238115658184597}
+  i_chance: 0.0002
+  i_frames: 3
+--- !u!95 &2460238115658184597
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776223449507903903}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3bc439f142f72aa4fb4121784c2740d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1957393434018499444
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +222,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3382160941616844143}
   - component: {fileID: 8628904805335692614}
+  - component: {fileID: 6816355319959971026}
+  - component: {fileID: 5256573893163593488}
   m_Layer: 0
   m_Name: BlueRitualStarGraphic
   m_TagString: BlueRitualStar
@@ -257,6 +296,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6816355319959971026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154172398554925229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec5dc8b01a1aa349aeee489f2f2ac81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a_blueGraphic: {fileID: 0}
+  an_blueStarAnimator: {fileID: 5256573893163593488}
+  i_chance: 0.0002
+  i_frames: 3
+--- !u!95 &5256573893163593488
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154172398554925229}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 824a47cde93acdb4097b0b707c5b620c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6454044182902328387
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +573,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2893324391410204937}
   - component: {fileID: 2662292828882639707}
+  - component: {fileID: 7572285110347520390}
+  - component: {fileID: 8614871987291424998}
   m_Layer: 0
   m_Name: YellowRitualStarGraphic
   m_TagString: YellowRitualStar
@@ -571,3 +647,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7572285110347520390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909720486647782166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7b79e4fea7c774daa0ccc5887e1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a_yellowGraphic: {fileID: 0}
+  an_yellowStarAnimator: {fileID: 8614871987291424998}
+  i_chance: 0.0002
+  i_frames: 3
+--- !u!95 &8614871987291424998
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909720486647782166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b907e6585f69f24883f61f2d34e1124, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -5566,10 +5566,15 @@ MonoBehaviour:
   e_v3_enemy3HealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy4HealthBarPosition: {x: 0, y: 0, z: 0}
   e_v3_enemy5HealthBarPosition: {x: 0, y: 0, z: 0}
+  v3_vfxContainer: {fileID: 0}
   textPopupPrefab: {fileID: 0}
   energyPopupPrefab: {fileID: 4694868179480249384, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
   popUpCanvas: {fileID: 0}
-  altarTargetPosition: {fileID: 1520619804}
+  redEnergyUITargetPosition: {fileID: 0}
+  blueEnergyUITargetPosition: {fileID: 0}
+  yellowEnergyUITargetPosition: {fileID: 0}
+  b_visualPopupFinished: 0
+  i_popupUpClearInt: 0
 --- !u!1001 &278486993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8688,7 +8693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eddcf0d11338944baa637a7f1c9297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_tx_energyText: {fileID: 0}
   p_tx_playerHealthText: {fileID: 73390825}
   p_tx_playerShieldText: {fileID: 238214977}
   p_playerHealthBar: {fileID: 97589811}
@@ -8717,7 +8721,6 @@ MonoBehaviour:
   yellowEnergyIcon: {fileID: 21300000, guid: 4fc6b498172feb943be88fd71d88c29a, type: 3}
   nullEnergyIcon: {fileID: 21300000, guid: f3064a0170d4a09458c89fa244deacf5, type: 3}
   p_tx_lineMultiplierText: {fileID: 0}
-  p_f_lineMultiplierAmount: 0
   b_redEnergy: 0
   b_blueEnergy: 0
   b_yellowEnergy: 0
@@ -8751,6 +8754,11 @@ MonoBehaviour:
   e_enemy3ResistantEffect: {fileID: 0}
   e_enemy4ResistantEffect: {fileID: 0}
   e_enemy5ResistantEffect: {fileID: 0}
+  debugTurnbar: {fileID: 0}
+  debugTurnbarText: {fileID: 0}
+  en_tx_redEnergyTrackerText: {fileID: 0}
+  en_tx_blueEnergyTrackerText: {fileID: 0}
+  en_tx_yellowEnergyTrackerText: {fileID: 0}
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9241,21 +9249,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d2fbe7dca504d41bda1349f81155a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_gameManager: {fileID: 0}
   g_turnManager: {fileID: 1269889775}
   g_player: {fileID: 2082358049}
   g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
   g_ConstellationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
-  g_selectorManager: {fileID: 1455212357}
   g_iconManager: {fileID: 1037513594}
   g_cardManager: {fileID: 1451117616}
-  g_CardDatabase: {fileID: 2086421104}
+  g_cardDatabase: {fileID: 0}
   g_lineMultiplierManager: {fileID: 630261271}
   g_energyManager: {fileID: 1412184871}
   g_popupManager: {fileID: 274638691}
   g_altar: {fileID: 1981244727}
+  g_cardHolder: {fileID: 0}
   g_sceneManager: {fileID: 1510901130}
+  g_backgroundManager: {fileID: 0}
+  g_turnEffectManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -9272,22 +9283,20 @@ MonoBehaviour:
   g_b_playerLost: 0
   g_i_enemyCount: 0
   g_i_enemyCountMax: 0
-  e_l_enemyList: []
+  e_ls_enemyList: []
   g_ls_lineRendererList: []
   g_ls_completedLineRendererList: []
-  ls_p_playerDeck: 
-  lst_p_playerGrave: 
-  ls_p_playerHand: []
-  ls_starPopup: []
-  ls_cardBallPrefabs: []
-  placeholder: 
-  c_i_cardIDNum: 0
+  g_ls_p_playerDeck: 
+  g_ls_p_playerGrave: 
+  g_ls_p_playerHand: []
+  g_ls_starPopup: []
+  g_ls_cardBallPrefabs: []
+  g_ls_activeEnemies: []
   g_e_enemyPosition1: {fileID: 1282492985}
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
-  g_objectBeingDragged: {fileID: 0}
-  b_firstCard: 1
-  a_audioPlayer: {fileID: 1787920205}
+  g_c_b_firstCard: 1
+  g_a_audioPlayer: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -13430,6 +13439,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 696024875}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &696429320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696429322}
+  - component: {fileID: 696429321}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &696429321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696429320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275e7e6bf7d1db545ad6e850806e50f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm_ls_p_playerDeck: 00000000010000000200000003000000000000000000000000000000000000000000000000000000
+  i_playerHealth: 35
+  i_healthMax: 35
+  i_shield: 0
+  i_shieldMax: 100
+  f_playerEnergyGenerationRate: 1
+  i_bones: 0
+  b_bleeding: 0
+  b_resistant: 0
+  b_stunned: 0
+--- !u!4 &696429322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696429320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &696432935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19032,11 +19094,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 960127656}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &961603282 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3560364168460321924, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
-  m_PrefabInstance: {fileID: 3560364167540744790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &970400213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20032,11 +20089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   e_sp_enemyShield: {fileID: 21300000, guid: 7c67c5a62b45a874a942e88b9fed3a91, type: 3}
   e_sp_enemyAbility: {fileID: 21300000, guid: 4341b65dbd8e32b4c990639f0ba02392, type: 3}
-  e_b_enemy1IconCheck: 
-  e_b_enemy2IconCheck: 
-  e_b_enemy3IconCheck: 
-  e_b_enemy4IconCheck: 
-  e_b_enemy5IconCheck: 
+  ls_e_statusStrings: []
   e_sp_enemyAttackLevel1: {fileID: 21300000, guid: a1b0217d785fb654aaad227fda6ed4b3, type: 3}
   e_sp_enemyAttackLevel2: {fileID: 21300000, guid: 06dde3cc782875b4b95ee0d90c78d464, type: 3}
   e_sp_enemyAttackLevel3: {fileID: 21300000, guid: 0845d76e0b2542243b218226d04db49c, type: 3}
@@ -24946,6 +24999,11 @@ MonoBehaviour:
   e_b_enemy3Dead: 0
   e_b_enemy4Dead: 0
   e_b_enemy5Dead: 0
+  e_b_enemy1Turn: 0
+  e_b_enemy2Turn: 0
+  e_b_enemy3Turn: 0
+  e_b_enemy4Turn: 0
+  e_b_enemy5Turn: 0
   e_b_enemy1Shielding: 0
   e_b_enemy2Shielding: 0
   e_b_enemy3Shielding: 0
@@ -25006,6 +25064,11 @@ MonoBehaviour:
   e_i_enemy3ResistantTurnsPassed: 0
   e_i_enemy4ResistantTurnsPassed: 0
   e_i_enemy5ResistantTurnsPassed: 0
+  e_b_enemy1IsActive: 0
+  e_b_enemy2IsActive: 0
+  e_b_enemy3IsActive: 0
+  e_b_enemy4IsActive: 0
+  e_b_enemy5IsActive: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25024,8 +25087,8 @@ MonoBehaviour:
   p_b_inBleedingState: 0
   p_b_inStunnedState: 0
   p_b_inResistantState: 0
-  playerWinMusic: {fileID: 1885446296}
-  playerLoseMusic: {fileID: 1572118200}
+  p_playerWinMusic: {fileID: 0}
+  p_playerLoseMusic: {fileID: 0}
   p_i_turnsPassedForStun: 0
   p_i_turnsPassedForResistant: 0
   p_f_currentDamageRateForBleed: 0
@@ -25041,20 +25104,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c501f2560fd44c81984230b0fb459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_playerInitialTurn: 1
-  b_enemyInitialTurn: 0
-  playerTurnSkipped: 0
-  enemy1TurnSkipped: 0
-  enemy2TurnSkipped: 0
-  enemy3TurnSkipped: 0
-  enemy4TurnSkipped: 0
-  enemy5TurnSkipped: 0
-  a_backgroundNight: {fileID: 21300000, guid: 0558e7594c262fc4aa6a8b70cc696d98, type: 3}
-  a_backgroundDay: {fileID: 21300000, guid: 69398a19e0f3f894696fe7b56af1f2c5, type: 3}
-  a_hillsNight: {fileID: 21300000, guid: 8d0e419fa973764439ef710897f6c9a5, type: 3}
-  a_hillsDay: {fileID: 21300000, guid: 45e0971efbd4523439e2b76d939e4285, type: 3}
-  a_backgroundImage: {fileID: 1780560770}
-  a_hillsImage: {fileID: 961603282}
+  p_b_playerInitialTurn: 1
+  e_b_enemyInitialTurn: 0
+  p_b_playerTurnSkipped: 0
+  e_b_enemy1TurnSkipped: 0
+  e_b_enemy2TurnSkipped: 0
+  e_b_enemy3TurnSkipped: 0
+  e_b_enemy4TurnSkipped: 0
+  e_b_enemy5TurnSkipped: 0
+  e_b_enemyIsActive: 0
 --- !u!1001 &1273179032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27124,9 +27182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   str_energyColor: 
   i_energyCount: 0
-  i_redEnergy: 0
-  i_yellowEnergy: 0
-  i_blueEnergy: 0
   i_redStorageEnergy: 0
   i_yellowStorageEnergy: 0
   i_blueStorageEnergy: 0
@@ -27682,7 +27737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acf4195bdb074eb9bdeb4dff9ebd95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 29678253}
 --- !u!1001 &1459895050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29376,11 +29430,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1549256661}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1572118200 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7637182451495944990, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1596312359
 GameObject:
@@ -32491,11 +32540,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
   m_PrefabInstance: {fileID: 1775284832}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &1780560770 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3560364167173673428, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
-  m_PrefabInstance: {fileID: 3560364167540744790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781165284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32741,11 +32785,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1784680357}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1787920205 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8963451779003273411, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1791052888
 PrefabInstance:
@@ -34237,11 +34276,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1879077395}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1885446296 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7922033642159026864, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
-  m_PrefabInstance: {fileID: 525955781}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1889809643
 PrefabInstance:
@@ -37477,17 +37511,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 152267100547761435, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
   m_PrefabInstance: {fileID: 152267102499932020}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2086421104 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-  m_PrefabInstance: {fileID: 152267102499932020}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0883779ae71a4eddb5dcdacfa2a2d7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2092353970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37944,7 +37967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d249137f074bf44895315bbafad660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i_index: 0
   l_constelationLine: {fileID: 2478283171175456657, guid: 621ebe2427489e547a92de69c9973472, type: 3}
   s_nullStarInst: {fileID: 826952977}
   b_lineDeletionCompletion: 0

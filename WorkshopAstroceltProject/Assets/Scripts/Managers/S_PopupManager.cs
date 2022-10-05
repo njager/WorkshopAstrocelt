@@ -24,7 +24,7 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] Vector3 e_v3_enemy3HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy4HealthBarPosition;
     [SerializeField] Vector3 e_v3_enemy5HealthBarPosition;
-    [SerializeField] Transform v3_vfxContainer; 
+    [SerializeField] public Transform v3_vfxContainer; 
 
     [Header("Prefabs")]
     public GameObject textPopupPrefab;
@@ -33,8 +33,22 @@ public class S_PopupManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject popUpCanvas;
 
-    [Header("Altar Position")]
-    public GameObject altarTargetPosition;
+    [Header("Altar Popup Target Positions")]
+    public GameObject redEnergyUITargetPosition;
+    public GameObject blueEnergyUITargetPosition;
+    public GameObject yellowEnergyUITargetPosition;
+
+    [Header("Popup Visual Decrement Bool")]
+    public bool b_visualPopupFinished;
+
+    [Header("Int test value")]
+    public int i_popupUpClearInt;
+
+    [Header("Particle effects")]
+    [SerializeField] ParticleSystem pe_redParticle;
+    [SerializeField] ParticleSystem pe_blueParticle;
+    [SerializeField] ParticleSystem pe_yellowParticle;
+
 
     //get the transform component of the text
     private void Awake()
@@ -164,11 +178,35 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
+        bool _red = false;
+        bool _blue = false;
+        bool _yellow = false;
+        yield return new S_WaitForConstellationFinish();
+        b_visualPopupFinished = true;
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
-            _starPopup.MoveToAltar();
+            if(_starPopup.b_isBluePopup) { _blue = true; }
+            if (_starPopup.b_isRedPopup) { _red = true; }
+            if (_starPopup.b_isYellowPopup) { _yellow = true; }
+
+            _starPopup.MovePopupToEnergyTracker();
         }
-        yield return b_popupMove == true;
+        b_popupClear = false;
+        i_popupUpClearInt = g_global.g_ls_starPopup.Count;
+        StartCoroutine(ClearPopupsForRound());
+
+        if (_blue)
+        {
+            pe_blueParticle.Play();
+        }
+        else if (_red)
+        {
+            pe_redParticle.Play();
+        }
+        else if (_yellow)
+        {
+            pe_yellowParticle.Play();
+        }
     }
 
     /// <summary>
@@ -178,11 +216,119 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ClearAllPopups()
     {
-        foreach(S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
+
+        Debug.Log("clear popup");
+
+        foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             _starPop.DeletePopup();
         }
+
         b_popupClear = true; 
         yield return b_popupClear == true; 
+    }
+
+    /// <summary>
+    /// Remove all popups currently spawned from the scene
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ClearPopupsForRound()
+    {
+        foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
+        {
+            StartCoroutine(_starPop.DeletionTimer());
+            yield return new WaitForSeconds(1);
+        }
+
+        if (i_popupUpClearInt == 0)
+        {
+            b_popupClear = true;
+        }
+        
+        yield return b_popupClear == true;
+    }
+
+    // Setters \\ 
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.redEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetRedPopupTargetPosition(Vector3 _newPosition) 
+    {
+        redEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.blueEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetBluePopupTargetPosition(Vector3 _newPosition)
+    {
+        blueEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+    /// <summary>
+    /// /// Set the v3 value of S_PopupManager.yellowEnergyUITargetPosition.transform.position
+    /// - Josh
+    /// </summary>
+    /// <param name="_newPosition"></param>
+    public void SetYellowPopupTargetPosition(Vector3 _newPosition)
+    {
+        yellowEnergyUITargetPosition.transform.position = _newPosition;
+    }
+
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.redEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.redEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetRedPopupTargetPosition()
+    {
+        return redEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.blueEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.blueEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetBluePopupTargetPosition()
+    {
+        return blueEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the v3 value of S_PopupManager.yellowEnergyTargetPosition
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.yellowEnergyTargetPosition.transform.position
+    /// </returns>
+    public Vector3 GetYellowPopupTargetPosition()
+    {
+        return yellowEnergyUITargetPosition.transform.position;
+    }
+
+    /// <summary>
+    /// Return the bool value of S_PopupManager.b_visualPopupFinished;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.b_visualPopupFinished
+    /// </returns>
+    public bool GetPopupVisualDecrementBool()
+    {
+        return b_visualPopupFinished;
     }
 }

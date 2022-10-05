@@ -12,14 +12,14 @@ using DG.Tweening;
 public class S_StarPopUp : MonoBehaviour
 {
     private S_Global g_global;
-    private bool b_deletionTimerFlag;
-    private bool b_spawnTimerFlag;
+    [SerializeField] bool b_deletionTimerFlag;
+    [SerializeField] bool b_spawnTimerFlag;
     [SerializeField] SpriteRenderer colorImage;
 
     [Header("Color Bools")]
-    [SerializeField] bool b_redPopup;
-    [SerializeField] bool b_bluePopup;
-    [SerializeField] bool b_yellowPopup;
+    [SerializeField] public bool b_isRedPopup;
+    [SerializeField] public bool b_isBluePopup;
+    [SerializeField] public bool b_isYellowPopup;
 
     [Header("Deletion Timer Attributes")]
     [SerializeField] float f_disappearTimer;
@@ -69,7 +69,8 @@ public class S_StarPopUp : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnFadeTimer()
     {
-        f_spawnTimer -= Time.deltaTime;
+        b_spawnTimerFlag = true;
+        
         colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
         gameObject.transform.DOShakePosition(2f, 0.1f, 6, 10f);
         
@@ -78,24 +79,44 @@ public class S_StarPopUp : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         gameObject.transform.DOScale(new Vector3(0.3f, 0.3f, 0), 0.2f);
-        if (f_spawnTimer < 0)
+
+        if (f_spawnTimer > 0)
         {
-            b_spawnTimerFlag = true;
+            f_spawnTimer -= Time.deltaTime;
         }
-        yield return b_spawnTimerFlag == true; 
+
+        yield return b_spawnTimerFlag;
     }
 
  
     /// <summary>
-    /// Move the popup to the altar
+    /// Move the popup to the appropriate energy tracking UI depending on color
+    /// - Josh
     /// </summary>
-    public void MoveToAltar()
+    public void MovePopupToEnergyTracker()
     {
-        Vector3 _firstCardPosition = g_global.g_popupManager.altarTargetPosition.transform.position;
-        gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
-        gameObject.transform.DOMove(_firstCardPosition, f_moveSpeed);
-        gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
-        DeletePopup();
+        if (b_isRedPopup) // If a Red Popup
+        {
+            Vector3 _movementPosition = g_global.g_popupManager.GetRedPopupTargetPosition();
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
+            gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        }
+        else if (b_isBluePopup) // If a Blue Popup
+        {
+            Vector3 _movementPosition = g_global.g_popupManager.GetBluePopupTargetPosition();
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
+            gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        }
+        else if (b_isYellowPopup) // If a Yellow Popup
+        {
+            Vector3 _movementPosition = g_global.g_popupManager.GetYellowPopupTargetPosition();
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 0f), 1f);
+            gameObject.transform.DOMove(_movementPosition, f_moveSpeed);
+            gameObject.transform.DORotate(new Vector3(0f, 0f, 180f), 1.5f);
+        }
+
     }
 
     /// <summary>
@@ -129,30 +150,39 @@ public class S_StarPopUp : MonoBehaviour
     /// <param name="_color"></param>
     public void SetGraphic(string _color)
     {
-        if(_color == "red")
+        if(_color.Equals("red"))
         {
             // Toggle Graphics
             redColorGraphic.SetActive(true);
+
+            // Set corresponding bool
+            SetColorBool(1);
 
             //Set Color Image
             colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
 
             StartCoroutine(SpawnFadeTimer());
         }
-        if(_color == "blue")
+        if(_color.Equals("blue"))
         {
             // Toggle Graphics
             blueColorGraphic.SetActive(true);
+
+            // Set corresponding bool
+            SetColorBool(2);
 
             //Set Color Image
             colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
 
             StartCoroutine(SpawnFadeTimer());
         }
-        if(_color == "yellow")
+        if(_color.Equals("yellow"))
         {
             // Toggle Graphics
             yellowColorGraphic.SetActive(true);
+
+            // Set corresponding bool
+            SetColorBool(3);
 
             //Set Color Image
             colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>();
@@ -167,6 +197,19 @@ public class S_StarPopUp : MonoBehaviour
     public void ClearPopup()
     {
         StartCoroutine(DeletionTimer());
+
+        CounterDecrement();
+
+        //yield return new WaitUntil(() => b_deletionTimerFlag == true);
+    }
+
+    /// <summary>
+    /// Decrement the list count tracker
+    /// - Josh
+    /// </summary>
+    public void CounterDecrement()
+    {
+        g_global.g_popupManager.i_popupUpClearInt -= 1;
     }
 
     /// <summary>
@@ -183,21 +226,57 @@ public class S_StarPopUp : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DeletionTimer()
+    public IEnumerator DeletionTimer()
     {
+        //Debug.Log("deletion timer called");
         //A delay timer for the disappear animation
-        f_disappearTimer -= Time.deltaTime;
-        g_global.g_ls_starPopup.Remove(this);
-        if (f_disappearTimer < 0)
-        {
-            colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
-            f_destroyTimer -= Time.deltaTime;
-            if (f_destroyTimer < 0)
-            {
-                Destroy(gameObject);
-            }
-        }
         b_deletionTimerFlag = true;
-        yield return b_deletionTimerFlag == true;
+        if (f_disappearTimer > 0) 
+        {
+            f_disappearTimer -= Time.deltaTime;
+        }
+        
+        g_global.g_ls_starPopup.Remove(this);
+
+        colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
+        if (f_destroyTimer > 0)
+        {
+            f_destroyTimer -= Time.deltaTime;
+        }
+
+        Destroy(gameObject);
+        yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
+
+    // Setters \\
+    
+    /// <summary>
+    /// Catch all function to set the bool on the popup corresponding to color
+    /// 1 == Red, 2 == Blue, 3 == Yellow
+    /// Shouldn't be necessary outside of this script
+    /// - Josh
+    /// </summary>
+    /// <param name="_colorInt"></param>
+    public void SetColorBool(int _colorInt) 
+    {
+        if(_colorInt == 1) // Is a Red Popup
+        {
+            b_isRedPopup = true;
+            b_isBluePopup = false;
+            b_isYellowPopup = false;
+        }
+        else if(_colorInt == 2) // Is a Blue Popup
+        {
+            b_isRedPopup = false;
+            b_isBluePopup = true;
+            b_isYellowPopup = false;
+        }
+        else if (_colorInt == 3) // Is a Yellow Popup
+        {
+            b_isRedPopup = false;
+            b_isBluePopup = false;
+            b_isYellowPopup = true;
+        }
+    }
+
 }

@@ -7,11 +7,11 @@ public class S_PlayerAttributes : MonoBehaviour
     private S_Global g_global; 
 
     [Header("Player Attributes")]
-    public int p_i_health;
-    public int p_i_healthMax; 
+    [SerializeField] int p_i_health;
+    [SerializeField] int p_i_maxHealth; 
 
-    public int p_i_shield;
-    public int p_i_shieldMax;
+    [SerializeField] int p_i_shield;
+    [SerializeField] int p_i_maxShield;
 
     public float p_f_playerEnergyGenerationRate;
 
@@ -39,39 +39,104 @@ public class S_PlayerAttributes : MonoBehaviour
     [Header("Particle Effect")]
     public ParticleSystem p_pe_blood;
 
-    [Header("Animatior")]
-    public Animator p_a_animator;
+    [Header("Animatiors")]
+    public Animator p_a_AttackAnimator;
+    public Animator p_a_DamagedAnimator;
 
-    void Awake()
+    void Start()
     {
-        g_global = S_Global.Instance; 
+        g_global = S_Global.Instance;
 
-        if(g_global.g_i_sceneIndex == 0)
-        {
-            FirstSceneVariables();
-            g_global.g_playerAttributeSheet = this; 
-        }
-        else
-        {
-            // load some sort of array to global and this script
-            g_global.g_playerAttributeSheet = this; 
-        }
+        S_GameManager _gameManager = S_GameManager.Instance;
+
+        // load some sort of array to global and this script
+        g_global.g_playerAttributeSheet = this;
+
+        p_i_health = _gameManager.i_playerHealth;
+        p_i_maxHealth = _gameManager.i_healthMax;
+        p_i_shield = _gameManager.i_shield;
+        p_i_maxShield = _gameManager.i_shieldMax;
+        p_f_playerEnergyGenerationRate = _gameManager.f_playerEnergyGenerationRate;
+        p_b_bleeding = _gameManager.b_bleeding;
+        p_b_resistant = _gameManager.b_resistant;
+        p_b_stunned = _gameManager.b_stunned;
+
+        g_global.g_player.PlayerValuesLimitCheck();
     }
 
-    public void FirstSceneVariables()
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the int value from S_PlayerAttributes.p_i_shield
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_i_shield 
+    /// </returns>
+    public int GetPlayerShieldValue()
     {
-        // PlayerConstants
-        p_i_health = 35;
-        p_i_healthMax = 35;
+        return p_i_shield;
+    }
 
-        p_i_shield = 0;
-        p_i_shieldMax = 100;
+    /// <summary>
+    /// Return the int value from S_PlayerAttributes.p_i_maxShield
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_i_maxShield
+    /// </returns>
+    public int GetPlayerMaxShieldValue()
+    {
+        return p_i_maxShield;
+    }
 
-        p_f_playerEnergyGenerationRate = 1.0f;
+    /// <summary>
+    /// Return the int value from S_PlayerAttributes.p_i_health
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_i_health
+    /// </returns>
+    public int GetPlayerHealthValue()
+    {
+        return p_i_health;
+    }
 
-        //Status Effects
-        p_b_bleeding = false;
-        p_b_resistant = false;
-        p_b_stunned = false;
+    /// <summary>
+    /// Return the int value from S_PlayerAttributes.p_i_maxHealth
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_i_maxHealth
+    /// </returns>
+    public int GetPlayerMaxHealthValue()
+    {
+        return p_i_maxHealth;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the int value of S_PlayerAttributes.p_i_shield
+    /// - Josh
+    /// </summary>
+    /// <param name="_shieldValue"></param>
+    public void SetPlayerShieldValue(int _shieldValue)
+    {
+        p_i_shield = _shieldValue;
+    }
+
+    /// <summary>
+    /// Set the int value of S_PlayerAttributes.p_i_health
+    /// - Josh
+    /// </summary>
+    /// <param name="_healthValue"></param>
+    public void SetPlayerHealthValue(int _healthValue)
+    {
+        p_i_health = _healthValue;
     }
 }

@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using FMODUnity;
-using FMOD.Studio;
 
 public class S_Card : MonoBehaviour
 {
     //Private varibales
     private S_Global g_global;
-    
+
     [Header("Template it's built on")]
     public S_CardTemplate c_cardTemplate;
 
-    [Header("Image Asset")]
-    public Image c_a_cardBackgroundImage;
-    public Image c_a_cardArtImage;
-    public Image c_a_cardForegroundImage;
+    [Header("Sprite Asset")]
+    public SpriteRenderer c_a_cardBackgroundArtAsset;
+    public SpriteRenderer c_a_cardArtAsset;
+    public SpriteRenderer c_a_cardForegroundArtAsset;
 
     [Header("Card Database Index")]
-    public int c_i_cardDataBaseIndex; 
+    public int c_i_cardDataBaseIndex;
 
     [Header("Card Basics")]
     public string c_str_cardName;
@@ -47,8 +45,8 @@ public class S_Card : MonoBehaviour
     [Header("Turn Counts for Status Effects")]
     public int c_i_turnCount1;
     public int c_i_turnCount2;
-    public int c_i_turnCount3; 
-    
+    public int c_i_turnCount3;
+
     [Header("Card Rarity")]
     public float c_f_cardRarity;
 
@@ -60,7 +58,7 @@ public class S_Card : MonoBehaviour
     public string c_str_color;
 
     [Header("Primary Destination")]
-    public bool c_b_affectsNone; 
+    public bool c_b_affectsNone;
     public bool c_b_affectsPlayer;
     public bool c_b_affectsOne;
     public bool c_b_affectsAllEnemies;
@@ -68,7 +66,7 @@ public class S_Card : MonoBehaviour
 
     [Header("Secondary Destination")]
     public bool c_b_playerEffect;
-    public bool c_b_enemyEffect; 
+    public bool c_b_enemyEffect;
 
     [Header("Main Effect Types")]
     public bool c_b_attackMainEffect;
@@ -86,7 +84,7 @@ public class S_Card : MonoBehaviour
     public bool c_b_siphonStatusEffect;
     public bool c_b_fralitizeStatusEffect;
     public bool c_b_manipulateStatusEffect;
-    public bool c_b_thornsStatusEffect; 
+    public bool c_b_thornsStatusEffect;
 
     [Header("Potential Status Effect Values")]
     public float c_f_damagePercentage; // If not using effect value, use this
@@ -99,20 +97,8 @@ public class S_Card : MonoBehaviour
     public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
 
     [Header("Card Dragger References")]
-    public S_CardDragger sc_c_cardDraggerReference;
-    //public int c_i_cardID;
-    public RectTransform initialCardTransform;
-
-    [Header("Card Hover Height")]
-    public float i_hoverHeight;
-
-    [Header("Zoom Card Scalars")]
-    public float i_hoverX;
-    public float i_hoverY;
-
-    [Header("Card Scaler References")]
-    public GameObject cv_canvas;
-    private GameObject c_zoomCard;
+    //public S_CardDragger sc_c_cardDraggerReference;
+    public S_Enemy e_cd_grabbedEnemy;
 
     [Header("Card Background Art Assets")]
     public Sprite c_a_redBackground;
@@ -132,6 +118,16 @@ public class S_Card : MonoBehaviour
     [Header("Attack Sound Effect")]
     public bool c_b_attackSoundEffect;
 
+    [Header("Card Position Index and Position")]
+    public bool cd_b_resetPositionFlag;
+    public Vector3 c_v3_CardPosition;
+    public Vector3 c_v3_initialCardPosition;
+
+    [Header("CardDrag Bool")]
+    public bool c_b_cardIsDragged;
+
+    private GameObject c_hoverCharacter;
+
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
     //Functions
@@ -140,12 +136,8 @@ public class S_Card : MonoBehaviour
         g_global = S_Global.Instance;
 
         //Separate cards, ended up not being needed
-       // g_global.c_i_cardIDNum += 1;
+        // g_global.c_i_cardIDNum += 1;
         //c_i_cardID = g_global.c_i_cardIDNum;
-
-        cv_canvas = GameObject.Find("MainCanvas");
-
-        initialCardTransform = gameObject.GetComponent<RectTransform>();
     }
 
     /// <summary>
@@ -175,11 +167,11 @@ public class S_Card : MonoBehaviour
         c_i_energyCost = _cardData.EnergyCost;
         c_i_effectValue1 = _cardData.EffectValue1;
         c_i_effectValue2 = _cardData.EffectValue2;
-        c_i_effectValue3 = _cardData.EffectValue3; 
+        c_i_effectValue3 = _cardData.EffectValue3;
         c_f_cardRarity = _cardData.CardRarity;
 
         //Toggle Primary Destination
-        c_b_affectsNone = _cardData.AffectsNone; 
+        c_b_affectsNone = _cardData.AffectsNone;
         c_b_affectsPlayer = _cardData.AffectsPlayer;
         c_b_affectsOne = _cardData.Affects1Character;
         c_b_affectsAllEnemies = _cardData.AffectsAllEnemies;
@@ -187,7 +179,7 @@ public class S_Card : MonoBehaviour
 
         //Toggle Secondary Destination
         c_b_playerEffect = _cardData.PlayerEffect;
-        c_b_enemyEffect = _cardData.EnemyEffect; 
+        c_b_enemyEffect = _cardData.EnemyEffect;
 
         //Toggle Main Effects
         c_b_attackMainEffect = _cardData.AttackEffect;
@@ -223,8 +215,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_redBackground;
-            c_a_cardForegroundImage.sprite = c_a_redForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_redBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_redForeground;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -236,8 +228,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_blueBackground;
-            c_a_cardForegroundImage.sprite = c_a_blueForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_blueBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_blueForeground;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -249,8 +241,8 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_yellowBackground;
-            c_a_cardForegroundImage.sprite = c_a_yellowForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_yellowBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_yellowForeground;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -262,15 +254,18 @@ public class S_Card : MonoBehaviour
             c_b_whiteColorType = true;
 
             //Toggle Graphics
-            c_a_cardBackgroundImage.sprite = c_a_whiteBackground;
-            c_a_cardForegroundImage.sprite = c_a_whiteForeground;
+            c_a_cardBackgroundArtAsset.sprite = c_a_whiteBackground;
+            c_a_cardForegroundArtAsset.sprite = c_a_whiteForeground;
         }
 
         //set the text for the card
         SetText();
 
         // Set art asset
-        c_a_cardArtImage.sprite = _cardData.CardArtAsset;
+        if(_cardData.CardArtAsset != null) 
+        {
+            c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
+        }  
 
         // Set String Color
         c_str_color = _cardData.ColorString;
@@ -282,7 +277,7 @@ public class S_Card : MonoBehaviour
         c_b_attackSoundEffect = _cardData.PhysicalOrMagicalBoolForAttack;
 
         // Build bleed percentage 
-        if(c_f_cardRarity == 0) // Common
+        if (c_f_cardRarity == 0) // Common
         {
             c_f_bleedDamagePercentage = 0.1f;
         }
@@ -324,9 +319,9 @@ public class S_Card : MonoBehaviour
     /// <param name="_cardData"></param>
     private void CheckStatusEffectOrder(S_CardTemplate _cardData)
     {
-        if(c_b_noEffect == true)
+        if (c_b_noEffect == true)
         {
-            Debug.Log("DEBUG: No status effects for the given card!");
+            //Debug.Log("DEBUG: No status effects for the given card!");
             return;
         }
         else
@@ -379,26 +374,26 @@ public class S_Card : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     /// <summary>
     /// Play the given Status Effects, check for player and enemy respectively
     /// </summary>
-    private void TriggerStatusEffects(GameObject _character) 
+    private void TriggerStatusEffects(GameObject _character)
     {
         if (_character.GetComponent<S_Enemy>() != null) // If the given character was an enemy
         {
             S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
-            Debug.Log(_givenEnemy.e_i_enemyCount);
+            //Debug.Log(_givenEnemy.e_i_enemyCount);
             if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
-                if(c_str_statusEffectID1 == "bleed") // In slot 1
+                if (c_str_statusEffectID1 == "bleed") // In slot 1
                 {
                     g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
                 }
-                else if(c_str_statusEffectID2 == "bleed") // In slot 2
+                else if (c_str_statusEffectID2 == "bleed") // In slot 2
                 {
                     g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
                 }
@@ -493,7 +488,7 @@ public class S_Card : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     /// <summary>
@@ -506,24 +501,23 @@ public class S_Card : MonoBehaviour
         {
             if (_character.GetComponent<S_Enemy>() != null)
             {
-                //undo star lockout
-                g_global.g_ConstellationManager.b_starLockout = true;
-
                 // Attack
                 TriggerAttackCard(_character.GetComponent<S_Enemy>());
 
                 // If there are status effects, then trigger them as well
-                if (!c_b_noEffect) 
+                if (!c_b_noEffect)
                 {
-                    if(c_b_enemyEffect == true) // If the status effects are for the enemy
+                    if (c_b_enemyEffect == true) // If the status effects are for the enemy
                     {
                         TriggerStatusEffects(_character);
                     }
-                    else if(c_b_playerEffect == true) // If the status effects are for the player
+                    else if (c_b_playerEffect == true) // If the status effects are for the player
                     {
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
                 }
+
+                g_global.g_altar.SetCardBeingActiveBool(true);
             }
             else
             {
@@ -550,6 +544,13 @@ public class S_Card : MonoBehaviour
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
                 }
+
+                // Unpause IEnumerator
+                if (g_global.g_ls_p_playerHand.Count > 0)
+                {
+                    //Debug.Log("Triggered the bool");
+                    g_global.g_altar.SetCardBeingActiveBool(true);
+                }
             }
             else
             {
@@ -561,9 +562,6 @@ public class S_Card : MonoBehaviour
         {
             // Note using any unique cards but we'd trigger special behavior here
         }
-
-        //call the altar to spawn the next card if you have energy
-        if (g_global.g_ls_p_playerHand.Count > 0) { g_global.g_altar.CheckFirstCardball(); }
     }
 
 
@@ -575,14 +573,16 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
+        StartCoroutine(g_global.g_player.ChangeAttackSprite());
+
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
-        if(c_b_attackSoundEffect == false) // Play physical sound
+        if (c_b_attackSoundEffect == false) // Play physical sound
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Attack & Ability/Attack_Vanilla");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
         }
-        else if(c_b_attackSoundEffect == true) // Play Magic sound
+        else if (c_b_attackSoundEffect == true) // Play Magic sound
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jager G421/attack-magic");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
         DeleteCard();
     }
@@ -602,6 +602,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void DeleteCard()
     {
+        //if a cardball persists
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
         Destroy(gameObject); // Remove card from play
@@ -613,6 +614,106 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void ResetPosition()
     {
-        gameObject.transform.position = sc_c_cardDraggerReference.c_v3_initialPosition; 
+        gameObject.transform.position = c_v3_initialCardPosition;
+        cd_b_resetPositionFlag = false;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void CheckResetOrPlay()
+    {
+        if(c_hoverCharacter != null)
+        {
+            Debug.Log(c_hoverCharacter);
+            PlayCard(c_hoverCharacter);
+        }
+        else
+        {
+            ResetPosition();
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.transform.tag=="Enemy" || col.transform.tag == "Player")
+        {
+            c_hoverCharacter = col.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
+        {
+            Debug.Log("Left character");
+            c_hoverCharacter = null;
+        }
+    }
+
+
+    /// <summary>
+    /// Make it so when one card is hovered by another the layer moves up
+    /// - Josh
+    /// </summary>
+
+    /*
+    public void OnHoverEnter()
+    {
+        if (c_b_cardIsDragged == false) 
+        {
+            c_cardCanvasComponent.sortingOrder = 6;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    /// <summary>
+    /// Return back to original sorting order when mouse exits the hover
+    ///  - Josh
+    /// </summary>
+    public void OnHoverExit() 
+    {
+        if (c_b_cardIsDragged == false)
+        {
+            c_cardCanvasComponent.sortingOrder = c_i_cardPositionIndex;
+        }
+        else
+        {
+            return;
+        }
+    }
+    */
+
+    // Setters \\ 
+
+    /// <summary>
+    /// Set the bool value of S_Card.c_v3_initialCardPosition;
+    /// - Josh 
+    /// </summary>
+    /// <param name="_cardInitialPosition"></param>
+    public void SetCardInitialPosition(Vector3 _cardInitialPosition) 
+    {
+        c_v3_initialCardPosition = _cardInitialPosition;
+    }
+
+    public void SetCardDrag(bool _bool)
+    {
+        c_b_cardIsDragged = _bool;
+    }
+
+    // Getters \\ 
+
+    /// <summary>
+    /// Func that returns the card drag
+    /// </summary>
+    /// <returns></returns>
+    public bool GetCardDrag()
+    {
+        return c_b_cardIsDragged;
+    }
+
 }

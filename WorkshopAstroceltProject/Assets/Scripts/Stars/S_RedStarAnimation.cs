@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class S_RedStarAnimation : MonoBehaviour
 {
-    //Get the redgraphic animator
-    public GameObject g_redGraphic;
+    //Get the red graphic animator
+    public GameObject a_redGraphic;
 
-    public Animator an_animator;
+    public Animator an_redStarAnimator;
 
     [Header("percent chance that the Animation plays")]
     public double i_chance = 0.0000002;
@@ -17,8 +17,6 @@ public class S_RedStarAnimation : MonoBehaviour
 
     private void Awake()
     {
-        an_animator = g_redGraphic.GetComponent<Animator>();
-
         StartCoroutine(PlayAnimation());
     }
 
@@ -39,7 +37,7 @@ public class S_RedStarAnimation : MonoBehaviour
             //a_animator.ResetTrigger("RedAnim");
 
             //Send the message to the Animator to activate the trigger parameter named "RedAnim"
-            an_animator.Play("RedAnim");
+            an_redStarAnimator.Play("RedAnim");
         }
         else
         {

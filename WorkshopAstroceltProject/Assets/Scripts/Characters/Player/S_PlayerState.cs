@@ -20,8 +20,8 @@ public class S_PlayerState : MonoBehaviour
     public bool p_b_inResistantState;
 
     [Header("Audio Prefabs")]
-    public GameObject playerWinMusic;
-    public GameObject playerLoseMusic;
+    public GameObject p_playerWinMusic;
+    public GameObject p_playerLoseMusic;
 
     [Header("Turns passed for Status effects")]
     public int p_i_turnsPassedForStun;
@@ -37,36 +37,28 @@ public class S_PlayerState : MonoBehaviour
 
     void Update()
     {
-        // Check for health and shield limits here
-        if(g_global.g_playerAttributeSheet.p_i_health > g_global.g_playerAttributeSheet.p_i_healthMax)
-        {
-            g_global.g_playerAttributeSheet.p_i_health = g_global.g_playerAttributeSheet.p_i_healthMax;
-        }
+        PlayerWinOrLose(); // Update isn't evil, we want some things to be instantanous - Josh
+    }
 
-        if (g_global.g_playerAttributeSheet.p_i_shield > g_global.g_playerAttributeSheet.p_i_shieldMax)
-        {
-            g_global.g_playerAttributeSheet.p_i_shield = g_global.g_playerAttributeSheet.p_i_shieldMax;
-        }
-
-        if (g_global.g_playerAttributeSheet.p_i_shield <= 0)
-        {
-            g_global.g_playerAttributeSheet.p_i_shield = 0;
-        }
-
-        // If player lost
-        if (g_global.g_playerAttributeSheet.p_i_health <= 0)
+    /// <summary>
+    /// Check to see if the player will win or lose based off the given conditions
+    /// - Josh
+    /// </summary>
+    public void PlayerWinOrLose() 
+    {
+        // Player lose condition, health has been depleated
+        if (g_global.g_playerAttributeSheet.GetPlayerHealthValue() <= 0)
         {
             PlayerLoses();
         }
 
-        //If player won
+        // Player win condition, no more enemies
         if (g_global.g_i_enemyCount <= 0)
         {
             PlayerWins();
         }
     }
-
-
+   
     /// <summary>
     /// Decrement the turn count for effects
     /// Add status effects as needed, call this in turn manager
@@ -81,7 +73,7 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_i_stunnedTurnCount <= 0)
         {
-            g_global.g_turnManager.playerTurnSkipped = false;
+            g_global.g_turnManager.p_b_playerTurnSkipped = false;
             p_b_inStunnedState = false;
             g_global.g_UIManager.ToggleStunPlayerUI(false);
             p_i_turnsPassedForStun = 0;
@@ -103,7 +95,7 @@ public class S_PlayerState : MonoBehaviour
         }
         if (p_b_inStunnedState == true)
         {
-            g_global.g_turnManager.playerTurnSkipped = true;
+            g_global.g_turnManager.p_b_playerTurnSkipped = true;
             p_i_stunnedTurnCount -= 1;
             p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
@@ -147,7 +139,7 @@ public class S_PlayerState : MonoBehaviour
     {
         if (p_b_inStunnedState == false)
         {
-            g_global.g_turnManager.playerTurnSkipped = true;
+            g_global.g_turnManager.p_b_playerTurnSkipped = true;
             p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
             p_i_stunnedTurnCount = _turnCount;
@@ -188,7 +180,7 @@ public class S_PlayerState : MonoBehaviour
     /// <returns></returns>
     private int BleedingEffectCalculator(float _damageRate)
     {
-        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.p_i_health * _damageRate); 
+        int _bleedingCalc = Mathf.RoundToInt(g_global.g_playerAttributeSheet.GetPlayerHealthValue() * _damageRate); 
         return _bleedingCalc;
     }
 
@@ -210,8 +202,7 @@ public class S_PlayerState : MonoBehaviour
     public void PlayerLoses()
     {
         //Player lost so trigger lose text and reset canvas
-        g_global.g_UIManager.greyboxCanvas.SetActive(false);
-        g_global.g_UIManager.resetCanvas.SetActive(true);
+        g_global.g_UIManager.cn_resetCanvas.SetActive(true);
         g_global.g_UIManager.loseText.SetActive(true);
 
         //Play lose sound
@@ -228,30 +219,39 @@ public class S_PlayerState : MonoBehaviour
     /// </summary>
     public void PlayerWins()
     {
-        //Player won so trigger win text and reset canvas
-        g_global.g_UIManager.greyboxCanvas.SetActive(false);
-        g_global.g_UIManager.resetCanvas.SetActive(true);
-        g_global.g_UIManager.winText.SetActive(true);
+        if (!g_global.g_sceneManager.b_finalScene)
+        {
+            //go to the new scene
+            g_global.g_sceneManager.ChangeScene();
+        }
+        else
+        {
+            //Player won so trigger win text and reset canvas
+            g_global.g_UIManager.cn_characterCanvas.SetActive(false);
+            g_global.g_UIManager.cn_resetCanvas.SetActive(true);
+            g_global.g_UIManager.winText.SetActive(true);
 
-        //Play win sound
-        PlaySoundWin();
-        //playerWinMusic.SetActive(false);
+            g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
+            Debug.Log("Did this hit?");
+            Debug.Log(g_global.g_gameManager.i_playerHealth);
 
-        //go to the new scene
-        g_global.g_sceneManager.RewardScene();
+            //Play win sound
+            PlaySoundWin();
+            //playerWinMusic.SetActive(false);
 
-        // Pause The game
-        //Time.timeScale = 0f;
+            // Pause The game
+            //Time.timeScale = 0f;
+        }
     }
 
     private void PlaySoundWin()
     {
-        playerWinMusic.SetActive(true);
+        p_playerWinMusic.SetActive(true);
     }
 
     private void PlaySoundLose()
     {
-        playerLoseMusic.SetActive(true);
+        p_playerLoseMusic.SetActive(true);
     }
 
 }

@@ -33,6 +33,7 @@ public class S_Cardball : MonoBehaviour
     public bool c_b_locatedInThirdPosition;
     public bool c_b_locatedInFourthPosition;
     public bool c_b_locatedInFifthPosition;
+    public bool c_b_locatedInSpawn; 
 
     [Header("Graphic References")]
     public GameObject c_redGraphic;
@@ -45,6 +46,8 @@ public class S_Cardball : MonoBehaviour
 
     // Private variables
     private S_Global g_global;
+
+    private bool c_b_pauseBool; 
 
     private void Awake()
     {
@@ -70,12 +73,14 @@ public class S_Cardball : MonoBehaviour
         c_b_locatedInThirdPosition = false;
         c_b_locatedInFourthPosition = false;
         c_b_locatedInFifthPosition = false;
+        c_b_locatedInSpawn = false;
 
         if (transform.parent.tag == "CardballPosition1") { c_b_locatedInFirstPosition = true; }
         else if (transform.parent.tag == "CardballPosition2") { c_b_locatedInSecondPosition = true; }
         else if (transform.parent.tag == "CardballPosition3") { c_b_locatedInThirdPosition = true; }
         else if (transform.parent.tag == "CardballPosition4") { c_b_locatedInFourthPosition = true; }
         else if (transform.parent.tag == "CardballPosition5") { c_b_locatedInFifthPosition = true; }
+        else if (transform.parent.tag == "CardballSpawnPosition") { c_b_locatedInSpawn = true; }
         else { Debug.Log("Cardball not spawned in Altar!"); }
 
         // Then set the graphics
@@ -126,38 +131,52 @@ public class S_Cardball : MonoBehaviour
     }
 
     /// <summary>
-    /// Cardball gets converted to card
+    /// Method to take a cardball and convert it to a card
     /// - Josh
     /// </summary>
     public void CardballToCard()
     {
+        //Debug.Log("CardballToCard() called");
+
+        // Determine transform
+        Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
+        
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
-        c_card.transform.SetParent(g_global.g_altar.c_cardHolder.transform, false);
+        c_card.transform.SetParent(_whereToSpawnCard, false);
 
-        // Load information From Template
+        // Grab the script from this cardball
         S_Card _cardScript = c_card.GetComponent<S_Card>();
+
+        // Pass over the parent postion for initial position
+        _cardScript.SetCardInitialPosition(_whereToSpawnCard.position);
+
+        // Send information From Template
         _cardScript.FetchCardData(c_cardData);
         g_global.g_altar.c_b_cardSpawned = true;
 
-        // Fulfilled Function
-        //StartCoroutine(WaitToHide(c_card));
-
-        DeleteCardball();
+        // Delete the cardball and add the card to the grave
+        StartCoroutine(DeleteCardball());
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="_card"></param>
-    /// <returns></returns>
-    public IEnumerator WaitToHide(GameObject _card)
-    {
-        yield return new WaitForSeconds(3f);
-        _card.SetActive(false);
 
-        // Fulfilled Function
-        DeleteCardball();
+    /// <summary>
+    /// loops for the size of the cardball value
+    /// decrements each iteration
+    /// delays the countdown until zero and then calls delete cardball
+    /// -Thoman
+    /// </summary>
+    
+    public IEnumerator EnergyTextDecrement()
+    {
+        int energy_constant = c_i_cardEnergyCost;
+        for (int i = energy_constant; i >=0; i--)
+        {
+            c_cardballText.text = "" + i;
+            yield return new WaitForSeconds(.5f);
+        }
+        c_b_pauseBool = true;
+        yield return c_b_pauseBool == true;
     }
 
     /// <summary>
@@ -165,12 +184,38 @@ public class S_Cardball : MonoBehaviour
     /// delete the cardball
     /// - Josh
     /// </summary>
-    public void DeleteCardball()
+    public IEnumerator DeleteCardball()
     {
-        Debug.Log("DEBUG: Cardball Deletion Triggered");
+        //Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.g_ls_cardBallPrefabs.Remove(this);
+
+        //add the card to the grave
         g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        StartCoroutine(g_global.g_altar.WaitForCardballDeletionToMove(gameObject));
+        //Debug.Log("Where does this happen from");
+        yield return StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
+        //StartCoroutine(CarballDestroyVFX());
+    }
+
+
+    /// <summary>
+    /// Deletes this cardball but is called when all cardballs get deleted
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator DeleteAllCardballs()
+    {
+        //Debug.Log("DEBUG: Cardball Deletion Triggered");
+        g_global.g_ls_cardBallPrefabs.Remove(this);
+
+        //add the card to the grave
+        g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
+        yield return StartCoroutine(g_global.g_altar.MoveAndDeleteAllCardBalls(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
+        //StartCoroutine(CarballDestroyVFX())
+    }
+
+    public void TrueDeleteCardball() 
+    {
+        Debug.Log("True Delete");
+        Destroy(this.gameObject);
     }
 
     /// <summary>
@@ -234,5 +279,15 @@ public class S_Cardball : MonoBehaviour
             g_global.g_altar.a_yellowBorder.SetActive(false);
             g_global.g_altar.a_colorlessBorder.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// Call for VFX after cardball deleted
+    /// -Thoman
+    /// </summary>
+    public IEnumerator CarballDestroyVFX()
+    {
+        Debug.Log("VFX call");
+        yield return new WaitForSeconds(2);
     }
 }

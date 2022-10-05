@@ -12,14 +12,15 @@ public class S_ConstelationManager : MonoBehaviour
 
     //the list of the current constellation
     public List<S_StarClass> ls_curConstellation;
+
     //this is the color for the cur constellation
     public string str_curColor = "";
 
-   [Header("Bool for constellation status")]
-    public bool b_makingConstellation;
+    //Bool for constellation status
+    private bool b_makingConstellation;
 
-    [Header("Bool for Lockout")]
-    public bool b_starLockout;
+    //Bool for Lockout
+    public bool b_starLockout = false;
 
     [Header("Previos star and location")]
     public S_StarClass s_previousStar;
@@ -44,6 +45,8 @@ public class S_ConstelationManager : MonoBehaviour
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
 
+    public bool c_cardballsSpawned;
+
     public int i_starSound = 0;
 
     private void Awake()
@@ -51,7 +54,6 @@ public class S_ConstelationManager : MonoBehaviour
         //fetch global, get set previous as null, and start with star lockout
         g_global = S_Global.Instance;
         s_previousStar = s_nullStarInst;
-        b_starLockout = true;
 
         // Get popups to not move at first
         s_b_popupMove = false; 
@@ -100,15 +102,21 @@ public class S_ConstelationManager : MonoBehaviour
 
         if (_star.starType == "Node")
         {
+            S_NodeStar _node = _star.gameObject.GetComponent<S_NodeStar>();
+
             if (b_makingConstellation)
             {
                 //finsih making the constellation
+
+                _node.SetNodeClicked(false);
                 FinishConstellation(_star);
             }
             else
             {
                 //now that the node is added, change the bool
                 b_makingConstellation = true;
+                _node.NodeClickedColor();
+                _node.SetNodeClicked(true);
             }
         }
         //check if the length is greater than the max length, sub 1 for the two node stars
@@ -189,6 +197,11 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void DeleteWholeCurConstellation()
     {
+        //reset the star sound
+        i_starSound = 0;
+        _starSoundPhase1.SetActive(false);
+
+
         //clear the constellation
         ls_curConstellation.Clear();
 
@@ -199,12 +212,18 @@ public class S_ConstelationManager : MonoBehaviour
         str_curColor = "";
 
         //reset the prvious star
-        s_previousStar = s_nullStarInst;
-        v2_prevLoc = new Vector2(0,0);
+        ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
         // Delete popup
         StartCoroutine(g_global.g_popupManager.ClearAllPopups());
-}
+    }
+
+    public IEnumerator CardballSpawnCheck()
+    {
+        yield return new S_WaitForCardballSpawn();
+        c_cardballsSpawned = true;
+        SetStarLockOutBool(true);
+    }
 
     /// <summary>
     /// This Function deals with whenever the player clicks on a node star
@@ -214,27 +233,35 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void NodeStarClicked(S_StarClass _starN, Vector2 _locN)
     {
-        if (b_makingConstellation) //if you have started a constellation
+        if (c_cardballsSpawned == true)
         {
-            g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
+            if (b_makingConstellation) //if you have started a constellation
+            {
+                g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
+            }
+            else //if you have not started a constellation
+            {
+                _starN.s_star.m_nextLine = null;
+
+                //set the sound to active and reset the star sound
+                _starSoundPhase1.SetActive(true);
+                i_starSound = 0;
+
+                g_global.g_lineMultiplierManager.ChangeLineLists();
+
+                //add to the list
+                AddStarToCurConstellation(_starN);
+
+                //set all of the previous star stuff as the node
+                ChangePrevStarAndLoc(_starN, _locN);
+
+                //set node star's previous as null
+                _starN.s_star.m_previous = s_nullStarInst;
+            }
         }
-        else //if you have not started a constellation
+        else
         {
-            //set the sound to active and reset the star sound
-            _starSoundPhase1.SetActive(true);
-            i_starSound = 0;
-
-            g_global.g_lineMultiplierManager.ChangeLineLists();
-
-            //add to the list
-            AddStarToCurConstellation(_starN);
-
-            //set all of the previous star stuff as the node
-            s_previousStar = _starN;
-            v2_prevLoc = _locN;
-
-            //set node star's previous as null
-            _starN.s_star.m_previous = s_nullStarInst;
+            return;
         }
     }
 
@@ -263,7 +290,7 @@ public class S_ConstelationManager : MonoBehaviour
     public void FinishConstellation(S_StarClass _node)
     {
         //lock out stars while calculating
-        b_starLockout = false;
+        SetStarLockOutBool(false);
 
         //set up the energy
         int _energy = ls_curConstellation.Count() - 2;
@@ -331,25 +358,23 @@ public class S_ConstelationManager : MonoBehaviour
 
 
             //Print total line lenght, then reset to 0
-            Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
+            //Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
             g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
             b_makingConstellation = false;
             ls_curConstellation.Clear();
 
-            b_starLockout = true;
-
             //transfer the energy
             g_global.g_energyManager.TransferStoredEnergy();
 
             //print out the energy at the end for debuggin purposes
-            Debug.Log("Red Energy: " + g_global.g_energyManager.i_redEnergy + "  Yellow Energy: " + g_global.g_energyManager.i_yellowEnergy + "  Blue Energy: " + g_global.g_energyManager.i_blueEnergy);
-
-            //call the altar
-            g_global.g_altar.CheckFirstCardball();
+            Debug.Log("Red Energy: " + g_global.g_energyManager.GetRedEnergyInt() + "  Yellow Energy: " + g_global.g_energyManager.GetYellowEnergyInt() + "  Blue Energy: " + g_global.g_energyManager.GetBlueEnergyInt());
 
             // Popups now move to card
             StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
+
+            //call the altar
+            g_global.g_altar.CheckFirstCardball();
         }
     }
 
@@ -361,5 +386,46 @@ public class S_ConstelationManager : MonoBehaviour
         _starSoundPhase2.SetActive(true);
         var emitter = _starSoundPhase2.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Note Order", i_starSound);
+    }
+
+    public void ChangePrevStarAndLoc(S_StarClass _star, Vector2 _loc)
+    {
+        s_previousStar = _star;
+        v2_prevLoc = _loc;
+    }
+
+    // Setters \\
+
+    /// <summary>
+    /// Set the bool value of S_ConstelationManager.b_starLockout;
+    /// - Josh
+    /// </summary>
+    /// <param name="_boolState"></param>
+    public void SetStarLockOutBool(bool _boolState)
+    {
+        //Debug.Log("Star lockout bool is..." + _boolState.ToString());
+        b_starLockout = _boolState;
+    }
+
+    // Getters and Setters\\ 
+
+    /// <summary>
+    /// Get the bool state of S_ConstelationManager.b_starLockout
+    /// </summary>
+    /// <returns>
+    /// S_ConstelationManager.b_starLockout
+    /// </returns>
+    public bool GetStarLockOutBool() 
+    {
+        return b_starLockout;
+    }
+
+    /// <summary>
+    /// Gets the bool for making a constellation
+    /// </summary>
+    /// <returns></returns>
+    public bool GetMakingConstellation()
+    {
+        return b_makingConstellation;
     }
 }
