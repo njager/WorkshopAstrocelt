@@ -36,19 +36,30 @@ public class S_AudioTrack : MonoBehaviour
         if (b_eventScene)
         {
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+            
             emitter.SetParameter("TimeInScene", f_timeInScene);
+            
+            emitter.SetParameter("CurrentScene", 0);
         }
         else if (b_combatScene)
         {
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+            
             emitter.SetParameter("PlayerHealth", (float)i_playerHealth);
+                        
             emitter.SetParameter("TimeInScene", f_timeInScene);
+
+            emitter.SetParameter("CurrentScene", 1);
         }
         else if (b_bossScene)
         {
             var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+            
             emitter.SetParameter("PlayerHealth", (float)i_playerHealth);
+            
             emitter.SetParameter("TimeInScene", f_timeInScene);
+
+            emitter.SetParameter("CurrentScene", 2);
         }
         else { Debug.Log("No scene music selected"); }
     }
