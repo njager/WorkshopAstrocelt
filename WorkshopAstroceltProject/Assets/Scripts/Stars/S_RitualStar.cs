@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class S_RitualStar : MonoBehaviour
@@ -191,7 +192,7 @@ public class S_RitualStar : MonoBehaviour
         }
         if (g_global.g_ConstellationManager.GetStarLockOutBool())
         {
-            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null)
+            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 g_global.g_ConstellationManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
             }
@@ -209,7 +210,7 @@ public class S_RitualStar : MonoBehaviour
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation())
         {
-            if (is_clicked == false)
+            if (is_clicked == false && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
