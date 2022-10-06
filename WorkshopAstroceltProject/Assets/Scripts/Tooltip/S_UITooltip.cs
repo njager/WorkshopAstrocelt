@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class S_Tooltip : MonoBehaviour
+public class S_UITooltip : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -36,7 +36,7 @@ public class S_Tooltip : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_identifier"></param>
-    public S_Tooltip(string _identifier, string _headerText, string _bodyText) 
+    public S_UITooltip(string _identifier, string _headerText, string _bodyText) 
     {
         // Set Global
         g_global = S_Global.Instance;
