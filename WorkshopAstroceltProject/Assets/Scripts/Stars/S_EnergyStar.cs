@@ -210,7 +210,7 @@ public class S_EnergyStar : MonoBehaviour
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation())
         {
-            if (is_clicked == false && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {

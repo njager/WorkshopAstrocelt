@@ -66,8 +66,8 @@ public class S_PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit");
-// Application.Quit();
+        //Debug.Log("Quit");
+        Application.Quit();
     }
 
     public void ResLeft()
