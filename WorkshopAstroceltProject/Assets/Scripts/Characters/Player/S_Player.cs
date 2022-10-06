@@ -255,6 +255,11 @@ public class S_Player : MonoBehaviour
     ///////////////////////////// Animation Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+    public void TriggerAttackSprite()
+    {
+        StartCoroutine(ChangeAttackSprite());
+    }
+
     /// <summary>
     /// Change player sprite to attack sprite
     ///  - "Riley"
@@ -264,7 +269,7 @@ public class S_Player : MonoBehaviour
     {
         playerSprite.sprite = attackSprite;
 
-        //Debug.Log("Player will animate");
+        Debug.Log("Player will animate");
 
         //p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
 
@@ -275,6 +280,8 @@ public class S_Player : MonoBehaviour
         Debug.Log("Player will change to idle");
 
         playerSprite.sprite = idleSprite;
+
+        yield return null;
     }
 
     /// <summary>
