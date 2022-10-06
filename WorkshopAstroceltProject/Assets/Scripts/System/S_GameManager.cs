@@ -90,8 +90,8 @@ public class S_GameManager : MonoBehaviour
             SkullBoss.enabled = true;
             SkullBoss_Selector.enabled = false;
 
-            encounterSprite.enabled = false;
-            encounterSprite.enabled = false;
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
         }
 
         if (scene.name == "Scn_4thEnemyEncounter")
@@ -107,8 +107,8 @@ public class S_GameManager : MonoBehaviour
             SkullBoss.enabled = true;
             SkullBoss_Selector.enabled = true;
 
-            encounterSprite.enabled = false;
-            encounterSprite.enabled = false;
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
         }
 
         if (scene.name == "Scn_4thEnemyEncounter")
@@ -124,8 +124,8 @@ public class S_GameManager : MonoBehaviour
             SkullBoss.enabled = true;
             SkullBoss_Selector.enabled = true;
 
-            encounterSprite.enabled = false;
-            encounterSprite.enabled = false;
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
         }
 
         if (scene.name == "Event1-Bog" || scene.name == "Event2-Mushrooms" || scene.name == "Event3-Victory")
@@ -142,7 +142,7 @@ public class S_GameManager : MonoBehaviour
             SkullBoss_Selector.enabled = false;
 
             encounterSprite.enabled = true;
-            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = true;
         }
 
 
