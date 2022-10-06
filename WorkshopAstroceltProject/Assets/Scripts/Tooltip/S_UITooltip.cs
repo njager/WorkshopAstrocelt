@@ -24,7 +24,6 @@ public class S_UITooltip : MonoBehaviour
     [SerializeField] TextMeshProUGUI tlp_tx_bodyText;
 
     [Header("Art Icon Template")]
-    [SerializeField] GameObject tlp_a_artIconEntryTemplate;
     [SerializeField] List<S_UITooltipIcon> tlp_ls_a_artIconEntryList;
 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -37,7 +36,33 @@ public class S_UITooltip : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_identifier"></param>
-    private S_UITooltip(string _identifier, string _headerText, string _bodyText) 
+    /// <param name="_headerText"></param>
+    /// <param name="_bodyText"></param>
+    public S_UITooltip(string _identifier, string _headerText, string _bodyText) 
+    {
+        // Set Global
+        g_global = S_Global.Instance;
+
+        // Set Identifer
+        SetIdentifyingTooltipString(_identifier);
+
+        // Set Canvas Dimensions
+        UpdateCanvasBehavior();
+
+        // Update the Text elements
+        UpdateDebugTooltipUI(_headerText, _bodyText);
+    }
+
+    /// <summary>
+    /// Constructor used to set the behavior of the tool tip based on if it exists in Canvas or Sprite based mode
+    /// Icon overload
+    /// - Josh
+    /// </summary>
+    /// <param name="_identifier"></param>
+    /// <param name="_headerText"></param>
+    /// <param name="_bodyText"></param>
+    /// <param name="_iconIdentifier"></param>
+    public S_UITooltip(string _identifier, string _headerText, string _bodyText, string _iconIdentifier)
     {
         // Set Global
         g_global = S_Global.Instance;

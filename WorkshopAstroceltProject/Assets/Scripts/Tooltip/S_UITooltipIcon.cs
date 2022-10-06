@@ -11,7 +11,6 @@ public class S_UITooltipIcon : MonoBehaviour
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     
     [Header("Tooltip Icon Attributes")]
-    [SerializeField] Sprite tlp_a_artIconAsset;
     [SerializeField] SpriteRenderer tlp_sp_artIconRenderer; 
     [SerializeField] TextMeshProUGUI tlp_tx_flavorText;
 
@@ -19,14 +18,34 @@ public class S_UITooltipIcon : MonoBehaviour
     ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    private S_UITooltipIcon() 
+    /// <summary>
+    /// Constructor used to setup the created icon entry
+    /// Base overload
+    /// - Josh
+    /// </summary>
+    /// <param name="_iconArt"></param>
+    /// <param name="_flavorText"></param>
+    public S_UITooltipIcon(Sprite _iconArt, string _flavorText) 
     {
+        // Set Icon Art
+        SetIconArtAsset(_iconArt);
 
+        // Set bodyText
+        SetIconFlavorText(_flavorText);
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+    /// <summary>
+    /// Update the icon values based on if anything else changes
+    /// - Josh
+    /// </summary>
+    public void UpdateIconUI() 
+    {
+
+    }
     
     public void DeleteIconEntry() 
     {
@@ -48,6 +67,17 @@ public class S_UITooltipIcon : MonoBehaviour
         tlp_tx_flavorText.text = _flavorText;
     }
 
+    /// <summary>
+    /// Set the sprite asset of S_UITooltipIcon.tlp_sp_artIconRenderer.sprite
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="_spriteAsset"></param>
+    public void SetIconArtAsset(Sprite _spriteAsset)
+    {
+        tlp_sp_artIconRenderer.sprite = _spriteAsset;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -62,5 +92,17 @@ public class S_UITooltipIcon : MonoBehaviour
     public TextMeshProUGUI GetIconFlavorText()
     {
         return tlp_tx_flavorText;
+    }
+
+    /// <summary>
+    /// Get the sprite asset of S_UITooltipIcon.tlp_sp_artIconRenderer.sprite
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UITooltipIcon.tlp_sp_artIconRenderer.sprite
+    /// </returns>
+    public Sprite GetIconArtAsset()
+    {
+        return tlp_sp_artIconRenderer.sprite;
     }
 }
