@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class S_UITooltip : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class S_UITooltip : MonoBehaviour
     private S_Global g_global; 
 
     [Header("Identifying String")]
-    [SerializeField] string tlp_str_identifier; // Set to Canvas or Sprite
+    [SerializeField] string tlp_str_identifier; // Set to Image or SpriteRenderer
 
     [Header("Parent Canvas")]
     [SerializeField] Canvas cn_parentCanvas;
@@ -26,9 +27,9 @@ public class S_UITooltip : MonoBehaviour
     [SerializeField] SpriteRenderer tlp_sp_spriteRendererElement;
     [SerializeField] List<S_CardTemplate> iconEntryList;
 
-    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Constructors \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Constructor used to set the behavior of the tool tip based on if it exists in Canvas or Sprite based mode
@@ -43,6 +44,7 @@ public class S_UITooltip : MonoBehaviour
 
         // Set Identifer
         SetIdentifyingTooltipString(_identifier);
+        
 
         // Update the Text elements
         UpdateDebugTooltipUI(_headerText, _bodyText);
@@ -51,6 +53,21 @@ public class S_UITooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Depending on spawn location, make it an Image based or SpriteRenderer based object 
+    /// </summary>
+    public void UpdateCanvasBehavior() 
+    {
+        if (tlp_str_identifier.Equals("Image")) 
+        {
+
+        }
+        else if (tlp_str_identifier.Equals("SpriteRenderer")) 
+        {
+
+        }
+    }
 
     /// <summary>
     /// Overload 1 with Updating of all text elements
