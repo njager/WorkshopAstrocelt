@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class S_DebugTooltip : MonoBehaviour
+public class S_Tooltip : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -24,7 +24,7 @@ public class S_DebugTooltip : MonoBehaviour
 
     [Header("Art Icon Template")]
     [SerializeField] SpriteRenderer tlp_sp_spriteRendererElement;
-    [SerializeField] Sprite tlp_a_icon;
+    [SerializeField] List<S_CardTemplate> iconEntryList;
 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Constructors \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -36,7 +36,7 @@ public class S_DebugTooltip : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_identifier"></param>
-    public S_DebugTooltip(string _identifier, string _headerText, string _bodyText) 
+    public S_Tooltip(string _identifier, string _headerText, string _bodyText) 
     {
         // Set Global
         g_global = S_Global.Instance;
@@ -86,12 +86,12 @@ public class S_DebugTooltip : MonoBehaviour
         }
     }
 
-    public void AddIcon() 
+    public void AddIconEntry() 
     {
 
     }
 
-    public void RemoveIcon() 
+    public void RemoveIconEntry() 
     {
 
     }
