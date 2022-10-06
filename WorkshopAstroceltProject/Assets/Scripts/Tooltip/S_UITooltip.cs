@@ -24,8 +24,8 @@ public class S_UITooltip : MonoBehaviour
     [SerializeField] TextMeshProUGUI tlp_tx_bodyText;
 
     [Header("Art Icon Template")]
-    [SerializeField] SpriteRenderer tlp_sp_spriteRendererElement;
-    [SerializeField] List<S_CardTemplate> iconEntryList;
+    [SerializeField] GameObject tlp_a_artIconEntryTemplate;
+    [SerializeField] List<S_UITooltipIcon> tlp_ls_a_artIconEntryList;
 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -37,14 +37,16 @@ public class S_UITooltip : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_identifier"></param>
-    public S_UITooltip(string _identifier, string _headerText, string _bodyText) 
+    private S_UITooltip(string _identifier, string _headerText, string _bodyText) 
     {
         // Set Global
         g_global = S_Global.Instance;
 
         // Set Identifer
         SetIdentifyingTooltipString(_identifier);
-        
+
+        // Set Canvas Dimensions
+        UpdateCanvasBehavior();
 
         // Update the Text elements
         UpdateDebugTooltipUI(_headerText, _bodyText);
@@ -61,11 +63,11 @@ public class S_UITooltip : MonoBehaviour
     {
         if (tlp_str_identifier.Equals("Image")) 
         {
-
+            tlp_cn_textCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         }
         else if (tlp_str_identifier.Equals("SpriteRenderer")) 
         {
-
+            tlp_cn_textCanvas.renderMode = RenderMode.WorldSpace;
         }
     }
 
@@ -127,7 +129,7 @@ public class S_UITooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tp_str_identifier
+    /// Set the identifying string of S_UITooltip.tp_str_identifier
     /// - Josh
     /// </summary>
     /// <returns></returns>
@@ -138,7 +140,7 @@ public class S_UITooltip : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tp_tx_headerText
+    /// Set the header text of S_UITooltip.tp_tx_headerText
     /// - Josh
     /// </summary>
     /// <returns></returns>
@@ -149,7 +151,7 @@ public class S_UITooltip : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tp_tx_bodyText
+    /// Set the body text of S_UITooltip.tp_tx_bodyText
     /// - Josh
     /// </summary>
     /// <returns></returns>
@@ -164,7 +166,7 @@ public class S_UITooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tlp_str_identifier
+    /// Set the identifying string of S_UITooltip.tlp_str_identifier
     /// - Josh
     /// </summary>
     /// <returns>
@@ -173,5 +175,29 @@ public class S_UITooltip : MonoBehaviour
     public string GetIdentifyingTooltipString()
     {
         return tlp_str_identifier;
+    }
+
+    /// <summary>
+    /// Set the header text of S_UITooltip.tp_tx_headerText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UITooltip.tp_tx_headerText
+    /// </returns>
+    public TextMeshProUGUI GetTooltipHeaderText()
+    {
+        return tlp_tx_headerText;
+    }
+
+    /// <summary>
+    /// Set the header text of S_UITooltip.tp_tx_bodyText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UITooltip.tp_tx_bodyText
+    /// </returns>
+    public TextMeshProUGUI GetTooltipBodyText()
+    {
+        return tlp_tx_bodyText;
     }
 }
