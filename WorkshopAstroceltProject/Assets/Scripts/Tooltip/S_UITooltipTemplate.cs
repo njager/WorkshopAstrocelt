@@ -19,8 +19,7 @@ public class S_UITooltipTemplate : ScriptableObject
     [SerializeField] bool CanvasState;
 
     [Header("Icon Entries")]
-    [SerializeField] List<(Sprite, string)> tlp_ls_tx_a_iconEntriesList = new List<(Sprite, string)>();
-    [SerializeField] DictionaryTypeDatabase.InspectorBasedDictionarySpriteString iconEntryDictionary;
+    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

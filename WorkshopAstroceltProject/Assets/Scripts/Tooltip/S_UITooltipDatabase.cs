@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class S_UITooltipDatabase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    List<S_UITooltip> ls_activeTooltipList = new List<S_UITooltip>();
 
-    // Update is called once per frame
-    void Update()
+    public void FixedUpdate()
     {
-        
+        foreach(S_UITooltip _tooltip in ls_activeTooltipList.ToList()) 
+        {
+            _tooltip.UpdateDebugTooltipUI(_tooltip.GetTooltipHeaderText().text, _tooltip.GetTooltipBodyText().text);
+        }
     }
 }

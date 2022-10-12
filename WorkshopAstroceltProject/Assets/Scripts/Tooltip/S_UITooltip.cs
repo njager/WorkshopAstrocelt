@@ -25,6 +25,7 @@ public class S_UITooltip : MonoBehaviour
 
     [Header("Art Icon Template")]
     [SerializeField] List<S_UITooltipIcon> tlp_ls_a_artIconEntryList;
+    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
