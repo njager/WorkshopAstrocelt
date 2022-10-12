@@ -32,7 +32,7 @@ public class S_UITooltipTemplate : ScriptableObject
     /// <returns>
     /// S_UIToolTemplate.HeaderText
     /// </returns>
-    public string GetTooltipHeaderBodyText()
+    public string GetTooltipTemplateHeaderText()
     {
         return BodyText;
     }

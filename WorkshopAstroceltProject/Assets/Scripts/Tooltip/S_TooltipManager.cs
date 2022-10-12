@@ -5,21 +5,47 @@ using UnityEngine;
 public class S_TooltipManager : MonoBehaviour
 {
     [Header("Tooltip Prefab")]
-    [SerializeField] GameObject tooltipPrefab;
+    [SerializeField] GameObject iconPrefab;
 
+    /// <summary>
+    /// Create a new tool tip and set it up from template
+    /// - Josh
+    /// </summary>
+    /// <param name="_templateToBuildFrom"></param>
+    /// <param name="_parentTransform"></param>
     public void SpawnToolTip(S_UITooltipTemplate _templateToBuildFrom, Transform _parentTransform)
     {
-        // Create blank tooltip
-        GameObject _tooltip = Instantiate(tooltipPrefab, Vector3.zero, Quaternion.identity);
+        // Grab setup information from template
+        string _headerText = _templateToBuildFrom.GetTooltipTemplateHeaderText();
+        string _bodyText = _templateToBuildFrom.GetTooltipTemplateBodyText();
+        bool _canvasState = _templateToBuildFrom.GetTooltipTemplateCanvasState();
+        
+        // Determine canvas state, set the identifier for constructor
+        string _canvasStateIdentifier = "";
+        if(_canvasState == true) 
+        {
+            _canvasStateIdentifier = "SpriteRenderer";
+        }
+        else if(_canvasState == false) 
+        {
+            _canvasStateIdentifier = "Image";
+        }
 
-        // Set new position
+        // Create new _tooltip
+        S_UITooltip _tooltip = new S_UITooltip(_canvasStateIdentifier, _headerText, _bodyText);
+
+        // Set new parent in hierarchy
         _tooltip.transform.SetParent(_parentTransform, false);
 
-        // Grab the tooltip script
-        S_UITooltip _tooltipScript = _tooltip.GetComponent<S_UITooltip>();
+        // Set new positon
+        _tooltip.transform.position = _parentTransform.position;
     }
 
-    public void AddIcons() 
+    /// <summary>
+    /// Helper function for setting up icons from relevant dictionary
+    /// - Josh
+    /// </summary>
+    private void SetUpIcons() 
     {
 
     }
