@@ -15,9 +15,6 @@ public class S_UITooltip : MonoBehaviour
     [Header("Identifying String")]
     [SerializeField] string tlp_str_identifier; // Set to Image or SpriteRenderer
 
-    [Header("Art Asset Canvas")]
-    [SerializeField] Canvas a_cn_artAssetCanvas;
-
     [Header("Text Asset Fields")]
     [SerializeField] Canvas tlp_cn_textCanvas;
     [SerializeField] TextMeshProUGUI tlp_tx_headerText;
