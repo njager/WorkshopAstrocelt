@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InspectorBasedDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+public abstract class AbstractInspectorBasedDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
     [SerializeField, HideInInspector]
-    private List<TKey> keys = new List<TKey>();
+    public List<TKey> keys = new List<TKey>();
 
     [SerializeField, HideInInspector]
-    private List<TValue> values = new List<TValue>();
+    public List<TValue> values = new List<TValue>();
 
     void ISerializationCallbackReceiver.OnAfterDeserialize()
     {
