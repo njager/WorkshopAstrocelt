@@ -8,7 +8,7 @@ public class S_UITooltipTemplate : ScriptableObject
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    
+
     [Header("Header Text:")]
     [SerializeField] string HeaderText;
 

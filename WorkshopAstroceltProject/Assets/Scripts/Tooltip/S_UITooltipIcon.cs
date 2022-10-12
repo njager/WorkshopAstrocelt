@@ -47,6 +47,10 @@ public class S_UITooltipIcon : MonoBehaviour
 
     }
     
+    /// <summary>
+    /// Method to Delete the Icon
+    /// - Josh
+    /// </summary>
     public void DeleteIconEntry() 
     {
         Destroy(this);
