@@ -573,7 +573,6 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerAttackCard(S_Enemy _enemy)
     {
-        StartCoroutine(g_global.g_player.ChangeAttackSprite());
 
         _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
         if (c_b_attackSoundEffect == false) // Play physical sound
@@ -584,6 +583,9 @@ public class S_Card : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
+
+        g_global.g_player.TriggerAttackSprite();
+
         DeleteCard();
     }
 
@@ -645,7 +647,7 @@ public class S_Card : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
+        if (col.gameObject == c_hoverCharacter)
         {
             Debug.Log("Left character");
             c_hoverCharacter = null;
