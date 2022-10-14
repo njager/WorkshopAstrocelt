@@ -13,7 +13,7 @@ public class S_TooltipManager : MonoBehaviour
     /// </summary>
     /// <param name="_templateToBuildFrom"></param>
     /// <param name="_parentTransform"></param>
-    public void SpawnToolTip(S_UITooltipTemplate _templateToBuildFrom, Transform _parentTransform)
+    public void SpawnToolTip(S_TooltipTemplate _templateToBuildFrom, Transform _parentTransform)
     {
         // Grab setup information from template
         string _headerText = _templateToBuildFrom.GetTooltipTemplateHeaderText();
@@ -32,7 +32,7 @@ public class S_TooltipManager : MonoBehaviour
         }
 
         // Create new _tooltip
-        S_UITooltip _tooltip = new S_UITooltip(_canvasStateIdentifier, _headerText, _bodyText);
+        S_Tooltip _tooltip = new S_Tooltip(_canvasStateIdentifier, _headerText, _bodyText);
 
         // Set new parent in hierarchy
         _tooltip.transform.SetParent(_parentTransform, false);

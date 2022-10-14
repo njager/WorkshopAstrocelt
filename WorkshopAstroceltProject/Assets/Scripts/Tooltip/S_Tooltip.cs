@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 
-public class S_UITooltip : MonoBehaviour
+public class S_Tooltip : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -21,8 +21,8 @@ public class S_UITooltip : MonoBehaviour
     [SerializeField] TextMeshProUGUI tlp_tx_bodyText;
 
     [Header("Art Icon Template")]
-    [SerializeField, HideInInspector] List<S_UITooltipIcon> tlp_ls_a_artIconEntryList;
-    [SerializeField, HideInInspector] InspectorBasedDictionarySpriteString iconEntryDictionary;
+    [SerializeField, HideInInspector] List<S_TooltipIcon> tlp_ls_a_artIconEntryList;
+    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -36,7 +36,7 @@ public class S_UITooltip : MonoBehaviour
     /// <param name="_identifier"></param>
     /// <param name="_headerText"></param>
     /// <param name="_bodyText"></param>
-    public S_UITooltip(string _identifier, string _headerText, string _bodyText) 
+    public S_Tooltip(string _identifier, string _headerText, string _bodyText) 
     {
         // Set Global
         g_global = S_Global.Instance;
@@ -60,7 +60,7 @@ public class S_UITooltip : MonoBehaviour
     /// <param name="_headerText"></param>
     /// <param name="_bodyText"></param>
     /// <param name="_iconIdentifier"></param>
-    public S_UITooltip(string _identifier, string _headerText, string _bodyText, string _iconIdentifier)
+    public S_Tooltip(string _identifier, string _headerText, string _bodyText, string _iconIdentifier)
     {
         // Set Global
         g_global = S_Global.Instance;

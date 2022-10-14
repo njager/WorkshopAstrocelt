@@ -3,47 +3,42 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+[Serializable]
 public abstract class AbstractInspectorBasedDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    private List<TKey> keyList = new List<TKey>();
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     [SerializeField]
-    private List<TValue> valueList = new List<TValue>();
+    public List<TKey> keyList = new List<TKey>();
 
-    void ISerializationCallbackReceiver.OnAfterDeserialize()
-    {
-        this.Clear();
-        for (int index = 0; index < this.keyList.Count && index < this.valueList.Count; index++)
-        {
-            this[this.keyList[index]] = this.valueList[index];
-        }
-    }
+    [SerializeField]
+    public List<TValue> valueList = new List<TValue>();
+
+    [SerializeField] 
+    public Dictionary<TKey, TValue> currentDictionary = new Dictionary<TKey, TValue>();
 
     void ISerializationCallbackReceiver.OnBeforeSerialize()
     {
         // Clear out the values
-        this.keyList.Clear();
-        this.valueList.Clear();
+        keyList.Clear();
+        valueList.Clear();
 
-        foreach (var element in this)
+        foreach (var _elementPair in currentDictionary)
         {
-            this.keyList.Add(element.Key);
-            this.valueList.Add(element.Value);
+            keyList.Add(_elementPair.Key);
+            valueList.Add(_elementPair.Value);
         }
     }
 
-    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    
-    public void SetKeyList(List<TKey> _newKeyList) 
+    void ISerializationCallbackReceiver.OnAfterDeserialize()
     {
-        keyList = _newKeyList; 
-    }
+        currentDictionary = new Dictionary<TKey, TValue>();
 
-    public void SetValuesList(List<TValue> _newValueList) 
-    {
-        valueList = _newValueList;
+        for (int i = 0; i < keyList.Count && i < valueList.Count; i++)
+        {
+            currentDictionary.Add(keyList[i], valueList[i]);
+        }
     }
 }
