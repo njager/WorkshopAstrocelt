@@ -17,6 +17,13 @@ public class S_NodeStar : MonoBehaviour
     public Color c_clickedColor;
     public GameObject s_starGraphic;
 
+    [Header("Star Click Bool")]
+    public bool is_clicked = false;
+
+    [Header("Preemptive drawing vars")]
+    private bool b_clickableStar = false;
+    private S_StarClass s_thisStar;
+
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
@@ -39,6 +46,14 @@ public class S_NodeStar : MonoBehaviour
     {
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
+
+        if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
+        {
+            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && is_clicked)
+            {
+                g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
+            }
+        }
     }
 
     private void OnMouseExit()
@@ -51,6 +66,20 @@ public class S_NodeStar : MonoBehaviour
         {
             //change the color to the start color when mouse leaves
             s_starSprite.color = c_starStartColor;
+        }
+
+        if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
+        {
+            if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count - 1) < 7)
+            {
+                if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
+                {
+                    g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength;
+
+                    g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
+                }
+            }
+
         }
     }
 
@@ -77,9 +106,19 @@ public class S_NodeStar : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if(g_global.g_ConstellationManager.GetStarLockOutBool() == true)
+        //trigger this if it is the first click
+        if(g_global.g_ConstellationManager.GetStarLockOutBool() == true && !is_clicked)
         {
             g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
+        }
+        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
+        {
+            is_clicked = true;
+
+            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
+
+            s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+
         }
         else
         {

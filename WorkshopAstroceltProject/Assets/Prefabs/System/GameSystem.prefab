@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_sceneIndex: 0
+  b_finalScene: 0
 --- !u!1 &8047176380039575182
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +460,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_curConstellation: []
   str_curColor: 
-  b_makingConstellation: 0
   b_starLockout: 0
   s_previousStar: {fileID: 0}
   v2_prevLoc: {x: 0, y: 0}
@@ -469,10 +469,12 @@ MonoBehaviour:
   i_maxSize: 7
   i_energyCount: 0
   s_b_popupMove: 0
+  s_nodeStarPrefab: {fileID: 1640622787860408978, guid: 89f0cb3e81d13f54cb9eb0d6b84e7abd, type: 3}
   _starSoundPhase1: {fileID: 0}
   _starSoundPhase2: {fileID: 0}
   c_cardballsSpawned: 0
   i_starSound: 0
+  b_nodeStarChosen: 0
 --- !u!1 &8047176380236070987
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +552,6 @@ MonoBehaviour:
   p_i_turnsPassedForStun: 0
   p_i_turnsPassedForResistant: 0
   p_f_currentDamageRateForBleed: 0
-  b_finalScene: 0
 --- !u!114 &8047176380236070989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,6 +980,7 @@ MonoBehaviour:
   en_tx_redEnergyTrackerText: {fileID: 0}
   en_tx_blueEnergyTrackerText: {fileID: 0}
   en_tx_yellowEnergyTrackerText: {fileID: 0}
+  co_tx_constellationTrackerText: {fileID: 0}
 --- !u!114 &678214752384889694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,6 +1274,9 @@ MonoBehaviour:
   yellowEnergyUITargetPosition: {fileID: 0}
   b_visualPopupFinished: 0
   i_popupUpClearInt: 0
+  pe_redParticle: {fileID: 0}
+  pe_blueParticle: {fileID: 0}
+  pe_yellowParticle: {fileID: 0}
 --- !u!1 &8047176381412509010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1333,7 @@ MonoBehaviour:
   map11: {fileID: 0}
   map12: {fileID: 0}
   map13: {fileID: 0}
+  activeMap: {fileID: 0}
   mp_i_previousMapNum: 0
 --- !u!1 &9177569602586923092
 GameObject:
