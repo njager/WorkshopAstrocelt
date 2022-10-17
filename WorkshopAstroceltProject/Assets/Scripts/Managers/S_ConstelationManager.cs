@@ -87,11 +87,11 @@ public class S_ConstelationManager : MonoBehaviour
             }
             else if (_star.starType == "Ritual")
             {
-
+                _star.gameObject.GetComponent<S_RitualStar>().ConfirmClickable(_star);
             }
             else if (_star.starType == "Node")
             {
-
+                _star.gameObject.GetComponent<S_NodeStar>().ConfirmClickable(_star);
             }
             else
             {
@@ -263,7 +263,9 @@ public class S_ConstelationManager : MonoBehaviour
             }
             else //if you have not started a constellation
             {
+                //reset the node star previous and next lines
                 _starN.s_star.m_nextLine = null;
+                _starN.s_star.m_previousLine = null;
 
                 //set the sound to active and reset the star sound
                 _starSoundPhase1.SetActive(true);
@@ -384,6 +386,8 @@ public class S_ConstelationManager : MonoBehaviour
             g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
             b_makingConstellation = false;
+            Debug.Log("Making constellations NOT");
+
             ls_curConstellation.Clear();
 
             //transfer the energy
