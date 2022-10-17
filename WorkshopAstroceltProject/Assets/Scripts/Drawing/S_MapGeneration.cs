@@ -27,6 +27,8 @@ public class S_MapGeneration : MonoBehaviour
     public GameObject map12;
     public GameObject map13;
 
+    public GameObject activeMap;
+
     [Header("Map that was Choosen")]
     public int mp_i_previousMapNum;
 
@@ -161,6 +163,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 1;
+
+        activeMap = map1;
     }
 
     // Designer Map 2
@@ -183,6 +187,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 2;
+
+        activeMap = map2;
     }
 
     // Designer Map 3
@@ -205,6 +211,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 3;
+
+        activeMap = map3;
     }
 
     // Designer Map 4
@@ -227,6 +235,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 4;
+
+        activeMap = map4;
     }
 
     // Designer Map 5
@@ -249,6 +259,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 5;
+
+        activeMap = map5;
     }
 
     // Designer Map 6
@@ -271,6 +283,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 6;
+
+        activeMap = map6;
     }
 
     // Designer Map 7
@@ -293,6 +307,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 7;
+
+        activeMap = map7;
     }
 
     // Designer Map 8
@@ -315,6 +331,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 8;
+
+        activeMap = map8;
     }
 
     // Designer Map 9
@@ -337,6 +355,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 9;
+
+        activeMap = map9;
     }
 
     // Designer Map 10
@@ -359,6 +379,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 10;
+
+        activeMap = map10;
     }
 
     // Designer Map 11
@@ -381,6 +403,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 11;
+
+        activeMap = map11;
     }
 
     // Designer Map 12
@@ -403,6 +427,8 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 12;
+
+        activeMap = map12;
     }
 
     // Designer Map 13
@@ -425,5 +451,7 @@ public class S_MapGeneration : MonoBehaviour
 
         // Set previous map for non-repeating
         mp_i_previousMapNum = 13;
+
+        activeMap = map13;
     }
 }

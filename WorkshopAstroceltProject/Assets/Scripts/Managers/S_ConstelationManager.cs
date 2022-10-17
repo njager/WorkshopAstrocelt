@@ -40,7 +40,10 @@ public class S_ConstelationManager : MonoBehaviour
     public int i_energyCount;
 
     [Header("Constellation Finished Bool for Popup")]
-    public bool s_b_popupMove; 
+    public bool s_b_popupMove;
+
+    [Header("Node Star Prefab")]
+    public GameObject s_nodeStarPrefab;
 
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
@@ -48,6 +51,8 @@ public class S_ConstelationManager : MonoBehaviour
     public bool c_cardballsSpawned;
 
     public int i_starSound = 0;
+
+    public bool b_nodeStarChosen = false;
 
     private void Awake()
     {
@@ -72,10 +77,27 @@ public class S_ConstelationManager : MonoBehaviour
 
         //wait for checking stars
         yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
 
         if (!_star.s_star.m_previousLine) { Debug.Log("line is gone so no star added"); yield return null; }
-        else { AddStarToCurConstellation(_star); }
+        else 
+        {
+            if (_star.starType == "Energy")
+            {
+                _star.gameObject.GetComponent<S_EnergyStar>().ConfirmClickable(_star);
+            }
+            else if (_star.starType == "Ritual")
+            {
+
+            }
+            else if (_star.starType == "Node")
+            {
+
+            }
+            else
+            {
+                Debug.Log("not a valid star type");
+            }
+        }
     }
 
     /// <summary>
@@ -376,6 +398,14 @@ public class S_ConstelationManager : MonoBehaviour
             //call the altar
             g_global.g_altar.CheckFirstCardball();
         }
+    }
+
+    public void CreateNodeStar(GameObject _oldStar)
+    {
+        GameObject _newNodeStar = Instantiate(s_nodeStarPrefab, g_global.g_mapManager.activeMap.transform);
+        _newNodeStar.transform.position = _oldStar.transform.position;
+        Destroy(_oldStar); //this will remove it from the map 
+        b_nodeStarChosen = true;
     }
 
     /// <summary>

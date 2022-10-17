@@ -39,6 +39,10 @@ public class S_EnergyStar : MonoBehaviour
     [Header("Star Click Bool")]
     public bool is_clicked = false;
 
+    [Header("Preemptive drawing vars")]
+    private bool b_clickableStar = false;
+    private S_StarClass s_thisStar;
+
     /// <summary>
     /// Grab global for the ritual star
     /// Randomly choose between red, blue, and yellow ritual star graphics. 
@@ -178,6 +182,7 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
+        //Set color for the hover
         if (s_b_redColor == true) // If Red
         {
             s_starSprite.color = s_c_redStarHoverColor;
@@ -190,7 +195,9 @@ public class S_EnergyStar : MonoBehaviour
         {
             s_starSprite.color = s_c_yellowStarHoverColor;
         }
-        if (g_global.g_ConstellationManager.GetStarLockOutBool())
+
+        //Start the chain to make the constellation
+        if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
@@ -208,7 +215,7 @@ public class S_EnergyStar : MonoBehaviour
     private void OnMouseExit()
     {
         s_starSprite.color = s_c_starStartColor;
-        if (g_global.g_ConstellationManager.GetMakingConstellation())
+        if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
@@ -216,45 +223,39 @@ public class S_EnergyStar : MonoBehaviour
                 {
                     g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength;
 
-                    //remove energy by subbing the line first and then seeing what you would get if you did it again
-                    int _energy = g_global.g_lineMultiplierManager.LineMultiplier(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
-                    g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength; //delete again since the func adds
-
-
-                    if (s_b_redColor) { g_global.g_energyManager.i_redStorageEnergy -= _energy; }
-                    else if (s_b_blueColor) { g_global.g_energyManager.i_blueStorageEnergy -= _energy; }
-                    else if (s_b_yellowColor) { g_global.g_energyManager.i_yellowStorageEnergy -= _energy; }
-
-
-                    //remove popup
-                    for (int i = 0; i < _energy; i++)
-                    {
-                        g_global.g_ls_starPopup.RemoveAt(g_global.g_ls_starPopup.Count - 1);
-                        Destroy(g_global.g_popupManager.v3_vfxContainer.GetChild(g_global.g_popupManager.v3_vfxContainer.childCount - 1).gameObject);
-                    }
-                    g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
-
                     g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
                 }
             }
 
         }
-        
     }
 
     public void OnMouseDown()
     {
         //if the star clicking is locked out, dont let the player click it
-        if(g_global.g_ConstellationManager.GetStarLockOutBool())
+        if (!g_global.g_ConstellationManager.b_nodeStarChosen)
+        {
+            g_global.g_ConstellationManager.CreateNodeStar(this.gameObject);
+        }
+        else if(g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
         {
             is_clicked = true;
 
-            
+            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
+
+            s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+
         }
         else
         {
             Debug.Log("Please finish play before drawing again.");
             return;
         }
+    }
+
+    public void ConfirmClickable(S_StarClass _star)
+    {
+        b_clickableStar = true;
+        s_thisStar = _star;
     }
 }
