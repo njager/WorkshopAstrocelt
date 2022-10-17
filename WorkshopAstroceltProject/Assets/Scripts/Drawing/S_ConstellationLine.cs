@@ -156,5 +156,16 @@ public class S_ConstellationLine : MonoBehaviour
         float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
         g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
+
+        //set the linerenderer to start and end at the same point
+        m_lineRendererInst.SetPosition(0, _endPoint);
+    }
+
+    /// <summary>
+    /// This function resets the line renderer so that it displays once the star gets clicked
+    /// </summary>
+    public void ResetEndPos(Vector3 _endPoint)
+    {
+        m_lineRendererInst.SetPosition(0, _endPoint);
     }
 }

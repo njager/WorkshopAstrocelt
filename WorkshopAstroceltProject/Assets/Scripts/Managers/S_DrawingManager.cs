@@ -37,6 +37,8 @@ public class S_DrawingManager : MonoBehaviour
     /// <param name="_loc2"></param>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
+        Debug.Log(_loc1.ToString() + "       " +  _loc2.ToString());
+
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
         S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
@@ -98,7 +100,7 @@ public class S_DrawingManager : MonoBehaviour
         //destroy the line
         Destroy(_line);
 
-        //dont delete the star from the list just cha   nge to null
+        //dont delete the star from the list just change to null
         //g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
     }
 
