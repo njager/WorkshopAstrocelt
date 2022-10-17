@@ -21,8 +21,8 @@ public class S_NodeStar : MonoBehaviour
     public bool is_clicked = false;
 
     [Header("Preemptive drawing vars")]
-    private bool b_clickableStar = false;
-    private S_StarClass s_thisStar;
+    public bool b_clickableStar = false;
+    public S_StarClass s_thisStar;
 
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
@@ -49,7 +49,7 @@ public class S_NodeStar : MonoBehaviour
 
         if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && is_clicked)
+            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && g_global.g_ConstellationManager.GetMakingConstellation())
             {
                 g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
             }
@@ -107,13 +107,16 @@ public class S_NodeStar : MonoBehaviour
     public void OnMouseDown()
     {
         //trigger this if it is the first click
-        if(g_global.g_ConstellationManager.GetStarLockOutBool() == true && !is_clicked)
+        if(g_global.g_ConstellationManager.GetStarLockOutBool() == true && !g_global.g_ConstellationManager.GetMakingConstellation())
         {
+            Debug.Log("this would be wierd");
             g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
         }
-        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
+        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.GetMakingConstellation())
         {
-            is_clicked = true;
+
+            Debug.Log("We here?");
+            is_clicked = false;
 
             g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 
@@ -139,5 +142,11 @@ public class S_NodeStar : MonoBehaviour
     public void SetNodeClicked(bool _bool)
     {
         b_nodeClicked = _bool;
+    }
+
+    public void ConfirmClickable(S_StarClass _star)
+    {
+        b_clickableStar = true;
+        s_thisStar = _star;
     }
 }
