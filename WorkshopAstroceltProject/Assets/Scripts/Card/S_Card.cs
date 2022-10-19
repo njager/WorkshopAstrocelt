@@ -639,9 +639,18 @@ public class S_Card : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.transform.tag=="Enemy" || col.transform.tag == "Player")
+        
+        if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
         {
+            if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
+            {
+                //turn off the old enenemies ui
+                g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+            }
+
+            //select the new enemy as the hovercharacter and turn on their ui
             c_hoverCharacter = col.gameObject;
+            g_global.g_UIManager.SetEnemySelectorOn(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
         }
     }
 
@@ -650,6 +659,7 @@ public class S_Card : MonoBehaviour
         if (col.gameObject == c_hoverCharacter)
         {
             Debug.Log("Left character");
+            g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             c_hoverCharacter = null;
         }
     }
