@@ -38365,6 +38365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyUI1
       objectReference: {fileID: 0}
+    - target: {fileID: 259232777732487716, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -39079,6 +39083,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 1732903537}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1736764577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5684628581951638792, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
+  m_PrefabInstance: {fileID: 1701365860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1739760182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39754,6 +39763,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 14494855294914393, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
   m_PrefabInstance: {fileID: 1775284832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1778728147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5684628581951638792, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
+  m_PrefabInstance: {fileID: 7339375888649373371}
   m_PrefabAsset: {fileID: 0}
 --- !u!212 &1780560770 stripped
 SpriteRenderer:
@@ -47870,6 +47884,14 @@ PrefabInstance:
       propertyPath: debugTurnbarText
       value: 
       objectReference: {fileID: 1973806048}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: e_enemy1Selector
+      value: 
+      objectReference: {fileID: 1736764577}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: e_enemy2Selector
+      value: 
+      objectReference: {fileID: 1778728147}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: en_tx_yellowText
       value: 

@@ -207,4 +207,9 @@ public class S_CharacterGraphics : MonoBehaviour
             }
         }
     }
+
+    public void UpdateSelectorUI()
+    {
+
+    }
 }

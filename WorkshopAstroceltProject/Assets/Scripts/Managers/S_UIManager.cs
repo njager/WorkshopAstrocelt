@@ -40,6 +40,13 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] Image e_enemy4HealthBar;
     [SerializeField] Image e_enemy5HealthBar;
 
+    [Header("Enemy Selector")]
+    [SerializeField] GameObject e_enemy1Selector;
+    [SerializeField] GameObject e_enemy2Selector;
+    [SerializeField] GameObject e_enemy3Selector;
+    [SerializeField] GameObject e_enemy4Selector;
+    [SerializeField] GameObject e_enemy5Selector;
+
     [Header("Win Lose Elements")]
     public GameObject winText;
     public GameObject loseText;
@@ -652,6 +659,8 @@ public class S_UIManager : MonoBehaviour
         return co_tx_constellationTrackerText;
     }
 
+
+
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Player Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -832,6 +841,64 @@ public class S_UIManager : MonoBehaviour
         else if (_enemyNum == 5)
         {
             e_enemy5HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        }
+    }
+
+    /// <summary>
+    /// Turn the enemy selector On
+    /// -Riley 
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemySelectorOn(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1Selector.SetActive(true);
+        }
+        else if (_enemyNum == 2)
+        {
+            e_enemy2Selector.SetActive(true);
+        }
+        else if (_enemyNum == 3)
+        {
+            e_enemy3Selector.SetActive(true);
+        }
+        else if (_enemyNum == 4)
+        {
+            e_enemy4Selector.SetActive(true);
+        }
+        else if (_enemyNum == 5)
+        {
+            e_enemy5Selector.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Turn the Enemy Selector off
+    /// -Riley 
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemySelectorOff(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1Selector.SetActive(false);
+        }
+        else if (_enemyNum == 2)
+        {
+            e_enemy2Selector.SetActive(false);
+        }
+        else if (_enemyNum == 3)
+        {
+            e_enemy3Selector.SetActive(false);
+        }
+        else if (_enemyNum == 4)
+        {
+            e_enemy4Selector.SetActive(false);
+        }
+        else if (_enemyNum == 5)
+        {
+            e_enemy5Selector.SetActive(false);
         }
     }
 
