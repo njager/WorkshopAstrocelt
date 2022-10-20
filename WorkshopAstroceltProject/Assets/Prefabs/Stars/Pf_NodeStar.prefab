@@ -87,6 +87,9 @@ MonoBehaviour:
   c_starHoverColor: {r: 0.66312784, g: 0.4501602, b: 0.764151, a: 1}
   c_clickedColor: {r: 0.82619435, g: 0.6504885, b: 0.8679245, a: 1}
   s_starGraphic: {fileID: 6122840224723126708}
+  is_clicked: 0
+  b_clickableStar: 0
+  s_thisStar: {fileID: 0}
 --- !u!114 &2347392078461315274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +116,8 @@ MonoBehaviour:
   s_b_point1Used: 0
   s_b_point2Used: 0
   s_b_point3Used: 0
+  s_b_temporaryVisualBool: 0
+  tr_ls_popupParentTransforms: []
 --- !u!1 &6122840224723126708
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6122840224723126708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.182, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 3232526743670229590}
