@@ -52,7 +52,7 @@ public class S_StarClass : MonoBehaviour
     /// <returns>
     /// S_StarClass.vectorPoint2
     /// </returns>
-    public Transform GetPopup2ParentTrasnform()
+    public Transform GetPopup2ParentTransform()
     {
         return vectorPoint2.transform;
     }

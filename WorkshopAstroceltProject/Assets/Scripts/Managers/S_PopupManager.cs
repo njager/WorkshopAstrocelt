@@ -102,7 +102,7 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript1.SetPosition(_popupCount, _star);
                 _starPopupScript1.SetGraphic(_star.colorType);
                 // Move to container
-                _starPopup1.transform.SetParent(v3_vfxContainer, true);
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
 
             }
             else if (_energy == 2)
@@ -129,8 +129,8 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript2.SetGraphic(_star.colorType);
 
                 // Move to container
-                _starPopup1.transform.SetParent(v3_vfxContainer, true);
-                _starPopup2.transform.SetParent(v3_vfxContainer, true);
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform(), true);
 
             }
             else if (_energy == 3)
@@ -166,9 +166,9 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript3.SetGraphic(_star.colorType);
 
                 // Move to container
-                _starPopup1.transform.SetParent(v3_vfxContainer, true);
-                _starPopup2.transform.SetParent(v3_vfxContainer, true);
-                _starPopup3.transform.SetParent(v3_vfxContainer, true);
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform(), true);
+                _starPopup3.transform.SetParent(_star.GetPopup3ParentTransform(), true);
             }
         }
     }

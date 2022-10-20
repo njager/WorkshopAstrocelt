@@ -287,10 +287,45 @@ public class S_EnergyStar : MonoBehaviour
                 }
 
                 b_hasBeenClicked = false;
+                
+                // Remove any popups
+                if (_starClassScript.GetPopup1ParentTransform().childCount == 1) // If one popup
+                {
+                    Debug.Log("S_StarClass - Deleting 1 Popup");
 
-                //remove popup
+                    // Grab only one popup through seeking
+                    S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
 
-                if(_starClassScript)
+                    // Delete the popup
+                    _popup1Script.DeletePopup();
+                }
+                else if (_starClassScript.GetPopup2ParentTransform().childCount == 1) // Then two popups have spawned
+                {
+                    Debug.Log("S_StarClass - Deleting 2 Popups");
+
+                    // Grab both popups
+                    S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+                    S_StarPopUp _popup2Script = _starClassScript.GetPopup2ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+
+                    // Delete the popups
+                    _popup1Script.DeletePopup();
+                    _popup2Script.DeletePopup();
+
+                }
+                else if (_starClassScript.GetPopup2ParentTransform().childCount == 3) // then three popups have spawned
+                {
+                    Debug.Log("S_StarClass - Deleting 3 Popups");
+
+                    // Grab all 3 popups
+                    S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+                    S_StarPopUp _popup2Script = _starClassScript.GetPopup2ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+                    S_StarPopUp _popup3Script = _starClassScript.GetPopup3ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+
+                    // Delete the popups
+                    _popup1Script.DeletePopup();
+                    _popup2Script.DeletePopup();
+                    _popup3Script.DeletePopup();
+                }
 
                 // Update managers
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
