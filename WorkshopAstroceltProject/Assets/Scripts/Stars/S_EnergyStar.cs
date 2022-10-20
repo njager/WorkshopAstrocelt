@@ -190,6 +190,7 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         //Set color for the hover
         if (s_b_redColor == true) // If Red
         {
@@ -207,10 +208,9 @@ public class S_EnergyStar : MonoBehaviour
         //Start the chain to make the constellation
         if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (!b_hasBeenClicked && this.GetComponent<S_StarClass>().s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (!b_hasBeenClicked && _starClassScript.s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
-                g_global.g_ConstellationManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
-                
+                g_global.g_ConstellationManager.StarClicked(_starClassScript, transform.position);
             }
         }
     }
@@ -231,9 +231,14 @@ public class S_EnergyStar : MonoBehaviour
             {
                 if (_starClassScript.s_star.m_nextLine == null)
                 {
+                    // Reset line multiplier length
                     g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
 
+                    // Trigger go back once
                     g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
+
+                    // Reset star class temp bool status
+                    _starClassScript.SetTemporaryVisualBool(false);
                 }
             }
 
@@ -252,11 +257,20 @@ public class S_EnergyStar : MonoBehaviour
         {
             if (_starClassScript.s_star.m_previousLine != null && !b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
             {
+                // Set b_hasBeenClickedBool
                 b_hasBeenClicked = true;
                 Debug.Log("S_EnergyStar - clicked logic chain");
 
+                // Set star permanent status
+                _starClassScript.SetTemporaryVisualBool(true);
+
+                // Actually add the star to the constellation list
                 g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 
+                // Change popup color
+                g_global.g_popupManager.ConfirmTemporaryPopup();
+
+                // Set the proper end position for graphic
                 s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
             }
             else if (_starClassScript.s_star.m_previousLine != null && b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
@@ -292,46 +306,6 @@ public class S_EnergyStar : MonoBehaviour
 
                 // Reset star temp status (just in case)
                 _starClassScript.SetTemporaryVisualBool(false);
-
-                // Remove any popups
-
-                if (_starClassScript.GetPopup2ParentTransform().childCount == 3) // then three popups have spawned
-                {
-                    Debug.Log("S_StarClass - Deleting 3 Popups");
-
-                    // Grab all 3 popups
-                    S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-                    S_StarPopUp _popup2Script = _starClassScript.GetPopup2ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-                    S_StarPopUp _popup3Script = _starClassScript.GetPopup3ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-
-                    // Delete the popups
-                    _popup1Script.DeletePopup();
-                    _popup2Script.DeletePopup();
-                    _popup3Script.DeletePopup();
-                }
-                else if (_starClassScript.GetPopup2ParentTransform().childCount == 1) // Then two popups have spawned
-                {
-                    Debug.Log("S_StarClass - Deleting 2 Popups");
-
-                    // Grab both popups
-                    S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-                    S_StarPopUp _popup2Script = _starClassScript.GetPopup2ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-
-                    // Delete the popups
-                    _popup1Script.DeletePopup();
-                    _popup2Script.DeletePopup();
-
-                }
-                else if (_starClassScript.GetPopup1ParentTransform().childCount == 1) // If one popup
-                {
-                    Debug.Log("S_StarClass - Deleting 1 Popup");
-
-                    // Grab only one popup through seeking
-                    S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-
-                    // Delete the popup
-                    _popup1Script.DeletePopup();
-                }
 
                 // Update managers
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);

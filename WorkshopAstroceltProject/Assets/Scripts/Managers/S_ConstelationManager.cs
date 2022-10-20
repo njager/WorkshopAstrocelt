@@ -11,18 +11,16 @@ public class S_ConstelationManager : MonoBehaviour
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+    // Private variables
     private S_Global g_global;
-
-    //the list of the current constellation
-    public List<S_StarClass> ls_curConstellation;
-
-    //this is the color for the cur constellation
-    public string str_curColor = "";
-
-    //Bool for constellation status
     private bool b_makingConstellation;
 
-    //Bool for Lockout
+    [Header("Current Constellation Values")]
+    public List<S_StarClass> ls_curConstellation;
+    public string str_curColor = "";
+    [SerializeField] bool b_curStarSpawnedPopupsAlready;
+
+    [Header("Star Lockout Bool")]
     public bool b_starLockout = false;
 
     [Header("Previos star and location")]
@@ -48,13 +46,17 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Node Star Prefab")]
     public GameObject s_nodeStarPrefab;
 
+    [Header("Sound Phases")]
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
 
+    [Header("Cardball Limiting Bool tied to Spawning")]
     public bool c_cardballsSpawned;
 
+    [Header("Star Sound Index")]
     public int i_starSound = 0;
 
+    [Header("Bool for Nodestar Placement")]
     public bool b_nodeStarChosen = false;
 
     private void Awake()
@@ -180,7 +182,11 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         //Spawn popups as needed
-        g_global.g_popupManager.CreatePopUpForStar(_star, _energy, _star.GetTemporaryVisualBool());
+        if(b_curStarSpawnedPopupsAlready == false)
+        {
+            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, _star.GetTemporaryVisualBool());
+        }
+        
     }
 
     /// <summary>
@@ -293,7 +299,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <summary>
     /// This is the func for non node stars and checks conditions before passing along to the spawn line function 
     /// Added functionallity for clicking on a star before a node star
-    /// - Riley
+    /// - Riley & Josh
     /// </summary>
     public void StarClicked(S_StarClass _star, Vector2 _loc)
     {
@@ -301,6 +307,7 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (s_previousStar != s_nullStarInst)
             {
+                // Create the temp line
                 g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
             }
         }
@@ -405,6 +412,12 @@ public class S_ConstelationManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Create a new node star where the selected star was
+    /// - Riley
+    /// </summary>
+    /// <param name="_oldStar"></param>
     public void CreateNodeStar(GameObject _oldStar)
     {
         GameObject _newNodeStar = Instantiate(s_nodeStarPrefab, g_global.g_mapManager.activeMap.transform);
@@ -434,7 +447,7 @@ public class S_ConstelationManager : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the bool value of S_ConstelationManager.b_starLockout;
+    /// Set the bool value of S_ConstelationManager.b_starLockout
     /// - Josh
     /// </summary>
     /// <param name="_boolState"></param>
@@ -444,12 +457,23 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = _boolState;
     }
 
+    /// <summary>
+    /// Set the bool value of S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// - Josh
+    /// </summary>
+    /// <param name="_boolState"></param>
+    public void SetPopupStatusForCurrentLine(bool _boolState)
+    {
+        b_curStarSpawnedPopupsAlready = _boolState;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Get the bool state of S_ConstelationManager.b_starLockout
+    /// - Josh
     /// </summary>
     /// <returns>
     /// S_ConstelationManager.b_starLockout
@@ -461,10 +485,24 @@ public class S_ConstelationManager : MonoBehaviour
 
     /// <summary>
     /// Gets the bool for making a constellation
+    /// - Riley
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// S_ConstelationManager.b_makingConstellation
+    /// </returns>
     public bool GetMakingConstellation()
     {
         return b_makingConstellation;
+    }
+
+    // <summary>
+    /// Get the bool state of S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// </summary>
+    /// <returns>
+    /// S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// </returns>
+    public bool GetPopupStatusForCurrentLine()
+    {
+        return b_curStarSpawnedPopupsAlready;
     }
 }

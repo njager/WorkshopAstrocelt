@@ -18,7 +18,7 @@ public class S_StarPopUp : MonoBehaviour
     private S_Global g_global;
     [SerializeField] bool b_deletionTimerFlag;
     [SerializeField] bool b_spawnTimerFlag;
-    [SerializeField] SpriteRenderer colorImage;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     [Header("Color Bools")]
     [SerializeField] public bool b_isRedPopup;
@@ -85,7 +85,7 @@ public class S_StarPopUp : MonoBehaviour
     {
         b_spawnTimerFlag = true;
         
-        colorImage.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
+        spriteRenderer.DOFade(f_doFadeAlphaSpawn, f_doFadeDurationSpawn);
         gameObject.transform.DOShakePosition(2f, 0.1f, 6, 10f);
         
         gameObject.transform.DOScale(new Vector3(0.4f, 0.4f, 0), 0.2f);
@@ -173,11 +173,15 @@ public class S_StarPopUp : MonoBehaviour
             SetColorBool(1);
 
             //Set Color Image
-            colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
+            spriteRenderer = redColorGraphic.GetComponent<SpriteRenderer>();
 
-            if(b_isTempPopup == true)
+            if (b_isTempPopup == true)
             {
-                colorImage.color = g_global.g_popupManager.GetRedPopupTempColor();
+                // Set Original
+                SetOriginalColorValue(spriteRenderer.color);
+
+                // Change to Temp
+                spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
             }
 
             StartCoroutine(SpawnFadeTimer());
@@ -191,11 +195,15 @@ public class S_StarPopUp : MonoBehaviour
             SetColorBool(2);
 
             //Set Color Image
-            colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
+            spriteRenderer = blueColorGraphic.GetComponent<SpriteRenderer>();
 
             if (b_isTempPopup == true)
             {
-                colorImage.color = g_global.g_popupManager.GetBluePopupTempColor();
+                // Set Original
+                SetOriginalColorValue(spriteRenderer.color);
+
+                // Change to Temp
+                spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
             }
 
             StartCoroutine(SpawnFadeTimer());
@@ -208,13 +216,17 @@ public class S_StarPopUp : MonoBehaviour
             // Set corresponding bool
             SetColorBool(3);
 
+            //Set Color Image
+            spriteRenderer = yellowColorGraphic.GetComponent<SpriteRenderer>();
+
             if (b_isTempPopup == true)
             {
-                colorImage.color = g_global.g_popupManager.GetYellowPopupTempColor();
-            }
+                // Set Original
+                SetOriginalColorValue(spriteRenderer.color);
 
-            //Set Color Image
-            colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>();
+                // Change to Temp
+                spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
+            }
 
             StartCoroutine(SpawnFadeTimer());
         }
@@ -267,7 +279,7 @@ public class S_StarPopUp : MonoBehaviour
         
         g_global.g_ls_starPopup.Remove(this);
 
-        colorImage.DOFade(f_doFadeAlpha, f_doFadeDuration);
+        spriteRenderer.DOFade(f_doFadeAlpha, f_doFadeDuration);
         if (f_destroyTimer > 0)
         {
             f_destroyTimer -= Time.deltaTime;
@@ -283,7 +295,12 @@ public class S_StarPopUp : MonoBehaviour
     /// </summary>
     public void ChangeToPermanentColor()
     {
-        colorImage.color = new Color(255, 255, 255, 255);
+        Debug.Log("S_StarPop - Making Permanent color");
+
+        spriteRenderer.color = GetOriginalColorValue();
+
+        // Set back to base state for constellation purposes
+        g_global.g_ConstellationManager.SetPopupStatusForCurrentLine(false);
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
