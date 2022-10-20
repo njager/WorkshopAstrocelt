@@ -640,7 +640,7 @@ public class S_Card : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         
-        if (col.transform.tag == "Enemy" || col.transform.tag == "Player")
+        if (col.transform.tag == "Enemy")
         {
             if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
             {
@@ -652,14 +652,22 @@ public class S_Card : MonoBehaviour
             c_hoverCharacter = col.gameObject;
             g_global.g_UIManager.SetEnemySelectorOn(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
         }
+        else if (col.transform.tag == "Player")
+        {
+            c_hoverCharacter = col.gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject == c_hoverCharacter)
         {
-            Debug.Log("Left character");
-            g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+            //remove the enemy selector
+            if(col.transform.tag == "Enemy")
+            {
+                g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+            }
+            
             c_hoverCharacter = null;
         }
     }

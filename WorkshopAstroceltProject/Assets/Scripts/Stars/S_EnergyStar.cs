@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class S_EnergyStar : MonoBehaviour
 {
+    /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     private S_Global g_global;
     private Color s_c_starStartColor;
     private SpriteRenderer s_starSprite;
@@ -37,11 +41,15 @@ public class S_EnergyStar : MonoBehaviour
     [SerializeField] float f_upperScaleBound;
 
     [Header("Star Click Bool")]
-    public bool is_clicked = false;
+    public bool b_hasBeenClicked;
 
     [Header("Preemptive drawing vars")]
     private bool b_clickableStar = false;
     private S_StarClass s_thisStar;
+
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Grab global for the ritual star
@@ -182,6 +190,7 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         //Set color for the hover
         if (s_b_redColor == true) // If Red
         {
@@ -199,9 +208,9 @@ public class S_EnergyStar : MonoBehaviour
         //Start the chain to make the constellation
         if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (!b_hasBeenClicked && _starClassScript.s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
-                g_global.g_ConstellationManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+                g_global.g_ConstellationManager.StarClicked(_starClassScript, transform.position);
             }
         }
     }
@@ -214,16 +223,22 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseExit()
     {
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (b_hasBeenClicked == false && _starClassScript.s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
-                if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
+                if (_starClassScript.s_star.m_nextLine == null)
                 {
-                    g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength;
+                    // Reset line multiplier length
+                    g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
 
-                    g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
+                    // Trigger go back once
+                    g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
+
+                    // Reset star class temp bool status
+                    _starClassScript.SetTemporaryVisualBool(false);
                 }
             }
 
@@ -232,6 +247,7 @@ public class S_EnergyStar : MonoBehaviour
 
     public void OnMouseDown()
     {
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         //if the star clicking is locked out, dont let the player click it
         if (!g_global.g_ConstellationManager.b_nodeStarChosen)
         {
@@ -239,16 +255,67 @@ public class S_EnergyStar : MonoBehaviour
         }
         else if(g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
         {
-            is_clicked = true;
+            if (_starClassScript.s_star.m_previousLine != null && !b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
+            {
+                // Set b_hasBeenClickedBool
+                b_hasBeenClicked = true;
+                Debug.Log("S_EnergyStar - clicked logic chain");
 
-            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
+                // Set star permanent status
+                _starClassScript.SetTemporaryVisualBool(true);
 
-            s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+                // Actually add the star to the constellation list
+                g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 
+                // Change popup color
+                g_global.g_popupManager.ConfirmTemporaryPopup();
+
+                // Set the proper end position for graphic
+                s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+            }
+            else if (_starClassScript.s_star.m_previousLine != null && b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
+            {
+                Debug.Log("Clicked twice on current star so go back once");
+
+                //reset line multiplier
+
+                g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
+
+                //remove energy by subbing the line first and then seeing what you would get if you did it again
+
+                int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_starClassScript.s_star.m_previousLine.gameObject);
+                g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength; //delete again since the func adds
+
+
+                // Determine energy storage bin
+                if (s_b_redColor)
+                {
+                    g_global.g_energyManager.i_redStorageEnergy -= _energy;
+                }
+                else if (s_b_blueColor)
+                {
+                    g_global.g_energyManager.i_blueStorageEnergy -= _energy;
+                }
+                else if (s_b_yellowColor)
+                {
+                    g_global.g_energyManager.i_yellowStorageEnergy -= _energy;
+                }
+
+                // Reset has been clicked
+                b_hasBeenClicked = false;
+
+                // Reset star temp status (just in case)
+                _starClassScript.SetTemporaryVisualBool(false);
+
+                // Update managers
+                g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
+
+                g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
+            }
         }
         else
         {
-            Debug.Log("Please finish play before drawing again.");
+            Debug.Log("Star isn't addable to the constellation - logic error.");
             return;
         }
     }

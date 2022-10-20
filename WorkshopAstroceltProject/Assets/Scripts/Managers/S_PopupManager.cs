@@ -9,7 +9,10 @@ using DG.Tweening;
 
 public class S_PopupManager : MonoBehaviour
 {
-    //private variables
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     private S_Global g_global;
 
     [Header("Clearing Bool")]
@@ -49,6 +52,10 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] ParticleSystem pe_blueParticle;
     [SerializeField] ParticleSystem pe_yellowParticle;
 
+    [Header("Temporary Popup Colors")]
+    [SerializeField] Color redPopupTempColor;
+    [SerializeField] Color bluePopupTempColor;
+    [SerializeField] Color yellowPopupTempColor;
 
     //get the transform component of the text
     private void Awake()
@@ -78,9 +85,10 @@ public class S_PopupManager : MonoBehaviour
     /// </summary>
     /// <param name="_star"></param>
     /// <param name="_energy"></param>
-    public void CreatePopUpForStar(S_StarClass _star, int _energy)
+    /// /// <param name="_isTempStar"></param>
+    public void CreatePopUpForStar(S_StarClass _star, int _energy, bool _isTempStar)
     {
-        if(_star.starType == "NodeStar")
+        if (_star.starType.Equals("Node") || _star.starType.Equals("Null"))
         {
             return; 
         }
@@ -96,11 +104,15 @@ public class S_PopupManager : MonoBehaviour
                 S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
                 _popupCount += 1;
 
-                // Set up Star 1
+                // Set up Star 1 V3 Position
                 _starPopupScript1.SetPosition(_popupCount, _star);
+
+                // Set Star 1 Graphic
+                _starPopupScript1.SetTempStatus(_isTempStar);
                 _starPopupScript1.SetGraphic(_star.colorType);
-                // Move to container
-                _starPopup1.transform.SetParent(v3_vfxContainer, true);
+
+                // Move popup to container
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
 
             }
             else if (_energy == 2)
@@ -113,8 +125,11 @@ public class S_PopupManager : MonoBehaviour
                 S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
                 _popupCount += 1;
 
-                // Set up Star 1
+                // Set up Star 1 V3 Position
                 _starPopupScript1.SetPosition(_popupCount, _star);
+
+                // Set Star 1 Graphic
+                _starPopupScript1.SetTempStatus(_isTempStar);
                 _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Spawn Star 2
@@ -122,13 +137,16 @@ public class S_PopupManager : MonoBehaviour
                 S_StarPopUp _starPopupScript2 = _starPopup2.GetComponent<S_StarPopUp>();
                 _popupCount += 1;
 
-                // Set up Star 2
+                // Set up Star 2 V3 Position
                 _starPopupScript2.SetPosition(_popupCount, _star);
+
+                // Set Star 2 Graphic
+                _starPopupScript2.SetTempStatus(_isTempStar);
                 _starPopupScript2.SetGraphic(_star.colorType);
 
-                // Move to container
-                _starPopup1.transform.SetParent(v3_vfxContainer, true);
-                _starPopup2.transform.SetParent(v3_vfxContainer, true);
+                // Move popups to container
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform());
 
             }
             else if (_energy == 3)
@@ -150,8 +168,11 @@ public class S_PopupManager : MonoBehaviour
                 S_StarPopUp _starPopupScript2 = _starPopup2.GetComponent<S_StarPopUp>();
                 _popupCount += 1;
 
-                // Set up Star 2
+                // Set up Star 2 V3 Position
                 _starPopupScript2.SetPosition(_popupCount, _star);
+
+                // Set Star 2 Graphic
+                _starPopupScript2.SetTempStatus(_isTempStar);
                 _starPopupScript2.SetGraphic(_star.colorType);
 
                 // Spawn Star 3
@@ -159,14 +180,17 @@ public class S_PopupManager : MonoBehaviour
                 S_StarPopUp _starPopupScript3 = _starPopup3.GetComponent<S_StarPopUp>();
                 _popupCount += 1;
 
-                // Set up Star 3
-                _starPopupScript3.SetPosition(_popupCount, _star);
+                // Set up Star 3 V3 Position
+                _starPopupScript2.SetPosition(_popupCount, _star);
+
+                // Set Star 3 Graphic
+                _starPopupScript3.SetTempStatus(_isTempStar);
                 _starPopupScript3.SetGraphic(_star.colorType);
 
-                // Move to container
-                _starPopup1.transform.SetParent(v3_vfxContainer, true);
-                _starPopup2.transform.SetParent(v3_vfxContainer, true);
-                _starPopup3.transform.SetParent(v3_vfxContainer, true);
+                // Move popups to container
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform());
+                _starPopup3.transform.SetParent(_star.GetPopup3ParentTransform());
             }
         }
     }
@@ -181,33 +205,47 @@ public class S_PopupManager : MonoBehaviour
         bool _red = false;
         bool _blue = false;
         bool _yellow = false;
+
         yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
-        foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
+
+        foreach (S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
-            if(_starPopup.b_isBluePopup) { _blue = true; }
+            if (_starPopup.b_isBluePopup) { _blue = true; }
             if (_starPopup.b_isRedPopup) { _red = true; }
             if (_starPopup.b_isYellowPopup) { _yellow = true; }
 
             _starPopup.MovePopupToEnergyTracker();
         }
+
         b_popupClear = false;
         i_popupUpClearInt = g_global.g_ls_starPopup.Count;
         StartCoroutine(ClearPopupsForRound());
+    }
 
-        if (_blue)
+
+    public void TriggerParticleEffects(string _color)
+    {
+        if (_color == "blue")
         {
             pe_blueParticle.Play();
         }
-        else if (_red)
+        else if (_color == "red")
         {
             pe_redParticle.Play();
         }
-        else if (_yellow)
+        else if (_color == "yellow")
         {
             pe_yellowParticle.Play();
         }
+        else if (_color == "white")
+        {
+            pe_blueParticle.Play();
+            pe_redParticle.Play();
+            pe_yellowParticle.Play();
+        }
     }
+
 
     /// <summary>
     /// Remove all popups currently spawned from the scene
@@ -238,7 +276,7 @@ public class S_PopupManager : MonoBehaviour
         foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             StartCoroutine(_starPop.DeletionTimer());
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         }
 
         if (i_popupUpClearInt == 0)
@@ -249,7 +287,34 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupClear == true;
     }
 
-    // Setters \\ 
+    /// <summary>
+    /// Fix the color of a temporary popup and a new popup
+    /// - Josh
+    /// </summary>
+    public void ConfirmTemporaryPopup()
+    {
+        // Grab the temp popup, should be last one in the list
+        S_StarClass _lastStar = g_global.g_ConstellationManager.ls_curConstellation.ToList().Last();
+
+        if(_lastStar.GetTemporaryVisualBool() == true)
+        {
+            foreach(Transform _parentTransform in _lastStar.tr_ls_popupParentTransforms.ToList())
+            {
+                if(_parentTransform.childCount == 1)
+                {
+                    // Access Popup
+                    S_StarPopUp _childPopupScript = _parentTransform.GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+
+                    // Set to base color for graphic
+                    _childPopupScript.ChangeToPermanentColor();
+                }
+            }
+        }
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 
     /// <summary>
     /// /// Set the v3 value of S_PopupManager.redEnergyUITargetPosition.transform.position
@@ -281,8 +346,9 @@ public class S_PopupManager : MonoBehaviour
         yellowEnergyUITargetPosition.transform.position = _newPosition;
     }
 
-
-    // Getters \\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the v3 value of S_PopupManager.redEnergyTargetPosition
@@ -321,7 +387,7 @@ public class S_PopupManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the bool value of S_PopupManager.b_visualPopupFinished;
+    /// Return the bool value of S_PopupManager.b_visualPopupFinished
     /// - Josh
     /// </summary>
     /// <returns>
@@ -330,5 +396,41 @@ public class S_PopupManager : MonoBehaviour
     public bool GetPopupVisualDecrementBool()
     {
         return b_visualPopupFinished;
+    }
+
+    /// <summary>
+    /// Return the color value of S_PopupManager.redPopupTempColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.redPopupTempColor
+    /// </returns>
+    public Color GetRedPopupTempColor()
+    {
+        return redPopupTempColor;
+    }
+
+    /// <summary>
+    /// Return the color value of S_PopupManager.bluePopupTempColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.bluePopupTempColor
+    /// </returns>
+    public Color GetBluePopupTempColor()
+    {
+        return bluePopupTempColor;
+    }
+
+    /// <summary>
+    /// Return the color value of S_PopupManager.yellowPopupTempColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.yellowPopupTempColor
+    /// </returns>
+    public Color GetYellowPopupTempColor()
+    {
+        return yellowPopupTempColor;
     }
 }
