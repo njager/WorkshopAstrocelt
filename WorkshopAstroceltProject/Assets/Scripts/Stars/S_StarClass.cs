@@ -41,6 +41,17 @@ public class S_StarClass : MonoBehaviour
     public List<Transform> tr_ls_popupParentTransforms = new List<Transform>();
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    private void Awake()
+    {
+        SetPopup1ParentTransform(GetPopup1ParentTransform().position);
+        SetPopup2ParentTransform(GetPopup2ParentTransform().position);
+        SetPopup3ParentTransform(GetPopup3ParentTransform().position);
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -54,6 +65,39 @@ public class S_StarClass : MonoBehaviour
     public void SetTemporaryVisualBool(bool _status)
     {
         s_b_temporaryVisualBool = _status;
+    }
+
+    /// <summary>
+    /// Set the position data for S_StarClass.s_v3_parentPosition1
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="_status"></param>
+    public void SetPopup1ParentTransform(Vector3 _givenPosition)
+    {
+        s_v3_parentPosition1 = _givenPosition;
+    }
+
+    /// <summary>
+    /// Set the position data for S_StarClass.s_v3_parentPosition2
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="_status"></param>
+    public void SetPopup2ParentTransform(Vector3 _givenPosition)
+    {
+        s_v3_parentPosition2 = _givenPosition;
+    }
+
+    /// <summary>
+    /// Set the position data for S_StarClass.s_v3_parentPosition3
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="_status"></param>
+    public void SetPopup3ParentTransform(Vector3 _givenPosition)
+    {
+        s_v3_parentPosition3 = _givenPosition;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

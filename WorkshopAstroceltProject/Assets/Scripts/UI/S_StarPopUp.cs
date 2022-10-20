@@ -143,17 +143,17 @@ public class S_StarPopUp : MonoBehaviour
         if(_positionCount == 1)
         {
             //Debug.Log("First popup!");
-            gameObject.transform.position = _star.vectorPoint1.transform.position;
+            gameObject.transform.position = _star.GetPopup1ParentPosition();
         }
         else if(_positionCount == 2)
         {
             //Debug.Log("Second popup!");
-            gameObject.transform.position = _star.vectorPoint2.transform.position;
+            gameObject.transform.position = _star.GetPopup2ParentPosition();
         }
         else if(_positionCount == 3)
         {
             //Debug.Log("Third popup!");
-            gameObject.transform.position = _star.vectorPoint3.transform.position;
+            gameObject.transform.position = _star.GetPopup3ParentPosition();
         }
     }
 
@@ -178,7 +178,7 @@ public class S_StarPopUp : MonoBehaviour
             if (b_isTempPopup == true)
             {
                 // Set Original
-                SetOriginalColorValue(spriteRenderer.color);
+                SetOriginalColorValue(Color.white);
 
                 // Change to Temp
                 spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
@@ -200,7 +200,7 @@ public class S_StarPopUp : MonoBehaviour
             if (b_isTempPopup == true)
             {
                 // Set Original
-                SetOriginalColorValue(spriteRenderer.color);
+                SetOriginalColorValue(Color.white);
 
                 // Change to Temp
                 spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
@@ -222,7 +222,7 @@ public class S_StarPopUp : MonoBehaviour
             if (b_isTempPopup == true)
             {
                 // Set Original
-                SetOriginalColorValue(spriteRenderer.color);
+                SetOriginalColorValue(Color.white);
 
                 // Change to Temp
                 spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
