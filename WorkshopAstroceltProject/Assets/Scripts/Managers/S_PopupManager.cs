@@ -181,8 +181,10 @@ public class S_PopupManager : MonoBehaviour
         bool _red = false;
         bool _blue = false;
         bool _yellow = false;
+
         yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
+
         foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
             if(_starPopup.b_isBluePopup) { _blue = true; }
@@ -191,23 +193,35 @@ public class S_PopupManager : MonoBehaviour
 
             _starPopup.MovePopupToEnergyTracker();
         }
+
         b_popupClear = false;
         i_popupUpClearInt = g_global.g_ls_starPopup.Count;
         StartCoroutine(ClearPopupsForRound());
+    }
 
-        if (_blue)
+
+    public void TriggerParticleEffects(string _color)
+    {
+        if (_color == "blue")
         {
             pe_blueParticle.Play();
         }
-        else if (_red)
+        else if (_color == "red")
         {
             pe_redParticle.Play();
         }
-        else if (_yellow)
+        else if (_color == "yellow")
         {
             pe_yellowParticle.Play();
         }
+        else if (_color == "white")
+        {
+            pe_blueParticle.Play();
+            pe_redParticle.Play();
+            pe_yellowParticle.Play();
+        }
     }
+
 
     /// <summary>
     /// Remove all popups currently spawned from the scene
@@ -249,7 +263,7 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupClear == true;
     }
 
-    // Setters \\ 
+                    // Setters \\ 
 
     /// <summary>
     /// /// Set the v3 value of S_PopupManager.redEnergyUITargetPosition.transform.position
@@ -282,7 +296,7 @@ public class S_PopupManager : MonoBehaviour
     }
 
 
-    // Getters \\ 
+                            // Getters \\ 
 
     /// <summary>
     /// Return the v3 value of S_PopupManager.redEnergyTargetPosition

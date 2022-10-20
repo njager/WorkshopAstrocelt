@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 [System.Serializable]
-public class S_UITooltipIcon : MonoBehaviour
+public class S_TooltipIcon : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -25,7 +25,7 @@ public class S_UITooltipIcon : MonoBehaviour
     /// </summary>
     /// <param name="_iconArt"></param>
     /// <param name="_flavorText"></param>
-    public S_UITooltipIcon(Sprite _iconArt, string _flavorText) 
+    public S_TooltipIcon(Sprite _iconArt, string _flavorText) 
     {
         // Set Icon Art
         SetIconArtAsset(_iconArt);
@@ -47,6 +47,10 @@ public class S_UITooltipIcon : MonoBehaviour
 
     }
     
+    /// <summary>
+    /// Method to Delete the Icon
+    /// - Josh
+    /// </summary>
     public void DeleteIconEntry() 
     {
         Destroy(this);

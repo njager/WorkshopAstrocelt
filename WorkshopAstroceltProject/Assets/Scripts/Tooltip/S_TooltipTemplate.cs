@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Tooltip", menuName = "Tooltip")]
-public class S_UITooltipTemplate : ScriptableObject
+public class S_TooltipTemplate : ScriptableObject
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    
+
     [Header("Header Text:")]
     [SerializeField] string HeaderText;
 
@@ -19,7 +19,7 @@ public class S_UITooltipTemplate : ScriptableObject
     [SerializeField] bool CanvasState;
 
     [Header("Icon Entries")]
-    [SerializeField] List<(Sprite, string)> tlp_ls_tx_a_iconEntriesList = new List<(Sprite, string)>();
+    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -32,7 +32,7 @@ public class S_UITooltipTemplate : ScriptableObject
     /// <returns>
     /// S_UIToolTemplate.HeaderText
     /// </returns>
-    public string GetTooltipHeaderBodyText()
+    public string GetTooltipTemplateHeaderText()
     {
         return BodyText;
     }

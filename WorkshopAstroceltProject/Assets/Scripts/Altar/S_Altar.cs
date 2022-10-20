@@ -53,6 +53,9 @@ public class S_Altar : MonoBehaviour
     [Header("Active Card bool")]
     public bool cd_b_cardIsActive;
 
+    [Header("Null Object")]
+    [SerializeField] GameObject nullObject;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -221,44 +224,52 @@ public class S_Altar : MonoBehaviour
     {
         //Debug.Log("We made it here for the star bool check");
         //yield return new S_WaitForEnergyTextDecrement();
-        if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+        if(cardballPosition1.transform.childCount > 0)
         {
-            //Debug.Log("Made Card");
-
-            // Lock Spawning
-            SetCardBeingActiveBool(false);
-
-            // Possibly tier up the next card
-            if (g_global.g_ls_p_playerHand.Count == 1)
+            if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
             {
-                b_lastCard = true;
-                SetCardballDelaySpawnBool(false);
-            }
-            else 
-            {
-                GameObject _tempObject = GetChildOfSecondAltarPosition();
+                //Debug.Log("Made Card");
 
-                if (_tempObject != null)
+                // Lock Spawning
+                SetCardBeingActiveBool(false);
+
+                // Possibly tier up the next card
+                if (g_global.g_ls_p_playerHand.Count == 1)
                 {
-                    SetCardballDelaySpawnBool(CheckSecondCardball());
-                    b_lastCard = false;
+                    b_lastCard = true;
+                    SetCardballDelaySpawnBool(false);
                 }
+                else
+                {
+                    GameObject _tempObject = GetChildOfSecondAltarPosition();
+
+                    if (_tempObject.Equals(nullObject))
+                    {
+                        SetCardballDelaySpawnBool(CheckSecondCardball());
+                        b_lastCard = false;
+                    }
+                }
+
+                g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
+
+                g_global.g_popupManager.TriggerParticleEffects(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
+
+                //turn the cardball into a card and move over the rest of the cardballs
+                cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+
+                //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
             }
+            else
+            {
+                //clear energy and reset the bool
+                g_global.g_energyManager.ClearEnergy();
 
-            g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
-
-
-            //turn the cardball into a card and move over the rest of the cardballs
-            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
-
-            //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
+            }
         }
         else
         {
-            //clear energy and reset the bool
-            g_global.g_energyManager.ClearEnergy();
-
-            g_global.g_ConstellationManager.SetStarLockOutBool(true);
+            // Nothing
         }
     }
 
@@ -270,10 +281,9 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public bool CheckSecondCardball()
     {
-        GameObject _tempObject = GetChildOfSecondAltarPosition();
-        if (_tempObject != null) 
+        if (cardballPosition2.transform.childCount > 0) 
         {
-            if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
+            if (g_global.g_energyManager.CheckEnergy(cardballPosition2.transform.GetChild(0).GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition2.transform.GetChild(0).GetComponent<S_Cardball>().c_cardData.ColorString))
             {
                 //Debug.Log("Second cardball was valid");
                 return true;
@@ -560,18 +570,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition1
+    /// S_Altar.cardballPosition1.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfFirstAltarPosition() 
     {
-        GameObject _tempObject = cardballPosition1.transform.GetChild(0).gameObject;
-        if (_tempObject != null) 
+        if (cardballPosition1.transform.childCount > 0)
+        {
+            return nullObject;
+        }
+        else
         {
             return cardballPosition1.transform.GetChild(0).gameObject;
-        }
-        else 
-        {
-            return null;
         }
     }
 
@@ -580,18 +589,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition2
+    /// S_Altar.cardballPosition2.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfSecondAltarPosition()
     {
-        GameObject _tempObject = cardballPosition2.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition2.transform.childCount > 0)
         {
-            return cardballPosition2.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition2.transform.GetChild(0).gameObject;
         }
     }
 
@@ -600,18 +608,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition3
+    /// S_Altar.cardballPosition3.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfThirdAltarPosition()
     {
-        GameObject _tempObject = cardballPosition3.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition3.transform.childCount > 0)
         {
-            return cardballPosition3.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition3.transform.GetChild(0).gameObject;
         }
     }
 
@@ -620,18 +627,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition4
+    /// S_Altar.cardballPosition4.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfFourthAltarPosition()
     {
-        GameObject _tempObject = cardballPosition4.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition4.transform.childCount > 0)
         {
-            return cardballPosition4.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition4.transform.GetChild(0).gameObject;
         }
     }
 
@@ -640,18 +646,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition5
+    /// S_Altar.cardballPosition5.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfFifthAltarPosition()
     {
-        GameObject _tempObject = cardballPosition5.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition5.transform.childCount > 0)
         {
-            return cardballPosition5.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition5.transform.GetChild(0).gameObject;
         }
     }
 }
