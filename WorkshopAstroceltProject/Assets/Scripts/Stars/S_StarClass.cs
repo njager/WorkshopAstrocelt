@@ -20,11 +20,16 @@ public class S_StarClass : MonoBehaviour
     public GameObject vectorPoint2;
     public GameObject vectorPoint3;
 
+    [Header("Position Data for Parent Transforms")]
+    [SerializeField] Vector3 s_v3_parentPosition1;
+    [SerializeField] Vector3 s_v3_parentPosition2;
+    [SerializeField] Vector3 s_v3_parentPosition3;
+
     [Header("Constellation Position Counter(?)")]
     public int positionCount;
 
     // These are used to check where to spawn based off the energy tier system 
-    [Header("Position States")]
+    [Header("Position States (not in use)")]
     public bool s_b_point1Used;
     public bool s_b_point2Used;
     public bool s_b_point3Used;
@@ -69,11 +74,11 @@ public class S_StarClass : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the the first popup parent transform from S_StarClass
+    /// Return the the first popup parent transform from S_StarClass.vectorPoint1.transform;
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_StarClass.vectorPoint1
+    /// S_StarClass.vectorPoint1.transform
     /// </returns>
     public Transform GetPopup1ParentTransform()
     {
@@ -81,11 +86,11 @@ public class S_StarClass : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the the second popup parent transform from S_StarClass
+    /// Return the the second popup parent transform from S_StarClass.vectorPoint2.transform;
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_StarClass.vectorPoint2
+    /// S_StarClass.vectorPoint2.transform
     /// </returns>
     public Transform GetPopup2ParentTransform()
     {
@@ -93,14 +98,50 @@ public class S_StarClass : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the the third popup parent transform from S_StarClass
+    /// Return the the third popup parent transform from S_StarClass.vectorPoint3.transform;
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_StarClass.vectorPoint3
+    /// S_StarClass.vectorPoint3.transform
     /// </returns>
     public Transform GetPopup3ParentTransform()
     {
         return vectorPoint3.transform;
+    }
+
+    /// <summary>
+    /// Return the the first popup parent position from S_StarClass.s_v3_parentPosition1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.s_v3_parentPosition1
+    /// </returns>
+    public Vector3 GetPopup1ParentPosition()
+    {
+        return s_v3_parentPosition1;
+    }
+
+    /// <summary>
+    /// Return the the second popup parent position from S_StarClass.s_v3_parentPosition2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.s_v3_parentPosition2
+    /// </returns>
+    public Vector3 GetPopup2ParentPosition()
+    {
+        return s_v3_parentPosition2;
+    }
+
+    /// <summary>
+    /// Return the the third popup parent position from S_StarClass.s_v3_parentPosition3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.s_v3_parentPosition3
+    /// </returns>
+    public Vector3 GetPopup3ParentPosition()
+    {
+        return s_v3_parentPosition3;
     }
 }
