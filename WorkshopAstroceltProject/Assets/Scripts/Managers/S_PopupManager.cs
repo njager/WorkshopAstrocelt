@@ -85,9 +85,10 @@ public class S_PopupManager : MonoBehaviour
     /// </summary>
     /// <param name="_star"></param>
     /// <param name="_energy"></param>
+    /// /// <param name="_isTempStar"></param>
     public void CreatePopUpForStar(S_StarClass _star, int _energy, bool _isTempStar)
     {
-        if(_star.starType == "NodeStar")
+        if(_star.starType == "Node")
         {
             return; 
         }
@@ -111,7 +112,7 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Move popup to container
-                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
 
             }
             else if (_energy == 2)
@@ -144,8 +145,8 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript2.SetGraphic(_star.colorType);
 
                 // Move popups to container
-                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
-                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform(), true);
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform());
 
             }
             else if (_energy == 3)
@@ -187,9 +188,9 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript3.SetGraphic(_star.colorType);
 
                 // Move popups to container
-                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
-                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform(), true);
-                _starPopup3.transform.SetParent(_star.GetPopup3ParentTransform(), true);
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform());
+                _starPopup3.transform.SetParent(_star.GetPopup3ParentTransform());
             }
         }
     }
