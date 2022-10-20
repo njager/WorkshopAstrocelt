@@ -47,6 +47,9 @@ public class S_StarPopUp : MonoBehaviour
     [Header("Card movement speed")] 
     public float f_moveSpeed;
 
+    [Header("Temp Popup")]
+    public bool b_isTempPopup;
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -289,4 +292,14 @@ public class S_StarPopUp : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the bool value of S_StarPopUp.b_isTempPopup
+    /// False for not a temporary visual popup, true otherwise
+    /// - Josh
+    /// </summary>
+    /// <param name="_colorInt"></param>
+    public void SetTempStatus(bool _status)
+    {
+        b_isTempPopup = _status;
+    }
 }

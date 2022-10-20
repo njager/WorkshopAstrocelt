@@ -52,6 +52,11 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] ParticleSystem pe_blueParticle;
     [SerializeField] ParticleSystem pe_yellowParticle;
 
+    [Header("Temporary Popup Colors")]
+    [SerializeField] Color redPopupTempColor;
+    [SerializeField] Color bluePopupTempColor;
+    [SerializeField] Color yellowPopupTempColor;
+
     //get the transform component of the text
     private void Awake()
     {
@@ -80,7 +85,7 @@ public class S_PopupManager : MonoBehaviour
     /// </summary>
     /// <param name="_star"></param>
     /// <param name="_energy"></param>
-    public void CreatePopUpForStar(S_StarClass _star, int _energy)
+    public void CreatePopUpForStar(S_StarClass _star, int _energy, bool _isTempStar)
     {
         if(_star.starType == "NodeStar")
         {
@@ -115,8 +120,11 @@ public class S_PopupManager : MonoBehaviour
                 S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
                 _popupCount += 1;
 
-                // Set up Star 1
+                // Set up Star 1 V3 Position
                 _starPopupScript1.SetPosition(_popupCount, _star);
+
+                // Set Star 1 Graphic
+                _starPopupScript1
                 _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Spawn Star 2
@@ -201,6 +209,9 @@ public class S_PopupManager : MonoBehaviour
                 // Set up Star 1
                 _starPopupScript1.SetPosition(_popupCount, _star);
                 _starPopupScript1.SetGraphic(_star.colorType);
+
+                // Set Color to be different
+
                 // Move to container
                 _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
 
@@ -442,7 +453,7 @@ public class S_PopupManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the bool value of S_PopupManager.b_visualPopupFinished;
+    /// Return the bool value of S_PopupManager.b_visualPopupFinished
     /// - Josh
     /// </summary>
     /// <returns>
@@ -451,5 +462,41 @@ public class S_PopupManager : MonoBehaviour
     public bool GetPopupVisualDecrementBool()
     {
         return b_visualPopupFinished;
+    }
+
+    /// <summary>
+    /// Return the color value of S_PopupManager.redPopupTempColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.redPopupTempColor
+    /// </returns>
+    public Color GetRedPopupTempColor()
+    {
+        return redPopupTempColor;
+    }
+
+    /// <summary>
+    /// Return the color value of S_PopupManager.bluePopupTempColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.bluePopupTempColor
+    /// </returns>
+    public Color GetBluePopupTempColor()
+    {
+        return bluePopupTempColor;
+    }
+
+    /// <summary>
+    /// Return the color value of S_PopupManager.yellowPopupTempColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PopupManager.yellowPopupTempColor
+    /// </returns>
+    public Color yellowRedPopupTempColor()
+    {
+        return yellowPopupTempColor;
     }
 }
