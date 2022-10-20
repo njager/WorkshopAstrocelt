@@ -44,6 +44,9 @@ public class S_StarPopUp : MonoBehaviour
     public GameObject blueColorGraphic;
     public GameObject yellowColorGraphic;
 
+    [Header("Original Color Value")]
+    [SerializeField] Color cl_originalColor;
+
     [Header("Card movement speed")] 
     public float f_moveSpeed;
 
@@ -278,7 +281,7 @@ public class S_StarPopUp : MonoBehaviour
     /// Turn a temporary popup into a permanent one
     /// - Josh
     /// </summary>
-    public void ConfirmPopupStatus()
+    public void ChangeToPermanentColor()
     {
         colorImage.color = new Color(255, 255, 255, 255);
     }
@@ -327,18 +330,42 @@ public class S_StarPopUp : MonoBehaviour
         b_isTempPopup = _status;
     }
 
+    /// <summary>
+    /// Set the color value of S_StarPopUp.cl_originalColor
+    /// - Josh
+    /// </summary>
+    /// <param name="_colorValue"></param>
+    public void SetOriginalColorValue(Color _colorValue)
+    {
+        cl_originalColor = _colorValue;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the color value of S_StarPopUp.cl_originalColor
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarPopUp.cl_originalColor
+    /// </returns>
+    public Color GetOriginalColorValue()
+    {
+       return cl_originalColor;
+    }
 
     /// <summary>
     /// Set the bool value of S_StarPopUp.b_isTempPopup
     /// False for not a temporary visual popup, true otherwise
     /// - Josh
     /// </summary>
-    /// <param name="_colorInt"></param>
-    public void GetTempStatus(bool _status)
+    /// <returns>
+    /// S_StarPopUp.b_isTempPopup
+    /// </returns>
+    public bool GetTempStatus()
     {
-        b_isTempPopup = _status;
+        return b_isTempPopup;
     }
 }

@@ -286,6 +286,31 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupClear == true;
     }
 
+    /// <summary>
+    /// Fix the color of a temporary popup and a new popup
+    /// - Josh
+    /// </summary>
+    public void ConfirmTemporaryPopup()
+    {
+        // Grab the temp popup, should be last one in the list
+        S_StarClass _lastStar = g_global.g_ConstellationManager.ls_curConstellation.ToList().Last();
+
+        if(_lastStar.GetTemporaryVisualBool() == true)
+        {
+            foreach(Transform _parentTransform in _lastStar.tr_ls_popupParentTransforms.ToList())
+            {
+                if(_parentTransform.childCount == 1)
+                {
+                    // Access Popup
+                    S_StarPopUp _childPopupScript = _parentTransform.GetChild(0).gameObject.GetComponent<S_StarPopUp>();
+
+                    // Set to base color for graphic
+                    _childPopupScript.ChangeToPermanentColor();
+                }
+            }
+        }
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
