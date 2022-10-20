@@ -111,7 +111,6 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
-
         //change the star sound here if the line is formed
         i_starSound++;
 
@@ -181,14 +180,7 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         //Spawn popups as needed
-        if(_star.GetTemporaryVisualBool() == false)
-        {
-            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, false);
-        }
-        else if(_star.GetTemporaryVisualBool() == true)
-        {
-            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, true);
-        }
+        g_global.g_popupManager.CreatePopUpForStar(_star, _energy, _star.GetTemporaryVisualBool());
     }
 
     /// <summary>

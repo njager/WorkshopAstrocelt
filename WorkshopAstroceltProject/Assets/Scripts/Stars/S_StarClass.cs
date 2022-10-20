@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_StarClass : MonoBehaviour
 {
-    /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     
@@ -31,6 +31,9 @@ public class S_StarClass : MonoBehaviour
 
     [Header("Temp Star Status")]
     public bool s_b_temporaryVisualBool;
+
+    [Header("Popup Parent Transform Point List")]
+    public List<Transform> tr_ls_popupParentTransforms = new List<Transform>();
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

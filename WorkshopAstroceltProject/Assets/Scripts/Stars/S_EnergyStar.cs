@@ -223,16 +223,17 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseExit()
     {
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (b_hasBeenClicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (b_hasBeenClicked == false && _starClassScript.s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
-                if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
+                if (_starClassScript.s_star.m_nextLine == null)
                 {
-                    g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength;
+                    g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
 
-                    g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
+                    g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
                 }
             }
 
@@ -241,7 +242,7 @@ public class S_EnergyStar : MonoBehaviour
 
     public void OnMouseDown()
     {
-        S_StarClass _starClassScript = this.GetComponent<S_StarClass>();
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         //if the star clicking is locked out, dont let the player click it
         if (!g_global.g_ConstellationManager.b_nodeStarChosen)
         {
@@ -258,7 +259,7 @@ public class S_EnergyStar : MonoBehaviour
 
                 s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
             }
-            else if (_starClassScript.s_star.m_previousLine != null && _starClassScript.s_star.m_nextLine == null)
+            else if (_starClassScript.s_star.m_previousLine != null && b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
             {
                 Debug.Log("Clicked twice on current star so go back once");
 
@@ -286,7 +287,11 @@ public class S_EnergyStar : MonoBehaviour
                     g_global.g_energyManager.i_yellowStorageEnergy -= _energy;
                 }
 
+                // Reset has been clicked
                 b_hasBeenClicked = false;
+
+                // Reset star temp status (just in case)
+                _starClassScript.SetTemporaryVisualBool(false);
 
                 // Remove any popups
 

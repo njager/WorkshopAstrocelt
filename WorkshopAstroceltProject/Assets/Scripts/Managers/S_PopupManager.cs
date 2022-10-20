@@ -320,7 +320,6 @@ public class S_PopupManager : MonoBehaviour
         yellowEnergyUITargetPosition.transform.position = _newPosition;
     }
 
-
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
