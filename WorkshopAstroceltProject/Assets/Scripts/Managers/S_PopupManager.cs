@@ -88,7 +88,7 @@ public class S_PopupManager : MonoBehaviour
     /// /// <param name="_isTempStar"></param>
     public void CreatePopUpForStar(S_StarClass _star, int _energy, bool _isTempStar)
     {
-        if(_star.starType == "Node")
+        if (_star.starType.Equals("Node") || _star.starType.Equals("Null"))
         {
             return; 
         }
