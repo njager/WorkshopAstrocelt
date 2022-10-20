@@ -174,6 +174,107 @@ public class S_PopupManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Create and activate a popup for the constellation
+    /// Use current line tier from the constellation to generate the proper star amounts
+    /// - Josh
+    /// </summary>
+    /// <param name="_star"></param>
+    /// <param name="_energy"></param>
+    public void CreatePopUpForPreviewLine(S_StarClass _star, int _energy)
+    {
+        if (_star.starType == "NodeStar") // Non-starter, not wanted
+        {
+            return;
+        }
+        else
+        {
+            if (_energy == 1)
+            {
+                // Int for tracking how many popups there have been
+                int _popupCount = 0;
+
+                //Spawn Star 1
+                GameObject _starPopup1 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+                S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
+                _popupCount += 1;
+
+                // Set up Star 1
+                _starPopupScript1.SetPosition(_popupCount, _star);
+                _starPopupScript1.SetGraphic(_star.colorType);
+                // Move to container
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
+
+            }
+            else if (_energy == 2)
+            {
+                // Int for tracking how many popups there have been
+                int _popupCount = 0;
+
+                // Spawn Star 1
+                GameObject _starPopup1 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+                S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
+                _popupCount += 1;
+
+                // Set up Star 1
+                _starPopupScript1.SetPosition(_popupCount, _star);
+                _starPopupScript1.SetGraphic(_star.colorType);
+
+                // Spawn Star 2
+                GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+                S_StarPopUp _starPopupScript2 = _starPopup2.GetComponent<S_StarPopUp>();
+                _popupCount += 1;
+
+                // Set up Star 2
+                _starPopupScript2.SetPosition(_popupCount, _star);
+                _starPopupScript2.SetGraphic(_star.colorType);
+
+                // Move to container
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform(), true);
+
+            }
+            else if (_energy == 3)
+            {
+                // Int for tracking how many popups there have been
+                int _popupCount = 0;
+
+                // Spawn Star 1
+                GameObject _starPopup1 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+                S_StarPopUp _starPopupScript1 = _starPopup1.GetComponent<S_StarPopUp>();
+                _popupCount += 1;
+
+                // Set up Star 1
+                _starPopupScript1.SetPosition(_popupCount, _star);
+                _starPopupScript1.SetGraphic(_star.colorType);
+
+                // Spawn Star 2
+                GameObject _starPopup2 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+                S_StarPopUp _starPopupScript2 = _starPopup2.GetComponent<S_StarPopUp>();
+                _popupCount += 1;
+
+                // Set up Star 2
+                _starPopupScript2.SetPosition(_popupCount, _star);
+                _starPopupScript2.SetGraphic(_star.colorType);
+
+                // Spawn Star 3
+                GameObject _starPopup3 = Instantiate(energyPopupPrefab, v3_startingTextPopupPosition, Quaternion.identity);
+                S_StarPopUp _starPopupScript3 = _starPopup3.GetComponent<S_StarPopUp>();
+                _popupCount += 1;
+
+                // Set up Star 3
+                _starPopupScript3.SetPosition(_popupCount, _star);
+                _starPopupScript3.SetGraphic(_star.colorType);
+
+                // Move to container
+                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform(), true);
+                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform(), true);
+                _starPopup3.transform.SetParent(_star.GetPopup3ParentTransform(), true);
+            }
+        }
+    }
+    
+
+    /// <summary>
     /// Move all popups currently spawned to the altar
     /// - Josh
     /// </summary>
@@ -187,9 +288,9 @@ public class S_PopupManager : MonoBehaviour
         yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
 
-        foreach(S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
+        foreach (S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
-            if(_starPopup.b_isBluePopup) { _blue = true; }
+            if (_starPopup.b_isBluePopup) { _blue = true; }
             if (_starPopup.b_isRedPopup) { _red = true; }
             if (_starPopup.b_isYellowPopup) { _yellow = true; }
 

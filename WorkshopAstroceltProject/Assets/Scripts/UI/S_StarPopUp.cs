@@ -11,6 +11,10 @@ using DG.Tweening;
 
 public class S_StarPopUp : MonoBehaviour
 {
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     private S_Global g_global;
     [SerializeField] bool b_deletionTimerFlag;
     [SerializeField] bool b_spawnTimerFlag;
@@ -42,6 +46,10 @@ public class S_StarPopUp : MonoBehaviour
 
     [Header("Card movement speed")] 
     public float f_moveSpeed;
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Set up global, add to list, and deletion timer
@@ -248,8 +256,10 @@ public class S_StarPopUp : MonoBehaviour
         yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
 
-    // Setters \\
-    
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     /// <summary>
     /// Catch all function to set the bool on the popup corresponding to color
     /// 1 == Red, 2 == Blue, 3 == Yellow
