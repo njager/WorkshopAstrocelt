@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class S_EnergyStar : MonoBehaviour
 {
+    /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     private S_Global g_global;
     private Color s_c_starStartColor;
     private SpriteRenderer s_starSprite;
@@ -42,6 +46,10 @@ public class S_EnergyStar : MonoBehaviour
     [Header("Preemptive drawing vars")]
     private bool b_clickableStar = false;
     private S_StarClass s_thisStar;
+
+    /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Grab global for the ritual star
@@ -282,12 +290,12 @@ public class S_EnergyStar : MonoBehaviour
 
                 //remove popup
 
-                
+                if(_starClassScript)
 
                 // Update managers
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
 
-                g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
+                g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
             }
         }
         else

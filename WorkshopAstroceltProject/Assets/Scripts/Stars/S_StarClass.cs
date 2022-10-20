@@ -34,38 +34,38 @@ public class S_StarClass : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Return the the first popup parent container gameobject from S_StarClass
+    /// Return the the first popup parent transform from S_StarClass
     /// - Josh
     /// </summary>
     /// <returns>
     /// S_StarClass.vectorPoint1
     /// </returns>
-    public GameObject GetPopupParent1()
+    public Transform GetPopup1ParentTransform()
     {
-        return vectorPoint1;
+        return vectorPoint1.transform;
     }
 
     /// <summary>
-    /// Return the the second popup parent container gameobject from S_StarClass
+    /// Return the the second popup parent transform from S_StarClass
     /// - Josh
     /// </summary>
     /// <returns>
     /// S_StarClass.vectorPoint2
     /// </returns>
-    public GameObject GetPopupParent2()
+    public Transform GetPopup2ParentTrasnform()
     {
-        return vectorPoint2;
+        return vectorPoint2.transform;
     }
 
     /// <summary>
-    /// Return the the third popup parent container gameobject from S_StarClass
+    /// Return the the third popup parent transform from S_StarClass
     /// - Josh
     /// </summary>
     /// <returns>
     /// S_StarClass.vectorPoint3
     /// </returns>
-    public GameObject GetPopupParent3()
+    public Transform GetPopup3ParentTransform()
     {
-        return vectorPoint3;
+        return vectorPoint3.transform;
     }
 }
