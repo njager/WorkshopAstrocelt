@@ -172,6 +172,11 @@ public class S_StarPopUp : MonoBehaviour
             //Set Color Image
             colorImage = redColorGraphic.GetComponent<SpriteRenderer>();
 
+            if(b_isTempPopup == true)
+            {
+                colorImage.color = g_global.g_popupManager.GetRedPopupTempColor();
+            }
+
             StartCoroutine(SpawnFadeTimer());
         }
         if(_color.Equals("blue"))
@@ -185,6 +190,11 @@ public class S_StarPopUp : MonoBehaviour
             //Set Color Image
             colorImage = blueColorGraphic.GetComponent<SpriteRenderer>();
 
+            if (b_isTempPopup == true)
+            {
+                colorImage.color = g_global.g_popupManager.GetBluePopupTempColor();
+            }
+
             StartCoroutine(SpawnFadeTimer());
         }
         if(_color.Equals("yellow"))
@@ -194,6 +204,11 @@ public class S_StarPopUp : MonoBehaviour
 
             // Set corresponding bool
             SetColorBool(3);
+
+            if (b_isTempPopup == true)
+            {
+                colorImage.color = g_global.g_popupManager.GetYellowPopupTempColor();
+            }
 
             //Set Color Image
             colorImage = yellowColorGraphic.GetComponent<SpriteRenderer>();
@@ -259,6 +274,15 @@ public class S_StarPopUp : MonoBehaviour
         yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
 
+    /// <summary>
+    /// Turn a temporary popup into a permanent one
+    /// - Josh
+    /// </summary>
+    public void ConfirmPopupStatus()
+    {
+        colorImage.color = new Color(255, 255, 255, 255);
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -297,8 +321,23 @@ public class S_StarPopUp : MonoBehaviour
     /// False for not a temporary visual popup, true otherwise
     /// - Josh
     /// </summary>
-    /// <param name="_colorInt"></param>
+    /// <param name="_status"></param>
     public void SetTempStatus(bool _status)
+    {
+        b_isTempPopup = _status;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the bool value of S_StarPopUp.b_isTempPopup
+    /// False for not a temporary visual popup, true otherwise
+    /// - Josh
+    /// </summary>
+    /// <param name="_colorInt"></param>
+    public void GetTempStatus(bool _status)
     {
         b_isTempPopup = _status;
     }

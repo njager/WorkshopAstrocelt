@@ -181,7 +181,14 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         //Spawn popups as needed
-        g_global.g_popupManager.CreatePopUpForStar(_star, _energy);
+        if(_star.GetTemporaryVisualBool() == false)
+        {
+            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, false);
+        }
+        else if(_star.GetTemporaryVisualBool() == true)
+        {
+            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, true);
+        }
     }
 
     /// <summary>

@@ -404,7 +404,7 @@ public class S_PopupManager : MonoBehaviour
     /// <returns>
     /// S_PopupManager.yellowPopupTempColor
     /// </returns>
-    public Color yellowRedPopupTempColor()
+    public Color GetYellowPopupTempColor()
     {
         return yellowPopupTempColor;
     }

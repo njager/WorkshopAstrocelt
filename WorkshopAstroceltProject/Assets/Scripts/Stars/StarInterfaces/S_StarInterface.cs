@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface S_StarClassInterface 
+public interface S_StarInterface 
 {
     
 }
