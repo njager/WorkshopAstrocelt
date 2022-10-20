@@ -29,9 +29,41 @@ public class S_StarClass : MonoBehaviour
     public bool s_b_point2Used;
     public bool s_b_point3Used;
 
+    [Header("Temp Star Status")]
+    public bool s_b_temporaryVisualBool;
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the bool value of S_StarClass.s_b_temporaryVisualBool
+    /// False - not temporary visual, true - temporary visual
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="_status"></param>
+    public void SetTemporaryVisualBool(bool _status)
+    {
+        s_b_temporaryVisualBool = _status;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the bool value of S_StarClass.s_b_temporaryVisualBool
+    /// False - not temporary visual, true - temporary visual
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.s_b_temporaryVisualBool
+    /// </returns>
+    public bool GetTemporaryVisualBool()
+    {
+        return s_b_temporaryVisualBool;
+    }
 
     /// <summary>
     /// Return the the first popup parent transform from S_StarClass
