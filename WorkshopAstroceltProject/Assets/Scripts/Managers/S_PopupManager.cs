@@ -9,7 +9,10 @@ using DG.Tweening;
 
 public class S_PopupManager : MonoBehaviour
 {
-    //private variables
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     private S_Global g_global;
 
     [Header("Clearing Bool")]
@@ -48,7 +51,6 @@ public class S_PopupManager : MonoBehaviour
     [SerializeField] ParticleSystem pe_redParticle;
     [SerializeField] ParticleSystem pe_blueParticle;
     [SerializeField] ParticleSystem pe_yellowParticle;
-
 
     //get the transform component of the text
     private void Awake()
@@ -252,7 +254,7 @@ public class S_PopupManager : MonoBehaviour
         foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             StartCoroutine(_starPop.DeletionTimer());
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         }
 
         if (i_popupUpClearInt == 0)
@@ -263,7 +265,9 @@ public class S_PopupManager : MonoBehaviour
         yield return b_popupClear == true;
     }
 
-                    // Setters \\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 
     /// <summary>
     /// /// Set the v3 value of S_PopupManager.redEnergyUITargetPosition.transform.position
@@ -296,7 +300,9 @@ public class S_PopupManager : MonoBehaviour
     }
 
 
-                            // Getters \\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the v3 value of S_PopupManager.redEnergyTargetPosition

@@ -7,7 +7,10 @@ using System.Linq;
 
 public class S_ConstelationManager : MonoBehaviour
 {
-    //global script
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     private S_Global g_global;
 
     //the list of the current constellation
@@ -223,7 +226,6 @@ public class S_ConstelationManager : MonoBehaviour
         i_starSound = 0;
         _starSoundPhase1.SetActive(false);
 
-
         //clear the constellation
         ls_curConstellation.Clear();
 
@@ -428,7 +430,9 @@ public class S_ConstelationManager : MonoBehaviour
         v2_prevLoc = _loc;
     }
 
-    // Setters \\
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Set the bool value of S_ConstelationManager.b_starLockout;
@@ -441,7 +445,9 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = _boolState;
     }
 
-    // Getters and Setters\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Get the bool state of S_ConstelationManager.b_starLockout

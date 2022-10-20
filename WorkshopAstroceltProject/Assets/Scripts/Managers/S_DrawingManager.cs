@@ -37,7 +37,7 @@ public class S_DrawingManager : MonoBehaviour
     /// <param name="_loc2"></param>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
-        Debug.Log(_loc1.ToString() + "       " +  _loc2.ToString());
+        //Debug.Log(_loc1.ToString() + "       " +  _loc2.ToString());
 
         //Instiate the linePrefab and grab it's objects
         GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
@@ -91,6 +91,7 @@ public class S_DrawingManager : MonoBehaviour
         S_ConstellationLine _lineScript = _line.GetComponent<S_ConstellationLine>();
         g_global.g_ConstellationManager.s_previousStar = _lineScript.s_previousStar;
         g_global.g_ConstellationManager.v2_prevLoc = _lineScript.m_lineRendererInst.GetPosition(1);
+        
 
         //reset the data for the star
         g_global.g_ConstellationManager.s_previousStar.s_star.m_next = s_nullStarInst;

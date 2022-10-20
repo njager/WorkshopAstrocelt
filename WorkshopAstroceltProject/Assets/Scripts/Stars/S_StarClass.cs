@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class S_StarClass : MonoBehaviour
 {
+    /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     [Header("The Star Template")]
     public string starType;
     public string colorType; 
@@ -16,12 +20,52 @@ public class S_StarClass : MonoBehaviour
     public GameObject vectorPoint2;
     public GameObject vectorPoint3;
 
-    [Header("Counter Variable")]
+    [Header("Constellation Position Counter(?)")]
     public int positionCount;
 
     // These are used to check where to spawn based off the energy tier system 
     [Header("Position States")]
     public bool s_b_point1Used;
     public bool s_b_point2Used;
-    public bool s_b_point3Used; 
+    public bool s_b_point3Used;
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the the first popup parent container gameobject from S_StarClass
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.vectorPoint1
+    /// </returns>
+    public GameObject GetPopupParent1()
+    {
+        return vectorPoint1;
+    }
+
+    /// <summary>
+    /// Return the the second popup parent container gameobject from S_StarClass
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.vectorPoint2
+    /// </returns>
+    public GameObject GetPopupParent2()
+    {
+        return vectorPoint2;
+    }
+
+    /// <summary>
+    /// Return the the third popup parent container gameobject from S_StarClass
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_StarClass.vectorPoint3
+    /// </returns>
+    public GameObject GetPopupParent3()
+    {
+        return vectorPoint3;
+    }
 }

@@ -37,7 +37,7 @@ public class S_EnergyStar : MonoBehaviour
     [SerializeField] float f_upperScaleBound;
 
     [Header("Star Click Bool")]
-    public bool is_clicked = false;
+    public bool b_hasBeenClicked;
 
     [Header("Preemptive drawing vars")]
     private bool b_clickableStar = false;
@@ -199,9 +199,10 @@ public class S_EnergyStar : MonoBehaviour
         //Start the chain to make the constellation
         if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (!b_hasBeenClicked && this.GetComponent<S_StarClass>().s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 g_global.g_ConstellationManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+                
             }
         }
     }
@@ -217,7 +218,7 @@ public class S_EnergyStar : MonoBehaviour
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (b_hasBeenClicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
@@ -232,6 +233,7 @@ public class S_EnergyStar : MonoBehaviour
 
     public void OnMouseDown()
     {
+        S_StarClass _starClassScript = this.GetComponent<S_StarClass>();
         //if the star clicking is locked out, dont let the player click it
         if (!g_global.g_ConstellationManager.b_nodeStarChosen)
         {
@@ -239,16 +241,58 @@ public class S_EnergyStar : MonoBehaviour
         }
         else if(g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
         {
-            is_clicked = true;
+            if (_starClassScript.s_star.m_previousLine != null && !b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
+            {
+                b_hasBeenClicked = true;
+                Debug.Log("S_EnergyStar - clicked logic chain");
 
-            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
+                g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 
-            s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+                s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+            }
+            else if (_starClassScript.s_star.m_previousLine != null && _starClassScript.s_star.m_nextLine == null)
+            {
+                Debug.Log("Clicked twice on current star so go back once");
 
+                //reset line multiplier
+
+                g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
+
+                //remove energy by subbing the line first and then seeing what you would get if you did it again
+
+                int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_starClassScript.s_star.m_previousLine.gameObject);
+                g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength; //delete again since the func adds
+
+
+                // Determine energy storage bin
+                if (s_b_redColor)
+                {
+                    g_global.g_energyManager.i_redStorageEnergy -= _energy;
+                }
+                else if (s_b_blueColor)
+                {
+                    g_global.g_energyManager.i_blueStorageEnergy -= _energy;
+                }
+                else if (s_b_yellowColor)
+                {
+                    g_global.g_energyManager.i_yellowStorageEnergy -= _energy;
+                }
+
+                b_hasBeenClicked = false;
+
+                //remove popup
+
+                
+
+                // Update managers
+                g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
+
+                g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
+            }
         }
         else
         {
-            Debug.Log("Please finish play before drawing again.");
+            Debug.Log("Star isn't addable to the constellation - logic error.");
             return;
         }
     }
