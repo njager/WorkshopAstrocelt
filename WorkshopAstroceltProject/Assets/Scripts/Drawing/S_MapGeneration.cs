@@ -14,18 +14,7 @@ public class S_MapGeneration : MonoBehaviour
 
     [Header("Map References")]
     public GameObject map1;
-    public GameObject map2;
-    public GameObject map3;
-    public GameObject map4;
-    public GameObject map5;
-    public GameObject map6;
-    public GameObject map7;
-    public GameObject map8;
-    public GameObject map9;
-    public GameObject map10;
-    public GameObject map11;
-    public GameObject map12;
-    public GameObject map13;
+    
 
     public GameObject activeMap;
 
@@ -39,18 +28,7 @@ public class S_MapGeneration : MonoBehaviour
 
         //Temporary calls for current map structure
         map1.SetActive(false);
-        map2.SetActive(false);
-        map3.SetActive(false);
-        map4.SetActive(false);
-        map5.SetActive(false);
-        map6.SetActive(false);
-        map7.SetActive(false);
-        map8.SetActive(false);
-        map9.SetActive(false);
-        map10.SetActive(false);
-        map11.SetActive(false);
-        map12.SetActive(false);
-        map13.SetActive(false);
+        
 
         RandomMapSelector();
     }
@@ -63,7 +41,7 @@ public class S_MapGeneration : MonoBehaviour
     public void RandomMapSelector()
     {
         // Choose map int
-        int _mapNumChosen = Random.Range(1, 14);
+        int _mapNumChosen = Random.Range(1, 1);
         
         // Toggle maps
 
