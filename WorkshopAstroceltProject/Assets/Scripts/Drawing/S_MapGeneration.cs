@@ -48,6 +48,13 @@ public class S_MapGeneration : MonoBehaviour
             Vector3 temp = new Vector3(rand_x, rand_y, 0);
             g.transform.position = temp;
         }
+        //RunSpringGen();
+    }
+    public void RunSpringGen()
+    {
+        foreach (Transform g in map1.GetComponentsInChildren<Transform>())
+        {
 
+        }
     }
 }
