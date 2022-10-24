@@ -250,6 +250,12 @@ public class S_RitualStar : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Confirm the test line is going to be built
+    /// - Riley
+    /// </summary>
+    /// <param name="_star"></param>
     public void ConfirmClickable(S_StarClass _star)
     {
         b_clickableStar = true;
