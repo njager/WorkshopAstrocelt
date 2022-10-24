@@ -26,6 +26,9 @@ public class S_LineMultiplierManager : MonoBehaviour
 
     public float f_totalLineLength;
 
+    [Header("Line Multiplier Manager")]
+    [SerializeField] int en_i_temporaryEnergyValue; 
+
     // Start is called before the first frame update
     void Awake()
     {
