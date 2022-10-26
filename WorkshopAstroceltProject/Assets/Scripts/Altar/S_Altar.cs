@@ -79,7 +79,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(SpawnCardballPrefabs());
+        StartCoroutine(SpawnCardballPrefabs(5));
     }
 
     /// <summary>
@@ -115,37 +115,20 @@ public class S_Altar : MonoBehaviour
     /// May be fully temporary
     /// - Josh
     /// </summary>
-    public IEnumerator SpawnCardballPrefabs()
+    public IEnumerator SpawnCardballPrefabs(int _numCards)
     {
         c_i_movementInt = 0;
 
+
         //set the constellation manager bools until the card balls finish spawning
-        StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck()); 
+        StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck());
 
-        // Spawn cardball 1
-        yield return new WaitForSeconds(1);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[0]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 2
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[1]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 3
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.15f);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[2]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 4
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.25f);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[3]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 5
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.35f);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[4]);
-        StartCoroutine(MoveCardballPrefabs());
+        for (int i = 0; i < _numCards; i++)
+        {
+            yield return new WaitForSeconds(1);
+            AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[i]);
+            StartCoroutine(MoveCardballPrefabs());
+        }
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
@@ -162,9 +145,13 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void AddNewCardBall(GameObject _cardballPosition, S_CardTemplate _cardTemplate)
     {
+        Debug.Log(_cardTemplate);
+
         // Instantiate Cardball
         GameObject c_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
         c_cardball.transform.SetParent(_cardballPosition.transform, false);
+
+        Debug.Log(c_cardball.transform.parent);
         
         // Grab card ball script
         S_Cardball _cardballScript = c_cardball.GetComponent<S_Cardball>();
@@ -172,6 +159,19 @@ public class S_Altar : MonoBehaviour
         // Setup cardball (this is where it'd be loaded with it's scriptable object
         _cardballScript.c_cardData = _cardTemplate;
         _cardballScript.CardballSetup();
+    }
+
+    /// <summary>
+    /// This func draws another card from the deck and then creates a card ball and adds it to the game
+    /// </summary>
+    public void DealAnotherCard()
+    {
+        //deal the card
+        g_global.g_cardManager.DealCards(1);
+
+        //spawn the cardballs and move them
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[g_global.g_ls_p_playerHand.Count-1]);
+        //StartCoroutine(MoveCardballPrefabs());
     }
 
     /// <summary>
@@ -211,7 +211,7 @@ public class S_Altar : MonoBehaviour
             c_i_movementInt = 0;
             c_b_movementBool = false;
 
-            StartCoroutine(SpawnCardballPrefabs());
+            StartCoroutine(SpawnCardballPrefabs(5));
         }
     }
 
