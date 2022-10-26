@@ -33,38 +33,14 @@ public class S_MapGeneration : MonoBehaviour
     }
 
     public Vector3 RandomVector() {
-        bool check = true;
-        Vector3 goodvec = new Vector3(0,0,0); 
-        while (check)
-        {
-            float rand_x = Random.Range(-12, 12);
-            float rand_y = Random.Range(-3, 6);
-            Vector3 temp = new Vector3(rand_x, rand_y, 0);
-            goodvec = temp;
-            check = pos_checker(temp);
-        }
-        return goodvec;
+        float rand_x = Random.Range(-12, 12);
+        float rand_y = Random.Range(-3, 6);
+        Vector3 temp = new Vector3(rand_x, rand_y, 0);
+        return temp;
     }
 
 
-    public bool pos_checker(Vector3 potential_vector)
-    {
-        bool check_bool = true;
-        foreach (Transform g in map1.GetComponentsInChildren<Transform>())
-        {
-            if (Mathf.Abs(g.transform.position.x - potential_vector.x) <= .7)
-            {
-                check_bool = false;
-            }
-            if (Mathf.Abs(g.transform.position.y - potential_vector.y) <= .7)
-            {
-                check_bool = false;
-            }
-
-        }
-        return check_bool;
-        
-    }
+    
 
     /// <summary>
     /// Chooses maps randomly, with no direct repeats
@@ -85,9 +61,23 @@ public class S_MapGeneration : MonoBehaviour
 
     public void RunSpringGen()
     {
-        foreach (Transform g in map1.GetComponentsInChildren<Transform>())
+        foreach (Transform i in map1.GetComponentsInChildren<Transform>())
         {
-            //remove spring componentS
+            foreach (Transform j in map1.GetComponentsInChildren<Transform>())
+            {
+                if(i != j)
+                {
+                    i.gameObject.AddComponent<SpringJoint2D>();
+                }
+            }
         }
+        foreach (GameObject i in map1.GetComponentsInChildren<GameObject>())
+        {
+            Component[] springs;
+            springs = i.GetComponents(typeof(SpringJoint2D));
+            Debug.Log(springs);
+            
+        }
+
     }
 }
