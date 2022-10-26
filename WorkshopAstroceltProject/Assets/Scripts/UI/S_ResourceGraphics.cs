@@ -24,6 +24,8 @@ public class S_ResourceGraphics : MonoBehaviour
         EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
         UpdateResourceBarGraphics();
         ConstellationTracker();
+    
+
     }
 
     /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -66,6 +68,11 @@ public class S_ResourceGraphics : MonoBehaviour
         {
             g_global.g_UIManager.GetConstellationUI().text = "" + (current - 1) + "/7";
         }
+        
+    }
+
+    public void BonusTracker(S_StarClass _star)
+    {
         
     }
 }
