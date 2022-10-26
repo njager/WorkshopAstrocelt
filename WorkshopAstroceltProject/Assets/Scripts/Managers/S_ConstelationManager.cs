@@ -113,6 +113,9 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
+        //
+        g_global.g_resourceGraphic.BonusTracker(_star);
+
         //change the star sound here if the line is formed
         i_starSound++;
 
