@@ -607,6 +607,11 @@ public class S_Card : MonoBehaviour
         //if a cardball persists
         g_global.g_altar.c_b_cardSpawned = false;
         g_global.g_cardManager.RemoveFirstCard();
+
+        //deal another card
+        Debug.Log("here be da cards");
+        g_global.g_altar.DealAnotherCard();
+
         Destroy(gameObject); // Remove card from play
     }
 
