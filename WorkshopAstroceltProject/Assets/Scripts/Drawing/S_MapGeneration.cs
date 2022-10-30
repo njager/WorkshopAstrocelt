@@ -71,13 +71,25 @@ public class S_MapGeneration : MonoBehaviour
                 }
             }
         }
-        foreach (GameObject i in map1.GetComponentsInChildren<GameObject>())
+        /*
+        foreach (Transform i in map1.GetComponentsInChildren<Transform>())
         {
             Component[] springs;
-            springs = i.GetComponents(typeof(SpringJoint2D));
-            Debug.Log(springs);
-            
-        }
+            springs = i.gameObject.GetComponents(typeof(SpringJoint2D));
+            //Debug.Log(springs);
 
+            
+            foreach (Rigidbody2D j in map1.GetComponentsInChildren<Rigidbody2D>())
+            {
+                foreach (SpringJoint2D k in springs)
+                {
+                    k.connectedBody = j;
+                }
+            }
+            
+         }
+        */
     }
+
 }
+
