@@ -18,6 +18,8 @@ public class S_EnergyManager : MonoBehaviour
     public int i_yellowStorageEnergy;
     public int i_blueStorageEnergy;
 
+
+
     private void Awake()
     {
         g_global = S_Global.Instance;
