@@ -22,7 +22,12 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
-    public void ColorTrack(string _energyType) 
+    /// <summary>
+    /// Check if the clicked on star is a given color, if it is, increase the tier, but only to 3
+    /// - Josh
+    /// </summary>
+    /// <param name="_energyType"></param>
+    public void ColorTrackerCheck(string _energyType) 
     {
         if (_energyType.Equals(GetCurrentEnergyColor()))
         {
