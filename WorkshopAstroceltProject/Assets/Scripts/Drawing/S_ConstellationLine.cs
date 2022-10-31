@@ -128,33 +128,49 @@ public class S_ConstellationLine : MonoBehaviour
         Vector3 _startPoint = m_lineRendererInst.GetPosition(0);
         Vector3 _endPoint = m_lineRendererInst.GetPosition(1);
 
-        if(_startPoint == _endPoint) { g_global.g_DrawingManager.GoBackOnce(this.gameObject); }
+        if(_startPoint == _endPoint)
+        {
+            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+        }
+        else
+        {
+            // Grab the box collider
+            m_cap = gameObject.GetComponent<CapsuleCollider2D>();
 
-        // Grab the box collider
-        m_cap = gameObject.GetComponent<CapsuleCollider2D>();
+            f_lineLength = Mathf.Pow((_endPoint.x - _startPoint.x), 2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2);
+            //Distance calculation aka Length
+            float _newBoxLength = Mathf.Pow(f_lineLength, 0.5f);
+            //Debug.Log(_newBoxLength);
 
-        f_lineLength = Mathf.Pow((_endPoint.x - _startPoint.x), 2) + Mathf.Pow((_endPoint.y - _startPoint.y), 2);
-        //Distance calculation aka Length
-        float _newBoxLength= Mathf.Pow(f_lineLength, 0.5f);
-        //Debug.Log(_newBoxLength);
+            //Width Grab
+            float _lineWidth = f_lineWidth;
 
-        //Width Grab
-        float _lineWidth = f_lineWidth;
+            //Set the new Box
+            Vector2 _newBoxSize = new Vector2(calculateXOffset(_newBoxLength), calculateYOffset(_lineWidth));
+            m_cap.size = _newBoxSize;
 
-        //Set the new Box
-        Vector2 _newBoxSize = new Vector2 (calculateXOffset(_newBoxLength), calculateYOffset(_lineWidth));
-        m_cap.size = _newBoxSize;
+            // Keep original position
+            Transform _originalPosition = gameObject.transform;
 
-        // Keep original position
-        Transform _originalPosition = gameObject.transform;
+            // Need to move parent object to the center
+            gameObject.transform.position = _startPoint + (_endPoint - _startPoint) / 2;
 
-        // Need to move parent object to the center
-        gameObject.transform.position = _startPoint + (_endPoint - _startPoint) / 2;
-  
-        // Calculate rotation
-        Vector3 _difference = _star.gameObject.transform.position - transform.position;
-        float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
-        g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
+            // Calculate rotation
+            Vector3 _difference = _star.gameObject.transform.position - transform.position;
+            float _newZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
+            g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
+
+            //set the linerenderer to start and end at the same point
+            m_lineRendererInst.SetPosition(0, _endPoint);
+        }
+    }
+
+    /// <summary>
+    /// This function resets the line renderer so that it displays once the star gets clicked
+    /// </summary>
+    public void ResetEndPos(Vector3 _endPoint)
+    {
+        m_lineRendererInst.SetPosition(0, _endPoint);
     }
 }

@@ -221,6 +221,9 @@ public class S_TurnManager : MonoBehaviour
         //Map Switching
         g_global.g_mapManager.RandomMapSelector();
 
+        //reset the node star chosen when the player passes the turn
+        g_global.g_ConstellationManager.b_nodeStarChosen = false;
+
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;

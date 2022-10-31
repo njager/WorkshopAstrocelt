@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 
-public class S_UITooltip : MonoBehaviour
+public class S_Tooltip : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -15,17 +15,16 @@ public class S_UITooltip : MonoBehaviour
     [Header("Identifying String")]
     [SerializeField] string tlp_str_identifier; // Set to Image or SpriteRenderer
 
-    [Header("Parent Canvas")]
-    [SerializeField] Canvas cn_parentCanvas;
-
     [Header("Text Asset Fields")]
-    [SerializeField] Canvas tlp_cn_textCanvas;
     [SerializeField] TextMeshProUGUI tlp_tx_headerText;
     [SerializeField] TextMeshProUGUI tlp_tx_bodyText;
 
     [Header("Art Icon Template")]
-    [SerializeField] SpriteRenderer tlp_sp_spriteRendererElement;
-    [SerializeField] List<S_CardTemplate> iconEntryList;
+    [SerializeField, HideInInspector] List<S_TooltipIcon> tlp_ls_a_artIconEntryList;
+    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
+
+    [Header("Backup List Method")]
+    public List<Sprite> tlp_ls_a_spriteList;
 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -36,15 +35,29 @@ public class S_UITooltip : MonoBehaviour
     /// Base overload
     /// - Josh
     /// </summary>
-    /// <param name="_identifier"></param>
-    public S_UITooltip(string _identifier, string _headerText, string _bodyText) 
+    /// <param name="_headerText"></param>
+    /// <param name="_bodyText"></param>
+    public void TooltipSetup(string _headerText, string _bodyText) 
     {
         // Set Global
         g_global = S_Global.Instance;
 
-        // Set Identifer
-        SetIdentifyingTooltipString(_identifier);
-        
+        // Update the Text elements
+        UpdateDebugTooltipUI(_headerText, _bodyText);
+    }
+
+    /// <summary>
+    /// Setup function used to set the behavior of the tool tip based on if it exists in Canvas or Sprite based mode
+    /// Icon overload
+    /// - Josh
+    /// </summary>
+    /// <param name="_headerText"></param>
+    /// <param name="_bodyText"></param>
+    /// <param name="_iconIdentifier"></param>
+    public void TooltipSetup(string _headerText, string _bodyText, string _iconIdentifier)
+    {
+        // Set Global
+        g_global = S_Global.Instance;
 
         // Update the Text elements
         UpdateDebugTooltipUI(_headerText, _bodyText);
@@ -53,21 +66,6 @@ public class S_UITooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    /// <summary>
-    /// Depending on spawn location, make it an Image based or SpriteRenderer based object 
-    /// </summary>
-    public void UpdateCanvasBehavior() 
-    {
-        if (tlp_str_identifier.Equals("Image")) 
-        {
-
-        }
-        else if (tlp_str_identifier.Equals("SpriteRenderer")) 
-        {
-
-        }
-    }
 
     /// <summary>
     /// Overload 1 with Updating of all text elements
@@ -114,12 +112,12 @@ public class S_UITooltip : MonoBehaviour
     }
 
     /// <summary>
-    /// Delete the tooltip when it's no longer applicable
+    /// Reset the tooltip when it's no longer applicable
     ///  - Josh
     /// </summary>
-    public void DeleteToolTip() 
+    public void ResetToolTip() 
     {
-        Destroy(this);
+        
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -127,7 +125,7 @@ public class S_UITooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tp_str_identifier
+    /// Set the identifying string of S_UITooltip.tp_str_identifier
     /// - Josh
     /// </summary>
     /// <returns></returns>
@@ -138,7 +136,7 @@ public class S_UITooltip : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tp_tx_headerText
+    /// Set the header text of S_UITooltip.tp_tx_headerText
     /// - Josh
     /// </summary>
     /// <returns></returns>
@@ -149,7 +147,7 @@ public class S_UITooltip : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tp_tx_bodyText
+    /// Set the body text of S_UITooltip.tp_tx_bodyText
     /// - Josh
     /// </summary>
     /// <returns></returns>
@@ -164,7 +162,7 @@ public class S_UITooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the identifying string of S_DebugTooltip.tlp_str_identifier
+    /// Set the identifying string of S_UITooltip.tlp_str_identifier
     /// - Josh
     /// </summary>
     /// <returns>
@@ -173,5 +171,29 @@ public class S_UITooltip : MonoBehaviour
     public string GetIdentifyingTooltipString()
     {
         return tlp_str_identifier;
+    }
+
+    /// <summary>
+    /// Set the header text of S_UITooltip.tp_tx_headerText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UITooltip.tp_tx_headerText
+    /// </returns>
+    public TextMeshProUGUI GetTooltipHeaderText()
+    {
+        return tlp_tx_headerText;
+    }
+
+    /// <summary>
+    /// Set the header text of S_UITooltip.tp_tx_bodyText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UITooltip.tp_tx_bodyText
+    /// </returns>
+    public TextMeshProUGUI GetTooltipBodyText()
+    {
+        return tlp_tx_bodyText;
     }
 }

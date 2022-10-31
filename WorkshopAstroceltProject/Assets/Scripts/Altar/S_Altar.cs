@@ -53,6 +53,9 @@ public class S_Altar : MonoBehaviour
     [Header("Active Card bool")]
     public bool cd_b_cardIsActive;
 
+    [Header("Null Object")]
+    [SerializeField] GameObject nullObject;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -76,7 +79,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(SpawnCardballPrefabs());
+        StartCoroutine(SpawnCardballPrefabs(5));
     }
 
     /// <summary>
@@ -97,13 +100,6 @@ public class S_Altar : MonoBehaviour
         a_redBorder.SetActive(false);
         a_yellowBorder.SetActive(false);
         a_colorlessBorder.SetActive(false);
-
-        //set the border color to match the cards
-        if (_cardballScript.c_b_redCardball) { a_redBorder.SetActive(true); }
-        else if (_cardballScript.c_b_blueCardball) { a_blueBorder.SetActive(true); }
-        else if (_cardballScript.c_b_redCardball) { a_yellowBorder.SetActive(true); }
-        else if(_cardballScript.c_b_colorlessCardball) { a_colorlessBorder.SetActive(true); }
-        else { Debug.Log("_cardballScript was null!"); }
     }
 
     /// <summary>
@@ -112,37 +108,20 @@ public class S_Altar : MonoBehaviour
     /// May be fully temporary
     /// - Josh
     /// </summary>
-    public IEnumerator SpawnCardballPrefabs()
+    public IEnumerator SpawnCardballPrefabs(int _numCards)
     {
         c_i_movementInt = 0;
 
+
         //set the constellation manager bools until the card balls finish spawning
-        StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck()); 
+        StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck());
 
-        // Spawn cardball 1
-        yield return new WaitForSeconds(1);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[0]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 2
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[1]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 3
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.15f);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[2]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 4
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.25f);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[3]);
-        StartCoroutine(MoveCardballPrefabs());
-
-        // Spawn cardball 5
-        yield return new WaitForSeconds(1 + f_cardballMoveSpeed + 0.35f);
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[4]);
-        StartCoroutine(MoveCardballPrefabs());
+        for (int i = 0; i < _numCards; i++)
+        {
+            yield return new WaitForSeconds(1);
+            AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[i]);
+            StartCoroutine(MoveCardballPrefabs());
+        }
 
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
@@ -159,9 +138,13 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void AddNewCardBall(GameObject _cardballPosition, S_CardTemplate _cardTemplate)
     {
+        Debug.Log(_cardTemplate);
+
         // Instantiate Cardball
         GameObject c_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
         c_cardball.transform.SetParent(_cardballPosition.transform, false);
+
+        Debug.Log(c_cardball.transform.parent);
         
         // Grab card ball script
         S_Cardball _cardballScript = c_cardball.GetComponent<S_Cardball>();
@@ -169,6 +152,19 @@ public class S_Altar : MonoBehaviour
         // Setup cardball (this is where it'd be loaded with it's scriptable object
         _cardballScript.c_cardData = _cardTemplate;
         _cardballScript.CardballSetup();
+    }
+
+    /// <summary>
+    /// This func draws another card from the deck and then creates a card ball and adds it to the game
+    /// </summary>
+    public void DealAnotherCard()
+    {
+        //deal the card
+        g_global.g_cardManager.DealCards(1);
+
+        //spawn the cardballs and move them
+        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[g_global.g_ls_p_playerHand.Count-1]);
+        //StartCoroutine(MoveCardballPrefabs());
     }
 
     /// <summary>
@@ -208,7 +204,7 @@ public class S_Altar : MonoBehaviour
             c_i_movementInt = 0;
             c_b_movementBool = false;
 
-            StartCoroutine(SpawnCardballPrefabs());
+            StartCoroutine(SpawnCardballPrefabs(5));
         }
     }
 
@@ -221,44 +217,52 @@ public class S_Altar : MonoBehaviour
     {
         //Debug.Log("We made it here for the star bool check");
         //yield return new S_WaitForEnergyTextDecrement();
-        if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+        if(cardballPosition1.transform.childCount > 0)
         {
-            //Debug.Log("Made Card");
-
-            // Lock Spawning
-            SetCardBeingActiveBool(false);
-
-            // Possibly tier up the next card
-            if (g_global.g_ls_p_playerHand.Count == 1)
+            if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
             {
-                b_lastCard = true;
-                SetCardballDelaySpawnBool(false);
-            }
-            else 
-            {
-                GameObject _tempObject = GetChildOfSecondAltarPosition();
+                //Debug.Log("Made Card");
 
-                if (_tempObject != null)
+                // Lock Spawning
+                SetCardBeingActiveBool(false);
+
+                // Possibly tier up the next card
+                if (g_global.g_ls_p_playerHand.Count == 1)
                 {
-                    SetCardballDelaySpawnBool(CheckSecondCardball());
-                    b_lastCard = false;
+                    b_lastCard = true;
+                    SetCardballDelaySpawnBool(false);
                 }
+                else
+                {
+                    GameObject _tempObject = GetChildOfSecondAltarPosition();
+
+                    if (_tempObject.Equals(nullObject))
+                    {
+                        SetCardballDelaySpawnBool(CheckSecondCardball());
+                        b_lastCard = false;
+                    }
+                }
+
+                g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
+
+                g_global.g_popupManager.TriggerParticleEffects(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
+
+                //turn the cardball into a card and move over the rest of the cardballs
+                cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
+
+                //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
             }
+            else
+            {
+                //clear energy and reset the bool
+                g_global.g_energyManager.ClearEnergy();
 
-            g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
-
-
-            //turn the cardball into a card and move over the rest of the cardballs
-            cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
-
-            //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
+            }
         }
         else
         {
-            //clear energy and reset the bool
-            g_global.g_energyManager.ClearEnergy();
-
-            g_global.g_ConstellationManager.SetStarLockOutBool(true);
+            // Nothing
         }
     }
 
@@ -270,10 +274,9 @@ public class S_Altar : MonoBehaviour
     /// </returns>
     public bool CheckSecondCardball()
     {
-        GameObject _tempObject = GetChildOfSecondAltarPosition();
-        if (_tempObject != null) 
+        if (cardballPosition2.transform.childCount > 0) 
         {
-            if (g_global.g_energyManager.CheckEnergy(GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_i_cardEnergyCost, GetChildOfSecondAltarPosition().GetComponent<S_Cardball>().c_cardData.ColorString))
+            if (g_global.g_energyManager.CheckEnergy(cardballPosition2.transform.GetChild(0).GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition2.transform.GetChild(0).GetComponent<S_Cardball>().c_cardData.ColorString))
             {
                 //Debug.Log("Second cardball was valid");
                 return true;
@@ -306,40 +309,52 @@ public class S_Altar : MonoBehaviour
         {
             //Debug.Log("Cardball Position 2 Full");
             // Move the cardball from 2 to 1
-            cardballPosition2.transform.GetChild(0).DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
-            cardballPosition2.transform.GetChild(0).SetParent(cardballPosition1.transform);
+            GameObject _cardBall = cardballPosition2.transform.GetChild(0).gameObject;
+
+            _cardBall.transform.DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
+            _cardBall.transform.SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.childCount == 1)
         {
             // Move the cardball from 3 to 2
-            cardballPosition3.transform.GetChild(0).DOMove(cardballPosition2.transform.position, f_cardballMoveSpeed);
-            cardballPosition3.transform.GetChild(0).SetParent(cardballPosition2.transform);
+            GameObject _cardBall = cardballPosition3.transform.GetChild(0).gameObject;
+
+            _cardBall.transform.DOMove(cardballPosition2.transform.position, f_cardballMoveSpeed);
+            _cardBall.transform.SetParent(cardballPosition2.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 3 to 2");
         }
         if (cardballPosition4.transform.childCount == 1)
         {
             // Move the cardball from 4 to 3
-            cardballPosition4.transform.GetChild(0).DOMove(cardballPosition3.transform.position, f_cardballMoveSpeed);
-            cardballPosition4.transform.GetChild(0).SetParent(cardballPosition3.transform);
+            GameObject _cardBall = cardballPosition4.transform.GetChild(0).gameObject;
+
+            _cardBall.GetComponent<S_Cardball>().RevealCardBallDetails();
+
+            _cardBall.transform.DOMove(cardballPosition3.transform.position, f_cardballMoveSpeed);
+            _cardBall.transform.SetParent(cardballPosition3.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 4 to 3");
         }
         if (cardballPosition5.transform.childCount == 1)
         {
             // Move the cardball from 5 to 4
-            cardballPosition5.transform.GetChild(0).DOMove(cardballPosition4.transform.position, f_cardballMoveSpeed);
-            cardballPosition5.transform.GetChild(0).SetParent(cardballPosition4.transform);
+            GameObject _cardBall = cardballPosition5.transform.GetChild(0).gameObject;
+
+            _cardBall.transform.DOMove(cardballPosition4.transform.position, f_cardballMoveSpeed);
+            _cardBall.transform.SetParent(cardballPosition4.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         if (cardballSpawnPosition.transform.childCount == 1)
         {
             // Move the cardball from Spawn to 5
-            cardballSpawnPosition.transform.GetChild(0).DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
-            cardballSpawnPosition.transform.GetChild(0).SetParent(cardballPosition5.transform);
+            GameObject _cardBall = cardballSpawnPosition.transform.GetChild(0).gameObject;
+
+            _cardBall.transform.DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
+            _cardBall.transform.SetParent(cardballPosition5.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
@@ -560,18 +575,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition1
+    /// S_Altar.cardballPosition1.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfFirstAltarPosition() 
     {
-        GameObject _tempObject = cardballPosition1.transform.GetChild(0).gameObject;
-        if (_tempObject != null) 
+        if (cardballPosition1.transform.childCount > 0)
+        {
+            return nullObject;
+        }
+        else
         {
             return cardballPosition1.transform.GetChild(0).gameObject;
-        }
-        else 
-        {
-            return null;
         }
     }
 
@@ -580,18 +594,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition2
+    /// S_Altar.cardballPosition2.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfSecondAltarPosition()
     {
-        GameObject _tempObject = cardballPosition2.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition2.transform.childCount > 0)
         {
-            return cardballPosition2.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition2.transform.GetChild(0).gameObject;
         }
     }
 
@@ -600,18 +613,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition3
+    /// S_Altar.cardballPosition3.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfThirdAltarPosition()
     {
-        GameObject _tempObject = cardballPosition3.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition3.transform.childCount > 0)
         {
-            return cardballPosition3.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition3.transform.GetChild(0).gameObject;
         }
     }
 
@@ -620,18 +632,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition4
+    /// S_Altar.cardballPosition4.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfFourthAltarPosition()
     {
-        GameObject _tempObject = cardballPosition4.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition4.transform.childCount > 0)
         {
-            return cardballPosition4.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition4.transform.GetChild(0).gameObject;
         }
     }
 
@@ -640,18 +651,17 @@ public class S_Altar : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_Altar.cardballPosition5
+    /// S_Altar.cardballPosition5.transform.GetChild(0) || nullObject
     /// </returns>
     public GameObject GetChildOfFifthAltarPosition()
     {
-        GameObject _tempObject = cardballPosition5.transform.GetChild(0).gameObject;
-        if (_tempObject != null)
+        if (cardballPosition5.transform.childCount > 0)
         {
-            return cardballPosition5.transform.GetChild(0).gameObject;
+            return nullObject;
         }
         else
         {
-            return null;
+            return cardballPosition5.transform.GetChild(0).gameObject;
         }
     }
 }

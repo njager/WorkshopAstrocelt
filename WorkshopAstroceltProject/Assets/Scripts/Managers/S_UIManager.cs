@@ -40,6 +40,13 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] Image e_enemy4HealthBar;
     [SerializeField] Image e_enemy5HealthBar;
 
+    [Header("Enemy Selector")]
+    [SerializeField] GameObject e_enemy1Selector;
+    [SerializeField] GameObject e_enemy2Selector;
+    [SerializeField] GameObject e_enemy3Selector;
+    [SerializeField] GameObject e_enemy4Selector;
+    [SerializeField] GameObject e_enemy5Selector;
+
     [Header("Win Lose Elements")]
     public GameObject winText;
     public GameObject loseText;
@@ -111,6 +118,26 @@ public class S_UIManager : MonoBehaviour
 
     [Header("Constelation Length Elements")]
     public TextMeshProUGUI co_tx_constellationTrackerText;
+
+    [Header("ProgressionBarUI")]
+    public SpriteRenderer Skull1;
+    public SpriteRenderer Skull1_Crack;
+    public SpriteRenderer Skull1_Selector;
+
+    public SpriteRenderer Skull2;
+    public SpriteRenderer Skull2_Crack;
+    public SpriteRenderer Skull2_Selector;
+
+    public SpriteRenderer Skull3;
+    public SpriteRenderer Skull3_Crack;
+    public SpriteRenderer Skull3_Selector;
+
+    public SpriteRenderer SkullBoss;
+    //public SpriteRenderer SkullBoss_Crack;
+    public SpriteRenderer SkullBoss_Selector;
+
+    public SpriteRenderer encounterSprite;
+    public SpriteRenderer encounterSprite_Selector;
 
     void Awake()
     {
@@ -652,6 +679,8 @@ public class S_UIManager : MonoBehaviour
         return co_tx_constellationTrackerText;
     }
 
+
+
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Player Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -835,6 +864,64 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Turn the enemy selector On
+    /// -Riley 
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemySelectorOn(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1Selector.SetActive(true);
+        }
+        else if (_enemyNum == 2)
+        {
+            e_enemy2Selector.SetActive(true);
+        }
+        else if (_enemyNum == 3)
+        {
+            e_enemy3Selector.SetActive(true);
+        }
+        else if (_enemyNum == 4)
+        {
+            e_enemy4Selector.SetActive(true);
+        }
+        else if (_enemyNum == 5)
+        {
+            e_enemy5Selector.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Turn the Enemy Selector off
+    /// -Riley 
+    /// </summary>
+    /// <param name="_enemyNum"></param>
+    public void SetEnemySelectorOff(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1Selector.SetActive(false);
+        }
+        else if (_enemyNum == 2)
+        {
+            e_enemy2Selector.SetActive(false);
+        }
+        else if (_enemyNum == 3)
+        {
+            e_enemy3Selector.SetActive(false);
+        }
+        else if (_enemyNum == 4)
+        {
+            e_enemy4Selector.SetActive(false);
+        }
+        else if (_enemyNum == 5)
+        {
+            e_enemy5Selector.SetActive(false);
+        }
+    }
+
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Enemy Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -947,6 +1034,114 @@ public class S_UIManager : MonoBehaviour
         {
             Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldOverlay()");
             return null;
+        }
+    }
+
+
+
+    public void ChangeProgressionBar(string _scene)
+    {
+        if (_scene == "Scn_1stEnemyEncounter")
+        {
+            Skull1_Crack.enabled = false;
+
+            Skull2.enabled = true;
+            Skull2_Crack.enabled = false;
+            Skull2_Selector.enabled = false;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_2ndEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = true;
+            Skull2_Crack.enabled = false;
+            Skull2_Selector.enabled = true;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_3rdEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = true;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_4thEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3_Crack.enabled = true;
+            Skull3.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = true;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Event1-Bog" || _scene == "Event2-Mushrooms" || _scene == "Event3-Victory")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3_Crack.enabled = true;
+            Skull3.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = false;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = true;
         }
     }
 }
