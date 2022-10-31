@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 public class S_Global : MonoBehaviour
 {
@@ -117,6 +117,9 @@ public class S_Global : MonoBehaviour
         {
             g_ls_p_playerDeck.Add(card);
         }
+
+        //set the scene ui
+        g_UIManager.ChangeProgressionBar(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
