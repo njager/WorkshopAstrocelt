@@ -18,21 +18,9 @@ public class S_TooltipManager : MonoBehaviour
         // Grab setup information from template
         string _headerText = _templateToBuildFrom.GetTooltipTemplateHeaderText();
         string _bodyText = _templateToBuildFrom.GetTooltipTemplateBodyText();
-        bool _canvasState = _templateToBuildFrom.GetTooltipTemplateCanvasState();
-        
-        // Determine canvas state, set the identifier for constructor
-        string _canvasStateIdentifier = "";
-        if(_canvasState == true) 
-        {
-            _canvasStateIdentifier = "SpriteRenderer";
-        }
-        else if(_canvasState == false) 
-        {
-            _canvasStateIdentifier = "Image";
-        }
 
         // Create new _tooltip
-        S_Tooltip _tooltip = new S_Tooltip(_canvasStateIdentifier, _headerText, _bodyText);
+        S_Tooltip _tooltip = new S_Tooltip(_headerText, _bodyText);
 
         // Set new parent in hierarchy
         _tooltip.transform.SetParent(_parentTransform, false);

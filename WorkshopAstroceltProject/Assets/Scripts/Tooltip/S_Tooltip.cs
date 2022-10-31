@@ -16,7 +16,6 @@ public class S_Tooltip : MonoBehaviour
     [SerializeField] string tlp_str_identifier; // Set to Image or SpriteRenderer
 
     [Header("Text Asset Fields")]
-    [SerializeField] Canvas tlp_cn_textCanvas;
     [SerializeField] TextMeshProUGUI tlp_tx_headerText;
     [SerializeField] TextMeshProUGUI tlp_tx_bodyText;
 
@@ -39,7 +38,7 @@ public class S_Tooltip : MonoBehaviour
     /// <param name="_identifier"></param>
     /// <param name="_headerText"></param>
     /// <param name="_bodyText"></param>
-    public S_Tooltip(string _identifier, string _headerText, string _bodyText) 
+    public void TooltipSetup(string _identifier, string _headerText, string _bodyText) 
     {
         // Set Global
         g_global = S_Global.Instance;
@@ -63,16 +62,13 @@ public class S_Tooltip : MonoBehaviour
     /// <param name="_headerText"></param>
     /// <param name="_bodyText"></param>
     /// <param name="_iconIdentifier"></param>
-    public S_Tooltip(string _identifier, string _headerText, string _bodyText, string _iconIdentifier)
+    public void TooltipSetup(string _identifier, string _headerText, string _bodyText, string _iconIdentifier)
     {
         // Set Global
         g_global = S_Global.Instance;
 
         // Set Identifer
         SetIdentifyingTooltipString(_identifier);
-
-        // Set Canvas Dimensions
-        UpdateCanvasBehavior();
 
         // Update the Text elements
         UpdateDebugTooltipUI(_headerText, _bodyText);
@@ -81,21 +77,6 @@ public class S_Tooltip : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    /// <summary>
-    /// Depending on spawn location, make it an Image based or SpriteRenderer based object 
-    /// </summary>
-    public void UpdateCanvasBehavior() 
-    {
-        if (tlp_str_identifier.Equals("Image")) 
-        {
-            tlp_cn_textCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        }
-        else if (tlp_str_identifier.Equals("SpriteRenderer")) 
-        {
-            tlp_cn_textCanvas.renderMode = RenderMode.WorldSpace;
-        }
-    }
 
     /// <summary>
     /// Overload 1 with Updating of all text elements
