@@ -24,7 +24,17 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
 
     public void ColorTrack(string _energyType) 
     {
-        if(_energyType).Equals()
+        if (_energyType.Equals(GetCurrentEnergyColor()))
+        {
+            if(GetColorTierTracker() < 3) 
+            {
+                SetColorTierTrackerInt(GetColorTierTracker() + 1);
+            }
+        }
+        else 
+        {
+            SetColorTierTrackerInt(0);
+        }
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -41,12 +51,22 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
         en_cl_str_currentColorType = _energyType;
     }
 
+    /// <summary>
+    /// Set the int value of S_ConsecutiveColorTrackerManager.en_cl_i_colorTierTracker
+    /// - Josh 
+    /// </summary>
+    /// <param name="_currentTier"></param>
+    public void SetColorTierTrackerInt(int _currentTier)
+    {
+        en_cl_i_colorTierTracker = _currentTier;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Get the string content of S_ConsecutiveColorTrackerManager.en_cl_str_currentColorType
+    /// Get the int value of S_ConsecutiveColorTrackerManager.en_cl_str_currentColorType
     /// </summary>
     /// <returns>
     /// S_ConsecutiveColorTrackerManager.en_cl_str_currentColorType
@@ -56,6 +76,15 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
         return en_cl_str_currentColorType;
     }
 
-
+    /// <summary>
+    /// Get the int value of S_ConsecutiveColorTrackerManager.en_cl_i_colorTierTracker
+    /// </summary>
+    /// <returns>
+    /// S_ConsecutiveColorTrackerManager.en_cl_i_colorTierTracker
+    /// </returns>
+    public int GetColorTierTracker()
+    {
+        return en_cl_i_colorTierTracker;
+    }
 
 }
