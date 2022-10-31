@@ -161,6 +161,13 @@ public class S_ConstelationManager : MonoBehaviour
             //add the line multiplier
             _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
 
+            //set the currentconsecutive energy
+            g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
+
+            //get the energy value add together and then reduce to three
+            _energy += g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+            if(_energy > 3) { _energy = 3; }
+
             //get the ritual star component
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
 
@@ -174,6 +181,13 @@ public class S_ConstelationManager : MonoBehaviour
         {
             //add the line multiplier
             _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
+
+            //set the currentconsecutive energy
+            g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
+
+            //get the energy value add together and then reduce to three
+            _energy += g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+            if (_energy > 3) { _energy = 3; }
 
             //get the energy star component
             S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
@@ -393,8 +407,6 @@ public class S_ConstelationManager : MonoBehaviour
 
 
             //Print total line lenght, then reset to 0
-            //Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
-            g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
             b_makingConstellation = false;
             Debug.Log("Making constellations NOT");

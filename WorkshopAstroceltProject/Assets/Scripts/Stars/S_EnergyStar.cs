@@ -231,9 +231,6 @@ public class S_EnergyStar : MonoBehaviour
             {
                 if (_starClassScript.s_star.m_nextLine == null)
                 {
-                    // Reset line multiplier length
-                    g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
-
                     // Trigger go back once
                     g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
 
@@ -279,12 +276,9 @@ public class S_EnergyStar : MonoBehaviour
 
                 //reset line multiplier
 
-                g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength;
-
                 //remove energy by subbing the line first and then seeing what you would get if you did it again
 
                 int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_starClassScript.s_star.m_previousLine.gameObject);
-                g_global.g_lineMultiplierManager.f_totalLineLength -= _starClassScript.s_star.m_previousLine.f_lineLength; //delete again since the func adds
 
 
                 // Determine energy storage bin

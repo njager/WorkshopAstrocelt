@@ -14,6 +14,7 @@ public class S_ResourceGraphics : MonoBehaviour
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
 
+
     public SpriteRenderer defaultBonus;
     public SpriteRenderer blueBonusBar;
     public SpriteRenderer yellowBonusBar;
@@ -27,6 +28,8 @@ public class S_ResourceGraphics : MonoBehaviour
     public SpriteRenderer redBonusIcon1;
     public SpriteRenderer redBonusIcon2;
     public SpriteRenderer redBonusIcon3;
+
+    public int bonusTracker = 1;
 
 
 
@@ -106,9 +109,17 @@ public class S_ResourceGraphics : MonoBehaviour
             yellowBonusIcon3.enabled = false;
 
             redBonusIcon1.enabled = true;
-         /*   if()
-            redBonusIcon2;
-            redBonusIcon3;*/
+            bonusTracker++;
+            if (_star.colorType == "red" && bonusTracker == 2)
+            {
+                redBonusIcon2.enabled = true;
+            }
+            else { bonusTracker = 1; }
+            if (_star.colorType == "red" && bonusTracker == 3)
+            {
+                redBonusIcon3.enabled = true;
+            }
+            else { bonusTracker = 1; }
         }
 
         if (_star.colorType == "yellow")
@@ -123,15 +134,26 @@ public class S_ResourceGraphics : MonoBehaviour
             blueBonusIcon3.enabled = false;
 
             yellowBonusIcon1.enabled = true;
-            yellowBonusIcon2.enabled = false;
-            yellowBonusIcon3.enabled = false;
+            bonusTracker++;
+            
 
             redBonusIcon1.enabled = false;
             redBonusIcon2.enabled = false;
             redBonusIcon3.enabled = false;
-            /*   if()
-               redBonusIcon2;
-               redBonusIcon3;*/
+            if(_star.colorType == "yellow" && bonusTracker == 2)
+            {
+                yellowBonusIcon2.enabled = true;
+            }
+            else { bonusTracker = 1; }
+            if (_star.colorType == "yellow" && bonusTracker == 3)
+            {
+                yellowBonusIcon3.enabled = true;
+            }
+            else { bonusTracker = 1; }
+
+
+
+
         }
         if (_star.colorType == "blue")
         {
@@ -143,6 +165,7 @@ public class S_ResourceGraphics : MonoBehaviour
             blueBonusIcon1.enabled = true;
             blueBonusIcon2.enabled = false;
             blueBonusIcon3.enabled = false;
+            bonusTracker++;
 
             yellowBonusIcon1.enabled = false;
             yellowBonusIcon2.enabled = false;
@@ -151,9 +174,18 @@ public class S_ResourceGraphics : MonoBehaviour
             redBonusIcon1.enabled = false;
             redBonusIcon2.enabled = false;
             redBonusIcon3.enabled = false;
-            /*   if()
-               redBonusIcon2;
-               redBonusIcon3;*/
+
+            if (_star.colorType == "blue" && bonusTracker == 2)
+            {
+                blueBonusIcon2.enabled = true;
+            }
+            else { bonusTracker = 1; }
+            if (_star.colorType == "blue" && bonusTracker == 3)
+            {
+                blueBonusIcon3.enabled = true;
+            }
+            else { bonusTracker = 1; }
+
         }
     }
 }
