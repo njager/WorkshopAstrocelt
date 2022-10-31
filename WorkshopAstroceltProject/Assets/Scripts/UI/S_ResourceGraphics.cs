@@ -37,6 +37,12 @@ public class S_ResourceGraphics : MonoBehaviour
     private void Awake()
     {
         g_global = S_Global.Instance;
+        
+    }
+
+    public void Start()
+    {
+        resetBonusTracker();
     }
 
     void Update()
@@ -46,6 +52,26 @@ public class S_ResourceGraphics : MonoBehaviour
         ConstellationTracker();
     
 
+    }
+
+    public void resetBonusTracker()
+    {
+        defaultBonus.enabled = true;
+        blueBonusBar.enabled = false;
+        yellowBonusBar.enabled = false;
+        redBonusBar.enabled = false;
+
+        blueBonusIcon1.enabled = false;
+        blueBonusIcon2.enabled = false;
+        blueBonusIcon3.enabled = false;
+
+        yellowBonusIcon1.enabled = false;
+        yellowBonusIcon2.enabled = false;
+        yellowBonusIcon3.enabled = false;
+
+        redBonusIcon1.enabled = false;
+        redBonusIcon2.enabled = false;
+        redBonusIcon3.enabled = false;
     }
 
     /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -93,6 +119,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
     public void BonusTracker(S_StarClass _star)
     {
+
        if (_star.colorType == "red")
         {
             defaultBonus.enabled = false;
@@ -114,12 +141,12 @@ public class S_ResourceGraphics : MonoBehaviour
             {
                 redBonusIcon2.enabled = true;
             }
-            else { bonusTracker = 1; }
+            else { bonusTracker = 1; resetBonusTracker(); }
             if (_star.colorType == "red" && bonusTracker == 3)
             {
                 redBonusIcon3.enabled = true;
             }
-            else { bonusTracker = 1; }
+            else { bonusTracker = 1; resetBonusTracker(); }
         }
 
         if (_star.colorType == "yellow")
@@ -144,12 +171,12 @@ public class S_ResourceGraphics : MonoBehaviour
             {
                 yellowBonusIcon2.enabled = true;
             }
-            else { bonusTracker = 1; }
+            else { bonusTracker = 1; resetBonusTracker(); }
             if (_star.colorType == "yellow" && bonusTracker == 3)
             {
                 yellowBonusIcon3.enabled = true;
             }
-            else { bonusTracker = 1; }
+            else { bonusTracker = 1; resetBonusTracker(); }
 
 
 
@@ -179,12 +206,12 @@ public class S_ResourceGraphics : MonoBehaviour
             {
                 blueBonusIcon2.enabled = true;
             }
-            else { bonusTracker = 1; }
+            else { bonusTracker = 1; resetBonusTracker(); }
             if (_star.colorType == "blue" && bonusTracker == 3)
             {
                 blueBonusIcon3.enabled = true;
             }
-            else { bonusTracker = 1; }
+            else { bonusTracker = 1; resetBonusTracker(); }
 
         }
     }
