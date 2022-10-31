@@ -802,8 +802,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8047176380871572662}
   - component: {fileID: 8047176380871572663}
+  - component: {fileID: 3353330474544501753}
   m_Layer: 0
-  m_Name: LineMultiplierManager
+  m_Name: EnergyMultiplierManager
   m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,6 +868,20 @@ MonoBehaviour:
   debugLineValue: 0
   f_totalLineLength: 0
   en_i_temporaryEnergyValue: 0
+--- !u!114 &3353330474544501753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047176380871572661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3e3c192a21a404fbc8421ea3ec7bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  en_cl_str_currentColorType: 
+  en_cl_i_colorTierTracker: 0
 --- !u!1 &8047176380998857109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1031,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   g_global: {fileID: 0}
   sc_UIManager: {fileID: 8047176380998857111}
+  defaultBonus: {fileID: 0}
+  blueBonusBar: {fileID: 0}
+  yellowBonusBar: {fileID: 0}
+  redBonusBar: {fileID: 0}
+  blueBonusIcon1: {fileID: 0}
+  blueBonusIcon2: {fileID: 0}
+  blueBonusIcon3: {fileID: 0}
+  yellowBonusIcon1: {fileID: 0}
+  yellowBonusIcon2: {fileID: 0}
+  yellowBonusIcon3: {fileID: 0}
+  redBonusIcon1: {fileID: 0}
+  redBonusIcon2: {fileID: 0}
+  redBonusIcon3: {fileID: 0}
 --- !u!1 &8047176381002654253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1105,7 @@ MonoBehaviour:
   g_sceneManager: {fileID: 8047176379975663402}
   g_backgroundManager: {fileID: 8047176380363508963}
   g_turnEffectManager: {fileID: 8047176379887102767}
-  g_resourceGraphic: {fileID: 5126905202400489234}
+  g_resourceGraphic: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 0}
