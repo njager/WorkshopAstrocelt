@@ -74,6 +74,10 @@ public class S_NodeStar : MonoBehaviour
     {
         //Tooltip
         tl_b_mouseEntered = true;
+        if(timerWait == true) 
+        {
+            timer = 0.03f;
+        }
 
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
