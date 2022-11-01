@@ -11,6 +11,11 @@ public class S_TooltipManager : MonoBehaviour
     [Header("Tooltip Icon Prefab")]
     [SerializeField] GameObject iconPrefab;
 
+    private void Awake()
+    {
+        tl_tooltipObject.SetActive(false);
+    }
+
     /// <summary>
     /// Modify the existing tool tip
     /// - Josh

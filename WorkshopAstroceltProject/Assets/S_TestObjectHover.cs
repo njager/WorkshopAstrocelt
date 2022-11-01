@@ -12,6 +12,11 @@ public class S_TestObjectHover : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
+    private void Awake()
+    {
+        g_global = S_Global.Instance;
+    }
+
     /// <summary>
     /// Interaction Mechanism will differ from SpriteRenderers and Images
     /// - Josh

@@ -80,6 +80,8 @@ public class S_Tooltip : MonoBehaviour
 
         // Set Body Text
         SetTooltipBodyText(_bodyText);
+
+        gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -117,7 +119,7 @@ public class S_Tooltip : MonoBehaviour
     /// </summary>
     public void ResetToolTip() 
     {
-        
+        gameObject.SetActive(false);
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -154,7 +156,7 @@ public class S_Tooltip : MonoBehaviour
     /// <param name="_bodyText"></param>
     public void SetTooltipBodyText(string _bodyText)
     {
-        tlp_tx_headerText.text = _bodyText;
+        tlp_tx_bodyText.text = _bodyText;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
