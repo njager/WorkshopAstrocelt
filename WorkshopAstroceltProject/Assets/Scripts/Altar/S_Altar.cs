@@ -491,34 +491,6 @@ public class S_Altar : MonoBehaviour
         CheckFirstCardball();
     }
 
-    /// <summary>
-    /// Used to toggle tooltip when mouse enters
-    /// - Josh
-    /// </summary>
-    private void OnMouseEnter()
-    {
-        tl_b_mouseEntered = true;
-    }
-
-    private void OnMouseOver()
-    {
-        if (tl_b_mouseEntered == true)
-        {
-            Debug.Log("Triggered Mouse Hover");
-            g_global.g_tooltipManager.SetupToolTipObject(tl_altarTooltipTemplate, gameObject.transform);
-        }
-    }
-
-    /// <summary>
-    /// Used to toggle tooltip when mouse exits
-    /// - Josh
-    /// </summary>
-    private void OnMouseExit()
-    {
-        g_global.g_tooltipManager.ResetTooltip();
-        tl_b_mouseEntered = false;
-    }
-
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
