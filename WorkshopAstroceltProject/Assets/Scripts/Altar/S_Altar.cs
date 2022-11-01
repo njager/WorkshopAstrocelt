@@ -488,6 +488,24 @@ public class S_Altar : MonoBehaviour
         CheckFirstCardball();
     }
 
+    /// <summary>
+    /// Used to toggle tooltip when mouse enters
+    /// - Josh
+    /// </summary>
+    public void OnHoverEnter()
+    {
+        g_global.g_tooltipManager.SetupToolTipObject(tl_altarTooltipTemplate, gameObject.transform);
+    }
+
+    /// <summary>
+    /// Used to toggle tooltip when mouse exits
+    /// - Josh
+    /// </summary>
+    public void OnHoverExit()
+    {
+        g_global.g_tooltipManager.ResetTooltip();
+    }
+
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -666,23 +684,5 @@ public class S_Altar : MonoBehaviour
         {
             return cardballPosition5.transform.GetChild(0).gameObject;
         }
-    }
-
-    /// <summary>
-    /// Used to toggle tooltip when mouse enters
-    /// - Josh
-    /// </summary>
-    public void OnHoverEnter()
-    {
-        g_global.g_tooltipManager.SetupToolTipObject(tl_altarTooltipTemplate, gameObject.transform);
-    }
-
-    /// <summary>
-    /// Used to toggle tooltip when mouse exits
-    /// - Josh
-    /// </summary>
-    public void OnHoverExit()
-    {
-        g_global.g_tooltipManager.ResetTooltip();
     }
 }
