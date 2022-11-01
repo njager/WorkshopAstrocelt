@@ -30,7 +30,8 @@ public class S_NodeStar : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
     public bool tl_b_justUsed;
-    public float timer = 5f;
+    public float timer = 0.03f;
+    public bool timerWait = false;
 
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
@@ -52,14 +53,20 @@ public class S_NodeStar : MonoBehaviour
 
     public IEnumerator TimerCheck() 
     {
-        if(timer > 0f) 
+        if(timer > 0) 
         {
             timer -= Time.deltaTime;
-            if(timer < 0)
-            {
-                tl_b_justUsed = false;
-                yield return null;
-            }
+        }
+
+        if(timer < 0) 
+        {
+            timerWait = true;
+        }
+
+        if (timerWait)
+        {
+            tl_b_justUsed = false;
+            yield return null;
         }
     }
 
@@ -84,7 +91,7 @@ public class S_NodeStar : MonoBehaviour
     {
         if (tl_b_mouseEntered == true && tl_b_justUsed == false)
         {
-            Debug.Log("Triggered Mouse Hover");
+            //Debug.Log("Triggered Mouse Hover");
             g_global.g_tooltipManager.SetupToolTipObject(tl_nodeStarTemplate, gameObject.transform);
         }
     }

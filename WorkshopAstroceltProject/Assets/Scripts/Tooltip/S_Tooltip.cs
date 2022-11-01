@@ -81,6 +81,7 @@ public class S_Tooltip : MonoBehaviour
         // Set Body Text
         SetTooltipBodyText(_bodyText);
 
+        //
         gameObject.SetActive(true);
     }
 
