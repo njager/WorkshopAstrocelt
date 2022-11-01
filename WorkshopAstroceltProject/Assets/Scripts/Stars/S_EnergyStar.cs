@@ -237,7 +237,7 @@ public class S_EnergyStar : MonoBehaviour
                     g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
 
                     // Reset star class temp bool status
-                    _starClassScript.SetTemporaryVisualBool(false);
+                    _starClassScript.SetTemporaryVisualBool(true);
                 }
             }
 
@@ -263,7 +263,7 @@ public class S_EnergyStar : MonoBehaviour
                 Debug.Log("S_EnergyStar - clicked logic chain");
 
                 // Set star permanent status
-                _starClassScript.SetTemporaryVisualBool(true);
+                _starClassScript.SetTemporaryVisualBool(false);
 
                 Debug.Log("Does broken?");
 
@@ -305,7 +305,7 @@ public class S_EnergyStar : MonoBehaviour
                 b_hasBeenClicked = false;
 
                 // Reset star temp status (just in case)
-                _starClassScript.SetTemporaryVisualBool(false);
+                _starClassScript.SetTemporaryVisualBool(true);
 
                 // Update managers
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
