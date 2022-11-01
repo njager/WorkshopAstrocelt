@@ -48,6 +48,7 @@ public class S_ConstellationLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("Is there collision");
         GameObject other = col.gameObject;
         if (other.CompareTag("Meteor"))
         {
