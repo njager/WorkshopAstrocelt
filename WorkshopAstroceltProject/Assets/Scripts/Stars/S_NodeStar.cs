@@ -24,6 +24,12 @@ public class S_NodeStar : MonoBehaviour
     public bool b_clickableStar = false;
     public S_StarClass s_thisStar;
 
+    [Header("Test Object to Use")]
+    public S_TooltipTemplate tl_nodeStarTemplate;
+
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
+
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
@@ -44,6 +50,9 @@ public class S_NodeStar : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        //Tooltip
+        tl_b_mouseEntered = true;
+
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
 
@@ -56,8 +65,21 @@ public class S_NodeStar : MonoBehaviour
         }
     }
 
+    private void OnMouseOver()
+    {
+        if (tl_b_mouseEntered == true)
+        {
+            Debug.Log("Triggered Mouse Hover");
+            g_global.g_tooltipManager.SetupToolTipObject(tl_nodeStarTemplate, gameObject.transform);
+        }
+    }
+
     private void OnMouseExit()
     {
+        // Tooltip
+        g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
+
         if (GetNodeClicked())
         {
             s_starSprite.color = c_clickedColor;

@@ -495,12 +495,12 @@ public class S_Altar : MonoBehaviour
     /// Used to toggle tooltip when mouse enters
     /// - Josh
     /// </summary>
-    public void OnHoverEnter()
+    private void OnMouseEnter()
     {
         tl_b_mouseEntered = true;
     }
 
-    public void OnHoverStay() 
+    private void OnMouseOver()
     {
         if (tl_b_mouseEntered == true)
         {
@@ -513,7 +513,7 @@ public class S_Altar : MonoBehaviour
     /// Used to toggle tooltip when mouse exits
     /// - Josh
     /// </summary>
-    public void OnHoverExit()
+    private void OnMouseExit()
     {
         g_global.g_tooltipManager.ResetTooltip();
         tl_b_mouseEntered = false;

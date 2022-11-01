@@ -30,7 +30,7 @@ public class S_TestObjectHover : MonoBehaviour
     {
         if(tl_b_mouseEntered == true) 
         {
-            Debug.Log("Triggered Mouse Hover");
+            //Debug.Log("Triggered Mouse Hover");
             g_global.g_tooltipManager.SetupToolTipObject(tl_shieldExample, gameObject.transform);
         }
     }
