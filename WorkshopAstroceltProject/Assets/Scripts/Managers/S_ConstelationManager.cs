@@ -78,7 +78,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star)
     {
-        //Debug.Log("does this work");
+        Debug.Log("does this work");
 
         //wait for checking stars
         yield return new WaitForEndOfFrame();
@@ -114,7 +114,7 @@ public class S_ConstelationManager : MonoBehaviour
     public void AddStarToCurConstellation(S_StarClass _star)
     {
         //
-        g_global.g_resourceGraphic.BonusTracker(_star);
+        //g_global.g_resourceGraphic.BonusTracker(_star);
 
         //change the star sound here if the line is formed
         i_starSound++;
