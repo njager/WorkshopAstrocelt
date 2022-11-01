@@ -59,6 +59,9 @@ public class S_Altar : MonoBehaviour
     [Header("Tooltip Template")]
     [SerializeField] S_TooltipTemplate tl_altarTooltipTemplate;
 
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -494,7 +497,16 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void OnHoverEnter()
     {
-        g_global.g_tooltipManager.SetupToolTipObject(tl_altarTooltipTemplate, gameObject.transform);
+        tl_b_mouseEntered = true;
+    }
+
+    public void OnHoverStay() 
+    {
+        if (tl_b_mouseEntered == true)
+        {
+            Debug.Log("Triggered Mouse Hover");
+            g_global.g_tooltipManager.SetupToolTipObject(tl_altarTooltipTemplate, gameObject.transform);
+        }
     }
 
     /// <summary>
@@ -504,6 +516,7 @@ public class S_Altar : MonoBehaviour
     public void OnHoverExit()
     {
         g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
     }
 
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

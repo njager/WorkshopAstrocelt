@@ -9,13 +9,25 @@ public class S_TestObjectHover : MonoBehaviour
     [Header("Test Object to Use")]
     public S_TooltipTemplate tl_shieldExample;
 
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
+
     /// <summary>
     /// Interaction Mechanism will differ from SpriteRenderers and Images
     /// - Josh
     /// </summary>
     private void OnMouseEnter()
     {
-        g_global.g_tooltipManager.SetupToolTipObject(tl_shieldExample, gameObject.transform);
+        tl_b_mouseEntered = true;
+    }
+
+    private void OnMouseOver()
+    {
+        if(tl_b_mouseEntered == true) 
+        {
+            Debug.Log("Triggered Mouse Hover");
+            g_global.g_tooltipManager.SetupToolTipObject(tl_shieldExample, gameObject.transform);
+        }
     }
 
     /// <summary>
@@ -24,5 +36,6 @@ public class S_TestObjectHover : MonoBehaviour
     private void OnMouseExit()
     {
         g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
     }
 }
