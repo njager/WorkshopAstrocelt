@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class S_TestObjectHover : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private S_Global g_global;
+
+    private void OnMouseEnter()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseExit()
     {
         
     }
