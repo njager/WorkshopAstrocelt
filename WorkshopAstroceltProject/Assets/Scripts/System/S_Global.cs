@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 public class S_Global : MonoBehaviour
 {
@@ -35,6 +35,8 @@ public class S_Global : MonoBehaviour
     public S_BackgroundManager g_backgroundManager;
     public S_TurnEffectManager g_turnEffectManager;
     public S_ResourceGraphics g_resourceGraphic;
+    public S_ConsecutiveColorTrackerManager g_consecutiveColorTrackerManager;
+    public S_TooltipManager g_tooltipManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -117,6 +119,9 @@ public class S_Global : MonoBehaviour
         {
             g_ls_p_playerDeck.Add(card);
         }
+
+        //set the scene ui
+        g_UIManager.ChangeProgressionBar(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>

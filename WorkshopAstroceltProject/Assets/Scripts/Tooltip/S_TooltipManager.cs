@@ -4,48 +4,51 @@ using UnityEngine;
 
 public class S_TooltipManager : MonoBehaviour
 {
-    [Header("Tooltip Prefab")]
+    [Header("Tooltip Object")]
+    [SerializeField] GameObject tl_tooltipObject;
+    [SerializeField] S_Tooltip tl_tooltipScript;
+
+    [Header("Tooltip Icon Prefab")]
     [SerializeField] GameObject iconPrefab;
 
+    private void Awake()
+    {
+        tl_tooltipObject.SetActive(false);
+    }
+
     /// <summary>
-    /// Create a new tool tip and set it up from template
+    /// Modify the existing tool tip
     /// - Josh
     /// </summary>
     /// <param name="_templateToBuildFrom"></param>
     /// <param name="_parentTransform"></param>
-    public void SpawnToolTip(S_TooltipTemplate _templateToBuildFrom, Transform _parentTransform)
+    public void SetupToolTipObject(S_TooltipTemplate _templateToBuildFrom, Transform _parentTransform)
     {
         // Grab setup information from template
         string _headerText = _templateToBuildFrom.GetTooltipTemplateHeaderText();
         string _bodyText = _templateToBuildFrom.GetTooltipTemplateBodyText();
-        bool _canvasState = _templateToBuildFrom.GetTooltipTemplateCanvasState();
-        
-        // Determine canvas state, set the identifier for constructor
-        string _canvasStateIdentifier = "";
-        if(_canvasState == true) 
-        {
-            _canvasStateIdentifier = "SpriteRenderer";
-        }
-        else if(_canvasState == false) 
-        {
-            _canvasStateIdentifier = "Image";
-        }
 
-        // Create new _tooltip
-        S_Tooltip _tooltip = new S_Tooltip(_canvasStateIdentifier, _headerText, _bodyText);
+        // Call the setup function
+        tl_tooltipScript.TooltipSetup(_headerText, _bodyText);
 
-        // Set new parent in hierarchy
-        _tooltip.transform.SetParent(_parentTransform, false);
+        // Move the tooltip object
+        tl_tooltipObject.transform.SetParent(_parentTransform, false);
+    }
 
-        // Set new positon
-        _tooltip.transform.position = _parentTransform.position;
+    /// <summary>
+    /// Reset the tooltip when it's finished it's work
+    /// - Josh
+    /// </summary>
+    public void ResetTooltip() 
+    {
+        tl_tooltipScript.ResetToolTip();
     }
 
     /// <summary>
     /// Helper function for setting up icons from relevant dictionary
     /// - Josh
     /// </summary>
-    private void SetUpIcons() 
+    private void SetUpIcons()
     {
 
     }

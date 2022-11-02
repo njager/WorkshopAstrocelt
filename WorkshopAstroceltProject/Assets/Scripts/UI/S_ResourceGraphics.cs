@@ -14,6 +14,26 @@ public class S_ResourceGraphics : MonoBehaviour
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
 
+
+    public SpriteRenderer defaultBonus;
+    public SpriteRenderer blueBonusBar;
+    public SpriteRenderer yellowBonusBar;
+    public SpriteRenderer redBonusBar;
+    public SpriteRenderer blueBonusIcon1;
+    public SpriteRenderer blueBonusIcon2;
+    public SpriteRenderer blueBonusIcon3;
+    public SpriteRenderer yellowBonusIcon1;
+    public SpriteRenderer yellowBonusIcon2;
+    public SpriteRenderer yellowBonusIcon3;
+    public SpriteRenderer redBonusIcon1;
+    public SpriteRenderer redBonusIcon2;
+    public SpriteRenderer redBonusIcon3;
+
+    public int bonusTracker = 1;
+
+
+
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -73,6 +93,99 @@ public class S_ResourceGraphics : MonoBehaviour
 
     public void BonusTracker(S_StarClass _star)
     {
-        
+       if (_star.colorType == "red")
+        {
+            defaultBonus.enabled = false;
+            blueBonusBar.enabled = false;
+            yellowBonusBar.enabled = false;
+            redBonusBar.enabled = true;
+
+            blueBonusIcon1.enabled = false;
+            blueBonusIcon2.enabled = false;
+            blueBonusIcon3.enabled = false;
+
+            yellowBonusIcon1.enabled = false;
+            yellowBonusIcon2.enabled = false;
+            yellowBonusIcon3.enabled = false;
+
+            redBonusIcon1.enabled = true;
+            bonusTracker++;
+            if (_star.colorType == "red" && bonusTracker == 2)
+            {
+                redBonusIcon2.enabled = true;
+            }
+            else { bonusTracker = 1; }
+            if (_star.colorType == "red" && bonusTracker == 3)
+            {
+                redBonusIcon3.enabled = true;
+            }
+            else { bonusTracker = 1; }
+        }
+
+        if (_star.colorType == "yellow")
+        {
+            defaultBonus.enabled = false;
+            blueBonusBar.enabled = false;
+            yellowBonusBar.enabled = true;
+            redBonusBar.enabled = false;
+
+            blueBonusIcon1.enabled = false;
+            blueBonusIcon2.enabled = false;
+            blueBonusIcon3.enabled = false;
+
+            yellowBonusIcon1.enabled = true;
+            bonusTracker++;
+            
+
+            redBonusIcon1.enabled = false;
+            redBonusIcon2.enabled = false;
+            redBonusIcon3.enabled = false;
+            if(_star.colorType == "yellow" && bonusTracker == 2)
+            {
+                yellowBonusIcon2.enabled = true;
+            }
+            else { bonusTracker = 1; }
+            if (_star.colorType == "yellow" && bonusTracker == 3)
+            {
+                yellowBonusIcon3.enabled = true;
+            }
+            else { bonusTracker = 1; }
+
+
+
+
+        }
+        if (_star.colorType == "blue")
+        {
+            defaultBonus.enabled = false;
+            blueBonusBar.enabled = true;
+            yellowBonusBar.enabled = false;
+            redBonusBar.enabled = false;
+
+            blueBonusIcon1.enabled = true;
+            blueBonusIcon2.enabled = false;
+            blueBonusIcon3.enabled = false;
+            bonusTracker++;
+
+            yellowBonusIcon1.enabled = false;
+            yellowBonusIcon2.enabled = false;
+            yellowBonusIcon3.enabled = false;
+
+            redBonusIcon1.enabled = false;
+            redBonusIcon2.enabled = false;
+            redBonusIcon3.enabled = false;
+
+            if (_star.colorType == "blue" && bonusTracker == 2)
+            {
+                blueBonusIcon2.enabled = true;
+            }
+            else { bonusTracker = 1; }
+            if (_star.colorType == "blue" && bonusTracker == 3)
+            {
+                blueBonusIcon3.enabled = true;
+            }
+            else { bonusTracker = 1; }
+
+        }
     }
 }

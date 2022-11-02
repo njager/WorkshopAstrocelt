@@ -24,8 +24,6 @@ public class S_LineMultiplierManager : MonoBehaviour
     [Header("Debug Elements")]
     public float debugLineValue;
 
-    public float f_totalLineLength;
-
     [Header("Line Multiplier Manager")]
     [SerializeField] int en_i_temporaryEnergyValue; 
 
@@ -46,7 +44,6 @@ public class S_LineMultiplierManager : MonoBehaviour
             g_global.g_ls_lineRendererList.Remove(_line);
             Destroy(_line);
         }
-        f_totalLineLength = 0;
     }
 
 
@@ -66,7 +63,6 @@ public class S_LineMultiplierManager : MonoBehaviour
                 _lineScript.TriggerLineTransfer();
             }
         }
-        f_totalLineLength = 0;
     }
 
     /// <summary>
@@ -77,15 +73,10 @@ public class S_LineMultiplierManager : MonoBehaviour
     public int LineMultiplier(GameObject _line)
     {
         //get the magnitude of the line
-        var length = _line.GetComponent<S_ConstellationLine>().f_lineLength;
+        var _length = _line.GetComponent<S_ConstellationLine>().f_lineLength;
 
-        //add to total line length
-        f_totalLineLength += length;
-
-        //Debug.Log("Line with this index: " + _line.GetComponent<S_ConstellationLine>().i_index + " provides this length: " + length);
-
-        if(f_totalLineLength > f_largeLength) { return 3; }
-        else if (f_totalLineLength > f_mediumLength) { return 2; }
+        if(_length > f_largeLength) { return 3; }
+        else if (_length > f_mediumLength) { return 2; }
         else { return 1; }
     }
 }
