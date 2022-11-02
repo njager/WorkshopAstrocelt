@@ -56,6 +56,12 @@ public class S_Altar : MonoBehaviour
     [Header("Null Object")]
     [SerializeField] GameObject nullObject;
 
+    [Header("Tooltip Template")]
+    [SerializeField] S_TooltipTemplate tl_altarTooltipTemplate;
+
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
+
     private void Awake()
     {
         g_global = S_Global.Instance;

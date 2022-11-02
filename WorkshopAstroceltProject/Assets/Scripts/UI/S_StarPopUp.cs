@@ -177,11 +177,12 @@ public class S_StarPopUp : MonoBehaviour
 
             if (b_isTempPopup == true)
             {
+                Debug.Log("Is this triggering?");
                 // Set Original
-                SetOriginalColorValue(Color.white);
+                SetOriginalColorValue(spriteRenderer.color);
 
                 // Change to Temp
-                spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
+                spriteRenderer.color = g_global.g_popupManager.GetRedPopupTempColor();
             }
 
             StartCoroutine(SpawnFadeTimer());
@@ -199,11 +200,12 @@ public class S_StarPopUp : MonoBehaviour
 
             if (b_isTempPopup == true)
             {
+                Debug.Log("Is this triggering?");
                 // Set Original
-                SetOriginalColorValue(Color.white);
+                SetOriginalColorValue(spriteRenderer.color);
 
                 // Change to Temp
-                spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();
+                spriteRenderer.color = g_global.g_popupManager.GetBluePopupTempColor();
             }
 
             StartCoroutine(SpawnFadeTimer());
@@ -221,8 +223,9 @@ public class S_StarPopUp : MonoBehaviour
 
             if (b_isTempPopup == true)
             {
+                Debug.Log("Is this triggering?");
                 // Set Original
-                SetOriginalColorValue(Color.white);
+                SetOriginalColorValue(spriteRenderer.color);
 
                 // Change to Temp
                 spriteRenderer.color = g_global.g_popupManager.GetYellowPopupTempColor();

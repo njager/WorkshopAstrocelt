@@ -34,7 +34,7 @@ public class S_TooltipTemplate : ScriptableObject
     /// </returns>
     public string GetTooltipTemplateHeaderText()
     {
-        return BodyText;
+        return HeaderText;
     }
 
     /// <summary>

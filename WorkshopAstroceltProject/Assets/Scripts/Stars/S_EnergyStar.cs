@@ -44,8 +44,8 @@ public class S_EnergyStar : MonoBehaviour
     public bool b_hasBeenClicked;
 
     [Header("Preemptive drawing vars")]
-    private bool b_clickableStar = false;
-    private S_StarClass s_thisStar;
+    [SerializeField] private bool b_clickableStar = false;
+    [SerializeField] private S_StarClass s_thisStar;
 
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -190,6 +190,8 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
+        Debug.Log("Do we even hover?");
+
         S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         //Set color for the hover
         if (s_b_redColor == true) // If Red
@@ -235,7 +237,7 @@ public class S_EnergyStar : MonoBehaviour
                     g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
 
                     // Reset star class temp bool status
-                    _starClassScript.SetTemporaryVisualBool(false);
+                    _starClassScript.SetTemporaryVisualBool(true);
                 }
             }
 
@@ -252,6 +254,8 @@ public class S_EnergyStar : MonoBehaviour
         }
         else if(g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
         {
+            Debug.Log("Here?");
+            Debug.Log(b_hasBeenClicked);
             if (_starClassScript.s_star.m_previousLine != null && !b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
             {
                 // Set b_hasBeenClickedBool
@@ -259,7 +263,9 @@ public class S_EnergyStar : MonoBehaviour
                 Debug.Log("S_EnergyStar - clicked logic chain");
 
                 // Set star permanent status
-                _starClassScript.SetTemporaryVisualBool(true);
+                _starClassScript.SetTemporaryVisualBool(false);
+
+                Debug.Log("Does broken?");
 
                 // Actually add the star to the constellation list
                 g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
@@ -299,7 +305,7 @@ public class S_EnergyStar : MonoBehaviour
                 b_hasBeenClicked = false;
 
                 // Reset star temp status (just in case)
-                _starClassScript.SetTemporaryVisualBool(false);
+                _starClassScript.SetTemporaryVisualBool(true);
 
                 // Update managers
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);

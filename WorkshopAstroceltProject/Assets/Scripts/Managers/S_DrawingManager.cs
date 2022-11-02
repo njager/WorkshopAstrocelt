@@ -76,7 +76,7 @@ public class S_DrawingManager : MonoBehaviour
         int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star2.s_star.m_previousLine.gameObject);
 
         // Spawn popups 
-        g_global.g_popupManager.CreatePopUpForStar(_star2, _energy, _star2.GetTemporaryVisualBool());
+        g_global.g_popupManager.CreatePopUpForStar(_star2, _energy, true);
 
         // Popups were spawned
         g_global.g_ConstellationManager.SetPopupStatusForCurrentLine(true);

@@ -42,7 +42,13 @@ public class S_Cardball : MonoBehaviour
     public GameObject c_whiteGraphic;
 
     [Header("Text Objects")]
-    public TextMeshProUGUI c_cardballText; 
+    public TextMeshProUGUI c_cardballText;
+
+    [Header("Test Object to Use")]
+    public S_TooltipTemplate tl_cardballTemplate;
+
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
 
     // Private variables
     private S_Global g_global;
@@ -335,5 +341,32 @@ public class S_Cardball : MonoBehaviour
     {
         Debug.Log("VFX call");
         yield return new WaitForSeconds(2);
+    }
+
+    /// <summary>
+    /// Interaction Mechanism will differ from SpriteRenderers and Images
+    /// - Josh
+    /// </summary>
+    private void OnMouseEnter()
+    {
+        tl_b_mouseEntered = true;
+    }
+
+    private void OnMouseOver()
+    {
+        if (tl_b_mouseEntered == true)
+        {
+            //Debug.Log("Triggered Mouse Hover");
+            g_global.g_tooltipManager.SetupToolTipObject(tl_cardballTemplate, gameObject.transform);
+        }
+    }
+
+    /// <summary>
+    /// Key thing to remember, we aren't deleting the object per will, but just reusing it all the time
+    /// </summary>
+    private void OnMouseExit()
+    {
+        g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
     }
 }
