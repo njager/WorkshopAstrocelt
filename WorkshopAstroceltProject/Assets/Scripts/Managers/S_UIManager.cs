@@ -119,6 +119,26 @@ public class S_UIManager : MonoBehaviour
     [Header("Constelation Length Elements")]
     public TextMeshProUGUI co_tx_constellationTrackerText;
 
+    [Header("ProgressionBarUI")]
+    public SpriteRenderer Skull1;
+    public SpriteRenderer Skull1_Crack;
+    public SpriteRenderer Skull1_Selector;
+
+    public SpriteRenderer Skull2;
+    public SpriteRenderer Skull2_Crack;
+    public SpriteRenderer Skull2_Selector;
+
+    public SpriteRenderer Skull3;
+    public SpriteRenderer Skull3_Crack;
+    public SpriteRenderer Skull3_Selector;
+
+    public SpriteRenderer SkullBoss;
+    //public SpriteRenderer SkullBoss_Crack;
+    public SpriteRenderer SkullBoss_Selector;
+
+    public SpriteRenderer encounterSprite;
+    public SpriteRenderer encounterSprite_Selector;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -1014,6 +1034,114 @@ public class S_UIManager : MonoBehaviour
         {
             Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldOverlay()");
             return null;
+        }
+    }
+
+
+
+    public void ChangeProgressionBar(string _scene)
+    {
+        if (_scene == "Scn_1stEnemyEncounter")
+        {
+            Skull1_Crack.enabled = false;
+
+            Skull2.enabled = true;
+            Skull2_Crack.enabled = false;
+            Skull2_Selector.enabled = false;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_2ndEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = true;
+            Skull2_Crack.enabled = false;
+            Skull2_Selector.enabled = true;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_3rdEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = true;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_4thEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3_Crack.enabled = true;
+            Skull3.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = true;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Event1-Bog" || _scene == "Event2-Mushrooms" || _scene == "Event3-Victory")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3_Crack.enabled = true;
+            Skull3.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = false;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = true;
         }
     }
 }

@@ -218,8 +218,6 @@ public class S_RitualStar : MonoBehaviour
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
-                    g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength;
-
                     g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
                 }
             }
@@ -250,6 +248,12 @@ public class S_RitualStar : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Confirm the test line is going to be built
+    /// - Riley
+    /// </summary>
+    /// <param name="_star"></param>
     public void ConfirmClickable(S_StarClass _star)
     {
         b_clickableStar = true;

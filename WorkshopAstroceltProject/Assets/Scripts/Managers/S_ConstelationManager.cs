@@ -7,19 +7,20 @@ using System.Linq;
 
 public class S_ConstelationManager : MonoBehaviour
 {
-    //global script
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    // Private variables
     private S_Global g_global;
-
-    //the list of the current constellation
-    public List<S_StarClass> ls_curConstellation;
-
-    //this is the color for the cur constellation
-    public string str_curColor = "";
-
-    //Bool for constellation status
     private bool b_makingConstellation;
 
-    //Bool for Lockout
+    [Header("Current Constellation Values")]
+    public List<S_StarClass> ls_curConstellation;
+    public string str_curColor = "";
+    [SerializeField] bool b_curStarSpawnedPopupsAlready;
+
+    [Header("Star Lockout Bool")]
     public bool b_starLockout = false;
 
     [Header("Previos star and location")]
@@ -45,13 +46,17 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Node Star Prefab")]
     public GameObject s_nodeStarPrefab;
 
+    [Header("Sound Phases")]
     public GameObject _starSoundPhase1;
     public GameObject _starSoundPhase2;
 
+    [Header("Cardball Limiting Bool tied to Spawning")]
     public bool c_cardballsSpawned;
 
+    [Header("Star Sound Index")]
     public int i_starSound = 0;
 
+    [Header("Bool for Nodestar Placement")]
     public bool b_nodeStarChosen = false;
 
     private void Awake()
@@ -73,7 +78,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star)
     {
-        //Debug.Log("does this work");
+        Debug.Log("does this work");
 
         //wait for checking stars
         yield return new WaitForEndOfFrame();
@@ -108,6 +113,8 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
+        //
+        //g_global.g_resourceGraphic.BonusTracker(_star);
 
         //change the star sound here if the line is formed
         i_starSound++;
@@ -154,6 +161,13 @@ public class S_ConstelationManager : MonoBehaviour
             //add the line multiplier
             _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
 
+            //set the currentconsecutive energy
+            g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
+
+            //get the energy value add together and then reduce to three
+            _energy += g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+            if(_energy > 3) { _energy = 3; }
+
             //get the ritual star component
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
 
@@ -168,6 +182,13 @@ public class S_ConstelationManager : MonoBehaviour
             //add the line multiplier
             _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
 
+            //set the currentconsecutive energy
+            g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
+
+            //get the energy value add together and then reduce to three
+            _energy += g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+            if (_energy > 3) { _energy = 3; }
+
             //get the energy star component
             S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
 
@@ -178,7 +199,11 @@ public class S_ConstelationManager : MonoBehaviour
         }
 
         //Spawn popups as needed
-        g_global.g_popupManager.CreatePopUpForStar(_star, _energy);
+        if(b_curStarSpawnedPopupsAlready == false)
+        {
+            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, _star.GetTemporaryVisualBool());
+        }
+        
     }
 
     /// <summary>
@@ -222,7 +247,6 @@ public class S_ConstelationManager : MonoBehaviour
         //reset the star sound
         i_starSound = 0;
         _starSoundPhase1.SetActive(false);
-
 
         //clear the constellation
         ls_curConstellation.Clear();
@@ -292,7 +316,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <summary>
     /// This is the func for non node stars and checks conditions before passing along to the spawn line function 
     /// Added functionallity for clicking on a star before a node star
-    /// - Riley
+    /// - Riley & Josh
     /// </summary>
     public void StarClicked(S_StarClass _star, Vector2 _loc)
     {
@@ -300,6 +324,7 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (s_previousStar != s_nullStarInst)
             {
+                // Create the temp line
                 g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
             }
         }
@@ -382,8 +407,6 @@ public class S_ConstelationManager : MonoBehaviour
 
 
             //Print total line lenght, then reset to 0
-            //Debug.Log("Total line length: " + g_global.g_lineMultiplierManager.f_totalLineLength);
-            g_global.g_lineMultiplierManager.f_totalLineLength = 0;
 
             b_makingConstellation = false;
             Debug.Log("Making constellations NOT");
@@ -404,6 +427,12 @@ public class S_ConstelationManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Create a new node star where the selected star was
+    /// - Riley
+    /// </summary>
+    /// <param name="_oldStar"></param>
     public void CreateNodeStar(GameObject _oldStar)
     {
         GameObject _newNodeStar = Instantiate(s_nodeStarPrefab, g_global.g_mapManager.activeMap.transform);
@@ -428,10 +457,12 @@ public class S_ConstelationManager : MonoBehaviour
         v2_prevLoc = _loc;
     }
 
-    // Setters \\
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the bool value of S_ConstelationManager.b_starLockout;
+    /// Set the bool value of S_ConstelationManager.b_starLockout
     /// - Josh
     /// </summary>
     /// <param name="_boolState"></param>
@@ -441,10 +472,23 @@ public class S_ConstelationManager : MonoBehaviour
         b_starLockout = _boolState;
     }
 
-    // Getters and Setters\\ 
+    /// <summary>
+    /// Set the bool value of S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// - Josh
+    /// </summary>
+    /// <param name="_boolState"></param>
+    public void SetPopupStatusForCurrentLine(bool _boolState)
+    {
+        b_curStarSpawnedPopupsAlready = _boolState;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Get the bool state of S_ConstelationManager.b_starLockout
+    /// - Josh
     /// </summary>
     /// <returns>
     /// S_ConstelationManager.b_starLockout
@@ -456,10 +500,24 @@ public class S_ConstelationManager : MonoBehaviour
 
     /// <summary>
     /// Gets the bool for making a constellation
+    /// - Riley
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// S_ConstelationManager.b_makingConstellation
+    /// </returns>
     public bool GetMakingConstellation()
     {
         return b_makingConstellation;
+    }
+
+    // <summary>
+    /// Get the bool state of S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// </summary>
+    /// <returns>
+    /// S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// </returns>
+    public bool GetPopupStatusForCurrentLine()
+    {
+        return b_curStarSpawnedPopupsAlready;
     }
 }

@@ -24,6 +24,15 @@ public class S_NodeStar : MonoBehaviour
     public bool b_clickableStar = false;
     public S_StarClass s_thisStar;
 
+    [Header("Test Object to Use")]
+    public S_TooltipTemplate tl_nodeStarTemplate;
+
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
+    public bool tl_b_justUsed;
+    public float timer = 0.03f;
+    public bool timerWait = false;
+
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
@@ -42,8 +51,34 @@ public class S_NodeStar : MonoBehaviour
         c_starStartColor = s_starSprite.color;
     }
 
+    public IEnumerator TimerCheck() 
+    {
+        if(timer > 0) 
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if(timer < 0) 
+        {
+            timerWait = true;
+        }
+
+        if (timerWait)
+        {
+            tl_b_justUsed = false;
+            yield return null;
+        }
+    }
+
     private void OnMouseEnter()
     {
+        //Tooltip
+        tl_b_mouseEntered = true;
+        if(timerWait == true) 
+        {
+            timer = 0.03f;
+        }
+
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
 
@@ -56,8 +91,23 @@ public class S_NodeStar : MonoBehaviour
         }
     }
 
+    private void OnMouseOver()
+    {
+        if (tl_b_mouseEntered == true && tl_b_justUsed == false)
+        {
+            //Debug.Log("Triggered Mouse Hover");
+            g_global.g_tooltipManager.SetupToolTipObject(tl_nodeStarTemplate, gameObject.transform);
+        }
+    }
+
     private void OnMouseExit()
     {
+        // Tooltip
+        g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
+        tl_b_justUsed = true;
+        StartCoroutine(TimerCheck());
+
         if (GetNodeClicked())
         {
             s_starSprite.color = c_clickedColor;
@@ -74,8 +124,6 @@ public class S_NodeStar : MonoBehaviour
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
-                    g_global.g_lineMultiplierManager.f_totalLineLength -= this.GetComponent<S_StarClass>().s_star.m_previousLine.f_lineLength;
-
                     g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
                 }
             }

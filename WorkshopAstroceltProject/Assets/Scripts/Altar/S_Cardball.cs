@@ -42,7 +42,13 @@ public class S_Cardball : MonoBehaviour
     public GameObject c_whiteGraphic;
 
     [Header("Text Objects")]
-    public TextMeshProUGUI c_cardballText; 
+    public TextMeshProUGUI c_cardballText;
+
+    [Header("Test Object to Use")]
+    public S_TooltipTemplate tl_cardballTemplate;
+
+    [Header("Mouse Enter Check")]
+    public bool tl_b_mouseEntered;
 
     // Private variables
     private S_Global g_global;
@@ -93,6 +99,52 @@ public class S_Cardball : MonoBehaviour
         c_b_colorlessCardball = false;
         c_whiteGraphic.SetActive(false);
 
+        if(c_b_locatedInFirstPosition || c_b_locatedInSecondPosition || c_b_locatedInThirdPosition)
+        {
+            if (c_cardData.RedColorType) // Check if Card is Red
+            {
+                // Cardball is Red
+                c_b_redCardball = true;
+                c_redGraphic.SetActive(true);
+            }
+            else if (c_cardData.BlueColorType) // Check if card is Blue
+            {
+                // Cardball is Blue
+                c_b_blueCardball = true;
+                c_blueGraphic.SetActive(true);
+            }
+            else if (c_cardData.YellowColorType) // Check if card is Yellow
+            {
+                // Cardball is Yellow
+                c_b_yellowCardball = true;
+                c_yellowGraphic.SetActive(true);
+            }
+            else if (c_cardData.WhiteColorType) // Check if card is Colorless
+            {
+                // Cardball is Colorless
+                c_b_colorlessCardball = true;
+                c_whiteGraphic.SetActive(true);
+            }
+            else { Debug.Log("Card data is null!"); }
+
+            // Then determine the energy cost
+            c_i_cardEnergyCost = c_cardData.EnergyCost;
+
+            //Update text
+            c_cardballText.text = "" + c_i_cardEnergyCost;
+
+            // Then lastly the card name and body(for altar use)
+            c_cardName = c_cardData.CardName;
+            c_cardBody = c_cardData.BodyText;
+        }
+    }
+
+
+    /// <summary>
+    /// Function to turn on all the card ball ui once the card ball moves into the proper position
+    /// </summary>
+    public void RevealCardBallDetails()
+    {
         if (c_cardData.RedColorType) // Check if Card is Red
         {
             // Cardball is Red
@@ -289,5 +341,32 @@ public class S_Cardball : MonoBehaviour
     {
         Debug.Log("VFX call");
         yield return new WaitForSeconds(2);
+    }
+
+    /// <summary>
+    /// Interaction Mechanism will differ from SpriteRenderers and Images
+    /// - Josh
+    /// </summary>
+    private void OnMouseEnter()
+    {
+        tl_b_mouseEntered = true;
+    }
+
+    private void OnMouseOver()
+    {
+        if (tl_b_mouseEntered == true)
+        {
+            //Debug.Log("Triggered Mouse Hover");
+            g_global.g_tooltipManager.SetupToolTipObject(tl_cardballTemplate, gameObject.transform);
+        }
+    }
+
+    /// <summary>
+    /// Key thing to remember, we aren't deleting the object per will, but just reusing it all the time
+    /// </summary>
+    private void OnMouseExit()
+    {
+        g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
     }
 }

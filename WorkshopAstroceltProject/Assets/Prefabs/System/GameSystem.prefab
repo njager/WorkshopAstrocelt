@@ -182,6 +182,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7873808461281200223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7310806046647560017}
+  - component: {fileID: 7924841523255227828}
+  m_Layer: 0
+  m_Name: TooltipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7310806046647560017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873808461281200223}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8047176381026311821}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7924841523255227828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873808461281200223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60156a11e93b8a4bb6358485e9f3eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_tooltipObject: {fileID: 0}
+  tl_tooltipScript: {fileID: 0}
+  iconPrefab: {fileID: 0}
 --- !u!1 &8047176379390002568
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_curConstellation: []
   str_curColor: 
+  b_curStarSpawnedPopupsAlready: 0
   b_starLockout: 0
   s_previousStar: {fileID: 0}
   v2_prevLoc: {x: 0, y: 0}
@@ -801,8 +848,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8047176380871572662}
   - component: {fileID: 8047176380871572663}
+  - component: {fileID: 3353330474544501753}
   m_Layer: 0
-  m_Name: LineMultiplierManager
+  m_Name: EnergyMultiplierManager
   m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -864,7 +912,21 @@ MonoBehaviour:
   upperBoundForCalculation: 0
   lst_lineLengthList: []
   debugLineValue: 0
-  f_totalLineLength: 0
+  en_i_temporaryEnergyValue: 0
+--- !u!114 &3353330474544501753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047176380871572661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3e3c192a21a404fbc8421ea3ec7bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  en_cl_str_currentColorType: 
+  en_cl_i_colorTierTracker: 0
 --- !u!1 &8047176380998857109
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +994,11 @@ MonoBehaviour:
   e_enemy3HealthBar: {fileID: 0}
   e_enemy4HealthBar: {fileID: 0}
   e_enemy5HealthBar: {fileID: 0}
+  e_enemy1Selector: {fileID: 0}
+  e_enemy2Selector: {fileID: 0}
+  e_enemy3Selector: {fileID: 0}
+  e_enemy4Selector: {fileID: 0}
+  e_enemy5Selector: {fileID: 0}
   winText: {fileID: 0}
   loseText: {fileID: 0}
   cn_resetCanvas: {fileID: 0}
@@ -981,6 +1048,19 @@ MonoBehaviour:
   en_tx_blueEnergyTrackerText: {fileID: 0}
   en_tx_yellowEnergyTrackerText: {fileID: 0}
   co_tx_constellationTrackerText: {fileID: 0}
+  Skull1: {fileID: 0}
+  Skull1_Crack: {fileID: 0}
+  Skull1_Selector: {fileID: 0}
+  Skull2: {fileID: 0}
+  Skull2_Crack: {fileID: 0}
+  Skull2_Selector: {fileID: 0}
+  Skull3: {fileID: 0}
+  Skull3_Crack: {fileID: 0}
+  Skull3_Selector: {fileID: 0}
+  SkullBoss: {fileID: 0}
+  SkullBoss_Selector: {fileID: 0}
+  encounterSprite: {fileID: 0}
+  encounterSprite_Selector: {fileID: 0}
 --- !u!114 &678214752384889694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,6 +1089,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   g_global: {fileID: 0}
   sc_UIManager: {fileID: 8047176380998857111}
+  defaultBonus: {fileID: 0}
+  blueBonusBar: {fileID: 0}
+  yellowBonusBar: {fileID: 0}
+  redBonusBar: {fileID: 0}
+  blueBonusIcon1: {fileID: 0}
+  blueBonusIcon2: {fileID: 0}
+  blueBonusIcon3: {fileID: 0}
+  yellowBonusIcon1: {fileID: 0}
+  yellowBonusIcon2: {fileID: 0}
+  yellowBonusIcon3: {fileID: 0}
+  redBonusIcon1: {fileID: 0}
+  redBonusIcon2: {fileID: 0}
+  redBonusIcon3: {fileID: 0}
+  bonusTracker: 1
 --- !u!1 &8047176381002654253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1164,9 @@ MonoBehaviour:
   g_sceneManager: {fileID: 8047176379975663402}
   g_backgroundManager: {fileID: 8047176380363508963}
   g_turnEffectManager: {fileID: 8047176379887102767}
+  g_resourceGraphic: {fileID: 0}
+  g_consecutiveColorTrackerManager: {fileID: 3353330474544501753}
+  g_tooltipManager: {fileID: 7924841523255227828}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 0}
@@ -1141,6 +1238,7 @@ Transform:
   - {fileID: 8047176380871572662}
   - {fileID: 8047176380078506374}
   - {fileID: 8047176380998857110}
+  - {fileID: 7310806046647560017}
   m_Father: {fileID: 8047176380569530100}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1277,6 +1375,9 @@ MonoBehaviour:
   pe_redParticle: {fileID: 0}
   pe_blueParticle: {fileID: 0}
   pe_yellowParticle: {fileID: 0}
+  redPopupTempColor: {r: 1, g: 1, b: 1, a: 1}
+  bluePopupTempColor: {r: 1, g: 1, b: 1, a: 1}
+  yellowPopupTempColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8047176381412509010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1596,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
+--- !u!4 &8047176379400075471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 152267100547761435, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
+  m_PrefabInstance: {fileID: 7904281713674485204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8047176379400075472 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
@@ -1506,8 +1612,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0883779ae71a4eddb5dcdacfa2a2d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8047176379400075471 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 152267100547761435, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-  m_PrefabInstance: {fileID: 7904281713674485204}
-  m_PrefabAsset: {fileID: 0}

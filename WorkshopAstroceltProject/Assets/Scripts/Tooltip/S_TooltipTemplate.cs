@@ -15,11 +15,11 @@ public class S_TooltipTemplate : ScriptableObject
     [Header("Body Text:")]
     [SerializeField] string BodyText;
 
-    [Header("Image (false) or SpriteRenderer Object (true):")]
-    [SerializeField] bool CanvasState;
+    [Header("Icon Entries Sprite List")]
+    [SerializeField] List<Sprite> iconEntryArtList = new List<Sprite>();
 
-    [Header("Icon Entries")]
-    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
+    [Header("Icon Entry Text List")]
+    [SerializeField] List<string> iconEntryTextList = new List<string>();
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -34,7 +34,7 @@ public class S_TooltipTemplate : ScriptableObject
     /// </returns>
     public string GetTooltipTemplateHeaderText()
     {
-        return BodyText;
+        return HeaderText;
     }
 
     /// <summary>
@@ -47,17 +47,5 @@ public class S_TooltipTemplate : ScriptableObject
     public string GetTooltipTemplateBodyText()
     {
         return BodyText;
-    }
-
-    /// <summary>
-    /// Return the canvas state of S_UIToolTemplate.CanvasState
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_UIToolTemplate.CanvasState
-    /// </returns
-    public bool GetTooltipTemplateCanvasState()
-    {
-        return CanvasState;
     }
 }
