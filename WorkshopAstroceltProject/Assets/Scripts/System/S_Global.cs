@@ -37,6 +37,7 @@ public class S_Global : MonoBehaviour
     public S_ResourceGraphics g_resourceGraphic;
     public S_ConsecutiveColorTrackerManager g_consecutiveColorTrackerManager;
     public S_TooltipManager g_tooltipManager;
+    public S_VFXManager g_vfxManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
