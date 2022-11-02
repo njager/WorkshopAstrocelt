@@ -49,6 +49,7 @@ public class S_TestObjectHover : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
+    /*
     public IEnumerator DeletionTimer()
     {
         //Debug.Log("deletion timer called");
@@ -70,4 +71,6 @@ public class S_TestObjectHover : MonoBehaviour
         Destroy(gameObject);
         yield return new WaitUntil(() => b_deletionTimerFlag == true);
     }
+    */
+    
 }
