@@ -113,7 +113,6 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
-        //
         //g_global.g_resourceGraphic.BonusTracker(_star);
 
         //change the star sound here if the line is formed
@@ -203,7 +202,6 @@ public class S_ConstelationManager : MonoBehaviour
         {
             g_global.g_popupManager.CreatePopUpForStar(_star, _energy, _star.GetTemporaryVisualBool());
         }
-        
     }
 
     /// <summary>
@@ -364,7 +362,8 @@ public class S_ConstelationManager : MonoBehaviour
             //trigger the star sound here
 
             //pass the _count to another function
-            foreach (S_StarClass _star in ls_curConstellation){
+            foreach (S_StarClass _star in ls_curConstellation.ToList())
+            {
 
                 //check the star type
                 if (_star.starType == "Ritual")
@@ -404,7 +403,6 @@ public class S_ConstelationManager : MonoBehaviour
             {
                 g_global.g_energyManager.RitualBonusEnergy("yellow");
             }
-
 
             //Print total line lenght, then reset to 0
 

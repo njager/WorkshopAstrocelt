@@ -43,4 +43,34 @@ public class S_TestObjectHover : MonoBehaviour
         g_global.g_tooltipManager.ResetTooltip();
         tl_b_mouseEntered = false;
     }
+
+    /// <summary>
+    /// Help function for deletion
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    /*
+    public IEnumerator DeletionTimer()
+    {
+        //Debug.Log("deletion timer called");
+        //A delay timer for the disappear animation
+        b_deletionTimerFlag = true;
+        if (f_disappearTimer > 0)
+        {
+            f_disappearTimer -= Time.deltaTime;
+        }
+
+        g_global.g_ls_starPopup.Remove(this);
+
+        spriteRenderer.DOFade(f_doFadeAlpha, f_doFadeDuration);
+        if (f_destroyTimer > 0)
+        {
+            f_destroyTimer -= Time.deltaTime;
+        }
+
+        Destroy(gameObject);
+        yield return new WaitUntil(() => b_deletionTimerFlag == true);
+    }
+    */
+    
 }

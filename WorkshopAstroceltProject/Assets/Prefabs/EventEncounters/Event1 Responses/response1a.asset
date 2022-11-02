@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response1a
   m_EditorClassIdentifier: 
-  s_responseText: 'First rule of foraging, taste test! [Gain Health: MEDIUM, Lost
-    Health: Medium]'
+  s_responseText: 'First rule of foraging, taste test! [Gain Health: MEDIUM, Lose
+    Health: MEDIUM]'
   r_reward:
     i_value: 20
     s_rewardString: The next 15 minutes are a blur of pleasant hallucinations. Did
-      you know butterflies are experts in nautical exploration? [Gained 20 health]
+      you know butterflies are experts in nautical exploration? [Gain 20 health]
     b_boneReward: 0
     b_healthReward: 1
     b_cardReward: 0
@@ -27,5 +27,5 @@ MonoBehaviour:
     b_cardFailure: 0
   f_failureChance: 50
   s_failureText: Visions of dark memories return. She wasn't meant to die, not like
-    that, not because of you. You hoped that pain would never be felt again. [Lost
+    that, not because of you. You hoped that pain would never be felt again. [Lose
     10 health]

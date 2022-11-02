@@ -124,7 +124,7 @@ public class S_DrawingManager : MonoBehaviour
             _popup2Script.DeletePopup();
             _popup3Script.DeletePopup();
         }
-        else if (_starClassScript.GetPopup2ParentTransform().childCount == 1) // Then two popups have spawned
+        else if (_starClassScript.GetPopup2ParentTransform().childCount == 2) // Then two popups have spawned
         {
             Debug.Log("S_StarClass - Deleting 2 Popups");
 
