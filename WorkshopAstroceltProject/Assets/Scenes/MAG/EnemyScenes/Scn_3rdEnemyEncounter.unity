@@ -22329,6 +22329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2094681050458199353, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2094681050458199354, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -48264,6 +48268,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull1
+      value: 
+      objectReference: {fileID: 834442200}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull2
+      value: 
+      objectReference: {fileID: 2046393945}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull3
+      value: 
+      objectReference: {fileID: 1714661997}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: winText
       value: 
       objectReference: {fileID: 1343041395}
@@ -48272,6 +48288,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 579670013}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: SkullBoss
+      value: 
+      objectReference: {fileID: 1872346826}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: c_cardCount
       value: 
       objectReference: {fileID: 0}
@@ -48279,6 +48299,18 @@ PrefabInstance:
       propertyPath: resetCanvas
       value: 
       objectReference: {fileID: 1845475216}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull1_Crack
+      value: 
+      objectReference: {fileID: 459081947}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull2_Crack
+      value: 
+      objectReference: {fileID: 73722559}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull3_Crack
+      value: 
+      objectReference: {fileID: 806875456}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbar
       value: 
@@ -48299,6 +48331,22 @@ PrefabInstance:
       propertyPath: en_tx_blueText
       value: 
       objectReference: {fileID: 1269106178}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull1_Selector
+      value: 
+      objectReference: {fileID: 2131223773}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull2_Selector
+      value: 
+      objectReference: {fileID: 837534228}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull3_Selector
+      value: 
+      objectReference: {fileID: 2035292133}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: encounterSprite
+      value: 
+      objectReference: {fileID: 827879389}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbarText
       value: 
@@ -48327,6 +48375,10 @@ PrefabInstance:
       propertyPath: p_playerHealthBar
       value: 
       objectReference: {fileID: 97589811}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: SkullBoss_Selector
+      value: 
+      objectReference: {fileID: 1052659693}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cn_characterCanvas
       value: 
@@ -48444,6 +48496,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 464415428}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: encounterSprite_Selector
+      value: 
+      objectReference: {fileID: 874530185}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: en_tx_redEnergyTrackerText
       value: 
       objectReference: {fileID: 1994405797}
@@ -48458,11 +48514,11 @@ PrefabInstance:
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: p_playerHealthResourceBarText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1000171638}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: co_tx_constellationTrackerText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 331571004}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_altar
       value: 

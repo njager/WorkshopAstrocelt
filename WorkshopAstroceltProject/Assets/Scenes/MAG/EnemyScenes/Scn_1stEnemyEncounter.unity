@@ -23858,6 +23858,7 @@ Transform:
   - {fileID: 1450311302}
   - {fileID: 773924949}
   - {fileID: 506198041}
+  - {fileID: 3899396951296246624}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47569,7 +47570,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1043160447}
     m_Modifications:
     - target: {fileID: 2094681049787728621, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -47586,6 +47587,10 @@ PrefabInstance:
     - target: {fileID: 2094681050458199353, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
       propertyPath: m_Name
       value: TutorialCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094681050458199353, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094681050458199354, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
       propertyPath: m_Pivot.x
@@ -47939,6 +47944,11 @@ PrefabInstance:
 --- !u!1 &3899396951296246623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2094681050458199353, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
+  m_PrefabInstance: {fileID: 3102062666069087846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3899396951296246624 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2094681050458199354, guid: 71ba8718bb97a1341882d815047a815d, type: 3}
   m_PrefabInstance: {fileID: 3102062666069087846}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4694868180829328565
@@ -48524,6 +48534,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull1
+      value: 
+      objectReference: {fileID: 1991430247}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull2
+      value: 
+      objectReference: {fileID: 1809288974}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull3
+      value: 
+      objectReference: {fileID: 1364308522}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: winText
       value: 
       objectReference: {fileID: 1343041395}
@@ -48532,6 +48554,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 579670013}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: SkullBoss
+      value: 
+      objectReference: {fileID: 2141760582}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: c_cardCount
       value: 
       objectReference: {fileID: 0}
@@ -48539,6 +48565,18 @@ PrefabInstance:
       propertyPath: resetCanvas
       value: 
       objectReference: {fileID: 1845475216}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull1_Crack
+      value: 
+      objectReference: {fileID: 1803051691}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull2_Crack
+      value: 
+      objectReference: {fileID: 88290740}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull3_Crack
+      value: 
+      objectReference: {fileID: 1822428703}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbar
       value: 
@@ -48559,6 +48597,22 @@ PrefabInstance:
       propertyPath: en_tx_blueText
       value: 
       objectReference: {fileID: 1269106178}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull1_Selector
+      value: 
+      objectReference: {fileID: 370805361}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull2_Selector
+      value: 
+      objectReference: {fileID: 128460331}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Skull3_Selector
+      value: 
+      objectReference: {fileID: 1128890018}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: encounterSprite
+      value: 
+      objectReference: {fileID: 965527063}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbarText
       value: 
@@ -48591,6 +48645,10 @@ PrefabInstance:
       propertyPath: p_playerHealthBar
       value: 
       objectReference: {fileID: 97589811}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: SkullBoss_Selector
+      value: 
+      objectReference: {fileID: 1852775066}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cn_characterCanvas
       value: 
@@ -48707,6 +48765,10 @@ PrefabInstance:
       propertyPath: p_playerResistantEffect
       value: 
       objectReference: {fileID: 464415428}
+    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: encounterSprite_Selector
+      value: 
+      objectReference: {fileID: 374573821}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: en_tx_redEnergyTrackerText
       value: 
