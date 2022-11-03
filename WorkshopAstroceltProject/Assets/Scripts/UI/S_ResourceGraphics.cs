@@ -14,7 +14,7 @@ public class S_ResourceGraphics : MonoBehaviour
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
 
-
+    [Header("Sprite References")]
     public SpriteRenderer defaultBonus;
     public SpriteRenderer blueBonusBar;
     public SpriteRenderer yellowBonusBar;
@@ -30,9 +30,6 @@ public class S_ResourceGraphics : MonoBehaviour
     public SpriteRenderer redBonusIcon3;
 
     public int bonusTracker = 1;
-
-
-
 
     private void Awake()
     {
@@ -50,8 +47,6 @@ public class S_ResourceGraphics : MonoBehaviour
         EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
         UpdateResourceBarGraphics();
         ConstellationTracker();
-    
-
     }
 
     public void resetBonusTracker()
@@ -119,7 +114,6 @@ public class S_ResourceGraphics : MonoBehaviour
 
     public void BonusTracker(S_StarClass _star)
     {
-
        if (_star.colorType == "red")
         {
             defaultBonus.enabled = false;
@@ -177,10 +171,6 @@ public class S_ResourceGraphics : MonoBehaviour
                 yellowBonusIcon3.enabled = true;
             }
             else { bonusTracker = 1; resetBonusTracker(); }
-
-
-
-
         }
         if (_star.colorType == "blue")
         {

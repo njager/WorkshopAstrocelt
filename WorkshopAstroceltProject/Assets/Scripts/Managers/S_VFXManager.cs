@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class S_VFXManager : MonoBehaviour
 {
+    [Header("Global Track")]
+    [SerializeField] S_Global g_global;
+
     [Header("Enemy Hurts Player")]
     [SerializeField] ParticleSystem a_enemyAttacksPlayer;
 
@@ -48,6 +51,11 @@ public class S_VFXManager : MonoBehaviour
 
     [Header("Constellation Completed")]
     [SerializeField] ParticleSystem a_constellationCompleted;
+
+    private void Awake()
+    {
+        g_global = S_Global.Instance;
+    }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
