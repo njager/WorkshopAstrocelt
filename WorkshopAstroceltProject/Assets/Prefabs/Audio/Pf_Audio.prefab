@@ -81,9 +81,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   b_eventScene: 0
   b_combatScene: 0
+  b_bossScene: 0
   f_intensityBreakpoint: 15
   f_timeInScene: 0
   _sceneAudio: {fileID: 6945479483261178311}
+  i_playerHealth: 0
 --- !u!1 &2497990690667023715
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Music/Lose
+  Event: event:/Music/player-lose-1
   PlayEvent: 11
   StopEvent: 0
   AllowFadeout: 1
@@ -625,7 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Music/Win
+  Event: event:/Music/player-win-combat-1
   PlayEvent: 11
   StopEvent: 0
   AllowFadeout: 1
