@@ -39,6 +39,7 @@ public class S_StarClass : MonoBehaviour
 
     [Header("Popup Parent Transform Point List")]
     public List<Transform> tr_ls_popupParentTransforms = new List<Transform>();
+    public List<GameObject> ls_energyPopups = new List<GameObject>();
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

@@ -111,8 +111,11 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript1.SetTempStatus(_isTempStar);
                 _starPopupScript1.SetGraphic(_star.colorType);
 
+                // Add Popup to list
+                _star.ls_energyPopups.Add(_starPopup1);
+
                 // Move popup to container
-                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
+                _starPopup1.transform.SetParent(v3_vfxContainer);
 
             }
             else if (_energy == 2)
@@ -144,9 +147,13 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript2.SetTempStatus(_isTempStar);
                 _starPopupScript2.SetGraphic(_star.colorType);
 
+                // Add Popup to list
+                _star.ls_energyPopups.Add(_starPopup1);
+                _star.ls_energyPopups.Add(_starPopup2);
+
                 // Move popups to container
-                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
-                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform());
+                _starPopup1.transform.SetParent(v3_vfxContainer);
+                _starPopup2.transform.SetParent(v3_vfxContainer);
 
             }
             else if (_energy == 3)
@@ -187,10 +194,15 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript3.SetTempStatus(_isTempStar);
                 _starPopupScript3.SetGraphic(_star.colorType);
 
+                // Add Popup to list
+                _star.ls_energyPopups.Add(_starPopup1);
+                _star.ls_energyPopups.Add(_starPopup2);
+                _star.ls_energyPopups.Add(_starPopup3);
+
                 // Move popups to container
-                _starPopup1.transform.SetParent(_star.GetPopup1ParentTransform());
-                _starPopup2.transform.SetParent(_star.GetPopup2ParentTransform());
-                _starPopup3.transform.SetParent(_star.GetPopup3ParentTransform());
+                _starPopup1.transform.SetParent(v3_vfxContainer);
+                _starPopup2.transform.SetParent(v3_vfxContainer);
+                _starPopup3.transform.SetParent(v3_vfxContainer);
             }
         }
     }
@@ -223,7 +235,11 @@ public class S_PopupManager : MonoBehaviour
         StartCoroutine(ClearPopupsForRound());
     }
 
-
+    /// <summary>
+    /// Someone's particle effect trigger
+    /// - Josh
+    /// </summary>
+    /// <param name="_color"></param>
     public void TriggerParticleEffects(string _color)
     {
         if (_color == "blue")
@@ -245,7 +261,6 @@ public class S_PopupManager : MonoBehaviour
             pe_yellowParticle.Play();
         }
     }
-
 
     /// <summary>
     /// Remove all popups currently spawned from the scene
