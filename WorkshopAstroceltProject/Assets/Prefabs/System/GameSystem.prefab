@@ -284,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8047176379887102766}
   - component: {fileID: 8047176379887102767}
+  - component: {fileID: 840620545612551189}
   m_Layer: 0
   m_Name: VFXManager
   m_TagString: Manager
@@ -317,6 +318,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb2d5aa79181d24c8583667f7836fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &840620545612551189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047176379887102765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db205627541b48a2912d826177d5e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a_enemyAttacksPlayer: {fileID: 0}
+  a_playerAttacksEnemy: {fileID: 0}
+  a_playerShields: {fileID: 0}
+  a_enemyShields: {fileID: 0}
+  a_enemySpecialGeneral: {fileID: 0}
+  a_redCardSpawn: {fileID: 0}
+  a_blueCardSpawn: {fileID: 0}
+  a_yellowCardSpawn: {fileID: 0}
+  a_whiteCardSpawn: {fileID: 0}
+  a_enemyDied: {fileID: 0}
+  a_rewardScene: {fileID: 0}
+  a_rewardChosen: {fileID: 0}
+  a_endTurnClicked: {fileID: 0}
+  a_starConnected: {fileID: 0}
+  a_constellationCompleted: {fileID: 0}
 --- !u!1 &8047176379975663400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1195,7 @@ MonoBehaviour:
   g_resourceGraphic: {fileID: 0}
   g_consecutiveColorTrackerManager: {fileID: 3353330474544501753}
   g_tooltipManager: {fileID: 7924841523255227828}
+  g_vfxManager: {fileID: 840620545612551189}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 0}
