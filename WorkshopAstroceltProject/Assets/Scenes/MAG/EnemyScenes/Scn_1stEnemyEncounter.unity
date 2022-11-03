@@ -646,6 +646,88 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &90929715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90929717}
+  - component: {fileID: 90929716}
+  m_Layer: 0
+  m_Name: DummyObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &90929716
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90929715}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &90929717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90929715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.660477, y: -9.367554, z: -0.63741934}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &97589809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,6 +3119,10 @@ PrefabInstance:
     - target: {fileID: 4236618400676736312, guid: 723c15ce72759564ebdc10be7c8758ae, type: 3}
       propertyPath: m_Name
       value: AltarParticleYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236618400676736312, guid: 723c15ce72759564ebdc10be7c8758ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4236618400676736315, guid: 723c15ce72759564ebdc10be7c8758ae, type: 3}
       propertyPath: m_RootOrder
@@ -5913,6 +5999,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AltarParticleRed
       objectReference: {fileID: 0}
+    - target: {fileID: 5132723636985691601, guid: f72bbd936abae5a4ba536257726ca48f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72bbd936abae5a4ba536257726ca48f, type: 3}
 --- !u!4 &1086931784 stripped
@@ -8561,6 +8651,10 @@ PrefabInstance:
     - target: {fileID: 7112772938855542383, guid: bea8d239671e0f446ac5820e52deb037, type: 3}
       propertyPath: m_Name
       value: AltarParticleBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112772938855542383, guid: bea8d239671e0f446ac5820e52deb037, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea8d239671e0f446ac5820e52deb037, type: 3}
@@ -13763,6 +13857,18 @@ PrefabInstance:
       propertyPath: p_tx_playerHealthText
       value: 
       objectReference: {fileID: 73390825}
+    - target: {fileID: 840620545612551189, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: a_redCardSpawn
+      value: 
+      objectReference: {fileID: 1086931785}
+    - target: {fileID: 840620545612551189, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: a_blueCardSpawn
+      value: 
+      objectReference: {fileID: 1538109617}
+    - target: {fileID: 840620545612551189, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: a_yellowCardSpawn
+      value: 
+      objectReference: {fileID: 542987000}
     - target: {fileID: 1885217086233950845, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -13780,17 +13886,69 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 579670013}
     - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: redBonusBar
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: resetCanvas
       value: 
       objectReference: {fileID: 1845475216}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: blueBonusBar
+      value: 
+      objectReference: {fileID: 90929716}
     - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbar
       value: 
       objectReference: {fileID: 1160059243}
     - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: defaultBonus
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: redBonusIcon1
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: redBonusIcon2
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: redBonusIcon3
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: blueBonusIcon1
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: blueBonusIcon2
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: blueBonusIcon3
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: yellowBonusBar
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: debugTurnbarText
       value: 
       objectReference: {fileID: 1973806048}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: yellowBonusIcon1
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: yellowBonusIcon2
+      value: 
+      objectReference: {fileID: 90929716}
+    - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: yellowBonusIcon3
+      value: 
+      objectReference: {fileID: 90929716}
     - target: {fileID: 7094432091799698301, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Enabled
       value: 0
