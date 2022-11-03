@@ -111,7 +111,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_backgroundManager.ChangeBackground(1);
 
         //change all the things that need to be changed for the enemies turn
-        g_global.g_energyManager.ClearEnergy();
+        //g_global.g_energyManager.ClearEnergy();
         g_global.g_enemyState.EnemyActionCheck();
         RemoveEnemyShielding(); //Remove all enemy shields first before applying new ones
 
