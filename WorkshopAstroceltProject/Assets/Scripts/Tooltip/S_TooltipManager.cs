@@ -32,7 +32,7 @@ public class S_TooltipManager : MonoBehaviour
         tl_tooltipScript.TooltipSetup(_headerText, _bodyText);
 
         // Move the tooltip object
-        tl_tooltipObject.transform.SetParent(_parentTransform, false);
+        //tl_tooltipObject.transform.SetParent(_parentTransform, false);
     }
 
     /// <summary>

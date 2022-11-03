@@ -169,6 +169,8 @@ GameObject:
   - component: {fileID: 8596015523136984958}
   - component: {fileID: 1732291931699124592}
   - component: {fileID: 8070727403578559325}
+  - component: {fileID: 1210247115630796667}
+  - component: {fileID: 5781316275981627862}
   m_Layer: 0
   m_Name: BaseCardTemplate
   m_TagString: Card
@@ -261,7 +263,7 @@ MonoBehaviour:
   c_tx_body: {fileID: 7994180667109303153}
   c_tx_flavor: {fileID: 6248408915480781643}
   c_tx_energyCost: {fileID: 0}
-  sc_c_cardDraggerReference: {fileID: 0}
+  e_cd_grabbedEnemy: {fileID: 0}
   c_a_redBackground: {fileID: 21300000, guid: 1626f6c673ee893458534f9de00ab01b, type: 3}
   c_a_blueBackground: {fileID: 21300000, guid: dc941db29ad9f6c41a6e364b8b597854, type: 3}
   c_a_yellowBackground: {fileID: 21300000, guid: 9b1281adcff6b354b83ea45a513884aa, type: 3}
@@ -272,12 +274,10 @@ MonoBehaviour:
   c_a_whiteForeground: {fileID: 21300000, guid: 0fc3f6abc65123d4b88c365b73fb9682, type: 3}
   c_b_shieldSoundEffect: 0
   c_b_attackSoundEffect: 0
-  c_i_cardPositionIndex: 0
-  c_v3_intialPositionZ: 0
+  cd_b_resetPositionFlag: 0
   c_v3_CardPosition: {x: 0, y: 0, z: 0}
   c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
   c_b_cardIsDragged: 0
-  cd_b_resetPositionFlag: 0
 --- !u!114 &8596015523136984958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +340,69 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.5, y: 26}
   m_EdgeRadius: 0
+--- !u!114 &1210247115630796667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134803473554262698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428f23c42c468d24fab4af531dfdad20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_toolTipTemplate: {fileID: 11400000, guid: 47424694c16cb49468ead6addc7f8c18, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
+--- !u!114 &5781316275981627862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134803473554262698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1210247115630796667}
+          m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1210247115630796667}
+          m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2981723020958407617
 GameObject:
   m_ObjectHideFlags: 0

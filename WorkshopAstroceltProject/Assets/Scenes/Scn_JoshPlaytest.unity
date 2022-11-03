@@ -865,6 +865,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116821759}
+  - component: {fileID: 116821761}
+  - component: {fileID: 116821760}
   m_Layer: 0
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -896,6 +898,69 @@ Transform:
   m_Father: {fileID: 933933133}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &116821760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116821758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 116821761}
+          m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 116821761}
+          m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &116821761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116821758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428f23c42c468d24fab4af531dfdad20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_toolTipTemplate: {fileID: 11400000, guid: f0ed958f55d819f40b94710fb0b1d7fb, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &149809639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1692325565739897680, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
@@ -3313,6 +3378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541706487}
   - component: {fileID: 541706488}
+  - component: {fileID: 541706489}
   m_Layer: 0
   m_Name: Skull BOSS
   m_TagString: Untagged
@@ -3385,6 +3451,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &541706489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541706486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154a8c6e1c69bf147b49ecd14b41ecef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_tooltipTemplate: {fileID: 11400000, guid: 8ff2aca267942fa4a8654d85e043f9bd, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &563201856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,6 +3687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 566892003}
   - component: {fileID: 566892004}
+  - component: {fileID: 566892005}
   m_Layer: 0
   m_Name: SkullOG 2
   m_TagString: Untagged
@@ -3677,6 +3762,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &566892005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566892002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154a8c6e1c69bf147b49ecd14b41ecef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_tooltipTemplate: {fileID: 11400000, guid: c9ba775ef581d1b49853990e39ef345a, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &572004695
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,6 +4980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767321915}
   - component: {fileID: 767321916}
+  - component: {fileID: 767321917}
   m_Layer: 0
   m_Name: SkullOG
   m_TagString: Untagged
@@ -4951,6 +5055,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &767321917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767321914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154a8c6e1c69bf147b49ecd14b41ecef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_tooltipTemplate: {fileID: 11400000, guid: c9ba775ef581d1b49853990e39ef345a, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &773924948
 GameObject:
   m_ObjectHideFlags: 0
@@ -9512,6 +9634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552591850}
   - component: {fileID: 1552591851}
+  - component: {fileID: 1552591852}
   m_Layer: 0
   m_Name: UI_bar_resourceBar_v2
   m_TagString: Untagged
@@ -9584,6 +9707,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1552591852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552591849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050f2156f7432124daa0a729e53b690d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 0}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &1558239789
 GameObject:
   m_ObjectHideFlags: 0
@@ -13021,6 +13163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2096691840}
   - component: {fileID: 2096691841}
+  - component: {fileID: 2096691842}
   m_Layer: 0
   m_Name: '!'
   m_TagString: Untagged
@@ -13093,6 +13236,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2096691842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096691839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6487c79715ce564fb95281ccc287f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_tooltipTemplate: {fileID: 11400000, guid: 3f15e7756fb9cc9449ffd55d3bb759f3, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &2097397753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1863014761351679344, guid: e8f9b6a05048814439393d10fd5d8962, type: 3}
