@@ -133,8 +133,6 @@ public class S_Altar : MonoBehaviour
 
         SetCardballsSpawnedBool(true);
 
-        CheckFirstCardball();
-
         yield return new S_WaitForCardballMovement();
 
         // Wait for move cardballs, and then unlock drawing
@@ -324,6 +322,7 @@ public class S_Altar : MonoBehaviour
             _cardBall.transform.DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            CheckFirstCardball();
             //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.childCount == 1)
