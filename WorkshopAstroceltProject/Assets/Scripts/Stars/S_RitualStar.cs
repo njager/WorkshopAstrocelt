@@ -260,6 +260,16 @@ public class S_RitualStar : MonoBehaviour
     /// </summary>
     private void OnMouseExit()
     {
+        // Tooltip
+        g_global.g_tooltipManager.ResetTooltip();
+        tl_b_mouseEntered = false;
+        tl_b_timerComplete = false;
+        tl_b_mouseEntered = false;
+        f_timerAmount = 2f;
+        tl_b_displayedTooltip = true;
+        tl_b_displayedTooltip = false;
+        timerCompleteCheck = 0;
+
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
@@ -276,16 +286,6 @@ public class S_RitualStar : MonoBehaviour
 
     public void OnMouseDown()
     {
-        // Tooltip
-        g_global.g_tooltipManager.ResetTooltip();
-        tl_b_mouseEntered = false;
-        tl_b_timerComplete = false;
-        tl_b_mouseEntered = false;
-        f_timerAmount = 2f;
-        tl_b_displayedTooltip = true;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
         //if the star clicking is locked out, dont let the player click it
         if (!g_global.g_ConstellationManager.b_nodeStarChosen)
         {
