@@ -164,7 +164,7 @@ public class S_NodeStar : MonoBehaviour
         {
             g_global.g_DrawingManager.ConstellationReset(g_global.g_ConstellationManager.ls_curConstellation[g_global.g_ConstellationManager.ls_curConstellation.Count-1]);
         }
-        else if (g_global.g_ConstellationManager.GetMakingConstellation())
+        else if (g_global.g_ConstellationManager.GetMakingConstellation() && b_clickableStar)
         {
 
             Debug.Log("We here?");
