@@ -17,6 +17,11 @@ public class S_TestObjectHover : MonoBehaviour
         g_global = S_Global.Instance;
     }
 
+    [Header("Timer Elements")]
+    public float f_timerAmount;
+    public bool tl_b_timerComplete;
+    public bool tl_b_displayedTooltip;
+
     /// <summary>
     /// Interaction Mechanism will differ from SpriteRenderers and Images
     /// - Josh
@@ -24,15 +29,22 @@ public class S_TestObjectHover : MonoBehaviour
     private void OnMouseEnter()
     {
         tl_b_mouseEntered = true;
+        tl_b_timerComplete = false;
+        tl_b_displayedTooltip = false;
+
+        StartCoroutine(HoverTimer());
+        StartCoroutine(DisplayTooltip());
     }
 
-    private void OnMouseOver()
+    public IEnumerator DisplayTooltip() 
     {
-        if(tl_b_mouseEntered == true) 
+        if (tl_b_mouseEntered == true && tl_b_timerComplete == true)
         {
-            //Debug.Log("Triggered Mouse Hover");
+            Debug.Log("Triggered Mouse Hover");
             g_global.g_tooltipManager.SetupToolTipObject(tl_shieldExample, gameObject.transform);
+            tl_b_displayedTooltip = true;
         }
+        yield return new WaitUntil(() => tl_b_displayedTooltip == true);
     }
 
     /// <summary>
@@ -41,7 +53,11 @@ public class S_TestObjectHover : MonoBehaviour
     private void OnMouseExit()
     {
         g_global.g_tooltipManager.ResetTooltip();
+        tl_b_timerComplete = false;
         tl_b_mouseEntered = false;
+        f_timerAmount = 2f;
+        tl_b_displayedTooltip = true;
+        tl_b_displayedTooltip = false;
     }
 
     /// <summary>
@@ -49,28 +65,21 @@ public class S_TestObjectHover : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    /*
-    public IEnumerator DeletionTimer()
+   
+    public IEnumerator HoverTimer()
     {
-        //Debug.Log("deletion timer called");
-        //A delay timer for the disappear animation
-        b_deletionTimerFlag = true;
-        if (f_disappearTimer > 0)
+        Debug.Log("Mouse Hover for 2 seconds");
+        
+        if (f_timerAmount > 0)
         {
-            f_disappearTimer -= Time.deltaTime;
+            f_timerAmount -= Time.deltaTime;
         }
 
-        g_global.g_ls_starPopup.Remove(this);
-
-        spriteRenderer.DOFade(f_doFadeAlpha, f_doFadeDuration);
-        if (f_destroyTimer > 0)
+        if(f_timerAmount < 0) 
         {
-            f_destroyTimer -= Time.deltaTime;
+            tl_b_timerComplete = true;
         }
 
-        Destroy(gameObject);
-        yield return new WaitUntil(() => b_deletionTimerFlag == true);
+        yield return new WaitUntil(() => tl_b_timerComplete == true);
     }
-    */
-    
 }

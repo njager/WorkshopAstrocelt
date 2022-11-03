@@ -5350,7 +5350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &866668967
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5402,6 +5402,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tl_shieldExample: {fileID: 11400000, guid: e5994483ebc2f4948820a7bf4dd64fec, type: 2}
   tl_b_mouseEntered: 0
+  f_timerAmount: 2
+  tl_b_timerComplete: 0
 --- !u!4 &866668970
 Transform:
   m_ObjectHideFlags: 0
@@ -5411,7 +5413,7 @@ Transform:
   m_GameObject: {fileID: 866668966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: 0.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9

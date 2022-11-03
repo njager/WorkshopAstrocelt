@@ -112,7 +112,7 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript1.SetGraphic(_star.colorType);
 
                 // Add Popup to list
-                _star.ls_energyPopups.Add(_starPopup1);
+                _star.ls_energyPopups.Add(_starPopupScript1);
 
                 // Move popup to container
                 _starPopup1.transform.SetParent(v3_vfxContainer);
@@ -148,8 +148,8 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript2.SetGraphic(_star.colorType);
 
                 // Add Popup to list
-                _star.ls_energyPopups.Add(_starPopup1);
-                _star.ls_energyPopups.Add(_starPopup2);
+                _star.ls_energyPopups.Add(_starPopupScript1);
+                _star.ls_energyPopups.Add(_starPopupScript2);
 
                 // Move popups to container
                 _starPopup1.transform.SetParent(v3_vfxContainer);
@@ -195,9 +195,9 @@ public class S_PopupManager : MonoBehaviour
                 _starPopupScript3.SetGraphic(_star.colorType);
 
                 // Add Popup to list
-                _star.ls_energyPopups.Add(_starPopup1);
-                _star.ls_energyPopups.Add(_starPopup2);
-                _star.ls_energyPopups.Add(_starPopup3);
+                _star.ls_energyPopups.Add(_starPopupScript1);
+                _star.ls_energyPopups.Add(_starPopupScript2);
+                _star.ls_energyPopups.Add(_starPopupScript3);
 
                 // Move popups to container
                 _starPopup1.transform.SetParent(v3_vfxContainer);

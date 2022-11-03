@@ -110,7 +110,12 @@ public class S_DrawingManager : MonoBehaviour
 
         // Remove any popups
 
-        if (_starClassScript.GetPopup2ParentTransform().childCount == 3) // then three popups have spawned
+        foreach (S_StarPopUp _popup in _starClassScript.ls_energyPopups.ToList()) 
+        {
+            _popup.DeletePopup();
+        }
+
+        /*if (_starClassScript.GetPopup2ParentTransform().childCount == 3) // then three popups have spawned
         {
             Debug.Log("S_StarClass - Deleting 3 Popups");
 
@@ -147,6 +152,7 @@ public class S_DrawingManager : MonoBehaviour
             // Delete the popup
             _popup1Script.DeletePopup();
         }
+        */
 
         //destroy the line
         Destroy(_line);
