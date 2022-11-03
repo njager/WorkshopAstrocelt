@@ -42,8 +42,6 @@ public class S_TestObjectHover : MonoBehaviour
                 DisplayTooltip();
             }
         }
-        
-        
     }
 
     /// <summary>
