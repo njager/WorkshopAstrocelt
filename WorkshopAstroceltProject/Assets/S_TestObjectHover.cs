@@ -12,15 +12,39 @@ public class S_TestObjectHover : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
+    [Header("Timer Elements")]
+    public float f_timerAmount;
+    public bool tl_b_timerComplete;
+    public bool tl_b_displayedTooltip;
+    public int timerCompleteCheck;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
     }
 
-    [Header("Timer Elements")]
-    public float f_timerAmount;
-    public bool tl_b_timerComplete;
-    public bool tl_b_displayedTooltip;
+    private void Update()
+    {
+        if(tl_b_mouseEntered == true && tl_b_displayedTooltip == false) 
+        {
+            if (f_timerAmount > 0)
+            {
+                f_timerAmount -= Time.deltaTime;
+            }
+        }
+
+        if (f_timerAmount < 0 && timerCompleteCheck == 0)
+        {
+            tl_b_timerComplete = true;
+            timerCompleteCheck += 1;
+            if (tl_b_displayedTooltip == false)
+            {
+                DisplayTooltip();
+            }
+        }
+        
+        
+    }
 
     /// <summary>
     /// Interaction Mechanism will differ from SpriteRenderers and Images
@@ -31,12 +55,10 @@ public class S_TestObjectHover : MonoBehaviour
         tl_b_mouseEntered = true;
         tl_b_timerComplete = false;
         tl_b_displayedTooltip = false;
-
-        StartCoroutine(HoverTimer());
-        StartCoroutine(DisplayTooltip());
+        timerCompleteCheck = 0;
     }
 
-    public IEnumerator DisplayTooltip() 
+    public void DisplayTooltip() 
     {
         if (tl_b_mouseEntered == true && tl_b_timerComplete == true)
         {
@@ -44,7 +66,6 @@ public class S_TestObjectHover : MonoBehaviour
             g_global.g_tooltipManager.SetupToolTipObject(tl_shieldExample, gameObject.transform);
             tl_b_displayedTooltip = true;
         }
-        yield return new WaitUntil(() => tl_b_displayedTooltip == true);
     }
 
     /// <summary>
@@ -58,28 +79,6 @@ public class S_TestObjectHover : MonoBehaviour
         f_timerAmount = 2f;
         tl_b_displayedTooltip = true;
         tl_b_displayedTooltip = false;
-    }
-
-    /// <summary>
-    /// Help function for deletion
-    /// - Josh
-    /// </summary>
-    /// <returns></returns>
-   
-    public IEnumerator HoverTimer()
-    {
-        Debug.Log("Mouse Hover for 2 seconds");
-        
-        if (f_timerAmount > 0)
-        {
-            f_timerAmount -= Time.deltaTime;
-        }
-
-        if(f_timerAmount < 0) 
-        {
-            tl_b_timerComplete = true;
-        }
-
-        yield return new WaitUntil(() => tl_b_timerComplete == true);
+        timerCompleteCheck = 0;
     }
 }
