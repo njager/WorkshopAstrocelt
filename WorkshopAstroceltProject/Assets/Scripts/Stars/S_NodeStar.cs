@@ -160,7 +160,11 @@ public class S_NodeStar : MonoBehaviour
             Debug.Log("this would be wierd");
             g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
         }
-        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.GetMakingConstellation())
+        else if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
+        {
+            g_global.g_DrawingManager.ConstellationReset(g_global.g_ConstellationManager.ls_curConstellation[g_global.g_ConstellationManager.ls_curConstellation.Count-1]);
+        }
+        else if (g_global.g_ConstellationManager.GetMakingConstellation())
         {
 
             Debug.Log("We here?");

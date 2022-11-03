@@ -131,7 +131,7 @@ public class S_ConstellationLine : MonoBehaviour
 
         if(_startPoint == _endPoint)
         {
-            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+            Debug.Log("This should trigger a too small constellation degug");
         }
         else
         {
