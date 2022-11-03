@@ -37,7 +37,7 @@ public class S_RitualStar : MonoBehaviour
     [SerializeField] float f_upperScaleBound;
 
     [Header("Star Click Bool")]
-    public bool is_clicked = false;
+    public bool b_hasBeenClicked = false;
 
     //some private vars for the predictive drawing
     private bool b_clickableStar = false;
@@ -214,7 +214,7 @@ public class S_RitualStar : MonoBehaviour
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (is_clicked == false && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7 && this.GetComponent<S_StarClass>().s_star.m_previousLine != null)
+            if (b_hasBeenClicked == false && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7 && this.GetComponent<S_StarClass>().s_star.m_previousLine != null)
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
@@ -232,9 +232,9 @@ public class S_RitualStar : MonoBehaviour
         {
             g_global.g_ConstellationManager.CreateNodeStar(this.gameObject);
         }
-        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
+        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar && !b_hasBeenClicked)
         {
-            is_clicked = true;
+            b_hasBeenClicked = true;
 
             g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 

@@ -181,6 +181,19 @@ public class S_DrawingManager : MonoBehaviour
                 _previousStar.gameObject.GetComponent<S_NodeStar>().NodeStarColor();
                 _previousStar.gameObject.GetComponent<S_NodeStar>().SetNodeClicked(false);
             }
+            else if(_previousStar.starType == "Ritual") 
+            {
+                Debug.Log("Here");
+                //make the star clickable again
+                _previousStar.gameObject.GetComponent<S_RitualStar>().b_hasBeenClicked = false;
+            }
+            else if (_previousStar.starType == "Energy")
+            {
+                Debug.Log("Here2");
+                //make the star clickable again
+                _previousStar.gameObject.GetComponent<S_EnergyStar>().b_hasBeenClicked = false;
+            }
+
             S_StarClass _temporalStar = _previousStar.s_star.m_previous;
 
             _previousStar.s_star.m_previous = s_nullStarInst;

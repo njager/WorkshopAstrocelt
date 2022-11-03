@@ -166,7 +166,7 @@ public class S_Global : MonoBehaviour
         {
             if (g_ConstellationManager.GetMakingConstellation())
             {
-                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[g_ConstellationManager.ls_curConstellation.Count() - 1]);
             }
         }
 
