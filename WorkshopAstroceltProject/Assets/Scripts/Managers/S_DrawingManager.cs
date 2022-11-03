@@ -112,6 +112,7 @@ public class S_DrawingManager : MonoBehaviour
 
         foreach (S_StarPopUp _popup in _starClassScript.ls_energyPopups.ToList()) 
         {
+            _starClassScript.ls_energyPopups.Remove(_popup);
             _popup.DeletePopup();
         }
 

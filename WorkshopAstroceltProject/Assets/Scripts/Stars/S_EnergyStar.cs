@@ -223,7 +223,7 @@ public class S_EnergyStar : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
-        Debug.Log("Do we even hover?");
+        //Debug.Log("Do we even hover?");
 
         //Tooltip
         tl_b_mouseEntered = true;

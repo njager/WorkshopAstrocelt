@@ -232,7 +232,7 @@ public class S_PopupManager : MonoBehaviour
 
         b_popupClear = false;
         i_popupUpClearInt = g_global.g_ls_starPopup.Count;
-        StartCoroutine(ClearPopupsForRound());
+        //StartCoroutine(ClearPopupsForRound());
     }
 
     /// <summary>
