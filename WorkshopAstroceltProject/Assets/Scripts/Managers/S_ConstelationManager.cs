@@ -409,7 +409,7 @@ public class S_ConstelationManager : MonoBehaviour
             b_makingConstellation = false;
             Debug.Log("Making constellations NOT");
 
-            
+            ls_curConstellation.Clear();
 
             //transfer the energy
             g_global.g_energyManager.TransferStoredEnergy();
@@ -420,7 +420,7 @@ public class S_ConstelationManager : MonoBehaviour
             // Popups now move to card
             StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
             
-            foreach (S_StarClass _star in ls_curConstellation.ToList()) 
+            /*foreach (S_StarClass _star in ls_curConstellation.ToList()) 
             {
                 foreach (S_StarPopUp _popup in _star.ls_energyPopups.ToList())
                 {
@@ -428,8 +428,9 @@ public class S_ConstelationManager : MonoBehaviour
                     _popup.DeletePopup();
                 }
             }
+            */
 
-            ls_curConstellation.Clear();
+            
 
             //call the altar
             g_global.g_altar.CheckFirstCardball();

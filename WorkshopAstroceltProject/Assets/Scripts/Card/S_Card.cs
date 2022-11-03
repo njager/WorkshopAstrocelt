@@ -518,6 +518,7 @@ public class S_Card : MonoBehaviour
                 }
 
                 g_global.g_altar.SetCardBeingActiveBool(true);
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
             }
             else
             {
@@ -550,6 +551,7 @@ public class S_Card : MonoBehaviour
                 {
                     //Debug.Log("Triggered the bool");
                     g_global.g_altar.SetCardBeingActiveBool(true);
+                    g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 }
             }
             else

@@ -129,9 +129,8 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(MoveCardballPrefabs());
         }
 
-        // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
-
         SetCardballsSpawnedBool(true);
+        // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         yield return new S_WaitForCardballMovement();
 
@@ -146,6 +145,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void AddNewCardBall(GameObject _cardballPosition, S_CardTemplate _cardTemplate)
     {
+        //SetCardballsSpawnedBool(false);
         Debug.Log(_cardTemplate);
 
         // Instantiate Cardball
