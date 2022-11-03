@@ -132,6 +132,9 @@ public class S_Altar : MonoBehaviour
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         SetCardballsSpawnedBool(true);
+
+        CheckFirstCardball();
+
         yield return new S_WaitForCardballMovement();
 
         // Wait for move cardballs, and then unlock drawing
@@ -352,7 +355,7 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition4.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition4.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         if (cardballSpawnPosition.transform.childCount == 1)
@@ -362,7 +365,7 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition5.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         else
