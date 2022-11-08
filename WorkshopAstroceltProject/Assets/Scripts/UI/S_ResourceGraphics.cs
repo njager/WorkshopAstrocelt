@@ -14,22 +14,7 @@ public class S_ResourceGraphics : MonoBehaviour
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
 
-    [Header("Sprite References")]
-    public SpriteRenderer defaultBonus;
-    public SpriteRenderer blueBonusBar;
-    public SpriteRenderer yellowBonusBar;
-    public SpriteRenderer redBonusBar;
-    public SpriteRenderer blueBonusIcon1;
-    public SpriteRenderer blueBonusIcon2;
-    public SpriteRenderer blueBonusIcon3;
-    public SpriteRenderer yellowBonusIcon1;
-    public SpriteRenderer yellowBonusIcon2;
-    public SpriteRenderer yellowBonusIcon3;
-    public SpriteRenderer redBonusIcon1;
-    public SpriteRenderer redBonusIcon2;
-    public SpriteRenderer redBonusIcon3;
-
-    public int bonusTracker = 1;
+    
 
     private void Awake()
     {
@@ -39,7 +24,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
     public void Start()
     {
-        resetBonusTracker();
+        ResetBonusTracker();
     }
 
     void Update()
@@ -49,24 +34,24 @@ public class S_ResourceGraphics : MonoBehaviour
         ConstellationTracker();
     }
 
-    public void resetBonusTracker()
+    public void ResetBonusTracker()
     {
-        defaultBonus.enabled = true;
-        blueBonusBar.enabled = false;
-        yellowBonusBar.enabled = false;
-        redBonusBar.enabled = false;
+        rsg_UI_defaultBonusContainer.enabled = true;
+        rsg_UI_blueBonusContainer.enabled = false;
+        rsg_UI_yellowBonusContainer.enabled = false;
+        rsg_UI_redBonusContainer.enabled = false;
 
-        blueBonusIcon1.enabled = false;
-        blueBonusIcon2.enabled = false;
-        blueBonusIcon3.enabled = false;
+        rsg_UI_blueBonusIcon1.enabled = false;
+        rsg_UI_blueBonusIcon2.enabled = false;
+        rsg_UI_blueBonusIcon3.enabled = false;
 
-        yellowBonusIcon1.enabled = false;
-        yellowBonusIcon2.enabled = false;
-        yellowBonusIcon3.enabled = false;
+        rsg_UI_yellowBonusIcon1.enabled = false;
+        rsg_UI_yellowBonusIcon2.enabled = false;
+        rsg_UI_yellowBonusIcon3.enabled = false;
 
-        redBonusIcon1.enabled = false;
-        redBonusIcon2.enabled = false;
-        redBonusIcon3.enabled = false;
+        rsg_UI_redBonusIcon1.enabled = false;
+        rsg_UI_redBonusIcon2.enabled = false;
+        rsg_UI_redBonusIcon3.enabled = false;
     }
 
     /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -112,97 +97,215 @@ public class S_ResourceGraphics : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Change and update the bonus energy tiers
+    /// - Josh and Goat
+    /// </summary>
+    /// <param name="_star"></param>
     public void BonusTracker(S_StarClass _star)
     {
        if (_star.colorType == "red")
         {
-            defaultBonus.enabled = false;
-            blueBonusBar.enabled = false;
-            yellowBonusBar.enabled = false;
-            redBonusBar.enabled = true;
+            rsg_UI_defaultBonusContainer.enabled = false;
+            rsg_UI_blueBonusContainer.enabled = false;
+            rsg_UI_yellowBonusContainer.enabled = false;
+            rsg_UI_redBonusContainer.enabled = true;
 
-            blueBonusIcon1.enabled = false;
-            blueBonusIcon2.enabled = false;
-            blueBonusIcon3.enabled = false;
+            rsg_UI_blueBonusIcon1.enabled = false;
+            rsg_UI_blueBonusIcon2.enabled = false;
+            rsg_UI_blueBonusIcon3.enabled = false;
 
-            yellowBonusIcon1.enabled = false;
-            yellowBonusIcon2.enabled = false;
-            yellowBonusIcon3.enabled = false;
+            rsg_UI_yellowBonusIcon1.enabled = false;
+            rsg_UI_yellowBonusIcon2.enabled = false;
+            rsg_UI_yellowBonusIcon3.enabled = false;
 
-            redBonusIcon1.enabled = true;
-            bonusTracker++;
-            if (_star.colorType == "red" && bonusTracker == 2)
+            rsg_UI_redBonusIcon1.enabled = true;
+            rsg_UI_i_bonusTracker++;
+            if (_star.colorType == "red" && rsg_UI_i_bonusTracker == 2)
             {
-                redBonusIcon2.enabled = true;
+                rsg_UI_redBonusIcon2.enabled = true;
             }
-            else { bonusTracker = 1; resetBonusTracker(); }
-            if (_star.colorType == "red" && bonusTracker == 3)
+            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            if (_star.colorType == "red" && rsg_UI_i_bonusTracker == 3)
             {
-                redBonusIcon3.enabled = true;
+                rsg_UI_redBonusIcon3.enabled = true;
             }
-            else { bonusTracker = 1; resetBonusTracker(); }
+            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
         }
 
         if (_star.colorType == "yellow")
         {
-            defaultBonus.enabled = false;
-            blueBonusBar.enabled = false;
-            yellowBonusBar.enabled = true;
-            redBonusBar.enabled = false;
+            rsg_UI_defaultBonusContainer.enabled = false;
+            rsg_UI_blueBonusContainer.enabled = false;
+            rsg_UI_yellowBonusContainer.enabled = true;
+            rsg_UI_redBonusContainer.enabled = false;
 
-            blueBonusIcon1.enabled = false;
-            blueBonusIcon2.enabled = false;
-            blueBonusIcon3.enabled = false;
+            rsg_UI_blueBonusIcon1.enabled = false;
+            rsg_UI_blueBonusIcon2.enabled = false;
+            rsg_UI_blueBonusIcon3.enabled = false;
 
-            yellowBonusIcon1.enabled = true;
-            bonusTracker++;
+            rsg_UI_yellowBonusIcon1.enabled = true;
+            rsg_UI_i_bonusTracker++;
             
 
-            redBonusIcon1.enabled = false;
-            redBonusIcon2.enabled = false;
-            redBonusIcon3.enabled = false;
-            if(_star.colorType == "yellow" && bonusTracker == 2)
+            rsg_UI_redBonusIcon1.enabled = false;
+            rsg_UI_redBonusIcon2.enabled = false;
+            rsg_UI_redBonusIcon3.enabled = false;
+            if(_star.colorType == "yellow" && rsg_UI_i_bonusTracker == 2)
             {
-                yellowBonusIcon2.enabled = true;
+                rsg_UI_yellowBonusIcon2.enabled = true;
             }
-            else { bonusTracker = 1; resetBonusTracker(); }
-            if (_star.colorType == "yellow" && bonusTracker == 3)
+            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            if (_star.colorType == "yellow" && rsg_UI_i_bonusTracker == 3)
             {
-                yellowBonusIcon3.enabled = true;
+                rsg_UI_yellowBonusIcon3.enabled = true;
             }
-            else { bonusTracker = 1; resetBonusTracker(); }
+            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
         }
         if (_star.colorType == "blue")
         {
-            defaultBonus.enabled = false;
-            blueBonusBar.enabled = true;
-            yellowBonusBar.enabled = false;
-            redBonusBar.enabled = false;
+            rsg_UI_defaultBonusContainer.enabled = false;
+            rsg_UI_blueBonusContainer.enabled = true;
+            rsg_UI_yellowBonusContainer.enabled = false;
+            rsg_UI_redBonusContainer.enabled = false;
 
-            blueBonusIcon1.enabled = true;
-            blueBonusIcon2.enabled = false;
-            blueBonusIcon3.enabled = false;
-            bonusTracker++;
+            rsg_UI_blueBonusIcon1.enabled = true;
+            rsg_UI_blueBonusIcon2.enabled = false;
+            rsg_UI_blueBonusIcon3.enabled = false;
+            rsg_UI_i_bonusTracker++;
 
-            yellowBonusIcon1.enabled = false;
-            yellowBonusIcon2.enabled = false;
-            yellowBonusIcon3.enabled = false;
+            rsg_UI_yellowBonusIcon1.enabled = false;
+            rsg_UI_yellowBonusIcon2.enabled = false;
+            rsg_UI_yellowBonusIcon3.enabled = false;
 
-            redBonusIcon1.enabled = false;
-            redBonusIcon2.enabled = false;
-            redBonusIcon3.enabled = false;
+            rsg_UI_redBonusIcon1.enabled = false;
+            rsg_UI_redBonusIcon2.enabled = false;
+            rsg_UI_redBonusIcon3.enabled = false;
 
-            if (_star.colorType == "blue" && bonusTracker == 2)
+            if (_star.colorType == "blue" && rsg_UI_i_bonusTracker == 2)
             {
-                blueBonusIcon2.enabled = true;
+                rsg_UI_blueBonusIcon2.enabled = true;
             }
-            else { bonusTracker = 1; resetBonusTracker(); }
-            if (_star.colorType == "blue" && bonusTracker == 3)
+            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            if (_star.colorType == "blue" && rsg_UI_i_bonusTracker == 3)
             {
-                blueBonusIcon3.enabled = true;
+                rsg_UI_blueBonusIcon3.enabled = true;
             }
-            else { bonusTracker = 1; resetBonusTracker(); }
+            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
 
+        }
+    }
+
+
+    /// <summary>
+    /// Change the encounter selector
+    /// Turn off and on skulls
+    /// - Goat and Josh
+    /// </summary>
+    /// <param name="_scene"></param>
+    public void ChangeProgressionBar(string _scene)
+    {
+        if (_scene == "Scn_1stEnemyEncounter")
+        {
+            Skull1_Crack.enabled = false;
+
+            Skull2.enabled = true;
+            Skull2_Crack.enabled = false;
+            Skull2_Selector.enabled = false;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_2ndEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = true;
+            Skull2_Crack.enabled = false;
+            Skull2_Selector.enabled = true;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_3rdEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3.enabled = true;
+            Skull3_Crack.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = true;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Scn_4thEnemyEncounter")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3_Crack.enabled = true;
+            Skull3.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = true;
+            SkullBoss_Selector.enabled = true;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = false;
+        }
+
+        if (_scene == "Event1-Bog" || _scene == "Event2-Mushrooms" || _scene == "Event3-Victory")
+        {
+            Skull1_Crack.enabled = true;
+            Skull1.enabled = false;
+            Skull1_Selector.enabled = false;
+
+            Skull2.enabled = false;
+            Skull2_Crack.enabled = true;
+            Skull2_Selector.enabled = false;
+
+            Skull3_Crack.enabled = true;
+            Skull3.enabled = false;
+            Skull3_Selector.enabled = false;
+
+            SkullBoss.enabled = false;
+            SkullBoss_Selector.enabled = false;
+
+            encounterSprite.enabled = true;
+            encounterSprite_Selector.enabled = true;
         }
     }
 }
