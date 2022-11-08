@@ -238,8 +238,11 @@ public class S_EnemyAttributes : MonoBehaviour
 
     /// <summary>
     /// Getter for the MoveQueue
+    /// - Riley and Josh
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    ///
+    /// </returns>
     public List<S_EnemyMoves> GetMoveQueue()
     {
         return ls_e_moveQueue;
@@ -247,16 +250,74 @@ public class S_EnemyAttributes : MonoBehaviour
 
     /// <summary>
     /// Get the Damage Value for the enemy (assigned from move queue)
+    /// - Riley and Josh
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// S_EnemyAttributes.e_i_enemyDamageValue
+    /// </returns>
     public int GetEnemyDamageValue()
     {
         return e_i_enemyDamageValue;
     }
 
+    /// <summary>
+    /// Get the Tempshield for the enemy (assigned from move queue)
+    /// - Riley and Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_i_tempSheild
+    /// </returns>
     public int GetEnemyTempShield()
     {
         return e_i_tempSheild;
+    }
+
+    /// <summary>
+    /// Get the bool state for poison for the enemy 
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_b_poisoned
+    /// </returns>
+    public bool GetEnemyPoisonedBool()
+    {
+        return e_b_poisoned;
+    }
+
+    /// <summary>
+    /// Get the bool state for stun for the enemy 
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_b_stunned
+    /// </returns>
+    public bool GetEnemyStunnedBool()
+    {
+        return e_b_stunned;
+    }
+
+    /// <summary>
+    /// Get the bool state for bleed for the enemy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_b_bleeding
+    /// </returns>
+    public bool GetEnemyBleedingBool()
+    {
+        return e_b_bleeding;
+    }
+
+    /// <summary>
+    /// Get the bool state for empower for the enemy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_b_empowered
+    /// </returns>
+    public bool GetEnemyEmpoweredBool()
+    {
+        return e_b_empowered;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

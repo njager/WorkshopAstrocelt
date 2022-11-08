@@ -119,25 +119,42 @@ public class S_UIManager : MonoBehaviour
     [Header("Constelation Length Elements")]
     public TextMeshProUGUI co_tx_constellationTrackerText;
 
-    [Header("ProgressionBarUI")]
-    public SpriteRenderer Skull1;
-    public SpriteRenderer Skull1_Crack;
-    public SpriteRenderer Skull1_Selector;
+    [Header("Resource Graphics Encounter Tracker Asset Object References")]
+    [SerializeField] GameObject rsg_UI_encounterSelector;
+    [SerializeField] GameObject rsg_UI_skull1Parent;
+    [SerializeField] GameObject rsg_UI_skull1BaseAsset;
+    [SerializeField] GameObject rsg_UI_skull1CrackedAsset;
+    [SerializeField] GameObject rsg_UI_skull2Parent;
+    [SerializeField] GameObject rsg_UI_skull2BaseAsset;
+    [SerializeField] GameObject rsg_UI_skull2CrackedAsset;
+    [SerializeField] GameObject rsg_UI_skull3Parent;
+    [SerializeField] GameObject rsg_UI_skull3BaseAsset;
+    [SerializeField] GameObject rsg_UI_skull3CrackedAsset;
+    [SerializeField] GameObject rsg_UI_bossSkullParent;
+    [SerializeField] GameObject rsg_UI_bossSkullBaseAsset;
+    [SerializeField] GameObject rsg_UI_bossSkullCrackedAsset;
+    [SerializeField] GameObject rsg_UI_eventEncounterParent;
+    [SerializeField] GameObject rsg_UI_eventEncounterBaseAsset;
+    [SerializeField] GameObject rsg_UI_eventEncounterFinishedAsset;
 
-    public SpriteRenderer Skull2;
-    public SpriteRenderer Skull2_Crack;
-    public SpriteRenderer Skull2_Selector;
+    [Header("Resource Graphics Bonus Tracker Asset Object References")]
+    [SerializeField] GameObject rsg_UI_defaultBonusContainer;
+    [SerializeField] GameObject rsg_UI_redBonusContainer;
+    [SerializeField] GameObject rsg_UI_blueBonusContainer;
+    [SerializeField] GameObject rsg_UI_yellowBonusContainer;
+    [SerializeField] GameObject rsg_UI_redBonusIcon1;
+    [SerializeField] GameObject rsg_UI_redBonusIcon2;
+    [SerializeField] GameObject rsg_UI_redBonusIcon3;
+    [SerializeField] GameObject rsg_UI_blueBonusIcon1;
+    [SerializeField] GameObject rsg_UI_blueBonusIcon2;
+    [SerializeField] GameObject rsg_UI_blueBonusIcon3;
+    [SerializeField] GameObject rsg_UI_yellowBonusIcon1;
+    [SerializeField] GameObject rsg_UI_yellowBonusIcon2;
+    [SerializeField] GameObject rsg_UI_yellowBonusIcon3;
 
-    public SpriteRenderer Skull3;
-    public SpriteRenderer Skull3_Crack;
-    public SpriteRenderer Skull3_Selector;
 
-    public SpriteRenderer SkullBoss;
-    //public SpriteRenderer SkullBoss_Crack;
-    public SpriteRenderer SkullBoss_Selector;
-
-    public SpriteRenderer encounterSprite;
-    public SpriteRenderer encounterSprite_Selector;
+    [Header("Resource Graphics Bonus Tier Tracker")]
+    [SerializeField] int rsg_UI_i_bonusTracker = 1;
 
     void Awake()
     {
@@ -1037,111 +1054,355 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
+    /////////////////////////////----------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Resource Bar Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
-    public void ChangeProgressionBar(string _scene)
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_encounterSelector
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_encounterSelector
+    /// </returns>
+    public GameObject GetUIEncounterSelector()
     {
-        if (_scene == "Scn_1stEnemyEncounter")
-        {
-            Skull1_Crack.enabled = false;
+        return rsg_UI_encounterSelector;
+    }
 
-            Skull2.enabled = true;
-            Skull2_Crack.enabled = false;
-            Skull2_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull1Parent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull1Parent
+    /// </returns>
+    public GameObject GetUISkull1Parent()
+    {
+        return rsg_UI_skull1Parent;
+    }
 
-            Skull3.enabled = true;
-            Skull3_Crack.enabled = false;
-            Skull3_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull1BaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull1BaseAsset
+    /// </returns>
+    public GameObject GetSkull1BaseAsset()
+    {
+        return rsg_UI_skull1BaseAsset;
+    }
 
-            SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull1CrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull1CrackedAsset
+    /// </returns>
+    public GameObject GetSkull1CrackedAsset()
+    {
+        return rsg_UI_skull1CrackedAsset;
+    }
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
-        }
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull2Parent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull2Parent
+    /// </returns>
+    public GameObject GetSkull2Parent()
+    {
+        return rsg_UI_skull2Parent;
+    }
 
-        if (_scene == "Scn_2ndEnemyEncounter")
-        {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull2BaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull2BaseAsset
+    /// </returns>
+    public GameObject GetSkull2BaseAsset()
+    {
+        return rsg_UI_skull2BaseAsset;
+    }
 
-            Skull2.enabled = true;
-            Skull2_Crack.enabled = false;
-            Skull2_Selector.enabled = true;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull2CrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull2CrackedAsset
+    /// </returns>
+    public GameObject GetSkull2CrackedAsset()
+    {
+        return rsg_UI_skull2CrackedAsset;
+    }
 
-            Skull3.enabled = true;
-            Skull3_Crack.enabled = false;
-            Skull3_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull3Parent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull3Parent
+    /// </returns>
+    public GameObject GetSkull3Parent()
+    {
+        return rsg_UI_skull3Parent;
+    }
 
-            SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull3BaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull3BaseAsset
+    /// </returns>
+    public GameObject GetSkull3BaseAsset()
+    {
+        return rsg_UI_skull3BaseAsset;
+    }
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
-        }
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull3CrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull3CrackedAsset
+    /// </returns>
+    public GameObject GetSkull3CrackedAsset()
+    {
+        return rsg_UI_skull3CrackedAsset;
+    }
 
-        if (_scene == "Scn_3rdEnemyEncounter")
-        {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_bossSkullParent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_bossSkullParent
+    /// </returns>
+    public GameObject GetBossSkullParent()
+    {
+        return rsg_UI_bossSkullParent;
+    }
 
-            Skull2.enabled = false;
-            Skull2_Crack.enabled = true;
-            Skull2_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_bossSkullBaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_bossSkullBaseAsset
+    /// </returns>
+    public GameObject GetBossSkullBaseAsset()
+    {
+        return rsg_UI_bossSkullBaseAsset;
+    }
 
-            Skull3.enabled = true;
-            Skull3_Crack.enabled = false;
-            Skull3_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_bossSkullCrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_bossSkullCrackedAsset
+    /// </returns>
+    public GameObject GetBossSkullCrackedAsset()
+    {
+        return rsg_UI_bossSkullCrackedAsset;
+    }
 
-            SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = true;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterParent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_eventEncounterParent
+    /// </returns>
+    public GameObject GetEventEncounterParent() 
+    {
+        return rsg_UI_eventEncounterParent;
+    }
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
-        }
+/// <summary>
+/// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterBaseAsset
+/// - Josh
+/// </summary>
+/// <returns>
+/// S_UIManager.rsg_UI_eventEncounterBaseAsset
+/// </returns>
+public GameObject GetEventEncounterBaseAsset() 
+    {
+        return rsg_UI_eventEncounterBaseAsset;
+    }
 
-        if (_scene == "Scn_4thEnemyEncounter")
-        {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterFinishedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_eventEncounterFinishedAsset
+    /// </returns>
+    public GameObject GetEventEncounterFinishedAsset()
+    {
+        return rsg_UI_eventEncounterFinishedAsset;
+    }
 
-            Skull2.enabled = false;
-            Skull2_Crack.enabled = true;
-            Skull2_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_defaultBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_defaultBonusContainer
+    /// </returns>
+    public GameObject GetDefaultBonusContainer()
+    {
+        return rsg_UI_defaultBonusContainer;
+    }
 
-            Skull3_Crack.enabled = true;
-            Skull3.enabled = false;
-            Skull3_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusContainer
+    /// </returns>
+    public GameObject GetRedBonusContainer()
+    {
+        return rsg_UI_redBonusContainer;
+    }
 
-            SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = true;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusContainer
+    /// </returns>
+    public GameObject GetBlueBonusContainer()
+    {
+        return rsg_UI_blueBonusContainer;
+    }
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
-        }
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusContainer
+    /// </returns>
+    public GameObject GetYellowBonusContainer()
+    {
+        return rsg_UI_yellowBonusContainer;
+    }
 
-        if (_scene == "Event1-Bog" || _scene == "Event2-Mushrooms" || _scene == "Event3-Victory")
-        {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusIcon1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusIcon1
+    /// </returns>
+    public GameObject GetRedBonusIcon1()
+    {
+        return rsg_UI_redBonusIcon1;
+    }
 
-            Skull2.enabled = false;
-            Skull2_Crack.enabled = true;
-            Skull2_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusIcon2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusIcon2
+    /// </returns>
+    public GameObject GetRedBonusIcon2()
+    {
+        return rsg_UI_redBonusIcon2;
+    }
 
-            Skull3_Crack.enabled = true;
-            Skull3.enabled = false;
-            Skull3_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusIcon3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusIcon3
+    /// </returns>
+    public GameObject GetRedBonusIcon3()
+    {
+        return rsg_UI_redBonusIcon3;
+    }
 
-            SkullBoss.enabled = false;
-            SkullBoss_Selector.enabled = false;
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusIcon1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusIcon1
+    /// </returns>
+    public GameObject GetBlueBonusIcon1()
+    {
+        return rsg_UI_blueBonusIcon1;
+    }
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = true;
-        }
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusIcon2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusIcon2
+    /// </returns>
+    public GameObject GetBlueBonusIcon2()
+    {
+        return rsg_UI_blueBonusIcon2;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusIcon3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusIcon3
+    /// </returns>
+    public GameObject GetBlueBonusIcon3()
+    {
+        return rsg_UI_blueBonusIcon3;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusIcon1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusIcon1
+    /// </returns>
+    public GameObject GetYellowBonusIcon1()
+    {
+        return rsg_UI_yellowBonusIcon1;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusIcon2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusIcon2
+    /// </returns>
+    public GameObject GetYellowBonusIcon2()
+    {
+        return rsg_UI_yellowBonusIcon2;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusIcon3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusIcon3
+    /// </returns>
+    public GameObject GetYellowBonusIcon3()
+    {
+        return rsg_UI_yellowBonusIcon3;
     }
 }
