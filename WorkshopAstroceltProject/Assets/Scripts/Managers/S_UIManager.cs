@@ -120,27 +120,27 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI co_tx_constellationTrackerText;
 
     [Header("Resource Graphics Encounter Tracker Asset Object References")]
-    [SerializeField] GameObject Selector;
-    [SerializeField] GameObject Skull1Parent;
-    [SerializeField] GameObject Skull1NormalAsset;
-    [SerializeField] GameObject Skull1CrackedAsset;
-    [SerializeField] GameObject Skull2Parent;
-    [SerializeField] GameObject Skull2NormalAsset;
-    [SerializeField] GameObject Skull2CrackedAsset;
-    [SerializeField] GameObject Skull3Parent;
-    [SerializeField] GameObject Skull3NormalAsset;
-    [SerializeField] GameObject Skull3CrackedAsset;
-
-    
-
-    public SpriteRenderer encounterSprite;
-    public SpriteRenderer encounterSprite_Selector;
+    [SerializeField] GameObject rsg_UI_encounterSelector;
+    [SerializeField] GameObject rsg_UI_skull1Parent;
+    [SerializeField] GameObject rsg_UI_skull1BaseAsset;
+    [SerializeField] GameObject rsg_UI_skull1CrackedAsset;
+    [SerializeField] GameObject rsg_UI_skull2Parent;
+    [SerializeField] GameObject rsg_UI_skull2BaseAsset;
+    [SerializeField] GameObject rsg_UI_skull2CrackedAsset;
+    [SerializeField] GameObject rsg_UI_skull3Parent;
+    [SerializeField] GameObject rsg_UI_skull3BaseAsset;
+    [SerializeField] GameObject rsg_UI_skull3CrackedAsset;
+    [SerializeField] GameObject rsg_UI_bossSkullParent;
+    [SerializeField] GameObject rsg_UI_bossSkullBaseAsset;
+    [SerializeField] GameObject rsg_UI_bossSkullCrackedAsset;
+    [SerializeField] GameObject rsg_UI_eventEncounterBaseAsset;
+    [SerializeField] GameObject rsg_UI_eventEncounterFinishedAsset;
 
     [Header("Resource Graphics Bonus Tracker Asset Object References")]
     [SerializeField] GameObject rsg_UI_defaultBonusContainer;
+    [SerializeField] GameObject rsg_UI_redBonusContainer;
     [SerializeField] GameObject rsg_UI_blueBonusContainer;
     [SerializeField] GameObject rsg_UI_yellowBonusContainer;
-    [SerializeField] GameObject rsg_UI_redBonusContainer;
     [SerializeField] GameObject rsg_UI_redBonusIcon1;
     [SerializeField] GameObject rsg_UI_redBonusIcon2;
     [SerializeField] GameObject rsg_UI_redBonusIcon3;
@@ -1051,5 +1051,345 @@ public class S_UIManager : MonoBehaviour
             Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldOverlay()");
             return null;
         }
+    }
+
+    /////////////////////////////----------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Resource Bar Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_encounterSelector
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_encounterSelector
+    /// </returns>
+    public GameObject GetUIEncounterSelector()
+    {
+        return rsg_UI_encounterSelector;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull1Parent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull1Parent
+    /// </returns>
+    public GameObject GetUISkull1Parent()
+    {
+        return rsg_UI_skull1Parent;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull1BaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull1BaseAsset
+    /// </returns>
+    public GameObject GetSkull1BaseAsset()
+    {
+        return rsg_UI_skull1BaseAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull1CrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull1CrackedAsset
+    /// </returns>
+    public GameObject GetSkull1CrackedAsset()
+    {
+        return rsg_UI_skull1CrackedAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull2Parent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull2Parent
+    /// </returns>
+    public GameObject GetSkull2Parent()
+    {
+        return rsg_UI_skull2Parent;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull2BaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull2BaseAsset
+    /// </returns>
+    public GameObject GetSkull2BaseAsset()
+    {
+        return rsg_UI_skull2BaseAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull2CrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull2CrackedAsset
+    /// </returns>
+    public GameObject GetSkull2CrackedAsset()
+    {
+        return rsg_UI_skull2CrackedAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull3Parent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull3Parent
+    /// </returns>
+    public GameObject GetSkull3Parent()
+    {
+        return rsg_UI_skull3Parent;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull3BaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull3BaseAsset
+    /// </returns>
+    public GameObject GetSkull3BaseAsset()
+    {
+        return rsg_UI_skull3BaseAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_skull3CrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_skull3CrackedAsset
+    /// </returns>
+    public GameObject GetSkull3CrackedAsset()
+    {
+        return rsg_UI_skull3CrackedAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_bossSkullParent
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_bossSkullParent
+    /// </returns>
+    public GameObject GetBossSkullParent()
+    {
+        return rsg_UI_bossSkullParent;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_bossSkullBaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_bossSkullBaseAsset
+    /// </returns>
+    public GameObject GetBossSkullBaseAsset()
+    {
+        return rsg_UI_bossSkullBaseAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_bossSkullCrackedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_bossSkullCrackedAsset
+    /// </returns>
+    public GameObject GetBossSkullCrackedAsset()
+    {
+        return rsg_UI_bossSkullCrackedAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterBaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_eventEncounterBaseAsset
+    /// </returns>
+    public GameObject GetEventEncounterBaseAsset()
+    {
+        return rsg_UI_eventEncounterBaseAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterFinishedAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_eventEncounterFinishedAsset
+    /// </returns>
+    public GameObject GetEventEncounterFinishedAsset()
+    {
+        return rsg_UI_eventEncounterFinishedAsset;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_defaultBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_defaultBonusContainer
+    /// </returns>
+    public GameObject GetDefaultBonusContainer()
+    {
+        return rsg_UI_defaultBonusContainer;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusContainer
+    /// </returns>
+    public GameObject GetRedBonusContainer()
+    {
+        return rsg_UI_redBonusContainer;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusContainer
+    /// </returns>
+    public GameObject GetBlueBonusContainer()
+    {
+        return rsg_UI_blueBonusContainer;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusContainer
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusContainer
+    /// </returns>
+    public GameObject GetYellowBonusContainer()
+    {
+        return rsg_UI_yellowBonusContainer;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusIcon1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusIcon1
+    /// </returns>
+    public GameObject GetRedBonusIcon1()
+    {
+        return rsg_UI_redBonusIcon1;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusIcon2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusIcon2
+    /// </returns>
+    public GameObject GetRedBonusIcon2()
+    {
+        return rsg_UI_redBonusIcon2;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_redBonusIcon3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_redBonusIcon3
+    /// </returns>
+    public GameObject GetRedBonusIcon3()
+    {
+        return rsg_UI_redBonusIcon3;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusIcon1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusIcon1
+    /// </returns>
+    public GameObject GetBlueBonusIcon1()
+    {
+        return rsg_UI_blueBonusIcon1;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusIcon2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusIcon2
+    /// </returns>
+    public GameObject GetBlueBonusIcon2()
+    {
+        return rsg_UI_blueBonusIcon2;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_blueBonusIcon3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_blueBonusIcon3
+    /// </returns>
+    public GameObject GetBlueBonusIcon3()
+    {
+        return rsg_UI_blueBonusIcon3;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusIcon1
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusIcon1
+    /// </returns>
+    public GameObject GetYellowBonusIcon1()
+    {
+        return rsg_UI_yellowBonusIcon1;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusIcon2
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusIcon2
+    /// </returns>
+    public GameObject GetYellowBonusIcon2()
+    {
+        return rsg_UI_yellowBonusIcon2;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_yellowBonusIcon3
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_yellowBonusIcon3
+    /// </returns>
+    public GameObject GetYellowBonusIcon3()
+    {
+        return rsg_UI_yellowBonusIcon3;
     }
 }
