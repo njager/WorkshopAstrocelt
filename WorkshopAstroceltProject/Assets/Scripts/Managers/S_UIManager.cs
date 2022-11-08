@@ -133,6 +133,7 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] GameObject rsg_UI_bossSkullParent;
     [SerializeField] GameObject rsg_UI_bossSkullBaseAsset;
     [SerializeField] GameObject rsg_UI_bossSkullCrackedAsset;
+    [SerializeField] GameObject rsg_UI_eventEncounterParent;
     [SerializeField] GameObject rsg_UI_eventEncounterBaseAsset;
     [SerializeField] GameObject rsg_UI_eventEncounterFinishedAsset;
 
@@ -1214,13 +1215,25 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterBaseAsset
+    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterParent
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.rsg_UI_eventEncounterBaseAsset
+    /// S_UIManager.rsg_UI_eventEncounterParent
     /// </returns>
-    public GameObject GetEventEncounterBaseAsset()
+    public GameObject GetEventEncounterParent() 
+    {
+        return rsg_UI_eventEncounterParent;
+    }
+
+/// <summary>
+/// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterBaseAsset
+/// - Josh
+/// </summary>
+/// <returns>
+/// S_UIManager.rsg_UI_eventEncounterBaseAsset
+/// </returns>
+public GameObject GetEventEncounterBaseAsset() 
     {
         return rsg_UI_eventEncounterBaseAsset;
     }
