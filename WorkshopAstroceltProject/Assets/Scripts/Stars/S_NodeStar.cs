@@ -85,6 +85,7 @@ public class S_NodeStar : MonoBehaviour
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
 
+        //do this only if the node star has already been clicked
         if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && g_global.g_ConstellationManager.GetMakingConstellation())

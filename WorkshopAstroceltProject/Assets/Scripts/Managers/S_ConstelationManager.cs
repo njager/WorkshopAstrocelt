@@ -78,7 +78,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star)
     {
-        Debug.Log("does this work");
+        //Debug.Log("does this work");
 
         //wait for checking stars
         yield return new WaitForEndOfFrame();
@@ -258,8 +258,8 @@ public class S_ConstelationManager : MonoBehaviour
         //reset the prvious star
         ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
-        // Delete popup
-        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+        // Delete popup - depriciated
+        //StartCoroutine(g_global.g_popupManager.ClearAllPopups());
     }
 
     public IEnumerator CardballSpawnCheck()
