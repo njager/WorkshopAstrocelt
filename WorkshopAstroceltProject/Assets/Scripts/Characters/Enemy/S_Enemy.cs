@@ -526,29 +526,29 @@ public class S_Enemy : MonoBehaviour
 
         if (e_str_enemyType.Equals("Bananach"))
         {
-            g_global.g_audioManager.e_f_bossAudioPercentage = _temp * 100;
+            g_global.g_audioManager.SetBossAudioPercentage(_temp * 100);
         }
         else
         {
             if(e_i_enemyCount == 1)
             {
-                g_global.g_audioManager.e_i_enemy1AudioPercentage = _temp * 100;
+                g_global.g_audioManager.SetEnemy1AudioPercentage(_temp * 100);
             }
             else if (e_i_enemyCount == 2)
             {
-                g_global.g_audioManager.e_i_enemy2AudioPercentage = _temp * 100;
+                g_global.g_audioManager.SetEnemy2AudioPercentage(_temp * 100);
             }
             else if (e_i_enemyCount == 3)
             {
-                g_global.g_audioManager.e_i_enemy3AudioPercentage = _temp * 100;
+                g_global.g_audioManager.SetEnemy3AudioPercentage(_temp * 100);
             }
             else if (e_i_enemyCount == 4)
             {
-                g_global.g_audioManager.e_i_enemy4AudioPercentage = _temp * 100;
+                g_global.g_audioManager.SetEnemy4AudioPercentage(_temp * 100);
             }
             else if (e_i_enemyCount == 5)
             {
-                g_global.g_audioManager.e_i_enemy5AudioPercentage = _temp * 100;
+                g_global.g_audioManager.SetEnemy5AudioPercentage(_temp * 100);
             }
         }
     }
