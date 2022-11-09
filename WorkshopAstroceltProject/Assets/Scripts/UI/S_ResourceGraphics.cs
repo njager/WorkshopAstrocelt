@@ -222,7 +222,7 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull1BaseAsset().SetActive(true);
             sc_UIManager.GetSkull1CrackedAsset().SetActive(false);
 
-            //sc_UIManager.GetUISkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(false);
             sc_UIManager.GetSkull2BaseAsset().SetActive(true);
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
@@ -249,7 +249,7 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull1BaseAsset().SetActive(false);
             sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            //sc_UIManager.GetUISkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(false);
             sc_UIManager.GetSkull2BaseAsset().SetActive(true);
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
@@ -275,7 +275,7 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull1BaseAsset().SetActive(false);
             sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            //sc_UIManager.GetUISkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
             sc_UIManager.GetSkull2BaseAsset().SetActive(false);
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
@@ -301,7 +301,7 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull1BaseAsset().SetActive(false);
             sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            //sc_UIManager.GetUISkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
             sc_UIManager.GetSkull2BaseAsset().SetActive(false);
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
@@ -327,7 +327,7 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull1BaseAsset().SetActive(false);
             sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            //sc_UIManager.GetUISkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
             sc_UIManager.GetSkull2BaseAsset().SetActive(false);
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
@@ -349,19 +349,5 @@ public class S_ResourceGraphics : MonoBehaviour
     }
 
 
-    /*rsg_UI_encounterSelector; GetUIEncounterSelector()
-rsg_UI_skull1Parent; GetUISkull1Parent()
-rsg_UI_skull1BaseAsset; GetSkull1BaseAsset()
-rsg_UI_skull1CrackedAsset; GetSkull1CrackedAsset()
-rsg_UI_skull2Parent; GetSkull2CrackedAsset()
-rsg_UI_skull2BaseAsset; GetSkull2BaseAsset()
-rsg_UI_skull2CrackedAsset; GetSkull2CrackedAsset()
-rsg_UI_skull3Parent; GetSkull3Parent()
-rsg_UI_skull3BaseAsset; GetSkull3BaseAsset()
-rsg_UI_skull3CrackedAsset; GetSkull3CrackedAsset()
-rsg_UI_bossSkullParent; GetBossSkullParent()
-rsg_UI_bossSkullBaseAsset; GetBossSkullBaseAsset()
-rsg_UI_bossSkullCrackedAsset; GetBossSkullCrackedAsset()
-rsg_UI_eventEncounterBaseAsset; GetEventEncounterBaseAsset()
-rsg_UI_eventEncounterFinishedAsset; GetEventEncounterFinishedAsset();*/
+  
 }
