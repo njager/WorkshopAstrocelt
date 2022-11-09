@@ -1233,6 +1233,7 @@ MonoBehaviour:
   g_consecutiveColorTrackerManager: {fileID: 3353330474544501753}
   g_tooltipManager: {fileID: 7924841523255227828}
   g_vfxManager: {fileID: 840620545612551189}
+  g_audioManager: {fileID: 5824754130802897840}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 0}
@@ -1549,8 +1550,13 @@ MonoBehaviour:
   b_combatScene: 0
   f_timeInScene: 0
   f_randomFloatValue: 0
-  e_f_enemyHealth: 0
-  e_f_enemyMaxHealth: 0
+  p_f_playerAudioPercentage: 0
+  e_f_enemy1AudioPercentage: 0
+  e_f_enemy2AudioPercentage: 0
+  e_f_enemy3AudioPercentage: 0
+  e_f_enemy4AudioPercentage: 0
+  e_f_enemy5AudioPercentage: 0
+  e_f_bossAudioPercentage: 0
 --- !u!1 &9177569602586923092
 GameObject:
   m_ObjectHideFlags: 0
