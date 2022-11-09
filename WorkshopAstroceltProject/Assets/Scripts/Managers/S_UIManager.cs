@@ -154,7 +154,7 @@ public class S_UIManager : MonoBehaviour
 
 
     [Header("Resource Graphics Bonus Tier Tracker")]
-    [SerializeField] int rsg_UI_i_bonusTracker = 1;
+    [SerializeField] public int rsg_UI_i_bonusTracker = 1;
 
     void Awake()
     {
