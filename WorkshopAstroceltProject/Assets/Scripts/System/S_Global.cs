@@ -122,7 +122,7 @@ public class S_Global : MonoBehaviour
         }
 
         //set the scene ui
-        g_UIManager.ChangeProgressionBar(SceneManager.GetActiveScene().name);
+        //g_UIManager.sc_resourceGraphics.ChangeProgressionBar(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
