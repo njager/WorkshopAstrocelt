@@ -207,18 +207,18 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         if (_scene == "Scn_1stEnemyEncounter")
         {
-            Skull1_Crack.enabled = false;
+            GetUISkull1Parent().SetActive(false);
 
             Skull2.enabled = true;
             Skull2_Crack.enabled = false;
-            Skull2_Selector.enabled = false;
+            GetUIEncounterSelector().SetActive(false);
 
             Skull3.enabled = true;
             Skull3_Crack.enabled = false;
-            Skull3_Selector.enabled = false;
+            GetUIEncounterSelector().SetActive(false);
 
             SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = false;
+            GetUIEncounterSelector().SetActive(false);
 
             encounterSprite.enabled = true;
             encounterSprite_Selector.enabled = false;
@@ -228,18 +228,18 @@ public class S_ResourceGraphics : MonoBehaviour
         {
             Skull1_Crack.enabled = true;
             Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+            GetUIEncounterSelector().SetActive(false);
 
             Skull2.enabled = true;
             Skull2_Crack.enabled = false;
-            Skull2_Selector.enabled = true;
+            GetUIEncounterSelector().SetActive(false);
 
             Skull3.enabled = true;
             Skull3_Crack.enabled = false;
-            Skull3_Selector.enabled = false;
+            GetUIEncounterSelector().SetActive(false);
 
             SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = false;
+            GetUIEncounterSelector().SetActive(false);
 
             encounterSprite.enabled = true;
             encounterSprite_Selector.enabled = false;
@@ -308,4 +308,21 @@ public class S_ResourceGraphics : MonoBehaviour
             encounterSprite_Selector.enabled = true;
         }
     }
+
+
+    /*rsg_UI_encounterSelector; GetUIEncounterSelector()
+rsg_UI_skull1Parent; GetUISkull1Parent()
+rsg_UI_skull1BaseAsset; GetSkull1BaseAsset()
+rsg_UI_skull1CrackedAsset; GetSkull1CrackedAsset()
+rsg_UI_skull2Parent; GetSkull2CrackedAsset()
+rsg_UI_skull2BaseAsset; GetSkull2BaseAsset()
+rsg_UI_skull2CrackedAsset; GetSkull2CrackedAsset()
+rsg_UI_skull3Parent; GetSkull3Parent()
+rsg_UI_skull3BaseAsset; GetSkull3BaseAsset()
+rsg_UI_skull3CrackedAsset; GetSkull3CrackedAsset()
+rsg_UI_bossSkullParent; GetBossSkullParent()
+rsg_UI_bossSkullBaseAsset; GetBossSkullBaseAsset()
+rsg_UI_bossSkullCrackedAsset; GetBossSkullCrackedAsset()
+rsg_UI_eventEncounterBaseAsset; GetEventEncounterBaseAsset()
+rsg_UI_eventEncounterFinishedAsset; GetEventEncounterFinishedAsset();*/
 }
