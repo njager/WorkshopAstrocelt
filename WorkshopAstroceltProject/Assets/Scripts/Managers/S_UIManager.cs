@@ -881,6 +881,8 @@ public class S_UIManager : MonoBehaviour
         }
     }
 
+    /// Move this to S_CharacterGraphics - Josh
+
     /// <summary>
     /// Turn the enemy selector On
     /// -Riley 
@@ -1226,14 +1228,14 @@ public class S_UIManager : MonoBehaviour
         return rsg_UI_eventEncounterParent;
     }
 
-/// <summary>
-/// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterBaseAsset
-/// - Josh
-/// </summary>
-/// <returns>
-/// S_UIManager.rsg_UI_eventEncounterBaseAsset
-/// </returns>
-public GameObject GetEventEncounterBaseAsset() 
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_UI_eventEncounterBaseAsset
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_UI_eventEncounterBaseAsset
+    /// </returns>
+    public GameObject GetEventEncounterBaseAsset() 
     {
         return rsg_UI_eventEncounterBaseAsset;
     }
