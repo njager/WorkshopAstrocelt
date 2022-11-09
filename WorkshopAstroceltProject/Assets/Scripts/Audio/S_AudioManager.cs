@@ -12,18 +12,62 @@ public class S_AudioManager : MonoBehaviour
     [Header("the time in game")]
     public float f_timeInScene = 0;
 
-    [Header("The player health")]
-    public int p_i_playerHealth;
+    [Header("Random Number for Integer")]
+    public float f_randomFloatValue;
 
-    private void Start()
+    [Header("Boss Health")]
+    public float e_f_enemyHealth;
+
+    [Header("Boss Health Max")]
+    public float e_f_enemyMaxHealth;
+
+    private void Awake()
     {
         g_global = S_Global.Instance;
+
+        // Set the random values
+        float _randomInt1 = GetRandomFloatNumber();
+        float _randomInt2 = GetRandomFloatNumber();
+
+        // Add them to enemy health
+        e_f_enemyHealth = g_global.g_enemyState.e_bossEnemy.GetComponent<S_EnemyAttributes>().GetEnemyHealthValue() + _randomInt1;
+        e_f_enemyMaxHealth = g_global.g_enemyState.e_bossEnemy.GetComponent<S_EnemyAttributes>().GetEnemyMaxHealthValue() + _randomInt2;
     }
 
     private void Update()
     {
         f_timeInScene += Time.deltaTime;
+    }
 
 
+    /// <summary>
+    /// Helper to set the random float value to a randomly pulled valued
+    /// - Josh
+    /// </summary>
+    private void SetRandomFloatNumber()
+    {
+        f_randomFloatValue = Random.Range(0.01f, 0.9f); 
+    }
+
+    /// <summary>
+    /// Helper to change what the random value is
+    /// - Josh
+    /// </summary>
+    private void ResetRandomValue()
+    {
+        SetRandomFloatNumber();
+    }
+
+    /// <summary>
+    /// Get the random float value to add in to boss health values
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// Returns S_AudioManager.e_f_enemyMaxHealth
+    /// </returns>
+    public float GetRandomFloatNumber()
+    {
+        ResetRandomValue();
+        return f_randomFloatValue;
     }
 }
