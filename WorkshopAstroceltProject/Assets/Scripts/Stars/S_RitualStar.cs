@@ -36,6 +36,9 @@ public class S_RitualStar : MonoBehaviour
     [SerializeField] float f_lowerScaleBound;
     [SerializeField] float f_upperScaleBound;
 
+    [Header("Particle Effect")]
+    public ParticleSystem s_pe_clicked;
+
     [Header("Star Click Bool")]
     public bool b_hasBeenClicked = false;
 
@@ -313,6 +316,9 @@ public class S_RitualStar : MonoBehaviour
 
                 // Set the proper end position for graphic
                 s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+
+                //trigger the particle effect
+                s_pe_clicked.Play();
             }
             else if (_starClassScript.s_star.m_previousLine != null && b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
             {
