@@ -125,9 +125,9 @@ public class S_NodeStar : MonoBehaviour
             Debug.Log("We here?");
             is_clicked = false;
 
-            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
-
             s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+
+            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 
             //trigger the particle effect
             s_pe_clicked.Play();
