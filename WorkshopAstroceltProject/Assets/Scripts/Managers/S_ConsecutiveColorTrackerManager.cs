@@ -69,8 +69,6 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
         SetCurrentEnergyColor("");
         SetColorTierTrackerInt(0);
         g_global.g_UIManager.sc_resourceGraphics.ResetBonusTracker();
-
-        
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

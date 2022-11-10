@@ -26,13 +26,6 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         ResetBonusTracker();
     }
-  
-    void Update()
-    {
-        EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
-        UpdateResourceBarGraphics();
-        ConstellationTracker();
-    }
 
     public void ResetBonusTracker()
     {
@@ -109,103 +102,90 @@ public class S_ResourceGraphics : MonoBehaviour
     /// <param name="_star"></param>
     public void BonusTracker(string _starColor, int _bonusCounter)
     {
-        //print(_starColor);
+        print(_bonusCounter);
         if (_starColor.Equals("red"))
         {
-            //print(_starColor);
+            //turn off the other containers and turn on the red one
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
             sc_UIManager.GetRedBonusContainer().SetActive(true);
 
-
-
+            //turn off the other individual icons
             sc_UIManager.GetBlueBonusIcon1().SetActive(false);
             sc_UIManager.GetBlueBonusIcon2().SetActive(false);
             sc_UIManager.GetBlueBonusIcon3().SetActive(false);
-
 
             sc_UIManager.GetYellowBonusIcon1().SetActive(false);
             sc_UIManager.GetYellowBonusIcon2().SetActive(false);
             sc_UIManager.GetYellowBonusIcon3().SetActive(false);
 
-
+            //turn off the initial Icon
             sc_UIManager.GetRedBonusIcon1().SetActive(true);
-            _bonusCounter ++;
-            if (_starColor.Equals("red") && _bonusCounter == 1)
+
+            //Turn on or off additional icons
+            if (_bonusCounter.Equals(2))
             {
-                print(_starColor + "2");
-                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
+                sc_UIManager.GetRedBonusIcon3().SetActive(false);
             }
-            
-            else if (_starColor.Equals("red") && _bonusCounter == 2)
+            else if (_bonusCounter.Equals(3))
             {
-                print(_starColor + "3");
-                print("bonus counter:" + _bonusCounter);
+                sc_UIManager.GetRedBonusIcon2().SetActive(true);
                 sc_UIManager.GetRedBonusIcon3().SetActive(true);
             }
-            else {
-                _bonusCounter = 0; 
-                ResetBonusTracker(); 
+            else
+            {
+                sc_UIManager.GetRedBonusIcon2().SetActive(false);
+                sc_UIManager.GetRedBonusIcon3().SetActive(false);
             }
         }
-
         else if (_starColor.Equals("yellow"))
         {
-            print(_starColor);
+            //turn off the other containers and turn on the yellow one
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(true);
             sc_UIManager.GetRedBonusContainer().SetActive(false);
 
-
-
+            //turn off the other individual icons
             sc_UIManager.GetBlueBonusIcon1().SetActive(false);
             sc_UIManager.GetBlueBonusIcon2().SetActive(false);
             sc_UIManager.GetBlueBonusIcon3().SetActive(false);
 
-
-            
             sc_UIManager.GetRedBonusIcon1().SetActive(false);
             sc_UIManager.GetRedBonusIcon2().SetActive(false);
             sc_UIManager.GetRedBonusIcon3().SetActive(false);
 
-
+            //turn off the other initial icon
             sc_UIManager.GetYellowBonusIcon1().SetActive(true);
 
-            _bonusCounter++;
-            if (_starColor.Equals("yellow") && _bonusCounter == 1)
+            //Turn on or off additional icons
+            if (_bonusCounter.Equals(2))
             {
-                print(_starColor + "2");
-                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetYellowBonusIcon2().SetActive(true);
+                sc_UIManager.GetYellowBonusIcon3().SetActive(false);
             }
-           /* else 
-            { 
-                _bonusCounter = 0; 
-                ResetBonusTracker(); 
-            }*/
-           else  if (_starColor.Equals("yellow") && _bonusCounter == 2)
+            else if (_bonusCounter.Equals(3))
             {
-                print(_starColor + "3");
-                print("bonus counter:" + _bonusCounter);
+                sc_UIManager.GetYellowBonusIcon2().SetActive(true);
                 sc_UIManager.GetYellowBonusIcon3().SetActive(true);
             }
-            else 
-            { 
-                _bonusCounter = 0; 
-                ResetBonusTracker(); 
+            else
+            {
+                sc_UIManager.GetYellowBonusIcon2().SetActive(false);
+                sc_UIManager.GetYellowBonusIcon3().SetActive(false);
             }
         }
         else if (_starColor.Equals("blue"))
         {
-            print(_starColor);
+            //turn off the other containers and turn on the blue one
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(true);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
             sc_UIManager.GetRedBonusContainer().SetActive(false);
 
+            //turn off the other individual icons
             sc_UIManager.GetRedBonusIcon1().SetActive(false);
             sc_UIManager.GetRedBonusIcon2().SetActive(false);
             sc_UIManager.GetRedBonusIcon3().SetActive(false);
@@ -214,32 +194,25 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetYellowBonusIcon2().SetActive(false);
             sc_UIManager.GetYellowBonusIcon3().SetActive(false);
 
-
+            //turn off the other initial icon
             sc_UIManager.GetBlueBonusIcon1().SetActive(true);
-            _bonusCounter++;
-            if (_starColor.Equals("blue") && _bonusCounter == 1)
+
+            //Turn on or off additional icons
+            if (_bonusCounter.Equals(2))
             {
-                print(_starColor + "2");
-                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetBlueBonusIcon2().SetActive(true);
+                sc_UIManager.GetBlueBonusIcon3().SetActive(false);
             }
-           /* else 
-            { 
-                _bonusCounter = 0; 
-                ResetBonusTracker(); 
-            }*/
-            else if (_starColor.Equals("blue") && _bonusCounter == 2)
+            else if (_bonusCounter.Equals(3))
             {
-                print(_starColor + "3" );
-                print("bonus counter:" + _bonusCounter);
+                sc_UIManager.GetBlueBonusIcon2().SetActive(true);
                 sc_UIManager.GetBlueBonusIcon3().SetActive(true);
             }
-            else 
-            { 
-                _bonusCounter = 0; 
-                ResetBonusTracker();
+            else
+            {
+                sc_UIManager.GetBlueBonusIcon2().SetActive(false);
+                sc_UIManager.GetBlueBonusIcon3().SetActive(false);
             }
-
         }
     }
 
