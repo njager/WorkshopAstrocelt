@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 8783805457810388088}
   - component: {fileID: 6180942868392831899}
   - component: {fileID: 1299246642019024718}
+  - component: {fileID: 5130735514523799945}
   m_Layer: 0
   m_Name: Pf_RitualStar
   m_TagString: Star
@@ -460,12 +461,6 @@ MonoBehaviour:
   f_upperScaleBound: 0.04
   s_pe_clicked: {fileID: 6987830945271678555}
   b_hasBeenClicked: 0
-  tl_toolTipTemplate: {fileID: 11400000, guid: b113c7190f0e4df4a8258bddd100bc93, type: 2}
-  tl_b_mouseEntered: 0
-  f_timerAmount: 0
-  tl_b_timerComplete: 0
-  tl_b_displayedTooltip: 0
-  timerCompleteCheck: 0
 --- !u!60 &8783805457810388088
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -554,6 +549,26 @@ PolygonCollider2D:
     - - {x: -0.0021722913, y: 0.39298993}
       - {x: -0.39841166, y: -0.3135289}
       - {x: 0.39294958, y: -0.31515288}
+--- !u!114 &5130735514523799945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454044182902328387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6487c79715ce564fb95281ccc287f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: b113c7190f0e4df4a8258bddd100bc93, type: 2}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 1.2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 0
+  tl_f_timerValue: 1.2
 --- !u!1 &6470999216024021237
 GameObject:
   m_ObjectHideFlags: 0

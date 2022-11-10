@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 4159885075267746162}
   - component: {fileID: 742583486253357023}
   - component: {fileID: 8965819612020410489}
+  - component: {fileID: 1062509874717228548}
   m_Layer: 0
   m_Name: Pf_EnergyStar
   m_TagString: Star
@@ -462,12 +463,6 @@ MonoBehaviour:
   b_hasBeenClicked: 0
   b_clickableStar: 0
   s_thisStar: {fileID: 0}
-  tl_toolTipTemplate: {fileID: 11400000, guid: 84cba06985fe88b4b84dd57049f6d683, type: 2}
-  tl_b_mouseEntered: 0
-  f_timerAmount: 0
-  tl_b_timerComplete: 0
-  tl_b_displayedTooltip: 0
-  timerCompleteCheck: 0
 --- !u!60 &4159885075267746162
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -556,6 +551,26 @@ PolygonCollider2D:
     - - {x: -0.00070727034, y: 0.22988631}
       - {x: -0.25509644, y: -0.2086302}
       - {x: 0.24951412, y: -0.20785606}
+--- !u!114 &1062509874717228548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165402992530625468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6487c79715ce564fb95281ccc287f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: 84cba06985fe88b4b84dd57049f6d683, type: 2}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 1.2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 0
+  tl_f_timerValue: 1.2
 --- !u!1 &8082527287553830910
 GameObject:
   m_ObjectHideFlags: 0

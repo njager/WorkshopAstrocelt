@@ -46,18 +46,6 @@ public class S_RitualStar : MonoBehaviour
     private bool b_clickableStar = false;
     private S_StarClass s_thisStar;
 
-    [Header("Tooltip Template to Use")]
-    public S_TooltipTemplate tl_toolTipTemplate;
-
-    [Header("Mouse Enter Check")]
-    public bool tl_b_mouseEntered;
-
-    [Header("Timer Elements")]
-    public float f_timerAmount;
-    public bool tl_b_timerComplete;
-    public bool tl_b_displayedTooltip;
-    public int timerCompleteCheck;
-
     /// <summary>
     /// Grab global for the ritual star
     /// Randomly choose between red, blue, and yellow ritual star graphics. 
@@ -167,27 +155,6 @@ public class S_RitualStar : MonoBehaviour
         s_c_starStartColor = s_starSprite.color;
     }
 
-    private void Update()
-    {
-        if (tl_b_mouseEntered == true && tl_b_displayedTooltip == false)
-        {
-            if (f_timerAmount > 0)
-            {
-                f_timerAmount -= Time.deltaTime;
-            }
-        }
-
-        if (f_timerAmount < 0 && timerCompleteCheck == 0)
-        {
-            tl_b_timerComplete = true;
-            timerCompleteCheck += 1;
-            if (tl_b_displayedTooltip == false)
-            {
-                DisplayTooltip();
-            }
-        }
-    }
-
     /// <summary>
     /// HelperFunction to change scale of the stars
     /// </summary>
@@ -218,12 +185,6 @@ public class S_RitualStar : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
-        //Tooltip
-        tl_b_mouseEntered = true;
-        tl_b_timerComplete = false;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
         if (s_b_redColor == true) // If Red
         {
             s_starSprite.color = s_c_redStarHoverColor;
@@ -245,16 +206,6 @@ public class S_RitualStar : MonoBehaviour
         }
     }
 
-    public void DisplayTooltip()
-    {
-        if (tl_b_mouseEntered == true && tl_b_timerComplete == true)
-        {
-            Debug.Log("Triggered Mouse Hover");
-            g_global.g_tooltipManager.SetupToolTipObject(tl_toolTipTemplate, gameObject.transform);
-            tl_b_displayedTooltip = true;
-        }
-    }
-
     /// <summary>
     /// Change the color to the start color when mouse leaves the star
     /// Doesn't have to be determined beforehand, unlike the hover color
@@ -263,16 +214,6 @@ public class S_RitualStar : MonoBehaviour
     /// </summary>
     private void OnMouseExit()
     {
-        // Tooltip
-        g_global.g_tooltipManager.ResetTooltip();
-        tl_b_mouseEntered = false;
-        tl_b_timerComplete = false;
-        tl_b_mouseEntered = false;
-        f_timerAmount = 2f;
-        tl_b_displayedTooltip = true;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
         s_starSprite.color = s_c_starStartColor;
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {

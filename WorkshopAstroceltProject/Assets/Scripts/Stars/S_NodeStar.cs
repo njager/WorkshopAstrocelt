@@ -27,18 +27,6 @@ public class S_NodeStar : MonoBehaviour
     public bool b_clickableStar = false;
     public S_StarClass s_thisStar;
 
-    [Header("Test Object to Use")]
-    public S_TooltipTemplate tl_nodeStarTemplate;
-
-    [Header("Mouse Enter Check")]
-    public bool tl_b_mouseEntered;
-
-    [Header("Timer Elements")]
-    public float f_timerAmount;
-    public bool tl_b_timerComplete;
-    public bool tl_b_displayedTooltip;
-    public int timerCompleteCheck;
-
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
     /// set the starSprite = to the SpriteRenderer
@@ -57,34 +45,8 @@ public class S_NodeStar : MonoBehaviour
         c_starStartColor = s_starSprite.color;
     }
 
-    private void Update()
-    {
-        if (tl_b_mouseEntered == true && tl_b_displayedTooltip == false)
-        {
-            if (f_timerAmount > 0)
-            {
-                f_timerAmount -= Time.deltaTime;
-            }
-        }
-
-        if (f_timerAmount < 0 && timerCompleteCheck == 0)
-        {
-            tl_b_timerComplete = true;
-            timerCompleteCheck += 1;
-            if (tl_b_displayedTooltip == false)
-            {
-                DisplayTooltip();
-            }
-        }
-    }
     private void OnMouseEnter()
     {
-        //Tooltip
-        tl_b_mouseEntered = true;
-        tl_b_timerComplete = false;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
 
@@ -97,28 +59,9 @@ public class S_NodeStar : MonoBehaviour
             }
         }
     }
-    public void DisplayTooltip()
-    {
-        if (tl_b_mouseEntered == true && tl_b_timerComplete == true)
-        {
-            Debug.Log("Triggered Mouse Hover");
-            g_global.g_tooltipManager.SetupToolTipObject(tl_nodeStarTemplate, gameObject.transform);
-            tl_b_displayedTooltip = true;
-        }
-    }
 
     private void OnMouseExit()
-    {
-        // Tooltip
-        g_global.g_tooltipManager.ResetTooltip();
-        tl_b_mouseEntered = false;
-        tl_b_timerComplete = false;
-        tl_b_mouseEntered = false;
-        f_timerAmount = 2f;
-        tl_b_displayedTooltip = true;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
+    {   
         if (GetNodeClicked())
         {
             s_starSprite.color = c_clickedColor;
