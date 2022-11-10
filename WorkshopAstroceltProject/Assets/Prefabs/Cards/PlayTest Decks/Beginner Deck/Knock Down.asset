@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Knock Down
   HeaderText: Knock Down
-  BodyText: Deals 10 Damage. Adds Frailty to Enemy.
+  BodyText: Deals 10 Damage. A Stuns the enemy
   FlavorText: 
   ColorString: white
   EnergyCost: 5
@@ -26,7 +26,7 @@ MonoBehaviour:
   TurnCountForStatusEffect1: 1
   TurnCountForStatusEffect2: 0
   TurnCountForStatusEffect3: 0
-  IDForStatusEffectOne: 9
+  IDForStatusEffectOne: 6
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
   CardRarity: 0
@@ -50,9 +50,9 @@ MonoBehaviour:
   BurnStatusEffect: 0
   ResistStatusEffect: 0
   SiphonStatusEffect: 0
-  StunStatusEffect: 0
+  StunStatusEffect: 1
   DrawStatusEffect: 0
-  FralityStatusEffect: 1
+  FralityStatusEffect: 0
   ManipulateStatusEffect: 0
   ThornStatusEffect: 0
   CardArtAsset: {fileID: 0}
