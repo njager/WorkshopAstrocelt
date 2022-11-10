@@ -286,19 +286,69 @@ public class S_RitualStar : MonoBehaviour
 
     public void OnMouseDown()
     {
+        //make a reference to the s_starclass
+        S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
+
         //if the star clicking is locked out, dont let the player click it
         if (!g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             g_global.g_ConstellationManager.CreateNodeStar(this.gameObject);
         }
-        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar && !b_hasBeenClicked)
+        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
         {
-            b_hasBeenClicked = true;
+            if (_starClassScript.s_star.m_previousLine != null && !b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
+            {
+                // Set b_hasBeenClickedBool
+                b_hasBeenClicked = true;
+                Debug.Log("S_Ritual - clicked logic chain");
 
-            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
+                // Set star permanent status
+                _starClassScript.SetTemporaryVisualBool(false);
 
-            s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+                // Actually add the star to the constellation list
+                g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 
+                // Change popup color
+                g_global.g_popupManager.ConfirmTemporaryPopup();
+
+                // Set the proper end position for graphic
+                s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+            }
+            else if (_starClassScript.s_star.m_previousLine != null && b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
+            {
+                Debug.Log("Clicked twice on current star so go back once");
+
+                s_starClass.s_star.i_energy = 0;
+
+                //remove energy by subbing the line first and then seeing what you would get if you did it again
+                g_global.g_consecutiveColorTrackerManager.GoBackForColorTracker(s_starClass.s_star.s_previousColor, s_starClass.s_star.i_previousBonus);
+
+
+                // Determine energy storage bin
+                if (s_b_redColor)
+                {
+                    g_global.g_energyManager.StoreEnergy("red", -s_starClass.s_star.i_energy);
+                }
+                else if (s_b_blueColor)
+                {
+                    g_global.g_energyManager.StoreEnergy("blue", -s_starClass.s_star.i_energy);
+                }
+                else if (s_b_yellowColor)
+                {
+                    g_global.g_energyManager.StoreEnergy("yellow", -s_starClass.s_star.i_energy);
+                }
+
+                // Reset has been clicked
+                b_hasBeenClicked = false;
+
+                // Reset star temp status (just in case)
+                _starClassScript.SetTemporaryVisualBool(true);
+
+                // Update managers
+                g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
+
+                g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
+            }
         }
         else
         {

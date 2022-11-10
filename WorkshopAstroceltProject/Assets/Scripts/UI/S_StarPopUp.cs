@@ -147,12 +147,14 @@ public class S_StarPopUp : MonoBehaviour
         }
         else if(_positionCount == 2)
         {
-            //Debug.Log("Second popup!");
+            Debug.Log("Second popup!");
+            Debug.Log(gameObject.transform.position);
             gameObject.transform.position = _star.GetPopup2ParentPosition();
+            Debug.Log(gameObject.transform.position);
         }
         else if(_positionCount == 3)
         {
-            //Debug.Log("Third popup!");
+            Debug.Log("Third popup!");
             gameObject.transform.position = _star.GetPopup3ParentPosition();
         }
     }

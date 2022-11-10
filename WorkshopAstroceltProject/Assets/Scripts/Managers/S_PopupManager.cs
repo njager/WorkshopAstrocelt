@@ -158,6 +158,8 @@ public class S_PopupManager : MonoBehaviour
             }
             else if (_energy == 3)
             {
+                Debug.Log("Were spawning 3 popup");
+
                 // Int for tracking how many popups there have been
                 int _popupCount = 0;
 
@@ -176,6 +178,7 @@ public class S_PopupManager : MonoBehaviour
                 _popupCount += 1;
 
                 // Set up Star 2 V3 Position
+                Debug.Log("Popup Count: " + _popupCount);
                 _starPopupScript2.SetPosition(_popupCount, _star);
 
                 // Set Star 2 Graphic
@@ -188,7 +191,8 @@ public class S_PopupManager : MonoBehaviour
                 _popupCount += 1;
 
                 // Set up Star 3 V3 Position
-                _starPopupScript2.SetPosition(_popupCount, _star);
+                Debug.Log("Popup Count: " + _popupCount);
+                _starPopupScript3.SetPosition(_popupCount, _star);
 
                 // Set Star 3 Graphic
                 _starPopupScript3.SetTempStatus(_isTempStar);
