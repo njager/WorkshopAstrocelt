@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2201438810836494094}
+  - component: {fileID: 3880219690769829292}
+  - component: {fileID: 1951489406758528083}
   m_Layer: 0
   m_Name: Pf_EnemyUI
   m_TagString: Untagged
@@ -41,6 +43,74 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3880219690769829292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259232777732487716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fee7b660f7a4bfc9513408d9fb0663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 0}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 1.2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 0
+  tl_f_timerValue: 1.2
+  tl_shieldIcon: {fileID: 0}
+  tl_healthbarTooltip: {fileID: 11400000, guid: f0ed958f55d819f40b94710fb0b1d7fb, type: 2}
+  tl_shieldTooltip: {fileID: 11400000, guid: e5994483ebc2f4948820a7bf4dd64fec, type: 2}
+--- !u!114 &1951489406758528083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259232777732487716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3880219690769829292}
+          m_TargetAssemblyTypeName: S_HealthBarTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3880219690769829292}
+          m_TargetAssemblyTypeName: S_HealthBarTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &640770534584424801
 GameObject:
   m_ObjectHideFlags: 0
@@ -52,8 +122,6 @@ GameObject:
   - component: {fileID: 7580087553772915415}
   - component: {fileID: 3745481522741260950}
   - component: {fileID: 6743083494321209313}
-  - component: {fileID: 4153165286463323733}
-  - component: {fileID: 7532669267306784190}
   m_Layer: 0
   m_Name: HealthBarOverlay
   m_TagString: Untagged
@@ -118,71 +186,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4153165286463323733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640770534584424801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a656e102af56e497bbff63fcc208266e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  g_global: {fileID: 0}
-  tl_tooltipTemplate: {fileID: 11400000, guid: f0ed958f55d819f40b94710fb0b1d7fb, type: 2}
-  tl_b_mouseEntered: 0
-  tl_f_timeToWaste: 1.2
-  tl_b_timerComplete: 0
-  tl_b_displayedTooltip: 0
-  tl_i_timerCompleteCheck: 0
-  tl_f_timerValue: 1.2
---- !u!114 &7532669267306784190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640770534584424801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4153165286463323733}
-          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
-          m_MethodName: OnPointerEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4153165286463323733}
-          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
-          m_MethodName: OnPointerExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1018071660489675261
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d1fdd89824c605e47923296371ec7ed3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a2567a7f8ab441cfa3b49d5a8155da6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
