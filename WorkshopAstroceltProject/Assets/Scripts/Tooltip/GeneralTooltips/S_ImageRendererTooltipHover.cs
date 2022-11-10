@@ -65,7 +65,7 @@ public class S_ImageRendererTooltipHover : MonoBehaviour
     /// When mouse enters object, prime it for tooltip
     /// - Josh
     /// </summary>
-    private void OnMouseEnter()
+    public void OnPointerEnter()
     {
         tl_b_mouseEntered = true;
         tl_b_timerComplete = false;

@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4074447116382472235}
-  - component: {fileID: 4074447116382472661}
+  - component: {fileID: 5796416401404950134}
   - component: {fileID: 4074447116382472660}
   m_Layer: 0
   m_Name: PlayerUI
@@ -192,7 +192,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4074447116382472661
+--- !u!114 &5796416401404950134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,15 +201,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4074447116382472234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428f23c42c468d24fab4af531dfdad20, type: 3}
+  m_Script: {fileID: 11500000, guid: a656e102af56e497bbff63fcc208266e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tl_toolTipTemplate: {fileID: 11400000, guid: f0ed958f55d819f40b94710fb0b1d7fb, type: 2}
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: f0ed958f55d819f40b94710fb0b1d7fb, type: 2}
   tl_b_mouseEntered: 0
-  f_timerAmount: 0
+  tl_f_timeToWaste: 1.2
   tl_b_timerComplete: 0
   tl_b_displayedTooltip: 0
-  timerCompleteCheck: 0
+  tl_i_timerCompleteCheck: 0
+  tl_f_timerValue: 1.2
 --- !u!114 &4074447116382472660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +229,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4074447116382472661}
-          m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
+        - m_Target: {fileID: 5796416401404950134}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
           m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
@@ -243,8 +245,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4074447116382472661}
-          m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
+        - m_Target: {fileID: 5796416401404950134}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
           m_MethodName: OnPointerExit
           m_Mode: 1
           m_Arguments:
