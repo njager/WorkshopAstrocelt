@@ -17,6 +17,9 @@ public class S_NodeStar : MonoBehaviour
     public Color c_clickedColor;
     public GameObject s_starGraphic;
 
+    [Header("Particle Effect")]
+    public ParticleSystem s_pe_clicked;
+
     [Header("Star Click Bool")]
     public bool is_clicked = false;
 
@@ -167,6 +170,9 @@ public class S_NodeStar : MonoBehaviour
         {
             Debug.Log("this would be wierd");
             g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
+            
+            //trigger the particle effect
+            s_pe_clicked.Play();
         }
         else if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
         {
@@ -182,6 +188,8 @@ public class S_NodeStar : MonoBehaviour
 
             s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
 
+            //trigger the particle effect
+            s_pe_clicked.Play();
         }
         else
         {

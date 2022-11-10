@@ -233,6 +233,9 @@ public class S_ConstelationManager : MonoBehaviour
         //clear the constellation
         ls_curConstellation.Clear();
 
+        //Reset bonus energy
+        g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
+
         //set the bool
         b_makingConstellation = false;
 
@@ -306,7 +309,7 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (s_previousStar != s_nullStarInst)
             {
-                // Create the temp line
+                //Create the temp line
                 g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
             }
         }

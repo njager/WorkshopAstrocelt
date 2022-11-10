@@ -38,6 +38,7 @@ public class S_PlayerAttributes : MonoBehaviour
 
     [Header("Particle Effect")]
     public ParticleSystem p_pe_blood;
+    public ParticleSystem p_pe_shield;
 
     [Header("Animatiors")]
     public Animator p_a_AttackAnimator;

@@ -151,6 +151,9 @@ public class S_Player : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
 
+        //trigger the shield particle effect
+        p_sc_playerAttributes.p_pe_shield.Play();
+
         // Calculate and set shield values
         int _tempValue = p_sc_playerAttributes.GetPlayerShieldValue() + _shieldValue;
         p_sc_playerAttributes.SetPlayerShieldValue(_tempValue);
