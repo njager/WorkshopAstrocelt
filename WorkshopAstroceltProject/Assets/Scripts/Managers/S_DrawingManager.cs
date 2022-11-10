@@ -80,7 +80,6 @@ public class S_DrawingManager : MonoBehaviour
         _star2.s_star.s_previousColor = g_global.g_consecutiveColorTrackerManager.GetCurrentEnergyColor();
         _star2.s_star.i_previousBonus = g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
 
-
         // Spawn popups with the
         g_global.g_popupManager.CreatePopUpForStar(_star2, _star2.s_star.i_energy, true);
 
