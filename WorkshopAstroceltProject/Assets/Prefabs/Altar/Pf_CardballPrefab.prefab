@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 5484285096475402193}
   - component: {fileID: 1863014761351679347}
   - component: {fileID: 7603058300395123751}
-  - component: {fileID: 4874590723221817907}
   m_Layer: 0
   m_Name: Pf_CardballPrefab
   m_TagString: Cardball
@@ -217,7 +216,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 4874590723221817907}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
           m_MethodName: OnPointerEnter
           m_Mode: 1
@@ -245,7 +244,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 4874590723221817907}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: S_EnemyHealthBarTooltip, Assembly-CSharp
           m_MethodName: OnPointerExit
           m_Mode: 1
@@ -257,24 +256,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &4874590723221817907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863014761351679344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428f23c42c468d24fab4af531dfdad20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tl_toolTipTemplate: {fileID: 11400000, guid: 9372714023619344c8907f67d9f08406, type: 2}
-  tl_b_mouseEntered: 0
-  f_timerAmount: 0
-  tl_b_timerComplete: 0
-  tl_b_displayedTooltip: 0
-  timerCompleteCheck: 0
 --- !u!1 &2662315093474065047
 GameObject:
   m_ObjectHideFlags: 0

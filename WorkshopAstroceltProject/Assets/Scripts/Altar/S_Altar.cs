@@ -417,8 +417,8 @@ public class S_Altar : MonoBehaviour
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
             {
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                //Debug.Log("Attempting to delay spawn of second card after a first");
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
             else
