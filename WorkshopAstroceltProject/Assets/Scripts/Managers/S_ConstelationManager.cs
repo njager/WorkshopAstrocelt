@@ -106,7 +106,8 @@ public class S_ConstelationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This func gets called from the lines themseleves after they get spawned. 
+    /// This func gets called from the stars themseleves after the line gets spawned.
+    /// Happens when the star gets clicked
     /// Adds the star to the data structure and checks types and constraints
     /// -Riley
     /// </summary>
@@ -124,9 +125,6 @@ public class S_ConstelationManager : MonoBehaviour
 
         //add to data structure
         ls_curConstellation.Add(_star);
-
-        //get the energy for the star
-        int _energy = 0;
 
         if (_star.starType == "Node")
         {
@@ -157,50 +155,36 @@ public class S_ConstelationManager : MonoBehaviour
         //check the star type
         else if (_star.starType == "Ritual")
         {
-            //add the line multiplier
-            _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
-
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
-
-            //get the energy value add together and then reduce to three
-            _energy += g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
-            if(_energy > 3) { _energy = 3; }
 
             //get the ritual star component
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
 
             //compare in hierarchy to get the color
-            if (_rStar.s_b_redColor) { g_global.g_energyManager.StoreEnergy("red", _energy); }
+            if (_rStar.s_b_redColor) { g_global.g_energyManager.StoreEnergy("red", _star.s_star.i_energy); }
             else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
-            { g_global.g_energyManager.StoreEnergy("yellow", _energy); }
-            else if (_rStar.s_b_blueColor) { g_global.g_energyManager.StoreEnergy("blue", _energy); }
+            { g_global.g_energyManager.StoreEnergy("yellow", _star.s_star.i_energy); }
+            else if (_rStar.s_b_blueColor) { g_global.g_energyManager.StoreEnergy("blue", _star.s_star.i_energy); }
         }
         else
         {
-            //add the line multiplier
-            _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
-
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
-
-            //get the energy value add together and then reduce to three
-            _energy += g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
-            if (_energy > 3) { _energy = 3; }
 
             //get the energy star component
             S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
 
             //get the color
-            if (_eStar.s_b_redColor) { g_global.g_energyManager.StoreEnergy("red", _energy); }
-            else if (_eStar.s_b_yellowColor) { g_global.g_energyManager.StoreEnergy("yellow", _energy); }
-            else if (_eStar.s_b_blueColor) { g_global.g_energyManager.StoreEnergy("blue", _energy); }
+            if (_eStar.s_b_redColor) { g_global.g_energyManager.StoreEnergy("red", _star.s_star.i_energy); }
+            else if (_eStar.s_b_yellowColor) { g_global.g_energyManager.StoreEnergy("yellow", _star.s_star.i_energy); }
+            else if (_eStar.s_b_blueColor) { g_global.g_energyManager.StoreEnergy("blue", _star.s_star.i_energy); }
         }
 
         //Spawn popups as needed
         if(b_curStarSpawnedPopupsAlready == false)
         {
-            g_global.g_popupManager.CreatePopUpForStar(_star, _energy, _star.GetTemporaryVisualBool());
+            g_global.g_popupManager.CreatePopUpForStar(_star, _star.s_star.i_energy, _star.GetTemporaryVisualBool());
         }
     }
 
@@ -369,7 +353,7 @@ public class S_ConstelationManager : MonoBehaviour
                 if (_star.starType == "Ritual")
                 {
                     //add the line multiplier
-                    _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine.gameObject);
+                    _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star.s_star.m_previousLine, _star.colorType);
 
                     //get the ritual star component
                     S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();

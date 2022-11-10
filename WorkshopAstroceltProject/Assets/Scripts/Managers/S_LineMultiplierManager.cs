@@ -70,13 +70,22 @@ public class S_LineMultiplierManager : MonoBehaviour
     /// Made by -Riley
     /// </summary>
     /// <param name="_line"></param>
-    public int LineMultiplier(GameObject _line)
+    public int LineMultiplier(S_ConstellationLine _line, string _color)
     {
         //get the magnitude of the line
-        var _length = _line.GetComponent<S_ConstellationLine>().f_lineLength;
+        var _length = _line.f_lineLength;
 
-        if(_length > f_largeLength) { return 3; }
-        else if (_length > f_mediumLength) { return 2; }
-        else { return 1; }
+        if(_color == g_global.g_consecutiveColorTrackerManager.GetCurrentEnergyColor())
+        {
+            if (_length > f_largeLength) { return 3; }
+            else if (_length > f_mediumLength) { return Mathf.Min(2 + g_global.g_consecutiveColorTrackerManager.GetColorTierTracker(), 3); }
+            else { return Mathf.Min(1 + g_global.g_consecutiveColorTrackerManager.GetColorTierTracker(), 3); }
+        }
+        else
+        {
+            if (_length > f_largeLength) { return 3; }
+            else if (_length > f_mediumLength) { return 2; }
+            else { return 1; }
+        }
     }
 }

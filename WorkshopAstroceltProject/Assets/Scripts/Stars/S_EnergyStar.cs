@@ -286,6 +286,7 @@ public class S_EnergyStar : MonoBehaviour
 
         S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         s_starSprite.color = s_c_starStartColor;
+        //Check only if making a constellation and the node star has been clicked
         if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             if (b_hasBeenClicked == false && _starClassScript.s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
@@ -339,25 +340,24 @@ public class S_EnergyStar : MonoBehaviour
             {
                 Debug.Log("Clicked twice on current star so go back once");
 
-                //reset line multiplier
+                s_starClass.s_star.i_energy = 0;
 
                 //remove energy by subbing the line first and then seeing what you would get if you did it again
-
-                int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_starClassScript.s_star.m_previousLine.gameObject);
+                g_global.g_consecutiveColorTrackerManager.GoBackForColorTracker(s_starClass.s_star.s_previousColor, s_starClass.s_star.i_previousBonus);
 
 
                 // Determine energy storage bin
                 if (s_b_redColor)
                 {
-                    g_global.g_energyManager.i_redStorageEnergy -= _energy;
+                    g_global.g_energyManager.StoreEnergy("red", -s_starClass.s_star.i_energy);
                 }
                 else if (s_b_blueColor)
                 {
-                    g_global.g_energyManager.i_blueStorageEnergy -= _energy;
+                    g_global.g_energyManager.StoreEnergy("blue", -s_starClass.s_star.i_energy);
                 }
                 else if (s_b_yellowColor)
                 {
-                    g_global.g_energyManager.i_yellowStorageEnergy -= _energy;
+                    g_global.g_energyManager.StoreEnergy("yellow", -s_starClass.s_star.i_energy);
                 }
 
                 // Reset has been clicked
