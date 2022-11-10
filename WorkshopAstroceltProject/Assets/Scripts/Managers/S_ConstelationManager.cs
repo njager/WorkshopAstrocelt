@@ -233,6 +233,9 @@ public class S_ConstelationManager : MonoBehaviour
         //clear the constellation
         ls_curConstellation.Clear();
 
+        //Reset bonus energy
+        g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
+
         //set the bool
         b_makingConstellation = false;
 
