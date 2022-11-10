@@ -22,21 +22,8 @@ public class S_YellowStarAnimation : MonoBehaviour
 
     public IEnumerator PlayYellowAnimation()
     {
-        for (int i = 0; i <= i_frames; i++)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForEndOfFrame();
 
-        float _percent = Random.value;
-
-        if (_percent < i_chance)
-        {
-            //print("Yellow");
-            //Reset the "Crouch" trigger
-            //a_animator.ResetTrigger("YellowAnim");
-
-            an_yellowStarAnimator.Play("YellowAnim");
-        }
-        StartCoroutine(PlayYellowAnimation());
+        an_yellowStarAnimator.Play("YellowAnim");
     }
 }
