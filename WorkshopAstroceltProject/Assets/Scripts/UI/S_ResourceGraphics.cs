@@ -26,7 +26,7 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         ResetBonusTracker();
     }
-
+  
     void Update()
     {
         EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
@@ -107,11 +107,12 @@ public class S_ResourceGraphics : MonoBehaviour
     /// - Josh and Goat
     /// </summary>
     /// <param name="_star"></param>
-    public void BonusTracker(S_StarClass _star)
+    public void BonusTracker(string _starColor, int _bonusCounter)
     {
-       if (_star.colorType == "red")
+        //print(_starColor);
+        if (_starColor.Equals("red"))
         {
-            print(_star.colorType);
+            //print(_starColor);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
@@ -130,22 +131,29 @@ public class S_ResourceGraphics : MonoBehaviour
 
 
             sc_UIManager.GetRedBonusIcon1().SetActive(true);
-            sc_UIManager.rsg_UI_i_bonusTracker++;
-            if (_star.colorType == "red" && sc_UIManager.rsg_UI_i_bonusTracker == 2)
+            _bonusCounter ++;
+            if (_starColor.Equals("red") && _bonusCounter == 1)
             {
+                print(_starColor + "2");
+                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
             }
-            else { sc_UIManager.rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-            if (_star.colorType == "red" && sc_UIManager.rsg_UI_i_bonusTracker == 3)
+            
+            else if (_starColor.Equals("red") && _bonusCounter == 2)
             {
+                print(_starColor + "3");
+                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetRedBonusIcon3().SetActive(true);
             }
-            else { sc_UIManager.rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            else {
+                _bonusCounter = 0; 
+                ResetBonusTracker(); 
+            }
         }
 
-        if (_star.colorType == "yellow")
+        else if (_starColor.Equals("yellow"))
         {
-            print(_star.colorType);
+            print(_starColor);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(true);
@@ -165,20 +173,34 @@ public class S_ResourceGraphics : MonoBehaviour
 
 
             sc_UIManager.GetYellowBonusIcon1().SetActive(true);
-            if (_star.colorType == "yellow" && sc_UIManager.rsg_UI_i_bonusTracker == 2)
+
+            _bonusCounter++;
+            if (_starColor.Equals("yellow") && _bonusCounter == 1)
             {
+                print(_starColor + "2");
+                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetYellowBonusIcon2().SetActive(true);
             }
-            else { sc_UIManager.rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-            if (_star.colorType == "yellow" && sc_UIManager.rsg_UI_i_bonusTracker == 3)
+           /* else 
+            { 
+                _bonusCounter = 0; 
+                ResetBonusTracker(); 
+            }*/
+           else  if (_starColor.Equals("yellow") && _bonusCounter == 2)
             {
+                print(_starColor + "3");
+                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetYellowBonusIcon3().SetActive(true);
             }
-            else { sc_UIManager.rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            else 
+            { 
+                _bonusCounter = 0; 
+                ResetBonusTracker(); 
+            }
         }
-        if (_star.colorType == "blue")
+        else if (_starColor.Equals("blue"))
         {
-            print(_star.colorType);
+            print(_starColor);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(true);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
@@ -194,16 +216,29 @@ public class S_ResourceGraphics : MonoBehaviour
 
 
             sc_UIManager.GetBlueBonusIcon1().SetActive(true);
-            if (_star.colorType == "blue" && sc_UIManager.rsg_UI_i_bonusTracker == 2)
+            _bonusCounter++;
+            if (_starColor.Equals("blue") && _bonusCounter == 1)
             {
+                print(_starColor + "2");
+                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetBlueBonusIcon2().SetActive(true);
             }
-            else { sc_UIManager.rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-            if (_star.colorType == "blue" && sc_UIManager.rsg_UI_i_bonusTracker == 3)
+           /* else 
+            { 
+                _bonusCounter = 0; 
+                ResetBonusTracker(); 
+            }*/
+            else if (_starColor.Equals("blue") && _bonusCounter == 2)
             {
+                print(_starColor + "3" );
+                print("bonus counter:" + _bonusCounter);
                 sc_UIManager.GetBlueBonusIcon3().SetActive(true);
             }
-            else { sc_UIManager.rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            else 
+            { 
+                _bonusCounter = 0; 
+                ResetBonusTracker();
+            }
 
         }
     }

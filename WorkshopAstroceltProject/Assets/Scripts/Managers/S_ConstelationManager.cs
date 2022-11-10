@@ -306,7 +306,7 @@ public class S_ConstelationManager : MonoBehaviour
         {
             if (s_previousStar != s_nullStarInst)
             {
-                // Create the temp line
+                //Create the temp line
                 g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
             }
         }

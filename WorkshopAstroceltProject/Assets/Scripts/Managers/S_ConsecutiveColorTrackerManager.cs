@@ -8,6 +8,7 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private S_Global g_global;
+    
 
     [Header("Bonus Energy Tracker Variables")]
     [SerializeField] string en_cl_str_currentColorType;
@@ -35,12 +36,14 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
             if(GetColorTierTracker() < 3) 
             {
                 SetColorTierTrackerInt(GetColorTierTracker() + 1);
+                g_global.g_UIManager.sc_resourceGraphics.BonusTracker(_energyType, GetColorTierTracker());
             }
         }
         else 
         {
             SetColorTierTrackerInt(1);
             SetCurrentEnergyColor(_energyType);
+            g_global.g_UIManager.sc_resourceGraphics.BonusTracker(_energyType, GetColorTierTracker());
         }
     }
 
@@ -53,6 +56,7 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
     {
         SetCurrentEnergyColor(_energyType);
         SetColorTierTrackerInt(_bonusVal);
+        g_global.g_UIManager.sc_resourceGraphics.BonusTracker(_energyType, _bonusVal);
     }
 
     /// <summary>
@@ -64,6 +68,8 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
     {
         SetCurrentEnergyColor("");
         SetColorTierTrackerInt(0);
+        g_global.g_UIManager.sc_resourceGraphics.ResetBonusTracker();
+
         
     }
 
