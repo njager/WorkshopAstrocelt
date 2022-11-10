@@ -484,6 +484,9 @@ public class S_Enemy : MonoBehaviour
         {
             SetEnemyHealthText();
         }
+
+        // Update the Audio Percentage
+        EnemyHealthAudioPercentage();
     }
 
     /// <summary>
@@ -504,6 +507,53 @@ public class S_Enemy : MonoBehaviour
     private void SetEnemyShieldText()
     {
         g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
+    }
+
+
+    /// <summary>
+    /// On being attacked, set the audio percentage so the FMOD will conform to the new value
+    /// - Josh
+    /// </summary>
+    private void EnemyHealthAudioPercentage()
+    {
+        // Set the random values
+        float _randomInt1 = g_global.g_audioManager.GetRandomFloatNumber();
+        float _randomInt2 = g_global.g_audioManager.GetRandomFloatNumber();
+
+        // Add them to enemy health
+        float _enemyHealth = e_sc_enemyAttributes.GetEnemyHealthValue() + _randomInt1;
+        float _enemyMaxHealth = e_sc_enemyAttributes.GetEnemyMaxHealthValue() + _randomInt2;
+
+        // Calculate and Set the Percentage
+        float _temp = _enemyHealth / _enemyMaxHealth;
+
+        if (e_str_enemyType.Equals("Bananach"))
+        {
+            g_global.g_audioManager.SetBossAudioPercentage(_temp * 100);
+        }
+        else
+        {
+            if(e_i_enemyCount == 1)
+            {
+                g_global.g_audioManager.SetEnemy1AudioPercentage(_temp * 100);
+            }
+            else if (e_i_enemyCount == 2)
+            {
+                g_global.g_audioManager.SetEnemy2AudioPercentage(_temp * 100);
+            }
+            else if (e_i_enemyCount == 3)
+            {
+                g_global.g_audioManager.SetEnemy3AudioPercentage(_temp * 100);
+            }
+            else if (e_i_enemyCount == 4)
+            {
+                g_global.g_audioManager.SetEnemy4AudioPercentage(_temp * 100);
+            }
+            else if (e_i_enemyCount == 5)
+            {
+                g_global.g_audioManager.SetEnemy5AudioPercentage(_temp * 100);
+            }
+        }
     }
 
 

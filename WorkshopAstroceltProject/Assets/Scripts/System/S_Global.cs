@@ -37,6 +37,8 @@ public class S_Global : MonoBehaviour
     public S_ResourceGraphics g_resourceGraphic;
     public S_ConsecutiveColorTrackerManager g_consecutiveColorTrackerManager;
     public S_TooltipManager g_tooltipManager;
+    public S_VFXManager g_vfxManager;
+    public S_AudioManager g_audioManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -121,7 +123,7 @@ public class S_Global : MonoBehaviour
         }
 
         //set the scene ui
-        g_UIManager.ChangeProgressionBar(SceneManager.GetActiveScene().name);
+        //g_UIManager.sc_resourceGraphics.ChangeProgressionBar(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
@@ -165,7 +167,7 @@ public class S_Global : MonoBehaviour
         {
             if (g_ConstellationManager.GetMakingConstellation())
             {
-                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[0]);
+                g_DrawingManager.ConstellationReset(g_ConstellationManager.ls_curConstellation[g_ConstellationManager.ls_curConstellation.Count() - 1]);
             }
         }
 

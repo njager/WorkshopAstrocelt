@@ -142,6 +142,9 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy4IsActive;
     public bool e_b_enemy5IsActive;
 
+    [Header("Boss Enemy")]
+    public S_Enemy e_bossEnemy;
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -826,7 +829,7 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     public void EnemyActionCheck()
     {
-        if (g_global.g_enemyAttributeSheet1 != null) // Check if enemy 1 is present
+        if (e_b_enemy1IsActive == true) // Check if enemy 1 is present
         {
             if (g_global.g_iconManager.ls_e_statusStrings[0] == "attack") //Enemy 1 Attack
             {
@@ -848,7 +851,7 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (g_global.g_enemyAttributeSheet2 != null) // Check if enemy 2 is present
+        if (e_b_enemy2IsActive == true) // Check if enemy 2 is present
         {
             if (g_global.g_iconManager.ls_e_statusStrings[1] == "attack") //Enemy 1 Attack
             {
@@ -870,7 +873,7 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (g_global.g_enemyAttributeSheet3 != null) // Check if enemy 3 is present
+        if (e_b_enemy3IsActive == true) // Check if enemy 3 is present
         {
             if (g_global.g_iconManager.ls_e_statusStrings[2] == "attack") //Enemy 1 Attack
             {
@@ -892,7 +895,7 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (g_global.g_enemyAttributeSheet4 != null) // Check if enemy 4 is present
+        if (e_b_enemy4IsActive == true) // Check if enemy 4 is present
         {
             if (g_global.g_iconManager.ls_e_statusStrings[3] == "attack") //Enemy 1 Attack
             {
@@ -914,7 +917,7 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (g_global.g_enemyAttributeSheet5 != null) // Check if enemy 5 is present
+        if (e_b_enemy5IsActive == true) // Check if enemy 5 is present
         {
             if (g_global.g_iconManager.ls_e_statusStrings[4] == "attack") //Enemy 1 Attack
             {

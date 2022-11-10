@@ -29,9 +29,12 @@ public class S_NodeStar : MonoBehaviour
 
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
-    public bool tl_b_justUsed;
-    public float timer = 0.03f;
-    public bool timerWait = false;
+
+    [Header("Timer Elements")]
+    public float f_timerAmount;
+    public bool tl_b_timerComplete;
+    public bool tl_b_displayedTooltip;
+    public int timerCompleteCheck;
 
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
@@ -51,37 +54,38 @@ public class S_NodeStar : MonoBehaviour
         c_starStartColor = s_starSprite.color;
     }
 
-    public IEnumerator TimerCheck() 
+    private void Update()
     {
-        if(timer > 0) 
+        if (tl_b_mouseEntered == true && tl_b_displayedTooltip == false)
         {
-            timer -= Time.deltaTime;
+            if (f_timerAmount > 0)
+            {
+                f_timerAmount -= Time.deltaTime;
+            }
         }
 
-        if(timer < 0) 
+        if (f_timerAmount < 0 && timerCompleteCheck == 0)
         {
-            timerWait = true;
-        }
-
-        if (timerWait)
-        {
-            tl_b_justUsed = false;
-            yield return null;
+            tl_b_timerComplete = true;
+            timerCompleteCheck += 1;
+            if (tl_b_displayedTooltip == false)
+            {
+                DisplayTooltip();
+            }
         }
     }
-
     private void OnMouseEnter()
     {
         //Tooltip
         tl_b_mouseEntered = true;
-        if(timerWait == true) 
-        {
-            timer = 0.03f;
-        }
+        tl_b_timerComplete = false;
+        tl_b_displayedTooltip = false;
+        timerCompleteCheck = 0;
 
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
 
+        //do this only if the node star has already been clicked
         if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && g_global.g_ConstellationManager.GetMakingConstellation())
@@ -90,13 +94,13 @@ public class S_NodeStar : MonoBehaviour
             }
         }
     }
-
-    private void OnMouseOver()
+    public void DisplayTooltip()
     {
-        if (tl_b_mouseEntered == true && tl_b_justUsed == false)
+        if (tl_b_mouseEntered == true && tl_b_timerComplete == true)
         {
-            //Debug.Log("Triggered Mouse Hover");
+            Debug.Log("Triggered Mouse Hover");
             g_global.g_tooltipManager.SetupToolTipObject(tl_nodeStarTemplate, gameObject.transform);
+            tl_b_displayedTooltip = true;
         }
     }
 
@@ -105,8 +109,12 @@ public class S_NodeStar : MonoBehaviour
         // Tooltip
         g_global.g_tooltipManager.ResetTooltip();
         tl_b_mouseEntered = false;
-        tl_b_justUsed = true;
-        StartCoroutine(TimerCheck());
+        tl_b_timerComplete = false;
+        tl_b_mouseEntered = false;
+        f_timerAmount = 2f;
+        tl_b_displayedTooltip = true;
+        tl_b_displayedTooltip = false;
+        timerCompleteCheck = 0;
 
         if (GetNodeClicked())
         {
@@ -160,7 +168,11 @@ public class S_NodeStar : MonoBehaviour
             Debug.Log("this would be wierd");
             g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
         }
-        else if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.GetMakingConstellation())
+        else if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
+        {
+            g_global.g_DrawingManager.ConstellationReset(g_global.g_ConstellationManager.ls_curConstellation[g_global.g_ConstellationManager.ls_curConstellation.Count-1]);
+        }
+        else if (g_global.g_ConstellationManager.GetMakingConstellation() && b_clickableStar)
         {
 
             Debug.Log("We here?");

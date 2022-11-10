@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 14494855294914393}
   - component: {fileID: 412335825632606560}
   - component: {fileID: 5319751259420549290}
+  - component: {fileID: 1307555393429274292}
   m_Layer: 0
   m_Name: Pf_MeteorChain
   m_TagString: Meteor
@@ -70,6 +71,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1307555393429274292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40220117276276143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6487c79715ce564fb95281ccc287f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tl_tooltipTemplate: {fileID: 11400000, guid: d62ba5063fe5f5e4690ba556b1d2ebaf, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!1 &2899265090330915305
 GameObject:
   m_ObjectHideFlags: 0

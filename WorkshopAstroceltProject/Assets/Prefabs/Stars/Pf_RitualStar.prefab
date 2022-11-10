@@ -414,6 +414,9 @@ MonoBehaviour:
   vectorPoint1: {fileID: 2076318068910844365}
   vectorPoint2: {fileID: 6470999216024021237}
   vectorPoint3: {fileID: 3482611534690371714}
+  s_v3_parentPosition1: {x: 0, y: 0, z: 0}
+  s_v3_parentPosition2: {x: 0, y: 0, z: 0}
+  s_v3_parentPosition3: {x: 0, y: 0, z: 0}
   positionCount: 0
   s_b_point1Used: 0
   s_b_point2Used: 0
@@ -423,6 +426,7 @@ MonoBehaviour:
   - {fileID: 2714163796649640232}
   - {fileID: 8973390240801628696}
   - {fileID: 8374078973639047177}
+  ls_energyPopups: []
 --- !u!114 &7915091844831734677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +454,13 @@ MonoBehaviour:
   s_yellowStarCollider: {fileID: 1299246642019024718}
   f_lowerScaleBound: 0
   f_upperScaleBound: 0.04
-  is_clicked: 0
+  b_hasBeenClicked: 0
+  tl_toolTipTemplate: {fileID: 11400000, guid: b113c7190f0e4df4a8258bddd100bc93, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!60 &8783805457810388088
 PolygonCollider2D:
   m_ObjectHideFlags: 0

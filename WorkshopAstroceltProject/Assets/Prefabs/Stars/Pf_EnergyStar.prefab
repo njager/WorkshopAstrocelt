@@ -426,6 +426,7 @@ MonoBehaviour:
   - {fileID: 3456349590169251796}
   - {fileID: 2927260095717382404}
   - {fileID: 7099628769317840557}
+  ls_energyPopups: []
 --- !u!114 &5411750500188637886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +455,14 @@ MonoBehaviour:
   f_lowerScaleBound: 0
   f_upperScaleBound: 0.05
   b_hasBeenClicked: 0
+  b_clickableStar: 0
+  s_thisStar: {fileID: 0}
+  tl_toolTipTemplate: {fileID: 11400000, guid: 84cba06985fe88b4b84dd57049f6d683, type: 2}
+  tl_b_mouseEntered: 0
+  f_timerAmount: 0
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  timerCompleteCheck: 0
 --- !u!60 &4159885075267746162
 PolygonCollider2D:
   m_ObjectHideFlags: 0

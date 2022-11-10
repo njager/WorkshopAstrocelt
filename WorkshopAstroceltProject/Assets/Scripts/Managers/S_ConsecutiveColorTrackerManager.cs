@@ -11,7 +11,7 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
 
     [Header("Bonus Energy Tracker Variables")]
     [SerializeField] string en_cl_str_currentColorType;
-    [SerializeField] int en_cl_i_colorTierTracker;
+    [SerializeField] int en_cl_i_colorTierTracker = 0;
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -29,6 +29,7 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
     /// <param name="_energyType"></param>
     public void ColorTrackerCheck(string _energyType) 
     {
+        Debug.Log("We have conecutive energy trigger: " + _energyType + " | " + GetCurrentEnergyColor());
         if (_energyType.Equals(GetCurrentEnergyColor()))
         {
             if(GetColorTierTracker() < 3) 
@@ -38,8 +39,32 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
         }
         else 
         {
-            SetColorTierTrackerInt(0);
+            SetColorTierTrackerInt(1);
+            SetCurrentEnergyColor(_energyType);
         }
+    }
+
+    /// <summary>
+    /// Remove and go back to the previous energy value
+    /// -Riley
+    /// </summary>
+    /// <param name="_energyType"></param>
+    public void GoBackForColorTracker(string _energyType, int _bonusVal)
+    {
+        SetCurrentEnergyColor(_energyType);
+        SetColorTierTrackerInt(_bonusVal);
+    }
+
+    /// <summary>
+    /// Set to 0 and clear the string
+    /// gets called after a constellation is finished
+    /// </summary>
+    /// <param name="_energyType"></param>
+    public void ResetColorTracker()
+    {
+        SetCurrentEnergyColor("");
+        SetColorTierTrackerInt(0);
+        
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -72,11 +72,17 @@ public class S_DrawingManager : MonoBehaviour
         //set the previous star and loc
         g_global.g_ConstellationManager.ChangePrevStarAndLoc(_star2, _loc2);
 
-        // Find energy value
-        int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star2.s_star.m_previousLine.gameObject);
+        //add the line multiplier
+        int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star2.s_star.m_previousLine, _star2.colorType);
 
-        // Spawn popups 
-        g_global.g_popupManager.CreatePopUpForStar(_star2, _energy, true);
+        //set the values in s_star to be used later
+        _star2.s_star.i_energy = _energy;
+        _star2.s_star.s_previousColor = g_global.g_consecutiveColorTrackerManager.GetCurrentEnergyColor();
+        _star2.s_star.i_previousBonus = g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+
+
+        // Spawn popups with the
+        g_global.g_popupManager.CreatePopUpForStar(_star2, _star2.s_star.i_energy, true);
 
         // Popups were spawned
         g_global.g_ConstellationManager.SetPopupStatusForCurrentLine(true);
@@ -110,42 +116,10 @@ public class S_DrawingManager : MonoBehaviour
 
         // Remove any popups
 
-        if (_starClassScript.GetPopup2ParentTransform().childCount == 3) // then three popups have spawned
+        foreach (S_StarPopUp _popup in _starClassScript.ls_energyPopups.ToList()) 
         {
-            Debug.Log("S_StarClass - Deleting 3 Popups");
-
-            // Grab all 3 popups
-            S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-            S_StarPopUp _popup2Script = _starClassScript.GetPopup2ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-            S_StarPopUp _popup3Script = _starClassScript.GetPopup3ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-
-            // Delete the popups
-            _popup1Script.DeletePopup();
-            _popup2Script.DeletePopup();
-            _popup3Script.DeletePopup();
-        }
-        else if (_starClassScript.GetPopup2ParentTransform().childCount == 1) // Then two popups have spawned
-        {
-            Debug.Log("S_StarClass - Deleting 2 Popups");
-
-            // Grab both popups
-            S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-            S_StarPopUp _popup2Script = _starClassScript.GetPopup2ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-
-            // Delete the popups
-            _popup1Script.DeletePopup();
-            _popup2Script.DeletePopup();
-
-        }
-        else if (_starClassScript.GetPopup1ParentTransform().childCount == 1) // If one popup
-        {
-            Debug.Log("S_StarClass - Deleting 1 Popup");
-
-            // Grab only one popup through seeking
-            S_StarPopUp _popup1Script = _starClassScript.GetPopup1ParentTransform().GetChild(0).gameObject.GetComponent<S_StarPopUp>();
-
-            // Delete the popup
-            _popup1Script.DeletePopup();
+            _starClassScript.ls_energyPopups.Remove(_popup);
+            _popup.DeletePopup();
         }
 
         //destroy the line
@@ -181,6 +155,27 @@ public class S_DrawingManager : MonoBehaviour
                 _previousStar.gameObject.GetComponent<S_NodeStar>().NodeStarColor();
                 _previousStar.gameObject.GetComponent<S_NodeStar>().SetNodeClicked(false);
             }
+            else if(_previousStar.starType == "Ritual") 
+            {
+                Debug.Log("Here");
+                //make the star clickable again
+                _previousStar.gameObject.GetComponent<S_RitualStar>().b_hasBeenClicked = false;
+            }
+            else if (_previousStar.starType == "Energy")
+            {
+                Debug.Log("Here2");
+                //make the star clickable again
+                _previousStar.gameObject.GetComponent<S_EnergyStar>().b_hasBeenClicked = false;
+            }
+
+            //delete the popups
+            foreach (S_StarPopUp _popup in _previousStar.ls_energyPopups.ToList())
+            {
+                Debug.Log("Popup is getting deleted");
+                _previousStar.ls_energyPopups.Remove(_popup);
+                _popup.DeletePopup();
+            }
+
             S_StarClass _temporalStar = _previousStar.s_star.m_previous;
 
             _previousStar.s_star.m_previous = s_nullStarInst;

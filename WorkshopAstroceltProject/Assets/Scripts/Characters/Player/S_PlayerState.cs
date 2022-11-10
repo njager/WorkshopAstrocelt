@@ -253,5 +253,4 @@ public class S_PlayerState : MonoBehaviour
     {
         p_playerLoseMusic.SetActive(true);
     }
-
 }

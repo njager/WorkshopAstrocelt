@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(InspectorBasedDictionarySpriteString))]
-[CanEditMultipleObjects]
-public class DictionaryEditor : Editor
+//[CustomEditor(typeof(InspectorBasedDictionarySpriteString))]
+//[CanEditMultipleObjects]
+public class DictionaryEditor : MonoBehaviour //Editor
 {
-    SerializedProperty keyValue;
+    /*SerializedProperty keyValue;
     SerializedProperty dataValue;
 
     void OnEnable()
@@ -23,4 +23,5 @@ public class DictionaryEditor : Editor
         EditorGUILayout.PropertyField(dataValue);
         serializedObject.ApplyModifiedProperties();
     }
+    */
 }

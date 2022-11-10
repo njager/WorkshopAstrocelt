@@ -48,7 +48,7 @@ public class S_ConstellationLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Is there collision");
+        //Debug.Log("Is there collision");
         GameObject other = col.gameObject;
         if (other.CompareTag("Meteor"))
         {
@@ -62,7 +62,7 @@ public class S_ConstellationLine : MonoBehaviour
             //Use if lines connecting to the same stars are colliding if(&& other.GetComponent<LineRenderer>() != _prevLine)
             if (s_previousStar.s_star.m_previousLine)
             {
-                Debug.Log(i_index + " Line with this index");
+                //Debug.Log(" Line with this index:"+ i_index);
                 S_ConstellationLine _prevLine = s_previousStar.s_star.m_previousLine;
 
                 //execute if the lines arnt next to eachother
@@ -131,7 +131,7 @@ public class S_ConstellationLine : MonoBehaviour
 
         if(_startPoint == _endPoint)
         {
-            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+            Debug.Log("This should trigger a too small constellation degug");
         }
         else
         {

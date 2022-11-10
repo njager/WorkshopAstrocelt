@@ -13,6 +13,10 @@ public class S_Star
         g_global = S_Global.Instance;
     }
 
+    //Energy Value
+    [Header("Energy")]
+    public int i_energy;
+
     // Stars used to connect to it's other two lines
     [Header("Other Stars")]
     public S_StarClass m_previous;
@@ -22,6 +26,11 @@ public class S_Star
     [Header("Lines Attached to Star")]
     public S_ConstellationLine m_previousLine;
     public S_ConstellationLine m_nextLine;
+
+    //values for consecutive energy
+    [Header("Previous consecutive energy vals")]
+    public string s_previousColor;
+    public int i_previousBonus;
     
     //Functions can be added to be used in other star scripts, tested and works - Josh
 }

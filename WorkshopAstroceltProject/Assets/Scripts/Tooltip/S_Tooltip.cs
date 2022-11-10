@@ -20,8 +20,8 @@ public class S_Tooltip : MonoBehaviour
     [SerializeField] TextMeshProUGUI tlp_tx_bodyText;
 
     [Header("Art Icon Template")]
-    [SerializeField, HideInInspector] List<S_TooltipIcon> tlp_ls_a_artIconEntryList;
-    [SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
+    [SerializeField] List<S_TooltipIcon> tlp_ls_a_artIconEntryList;
+    //[SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
 
     [Header("Backup List Method")]
     public List<Sprite> tlp_ls_a_spriteList;

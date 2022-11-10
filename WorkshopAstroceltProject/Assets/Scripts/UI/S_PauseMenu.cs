@@ -14,6 +14,8 @@ public class S_PauseMenu : MonoBehaviour
     public TMP_Text resolutionLabel;
     public Toggle fullscreenTog;
 
+    public Canvas tutorialCanvas;
+
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +46,11 @@ public class S_PauseMenu : MonoBehaviour
                 updateResLabel();
             }
         }
+
+      /*  if (tutorialCanvas.isActiveAndEnabled)
+        {
+            GameObject.setActive = false;
+        }*/
     }
 
     public void Resume()

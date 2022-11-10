@@ -129,6 +129,7 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(MoveCardballPrefabs());
         }
 
+        SetCardballsSpawnedBool(true);
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         yield return new S_WaitForCardballMovement();
@@ -144,6 +145,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void AddNewCardBall(GameObject _cardballPosition, S_CardTemplate _cardTemplate)
     {
+        //SetCardballsSpawnedBool(false);
         Debug.Log(_cardTemplate);
 
         // Instantiate Cardball
@@ -261,7 +263,7 @@ public class S_Altar : MonoBehaviour
             else
             {
                 //clear energy and reset the bool
-                g_global.g_energyManager.ClearEnergy();
+                //g_global.g_energyManager.ClearEnergy();
 
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
             }
@@ -320,6 +322,7 @@ public class S_Altar : MonoBehaviour
             _cardBall.transform.DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition1.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            //CheckFirstCardball();
             //Debug.Log("Cardballs moving from 2 to 1");
         }
         if (cardballPosition3.transform.childCount == 1)
@@ -351,7 +354,7 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition4.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition4.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         if (cardballSpawnPosition.transform.childCount == 1)
@@ -361,7 +364,7 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition5.transform);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         else
@@ -421,7 +424,7 @@ public class S_Altar : MonoBehaviour
             else
             {
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                g_global.g_energyManager.ClearEnergy();
+                //g_global.g_energyManager.ClearEnergy();
                 //Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }
