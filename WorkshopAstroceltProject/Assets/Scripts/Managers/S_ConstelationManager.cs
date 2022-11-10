@@ -310,6 +310,7 @@ public class S_ConstelationManager : MonoBehaviour
                 g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
             }
         }
+        //print(_star.colorType);
     }
 
 
