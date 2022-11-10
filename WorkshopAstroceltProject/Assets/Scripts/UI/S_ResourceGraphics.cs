@@ -27,6 +27,13 @@ public class S_ResourceGraphics : MonoBehaviour
         ResetBonusTracker();
     }
 
+    private void Update()
+    {
+        EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
+        UpdateResourceBarGraphics();
+        ConstellationTracker();
+    }
+
     public void ResetBonusTracker()
     {
         sc_UIManager.GetDefaultBonusContainer().SetActive(true);
