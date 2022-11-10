@@ -13,8 +13,8 @@ public class S_ResourceGraphics : MonoBehaviour
     [Header("Script Connections")]
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
+    [SerializeField] S_StarClass s_StarClass;
 
-    
 
     private void Awake()
     {
@@ -111,6 +111,7 @@ public class S_ResourceGraphics : MonoBehaviour
     {
        if (_star.colorType == "red")
         {
+            print(_star.colorType);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
@@ -144,7 +145,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
         if (_star.colorType == "yellow")
         {
-
+            print(_star.colorType);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(true);
@@ -177,7 +178,7 @@ public class S_ResourceGraphics : MonoBehaviour
         }
         if (_star.colorType == "blue")
         {
-
+            print(_star.colorType);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(true);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
