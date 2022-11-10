@@ -484,6 +484,9 @@ public class S_Enemy : MonoBehaviour
         {
             SetEnemyHealthText();
         }
+
+        // Update the Audio Percentage
+        EnemyHealthAudioPercentage();
     }
 
     /// <summary>

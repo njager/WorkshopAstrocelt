@@ -19,17 +19,17 @@ public class S_AudioManager : MonoBehaviour
     [SerializeField] float f_randomFloatValue;
 
     [Header("Player Percentage Values")]
-    public float p_f_playerAudioPercentage;
+    public float p_au_f_playerAudioPercentage;
         
     [Header("Enemy Percentage Values")]
-    public float e_f_enemy1AudioPercentage;
-    public float e_f_enemy2AudioPercentage;
-    public float e_f_enemy3AudioPercentage;
-    public float e_f_enemy4AudioPercentage;
-    public float e_f_enemy5AudioPercentage;
+    public float e_au_f_enemy1AudioPercentage;
+    public float e_au_f_enemy2AudioPercentage;
+    public float e_au_f_enemy3AudioPercentage;
+    public float e_au_f_enemy4AudioPercentage;
+    public float e_au_f_enemy5AudioPercentage;
 
     [Header("Boss Percentage Values")]
-    public float e_f_bossAudioPercentage;
+    public float e_au_f_bossAudioPercentage;
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -51,7 +51,7 @@ public class S_AudioManager : MonoBehaviour
     /// </summary>
     private void SetRandomFloatNumber()
     {
-        f_randomFloatValue = Random.Range(0.01f, 0.9f); 
+        f_randomFloatValue = Random.Range(0.00001f, 0.9f); 
     }
 
     /// <summary>
@@ -79,74 +79,74 @@ public class S_AudioManager : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    
+
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.p_f_playerAudioPercentage
+    /// Set the float percentage of the S_AudioManager.p_au_f_playerAudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetPlayerAudioPercentage(float _percentage)
     {
-        p_f_playerAudioPercentage = _percentage;
+        p_au_f_playerAudioPercentage = _percentage;
     }
 
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.e_f_enemy1AudioPercentage
+    /// Set the float percentage of the S_AudioManager.e_au_f_enemy1AudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetEnemy1AudioPercentage(float _percentage)
     {
-        e_f_enemy1AudioPercentage = _percentage;
+        e_au_f_enemy1AudioPercentage = _percentage;
     }
 
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.e_f_enemy2AudioPercentage
+    /// Set the float percentage of the S_AudioManager.e_au_f_enemy2AudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetEnemy2AudioPercentage(float _percentage)
     {
-        e_f_enemy2AudioPercentage = _percentage;
+        e_au_f_enemy2AudioPercentage = _percentage;
     }
 
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.e_f_enemy3AudioPercentage
+    /// Set the float percentage of the S_AudioManager.e_au_f_enemy3AudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetEnemy3AudioPercentage(float _percentage)
     {
-        e_f_enemy3AudioPercentage = _percentage;
+        e_au_f_enemy3AudioPercentage = _percentage;
     }
 
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.e_f_enemy4AudioPercentage
+    /// Set the float percentage of the S_AudioManager.e_au_f_enemy4AudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetEnemy4AudioPercentage(float _percentage)
     {
-        e_f_enemy4AudioPercentage = _percentage;
+        e_au_f_enemy4AudioPercentage = _percentage;
     }
 
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.e_f_enemy5AudioPercentage
+    /// Set the float percentage of the S_AudioManager.e_au_f_enemy5AudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetEnemy5AudioPercentage(float _percentage)
     {
-        e_f_enemy5AudioPercentage = _percentage;
+        e_au_f_enemy5AudioPercentage = _percentage;
     }
 
     /// <summary>
-    /// Set the float percentage of the S_AudioManager.e_f_bossAudioPercentage
+    /// Set the float percentage of the S_AudioManager.e_au_f_bossAudioPercentage
     /// - Josh
     /// </summary>
     /// <param name="_percentage"></param>
     public void SetBossAudioPercentage(float _percentage)
     {
-        e_f_bossAudioPercentage = _percentage;
+        e_au_f_bossAudioPercentage = _percentage;
     }
 }
