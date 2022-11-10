@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_SpriteRendererTooltip : MonoBehaviour
+public class S_ImageRendererTooltipHover : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -92,7 +92,10 @@ public class S_SpriteRendererTooltip : MonoBehaviour
     /// Set tooltip to not automaticallly appear, turn it off
     /// - Josh
     /// </summary>
-    private void OnMouseExit()
+    /// <summary>
+    /// Key thing to remember, we aren't deleting the object per will, but just reusing it all the time
+    /// </summary>
+    public void OnPointerExit()
     {
         g_global.g_tooltipManager.ResetTooltip();
         tl_b_timerComplete = false;
