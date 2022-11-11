@@ -142,6 +142,9 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy4IsActive;
     public bool e_b_enemy5IsActive;
 
+    [Header("Boss Enemy")]
+    public S_Enemy e_bossEnemy;
+
     void Awake()
     {
         g_global = S_Global.Instance;

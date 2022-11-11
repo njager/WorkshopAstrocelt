@@ -13,8 +13,8 @@ public class S_ResourceGraphics : MonoBehaviour
     [Header("Script Connections")]
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
+    [SerializeField] S_StarClass s_StarClass;
 
-    
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class S_ResourceGraphics : MonoBehaviour
         ResetBonusTracker();
     }
 
-    void Update()
+    private void Update()
     {
         EnergyTrackingUIUpdate(); // Temporary, eventually make S_EnergyManager update it on changing of the energy amounts
         UpdateResourceBarGraphics();
@@ -36,22 +36,27 @@ public class S_ResourceGraphics : MonoBehaviour
 
     public void ResetBonusTracker()
     {
-        rsg_UI_defaultBonusContainer.enabled = true;
-        rsg_UI_blueBonusContainer.enabled = false;
-        rsg_UI_yellowBonusContainer.enabled = false;
-        rsg_UI_redBonusContainer.enabled = false;
+        sc_UIManager.GetDefaultBonusContainer().SetActive(true);
+        sc_UIManager.GetBlueBonusContainer().SetActive(false);
+        sc_UIManager.GetYellowBonusContainer().SetActive(false);
+        sc_UIManager.GetRedBonusContainer().SetActive(false);
 
-        rsg_UI_blueBonusIcon1.enabled = false;
-        rsg_UI_blueBonusIcon2.enabled = false;
-        rsg_UI_blueBonusIcon3.enabled = false;
 
-        rsg_UI_yellowBonusIcon1.enabled = false;
-        rsg_UI_yellowBonusIcon2.enabled = false;
-        rsg_UI_yellowBonusIcon3.enabled = false;
 
-        rsg_UI_redBonusIcon1.enabled = false;
-        rsg_UI_redBonusIcon2.enabled = false;
-        rsg_UI_redBonusIcon3.enabled = false;
+        sc_UIManager.GetBlueBonusIcon1().SetActive(false);
+        sc_UIManager.GetBlueBonusIcon2().SetActive(false);
+        sc_UIManager.GetBlueBonusIcon3().SetActive(false);
+
+
+        sc_UIManager.GetYellowBonusIcon1().SetActive(false);
+        sc_UIManager.GetYellowBonusIcon2().SetActive(false);
+        sc_UIManager.GetYellowBonusIcon3().SetActive(false);
+
+
+        sc_UIManager.GetRedBonusIcon1().SetActive(false);
+        sc_UIManager.GetRedBonusIcon2().SetActive(false);
+        sc_UIManager.GetRedBonusIcon3().SetActive(false);
+
     }
 
     /////////////////////////////------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -102,97 +107,119 @@ public class S_ResourceGraphics : MonoBehaviour
     /// - Josh and Goat
     /// </summary>
     /// <param name="_star"></param>
-    public void BonusTracker(S_StarClass _star)
+    public void BonusTracker(string _starColor, int _bonusCounter)
     {
-       if (_star.colorType == "red")
+        print(_bonusCounter);
+        if (_starColor.Equals("red"))
         {
-            rsg_UI_defaultBonusContainer.enabled = false;
-            rsg_UI_blueBonusContainer.enabled = false;
-            rsg_UI_yellowBonusContainer.enabled = false;
-            rsg_UI_redBonusContainer.enabled = true;
+            //turn off the other containers and turn on the red one
+            sc_UIManager.GetDefaultBonusContainer().SetActive(false);
+            sc_UIManager.GetBlueBonusContainer().SetActive(false);
+            sc_UIManager.GetYellowBonusContainer().SetActive(false);
+            sc_UIManager.GetRedBonusContainer().SetActive(true);
 
-            rsg_UI_blueBonusIcon1.enabled = false;
-            rsg_UI_blueBonusIcon2.enabled = false;
-            rsg_UI_blueBonusIcon3.enabled = false;
+            //turn off the other individual icons
+            sc_UIManager.GetBlueBonusIcon1().SetActive(false);
+            sc_UIManager.GetBlueBonusIcon2().SetActive(false);
+            sc_UIManager.GetBlueBonusIcon3().SetActive(false);
 
-            rsg_UI_yellowBonusIcon1.enabled = false;
-            rsg_UI_yellowBonusIcon2.enabled = false;
-            rsg_UI_yellowBonusIcon3.enabled = false;
+            sc_UIManager.GetYellowBonusIcon1().SetActive(false);
+            sc_UIManager.GetYellowBonusIcon2().SetActive(false);
+            sc_UIManager.GetYellowBonusIcon3().SetActive(false);
 
-            rsg_UI_redBonusIcon1.enabled = true;
-            rsg_UI_i_bonusTracker++;
-            if (_star.colorType == "red" && rsg_UI_i_bonusTracker == 2)
+            //turn off the initial Icon
+            sc_UIManager.GetRedBonusIcon1().SetActive(true);
+
+            //Turn on or off additional icons
+            if (_bonusCounter.Equals(2))
             {
-                rsg_UI_redBonusIcon2.enabled = true;
+                sc_UIManager.GetRedBonusIcon2().SetActive(true);
+                sc_UIManager.GetRedBonusIcon3().SetActive(false);
             }
-            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-            if (_star.colorType == "red" && rsg_UI_i_bonusTracker == 3)
+            else if (_bonusCounter.Equals(3))
             {
-                rsg_UI_redBonusIcon3.enabled = true;
+                sc_UIManager.GetRedBonusIcon2().SetActive(true);
+                sc_UIManager.GetRedBonusIcon3().SetActive(true);
             }
-            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            else
+            {
+                sc_UIManager.GetRedBonusIcon2().SetActive(false);
+                sc_UIManager.GetRedBonusIcon3().SetActive(false);
+            }
         }
-
-        if (_star.colorType == "yellow")
+        else if (_starColor.Equals("yellow"))
         {
-            rsg_UI_defaultBonusContainer.enabled = false;
-            rsg_UI_blueBonusContainer.enabled = false;
-            rsg_UI_yellowBonusContainer.enabled = true;
-            rsg_UI_redBonusContainer.enabled = false;
+            //turn off the other containers and turn on the yellow one
+            sc_UIManager.GetDefaultBonusContainer().SetActive(false);
+            sc_UIManager.GetBlueBonusContainer().SetActive(false);
+            sc_UIManager.GetYellowBonusContainer().SetActive(true);
+            sc_UIManager.GetRedBonusContainer().SetActive(false);
 
-            rsg_UI_blueBonusIcon1.enabled = false;
-            rsg_UI_blueBonusIcon2.enabled = false;
-            rsg_UI_blueBonusIcon3.enabled = false;
+            //turn off the other individual icons
+            sc_UIManager.GetBlueBonusIcon1().SetActive(false);
+            sc_UIManager.GetBlueBonusIcon2().SetActive(false);
+            sc_UIManager.GetBlueBonusIcon3().SetActive(false);
 
-            rsg_UI_yellowBonusIcon1.enabled = true;
-            rsg_UI_i_bonusTracker++;
-            
+            sc_UIManager.GetRedBonusIcon1().SetActive(false);
+            sc_UIManager.GetRedBonusIcon2().SetActive(false);
+            sc_UIManager.GetRedBonusIcon3().SetActive(false);
 
-            rsg_UI_redBonusIcon1.enabled = false;
-            rsg_UI_redBonusIcon2.enabled = false;
-            rsg_UI_redBonusIcon3.enabled = false;
-            if(_star.colorType == "yellow" && rsg_UI_i_bonusTracker == 2)
+            //turn off the other initial icon
+            sc_UIManager.GetYellowBonusIcon1().SetActive(true);
+
+            //Turn on or off additional icons
+            if (_bonusCounter.Equals(2))
             {
-                rsg_UI_yellowBonusIcon2.enabled = true;
+                sc_UIManager.GetYellowBonusIcon2().SetActive(true);
+                sc_UIManager.GetYellowBonusIcon3().SetActive(false);
             }
-            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-            if (_star.colorType == "yellow" && rsg_UI_i_bonusTracker == 3)
+            else if (_bonusCounter.Equals(3))
             {
-                rsg_UI_yellowBonusIcon3.enabled = true;
+                sc_UIManager.GetYellowBonusIcon2().SetActive(true);
+                sc_UIManager.GetYellowBonusIcon3().SetActive(true);
             }
-            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
+            else
+            {
+                sc_UIManager.GetYellowBonusIcon2().SetActive(false);
+                sc_UIManager.GetYellowBonusIcon3().SetActive(false);
+            }
         }
-        if (_star.colorType == "blue")
+        else if (_starColor.Equals("blue"))
         {
-            rsg_UI_defaultBonusContainer.enabled = false;
-            rsg_UI_blueBonusContainer.enabled = true;
-            rsg_UI_yellowBonusContainer.enabled = false;
-            rsg_UI_redBonusContainer.enabled = false;
+            //turn off the other containers and turn on the blue one
+            sc_UIManager.GetDefaultBonusContainer().SetActive(false);
+            sc_UIManager.GetBlueBonusContainer().SetActive(true);
+            sc_UIManager.GetYellowBonusContainer().SetActive(false);
+            sc_UIManager.GetRedBonusContainer().SetActive(false);
 
-            rsg_UI_blueBonusIcon1.enabled = true;
-            rsg_UI_blueBonusIcon2.enabled = false;
-            rsg_UI_blueBonusIcon3.enabled = false;
-            rsg_UI_i_bonusTracker++;
+            //turn off the other individual icons
+            sc_UIManager.GetRedBonusIcon1().SetActive(false);
+            sc_UIManager.GetRedBonusIcon2().SetActive(false);
+            sc_UIManager.GetRedBonusIcon3().SetActive(false);
 
-            rsg_UI_yellowBonusIcon1.enabled = false;
-            rsg_UI_yellowBonusIcon2.enabled = false;
-            rsg_UI_yellowBonusIcon3.enabled = false;
+            sc_UIManager.GetYellowBonusIcon1().SetActive(false);
+            sc_UIManager.GetYellowBonusIcon2().SetActive(false);
+            sc_UIManager.GetYellowBonusIcon3().SetActive(false);
 
-            rsg_UI_redBonusIcon1.enabled = false;
-            rsg_UI_redBonusIcon2.enabled = false;
-            rsg_UI_redBonusIcon3.enabled = false;
+            //turn off the other initial icon
+            sc_UIManager.GetBlueBonusIcon1().SetActive(true);
 
-            if (_star.colorType == "blue" && rsg_UI_i_bonusTracker == 2)
+            //Turn on or off additional icons
+            if (_bonusCounter.Equals(2))
             {
-                rsg_UI_blueBonusIcon2.enabled = true;
+                sc_UIManager.GetBlueBonusIcon2().SetActive(true);
+                sc_UIManager.GetBlueBonusIcon3().SetActive(false);
             }
-            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-            if (_star.colorType == "blue" && rsg_UI_i_bonusTracker == 3)
+            else if (_bonusCounter.Equals(3))
             {
-                rsg_UI_blueBonusIcon3.enabled = true;
+                sc_UIManager.GetBlueBonusIcon2().SetActive(true);
+                sc_UIManager.GetBlueBonusIcon3().SetActive(true);
             }
-            else { rsg_UI_i_bonusTracker = 1; ResetBonusTracker(); }
-
+            else
+            {
+                sc_UIManager.GetBlueBonusIcon2().SetActive(false);
+                sc_UIManager.GetBlueBonusIcon3().SetActive(false);
+            }
         }
     }
 
@@ -207,122 +234,136 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         if (_scene == "Scn_1stEnemyEncounter")
         {
-            GetUISkull1Parent().SetActive(false);
+            sc_UIManager.GetUISkull1Parent().SetActive(true);
+            sc_UIManager.GetSkull1BaseAsset().SetActive(true);
+            sc_UIManager.GetSkull1CrackedAsset().SetActive(false);
 
-            Skull2.enabled = true;
-            Skull2_Crack.enabled = false;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2CrackedAsset().SetActive(false);
+            sc_UIManager.GetSkull2BaseAsset().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            Skull3.enabled = true;
-            Skull3_Crack.enabled = false;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetSkull3Parent().SetActive(true);
+            sc_UIManager.GetSkull3BaseAsset().SetActive(true);
+            sc_UIManager.GetSkull3CrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            SkullBoss.enabled = true;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetBossSkullParent().SetActive(true);
+            sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
+            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
+            sc_UIManager.GetEventEncounterParent().SetActive(true);
+            sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
+            sc_UIManager.GetEventEncounterFinishedAsset().SetActive(false);
+            //encounterSprite_Selector.enabled = false;
         }
 
         if (_scene == "Scn_2ndEnemyEncounter")
         {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetUISkull1Parent().SetActive(true);
+            sc_UIManager.GetSkull1BaseAsset().SetActive(false);
+            sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            Skull2.enabled = true;
-            Skull2_Crack.enabled = false;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetSkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2CrackedAsset().SetActive(false);
+            sc_UIManager.GetSkull2BaseAsset().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            Skull3.enabled = true;
-            Skull3_Crack.enabled = false;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetSkull3Parent().SetActive(true);
+            sc_UIManager.GetSkull3BaseAsset().SetActive(true);
+            sc_UIManager.GetSkull3CrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            SkullBoss.enabled = true;
-            GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetBossSkullParent().SetActive(true);
+            sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
+            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
+            sc_UIManager.GetEventEncounterParent().SetActive(true);
+            sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
+            sc_UIManager.GetEventEncounterFinishedAsset().SetActive(false);
         }
 
         if (_scene == "Scn_3rdEnemyEncounter")
         {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+            sc_UIManager.GetUISkull1Parent().SetActive(true);
+            sc_UIManager.GetSkull1BaseAsset().SetActive(false);
+            sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            Skull2.enabled = false;
-            Skull2_Crack.enabled = true;
-            Skull2_Selector.enabled = false;
+            sc_UIManager.GetSkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
+            sc_UIManager.GetSkull2BaseAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            Skull3.enabled = true;
-            Skull3_Crack.enabled = false;
-            Skull3_Selector.enabled = false;
+            sc_UIManager.GetSkull3Parent().SetActive(true);
+            sc_UIManager.GetSkull3BaseAsset().SetActive(true);
+            sc_UIManager.GetSkull3CrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = true;
+            sc_UIManager.GetBossSkullParent().SetActive(true);
+            sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
+            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
+            sc_UIManager.GetEventEncounterParent().SetActive(true);
+            sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
+            sc_UIManager.GetEventEncounterFinishedAsset().SetActive(false);
         }
 
         if (_scene == "Scn_4thEnemyEncounter")
         {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+            sc_UIManager.GetUISkull1Parent().SetActive(true);
+            sc_UIManager.GetSkull1BaseAsset().SetActive(false);
+            sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            Skull2.enabled = false;
-            Skull2_Crack.enabled = true;
-            Skull2_Selector.enabled = false;
+            sc_UIManager.GetSkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
+            sc_UIManager.GetSkull2BaseAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            Skull3_Crack.enabled = true;
-            Skull3.enabled = false;
-            Skull3_Selector.enabled = false;
+            sc_UIManager.GetSkull3Parent().SetActive(true);
+            sc_UIManager.GetSkull3BaseAsset().SetActive(false);
+            sc_UIManager.GetSkull3CrackedAsset().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            SkullBoss.enabled = true;
-            SkullBoss_Selector.enabled = true;
+            sc_UIManager.GetBossSkullParent().SetActive(true);
+            sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
+            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = false;
+            sc_UIManager.GetEventEncounterParent().SetActive(true);
+            sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
+            sc_UIManager.GetEventEncounterFinishedAsset().SetActive(false);
         }
 
         if (_scene == "Event1-Bog" || _scene == "Event2-Mushrooms" || _scene == "Event3-Victory")
         {
-            Skull1_Crack.enabled = true;
-            Skull1.enabled = false;
-            Skull1_Selector.enabled = false;
+            sc_UIManager.GetUISkull1Parent().SetActive(true);
+            sc_UIManager.GetSkull1BaseAsset().SetActive(false);
+            sc_UIManager.GetSkull1CrackedAsset().SetActive(true);
 
-            Skull2.enabled = false;
-            Skull2_Crack.enabled = true;
-            Skull2_Selector.enabled = false;
+            sc_UIManager.GetSkull2Parent().SetActive(true);
+            sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
+            sc_UIManager.GetSkull2BaseAsset().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            Skull3_Crack.enabled = true;
-            Skull3.enabled = false;
-            Skull3_Selector.enabled = false;
+            sc_UIManager.GetSkull3Parent().SetActive(true);
+            sc_UIManager.GetSkull3BaseAsset().SetActive(false);
+            sc_UIManager.GetSkull3CrackedAsset().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            SkullBoss.enabled = false;
-            SkullBoss_Selector.enabled = false;
+            sc_UIManager.GetBossSkullParent().SetActive(true);
+            sc_UIManager.GetBossSkullBaseAsset().SetActive(false);
+            sc_UIManager.GetBossSkullCrackedAsset().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
-            encounterSprite.enabled = true;
-            encounterSprite_Selector.enabled = true;
+            sc_UIManager.GetEventEncounterParent().SetActive(true);
+            sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
+            sc_UIManager.GetEventEncounterFinishedAsset().SetActive(false);
         }
     }
 
 
-    /*rsg_UI_encounterSelector; GetUIEncounterSelector()
-rsg_UI_skull1Parent; GetUISkull1Parent()
-rsg_UI_skull1BaseAsset; GetSkull1BaseAsset()
-rsg_UI_skull1CrackedAsset; GetSkull1CrackedAsset()
-rsg_UI_skull2Parent; GetSkull2CrackedAsset()
-rsg_UI_skull2BaseAsset; GetSkull2BaseAsset()
-rsg_UI_skull2CrackedAsset; GetSkull2CrackedAsset()
-rsg_UI_skull3Parent; GetSkull3Parent()
-rsg_UI_skull3BaseAsset; GetSkull3BaseAsset()
-rsg_UI_skull3CrackedAsset; GetSkull3CrackedAsset()
-rsg_UI_bossSkullParent; GetBossSkullParent()
-rsg_UI_bossSkullBaseAsset; GetBossSkullBaseAsset()
-rsg_UI_bossSkullCrackedAsset; GetBossSkullCrackedAsset()
-rsg_UI_eventEncounterBaseAsset; GetEventEncounterBaseAsset()
-rsg_UI_eventEncounterFinishedAsset; GetEventEncounterFinishedAsset();*/
+  
 }

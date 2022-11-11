@@ -38,6 +38,7 @@ public class S_Global : MonoBehaviour
     public S_ConsecutiveColorTrackerManager g_consecutiveColorTrackerManager;
     public S_TooltipManager g_tooltipManager;
     public S_VFXManager g_vfxManager;
+    public S_AudioManager g_audioManager;
 
     [Header("Character States")]
     public bool g_b_playerTurn;

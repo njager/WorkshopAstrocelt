@@ -8,10 +8,11 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private S_Global g_global;
+    
 
     [Header("Bonus Energy Tracker Variables")]
     [SerializeField] string en_cl_str_currentColorType;
-    [SerializeField] int en_cl_i_colorTierTracker;
+    [SerializeField] int en_cl_i_colorTierTracker = 0;
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -29,17 +30,45 @@ public class S_ConsecutiveColorTrackerManager : MonoBehaviour
     /// <param name="_energyType"></param>
     public void ColorTrackerCheck(string _energyType) 
     {
+        Debug.Log("We have conecutive energy trigger: " + _energyType + " | " + GetCurrentEnergyColor());
         if (_energyType.Equals(GetCurrentEnergyColor()))
         {
             if(GetColorTierTracker() < 3) 
             {
                 SetColorTierTrackerInt(GetColorTierTracker() + 1);
+                g_global.g_UIManager.sc_resourceGraphics.BonusTracker(_energyType, GetColorTierTracker());
             }
         }
         else 
         {
-            SetColorTierTrackerInt(0);
+            SetColorTierTrackerInt(1);
+            SetCurrentEnergyColor(_energyType);
+            g_global.g_UIManager.sc_resourceGraphics.BonusTracker(_energyType, GetColorTierTracker());
         }
+    }
+
+    /// <summary>
+    /// Remove and go back to the previous energy value
+    /// -Riley
+    /// </summary>
+    /// <param name="_energyType"></param>
+    public void GoBackForColorTracker(string _energyType, int _bonusVal)
+    {
+        SetCurrentEnergyColor(_energyType);
+        SetColorTierTrackerInt(_bonusVal);
+        g_global.g_UIManager.sc_resourceGraphics.BonusTracker(_energyType, _bonusVal);
+    }
+
+    /// <summary>
+    /// Set to 0 and clear the string
+    /// gets called after a constellation is finished
+    /// </summary>
+    /// <param name="_energyType"></param>
+    public void ResetColorTracker()
+    {
+        SetCurrentEnergyColor("");
+        SetColorTierTrackerInt(0);
+        g_global.g_UIManager.sc_resourceGraphics.ResetBonusTracker();
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
