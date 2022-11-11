@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: response3a
   m_EditorClassIdentifier: 
   s_responseText: 'Even these corrupted creatures had a life. They deserve some rights
-    for whereever they are going [Gain 10 health: HIGH]'
+    for whereever they are going
+
+    [Gain 10 health: HIGH]'
   r_reward:
     i_value: 10
-    s_rewardString: You feel rejuvinated from the ceremony. [Gain 10 health]
+    s_rewardString: "You feel rejuvinated from the ceremony. \n[Gained 10 health]"
     b_boneReward: 0
     b_healthReward: 1
     b_cardReward: 0
@@ -25,4 +27,4 @@ MonoBehaviour:
     b_healthFailure: 0
     b_cardFailure: 0
   f_failureChance: 0
-  s_failureText: 
+  s_failureText: BUG
