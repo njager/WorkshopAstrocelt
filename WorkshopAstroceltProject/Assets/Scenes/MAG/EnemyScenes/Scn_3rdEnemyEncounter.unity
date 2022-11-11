@@ -1451,17 +1451,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2091548596591148109, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
   m_PrefabInstance: {fileID: 252231159}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &292128439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3378431176010901683, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
-  m_PrefabInstance: {fileID: 1701365860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &315449641
 GameObject:
   m_ObjectHideFlags: 0
@@ -7885,33 +7874,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2201438810836494094, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
   m_PrefabInstance: {fileID: 1701365860}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1701365862 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1886944652799673640, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
-  m_PrefabInstance: {fileID: 1701365860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1701365863 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5296318188900015078, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
-  m_PrefabInstance: {fileID: 1701365860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1701365864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5684628581951638792, guid: 1e1cf8e4ba79b3e41add821690c68d1b, type: 3}
-  m_PrefabInstance: {fileID: 1701365860}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1712362972
 GameObject:
   m_ObjectHideFlags: 0
@@ -10861,6 +10823,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4095377578284928914, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: winText
       value: 
@@ -11082,10 +11048,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: c_cardCount
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: resetCanvas
       value: 
       objectReference: {fileID: 1845475216}
@@ -11142,29 +11104,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1973806048}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy1Selector
-      value: 
-      objectReference: {fileID: 1701365864}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: en_tx_yellowText
       value: 
       objectReference: {fileID: 1685864546}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy1HealthBar
-      value: 
-      objectReference: {fileID: 1701365862}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy2HealthBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy3HealthBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: p_playerHealthBar
-      value: 
-      objectReference: {fileID: 97589811}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: SkullBoss_Selector
       value: 
@@ -11182,22 +11124,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1918797556}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy2ShieldIcon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy2StunEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy3ShieldIcon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy3StunEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: p_playerShieldIcon
       value: 
       objectReference: {fileID: 721031506}
@@ -11210,14 +11136,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 443543199}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy2BleedEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy3BleedEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: p_playerBleedEffect
       value: 
       objectReference: {fileID: 774201797}
@@ -11226,61 +11144,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 216612291}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy2ShieldOverlay
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy3ShieldOverlay
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_tx_enemy1HealthText
-      value: 
-      objectReference: {fileID: 292128439}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_tx_enemy1ShieldText
-      value: 
-      objectReference: {fileID: 1701365863}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_tx_enemy2HealthText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_tx_enemy2ShieldText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_tx_enemy3HealthText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_tx_enemy3ShieldText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: p_playerShieldOverlay
       value: 
       objectReference: {fileID: 1285422634}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: p_tx_playerHealthText
-      value: 
-      objectReference: {fileID: 73390825}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: p_tx_playerShieldText
-      value: 
-      objectReference: {fileID: 238214977}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: e_enemy1ResistantEffect
       value: 
       objectReference: {fileID: 337316425}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy2ResistantEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: e_enemy3ResistantEffect
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: p_playerResistantEffect
       value: 
@@ -11301,14 +11171,6 @@ PrefabInstance:
       propertyPath: en_tx_yellowEnergyTrackerText
       value: 
       objectReference: {fileID: 1685864546}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: p_playerHealthResourceBarText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380998857111, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: co_tx_constellationTrackerText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_altar
       value: 
