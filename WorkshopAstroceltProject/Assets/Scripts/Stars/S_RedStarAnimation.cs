@@ -15,11 +15,6 @@ public class S_RedStarAnimation : MonoBehaviour
     [Header("# of frames before attempting to play animation")]
     public int i_frames;
 
-    private void Awake()
-    {
-        StartCoroutine(PlayAnimation());
-    }
-
     public IEnumerator PlayAnimation()
     {
         yield return new WaitForEndOfFrame();

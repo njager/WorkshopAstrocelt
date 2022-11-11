@@ -15,11 +15,6 @@ public class S_YellowStarAnimation : MonoBehaviour
     [Header("# of frames before attempting to play animation")]
     public int i_frames;
 
-    private void Awake()
-    {
-        StartCoroutine(PlayYellowAnimation());
-    }
-
     public IEnumerator PlayYellowAnimation()
     {
         yield return new WaitForEndOfFrame();

@@ -167,25 +167,22 @@ public class S_ConstelationManager : MonoBehaviour
                 g_global.g_energyManager.StoreEnergy("red", _star.s_star.i_energy);
 
                 //trigger animation
-                StartCoroutine(_rStar.s_redRitualStarGraphic.GetComponent<S_RedStarAnimation>().PlayAnimation());
+                _rStar.s_redRitualStarGraphic.GetComponent<Animator>().enabled = true;
             }
             else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
             { 
                 g_global.g_energyManager.StoreEnergy("yellow", _star.s_star.i_energy);
 
                 //trigger animation
-                StartCoroutine(_rStar.s_yellowRitualStarGraphic.GetComponent<S_YellowStarAnimation>().PlayYellowAnimation());
+                _rStar.s_yellowRitualStarGraphic.GetComponent<Animator>().enabled = true;
             }
             else if (_rStar.s_b_blueColor) 
             { 
                 g_global.g_energyManager.StoreEnergy("blue", _star.s_star.i_energy);
 
                 //trigger animation
-                StartCoroutine(_rStar.s_blueRitualStarGraphic.GetComponent<S_BlueStarAnimation>().PlayBlueAnimation());
+                _rStar.s_blueRitualStarGraphic.GetComponent<Animator>().enabled = true;
             }
-
-            //trigger animation
-            StartCoroutine(_rStar.s_redRitualStarGraphic.GetComponent<S_RedStarAnimation>().PlayAnimation());
         }
         else
         {
@@ -201,21 +198,21 @@ public class S_ConstelationManager : MonoBehaviour
                 g_global.g_energyManager.StoreEnergy("red", _star.s_star.i_energy);
 
                 //trigger animation
-                StartCoroutine(_eStar.s_redEnergyStarGraphic.GetComponent<S_RedStarAnimation>().PlayAnimation());
+                _eStar.s_redEnergyStarGraphic.GetComponent<Animator>().enabled = true;
             }
             else if (_eStar.s_b_yellowColor) 
             { 
                 g_global.g_energyManager.StoreEnergy("yellow", _star.s_star.i_energy);
 
                 //trigger animation
-                StartCoroutine(_eStar.s_yellowEnergyStarGraphic.GetComponent<S_YellowStarAnimation>().PlayYellowAnimation());
+                _eStar.s_yellowEnergyStarGraphic.GetComponent<Animator>().enabled = true;
             }
             else if (_eStar.s_b_blueColor) 
             { 
                 g_global.g_energyManager.StoreEnergy("blue", _star.s_star.i_energy);
 
                 //trigger animation
-                StartCoroutine(_eStar.s_blueEnergyStarGraphic.GetComponent<S_BlueStarAnimation>().PlayBlueAnimation());
+                _eStar.s_blueEnergyStarGraphic.GetComponent<Animator>().enabled = true;
             }
         }
 
@@ -273,6 +270,9 @@ public class S_ConstelationManager : MonoBehaviour
 
         //Reset bonus energy
         g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
+
+        //delete the rest of the card balls
+        //g_global.g_popupManager.ClearAllPopups();
 
         //set the bool
         b_makingConstellation = false;

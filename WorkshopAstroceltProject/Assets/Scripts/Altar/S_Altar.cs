@@ -401,7 +401,7 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
-                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 //g_global.g_energyManager.ClearEnergy();
                 //Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());

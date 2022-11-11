@@ -92,7 +92,6 @@ public class S_EnergyManager : MonoBehaviour
         i_blueEnergy = 0;
 
         g_global.g_ConstellationManager.i_starSound = 0;
-        g_global.g_ConstellationManager.SetStarLockOutBool(true);
     }
 
     /// <summary>

@@ -14,11 +14,6 @@ public class S_BlueStarAnimation : MonoBehaviour
     [Header("# of frames before attempting to play animation")]
     public int i_frames;
 
-    private void Awake()
-    {
-        StartCoroutine(PlayBlueAnimation());
-    }
-
     public IEnumerator PlayBlueAnimation()
     {
         yield return new WaitForEndOfFrame();
