@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class S_MapGeneration : MonoBehaviour
 {
@@ -27,10 +28,52 @@ public class S_MapGeneration : MonoBehaviour
     public GameObject map12;
     public GameObject map13;
 
+    [Header("PreviousMap")]
     public GameObject activeMap;
 
     [Header("Map that was Choosen")]
     public int mp_i_previousMapNum;
+
+    // Adding this dumb code for bug fixing purposes
+
+    [Header("Map 1 Star List")]
+    public List<S_StarClass> ls_s_map1Stars = new List<S_StarClass>();
+
+    [Header("Map 2 Star List")]
+    public List<S_StarClass> ls_s_map2Stars = new List<S_StarClass>();
+
+    [Header("Map 3 Star List")]
+    public List<S_StarClass> ls_s_map3Stars = new List<S_StarClass>();
+
+    [Header("Map 4 Star List")]
+    public List<S_StarClass> ls_s_map4Stars = new List<S_StarClass>();
+
+    [Header("Map 5 Star List")]
+    public List<S_StarClass> ls_s_map5Stars = new List<S_StarClass>();
+
+    [Header("Map 6 Star List")]
+    public List<S_StarClass> ls_s_map6Stars = new List<S_StarClass>();
+
+    [Header("Map 7 Star List")]
+    public List<S_StarClass> ls_s_map7Stars = new List<S_StarClass>();
+
+    [Header("Map 8 Star List")]
+    public List<S_StarClass> ls_s_map8Stars = new List<S_StarClass>();
+
+    [Header("Map 9 Star List")]
+    public List<S_StarClass> ls_s_map9Stars = new List<S_StarClass>();
+
+    [Header("Map 10 Star List")]
+    public List<S_StarClass> ls_s_map10Stars = new List<S_StarClass>();
+
+    [Header("Map 11 Star List")]
+    public List<S_StarClass> ls_s_map11Stars = new List<S_StarClass>();
+
+    [Header("Map 12 Star List")]
+    public List<S_StarClass> ls_s_map12Stars = new List<S_StarClass>();
+
+    [Header("Map 13 Star List")]
+    public List<S_StarClass> ls_s_map13Stars = new List<S_StarClass>();
 
     //Will grab chunks here
     private void Awake()
@@ -53,6 +96,74 @@ public class S_MapGeneration : MonoBehaviour
         map13.SetActive(false);
 
         RandomMapSelector();
+    }
+
+    public void ResetStarsInPreviousMap()
+    {
+        if(mp_i_previousMapNum == 1)
+        {
+            foreach(S_StarClass _star in ls_s_map1Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if(_star.starType.Equals("Ritual"))
+                {
+
+                }
+            }
+        }
+        else if(mp_i_previousMapNum == 2)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 3)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 4)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 5)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 6)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 7)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 8)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 9)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 10)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 11)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 12)
+        {
+
+        }
+        else if (mp_i_previousMapNum == 13)
+        {
+
+        }
     }
 
     /// <summary>
