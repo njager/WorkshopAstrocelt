@@ -20,6 +20,7 @@ public class S_CharacterGraphics : MonoBehaviour
     private void Start()
     {
         sc_UIManager.GetPlayerCardSelector().SetActive(false);
+        EnemyShieldingUIToggle();
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
