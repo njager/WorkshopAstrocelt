@@ -43,6 +43,9 @@ public class S_NodeStar : MonoBehaviour
         s_starSprite = s_starGraphic.GetComponent<SpriteRenderer>();
 
         c_starStartColor = s_starSprite.color;
+
+        // Node Star Add (may break, lets see)
+        g_global.g_ls_nodeStarList.Add(this);
     }
 
     private void OnMouseEnter()

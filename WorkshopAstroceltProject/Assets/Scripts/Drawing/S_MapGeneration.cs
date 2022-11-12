@@ -11,7 +11,7 @@ public class S_MapGeneration : MonoBehaviour
     /// </summary>
 
     //Private variables
-    private S_Global global;
+    private S_Global g_global;
 
     [Header("Map References")]
     public GameObject map1;
@@ -33,6 +33,9 @@ public class S_MapGeneration : MonoBehaviour
 
     [Header("Map that was Choosen")]
     public int mp_i_previousMapNum;
+
+    [Header("Energy Star Prefab")]
+    [SerializeField] GameObject s_energyStarPrefab;
 
     // Adding this dumb code for bug fixing purposes
 
@@ -78,7 +81,7 @@ public class S_MapGeneration : MonoBehaviour
     //Will grab chunks here
     private void Awake()
     {
-        global = S_Global.Instance;
+        g_global = S_Global.Instance;
 
         //Temporary calls for current map structure
         map1.SetActive(false);
@@ -342,6 +345,25 @@ public class S_MapGeneration : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Hel[per function to replace upgraded node stars
+    /// - Josh
+    /// </summary>
+    /// <param name="_mapNum"></param>
+    private void ReplaceNodeStars(int _mapNum)
+    {
+        foreach(S_NodeStar _nodeStar in g_global.g_ls_nodeStarList.ToList())
+        {
+            Vector3 _currentPosition = _nodeStar.transform.position;
+            Instantiate(s_energyStarPrefab, _currentPosition, Quaternion.identity);
+            Transform _parentTransform = TransformFromMapNumber(_mapNum);
+            _parentTransform.SetParent(_parentTransform);
+            g_global.g_ls_nodeStarList.Remove(_nodeStar);
+            Destroy(_nodeStar);
+        }
+    }
+
     /// <summary>
     /// Chooses maps randomly, with no direct repeats
     /// Though yes it's dirty
@@ -359,6 +381,7 @@ public class S_MapGeneration : MonoBehaviour
         if(_mapNumChosen != mp_i_previousMapNum)
         {
             ResetStarsInPreviousMap();
+            ReplaceNodeStars(mp_i_previousMapNum);
             if (_mapNumChosen == 1) // Map 1
             {
                 //Debug.Log("Map 1 Chosen");
@@ -743,6 +766,72 @@ public class S_MapGeneration : MonoBehaviour
         activeMap = map13;
     }
 
+
+    /// <summary>
+    /// Helper function to get parent function to reparent newly added stars
+    /// - Josh
+    /// </summary>
+    /// <param name="_mapNum"></param>
+    /// <returns></returns>
+    public Transform TransformFromMapNumber(int _mapNum)
+    {
+        if (_mapNum == 1)
+        {
+            return map1.transform;
+        }
+        else if (_mapNum == 2)
+        {
+            return map2.transform;
+        }
+        else if (_mapNum == 3)
+        {
+            return map3.transform;
+        }
+        else if (_mapNum == 4)
+        {
+            return map4.transform;
+        }
+        else if (_mapNum == 5)
+        {
+            return map5.transform;
+        }
+        else if (_mapNum == 6)
+        {
+            return map6.transform;
+        }
+        else if (_mapNum == 7)
+        {
+            return map7.transform;
+        }
+        else if (_mapNum == 8)
+        {
+            return map8.transform;
+        }
+        else if (_mapNum == 9)
+        {
+            return map9.transform;
+        }
+        else if (_mapNum == 10)
+        {
+            return map10.transform;
+        }
+        else if (_mapNum == 11)
+        {
+            return map11.transform;
+        }
+        else if (_mapNum == 12)
+        {
+            return map12.transform;
+        }
+        else if (_mapNum == 13)
+        {
+            return map13.transform;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     /// <summary>
     /// Automatically grab the children, populate the list

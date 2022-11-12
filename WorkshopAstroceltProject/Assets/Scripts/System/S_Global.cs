@@ -81,6 +81,7 @@ public class S_Global : MonoBehaviour
     public List<S_StarPopUp> g_ls_starPopup;
     public List<S_Cardball> g_ls_cardBallPrefabs;
     public List<S_Enemy> g_ls_activeEnemies;
+    public List<S_NodeStar> g_ls_nodeStarList; // For clearing
 
     [Header("Enemy Positions")]
     public GameObject g_e_enemyPosition1;
