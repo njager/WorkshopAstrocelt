@@ -53,7 +53,7 @@ public class S_PlayerAttributes : MonoBehaviour
         // load some sort of array to global and this script
         g_global.g_playerAttributeSheet = this;
 
-        p_i_health = _gameManager.i_playerHealth;
+        SetPlayerHealthValue(_gameManager.i_playerHealth);
         p_i_maxHealth = _gameManager.i_healthMax;
         p_i_shield = _gameManager.i_shield;
         p_i_maxShield = _gameManager.i_shieldMax;

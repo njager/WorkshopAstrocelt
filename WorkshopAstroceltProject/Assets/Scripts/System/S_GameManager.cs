@@ -29,9 +29,11 @@ public class S_GameManager : MonoBehaviour
     {
         if(Instance != null)
         {
+            Debug.Log("We deleted ourself cuz old copy");
             Destroy(this.gameObject);
             return;
         }
+        Debug.Log("We initialized");
 
         Instance = this;
         GameObject.DontDestroyOnLoad(this.gameObject);
