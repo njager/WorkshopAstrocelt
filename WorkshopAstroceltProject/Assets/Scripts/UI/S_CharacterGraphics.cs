@@ -57,12 +57,14 @@ public class S_CharacterGraphics : MonoBehaviour
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(false);
             sc_UIManager.GetPlayerShieldIcon().SetActive(false);
+            sc_UIManager.GetPlayerShieldHeartIcon().SetActive(false);
             sc_UIManager.GetPlayerShieldOverlay().SetActive(false);
         }
         else // Turn it on
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(true);
             sc_UIManager.GetPlayerShieldIcon().SetActive(true);
+            sc_UIManager.GetPlayerShieldHeartIcon().SetActive(false);
             sc_UIManager.GetPlayerShieldOverlay().SetActive(true);
         }
     }
