@@ -74,7 +74,7 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] GameObject e_enemy3ShieldOverlay;
     [SerializeField] GameObject e_enemy4ShieldOverlay;
     [SerializeField] GameObject e_enemy5ShieldOverlay;
-    [SerializeField] GameObject p_playerShieldArtIcon;
+    [SerializeField] GameObject p_playerShieldHeartIcon;
     [SerializeField] GameObject p_playerShieldIcon;
     [SerializeField] GameObject e_enemy1ShieldIcon;
     [SerializeField] GameObject e_enemy2ShieldIcon;
@@ -155,6 +155,9 @@ public class S_UIManager : MonoBehaviour
 
     [Header("Resource Graphics Bonus Tier Tracker")]
     [SerializeField] public int rsg_UI_i_bonusTracker = 1;
+
+    [Header("Player Card Selector Asset")]
+    [SerializeField] GameObject p_playerCardSelector;
 
     void Awake()
     {
@@ -794,7 +797,19 @@ public class S_UIManager : MonoBehaviour
     /// </returns>
     public GameObject GetPlayerShieldHeartIcon()
     {
-        return p_playerShieldArtIcon;
+        return p_playerShieldHeartIcon;
+    }
+
+    /// <summary>
+    /// Return the gameobject of S_UIManager.p_playerCardSelector
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_playerCardSelector
+    /// </returns>
+    public GameObject GetPlayerCardSelector()
+    {
+        return p_playerCardSelector;
     }
 
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

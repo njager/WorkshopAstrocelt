@@ -17,6 +17,11 @@ public class S_CharacterGraphics : MonoBehaviour
         g_global = S_Global.Instance;    
     }
 
+    private void Start()
+    {
+        sc_UIManager.GetPlayerCardSelector().SetActive(false);
+    }
+
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Player Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -210,8 +215,8 @@ public class S_CharacterGraphics : MonoBehaviour
         }
     }
 
-    public void UpdateSelectorUI()
+    public void TogglePlayerSelectorUI(bool _boolean)
     {
-
+        sc_UIManager.GetPlayerCardSelector().SetActive(_boolean);
     }
 }
