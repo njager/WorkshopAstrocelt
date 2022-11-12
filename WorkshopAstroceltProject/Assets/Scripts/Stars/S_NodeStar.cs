@@ -142,6 +142,11 @@ public class S_NodeStar : MonoBehaviour
         }
     }
 
+    public void TriggerDestroy()
+    {
+        Destroy(this);
+    }
+
     //Getters\\
 
     public bool GetNodeClicked()
