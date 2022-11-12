@@ -93,6 +93,10 @@ public class S_Global : MonoBehaviour
     [Header("Required Audio Object For Now")]
     public GameObject g_a_audioPlayer;
 
+    [Header("Temp Tutorial Keypress")]
+    public GameObject g_tutorialCanvas;
+    public bool g_b_tutorialCanvasState; 
+
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -121,6 +125,8 @@ public class S_Global : MonoBehaviour
         {
             g_ls_p_playerDeck.Add(card);
         }
+
+        g_tutorialCanvas.SetActive(false);
 
         //set the scene ui
         //g_UIManager.sc_resourceGraphics.ChangeProgressionBar(SceneManager.GetActiveScene().name);
@@ -176,6 +182,12 @@ public class S_Global : MonoBehaviour
             g_energyManager.SetRedEnergyInt(g_energyManager.GetRedEnergyInt() + 20);
             g_energyManager.SetBlueEnergyInt(g_energyManager.GetBlueEnergyInt() + 20);
             g_energyManager.SetYellowEnergyInt(g_energyManager.GetYellowEnergyInt() + 20);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            g_tutorialCanvas.SetActive(g_b_tutorialCanvasState);
+            g_b_tutorialCanvasState = !g_b_tutorialCanvasState;
         }
     }
 }

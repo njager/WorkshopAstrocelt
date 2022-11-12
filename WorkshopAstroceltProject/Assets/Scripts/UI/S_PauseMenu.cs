@@ -14,7 +14,15 @@ public class S_PauseMenu : MonoBehaviour
     public TMP_Text resolutionLabel;
     public Toggle fullscreenTog;
 
-    public Canvas tutorialCanvas;
+    [Header("Tutorial Canvas Bool")]
+    public bool tutorialBoolState;
+
+    private S_Global g_global;
+
+    private void Awake()
+    {
+        g_global = S_Global.Instance;
+    }
 
     // Update is called once per frame
     void Update()
@@ -109,6 +117,12 @@ public class S_PauseMenu : MonoBehaviour
     public void updateResLabel()
     {
         resolutionLabel.text = resolutions[selectedResolution].horizontal.ToString() + " x " + resolutions[selectedResolution].vertical.ToString();
+    }
+
+    public void TutorialCanvasToggle() 
+    {
+        g_global.g_tutorialCanvas.SetActive(g_global.g_b_tutorialCanvasState);
+        g_global.g_b_tutorialCanvasState = !g_global.g_b_tutorialCanvasState;
     }
 }
 
