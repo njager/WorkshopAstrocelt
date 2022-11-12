@@ -17,6 +17,11 @@ public class S_PauseMenu : MonoBehaviour
     [Header("Tutorial Canvas Bool")]
     public bool tutorialBoolState;
 
+    [Header("Background")]
+    public GameObject UI_background;
+    public GameObject mainMenuAssets;
+    public GameObject optionsMenuAssets;
+
     private S_Global g_global;
 
     private void Awake()
@@ -29,14 +34,17 @@ public class S_PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("esc hit");
-            if (GameIsPaused)
+            if(optionsMenuAssets.activeInHierarchy == false) 
             {
-                Resume();
-            }
-            else
-            {
-                Pause();
+                Debug.Log("esc hit");
+                if (GameIsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
             }
         }   
     }
@@ -63,14 +71,17 @@ public class S_PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        UI_background.SetActive(false);
+        mainMenuAssets.SetActive(false);
+        optionsMenuAssets.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     public void Pause()
     {
-        pauseMenuUI.SetActive(true);
+        UI_background.SetActive(true);
+        mainMenuAssets.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }

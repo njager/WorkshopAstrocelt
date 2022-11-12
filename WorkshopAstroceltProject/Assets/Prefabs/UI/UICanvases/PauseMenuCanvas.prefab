@@ -208,7 +208,7 @@ MonoBehaviour:
   m_margin: {x: 19.051514, y: 0, z: 104.14813, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1965705453739346502
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_margin: {x: 19.051514, y: 0, z: 104.14813, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1965705454583746266
@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_margin: {x: -56.242188, y: 0, z: 26.846619, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1965705454840475086
@@ -2213,7 +2213,7 @@ MonoBehaviour:
   m_margin: {x: -91.92761, y: 0, z: 51.699036, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1965705455020682180
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 5
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2502,7 +2502,7 @@ MonoBehaviour:
   m_margin: {x: -229.72481, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1965705455099444797
@@ -2795,7 +2795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1965705455459941462
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2837,7 +2837,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1965705455459941456
 MonoBehaviour:
@@ -2902,6 +2902,9 @@ MonoBehaviour:
   resolutionLabel: {fileID: 1965705455630358476}
   fullscreenTog: {fileID: 1965705454840475080}
   tutorialBoolState: 0
+  UI_background: {fileID: 1965705455616224650}
+  mainMenuAssets: {fileID: 1965705455547473094}
+  optionsMenuAssets: {fileID: 1965705453936293667}
 --- !u!1 &1965705455532311218
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,7 +3054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1965705455547473095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3092,7 +3095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1965705455616224651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3552,7 +3555,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1965705455691537296

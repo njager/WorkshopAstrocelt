@@ -877,15 +877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.100409396
-      objectReference: {fileID: 0}
-    - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6920207
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6840,7 +6836,10 @@ MonoBehaviour:
     vertical: 480
   resolutionLabel: {fileID: 1583644670}
   fullscreenTog: {fileID: 784939543}
-  tutorialCanvas: {fileID: 0}
+  tutorialBoolState: 0
+  UI_background: {fileID: 0}
+  mainMenuAssets: {fileID: 0}
+  optionsMenuAssets: {fileID: 0}
 --- !u!4 &1683194008
 Transform:
   m_ObjectHideFlags: 0

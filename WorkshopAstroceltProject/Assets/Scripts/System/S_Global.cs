@@ -186,6 +186,7 @@ public class S_Global : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            if(!SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("Scn_1stReward")) || !SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("Event2-Mushrooms")) || !SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("Scn_2ndReward")) || !SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("Scn_MainMenu")))
             g_tutorialCanvas.SetActive(g_b_tutorialCanvasState);
             g_b_tutorialCanvasState = !g_b_tutorialCanvasState;
         }

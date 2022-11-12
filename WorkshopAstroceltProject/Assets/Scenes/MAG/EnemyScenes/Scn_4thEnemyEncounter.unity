@@ -7676,10 +7676,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2091548595005120166, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696432, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_Name
       value: Maps
@@ -7690,15 +7686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.100409396
-      objectReference: {fileID: 0}
-    - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6920207
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2091548596066696439, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7728,9 +7720,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2091548596591148109, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 7766550383715476674, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766550383715476674, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4bb5568c34a94841a949e686a3ac5cb, type: 3}
@@ -8265,7 +8261,10 @@ MonoBehaviour:
     vertical: 480
   resolutionLabel: {fileID: 325480339}
   fullscreenTog: {fileID: 2091086952}
-  tutorialCanvas: {fileID: 0}
+  tutorialBoolState: 0
+  UI_background: {fileID: 0}
+  mainMenuAssets: {fileID: 0}
+  optionsMenuAssets: {fileID: 0}
 --- !u!1 &2071312779
 GameObject:
   m_ObjectHideFlags: 0
