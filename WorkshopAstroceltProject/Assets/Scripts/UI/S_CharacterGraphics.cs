@@ -70,7 +70,7 @@ public class S_CharacterGraphics : MonoBehaviour
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(true);
             sc_UIManager.GetPlayerShieldIcon().SetActive(true);
-            sc_UIManager.GetPlayerShieldHeartIcon().SetActive(false);
+            sc_UIManager.GetPlayerShieldHeartIcon().SetActive(true);
             sc_UIManager.GetPlayerShieldOverlay().SetActive(true);
         }
     }
