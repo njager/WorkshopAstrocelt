@@ -112,57 +112,227 @@ public class S_MapGeneration : MonoBehaviour
                 }
                 else if(_star.starType.Equals("Ritual"))
                 {
-
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
                 }
             }
         }
         else if(mp_i_previousMapNum == 2)
         {
-
+            foreach (S_StarClass _star in ls_s_map2Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 3)
         {
-
+            foreach (S_StarClass _star in ls_s_map3Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 4)
         {
-
+            foreach (S_StarClass _star in ls_s_map4Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 5)
         {
-
+            foreach (S_StarClass _star in ls_s_map5Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 6)
         {
-
+            foreach (S_StarClass _star in ls_s_map6Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 7)
         {
-
+            foreach (S_StarClass _star in ls_s_map7Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 8)
         {
-
+            foreach (S_StarClass _star in ls_s_map8Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 9)
         {
-
+            foreach (S_StarClass _star in ls_s_map9Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 10)
         {
-
+            foreach (S_StarClass _star in ls_s_map10Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 11)
         {
-
+            foreach (S_StarClass _star in ls_s_map11Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 12)
         {
-
+            foreach (S_StarClass _star in ls_s_map12Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
         else if (mp_i_previousMapNum == 13)
         {
-
+            foreach (S_StarClass _star in ls_s_map13Stars.ToList())
+            {
+                if (_star.starType.Equals("Energy"))
+                {
+                    S_EnergyStar _energyStar = _star.GetComponent<S_EnergyStar>();
+                    _energyStar.SetClickableStarBool(true);
+                    _energyStar.SetHasBeenClickedStarBool(false);
+                }
+                else if (_star.starType.Equals("Ritual"))
+                {
+                    S_RitualStar _ritualStar = _star.GetComponent<S_RitualStar>();
+                    _ritualStar.SetClickableStarBool(true);
+                    _ritualStar.SetHasBeenClickedStarBool(false);
+                }
+            }
         }
     }
 
