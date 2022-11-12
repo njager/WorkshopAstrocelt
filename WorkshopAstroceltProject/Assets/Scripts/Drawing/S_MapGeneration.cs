@@ -384,8 +384,8 @@ public class S_MapGeneration : MonoBehaviour
             GetMapList(_mapNum).Add(_newStarScript);
             Transform _parentTransform = GetTransformFromMapNumber(_mapNum);
             _newStar.transform.SetParent(_parentTransform);
+            Destroy(_nodeStar.gameObject);
             g_global.g_ls_nodeStarList.Remove(_nodeStar);
-            Destroy(_nodeStar);
         }
     }
 
@@ -397,7 +397,7 @@ public class S_MapGeneration : MonoBehaviour
     public void RandomMapSelector()
     {
         // Choose map int
-        int _mapNumChosen = Random.Range(1, 2);
+        int _mapNumChosen = Random.Range(1, 14);
         
         // Toggle maps
 
