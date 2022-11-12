@@ -98,6 +98,12 @@ public class S_MapGeneration : MonoBehaviour
         RandomMapSelector();
     }
 
+
+    /// <summary>
+    /// Use this to clean the previous tar, make sure it's drawable by the next turn
+    /// Dumb code
+    /// -Josh
+    /// </summary>
     public void ResetStarsInPreviousMap()
     {
         if(mp_i_previousMapNum == 1)
@@ -352,6 +358,7 @@ public class S_MapGeneration : MonoBehaviour
 
         if(_mapNumChosen != mp_i_previousMapNum)
         {
+            ResetStarsInPreviousMap();
             if (_mapNumChosen == 1) // Map 1
             {
                 //Debug.Log("Map 1 Chosen");
@@ -734,5 +741,201 @@ public class S_MapGeneration : MonoBehaviour
         mp_i_previousMapNum = 13;
 
         activeMap = map13;
+    }
+
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map1GrabChildrenCreateList()
+    {
+        foreach(Transform _child in transform)
+        {
+            if(_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map1Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map2GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map2Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map3GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map3Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map4GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map4Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map5GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map5Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map6GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map6Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map7GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map7Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map8GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map8Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map9GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map9Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map10GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map10Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map11GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map11Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map12GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map12Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically grab the children, populate the list
+    /// - Josh
+    /// </summary>
+    public void Map13GrabChildrenCreateList()
+    {
+        foreach (Transform _child in transform)
+        {
+            if (_child.tag.Equals("Obstacle"))
+            {
+                ls_s_map13Stars.Add(GetComponentInChildren<S_StarClass>());
+            }
+        }
     }
 }
