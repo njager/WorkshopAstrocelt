@@ -319,6 +319,8 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition1.transform);
+            //set the top cardball to have larger scale
+            _cardBall.transform.DOScale(new Vector3(.8f, .8f, 0), f_cardballMoveSpeed);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //CheckFirstCardball();
             //Debug.Log("Cardballs moving from 2 to 1");
@@ -342,7 +344,7 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition3.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition3.transform);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         else
