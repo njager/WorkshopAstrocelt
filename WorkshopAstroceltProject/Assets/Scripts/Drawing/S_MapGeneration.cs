@@ -32,9 +32,53 @@ public class S_MapGeneration : MonoBehaviour
         RandomMapSelector();
     }
 
-    public Vector3 RandomVector() {
-        float rand_x = Random.Range(-12, 12);
-        float rand_y = Random.Range(-3, 6);
+    public Vector3 RandomVector(int clusternum) {
+        float rand_x;
+        float rand_y;
+        if (clusternum == 1)
+        {
+            rand_x = Random.Range(-12, -6);
+            rand_y = Random.Range(4, 8);
+        }
+        else if(clusternum == 2)
+        {
+            rand_x = Random.Range(-12, -6);
+            rand_y = Random.Range(0, 4);
+        }
+        else if (clusternum == 3)
+        {
+            rand_x = Random.Range(-6, 0);
+            rand_y = Random.Range(4, 8);
+        }
+        else if (clusternum == 4)
+        {
+            rand_x = Random.Range(-6, 0);
+            rand_y = Random.Range(0, 4);
+        }
+        else if (clusternum == 5)
+        {
+            rand_x = Random.Range(0, 6);
+            rand_y = Random.Range(4, 8);
+        }
+        else if (clusternum == 6)
+        {
+            rand_x = Random.Range(0, 6);
+            rand_y = Random.Range(0, 4);
+        }
+        else if (clusternum == 7)
+        {
+            rand_x = Random.Range(6, 12);
+            rand_y = Random.Range(4, 8);
+        }
+        else
+        {
+            rand_x = Random.Range(6, 12);
+            rand_y = Random.Range(0, 4);
+        }
+
+
+
+        
         Vector3 temp = new Vector3(rand_x, rand_y, 0);
         return temp;
     }
@@ -50,11 +94,29 @@ public class S_MapGeneration : MonoBehaviour
     /// 
     public void RandomMapSelector()
     {
-        foreach (Transform g in map1.GetComponentsInChildren<Transform>())
+        List<List<Transform>> clusters = new List<List<Transform>>();
+        List<Transform> temp = new List<Transform>();
+        
+
+        int count = 1;
+        int clusternum = 1;
+
+        foreach (Transform i in map1.GetComponentInChildren<Transform>())
         {
-            g.transform.position = RandomVector();
+            i.transform.position = RandomVector(clusternum);
+            temp.Add(i);
+
+            if(count >= 5)
+            {
+                count = 0;
+                clusters.Add(temp);
+                temp.Clear();
+                clusternum++;
+            }
+            count++;
         }
-        RunSpringGen();
+        //RunSpringGen();
+
     }
 
 
@@ -71,7 +133,7 @@ public class S_MapGeneration : MonoBehaviour
                 }
             }
         }
-        /*
+        
         foreach (Transform i in map1.GetComponentsInChildren<Transform>())
         {
             Component[] springs;
@@ -88,7 +150,7 @@ public class S_MapGeneration : MonoBehaviour
             }
             
          }
-        */
+        
     }
 
 }
