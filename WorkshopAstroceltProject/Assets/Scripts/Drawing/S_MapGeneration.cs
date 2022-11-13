@@ -32,6 +32,19 @@ public class S_MapGeneration : MonoBehaviour
         RandomMapSelector();
     }
 
+
+    public void cluster_checker(List<List<Transform>> clusters)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            List<Transform> this_cluster = clusters[i];
+            for (int j = 0; j < this_cluster.Count; j++)
+            {
+                print(this_cluster[j]);
+            }
+        }
+    }
+
     public Vector3 RandomVector(int clusternum) {
         float rand_x;
         float rand_y;
@@ -94,62 +107,54 @@ public class S_MapGeneration : MonoBehaviour
     /// 
     public void RandomMapSelector()
     {
-        List<List<Transform>> clusters = new List<List<Transform>>();
-        List<Transform> temp = new List<Transform>();
+        List<List<GameObject>> clusters = new List<List<GameObject>>();
+        List<GameObject> temp = new List<GameObject>();
         
 
         int count = 1;
         int clusternum = 1;
+        
 
-        foreach (Transform i in map1.GetComponentInChildren<Transform>())
+        foreach (GameObject i in map1.GetComponentsInChildren<GameObject>())
         {
             i.transform.position = RandomVector(clusternum);
             temp.Add(i);
 
-            if(count >= 5)
+            if(count > 5)
             {
                 count = 0;
                 clusters.Add(temp);
                 temp.Clear();
                 clusternum++;
+                //Debug.Log("thru 5");
             }
             count++;
+            Debug.Log(clusternum);
         }
-        //RunSpringGen();
+        //RunSpringGen(clusters);
+        //cluster_checker(clusters);
 
     }
 
 
 
-    public void RunSpringGen()
+    public void RunSpringGen(List<List<GameObject>> clusters)
     {
-        foreach (Transform i in map1.GetComponentsInChildren<Transform>())
+        for (int i = 0; i < 8; i++)
         {
-            foreach (Transform j in map1.GetComponentsInChildren<Transform>())
+            List<Ga> this_cluster = clusters[i];
+            for (int j = 0; j < this_cluster.Count; j++)
             {
-                if(i != j)
+                for (int k = 0; k < this_cluster.Count; k++)
                 {
-                    i.gameObject.AddComponent<SpringJoint2D>();
+                    if(j != k)
+                    {
+                        //this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
+                        Debug.Log(this_cluster[j].gameObject.name);
+                    }
                 }
             }
         }
-        
-        foreach (Transform i in map1.GetComponentsInChildren<Transform>())
-        {
-            Component[] springs;
-            springs = i.gameObject.GetComponents(typeof(SpringJoint2D));
-            //Debug.Log(springs);
-
-            
-            foreach (Rigidbody2D j in map1.GetComponentsInChildren<Rigidbody2D>())
-            {
-                foreach (SpringJoint2D k in springs)
-                {
-                    k.connectedBody = j;
-                }
-            }
-            
-         }
         
     }
 
