@@ -464,6 +464,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         GameObject _newNodeStar = Instantiate(s_nodeStarPrefab, g_global.g_mapManager.activeMap.transform);
         _newNodeStar.transform.position = _oldStar.transform.position;
+        g_global.g_mapManager.activeMapList.Remove(_oldStar.GetComponent<S_StarClass>());
         Destroy(_oldStar); //this will remove it from the map 
         b_nodeStarChosen = true;
     }

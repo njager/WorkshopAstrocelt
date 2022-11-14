@@ -17,6 +17,12 @@ public class S_CharacterGraphics : MonoBehaviour
         g_global = S_Global.Instance;    
     }
 
+    private void Start()
+    {
+        sc_UIManager.GetPlayerCardSelector().SetActive(false);
+        EnemyShieldingUIToggle();
+    }
+
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Player Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -57,12 +63,14 @@ public class S_CharacterGraphics : MonoBehaviour
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(false);
             sc_UIManager.GetPlayerShieldIcon().SetActive(false);
+            sc_UIManager.GetPlayerShieldHeartIcon().SetActive(false);
             sc_UIManager.GetPlayerShieldOverlay().SetActive(false);
         }
         else // Turn it on
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(true);
             sc_UIManager.GetPlayerShieldIcon().SetActive(true);
+            sc_UIManager.GetPlayerShieldHeartIcon().SetActive(true);
             sc_UIManager.GetPlayerShieldOverlay().SetActive(true);
         }
     }
@@ -208,8 +216,8 @@ public class S_CharacterGraphics : MonoBehaviour
         }
     }
 
-    public void UpdateSelectorUI()
+    public void TogglePlayerSelectorUI(bool _boolean)
     {
-
+        sc_UIManager.GetPlayerCardSelector().SetActive(_boolean);
     }
 }

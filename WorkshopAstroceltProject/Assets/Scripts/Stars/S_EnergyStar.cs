@@ -47,8 +47,8 @@ public class S_EnergyStar : MonoBehaviour
     public bool b_hasBeenClicked;
 
     [Header("Preemptive drawing vars")]
-    [SerializeField] private bool b_clickableStar = false;
-    [SerializeField] private S_StarClass s_thisStar;
+    [SerializeField] bool b_clickableStar = false;
+    [SerializeField] S_StarClass s_thisStar;
 
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -328,5 +328,57 @@ public class S_EnergyStar : MonoBehaviour
     {
         b_clickableStar = true;
         s_thisStar = _star;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Returns the gameobject of S_EnergyStar.b_clickableStar
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnergyStar.b_clickableStar
+    /// </returns>
+    public bool GetClickableStarBool()
+    {
+        return b_clickableStar;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_EnergyStar.b_hasBeenClicked
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnergyStar.b_hasBeenClicked
+    /// </returns>
+    public bool GetHasBeenClickedStarBool()
+    {
+        return b_hasBeenClicked;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the bool value of S_EnergyStar.b_clickableStar
+    /// - Josh
+    /// </summary>
+    /// <param name="_boolValue"></param>
+    public void SetClickableStarBool(bool _boolValue)
+    {
+        b_clickableStar = _boolValue;
+    }
+
+    /// <summary>
+    /// Set the bool value of S_EnergyStar.b_clickableStar
+    /// - Josh
+    /// </summary>
+    /// <param name="_boolValue"></param>
+    public void SetHasBeenClickedStarBool(bool _boolValue)
+    {
+        b_hasBeenClicked = _boolValue;
     }
 }
