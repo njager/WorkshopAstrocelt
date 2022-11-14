@@ -221,6 +221,10 @@ public class S_PlayerState : MonoBehaviour
     {
         if (!g_global.g_sceneManager.b_finalScene)
         {
+            //pass on the player health
+            g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
+            Debug.Log("Player health " + g_global.g_gameManager.i_playerHealth);
+
             //go to the new scene
             g_global.g_sceneManager.ChangeScene();
         }
@@ -231,7 +235,7 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_UIManager.cn_resetCanvas.SetActive(true);
             g_global.g_UIManager.winText.SetActive(true);
 
-            g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
+            
             Debug.Log("Did this hit?");
             Debug.Log(g_global.g_gameManager.i_playerHealth);
 

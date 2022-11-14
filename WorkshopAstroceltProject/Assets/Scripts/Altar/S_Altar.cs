@@ -26,8 +26,6 @@ public class S_Altar : MonoBehaviour
     public GameObject cardballPosition1;
     public GameObject cardballPosition2;
     public GameObject cardballPosition3;
-    public GameObject cardballPosition4;
-    public GameObject cardballPosition5;
     public GameObject cardballSpawnPosition;
 
     [Header("Card Holder Reference (In Engine)")]
@@ -85,7 +83,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(SpawnCardballPrefabs(5));
+        StartCoroutine(SpawnCardballPrefabs(3));
     }
 
     /// <summary>
@@ -212,7 +210,7 @@ public class S_Altar : MonoBehaviour
             c_i_movementInt = 0;
             c_b_movementBool = false;
 
-            StartCoroutine(SpawnCardballPrefabs(5));
+            StartCoroutine(SpawnCardballPrefabs(3));
         }
     }
 
@@ -321,6 +319,8 @@ public class S_Altar : MonoBehaviour
 
             _cardBall.transform.DOMove(cardballPosition1.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition1.transform);
+            //set the top cardball to have larger scale
+            _cardBall.transform.DOScale(new Vector3(.8f, .8f, 0), f_cardballMoveSpeed);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //CheckFirstCardball();
             //Debug.Log("Cardballs moving from 2 to 1");
@@ -335,36 +335,16 @@ public class S_Altar : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 3 to 2");
         }
-        if (cardballPosition4.transform.childCount == 1)
+        if (cardballSpawnPosition.transform.childCount == 1)
         {
-            // Move the cardball from 4 to 3
-            GameObject _cardBall = cardballPosition4.transform.GetChild(0).gameObject;
+            // Move the cardball from Spawn to 3
+            GameObject _cardBall = cardballSpawnPosition.transform.GetChild(0).gameObject;
 
             _cardBall.GetComponent<S_Cardball>().RevealCardBallDetails();
 
             _cardBall.transform.DOMove(cardballPosition3.transform.position, f_cardballMoveSpeed);
             _cardBall.transform.SetParent(cardballPosition3.transform);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
-            //Debug.Log("Cardballs moving from 4 to 3");
-        }
-        if (cardballPosition5.transform.childCount == 1)
-        {
-            // Move the cardball from 5 to 4
-            GameObject _cardBall = cardballPosition5.transform.GetChild(0).gameObject;
-
-            _cardBall.transform.DOMove(cardballPosition4.transform.position, f_cardballMoveSpeed);
-            _cardBall.transform.SetParent(cardballPosition4.transform);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
-            //Debug.Log("Cardballs moving from 5 to 4");
-        }
-        if (cardballSpawnPosition.transform.childCount == 1)
-        {
-            // Move the cardball from Spawn to 5
-            GameObject _cardBall = cardballSpawnPosition.transform.GetChild(0).gameObject;
-
-            _cardBall.transform.DOMove(cardballPosition5.transform.position, f_cardballMoveSpeed);
-            _cardBall.transform.SetParent(cardballPosition5.transform);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/UISFX/cardball-move");
             //Debug.Log("Cardballs moving from 5 to 4");
         }
         else
@@ -417,13 +397,13 @@ public class S_Altar : MonoBehaviour
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
             {
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                //Debug.Log("Attempting to delay spawn of second card after a first");
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                Debug.Log("Attempting to delay spawn of second card after a first");
                 yield return StartCoroutine(WaitForCardballMovementToPlay());
             }
             else
             {
-                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 //g_global.g_energyManager.ClearEnergy();
                 //Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
@@ -633,44 +613,6 @@ public class S_Altar : MonoBehaviour
         else
         {
             return cardballPosition3.transform.GetChild(0).gameObject;
-        }
-    }
-
-    /// <summary>
-    /// Return the child object of S_Altar.cardballPosition4
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_Altar.cardballPosition4.transform.GetChild(0) || nullObject
-    /// </returns>
-    public GameObject GetChildOfFourthAltarPosition()
-    {
-        if (cardballPosition4.transform.childCount > 0)
-        {
-            return nullObject;
-        }
-        else
-        {
-            return cardballPosition4.transform.GetChild(0).gameObject;
-        }
-    }
-
-    /// <summary>
-    /// Return the child object of S_Altar.cardballPosition5
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_Altar.cardballPosition5.transform.GetChild(0) || nullObject
-    /// </returns>
-    public GameObject GetChildOfFifthAltarPosition()
-    {
-        if (cardballPosition5.transform.childCount > 0)
-        {
-            return nullObject;
-        }
-        else
-        {
-            return cardballPosition5.transform.GetChild(0).gameObject;
         }
     }
 }

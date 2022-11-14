@@ -15,34 +15,11 @@ public class S_RedStarAnimation : MonoBehaviour
     [Header("# of frames before attempting to play animation")]
     public int i_frames;
 
-    private void Awake()
-    {
-        StartCoroutine(PlayAnimation());
-    }
-
     public IEnumerator PlayAnimation()
     {
-        for (int i = 0; i <= i_frames; i++)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForEndOfFrame();
 
-        float _percent = Random.value;
-
-        if (_percent < i_chance)
-        {
-            //print("red");
-            //print(_percent);
-            //Reset the "Crouch" trigger
-            //a_animator.ResetTrigger("RedAnim");
-
-            //Send the message to the Animator to activate the trigger parameter named "RedAnim"
-            an_redStarAnimator.Play("RedAnim");
-        }
-        else
-        {
-            StartCoroutine(PlayAnimation());
-        }
-
+        
+        an_redStarAnimator.Play("RedAnim");
     }
 }

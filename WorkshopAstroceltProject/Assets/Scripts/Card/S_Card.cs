@@ -518,7 +518,7 @@ public class S_Card : MonoBehaviour
                 }
 
                 g_global.g_altar.SetCardBeingActiveBool(true);
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
             }
             else
             {
@@ -551,7 +551,7 @@ public class S_Card : MonoBehaviour
                 {
                     //Debug.Log("Triggered the bool");
                     g_global.g_altar.SetCardBeingActiveBool(true);
-                    g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                    //g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 }
             }
             else
@@ -647,7 +647,7 @@ public class S_Card : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         
-        if (col.transform.tag == "Enemy")
+        if (col.transform.tag == "Enemy" && c_b_attackMainEffect)
         {
             if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
             {
@@ -659,9 +659,17 @@ public class S_Card : MonoBehaviour
             c_hoverCharacter = col.gameObject;
             g_global.g_UIManager.SetEnemySelectorOn(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
         }
-        else if (col.transform.tag == "Player")
+        else if (col.transform.tag == "Player" && c_b_shieldMainEffect)
         {
+            if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
+            {
+                //turn off the old enenemies ui
+                g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+            }
+
+            //set the hoverCharacter and turn on the ui selector
             c_hoverCharacter = col.gameObject;
+            g_global.g_UIManager.sc_characterGraphics.TogglePlayerSelectorUI(true);
         }
     }
 
@@ -669,51 +677,19 @@ public class S_Card : MonoBehaviour
     {
         if (col.gameObject == c_hoverCharacter)
         {
-            //remove the enemy selector
+            //remove the enemy/player selector
             if(col.transform.tag == "Enemy")
             {
                 g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
-            
+            else if (col.transform.tag == "Player")
+            {
+                g_global.g_UIManager.sc_characterGraphics.TogglePlayerSelectorUI(false);
+            }
+
             c_hoverCharacter = null;
         }
     }
-
-
-    /// <summary>
-    /// Make it so when one card is hovered by another the layer moves up
-    /// - Josh
-    /// </summary>
-
-    /*
-    public void OnHoverEnter()
-    {
-        if (c_b_cardIsDragged == false) 
-        {
-            c_cardCanvasComponent.sortingOrder = 6;
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    /// <summary>
-    /// Return back to original sorting order when mouse exits the hover
-    ///  - Josh
-    /// </summary>
-    public void OnHoverExit() 
-    {
-        if (c_b_cardIsDragged == false)
-        {
-            c_cardCanvasComponent.sortingOrder = c_i_cardPositionIndex;
-        }
-        else
-        {
-            return;
-        }
-    }
-    */
 
     // Setters \\ 
 

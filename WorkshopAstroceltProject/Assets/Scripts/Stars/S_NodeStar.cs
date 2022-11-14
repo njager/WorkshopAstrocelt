@@ -17,24 +17,15 @@ public class S_NodeStar : MonoBehaviour
     public Color c_clickedColor;
     public GameObject s_starGraphic;
 
+    [Header("Particle Effect")]
+    public ParticleSystem s_pe_clicked;
+
     [Header("Star Click Bool")]
     public bool is_clicked = false;
 
     [Header("Preemptive drawing vars")]
     public bool b_clickableStar = false;
     public S_StarClass s_thisStar;
-
-    [Header("Test Object to Use")]
-    public S_TooltipTemplate tl_nodeStarTemplate;
-
-    [Header("Mouse Enter Check")]
-    public bool tl_b_mouseEntered;
-
-    [Header("Timer Elements")]
-    public float f_timerAmount;
-    public bool tl_b_timerComplete;
-    public bool tl_b_displayedTooltip;
-    public int timerCompleteCheck;
 
     /// <summary>
     /// Fetch the global script and assign the class based off of the tag for this gameobject
@@ -52,36 +43,13 @@ public class S_NodeStar : MonoBehaviour
         s_starSprite = s_starGraphic.GetComponent<SpriteRenderer>();
 
         c_starStartColor = s_starSprite.color;
+
+        // Node Star Add (may break, lets see)
+        g_global.g_ls_nodeStarList.Add(this);
     }
 
-    private void Update()
-    {
-        if (tl_b_mouseEntered == true && tl_b_displayedTooltip == false)
-        {
-            if (f_timerAmount > 0)
-            {
-                f_timerAmount -= Time.deltaTime;
-            }
-        }
-
-        if (f_timerAmount < 0 && timerCompleteCheck == 0)
-        {
-            tl_b_timerComplete = true;
-            timerCompleteCheck += 1;
-            if (tl_b_displayedTooltip == false)
-            {
-                DisplayTooltip();
-            }
-        }
-    }
     private void OnMouseEnter()
     {
-        //Tooltip
-        tl_b_mouseEntered = true;
-        tl_b_timerComplete = false;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
         //change the color to the hover color when moused over
         s_starSprite.color = c_starHoverColor;
 
@@ -94,28 +62,9 @@ public class S_NodeStar : MonoBehaviour
             }
         }
     }
-    public void DisplayTooltip()
-    {
-        if (tl_b_mouseEntered == true && tl_b_timerComplete == true)
-        {
-            Debug.Log("Triggered Mouse Hover");
-            g_global.g_tooltipManager.SetupToolTipObject(tl_nodeStarTemplate, gameObject.transform);
-            tl_b_displayedTooltip = true;
-        }
-    }
 
     private void OnMouseExit()
-    {
-        // Tooltip
-        g_global.g_tooltipManager.ResetTooltip();
-        tl_b_mouseEntered = false;
-        tl_b_timerComplete = false;
-        tl_b_mouseEntered = false;
-        f_timerAmount = 2f;
-        tl_b_displayedTooltip = true;
-        tl_b_displayedTooltip = false;
-        timerCompleteCheck = 0;
-
+    {   
         if (GetNodeClicked())
         {
             s_starSprite.color = c_clickedColor;
@@ -130,10 +79,8 @@ public class S_NodeStar : MonoBehaviour
         {
             if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count - 1) < 7)
             {
-                if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
-                {
-                    g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
-                }
+                Debug.Log("Node star going back once");
+                g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
             }
 
         }
@@ -167,6 +114,9 @@ public class S_NodeStar : MonoBehaviour
         {
             Debug.Log("this would be wierd");
             g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
+            
+            //trigger the particle effect
+            s_pe_clicked.Play();
         }
         else if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
         {
@@ -178,16 +128,23 @@ public class S_NodeStar : MonoBehaviour
             Debug.Log("We here?");
             is_clicked = false;
 
-            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
-
             s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
 
+            g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
+
+            //trigger the particle effect
+            s_pe_clicked.Play();
         }
         else
         {
             Debug.Log("Please finish play before drawing again.");
             return;
         }
+    }
+
+    public void TriggerDestroy()
+    {
+        Destroy(this);
     }
 
     //Getters\\
