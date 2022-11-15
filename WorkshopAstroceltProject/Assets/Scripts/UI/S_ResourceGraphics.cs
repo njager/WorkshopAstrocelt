@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 
 public class S_ResourceGraphics : MonoBehaviour
@@ -25,6 +26,7 @@ public class S_ResourceGraphics : MonoBehaviour
     public void Start()
     {
         ResetBonusTracker();
+        ChangeProgressionBar(SceneManager.GetActiveScene().name);
     }
 
     private void Update()
@@ -268,21 +270,23 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(false);
             sc_UIManager.GetSkull2BaseAsset().SetActive(true);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().transform.position = sc_UIManager.GetSkull2BaseAsset().transform.position;
 
             sc_UIManager.GetSkull3Parent().SetActive(true);
             sc_UIManager.GetSkull3BaseAsset().SetActive(true);
             sc_UIManager.GetSkull3CrackedAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
             sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
             sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
             sc_UIManager.GetEventEncounterFinishedAsset().SetActive(false);
+
         }
 
         if (_scene == "Scn_3rdEnemyEncounter")
@@ -294,17 +298,19 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
             sc_UIManager.GetSkull2BaseAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetSkull3Parent().SetActive(true);
             sc_UIManager.GetSkull3BaseAsset().SetActive(true);
             sc_UIManager.GetSkull3CrackedAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().transform.position = sc_UIManager.GetSkull3BaseAsset().transform.position;
+
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
             sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
             sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
@@ -320,17 +326,19 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull2Parent().SetActive(true);
             sc_UIManager.GetSkull2CrackedAsset().SetActive(true);
             sc_UIManager.GetSkull2BaseAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetSkull3Parent().SetActive(true);
             sc_UIManager.GetSkull3BaseAsset().SetActive(false);
             sc_UIManager.GetSkull3CrackedAsset().SetActive(true);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
             sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
-            sc_UIManager.GetUIEncounterSelector().SetActive(false);
+            sc_UIManager.GetUIEncounterSelector().SetActive(true);
+            sc_UIManager.GetUIEncounterSelector().transform.position = sc_UIManager.GetBossSkullBaseAsset().transform.position;
+
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
             sc_UIManager.GetEventEncounterBaseAsset().SetActive(true);
