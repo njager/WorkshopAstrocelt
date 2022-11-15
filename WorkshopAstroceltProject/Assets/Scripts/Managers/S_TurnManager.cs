@@ -69,9 +69,14 @@ public class S_TurnManager : MonoBehaviour
 
                 g_global.g_altar.SetCardballsSpawnedBool(false);
 
+                //lock out the player from drawing
                 g_global.g_ConstellationManager.SetStarLockOutBool(false);
 
                 g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+
+                //clear the energy
+                g_global.g_energyManager.ClearEnergy();
+
                 StartCoroutine(EnemyPhase()); //Then change the enemies state
             }
             else
