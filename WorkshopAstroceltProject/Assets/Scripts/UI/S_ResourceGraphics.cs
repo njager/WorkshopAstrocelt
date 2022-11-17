@@ -253,7 +253,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
-            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            //sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
             //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
@@ -281,7 +281,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
-            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            //sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
             //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
@@ -310,7 +310,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
-            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            //sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
             //sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
@@ -336,7 +336,7 @@ public class S_ResourceGraphics : MonoBehaviour
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
             sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
-            sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
+            //sc_UIManager.GetBossSkullCrackedAsset().SetActive(false);
             sc_UIManager.GetUIEncounterSelector().SetActive(true);
             sc_UIManager.GetUIEncounterSelector().transform.position = sc_UIManager.GetBossSkullParent().transform.position;
 
@@ -363,8 +363,8 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetBossSkullParent().SetActive(true);
-            sc_UIManager.GetBossSkullBaseAsset().SetActive(false);
-            sc_UIManager.GetBossSkullCrackedAsset().SetActive(true);
+            sc_UIManager.GetBossSkullBaseAsset().SetActive(true);
+            //sc_UIManager.GetBossSkullCrackedAsset().SetActive(true);
             sc_UIManager.GetUIEncounterSelector().SetActive(false);
 
             sc_UIManager.GetEventEncounterParent().SetActive(true);
