@@ -50,6 +50,7 @@ public class S_Player : MonoBehaviour
                 int _newValue1 = p_sc_playerAttributes.GetPlayerHealthValue() - _newDamageValue;
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue1);
                 
+                //trigger particle effects
                 p_sc_playerAttributes.p_pe_blood.Play();
 
                 //trigger a coroutine to change sprite and go back
@@ -71,6 +72,7 @@ public class S_Player : MonoBehaviour
                     int _newValue3 = p_sc_playerAttributes.GetPlayerShieldValue() - _tempValue;
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue3);
 
+                    //trigger particle effects
                     p_sc_playerAttributes.p_pe_blood.Play();
                     //Debug.Log("Player didn't have enough shields!");
 
@@ -93,6 +95,7 @@ public class S_Player : MonoBehaviour
                 int _newValue5 = p_sc_playerAttributes.GetPlayerHealthValue() - _damageValue;
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue5);
 
+                //trigger particle effects
                 p_sc_playerAttributes.p_pe_blood.Play();
                 //Debug.Log("Player Attacked!");
 
@@ -113,6 +116,7 @@ public class S_Player : MonoBehaviour
                     int _newValue7 = p_sc_playerAttributes.GetPlayerShieldValue() - _tempValue2;
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue7);
 
+                    //trigger particle effects
                     p_sc_playerAttributes.p_pe_blood.Play();
                     //Debug.Log("Player didn't have enough shields!");
 
@@ -296,7 +300,7 @@ public class S_Player : MonoBehaviour
 
         Debug.Log("Player will animate");
 
-        //p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
+        p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
 
         Debug.Log("Player will wait for 2 seconds");
 
