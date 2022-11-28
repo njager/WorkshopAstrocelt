@@ -256,7 +256,7 @@ public class S_RitualStar : MonoBehaviour
                 g_global.g_popupManager.ConfirmTemporaryPopup();
 
                 // Set the proper end position for graphic
-                s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+                s_thisStar.s_star.m_previousLine.ResetLineColorAndMaterial();
 
                 //trigger the particle effect
                 s_pe_clicked.Play();

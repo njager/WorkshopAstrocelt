@@ -128,7 +128,7 @@ public class S_NodeStar : MonoBehaviour
             Debug.Log("We here?");
             is_clicked = false;
 
-            s_thisStar.s_star.m_previousLine.ResetEndPos(transform.position);
+            s_thisStar.s_star.m_previousLine.ResetLineColorAndMaterial();
 
             g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
 

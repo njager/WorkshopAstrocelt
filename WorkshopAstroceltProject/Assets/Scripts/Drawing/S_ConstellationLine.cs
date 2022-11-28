@@ -6,6 +6,9 @@ public class S_ConstellationLine : MonoBehaviour
 {
     private S_Global g_global;
 
+    private CapsuleCollider2D m_cap;
+
+    [Header("Previous and Next Stars")]
     public S_StarClass s_previousStar;
     public S_StarClass s_nextStar;
 
@@ -13,19 +16,31 @@ public class S_ConstellationLine : MonoBehaviour
     public GameObject m_childLineRendererObject;
 
     public LineRenderer m_lineRendererInst;
-    private CapsuleCollider2D m_cap;
-    public float f_boxOffsetX;
-    public float f_boxOffsetY;
     public GameObject constellationLinePrefab;
     public int i_index;
-    public float f_lineWidth;
-    public float f_lineLength;
-    public S_StarClass s_nullStarInst;
-    public bool b_starAdded = false;
+
+    [Header("Materials and Colors")]
+    public Material m_dottedLine;
+    public Material m_solidLine;
+    public Color cl_errorLineColor;
+    public Color cl_correctLineColor;
+
+    [Header("Offset Vars")]
+    public float f_boxOffsetX;
+    public float f_boxOffsetY;
 
     [Header("Variable Line Width")]
     [SerializeField] float f_lineWidthMin;
     [SerializeField] float f_lineWidthMax;
+
+    public float f_lineWidth;
+    public float f_lineLength;
+
+    [Header("Conditional Vars")]
+    public S_StarClass s_nullStarInst;
+    public bool b_starAdded = false;
+
+    
 
     private void Awake()
     {
@@ -53,8 +68,10 @@ public class S_ConstellationLine : MonoBehaviour
         if (other.CompareTag("Meteor"))
         {
             Debug.Log("encountered a Meteor chain in path");
-            g_global.g_DrawingManager.GoBackOnce(this.gameObject);
 
+            //change the color to error
+            m_lineRendererInst.startColor = cl_errorLineColor;
+            m_lineRendererInst.endColor = cl_errorLineColor;
         }
         else if (other.CompareTag("Line")) //check if collider is a line
         {
@@ -70,14 +87,21 @@ public class S_ConstellationLine : MonoBehaviour
                 {
                     if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index and if it is equal to the previous line
                     {
-                        g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+                        Debug.Log("Hit another Line connected to the stars");
+
+                        //change the color to error
+                        m_lineRendererInst.startColor = cl_errorLineColor;
+                        m_lineRendererInst.endColor = cl_errorLineColor;
                     }
                 }
             }
             else if (other.GetComponent<S_ConstellationLine>().i_index < i_index ) //check which one has a larger index and if it is equal to the previous line
             {
+                Debug.Log("Hit another Line with lower index");
 
-                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+                //change the color to error
+                m_lineRendererInst.startColor = cl_errorLineColor;
+                m_lineRendererInst.endColor = cl_errorLineColor;
             }
         }
         else if (other.CompareTag("Star")) //check if the col is a star
@@ -85,7 +109,10 @@ public class S_ConstellationLine : MonoBehaviour
             if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
             {
                 Debug.Log("encountered another star in path");
-                g_global.g_DrawingManager.GoBackOnce(this.gameObject);
+
+                //change the color to error
+                m_lineRendererInst.startColor = cl_errorLineColor;
+                m_lineRendererInst.endColor = cl_errorLineColor;
             }
             else
             {
@@ -162,16 +189,18 @@ public class S_ConstellationLine : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, _newZ);
             g_global.g_lineMultiplierManager.lst_lineLengthList.Add(f_lineLength);
 
-            //set the linerenderer to start and end at the same point
-            m_lineRendererInst.SetPosition(0, _endPoint);
+            //change the color to normal
+            m_lineRendererInst.startColor = cl_correctLineColor;
+            m_lineRendererInst.endColor = cl_correctLineColor;
         }
     }
 
     /// <summary>
-    /// This function resets the line renderer so that it displays once the star gets clicked
+    /// This function resets the line renderer so that it uses a solid line
     /// </summary>
-    public void ResetEndPos(Vector3 _endPoint)
+    public void ResetLineColorAndMaterial()
     {
-        m_lineRendererInst.SetPosition(0, _endPoint);
+        //make the line a solid one
+        m_lineRendererInst.material = m_solidLine;
     }
 }

@@ -23,10 +23,10 @@ public class S_ConstellationLineV2 : MonoBehaviour
         }
 
         Matrix4x4 splineMatrix = new Matrix4x4( // COLUMN MAJOR!
-            new Vector4(-1, 3, -3, 1), // TODO
-            new Vector4(3, -6, 3, 0), // TODO
-            new Vector4(-3, 3, 0, 0), // TODO
-            new Vector4(1, 0, 0, 0) // TODO
+            new Vector4(-1, 3, -3, 1),
+            new Vector4(3, -6, 3, 0), 
+            new Vector4(-3, 3, 0, 0), 
+            new Vector4(1, 0, 0, 0)
         );
 
 
