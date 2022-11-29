@@ -1709,16 +1709,20 @@ MonoBehaviour:
   s_nextStar: {fileID: 0}
   m_childLineRendererObject: {fileID: 0}
   m_lineRendererInst: {fileID: 0}
-  f_boxOffsetX: 0
-  f_boxOffsetY: 0
   constellationLinePrefab: {fileID: 0}
   i_index: 0
+  m_dottedLine: {fileID: 0}
+  m_solidLine: {fileID: 0}
+  cl_errorLineColor: {r: 0, g: 0, b: 0, a: 0}
+  cl_correctLineColor: {r: 0, g: 0, b: 0, a: 0}
+  f_boxOffsetX: 0
+  f_boxOffsetY: 0
+  f_lineWidthMin: 0
+  f_lineWidthMax: 0
   f_lineWidth: 0
   f_lineLength: 0
   s_nullStarInst: {fileID: 0}
   b_starAdded: 0
-  f_lineWidthMin: 0
-  f_lineWidthMax: 0
 --- !u!61 &1252511228
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3269,10 +3273,6 @@ PrefabInstance:
     - target: {fileID: 8047176379985341372, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Name
       value: AltarTargetPosition1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176380039575184, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: c_cardHolder
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8047176380155750544, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: b_starLockout
