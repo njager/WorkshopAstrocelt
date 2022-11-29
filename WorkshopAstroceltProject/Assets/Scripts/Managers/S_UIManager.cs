@@ -159,6 +159,14 @@ public class S_UIManager : MonoBehaviour
     [Header("Player Card Selector Asset")]
     [SerializeField] GameObject p_playerCardSelector;
 
+    [Header("Resource Graphics Scale Tracker")]
+    [SerializeField] Vector3 rsg_OriginalScale;
+    [SerializeField] Vector3 rsg_ScaleTo;
+    /*[SerializeField] Vector3 rsg_blueGraphicOriginalScale;
+    [SerializeField] Vector3 rsg_yellowGraphocORiginalScale;
+    */
+
+
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -1433,5 +1441,30 @@ public class S_UIManager : MonoBehaviour
     public GameObject GetYellowBonusIcon3()
     {
         return rsg_UI_yellowBonusIcon3;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_OriginalScale;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_OriginalScale;
+    /// </returns>
+    public Vector3 getOriginalScale()
+    {
+        
+        return rsg_OriginalScale;
+    }
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.rsg_ScaleTo;
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.rsg_ScaleTo;
+    /// </returns>
+    public Vector3 getScaleTo()
+    {
+        rsg_ScaleTo = new Vector3(1, 1, 1);
+        return rsg_ScaleTo;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 
 public class S_ResourceGraphics : MonoBehaviour
@@ -131,17 +132,20 @@ public class S_ResourceGraphics : MonoBehaviour
 
             //turn off the initial Icon
             sc_UIManager.GetRedBonusIcon1().SetActive(true);
-
+            sc_UIManager.GetRedBonusIcon1().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
             //Turn on or off additional icons
             if (_bonusCounter.Equals(2))
             {
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
+                sc_UIManager.GetRedBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
                 sc_UIManager.GetRedBonusIcon3().SetActive(false);
+                
             }
             else if (_bonusCounter.Equals(3))
             {
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
                 sc_UIManager.GetRedBonusIcon3().SetActive(true);
+                sc_UIManager.GetRedBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
             }
             else
             {
