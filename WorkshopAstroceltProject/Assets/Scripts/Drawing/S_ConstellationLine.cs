@@ -92,6 +92,8 @@ public class S_ConstellationLine : MonoBehaviour
                         //change the color to error
                         m_lineRendererInst.startColor = cl_errorLineColor;
                         m_lineRendererInst.endColor = cl_errorLineColor;
+
+
                     }
                 }
             }

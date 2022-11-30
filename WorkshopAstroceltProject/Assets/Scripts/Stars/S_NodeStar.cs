@@ -46,6 +46,17 @@ public class S_NodeStar : MonoBehaviour
 
         // Node Star Add (may break, lets see)
         g_global.g_ls_nodeStarList.Add(this);
+
+        g_global.g_altar.s_nodeStarReference = this.gameObject;
+    }
+
+    private void Start()
+    {
+        //Have the node star click itself and start the constellation
+        g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
+
+        //trigger the particle effect
+        s_pe_clicked.Play();
     }
 
     private void OnMouseEnter()
@@ -92,6 +103,9 @@ public class S_NodeStar : MonoBehaviour
     public void NodeClickedColor()
     {
         s_starSprite.color = c_clickedColor;
+
+        //trigger the particle effect
+        s_pe_clicked.Play();
     }
 
     /// <summary>
@@ -109,16 +123,7 @@ public class S_NodeStar : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        //trigger this if it is the first click
-        if(g_global.g_ConstellationManager.GetStarLockOutBool() == true && !g_global.g_ConstellationManager.GetMakingConstellation())
-        {
-            Debug.Log("this would be wierd");
-            g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
-            
-            //trigger the particle effect
-            s_pe_clicked.Play();
-        }
-        else if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
+        if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
         {
             g_global.g_DrawingManager.ConstellationReset(g_global.g_ConstellationManager.ls_curConstellation[g_global.g_ConstellationManager.ls_curConstellation.Count-1]);
         }
@@ -145,6 +150,11 @@ public class S_NodeStar : MonoBehaviour
     public void TriggerDestroy()
     {
         Destroy(this);
+    }
+
+    public void TriggerNodeClick()
+    {
+        g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
     }
 
     //Getters\\

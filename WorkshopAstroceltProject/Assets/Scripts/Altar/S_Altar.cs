@@ -60,6 +60,8 @@ public class S_Altar : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
+    public GameObject s_nodeStarReference;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -227,7 +229,7 @@ public class S_Altar : MonoBehaviour
         {
             if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
             {
-                //Debug.Log("Made Card");
+                //This is for if the player can play more card
 
                 // Lock Spawning
                 SetCardBeingActiveBool(false);
@@ -260,10 +262,15 @@ public class S_Altar : MonoBehaviour
             }
             else
             {
+                //This is when there are no more cards to play
+
                 //clear energy and reset the bool
                 //g_global.g_energyManager.ClearEnergy();
 
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
+
+                //Click the node star
+                g_global.g_ConstellationManager.NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
             }
         }
         else

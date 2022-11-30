@@ -234,7 +234,7 @@ public class S_RitualStar : MonoBehaviour
         S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
 
         //if the star clicking is locked out, dont let the player click it
-        if (!g_global.g_ConstellationManager.b_nodeStarChosen)
+        if (g_global.g_ConstellationManager.GetStarLockOutBool() && !g_global.g_ConstellationManager.b_nodeStarChosen)
         {
             g_global.g_ConstellationManager.CreateNodeStar(this.gameObject);
         }
