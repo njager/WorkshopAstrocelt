@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 
 
 public class S_ResourceGraphics : MonoBehaviour
@@ -16,6 +17,8 @@ public class S_ResourceGraphics : MonoBehaviour
     [SerializeField] S_Global g_global;
     [SerializeField] S_UIManager sc_UIManager;
     [SerializeField] S_StarClass s_StarClass;
+
+    [SerializeField] Vector3 rsg_v3_tweenFrom = new Vector3 (1.5f,1.5f,1.5f);
 
 
     private void Awake()
@@ -116,12 +119,12 @@ public class S_ResourceGraphics : MonoBehaviour
         if (_starColor.Equals("red"))
         {
             //turn off the other containers and turn on the red one
-            //sc_UIManager.GetDefaultBonusContainer().DOFade(0f, .5f);
+            sc_UIManager.GetDefaultBonusContainer().GetComponent<Image>().DOFade(0f, .5f);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
             sc_UIManager.GetRedBonusContainer().SetActive(true);
-            //sc_UIManager.GetRedBonusContainer().DOFade(100f, .5f);
+            sc_UIManager.GetRedBonusContainer().GetComponent<Image>().DOFade(100f, .5f);
 
             //turn off the other individual icons
             sc_UIManager.GetBlueBonusIcon1().SetActive(false);
@@ -134,12 +137,13 @@ public class S_ResourceGraphics : MonoBehaviour
 
             //turn off the initial Icon
             sc_UIManager.GetRedBonusIcon1().SetActive(true);
-            sc_UIManager.GetRedBonusIcon1().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+            sc_UIManager.GetRedBonusIcon1().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
             //Turn on or off additional icons
             if (_bonusCounter.Equals(2))
             {
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
-                sc_UIManager.GetRedBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                //sc_UIManager.GetRedBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                sc_UIManager.GetRedBonusIcon2().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetRedBonusIcon3().SetActive(false);
                 
             }
@@ -147,7 +151,8 @@ public class S_ResourceGraphics : MonoBehaviour
             {
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
                 sc_UIManager.GetRedBonusIcon3().SetActive(true);
-                sc_UIManager.GetRedBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                sc_UIManager.GetRedBonusIcon3().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
+               // sc_UIManager.GetRedBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
             }
             else
             {
@@ -158,11 +163,11 @@ public class S_ResourceGraphics : MonoBehaviour
         else if (_starColor.Equals("yellow"))
         {
             //turn off the other containers and turn on the yellow one
-            //sc_UIManager.GetDefaultBonusContainer().DOFade(0f, .5f);
+            sc_UIManager.GetDefaultBonusContainer().GetComponent<Image>().DOFade(0f, .5f);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(true);
-            //sc_UIManager.GetYellowBonusContainer().DOFade(100f, .5f);
+            sc_UIManager.GetYellowBonusContainer().GetComponent<Image>().DOFade(100f, .5f);
             sc_UIManager.GetRedBonusContainer().SetActive(false);
 
             //turn off the other individual icons
@@ -176,19 +181,22 @@ public class S_ResourceGraphics : MonoBehaviour
 
             //turn off the other initial icon
             sc_UIManager.GetYellowBonusIcon1().SetActive(true);
-            sc_UIManager.GetYellowBonusIcon1().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+            //sc_UIManager.GetYellowBonusIcon1().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+            sc_UIManager.GetYellowBonusIcon1().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
 
             //Turn on or off additional icons
             if (_bonusCounter.Equals(2))
             {
                 sc_UIManager.GetYellowBonusIcon2().SetActive(true);
-                sc_UIManager.GetYellowBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                //sc_UIManager.GetYellowBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                sc_UIManager.GetYellowBonusIcon2().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetYellowBonusIcon3().SetActive(false);
             }
             else if (_bonusCounter.Equals(3))
             {
                 sc_UIManager.GetYellowBonusIcon2().SetActive(true);
-                sc_UIManager.GetYellowBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                //sc_UIManager.GetYellowBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                sc_UIManager.GetYellowBonusIcon3().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetYellowBonusIcon3().SetActive(true);
             }
             else
@@ -200,10 +208,10 @@ public class S_ResourceGraphics : MonoBehaviour
         else if (_starColor.Equals("blue"))
         {
             //turn off the other containers and turn on the blue one
-            //sc_UIManager.GetDefaultBonusContainer().DOFade(0f, .5f)
+            sc_UIManager.GetDefaultBonusContainer().GetComponent<Image>().DOFade(0f, 1.5f);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(true);
-            //sc_UIManager.GetBlueBonusContainer().DOFade(100f, .5f);
+            sc_UIManager.GetBlueBonusContainer().GetComponent<Image>().DOFade(100f, 1.5f);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
             sc_UIManager.GetRedBonusContainer().SetActive(false);
 
@@ -218,21 +226,24 @@ public class S_ResourceGraphics : MonoBehaviour
 
             //turn off the other initial icon
             sc_UIManager.GetBlueBonusIcon1().SetActive(true);
-            sc_UIManager.GetBlueBonusIcon1().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+            sc_UIManager.GetBlueBonusIcon1().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
+            //sc_UIManager.GetBlueBonusIcon1().transform.DOScale(sc_UIManager.getScaleTo(), 1.5f);
 
 
             //Turn on or off additional icons
             if (_bonusCounter.Equals(2))
             {
                 sc_UIManager.GetBlueBonusIcon2().SetActive(true);
-                sc_UIManager.GetBlueBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                //sc_UIManager.GetBlueBonusIcon2().transform.DOScale(sc_UIManager.getScaleTo(), 1.5f);
+                sc_UIManager.GetBlueBonusIcon2().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetBlueBonusIcon3().SetActive(false);
             }
             else if (_bonusCounter.Equals(3))
             {
                 sc_UIManager.GetBlueBonusIcon2().SetActive(true);
                 sc_UIManager.GetBlueBonusIcon3().SetActive(true);
-                sc_UIManager.GetBlueBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                //sc_UIManager.GetBlueBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 1.5f);
+                sc_UIManager.GetBlueBonusIcon3().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
             }
             else
             {
@@ -290,7 +301,7 @@ public class S_ResourceGraphics : MonoBehaviour
             sc_UIManager.GetSkull2BaseAsset().SetActive(true);
             sc_UIManager.GetUIEncounterSelector().SetActive(true);
             //sc_UIManager.GetUIEncounterSelector().transform.position = sc_UIManager.GetSkull2Parent().transform.position;
-            sc_UIManager.GetUIEncounterSelector().transform.DOMove(sc_UIManager.GetSkull2Parent().transform.position, 0.5f, true);
+            sc_UIManager.GetUIEncounterSelector().transform.DOMove(sc_UIManager.GetSkull2Parent().transform.position, 1.5f, true);
 
             sc_UIManager.GetSkull3Parent().SetActive(true);
             sc_UIManager.GetSkull3BaseAsset().SetActive(true);
