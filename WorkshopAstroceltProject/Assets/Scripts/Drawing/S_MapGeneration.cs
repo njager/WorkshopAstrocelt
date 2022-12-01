@@ -37,6 +37,7 @@ public class S_MapGeneration : MonoBehaviour
     {
         for (int i = 0; i < 8; i++)
         {
+            print("cluster:" + (i+1));
             List<Transform> this_cluster = clusters[i];
             for (int j = 0; j < this_cluster.Count; j++)
             {
@@ -51,42 +52,42 @@ public class S_MapGeneration : MonoBehaviour
         if (clusternum == 1)
         {
             rand_x = Random.Range(-12, -6);
-            rand_y = Random.Range(4, 8);
+            rand_y = Random.Range(3, 7);
         }
         else if(clusternum == 2)
         {
             rand_x = Random.Range(-12, -6);
-            rand_y = Random.Range(0, 4);
+            rand_y = Random.Range(-1, 3);
         }
         else if (clusternum == 3)
         {
             rand_x = Random.Range(-6, 0);
-            rand_y = Random.Range(4, 8);
+            rand_y = Random.Range(3, 7);
         }
         else if (clusternum == 4)
         {
             rand_x = Random.Range(-6, 0);
-            rand_y = Random.Range(0, 4);
+            rand_y = Random.Range(-1, 3);
         }
         else if (clusternum == 5)
         {
             rand_x = Random.Range(0, 6);
-            rand_y = Random.Range(4, 8);
+            rand_y = Random.Range(3, 7);
         }
         else if (clusternum == 6)
         {
             rand_x = Random.Range(0, 6);
-            rand_y = Random.Range(0, 4);
+            rand_y = Random.Range(-1, 3);
         }
         else if (clusternum == 7)
         {
             rand_x = Random.Range(6, 12);
-            rand_y = Random.Range(4, 8);
+            rand_y = Random.Range(3, 7);
         }
         else
         {
             rand_x = Random.Range(6, 12);
-            rand_y = Random.Range(0, 4);
+            rand_y = Random.Range(-1, 3);
         }
 
 
@@ -107,20 +108,20 @@ public class S_MapGeneration : MonoBehaviour
     /// 
     public void RandomMapSelector()
     {
-        List<List<GameObject>> clusters = new List<List<GameObject>>();
-        List<GameObject> temp = new List<GameObject>();
+        List<List<Transform>> clusters = new List<List<Transform>>();
+        List<Transform> temp = new List<Transform>();
         
 
-        int count = 1;
+        int count = 0;
         int clusternum = 1;
-        
+        //Debug.Log(map1.gameObject.transform.GetChildCount());
 
-        foreach (GameObject i in map1.GetComponentsInChildren<GameObject>())
+        foreach (Transform i in map1.GetComponentInChildren<Transform>())
         {
             i.transform.position = RandomVector(clusternum);
             temp.Add(i);
 
-            if(count > 5)
+            if(count >= 5)
             {
                 count = 0;
                 clusters.Add(temp);
@@ -129,20 +130,20 @@ public class S_MapGeneration : MonoBehaviour
                 //Debug.Log("thru 5");
             }
             count++;
-            Debug.Log(clusternum);
+            //Debug.Log(clusternum);
         }
         //RunSpringGen(clusters);
-        //cluster_checker(clusters);
+        cluster_checker(clusters);
 
     }
 
 
 
-    public void RunSpringGen(List<List<GameObject>> clusters)
+    public void RunSpringGen(List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
         {
-            List<Ga> this_cluster = clusters[i];
+            List<Transform> this_cluster = clusters[i];
             for (int j = 0; j < this_cluster.Count; j++)
             {
                 for (int k = 0; k < this_cluster.Count; k++)
@@ -150,7 +151,7 @@ public class S_MapGeneration : MonoBehaviour
                     if(j != k)
                     {
                         //this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
-                        Debug.Log(this_cluster[j].gameObject.name);
+                        Debug.Log("loop be loopin");
                     }
                 }
             }
