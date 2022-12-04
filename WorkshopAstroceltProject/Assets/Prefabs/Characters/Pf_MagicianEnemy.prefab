@@ -53,7 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr_enemySprite: {fileID: 3738832767961254711}
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
-  e_str_enemyName: Clurichaun
   e_str_enemyType: Magician
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
@@ -68,6 +67,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 21300000, guid: 61fb91d33260a2e4382edebbca0a3c20, type: 3}
   defeatedSprite: {fileID: 21300000, guid: 277007667988f534bb2059070b937b89, type: 3}
   victorySprite: {fileID: 21300000, guid: e51f12d509c6b904db61b20ed85acc69, type: 3}
+  e_tx_enemyNameplate: {fileID: 7498320782881958239}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
     i_actionValue: 15
   e_i_health: 50
   e_i_healthMax: 50
+  e_str_enemyName: Claurichan
   e_f_challengeRating: 0.3
   e_str_enemyType: Magician
   e_b_Lumberjack: 0
@@ -118,10 +119,11 @@ MonoBehaviour:
   e_b_burned: 0
   e_b_shocked: 0
   e_enemy: {fileID: 0}
-  e_pe_blood: {fileID: 1010174215697406002}
+  e_pe_enemyAttacked: {fileID: 1010174215697406002}
+  e_pe_enemyShielded: {fileID: 3459796551942760023}
+  e_pe_enemySufficientShield: {fileID: 3459796551942760023}
   e_a_AttackAnimator: {fileID: 1358277532405405128}
   e_a_DamagedAnimator: {fileID: 1358277532405405128}
-  e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -293,14 +295,14 @@ RectTransform:
   m_GameObject: {fileID: 3173142829723206611}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.018333334, y: 0.018333334, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 2544261568908842016}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -959.01544, y: -541.0996}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5856473688589154922
@@ -331,7 +333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name - temp
+  m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79c0d867bbe5f744a8aa37ee6ed10c8a, type: 2}
   m_sharedMaterial: {fileID: 5066305262922275057, guid: 79c0d867bbe5f744a8aa37ee6ed10c8a, type: 2}
@@ -880,15 +882,16 @@ RectTransform:
   m_GameObject: {fileID: 7082471388239279814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 18.181818, y: 18.181818, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0}
   m_Children:
   - {fileID: 7282104505700550736}
+  - {fileID: 3780461752031624982}
   m_Father: {fileID: 4333990560368920141}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 17454.545, y: 9818.182}
+  m_AnchoredPosition: {x: 18, y: -20.6}
   m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1975000759633080727
@@ -952,6 +955,81 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &9216503538920036588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3780461752031624982}
+  - component: {fileID: 5451063837254767309}
+  - component: {fileID: 5788969187509582557}
+  m_Layer: 5
+  m_Name: NameplateBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3780461752031624982
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216503538920036588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2544261568908842016}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -1.3}
+  m_SizeDelta: {x: 170, y: 45}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5451063837254767309
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216503538920036588}
+  m_CullTransparentMesh: 1
+--- !u!114 &5788969187509582557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216503538920036588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 46a24eba1a5c42141a5aa518ca4bab03, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &5115556907796189484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1016,6 +1094,11 @@ PrefabInstance:
 --- !u!4 &3459796551942760105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8574204177186011013, guid: 922ce386bafc57441ba96dd2b3026ca4, type: 3}
+  m_PrefabInstance: {fileID: 5115556907796189484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3459796551942760023 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8574204177186011003, guid: 922ce386bafc57441ba96dd2b3026ca4, type: 3}
   m_PrefabInstance: {fileID: 5115556907796189484}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9002787182887690738
