@@ -394,6 +394,12 @@ public class S_Altar : MonoBehaviour
         }
         else if (_activeCard == false)
         {
+            //deal another card
+            DealAnotherCard();
+
+            //move the card balls before the card is played
+            yield return StartCoroutine(MoveCardballPrefabs());
+
             //Debug.Log("Gonna wait for card play");
             yield return new S_WaitForCardPlay();
 
@@ -413,7 +419,6 @@ public class S_Altar : MonoBehaviour
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
                 //g_global.g_energyManager.ClearEnergy();
                 //Debug.Log("MoveCardballPrefabs() Called");
-                yield return StartCoroutine(MoveCardballPrefabs());
             }
         }
     }
@@ -471,7 +476,6 @@ public class S_Altar : MonoBehaviour
         //Debug.Log("Waiting to make a card");
 
         c_i_movementInt -= 1;
-        yield return StartCoroutine(MoveCardballPrefabs());
 
         // Set second cardball playable status to default false
         SetCardballDelaySpawnBool(false);
