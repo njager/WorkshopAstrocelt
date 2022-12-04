@@ -232,6 +232,8 @@ public class S_TurnManager : MonoBehaviour
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
+
+        g_global.g_player.playerSprite.transform.DOPunchScale(new Vector3(2,2,2), 0.5f, 3, 1f);
     }
 
     // Getters \\
