@@ -123,11 +123,7 @@ public class S_NodeStar : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.ls_curConstellation.Count <= 1)
-        {
-            g_global.g_DrawingManager.ConstellationReset(g_global.g_ConstellationManager.ls_curConstellation[g_global.g_ConstellationManager.ls_curConstellation.Count-1]);
-        }
-        else if (g_global.g_ConstellationManager.GetMakingConstellation() && b_clickableStar)
+        if (g_global.g_ConstellationManager.GetMakingConstellation() && b_clickableStar && g_global.g_ConstellationManager.ls_curConstellation.Count > 1)
         {
 
             Debug.Log("We here?");
