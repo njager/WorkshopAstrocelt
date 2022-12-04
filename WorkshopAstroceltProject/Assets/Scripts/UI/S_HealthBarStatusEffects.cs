@@ -9,16 +9,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     private S_Global g_global;
 
     [Header("Health Bar Status Effects")]
-    [SerializeField] Image chg_UI_statusEffectPosition1;
-    [SerializeField] Image chg_UI_statusEffectPosition2;
-    [SerializeField] Image chg_UI_statusEffectPosition3;
-    [SerializeField] Image chg_UI_statusEffectPosition4;
+    [SerializeField] Image chg_UI_acidicStatusEffect;
+    [SerializeField] Image chg_UI_bleedingStatusEffect;
+    [SerializeField] Image chg_UI_resistantStatusEffect;
+    [SerializeField] Image chg_UI_stunnedStatusEffect;
 
-    [Header("Position Gameobjects")]
+    [Header("Position GameObjects")]
     [SerializeField] GameObject chg_statusEffectPosition1;
     [SerializeField] GameObject chg_statusEffectPosition2;
     [SerializeField] GameObject chg_statusEffectPosition3;
     [SerializeField] GameObject chg_statusEffectPosition4;
+    [SerializeField] GameObject chg_statusEffectSpawn;
+
+    [Header("Child Status Effects")]
+    [SerializeField] GameObject chg_statusEffectPosition1Child;
+    [SerializeField] GameObject chg_statusEffectPosition2Child;
+    [SerializeField] GameObject chg_statusEffectPosition3Child;
+    [SerializeField] GameObject chg_statusEffectPosition4Child;
 
     [Header("Position Identifer Strings")]
     [SerializeField] string chg_str_position1Identifier;
@@ -71,7 +78,34 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     {
         if(_positionNum == 1)
         {
+            chg_statusEffectPosition1Child.transform.DOMove();
+            chg_UI_statusEffectPosition1
+        }
+        else if(_positionNum == 2)
+        {
 
         }
     }
+
+    public void SetPosition(Image _image, int _positionNum)
+    {
+        if(_positionNum == 1)
+        {
+            
+        }
+        else if(_positionNum == 2)
+        {
+
+        }
+        else if(_positionNum == 3)
+        {
+
+        }
+        else if(_positionNum == 4)
+        {
+
+        }
+    }
+
+    
 }
