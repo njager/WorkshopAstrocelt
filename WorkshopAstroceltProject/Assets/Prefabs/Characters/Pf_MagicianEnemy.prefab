@@ -53,7 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr_enemySprite: {fileID: 3738832767961254711}
   e_sc_enemyAttributes: {fileID: 1068484044281633899}
-  e_str_enemyName: Clurichaun
   e_str_enemyType: Magician
   e_i_enemyCount: 0
   e_sp_spriteIcon: {fileID: 1211010528336425680}
@@ -68,6 +67,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 21300000, guid: 61fb91d33260a2e4382edebbca0a3c20, type: 3}
   defeatedSprite: {fileID: 21300000, guid: 277007667988f534bb2059070b937b89, type: 3}
   victorySprite: {fileID: 21300000, guid: e51f12d509c6b904db61b20ed85acc69, type: 3}
+  e_tx_enemyNameplate: {fileID: 7498320782881958239}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
     i_actionValue: 15
   e_i_health: 50
   e_i_healthMax: 50
+  e_str_enemyName: Claurichan
   e_f_challengeRating: 0.3
   e_str_enemyType: Magician
   e_b_Lumberjack: 0
@@ -118,10 +119,11 @@ MonoBehaviour:
   e_b_burned: 0
   e_b_shocked: 0
   e_enemy: {fileID: 0}
-  e_pe_blood: {fileID: 1010174215697406002}
+  e_pe_enemyAttacked: {fileID: 1010174215697406002}
+  e_pe_enemyShielded: {fileID: 3459796551942760023}
+  e_pe_enemySufficientShield: {fileID: 3459796551942760023}
   e_a_AttackAnimator: {fileID: 1358277532405405128}
   e_a_DamagedAnimator: {fileID: 1358277532405405128}
-  e_highlightCircle: {fileID: 0}
 --- !u!70 &684450524107534984
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1016,6 +1018,11 @@ PrefabInstance:
 --- !u!4 &3459796551942760105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8574204177186011013, guid: 922ce386bafc57441ba96dd2b3026ca4, type: 3}
+  m_PrefabInstance: {fileID: 5115556907796189484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3459796551942760023 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8574204177186011003, guid: 922ce386bafc57441ba96dd2b3026ca4, type: 3}
   m_PrefabInstance: {fileID: 5115556907796189484}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9002787182887690738

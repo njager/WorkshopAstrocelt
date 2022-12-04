@@ -19,14 +19,18 @@ public class S_EnemyAttributes : MonoBehaviour
     public int e_i_health;
     public int e_i_healthMax;
 
-    // Private variables
-    int e_i_tempSheild;
-    int e_i_shield;
-    int e_i_enemyDamageValue; 
+    [Header("Real name identifier")]
+    [SerializeField] string e_str_enemyName;
 
+    // Private variables
+    private int e_i_tempSheild;
+    private int e_i_shield;
+    private int e_i_enemyDamageValue; 
+
+    [Header("Challenge Rating")]
     public float e_f_challengeRating;
 
-    [Header("Typing")]
+    [Header("Enemy Type")]
     public string e_str_enemyType; 
 
     // Add more enemies to toggle on and off as needed, are these even used? Perhaps there will be a use down the line
@@ -50,15 +54,14 @@ public class S_EnemyAttributes : MonoBehaviour
     [Header("Attached Enemy Script")]
     public S_Enemy e_enemy;
 
-    [Header("Particle Effect")]
-    public ParticleSystem e_pe_blood;
+    [Header("Particle Effects")]
+    [SerializeField] ParticleSystem e_pe_enemyAttacked;
+    [SerializeField] ParticleSystem e_pe_enemyShielded;
+    [SerializeField] ParticleSystem e_pe_enemySufficientShield;
 
     [Header("Animatiors")]
     public Animator e_a_AttackAnimator;
     public Animator e_a_DamagedAnimator;
-
-    [Header("Highlight Circle")]
-    public GameObject e_highlightCircle;
 
     public void Awake()
     {
@@ -318,6 +321,53 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool GetEnemyEmpoweredBool()
     {
         return e_b_empowered;
+    }
+
+    /// <summary>
+    /// Get the string text for S_EnemyAttributes.e_str_enemyName
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_str_enemyName
+    /// </returns>
+    public string GetEnemyName()
+    {
+        return e_str_enemyName;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyAttacked
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_pe_enemyAttacked
+    /// </returns>
+    public ParticleSystem GetEnemyAttackedParticle()
+    {
+        return e_pe_enemyAttacked;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShielded
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_pe_enemyShielded
+    /// </returns>
+    public ParticleSystem GetEnemyShieldedParticle()
+    {
+        return e_pe_enemyShielded;
+    }
+    /// <summary>
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemySufficientShield
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_pe_enemySufficientShield
+    /// </returns>
+    public ParticleSystem GetEnemySufficientShieldParticle()
+    {
+        return e_pe_enemySufficientShield;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
