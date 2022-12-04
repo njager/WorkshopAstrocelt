@@ -40,7 +40,8 @@ public class S_ConstellationLine : MonoBehaviour
     public S_StarClass s_nullStarInst;
     public bool b_starAdded = false;
 
-    
+    [Header("Bool for if the line is invalid")]
+    public bool b_isColliding = false;    
 
     private void Awake()
     {
@@ -72,6 +73,9 @@ public class S_ConstellationLine : MonoBehaviour
             //change the color to error
             m_lineRendererInst.startColor = cl_errorLineColor;
             m_lineRendererInst.endColor = cl_errorLineColor;
+
+            //change the var for line wait
+            b_isColliding = true;
         }
         else if (other.CompareTag("Line")) //check if collider is a line
         {
@@ -93,7 +97,8 @@ public class S_ConstellationLine : MonoBehaviour
                         m_lineRendererInst.startColor = cl_errorLineColor;
                         m_lineRendererInst.endColor = cl_errorLineColor;
 
-
+                        //change the var for line wait
+                        b_isColliding = true;
                     }
                 }
             }
@@ -104,6 +109,9 @@ public class S_ConstellationLine : MonoBehaviour
                 //change the color to error
                 m_lineRendererInst.startColor = cl_errorLineColor;
                 m_lineRendererInst.endColor = cl_errorLineColor;
+
+                //change the var for line wait
+                b_isColliding = true;
             }
         }
         else if (other.CompareTag("Star")) //check if the col is a star
@@ -115,13 +123,16 @@ public class S_ConstellationLine : MonoBehaviour
                 //change the color to error
                 m_lineRendererInst.startColor = cl_errorLineColor;
                 m_lineRendererInst.endColor = cl_errorLineColor;
+
+                //change the var for line wait
+                b_isColliding = true;
             }
             else
             {
                 if (!b_starAdded)
                 {
                     //make the line wait to go to the constellation manager too delete itself
-                    StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar));
+                    StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar, this));
                     b_starAdded = true;
                 }
             }
