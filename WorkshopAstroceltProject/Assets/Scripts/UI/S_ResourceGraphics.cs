@@ -151,6 +151,7 @@ public class S_ResourceGraphics : MonoBehaviour
             {
                 sc_UIManager.GetRedBonusIcon2().SetActive(true);
                 sc_UIManager.GetRedBonusIcon3().SetActive(true);
+                sc_UIManager.GetRedBonusIcon2().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetRedBonusIcon3().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                // sc_UIManager.GetRedBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
             }
@@ -196,6 +197,7 @@ public class S_ResourceGraphics : MonoBehaviour
             {
                 sc_UIManager.GetYellowBonusIcon2().SetActive(true);
                 //sc_UIManager.GetYellowBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 0.5f);
+                sc_UIManager.GetYellowBonusIcon2().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetYellowBonusIcon3().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetYellowBonusIcon3().SetActive(true);
             }
@@ -243,6 +245,7 @@ public class S_ResourceGraphics : MonoBehaviour
                 sc_UIManager.GetBlueBonusIcon2().SetActive(true);
                 sc_UIManager.GetBlueBonusIcon3().SetActive(true);
                 //sc_UIManager.GetBlueBonusIcon3().transform.DOScale(sc_UIManager.getScaleTo(), 1.5f);
+                sc_UIManager.GetBlueBonusIcon2().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
                 sc_UIManager.GetBlueBonusIcon3().transform.DOPunchScale(rsg_v3_tweenFrom, 0.5f, 3, 1f);
             }
             else
