@@ -41,14 +41,10 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_Brawler;
 
     [Header("Status Effects")]
-    public bool e_b_poisoned;
-    public bool e_b_stunned;
-    public bool e_b_bleeding;
-    public bool e_b_empowered;
-    public bool e_b_lucky;
-    public bool e_b_resistant;
-    public bool e_b_burned;
-    public bool e_b_shocked;
+    [SerializeField] bool e_b_acidic;
+    [SerializeField] bool e_b_bleeding;
+    [SerializeField] bool e_b_resistant;
+    [SerializeField] bool e_b_stunned;
 
     //It's attached enemy script
     [Header("Attached Enemy Script")]
@@ -276,27 +272,15 @@ public class S_EnemyAttributes : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the bool state for poison for the enemy 
+    /// Get the bool state for acidic for the enemy
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_b_poisoned
+    /// S_EnemyAttributes.e_b_acidic
     /// </returns>
-    public bool GetEnemyPoisonedBool()
+    public bool GetEnemyAcidicBool()
     {
-        return e_b_poisoned;
-    }
-
-    /// <summary>
-    /// Get the bool state for stun for the enemy 
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_stunned
-    /// </returns>
-    public bool GetEnemyStunnedBool()
-    {
-        return e_b_stunned;
+        return e_b_acidic;
     }
 
     /// <summary>
@@ -312,15 +296,27 @@ public class S_EnemyAttributes : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the bool state for empower for the enemy
+    /// Get the bool state for resistant for the enemy 
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_b_empowered
+    /// S_EnemyAttributes.e_b_resistant
     /// </returns>
-    public bool GetEnemyEmpoweredBool()
+    public bool GetEnemyResistantBool()
     {
-        return e_b_empowered;
+        return e_b_resistant;
+    }
+
+    /// <summary>
+    /// Get the bool state for stun for the enemy 
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_b_stunned
+    /// </returns>
+    public bool GetEnemyStunnedBool()
+    {
+        return e_b_stunned;
     }
 
     /// <summary>

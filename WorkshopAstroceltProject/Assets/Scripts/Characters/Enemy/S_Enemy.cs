@@ -116,7 +116,7 @@ public class S_Enemy : MonoBehaviour
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if(e_sc_enemyAttributes.e_b_resistant == true) // If the enemy is resisitant
+            if(e_sc_enemyAttributes.GetEnemyResistantBool() == true) // If the enemy is resisitant
             {
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // The enemy has no sheilds
                 {
@@ -401,23 +401,6 @@ public class S_Enemy : MonoBehaviour
     {
         e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
-    }
-
-    /// <summary>
-    /// Toggle the highlight element for the enemy
-    /// - Josh
-    /// </summary>
-    /// <param name="_enemy"></param>
-    public void EnemyHighlightToggle()
-    {
-        /*if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
-        {
-            e_sc_enemyAttributes.e_highlightCircle.SetActive(true);
-        }
-        else 
-        {
-            e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
-        }*/
     }
 
     /// <summary>
