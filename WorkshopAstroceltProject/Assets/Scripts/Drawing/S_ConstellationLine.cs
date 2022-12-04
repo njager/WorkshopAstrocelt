@@ -216,4 +216,18 @@ public class S_ConstellationLine : MonoBehaviour
         //make the line a solid one
         m_lineRendererInst.material = m_solidLine;
     }
+
+
+    /// <summary>
+    /// Spawn the popups for the star if the line is valid
+    /// -Riley Halloran
+    /// </summary>
+    public void TriggerPopup()
+    {
+        // Spawn popups with the
+        g_global.g_popupManager.CreatePopUpForStar(s_nextStar, s_nextStar.s_star.i_energy, true);
+
+        // Popups were spawned
+        g_global.g_ConstellationManager.SetPopupStatusForCurrentLine(true);
+    }
 }
