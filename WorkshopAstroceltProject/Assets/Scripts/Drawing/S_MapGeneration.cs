@@ -132,8 +132,8 @@ public class S_MapGeneration : MonoBehaviour
             count++;
             //Debug.Log(clusternum);
         }
-        //RunSpringGen(clusters);
-        cluster_checker(clusters);
+        RunSpringGen(clusters);
+        //cluster_checker(clusters);
 
     }
 
@@ -150,8 +150,8 @@ public class S_MapGeneration : MonoBehaviour
                 {
                     if(j != k)
                     {
-                        //this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
-                        Debug.Log("loop be loopin");
+                        this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
+                        //Debug.Log("loop be loopin");
                     }
                 }
             }
