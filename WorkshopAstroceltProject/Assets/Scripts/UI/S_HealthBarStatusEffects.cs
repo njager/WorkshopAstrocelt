@@ -250,7 +250,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("bleed";
+                chg_ls_activeEffectsList.Add("bleed");
             }
         }
         else if (_effect.Equals("resist"))
