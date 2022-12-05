@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
+
 
 public class S_Player : MonoBehaviour
 {
@@ -20,9 +23,23 @@ public class S_Player : MonoBehaviour
     public Sprite blockSprite;
     public Sprite damagedSprite;
 
+    //public bool p_sc_playerTurn;
+
+    public bool isComplete;
+
     /// <summary>
     /// Basic Start S_Global setup, grabbing playerAttributes; 
     /// </summary>
+
+    public void Update()
+    {
+        if (g_global.g_b_playerTurn == true && isComplete == false)
+        {
+            playerSprite.transform.DOShakePosition(10f, new Vector3(0, 1f, 1), 3, 2f, true, false);
+            isComplete = true;
+        }
+    }
+
     void Awake()
     {
         g_global = S_Global.Instance;

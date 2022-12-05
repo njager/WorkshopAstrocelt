@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class S_Card : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class S_Card : MonoBehaviour
 
     [Header("Sprite Asset")]
     public SpriteRenderer c_a_cardBackgroundArtAsset;
-    public SpriteRenderer c_a_cardArtAsset;
-    public SpriteRenderer c_a_cardForegroundArtAsset;
 
     [Header("Card Database Index")]
     public int c_i_cardDataBaseIndex;
@@ -105,12 +104,6 @@ public class S_Card : MonoBehaviour
     public Sprite c_a_blueBackground;
     public Sprite c_a_yellowBackground;
     public Sprite c_a_whiteBackground;
-
-    [Header("Card Foreground Art Assets")]
-    public Sprite c_a_redForeground;
-    public Sprite c_a_blueForeground;
-    public Sprite c_a_yellowForeground;
-    public Sprite c_a_whiteForeground;
 
     [Header("Shield Sound Effect")]
     public bool c_b_shieldSoundEffect;
@@ -216,7 +209,6 @@ public class S_Card : MonoBehaviour
 
             //Toggle Graphics
             c_a_cardBackgroundArtAsset.sprite = c_a_redBackground;
-            c_a_cardForegroundArtAsset.sprite = c_a_redForeground;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -229,7 +221,6 @@ public class S_Card : MonoBehaviour
 
             //Toggle Graphics
             c_a_cardBackgroundArtAsset.sprite = c_a_blueBackground;
-            c_a_cardForegroundArtAsset.sprite = c_a_blueForeground;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -242,7 +233,6 @@ public class S_Card : MonoBehaviour
 
             //Toggle Graphics
             c_a_cardBackgroundArtAsset.sprite = c_a_yellowBackground;
-            c_a_cardForegroundArtAsset.sprite = c_a_yellowForeground;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -255,17 +245,10 @@ public class S_Card : MonoBehaviour
 
             //Toggle Graphics
             c_a_cardBackgroundArtAsset.sprite = c_a_whiteBackground;
-            c_a_cardForegroundArtAsset.sprite = c_a_whiteForeground;
         }
 
         //set the text for the card
         SetText();
-
-        // Set art asset
-        if(_cardData.CardArtAsset != null) 
-        {
-            c_a_cardArtAsset.sprite = _cardData.CardArtAsset;
-        }  
 
         // Set String Color
         c_str_color = _cardData.ColorString;
@@ -642,17 +625,21 @@ public class S_Card : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
         if (col.transform.tag == "Enemy" && c_b_attackMainEffect)
         {
             if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
             {
+                Debug.Log("Scale Down");
+
                 //turn off the old enenemies ui
                 g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
 
             //select the new enemy as the hovercharacter and turn on their ui
             c_hoverCharacter = col.gameObject;
+
+            Debug.Log("here");
+
             g_global.g_UIManager.SetEnemySelectorOn(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
         }
         else if (col.transform.tag == "Player" && c_b_shieldMainEffect)
@@ -676,6 +663,10 @@ public class S_Card : MonoBehaviour
             //remove the enemy/player selector
             if(col.transform.tag == "Enemy")
             {
+                //scale down
+                Debug.Log("Scale Down2");
+                c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x - .01f, c_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
+
                 g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
             else if (col.transform.tag == "Player")

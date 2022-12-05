@@ -211,10 +211,11 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
+        //g_global.g_player.playerSprite.transform.DOShakePosition(1f, new Vector3(0, 5, 5), 10, 0f, true, false);
         //Debug.Log("Triggerd");
         //clear the card balls and deal a new hand
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs(true));
-
+        
         //Turn to night
         g_global.g_backgroundManager.ChangeBackground(0);
 
@@ -233,7 +234,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
 
-        g_global.g_player.playerSprite.transform.DOPunchScale(new Vector3(2,2,2), 0.5f, 3, 1f);
+        
     }
 
     // Getters \\
