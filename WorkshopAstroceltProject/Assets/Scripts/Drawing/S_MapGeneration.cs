@@ -125,7 +125,7 @@ public class S_MapGeneration : MonoBehaviour
             {
                 count = 0;
                 clusters.Add(temp);
-                temp.Clear();
+                temp = new List<Transform>();
                 clusternum++;
                 //Debug.Log("thru 5");
             }
