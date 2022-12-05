@@ -619,27 +619,135 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// </summary>
     /// <param name="_effectType"></param>
     /// <returns></returns>
-    private int RetrieveEffectDuration(string _effectType) 
+    private int GetEffectDuration(string _effectType) 
     {
         if (_effectType.Equals("acid")) 
         {
-            
+            if(GetHealthBarOwner() == -1) // Player
+            {
+                return g_global.g_playerState.GetPlayerAcidicEffectDuration();
+            }
+            else if(GetHealthBarOwner() == 1) // Enemy 1
+            {
+                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(1);
+            }
+            else if (GetHealthBarOwner() == 2) // Enemy 2
+            {
+                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(2);
+            }
+            else if (GetHealthBarOwner() == 3) // Enemy 3
+            {
+                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(3);
+            }
+            else if (GetHealthBarOwner() == 4) // Enemy 4
+            {
+                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(4);
+            }
+            else if (GetHealthBarOwner() == 5) // Enemy 5
+            {
+                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(5);
+            }
+            else // Return methods require all paths to return a value, even the failed behavior potential paths
+            {
+                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Acidic");
+                return -1;
+            }
         }
         else if (_effectType.Equals("bleed"))
         {
-
+            if (GetHealthBarOwner() == -1) // Player
+            {
+                return g_global.g_playerState.GetPlayerBleedEffectDuration();
+            }
+            else if (GetHealthBarOwner() == 1) // Enemy 1
+            {
+                return g_global.g_enemyState.GetEnemyBleedEffectDuration(1);
+            }
+            else if (GetHealthBarOwner() == 2) // Enemy 2
+            {
+                return g_global.g_enemyState.GetEnemyBleedEffectDuration(2);
+            }
+            else if (GetHealthBarOwner() == 3) // Enemy 3
+            {
+                return g_global.g_enemyState.GetEnemyBleedEffectDuration(3);
+            }
+            else if (GetHealthBarOwner() == 4) // Enemy 4
+            {
+                return g_global.g_enemyState.GetEnemyBleedEffectDuration(4);
+            }
+            else if (GetHealthBarOwner() == 5) // Enemy 5
+            {
+                return g_global.g_enemyState.GetEnemyBleedEffectDuration(5);
+            }
+            else // Return methods require all paths to return a value, even the failed behavior potential paths
+            {
+                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Bleed");
+                return -1;
+            }
         }
         else if (_effectType.Equals("resist"))
         {
-
+            if (GetHealthBarOwner() == -1) // Player
+            {
+                return g_global.g_playerState.GetPlayerResistantEffectDuration();
+            }
+            else if (GetHealthBarOwner() == 1) // Enemy 1
+            {
+                return g_global.g_enemyState.GetEnemyResistantEffectDuration(1);
+            }
+            else if (GetHealthBarOwner() == 2) // Enemy 2
+            {
+                return g_global.g_enemyState.GetEnemyResistantEffectDuration(2);
+            }
+            else if (GetHealthBarOwner() == 3) // Enemy 3
+            {
+                return g_global.g_enemyState.GetEnemyResistantEffectDuration(3);
+            }
+            else if (GetHealthBarOwner() == 4) // Enemy 4
+            {
+                return g_global.g_enemyState.GetEnemyResistantEffectDuration(4);
+            }
+            else if (GetHealthBarOwner() == 5) // Enemy 5
+            {
+                return g_global.g_enemyState.GetEnemyResistantEffectDuration(5);
+            }
+            else // Return methods require all paths to return a value, even the failed behavior potential paths
+            {
+                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Resist");
+                return -1;
+            }
         }
         else if (_effectType.Equals("stun"))
         {
-
+            if (GetHealthBarOwner() == 1) // Enemy 1, player doesn't have stun
+            {
+                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(1);
+            }
+            else if (GetHealthBarOwner() == 2) // Enemy 2
+            {
+                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(2);
+            }
+            else if (GetHealthBarOwner() == 3) // Enemy 3
+            {
+                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(3);
+            }
+            else if (GetHealthBarOwner() == 4) // Enemy 4
+            {
+                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(4);
+            }
+            else if (GetHealthBarOwner() == 5) // Enemy 5
+            {
+                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(5);
+            }
+            else // Return methods require all paths to return a value, even the failed behavior potential paths
+            {
+                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Stun");
+                return -1;
+            }
         }
         else // Return methods require all paths to return a value, even the failed behavior potential paths
         {
-            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveEffectDuration");
+            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Top Layer");
             return -1;
         }
     }
@@ -652,7 +760,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// <returns>
     /// -1 for Player || 1 for Enemy 1 || 2 for Enemy 2 || 3 for Enemy 3 || 4 for Enemy 4 || 5 for Enemy 5
     /// </returns>
-    private int RetrieveHealthBarOwner() 
+    private int GetHealthBarOwner() 
     {
         if(chg_p_b_playerHealthBar == true) 
         {
