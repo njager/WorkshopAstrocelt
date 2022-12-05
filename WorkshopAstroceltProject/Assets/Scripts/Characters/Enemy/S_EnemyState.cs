@@ -1519,7 +1519,7 @@ public class S_EnemyState : MonoBehaviour
     /// S_EnemyState.e_i_acidicTurnCountEnemy1 || S_EnemyState.e_i_acidicTurnCountEnemy2 || S_EnemyState.e_i_acidicTurnCountEnemy3 || S_EnemyState.e_i_acidicTurnCountEnemy4 || S_EnemyState.e_i_acidicTurnCountEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public int GetEnemyAcidicDuration(int _enemyNum)
+    public int GetEnemyAcidicEffectDuration(int _enemyNum)
     {
         if(_enemyNum == 1) 
         {
@@ -1543,7 +1543,7 @@ public class S_EnemyState : MonoBehaviour
         }
         else 
         {
-            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyAcidicDuration()");
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyAcidicEffectDuration()");
             return 0;
         }
     }
@@ -1556,7 +1556,7 @@ public class S_EnemyState : MonoBehaviour
     /// S_EnemyState.e_i_bleedingTurnCountEnemy1 || S_EnemyState.e_i_bleedingTurnCountEnemy2 || S_EnemyState.e_i_bleedingTurnCountEnemy3 || S_EnemyState.e_i_bleedingTurnCountEnemy4 || S_EnemyState.e_i_bleedingTurnCountEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public int GetEnemyBleedDuration(int _enemyNum)
+    public int GetEnemyBleedEffectDuration(int _enemyNum)
     {
         if (_enemyNum == 1)
         {
@@ -1580,7 +1580,7 @@ public class S_EnemyState : MonoBehaviour
         }
         else
         {
-            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyBleedDuration()");
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyBleedEffectDuration()");
             return 0;
         }
     }
@@ -1590,10 +1590,10 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyState.e_i_resistantTurnCountEnemy1|| S_EnemyState.e_i_resistantTurnCountEnemy2 || S_EnemyState.e_i_resistantTurnCountEnemy3 || S_EnemyState.e_i_resistantTurnCountEnemy4 || S_EnemyState.e_i_resistantTurnCountEnemy5
+    /// S_EnemyState.e_i_resistantTurnCountEnemy1 || S_EnemyState.e_i_resistantTurnCountEnemy2 || S_EnemyState.e_i_resistantTurnCountEnemy3 || S_EnemyState.e_i_resistantTurnCountEnemy4 || S_EnemyState.e_i_resistantTurnCountEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public int GetEnemyResistantDuration(int _enemyNum)
+    public int GetEnemyResistantEffectDuration(int _enemyNum)
     {
         if (_enemyNum == 1)
         {
@@ -1617,10 +1617,45 @@ public class S_EnemyState : MonoBehaviour
         }
         else
         {
-            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyResistantDuration()");
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyResistantEffectDuration()");
             return 0;
         }
     }
 
-
+    /// <summary>
+    /// Return the int value of the stunned effect duration for a specified enemy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyState.e_i_stunnedTurnCountEnemy5 || S_EnemyState.e_i_stunnedTurnCountEnemy4 || S_EnemyState.e_i_stunnedTurnCountEnemy3 || S_EnemyState.e_i_stunnedTurnCountEnemy4 || S_EnemyState.e_i_stunnedTurnCountEnemy5
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public int GetEnemyStunnedEffectDuration(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_i_stunnedTurnCountEnemy1;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_i_stunnedTurnCountEnemy2;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_i_stunnedTurnCountEnemy3;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_i_stunnedTurnCountEnemy4;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_i_stunnedTurnCountEnemy5;
+        }
+        else
+        {
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyStunnedEffectDuration()");
+            return 0;
+        }
+    }
 }
