@@ -112,7 +112,7 @@ public class S_MapGeneration : MonoBehaviour
         List<Transform> temp = new List<Transform>();
         
 
-        int count = 0;
+        int count = 1;
         int clusternum = 1;
         //Debug.Log(map1.gameObject.transform.GetChildCount());
 
@@ -121,7 +121,7 @@ public class S_MapGeneration : MonoBehaviour
             i.transform.position = RandomVector(clusternum);
             temp.Add(i);
 
-            if(count >= 5)
+            if(count == 5)
             {
                 count = 0;
                 clusters.Add(temp);
