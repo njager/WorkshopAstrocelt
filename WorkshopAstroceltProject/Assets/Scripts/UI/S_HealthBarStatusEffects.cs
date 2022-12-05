@@ -60,6 +60,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [Tooltip("String is effect type, int is duration")]
     [SerializeField] List<(string, int, int)> chg_ls_activeEffectsList = new List<(string _effectType, int _effectDuration, int _healthBarOwner)>();
 
+    [Header("Status Effect List Indices")] // Default to -1 when not in list
+    [SerializeField] int chg_i_acidicEffectListIndex;
+    [SerializeField] int chg_i_bleedEffectListIndex;
+    [SerializeField] int chg_i_resistantEffectListIndex;
+    [SerializeField] int chg_i_stunnedEffectListIndex;
+
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
     [SerializeField] float chg_f_fadeDurationValue;
@@ -576,14 +582,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Move the status effects after they've ended
-    /// </summary>
-    public void OrderPositions()
-    {
-
-    }
-
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Private Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -592,25 +590,87 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// Helper function to sort the list according to duration
     /// - Josh
     /// </summary>
-    private void SortList()
+    private void SortStatusEffectList()
     {
         if(chg_ls_activeEffectsList.Count == 4)
         {
-            GameObject slot1;
+            // First item
+            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
+
+            // Second item
+            (string, int, int) _itemAtPosition2 = chg_ls_activeEffectsList[1];
+
+            // Third item
+            (string, int, int) _itemAtPosition3 = chg_ls_activeEffectsList[2];
+
+            // Fourth item
+            (string, int, int) _itemAtPosition4 = chg_ls_activeEffectsList[3];
         }
         else if (chg_ls_activeEffectsList.Count == 3)
         {
+            // First item
+            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
 
+            // Second item
+            (string, int, int) _itemAtPosition2 = chg_ls_activeEffectsList[1];
+
+            // Third item
+            (string, int, int) _itemAtPosition3 = chg_ls_activeEffectsList[2];
         }
         else if (chg_ls_activeEffectsList.Count == 2)
         {
+            // First item
+            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
 
+            // Second item
+            (string, int, int) _itemAtPosition2 = chg_ls_activeEffectsList[1];
         }
         else if (chg_ls_activeEffectsList.Count == 1)
+        {
+            // First item
+            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
+
+
+        }
+    }
+
+    /// <summary>
+    /// Helper function to help sort the list in terms of position, rather then ordering the list itself
+    /// - Josh
+    /// </summary>
+    private void SwitchPositions(string _statusEffect1, string _statusEffect2)
+    {
+        
+    }
+
+    /// <summary>
+    /// Helper method to move a status effect to a new position
+    /// - Josh 
+    /// </summary>
+    /// <param name="_statusEffect"></param>
+    /// <param name="_positionIndex"></param>
+    private void MovePositions(string _statusEffect, int _positionIndex)
+    {
+        if (_statusEffect.Equals("acid"))
+        {
+            // Move Child
+            chg_UI_acidicStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+        }
+        else if (_statusEffect.Equals("bleed"))
+        {
+
+        }
+        else if (_statusEffect.Equals("resistant"))
+        {
+
+        }
+        else if (_statusEffect.Equals("stunned"))
         {
 
         }
     }
+
+
 
     /// <summary>
     /// Helper function to seek and return the duration for a given effect 
