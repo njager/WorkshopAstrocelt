@@ -85,7 +85,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add(chg_UI_acidicStatusEffect);
+                chg_ls_activeEffectsList.Add("acid");
                 
             }
             else if (chg_i_slotsOccupied == 1)
