@@ -148,11 +148,6 @@ public class S_NodeStar : MonoBehaviour
         Destroy(this);
     }
 
-    public void TriggerNodeClick()
-    {
-        g_global.g_ConstellationManager.NodeStarClicked(this.GetComponent<S_StarClass>(), transform.position);
-    }
-
     //Getters\\
 
     public bool GetNodeClicked()
