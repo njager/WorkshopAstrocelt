@@ -58,7 +58,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
     [Header("Active Effects List")]
     [Tooltip("String is effect type, int is duration")]
-    [SerializeField] List<(string, int)> chg_ls_activeEffectsList = new List<(string, int)>();
+    [SerializeField] List<(string, int, int)> chg_ls_activeEffectsList = new List<(string _effectType, int _effectDuration, int _healthBarOwner)>();
 
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
@@ -102,9 +102,8 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Set identifier
                 chg_str_position1Identifier = "acid";
 
-                // Add effect to the list
-                chg_ls_activeEffectsList.Add("acid");
-                
+                // Add effect to the list, tupled with duration
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -127,7 +126,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add(chg_str_position2Identifier);
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -150,7 +149,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("acid");
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -173,7 +172,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("acid");
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("bleed"))
@@ -199,7 +198,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("bleed");
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -222,7 +221,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("bleed");
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -245,7 +244,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("bleed");
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -268,7 +267,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("bleed");
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("resist"))
@@ -294,7 +293,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("resist");
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -317,7 +316,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("resist");
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -340,7 +339,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("resist");
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -363,7 +362,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("resist");
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("stun"))
@@ -389,7 +388,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("stun");
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -412,7 +411,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("stun");
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -435,7 +434,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("stun");
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -458,7 +457,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("stun");
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
     }
@@ -484,8 +483,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Fade Child
             _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Reset Identifer
-            chg_str_position1Identifier = "none";
 
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
@@ -493,8 +490,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Clear Child
             chg_statusEffectPosition1Child = null;
 
-            // Remove effect to the list
-            //chg_ls_activeEffectsList.Remove();
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position1Identifier);
+
+            // Reset Identifer
+            chg_str_position1Identifier = "none";
         }
         else if (_positionNum == 2)
         {
@@ -510,17 +510,17 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Fade Child
             _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Reset Identifer
-            chg_str_position2Identifier = "none";
-
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear Child
             chg_statusEffectPosition2Child = null;
 
-            // Remove effect to the list
-            //chg_ls_activeEffectsList.Remove(_child);
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position2Identifier);
+
+            // Reset Identifer
+            chg_str_position2Identifier = "none";
         }
         else if (_positionNum == 3)
         {
@@ -536,17 +536,17 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Fade Child
             _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Reset Identifer
-            chg_str_position3Identifier = "none";
-
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear Child
             chg_statusEffectPosition3Child = null;
 
-            // Remove effect to the list
-            //chg_ls_activeEffectsList.Remove(_child);
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position3Identifier);
+
+            // Reset Identifer
+            chg_str_position3Identifier = "none";
         }
         else if (_positionNum == 4)
         {
@@ -562,24 +562,24 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Fade Child
             _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Reset Identifer
-            chg_str_position4Identifier = "none";
-
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear Child
             chg_statusEffectPosition4Child = null;
 
-            // Remove effect to the list
-            //chg_ls_activeEffectsList.Remove(_child);
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position4Identifier);
+
+            // Reset Identifer
+            chg_str_position4Identifier = "none";
         }
     }
 
     /// <summary>
     /// Move the status effects after they've ended
     /// </summary>
-    public void MovePositions()
+    public void OrderPositions()
     {
 
     }
@@ -790,6 +790,37 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveHealthBarOwner()");
             return 0; 
+        }
+    }
+
+    /// <summary>
+    /// Helper function to remove a given effect from the list to keep down programming bloat
+    ///  - Josh
+    /// </summary>
+    /// <param name="_statusEffect"></param>
+    private void RemoveEffectFromList(string _statusEffect) 
+    {
+        int _index = -3; // Null condition
+        int _counter = -1;
+
+        // Find Index
+        foreach((string, int, int) _item in chg_ls_activeEffectsList.ToList()) 
+        {
+            _counter += 1;
+            if (_item.Item1.Equals(_statusEffect)) // Tuple list items can be accessed by Item1, Item2, Item3... ItemN 
+            {
+                _index = _counter;
+            }
+        }
+
+        // Cleaner delete from direct access
+        if(_index != -3) 
+        {
+            chg_ls_activeEffectsList.RemoveAt(_index);
+        }
+        else 
+        {
+            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
         }
     }
 }
