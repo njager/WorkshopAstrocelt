@@ -65,70 +65,87 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy5SpecialAbility;
 
     [Header("Status Effect Turn Count For Enemy 1")]
-    public int e_i_bleedingTurnCountEnemy1;
-    public int e_i_stunnedTurnCountEnemy1;
-    public int e_i_resistantTurnCountEnemy1;
+    [SerializeField] int e_i_acidicTurnCountEnemy1;
+    [SerializeField] int e_i_bleedingTurnCountEnemy1;
+    [SerializeField] int e_i_stunnedTurnCountEnemy1;
+    [SerializeField] int e_i_resistantTurnCountEnemy1;
 
     [Header("Status Effect Turn Count For Enemy 2")]
-    public int e_i_bleedingTurnCountEnemy2;
-    public int e_i_stunnedTurnCountEnemy2;
-    public int e_i_resistantTurnCountEnemy2;
+    [SerializeField] int e_i_acidicTurnCountEnemy2;
+    [SerializeField] int e_i_bleedingTurnCountEnemy2;
+    [SerializeField] int e_i_stunnedTurnCountEnemy2;
+    [SerializeField] int e_i_resistantTurnCountEnemy2;
 
     [Header("Status Effect Turn Count For Enemy 3")]
-    public int e_i_bleedingTurnCountEnemy3;
-    public int e_i_stunnedTurnCountEnemy3;
-    public int e_i_resistantTurnCountEnemy3;
+    [SerializeField] int e_i_acidicTurnCountEnemy3;
+    [SerializeField] int e_i_bleedingTurnCountEnemy3;
+    [SerializeField] int e_i_stunnedTurnCountEnemy3;
+    [SerializeField] int e_i_resistantTurnCountEnemy3;
 
     [Header("Status Effect Turn Count For Enemy 4")]
-    public int e_i_bleedingTurnCountEnemy4;
-    public int e_i_stunnedTurnCountEnemy4;
-    public int e_i_resistantTurnCountEnemy4;
+    [SerializeField] int e_i_acidicTurnCountEnemy4;
+    [SerializeField] int e_i_bleedingTurnCountEnemy4;
+    [SerializeField] int e_i_stunnedTurnCountEnemy4;
+    [SerializeField] int e_i_resistantTurnCountEnemy4;
 
     [Header("Status Effect Turn Count For Enemy 5")]
-    public int e_i_bleedingTurnCountEnemy5;
-    public int e_i_stunnedTurnCountEnemy5;
-    public int e_i_resistantTurnCountEnemy5;
+    [SerializeField] int e_i_acidicTurnCountEnemy5;
+    [SerializeField] int e_i_bleedingTurnCountEnemy5;
+    [SerializeField] int e_i_stunnedTurnCountEnemy5;
+    [SerializeField] int e_i_resistantTurnCountEnemy5;
 
     [Header("Status Effect States For Enemy 1")]
+    public bool e_b_inAcidicStateEnemy1;
     public bool e_b_inBleedingStateEnemy1;
     public bool e_b_inStunnedStateEnemy1;
     public bool e_b_inResistantStateEnemy1;
 
     [Header("Status Effect States For Enemy 2")]
+    public bool e_b_inAcidicStateEnemy2;
     public bool e_b_inBleedingStateEnemy2;
     public bool e_b_inStunnedStateEnemy2;
     public bool e_b_inResistantStateEnemy2;
 
     [Header("Status Effect States For Enemy 3")]
+    public bool e_b_inAcidicStateEnemy3;
     public bool e_b_inBleedingStateEnemy3;
     public bool e_b_inStunnedStateEnemy3;
     public bool e_b_inResistantStateEnemy3;
 
     [Header("Status Effect States For Enemy 4")]
+    public bool e_b_inAcidicStateEnemy4;
     public bool e_b_inBleedingStateEnemy4;
     public bool e_b_inStunnedStateEnemy4;
     public bool e_b_inResistantStateEnemy4;
 
     [Header("Status Effect States For Enemy 5")]
+    public bool e_b_inAcidicStateEnemy5;
     public bool e_b_inBleedingStateEnemy5;
     public bool e_b_inStunnedStateEnemy5;
     public bool e_b_inResistantStateEnemy5;
 
-    [Header("Status Effect Stores")]
+    [Header("Turns Passed for Acidic Staus Effect")]
+    public int e_i_enemy1AcidicTurnsPassed;
+    public int e_i_enemy2AcidicTurnsPassed;
+    public int e_i_enemy3AcidicTurnsPassed;
+    public int e_i_enemy4AcidicTurnsPassed;
+    public int e_i_enemy5AcidicTurnsPassed;
+
+    [Header("Bleed Status Effect Stores")]
     public float e_f_currentDamageRateForBleedEnemy1;
     public float e_f_currentDamageRateForBleedEnemy2;
     public float e_f_currentDamageRateForBleedEnemy3;
-    public float e_f_currentDamageRateForBleedEnemy4; 
+    public float e_f_currentDamageRateForBleedEnemy4;
     public float e_f_currentDamageRateForBleedEnemy5;
 
-    [Header("Turn Passed for Stun")]
+    [Header("Turns Passed for Stun")]
     public int e_i_enemy1StunTurnsPassed;
     public int e_i_enemy2StunTurnsPassed;
     public int e_i_enemy3StunTurnsPassed;
     public int e_i_enemy4StunTurnsPassed;
     public int e_i_enemy5StunTurnsPassed;
 
-    [Header("Turn Passed for Resistant")]
+    [Header("Turns Passed for Resistant")]
     public int e_i_enemy1ResistantTurnsPassed;
     public int e_i_enemy2ResistantTurnsPassed;
     public int e_i_enemy3ResistantTurnsPassed;
@@ -145,13 +162,13 @@ public class S_EnemyState : MonoBehaviour
     [Header("Boss Enemy")]
     public S_Enemy e_bossEnemy;
 
-    void Awake()
+    private void Awake()
     {
         g_global = S_Global.Instance;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //If the enemy 1 healths or goes over in shields from abilities, or they die
         if(g_global.g_enemyAttributeSheet1 != null)
@@ -1489,4 +1506,121 @@ public class S_EnemyState : MonoBehaviour
             return 0;
         }
     }
+
+    /////////////////////////////--------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Enemy Status Effect Duration Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the int value of the acidic effect duration for a specified enemy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyState.e_i_acidicTurnCountEnemy1 || S_EnemyState.e_i_acidicTurnCountEnemy2 || S_EnemyState.e_i_acidicTurnCountEnemy3 || S_EnemyState.e_i_acidicTurnCountEnemy4 || S_EnemyState.e_i_acidicTurnCountEnemy5
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public int GetEnemyAcidicDuration(int _enemyNum)
+    {
+        if(_enemyNum == 1) 
+        {
+            return e_i_acidicTurnCountEnemy1;
+        }
+        else if(_enemyNum == 2) 
+        {
+            return e_i_acidicTurnCountEnemy2;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_i_acidicTurnCountEnemy3;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_i_acidicTurnCountEnemy4;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_i_acidicTurnCountEnemy5;
+        }
+        else 
+        {
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyAcidicDuration()");
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// Return the int value of the bleeding effect duration for a specified enemy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyState.e_i_bleedingTurnCountEnemy1 || S_EnemyState.e_i_bleedingTurnCountEnemy2 || S_EnemyState.e_i_bleedingTurnCountEnemy3 || S_EnemyState.e_i_bleedingTurnCountEnemy4 || S_EnemyState.e_i_bleedingTurnCountEnemy5
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public int GetEnemyBleedDuration(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_i_bleedingTurnCountEnemy1;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_i_bleedingTurnCountEnemy2;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_i_bleedingTurnCountEnemy3;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_i_bleedingTurnCountEnemy4;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_i_bleedingTurnCountEnemy5;
+        }
+        else
+        {
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyBleedDuration()");
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// Return the int value of the resistant effect duration for a specified enemy
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyState.e_i_resistantTurnCountEnemy1|| S_EnemyState.e_i_resistantTurnCountEnemy2 || S_EnemyState.e_i_resistantTurnCountEnemy3 || S_EnemyState.e_i_resistantTurnCountEnemy4 || S_EnemyState.e_i_resistantTurnCountEnemy5
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public int GetEnemyResistantDuration(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_i_resistantTurnCountEnemy1;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_i_resistantTurnCountEnemy2;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_i_resistantTurnCountEnemy3;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_i_resistantTurnCountEnemy4;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_i_resistantTurnCountEnemy5;
+        }
+        else
+        {
+            Debug.Log("FAILED FUNCTION - S_EnemyState - GetEnemyResistantDuration()");
+            return 0;
+        }
+    }
+
+
 }

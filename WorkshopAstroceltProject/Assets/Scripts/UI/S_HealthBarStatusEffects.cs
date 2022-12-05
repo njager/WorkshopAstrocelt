@@ -7,7 +7,20 @@ using DG.Tweening;
 
 public class S_HealthBarStatusEffects : MonoBehaviour
 {
-    private S_Global g_global;
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+    [Header("Global sdcript Connections")]
+    [SerializeField] S_Global g_global;
+
+    [Header("Health Bar Type")]
+    [SerializeField] bool chg_p_b_playerHealthBar;
+    [SerializeField] bool chg_e_b_enemy1HealthBar;
+    [SerializeField] bool chg_e_b_enemy2HealthBar;
+    [SerializeField] bool chg_e_b_enemy3HealthBar;
+    [SerializeField] bool chg_e_b_enemy4HealthBar;
+    [SerializeField] bool chg_e_b_enemy5HealthBar;
 
     [Header("Health Bar Status Effects")]
     [SerializeField] GameObject chg_UI_acidicStatusEffect;
@@ -44,12 +57,17 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] int chg_i_slotsOccupied;
 
     [Header("Active Effects List")]
-    [SerializeField] List<string> chg_ls_activeEffectsList = new List<string>();
+    [Tooltip("String is effect type, int is duration")]
+    [SerializeField] List<(string, int)> chg_ls_activeEffectsList = new List<(string, int)>();
 
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
     [SerializeField] float chg_f_fadeDurationValue;
     [SerializeField] float chg_f_endMoveValue;
+
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Public Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     private void Awake()
     {
@@ -109,7 +127,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add("acid");
+                chg_ls_activeEffectsList.Add(chg_str_position2Identifier);
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -566,15 +584,19 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
     }
 
+    /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Private Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     /// <summary>
     /// Helper function to sort the list according to duration
     /// - Josh
     /// </summary>
-    public void SortList()
+    private void SortList()
     {
         if(chg_ls_activeEffectsList.Count == 4)
         {
-            //GameObject slot1 = chg_ls_activeEffectsList.Get
+            GameObject slot1;
         }
         else if (chg_ls_activeEffectsList.Count == 3)
         {
@@ -587,6 +609,79 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else if (chg_ls_activeEffectsList.Count == 1)
         {
 
+        }
+    }
+
+    /// <summary>
+    /// Helper function to seek and return the duration for a given effect 
+    /// Retrieved from other scripts
+    /// - Josh
+    /// </summary>
+    /// <param name="_effectType"></param>
+    /// <returns></returns>
+    private int RetrieveEffectDuration(string _effectType) 
+    {
+        if (_effectType.Equals("acid")) 
+        {
+            
+        }
+        else if (_effectType.Equals("bleed"))
+        {
+
+        }
+        else if (_effectType.Equals("resist"))
+        {
+
+        }
+        else if (_effectType.Equals("stun"))
+        {
+
+        }
+        else // Return methods require all paths to return a value, even the failed behavior potential paths
+        {
+            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveEffectDuration");
+            return -1;
+        }
+    }
+
+    /// <summary>
+    /// Helper function to let me know what health bar type this is
+    /// Saves on if else structure spacing
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// -1 for Player || 1 for Enemy 1 || 2 for Enemy 2 || 3 for Enemy 3 || 4 for Enemy 4 || 5 for Enemy 5
+    /// </returns>
+    private int RetrieveHealthBarOwner() 
+    {
+        if(chg_p_b_playerHealthBar == true) 
+        {
+            return -1; // is Player
+        }
+        else if (chg_e_b_enemy1HealthBar == true) 
+        {
+            return 1; // is Enemy 1
+        }
+        else if (chg_e_b_enemy2HealthBar == true)
+        {
+            return 2; // is Enemy 2
+        }
+        else if (chg_e_b_enemy3HealthBar == true)
+        {
+            return 3; // is Enemy 3
+        }
+        else if (chg_e_b_enemy4HealthBar == true)
+        {
+            return 4; // is Enemy 4
+        }
+        else if (chg_e_b_enemy5HealthBar == true)
+        {
+            return 5; // is Enemy 5
+        }
+        else // Return methods require all paths to return a value, even the failed behavior potential paths
+        {
+            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveHealthBarOwner()");
+            return 0; 
         }
     }
 }
