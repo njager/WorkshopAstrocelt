@@ -133,10 +133,11 @@ public class S_MapGeneration : MonoBehaviour
             //Debug.Log(clusternum);
         }
         RunSpringGen(clusters);
+        List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
+        RunSpringRBConnect(springList,clusters);
         //cluster_checker(clusters);
 
     }
-
 
 
     public void RunSpringGen(List<List<Transform>> clusters)
@@ -159,5 +160,51 @@ public class S_MapGeneration : MonoBehaviour
         
     }
 
+    public List<List<List<SpringJoint2D>>> CreateSpringList(List<List<Transform>> clusters)
+    {
+        List<List<List<SpringJoint2D>>> springList = new List<List<List<SpringJoint2D>>>();
+        for (int i = 0; i < 8; i++)
+        {
+            List<List<SpringJoint2D>> this_cluster_springs = new List<List<SpringJoint2D>>();
+            List<Transform> this_cluster = clusters[i];
+            for (int j = 0; j < 5; j++)
+            {
+                List<SpringJoint2D> tempSprings = new List<SpringJoint2D>(this_cluster[j].GetComponents<SpringJoint2D>());
+                //List<SpringJoint2D> tempSprings = 
+                //this_cluster[j].GetComponents<SpringJoint2D>();
+                /*
+                foreach (SpringJoint2D spring in this_cluster[j])
+                {
+                    tempSprings.Add(spring);
+                }
+                */
+                this_cluster_springs.Add(tempSprings);
+            }
+            springList.Add(this_cluster_springs);
+        }
+        return springList;
+    }
+
+
+    public void RunSpringRBConnect(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                for (int k = 0; k < 4; k++)
+                {
+                    for(int l = 0; l < 5; l++)
+                    {
+                        if (j != l)
+                        {
+                            springList[i][j][k].connectedBody = clusters[i][l].GetComponent<Rigidbody2D>();
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }
 
