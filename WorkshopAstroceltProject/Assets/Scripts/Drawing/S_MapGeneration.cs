@@ -146,15 +146,18 @@ public class S_MapGeneration : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             List<Transform> this_cluster = clusters[i];
-            for (int j = 0; j < this_cluster.Count; j++)
+            for (int j = 0; j < 5; j++)
             {
-                for (int k = 0; k < this_cluster.Count; k++)
+                for (int k = 0; k < 6; k++)
                 {
-                    if(j != k)
+                    this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
+                    /*
+                    if (j != k)
                     {
                         this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
                         //Debug.Log("loop be loopin");
                     }
+                    */
                 }
             }
         }
@@ -193,7 +196,7 @@ public class S_MapGeneration : MonoBehaviour
         {
             for (int j = 0; j < 5; j++)
             {
-                for (int k = 0; k < 4; k++)
+                for (int k = 0; k < 5; k++)
                 {
                     springList[i][j][k].connectedBody = clusters[i][k].GetComponent<Rigidbody2D>();
                     springList[i][j][k].distance = 6;
@@ -210,9 +213,17 @@ public class S_MapGeneration : MonoBehaviour
             {
                 Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
                 rb.constraints = RigidbodyConstraints2D.None;
-                clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 1;
+                //clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 1;
 
             }
+        }
+    }
+
+    public void ConnectToRoof(List<List<Transform>> clusters)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            
         }
     }
 }
