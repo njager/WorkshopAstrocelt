@@ -135,6 +135,7 @@ public class S_MapGeneration : MonoBehaviour
         RunSpringGen(clusters);
         List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
         RunSpringRBConnect(springList,clusters);
+        RemoveLockandGravConstraint(clusters);
         //cluster_checker(clusters);
 
     }
@@ -194,17 +195,25 @@ public class S_MapGeneration : MonoBehaviour
             {
                 for (int k = 0; k < 4; k++)
                 {
-                    for(int l = 0; l < 5; l++)
-                    {
-                        if (j != l)
-                        {
-                            springList[i][j][k].connectedBody = clusters[i][l].GetComponent<Rigidbody2D>();
-                        }
-                    }
+                    springList[i][j][k].connectedBody = clusters[i][k].GetComponent<Rigidbody2D>();
+                    springList[i][j][k].distance = 6;
                 }
             }
         }
 
+    }
+    public void RemoveLockandGravConstraint(List<List<Transform>> clusters)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
+                rb.constraints = RigidbodyConstraints2D.None;
+                clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 1;
+
+            }
+        }
     }
 }
 
