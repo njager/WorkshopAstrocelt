@@ -314,6 +314,22 @@ public class S_EnergyStar : MonoBehaviour
                 // Update managers
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
 
+                if (s_b_redColor)
+                {
+                    //turnoff anim
+                    s_redEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (s_b_yellowColor)
+                {
+                    //turnoff anim
+                    s_yellowEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (s_b_blueColor)
+                {
+                    //turnoff anim
+                    s_blueEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+
                 g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
             }
         }
