@@ -31,14 +31,14 @@ public class S_Player : MonoBehaviour
     /// Basic Start S_Global setup, grabbing playerAttributes; 
     /// </summary>
 
-    public void Update()
+  /*  public void Update()
     {
         if (g_global.g_b_playerTurn == true && isComplete == false)
         {
-            playerSprite.transform.DOShakePosition(10f, new Vector3(0, 1f, 1), 3, 2f, true, false);
+            playerSprite.transform.DOShakePosition(1000f, new Vector3(0, 0.00001f, 1), 1, 0, false, false);
             isComplete = true;
         }
-    }
+    }*/
 
     void Awake()
     {
