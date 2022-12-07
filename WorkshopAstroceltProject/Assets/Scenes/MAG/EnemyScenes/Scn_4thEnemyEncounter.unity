@@ -453,6 +453,7 @@ MonoBehaviour:
   f_lineLength: 0
   s_nullStarInst: {fileID: 0}
   b_starAdded: 0
+  b_isColliding: 0
 --- !u!4 &470833517
 Transform:
   m_ObjectHideFlags: 0
@@ -1137,6 +1138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1582beff6334e919486c07ea4d3316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &837322427 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7415764323585887227, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+  m_PrefabInstance: {fileID: 8047176381484923552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &843503405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,6 +1767,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421026600}
   m_CullTransparentMesh: 1
+--- !u!198 &1432465230 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1953000200930135827, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+  m_PrefabInstance: {fileID: 8047176381484923552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1605543214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,6 +1906,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605543214}
   m_CullTransparentMesh: 1
+--- !u!198 &1667288200 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4856195298827463597, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+  m_PrefabInstance: {fileID: 8047176381484923552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1780560770 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3560364167173673428, guid: b718758f9f99235468b26b2d26e37c44, type: 3}
@@ -3110,11 +3126,11 @@ PrefabInstance:
     - target: {fileID: 8047176381211925955, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: pe_redParticle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 837322427}
     - target: {fileID: 8047176381211925955, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: pe_blueParticle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1667288200}
     - target: {fileID: 8047176381211925955, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: v3_vfxContainer
       value: 
@@ -3122,7 +3138,7 @@ PrefabInstance:
     - target: {fileID: 8047176381211925955, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: pe_yellowParticle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1432465230}
     - target: {fileID: 8047176381211925955, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: redEnergyUITargetPosition
       value: 

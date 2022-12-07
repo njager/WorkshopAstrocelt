@@ -1266,7 +1266,22 @@ MonoBehaviour:
   map12: {fileID: 0}
   map13: {fileID: 0}
   activeMap: {fileID: 0}
+  activeMapList: []
   mp_i_previousMapNum: 0
+  s_energyStarPrefab: {fileID: 0}
+  ls_s_map1Stars: []
+  ls_s_map2Stars: []
+  ls_s_map3Stars: []
+  ls_s_map4Stars: []
+  ls_s_map5Stars: []
+  ls_s_map6Stars: []
+  ls_s_map7Stars: []
+  ls_s_map8Stars: []
+  ls_s_map9Stars: []
+  ls_s_map10Stars: []
+  ls_s_map11Stars: []
+  ls_s_map12Stars: []
+  ls_s_map13Stars: []
 --- !u!1 &73390823
 GameObject:
   m_ObjectHideFlags: 0
@@ -8647,16 +8662,21 @@ MonoBehaviour:
   s_nextStar: {fileID: 0}
   m_childLineRendererObject: {fileID: 0}
   m_lineRendererInst: {fileID: 0}
-  f_boxOffsetX: 0
-  f_boxOffsetY: 0
   constellationLinePrefab: {fileID: 0}
   i_index: 0
+  m_dottedLine: {fileID: 0}
+  m_solidLine: {fileID: 0}
+  cl_errorLineColor: {r: 0, g: 0, b: 0, a: 0}
+  cl_correctLineColor: {r: 0, g: 0, b: 0, a: 0}
+  f_boxOffsetX: 0
+  f_boxOffsetY: 0
+  f_lineWidthMin: 0
+  f_lineWidthMax: 0
   f_lineWidth: 0
   f_lineLength: 0
   s_nullStarInst: {fileID: 0}
   b_starAdded: 0
-  f_lineWidthMin: 0
-  f_lineWidthMax: 0
+  b_isColliding: 0
 --- !u!4 &470833517
 Transform:
   m_ObjectHideFlags: 0
@@ -9248,6 +9268,7 @@ MonoBehaviour:
   e_enemy3ShieldOverlay: {fileID: 0}
   e_enemy4ShieldOverlay: {fileID: 0}
   e_enemy5ShieldOverlay: {fileID: 0}
+  p_playerShieldHeartIcon: {fileID: 0}
   p_playerShieldIcon: {fileID: 721031506}
   e_enemy1ShieldIcon: {fileID: 585601772}
   e_enemy2ShieldIcon: {fileID: 1485094771}
@@ -9278,19 +9299,39 @@ MonoBehaviour:
   en_tx_blueEnergyTrackerText: {fileID: 0}
   en_tx_yellowEnergyTrackerText: {fileID: 0}
   co_tx_constellationTrackerText: {fileID: 0}
-  Skull1: {fileID: 0}
-  Skull1_Crack: {fileID: 0}
-  Skull1_Selector: {fileID: 0}
-  Skull2: {fileID: 0}
-  Skull2_Crack: {fileID: 0}
-  Skull2_Selector: {fileID: 0}
-  Skull3: {fileID: 0}
-  Skull3_Crack: {fileID: 0}
-  Skull3_Selector: {fileID: 0}
-  SkullBoss: {fileID: 0}
-  SkullBoss_Selector: {fileID: 0}
-  encounterSprite: {fileID: 0}
-  encounterSprite_Selector: {fileID: 0}
+  rsg_UI_encounterSelector: {fileID: 0}
+  rsg_UI_skull1Parent: {fileID: 0}
+  rsg_UI_skull1BaseAsset: {fileID: 0}
+  rsg_UI_skull1CrackedAsset: {fileID: 0}
+  rsg_UI_skull2Parent: {fileID: 0}
+  rsg_UI_skull2BaseAsset: {fileID: 0}
+  rsg_UI_skull2CrackedAsset: {fileID: 0}
+  rsg_UI_skull3Parent: {fileID: 0}
+  rsg_UI_skull3BaseAsset: {fileID: 0}
+  rsg_UI_skull3CrackedAsset: {fileID: 0}
+  rsg_UI_bossSkullParent: {fileID: 0}
+  rsg_UI_bossSkullBaseAsset: {fileID: 0}
+  rsg_UI_bossSkullCrackedAsset: {fileID: 0}
+  rsg_UI_eventEncounterParent: {fileID: 0}
+  rsg_UI_eventEncounterBaseAsset: {fileID: 0}
+  rsg_UI_eventEncounterFinishedAsset: {fileID: 0}
+  rsg_UI_defaultBonusContainer: {fileID: 0}
+  rsg_UI_redBonusContainer: {fileID: 0}
+  rsg_UI_blueBonusContainer: {fileID: 0}
+  rsg_UI_yellowBonusContainer: {fileID: 0}
+  rsg_UI_redBonusIcon1: {fileID: 0}
+  rsg_UI_redBonusIcon2: {fileID: 0}
+  rsg_UI_redBonusIcon3: {fileID: 0}
+  rsg_UI_blueBonusIcon1: {fileID: 0}
+  rsg_UI_blueBonusIcon2: {fileID: 0}
+  rsg_UI_blueBonusIcon3: {fileID: 0}
+  rsg_UI_yellowBonusIcon1: {fileID: 0}
+  rsg_UI_yellowBonusIcon2: {fileID: 0}
+  rsg_UI_yellowBonusIcon3: {fileID: 0}
+  rsg_UI_i_bonusTracker: 1
+  p_playerCardSelector: {fileID: 0}
+  rsg_OriginalScale: {x: 0, y: 0, z: 0}
+  rsg_ScaleTo: {x: 0, y: 0, z: 0}
 --- !u!1001 &488913038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9811,6 +9852,9 @@ MonoBehaviour:
   g_turnEffectManager: {fileID: 0}
   g_resourceGraphic: {fileID: 0}
   g_consecutiveColorTrackerManager: {fileID: 0}
+  g_tooltipManager: {fileID: 0}
+  g_vfxManager: {fileID: 0}
+  g_audioManager: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -9836,11 +9880,14 @@ MonoBehaviour:
   g_ls_starPopup: []
   g_ls_cardBallPrefabs: []
   g_ls_activeEnemies: []
+  g_ls_nodeStarList: []
   g_e_enemyPosition1: {fileID: 1282492985}
   g_e_enemyPosition2: {fileID: 662767145}
   g_e_enemyPosition3: {fileID: 919921210}
   g_c_b_firstCard: 1
   g_a_audioPlayer: {fileID: 0}
+  g_tutorialCanvas: {fileID: 0}
+  g_b_tutorialCanvasState: 0
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -17966,9 +18013,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c48b94fbe71e145a85e5ba2f55ab7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_v3_initialPosition: {x: 0, y: 0, z: 0}
-  c_cardTransform: {fileID: 868255853}
-  cd_cardData: {fileID: 0}
+  crd_v3_initialPosition: {x: 0, y: 0, z: 0}
+  crd_cardTransform: {fileID: 0}
+  crd_cardData: {fileID: 0}
 --- !u!114 &868255860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17981,16 +18028,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e02c5ea594b047bf71e06907b0404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_card: {fileID: 868255861}
-  c_BoxCollider2D: {fileID: 868255857}
-  c_headerTextObject: {fileID: 1085425524}
-  c_bodyTextObject: {fileID: 1250283126}
-  c_energyCostTextObject: {fileID: 148158144}
-  c_flavorTextObject: {fileID: 2006400147}
-  c_tx_headerText: {fileID: 1085425526}
-  c_tx_bodyText: {fileID: 1250283128}
-  c_tx_energyCostText: {fileID: 148158146}
-  c_tx_flavorText: {fileID: 2006400149}
 --- !u!114 &868255861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18003,76 +18040,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bc18ff36d4d43dd81c111fd6da2da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_cardTemplate: {fileID: 11400000, guid: 22c62dee45460e0469c858e047f70c44, type: 2}
-  c_a_cardBackgroundArtAsset: {fileID: 0}
-  c_a_cardArtAsset: {fileID: 0}
-  c_a_cardForegroundArtAsset: {fileID: 0}
-  c_i_cardDataBaseIndex: 0
-  c_str_cardName: Bludgeon
-  c_str_headerText: Bludgeon
-  c_str_bodyText: Deal 5 damage.
-  c_str_flavorText: 
-  c_i_damageValue: 5
-  c_i_shieldValue: 5
-  c_i_energyCost: 0
-  c_i_effectValue1: 0
-  c_i_effectValue2: 0
-  c_i_effectValue3: 0
-  c_f_bleedDamagePercentage: 0
-  c_str_statusEffectID1: 
-  c_str_statusEffectID2: 
-  c_str_statusEffectID3: 
-  c_i_turnCount1: 0
-  c_i_turnCount2: 0
-  c_i_turnCount3: 0
-  c_f_cardRarity: 1
-  c_b_redColorType: 0
-  c_b_blueColorType: 0
-  c_b_yellowColorType: 0
-  c_b_whiteColorType: 1
-  c_str_color: white
-  c_b_affectsNone: 0
-  c_b_affectsPlayer: 0
-  c_b_affectsOne: 1
-  c_b_affectsAllEnemies: 0
-  c_b_affectsAllCharacters: 0
-  c_b_playerEffect: 0
-  c_b_enemyEffect: 0
-  c_b_attackMainEffect: 1
-  c_b_shieldMainEffect: 0
-  c_b_uniqueMainEffect: 0
-  c_b_noEffect: 1
-  c_b_bleedStatusEffect: 0
-  c_b_stunStatusEffect: 0
-  c_b_acidStatusEffect: 0
-  c_b_resistStatusEffect: 0
-  c_b_burnStatusEffect: 0
-  c_b_drawStatusEffect: 0
-  c_b_siphonStatusEffect: 0
-  c_b_fralitizeStatusEffect: 0
-  c_b_manipulateStatusEffect: 0
-  c_b_thornsStatusEffect: 0
-  c_f_damagePercentage: 0
-  c_f_turnCount: 0
-  c_tx_header: {fileID: 1085425526}
-  c_tx_body: {fileID: 1250283128}
-  c_tx_flavor: {fileID: 2006400149}
-  c_tx_energyCost: {fileID: 148158146}
-  e_cd_grabbedEnemy: {fileID: 0}
-  c_a_redBackground: {fileID: 0}
-  c_a_blueBackground: {fileID: 0}
-  c_a_yellowBackground: {fileID: 0}
-  c_a_whiteBackground: {fileID: 0}
-  c_a_redForeground: {fileID: 0}
-  c_a_blueForeground: {fileID: 0}
-  c_a_yellowForeground: {fileID: 0}
-  c_a_whiteForeground: {fileID: 0}
-  c_b_shieldSoundEffect: 0
-  c_b_attackSoundEffect: 0
-  cd_b_resetPositionFlag: 0
-  c_v3_CardPosition: {x: 0, y: 0, z: 0}
-  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
-  c_b_cardIsDragged: 0
+  crd_cardTemplate: {fileID: 0}
+  crd_a_cardBackgroundArtAsset: {fileID: 0}
+  crd_i_cardDataBaseIndex: 0
+  crd_str_cardName: 
+  crd_str_headerText: 
+  crd_str_bodyText: 
+  crd_str_flavorText: 
+  crd_i_damageValue: 0
+  crd_i_shieldValue: 0
+  crd_i_energyCost: 0
+  crd_i_effectValue1: 0
+  crd_i_effectValue2: 0
+  crd_i_effectValue3: 0
+  crd_f_resistantValue: 0
+  crd_f_fralitizeValue: 0
+  crd_str_statusEffectID1: 
+  crd_str_statusEffectID2: 
+  crd_str_statusEffectID3: 
+  crd_b_commonTier: 0
+  crd_b_uncommonTier: 0
+  crd_b_rareTier: 0
+  crd_b_veryRareTier: 0
+  crd_b_legendaryTier: 0
+  crd_b_redColorType: 0
+  crd_b_blueColorType: 0
+  crd_b_yellowColorType: 0
+  crd_b_whiteColorType: 0
+  crd_str_color: 
+  crd_b_affectsNone: 0
+  crd_b_affectsPlayer: 0
+  crd_b_affectsOne: 0
+  crd_b_affectsAllEnemies: 0
+  crd_b_affectsAllCharacters: 0
+  crd_b_playerEffect: 0
+  crd_b_enemyEffect: 0
+  crd_b_attackMainEffect: 0
+  crd_b_shieldMainEffect: 0
+  crd_b_uniqueMainEffect: 0
+  crd_b_noEffect: 0
+  crd_b_acidicStatusEffect: 0
+  crd_b_bleedStatusEffect: 0
+  crd_b_fralitizeStatusEffect: 0
+  crd_b_stunnedStatusEffect: 0
+  crd_b_resistantStatusEffect: 0
+  crd_f_damagePercentage: 0
+  crd_f_turnCount: 0
+  crd_tx_header: {fileID: 0}
+  crd_tx_body: {fileID: 0}
+  crd_tx_flavor: {fileID: 0}
+  crd_tx_energyCost: {fileID: 0}
+  crd_e_grabbedEnemy: {fileID: 0}
+  crd_a_redBackground: {fileID: 0}
+  crd_a_blueBackground: {fileID: 0}
+  crd_a_yellowBackground: {fileID: 0}
+  crd_a_whiteBackground: {fileID: 0}
+  crd_b_shieldSoundEffect: 0
+  crd_b_attackSoundEffect: 0
+  crd_b_resetPositionFlag: 0
+  crd_v3_cardPosition: {x: 0, y: 0, z: 0}
+  crd_v3_initialCardPosition: {x: 0, y: 0, z: 0}
+  crd_b_cardIsDragged: 0
 --- !u!1001 &868506727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21362,6 +21390,8 @@ Transform:
   - {fileID: 316621962}
   - {fileID: 7682536724582705367}
   - {fileID: 1014657455737769444}
+  - {fileID: 8388438746053227544}
+  - {fileID: 3581909453973185644}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26283,36 +26313,51 @@ MonoBehaviour:
   e_b_enemy3SpecialAbility: 0
   e_b_enemy4SpecialAbility: 0
   e_b_enemy5SpecialAbility: 0
+  e_i_acidicTurnCountEnemy1: 0
   e_i_bleedingTurnCountEnemy1: 0
   e_i_stunnedTurnCountEnemy1: 0
   e_i_resistantTurnCountEnemy1: 0
+  e_i_acidicTurnCountEnemy2: 0
   e_i_bleedingTurnCountEnemy2: 0
   e_i_stunnedTurnCountEnemy2: 0
   e_i_resistantTurnCountEnemy2: 0
+  e_i_acidicTurnCountEnemy3: 0
   e_i_bleedingTurnCountEnemy3: 0
   e_i_stunnedTurnCountEnemy3: 0
   e_i_resistantTurnCountEnemy3: 0
+  e_i_acidicTurnCountEnemy4: 0
   e_i_bleedingTurnCountEnemy4: 0
   e_i_stunnedTurnCountEnemy4: 0
   e_i_resistantTurnCountEnemy4: 0
+  e_i_acidicTurnCountEnemy5: 0
   e_i_bleedingTurnCountEnemy5: 0
   e_i_stunnedTurnCountEnemy5: 0
   e_i_resistantTurnCountEnemy5: 0
+  e_b_inAcidicStateEnemy1: 0
   e_b_inBleedingStateEnemy1: 0
   e_b_inStunnedStateEnemy1: 0
   e_b_inResistantStateEnemy1: 0
+  e_b_inAcidicStateEnemy2: 0
   e_b_inBleedingStateEnemy2: 0
   e_b_inStunnedStateEnemy2: 0
   e_b_inResistantStateEnemy2: 0
+  e_b_inAcidicStateEnemy3: 0
   e_b_inBleedingStateEnemy3: 0
   e_b_inStunnedStateEnemy3: 0
   e_b_inResistantStateEnemy3: 0
+  e_b_inAcidicStateEnemy4: 0
   e_b_inBleedingStateEnemy4: 0
   e_b_inStunnedStateEnemy4: 0
   e_b_inResistantStateEnemy4: 0
+  e_b_inAcidicStateEnemy5: 0
   e_b_inBleedingStateEnemy5: 0
   e_b_inStunnedStateEnemy5: 0
   e_b_inResistantStateEnemy5: 0
+  e_i_enemy1AcidicTurnsPassed: 0
+  e_i_enemy2AcidicTurnsPassed: 0
+  e_i_enemy3AcidicTurnsPassed: 0
+  e_i_enemy4AcidicTurnsPassed: 0
+  e_i_enemy5AcidicTurnsPassed: 0
   e_f_currentDamageRateForBleedEnemy1: 0
   e_f_currentDamageRateForBleedEnemy2: 0
   e_f_currentDamageRateForBleedEnemy3: 0
@@ -26333,6 +26378,7 @@ MonoBehaviour:
   e_b_enemy3IsActive: 0
   e_b_enemy4IsActive: 0
   e_b_enemy5IsActive: 0
+  e_bossEnemy: {fileID: 0}
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26345,12 +26391,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6049ad7ffad6d4884272473da8e258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p_i_acidicTurnCount: 0
   p_i_bleedingTurnCount: 0
-  p_i_stunnedTurnCount: 0
   p_i_resistantTurnCount: 0
+  p_i_stunnedTurnCount: 0
+  p_b_inAcidicState: 0
   p_b_inBleedingState: 0
-  p_b_inStunnedState: 0
   p_b_inResistantState: 0
+  p_b_inStunnedState: 0
   p_playerWinMusic: {fileID: 0}
   p_playerLoseMusic: {fileID: 0}
   p_i_turnsPassedForStun: 0
@@ -29061,7 +29109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acf4195bdb074eb9bdeb4dff9ebd95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 29678253}
 --- !u!1001 &1459895050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41318,7 +41365,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429216837361985093, guid: 6f0a64f1663ba8f4e88ecc12673042ec, type: 3}
       propertyPath: m_Name
-      value: PlayerShieldParticle
+      value: PlayerAndEnemyShieldParticle
       objectReference: {fileID: 0}
     - target: {fileID: 429216837361985094, guid: 6f0a64f1663ba8f4e88ecc12673042ec, type: 3}
       propertyPath: m_RootOrder
@@ -41730,6 +41777,63 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &2688246085389169365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1043160447}
+    m_Modifications:
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.299988
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.89350027
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.44906273
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 53.367
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847687764674643662, guid: c8251b222848d08479aba472774c2535, type: 3}
+      propertyPath: m_Name
+      value: PlayerandEnemyShieldDamageParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8251b222848d08479aba472774c2535, type: 3}
 --- !u!1 &2693571048679491762
 GameObject:
   m_ObjectHideFlags: 0
@@ -41863,6 +41967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1854591a6d64533478290a431eac38c1, type: 3}
+--- !u!4 &3581909453973185644 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+  m_PrefabInstance: {fileID: 7600055566397627679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!222 &3795592464740396503
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42984,6 +43093,63 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &7600055566397627679
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1043160447}
+    m_Modifications:
+    - target: {fileID: 6398961887470631280, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_Name
+      value: ShieldBreakParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.299988
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.89350027
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.44906273
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 53.367
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fca60606c46656847adaa232286d81a0, type: 3}
 --- !u!1001 &7620323673110456361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43200,6 +43366,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &8388438746053227544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
+  m_PrefabInstance: {fileID: 2688246085389169365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8655113275772112710
 GameObject:
   m_ObjectHideFlags: 0

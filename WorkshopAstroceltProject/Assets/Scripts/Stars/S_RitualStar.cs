@@ -295,6 +295,22 @@ public class S_RitualStar : MonoBehaviour
                 g_global.g_ConstellationManager.ls_curConstellation.RemoveAt(g_global.g_ConstellationManager.ls_curConstellation.Count - 1);
 
                 g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
+
+                if (s_b_redColor)
+                {
+                    //turnoff anim
+                    s_redRitualStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (s_yellowRitualStarGraphic.activeInHierarchy)
+                {
+                    //turnoff anim
+                    s_yellowRitualStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (s_b_blueColor)
+                {
+                    //turnoff anim
+                    s_blueRitualStarGraphic.GetComponent<Animator>().enabled = false;
+                }
             }
         }
         else
