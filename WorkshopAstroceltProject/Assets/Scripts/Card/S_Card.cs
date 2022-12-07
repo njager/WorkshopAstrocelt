@@ -332,7 +332,6 @@ public class S_Card : MonoBehaviour
                 }
             }
         }
-
     }
 
     /// <summary>
@@ -359,23 +358,6 @@ public class S_Card : MonoBehaviour
                 {
                     //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
                 }
-
-            }
-            if (crd_b_stunnedStatusEffect == true)
-            {
-                // Locate stun effect
-                if (crd_str_statusEffectID1 == "stun") // In slot 1
-                {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
-                }
-                else if (crd_str_statusEffectID2 == "stun") // In slot 2
-                {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
-                }
-                else if (crd_str_statusEffectID3 == "stun") // In slot 3
-                {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
-                }
             }
             if (crd_b_resistantStatusEffect == true)
             {
@@ -393,6 +375,23 @@ public class S_Card : MonoBehaviour
                     g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
+            if (crd_b_stunnedStatusEffect == true)
+            {
+                // Locate stun effect
+                if (crd_str_statusEffectID1 == "stun") // In slot 1
+                {
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                }
+                else if (crd_str_statusEffectID2 == "stun") // In slot 2
+                {
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                }
+                else if (crd_str_statusEffectID3 == "stun") // In slot 3
+                {
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                }
+            }
+            
         }
         else if (_character.GetComponent<S_Player>() != null) // If the given character was the player
         {
