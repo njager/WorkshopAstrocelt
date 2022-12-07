@@ -417,6 +417,7 @@ public class S_Altar : MonoBehaviour
             else
             {
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
+                g_global.g_ConstellationManager.NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
                 //g_global.g_energyManager.ClearEnergy();
                 //Debug.Log("MoveCardballPrefabs() Called");
             }

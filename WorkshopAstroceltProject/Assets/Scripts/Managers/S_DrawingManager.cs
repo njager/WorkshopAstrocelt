@@ -154,17 +154,51 @@ public class S_DrawingManager : MonoBehaviour
                 _previousStar.gameObject.GetComponent<S_NodeStar>().NodeStarColor();
                 _previousStar.gameObject.GetComponent<S_NodeStar>().SetNodeClicked(false);
             }
-            else if(_previousStar.starType == "Ritual") 
+            else if (_previousStar.starType == "Ritual")
             {
-                Debug.Log("Here");
+
                 //make the star clickable again
-                _previousStar.gameObject.GetComponent<S_RitualStar>().b_hasBeenClicked = false;
+                S_RitualStar _rStar = _previousStar.gameObject.GetComponent<S_RitualStar>();
+                _rStar.b_hasBeenClicked = false;
+
+                if (_rStar.s_b_redColor)
+                {
+                    //turnoff anim
+                    _rStar.s_redRitualStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_rStar.s_yellowRitualStarGraphic.activeInHierarchy)
+                {
+                    //turnoff anim
+                    _rStar.s_yellowRitualStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_rStar.s_b_blueColor)
+                {
+                    //turnoff anim
+                    _rStar.s_blueRitualStarGraphic.GetComponent<Animator>().enabled = false;
+                }
             }
             else if (_previousStar.starType == "Energy")
             {
-                Debug.Log("Here2");
                 //make the star clickable again
-                _previousStar.gameObject.GetComponent<S_EnergyStar>().b_hasBeenClicked = false;
+                S_EnergyStar _eStar = _previousStar.gameObject.GetComponent<S_EnergyStar>();
+                _eStar.b_hasBeenClicked = false;
+
+                //get the color
+                if (_eStar.s_b_redColor)
+                {
+                    //turnoff anim
+                    _eStar.s_redEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_eStar.s_b_yellowColor)
+                {
+                    //turnoff anim
+                    _eStar.s_yellowEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_eStar.s_b_blueColor)
+                {
+                    //turnoff anim
+                    _eStar.s_blueEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
             }
 
             //delete the popups
