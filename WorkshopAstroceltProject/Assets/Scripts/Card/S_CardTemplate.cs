@@ -23,10 +23,10 @@ public class S_CardTemplate : ScriptableObject
     public int DamageValue;
     public int ShieldValue; 
 
-    [Header("Status Effect Numbers")]
-    public int EffectValue1;
-    public int EffectValue2;
-    public int EffectValue3;
+    [Header("Status Effect Stack Count")]
+    public int StackCount1;
+    public int StackCount2;
+    public int StackCount3;
 
     [Header("Status Effect IDs (On Card Excel Doc)")]
     public int IDForStatusEffectOne;

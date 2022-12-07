@@ -163,9 +163,9 @@ public class S_Card : MonoBehaviour
 
         //Load ints/floats
         crd_i_energyCost = _cardData.EnergyCost;
-        crd_i_effectValue1 = _cardData.EffectValue1;
-        crd_i_effectValue2 = _cardData.EffectValue2;
-        crd_i_effectValue3 = _cardData.EffectValue3;
+        crd_i_effectValue1 = _cardData.StackCount1;
+        crd_i_effectValue2 = _cardData.StackCount2;
+        crd_i_effectValue3 = _cardData.StackCount3;
 
         // Set card rarirty tier
         crd_b_commonTier = _cardData.Common;
