@@ -11,118 +11,115 @@ public class S_Card : MonoBehaviour
     private S_Global g_global;
 
     [Header("Template it's built on")]
-    public S_CardTemplate c_cardTemplate;
+    public S_CardTemplate crd_cardTemplate;
 
     [Header("Sprite Asset")]
-    public SpriteRenderer c_a_cardBackgroundArtAsset;
+    public SpriteRenderer crd_a_cardBackgroundArtAsset;
 
     [Header("Card Database Index")]
-    public int c_i_cardDataBaseIndex;
+    public int crd_i_cardDataBaseIndex;
 
     [Header("Card Basics")]
-    public string c_str_cardName;
-    public string c_str_headerText;
-    public string c_str_bodyText;
-    public string c_str_flavorText;
+    public string crd_str_cardName;
+    public string crd_str_headerText;
+    public string crd_str_bodyText;
+    public string crd_str_flavorText;
 
     [Header("Main Effect Numbers")]
-    public int c_i_damageValue;
-    public int c_i_shieldValue;
-    public int c_i_energyCost; //Cast to a string for energy cost text
+    public int crd_i_damageValue;
+    public int crd_i_shieldValue;
+    public int crd_i_energyCost; //Cast to a string for energy cost text
 
     [Header("Status Effect Numbers")]
-    public int c_i_effectValue1; // Effect Value 1
-    public int c_i_effectValue2; // Effect Value 2
-    public int c_i_effectValue3; // Effect Value 3
-    public float c_f_bleedDamagePercentage;
+    public int crd_i_effectValue1; // Effect Value 1
+    public int crd_i_effectValue2; // Effect Value 2
+    public int crd_i_effectValue3; // Effect Value 3
+
+    [Header("Resistant and Frality Float Values")]
+    public float crd_f_resistantValue;
+    public float crd_f_fralitizeValue;
 
     [Header("Status Effect IDs")]
-    public string c_str_statusEffectID1;
-    public string c_str_statusEffectID2;
-    public string c_str_statusEffectID3;
+    public string crd_str_statusEffectID1;
+    public string crd_str_statusEffectID2;
+    public string crd_str_statusEffectID3;
 
-    [Header("Turn Counts for Status Effects")]
-    public int c_i_turnCount1;
-    public int c_i_turnCount2;
-    public int c_i_turnCount3;
-
-    [Header("Card Rarity")]
-    public float c_f_cardRarity;
+    [Header("Card Rarity Tier")]
+    public bool crd_b_commonTier;
+    public bool crd_b_uncommonTier;
+    public bool crd_b_rareTier;
+    public bool crd_b_veryRareTier;
+    public bool crd_b_legendaryTier;
 
     [Header("Color Types")]
-    public bool c_b_redColorType;
-    public bool c_b_blueColorType;
-    public bool c_b_yellowColorType;
-    public bool c_b_whiteColorType;
-    public string c_str_color;
+    public bool crd_b_redColorType;
+    public bool crd_b_blueColorType;
+    public bool crd_b_yellowColorType;
+    public bool crd_b_whiteColorType;
+    public string crd_str_color;
 
     [Header("Primary Destination")]
-    public bool c_b_affectsNone;
-    public bool c_b_affectsPlayer;
-    public bool c_b_affectsOne;
-    public bool c_b_affectsAllEnemies;
-    public bool c_b_affectsAllCharacters;
+    public bool crd_b_affectsNone;
+    public bool crd_b_affectsPlayer;
+    public bool crd_b_affectsOne;
+    public bool crd_b_affectsAllEnemies;
+    public bool crd_b_affectsAllCharacters;
 
     [Header("Secondary Destination")]
-    public bool c_b_playerEffect;
-    public bool c_b_enemyEffect;
+    public bool crd_b_playerEffect;
+    public bool crd_b_enemyEffect;
 
     [Header("Main Effect Types")]
-    public bool c_b_attackMainEffect;
-    public bool c_b_shieldMainEffect;
-    public bool c_b_uniqueMainEffect;
+    public bool crd_b_attackMainEffect;
+    public bool crd_b_shieldMainEffect;
+    public bool crd_b_uniqueMainEffect;
 
     [Header("Status Effect Triggers")]
-    public bool c_b_noEffect;
-    public bool c_b_bleedStatusEffect;
-    public bool c_b_stunStatusEffect;
-    public bool c_b_acidStatusEffect;
-    public bool c_b_resistStatusEffect;
-    public bool c_b_burnStatusEffect;
-    public bool c_b_drawStatusEffect;
-    public bool c_b_siphonStatusEffect;
-    public bool c_b_fralitizeStatusEffect;
-    public bool c_b_manipulateStatusEffect;
-    public bool c_b_thornsStatusEffect;
+    public bool crd_b_noEffect;
+    public bool crd_b_acidicStatusEffect;
+    public bool crd_b_bleedStatusEffect;
+    public bool crd_b_fralitizeStatusEffect;
+    public bool crd_b_stunnedStatusEffect;
+    public bool crd_b_resistantStatusEffect;
 
     [Header("Potential Status Effect Values")]
-    public float c_f_damagePercentage; // If not using effect value, use this
-    public float c_f_turnCount;
+    public float crd_f_damagePercentage; // If not using effect value, use this
+    public float crd_f_turnCount;
 
     [Header("Card Graphic References")]
-    public TextMeshProUGUI c_tx_header; // Header Textbox
-    public TextMeshProUGUI c_tx_body; // Body Text Box
-    public TextMeshProUGUI c_tx_flavor; // Flavor Text Box
-    public TextMeshProUGUI c_tx_energyCost; // Energy Cost for card
+    public TextMeshProUGUI crd_tx_header; // Header Textbox
+    public TextMeshProUGUI crd_tx_body; // Body Text Box
+    public TextMeshProUGUI crd_tx_flavor; // Flavor Text Box
+    public TextMeshProUGUI crd_tx_energyCost; // Energy Cost for card
 
     [Header("Card Dragger References")]
     //public S_CardDragger sc_c_cardDraggerReference;
-    public S_Enemy e_cd_grabbedEnemy;
+    public S_Enemy crd_e_grabbedEnemy;
 
     [Header("Card Background Art Assets")]
-    public Sprite c_a_redBackground;
-    public Sprite c_a_blueBackground;
-    public Sprite c_a_yellowBackground;
-    public Sprite c_a_whiteBackground;
+    public Sprite crd_a_redBackground;
+    public Sprite crd_a_blueBackground;
+    public Sprite crd_a_yellowBackground;
+    public Sprite crd_a_whiteBackground;
 
     [Header("Shield Sound Effect")]
-    public bool c_b_shieldSoundEffect;
+    public bool crd_b_shieldSoundEffect;
 
     [Header("Attack Sound Effect")]
-    public bool c_b_attackSoundEffect;
+    public bool crd_b_attackSoundEffect;
 
     [Header("Card Position Index and Position")]
-    public bool cd_b_resetPositionFlag;
-    public Vector3 c_v3_CardPosition;
-    public Vector3 c_v3_initialCardPosition;
+    public bool crd_b_resetPositionFlag;
+    public Vector3 crd_v3_cardPosition;
+    public Vector3 crd_v3_initialCardPosition;
 
     [Header("CardDrag Bool")]
-    public bool c_b_cardIsDragged;
+    public bool crd_b_cardIsDragged;
 
     [Header("Tween Storage")]
-    public Tweener storedTween;
+    public Tweener an_storedTween;
 
-    private GameObject c_hoverCharacter;
+    private GameObject crd_hoverCharacter;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
 
@@ -144,60 +141,57 @@ public class S_Card : MonoBehaviour
     public void FetchCardData(S_CardTemplate _cardData)
     {
         // Database Index
-        c_i_cardDataBaseIndex = _cardData.CardDatabaseID;
+        crd_i_cardDataBaseIndex = _cardData.CardDatabaseID;
 
         // Template
-        c_cardTemplate = _cardData;
+        crd_cardTemplate = _cardData;
 
         //set attack and defense
-        c_i_damageValue = _cardData.DamageValue;
-        c_i_shieldValue = _cardData.ShieldValue;
+        crd_i_damageValue = _cardData.DamageValue;
+        crd_i_shieldValue = _cardData.ShieldValue;
 
         //Load strings
-        c_str_cardName = _cardData.CardName;
-        c_str_headerText = _cardData.HeaderText;
-        c_str_bodyText = _cardData.BodyText;
-        c_str_flavorText = _cardData.FlavorText;
+        crd_str_cardName = _cardData.CardName;
+        crd_str_headerText = _cardData.HeaderText;
+        crd_str_bodyText = _cardData.BodyText;
+        crd_str_flavorText = _cardData.FlavorText;
 
         //Load ints/floats
-        c_i_energyCost = _cardData.EnergyCost;
-        c_i_effectValue1 = _cardData.EffectValue1;
-        c_i_effectValue2 = _cardData.EffectValue2;
-        c_i_effectValue3 = _cardData.EffectValue3;
-        c_f_cardRarity = _cardData.CardRarity;
+        crd_i_energyCost = _cardData.EnergyCost;
+        crd_i_effectValue1 = _cardData.StackCount1;
+        crd_i_effectValue2 = _cardData.StackCount2;
+        crd_i_effectValue3 = _cardData.StackCount3;
+
+        // Set card rarirty tier
+        crd_b_commonTier = _cardData.Common;
+        crd_b_uncommonTier = _cardData.Uncommon;
+        crd_b_rareTier = _cardData.Rare;
+        crd_b_veryRareTier = _cardData.VeryRare;
+        crd_b_legendaryTier = _cardData.Legendary;
 
         //Toggle Primary Destination
-        c_b_affectsNone = _cardData.AffectsNone;
-        c_b_affectsPlayer = _cardData.AffectsPlayer;
-        c_b_affectsOne = _cardData.Affects1Character;
-        c_b_affectsAllEnemies = _cardData.AffectsAllEnemies;
-        c_b_affectsAllCharacters = _cardData.AffectsAllCharacters;
+        crd_b_affectsNone = _cardData.AffectsNone;
+        crd_b_affectsPlayer = _cardData.AffectsPlayer;
+        crd_b_affectsOne = _cardData.Affects1Character;
+        crd_b_affectsAllEnemies = _cardData.AffectsAllEnemies;
+        crd_b_affectsAllCharacters = _cardData.AffectsAllCharacters;
 
         //Toggle Secondary Destination
-        c_b_playerEffect = _cardData.PlayerEffect;
-        c_b_enemyEffect = _cardData.EnemyEffect;
+        crd_b_playerEffect = _cardData.PlayerEffect;
+        crd_b_enemyEffect = _cardData.EnemyEffect;
 
         //Toggle Main Effects
-        c_b_attackMainEffect = _cardData.AttackEffect;
-        c_b_shieldMainEffect = _cardData.ShieldEffect;
-        c_b_uniqueMainEffect = _cardData.UniqueEffect;
+        crd_b_attackMainEffect = _cardData.AttackEffect;
+        crd_b_shieldMainEffect = _cardData.ShieldEffect;
+        crd_b_uniqueMainEffect = _cardData.UniqueEffect;
 
         //Toggle Status Effects
-        c_b_noEffect = _cardData.NoEffect;
-        c_b_bleedStatusEffect = _cardData.BleedStatusEffect;
-        c_b_stunStatusEffect = _cardData.StunStatusEffect;
-        c_b_acidStatusEffect = _cardData.AcidStatusEffect;
-        c_b_resistStatusEffect = _cardData.ResistStatusEffect;
-        c_b_burnStatusEffect = _cardData.BurnStatusEffect;
-        c_b_drawStatusEffect = _cardData.DrawStatusEffect;
-        c_b_siphonStatusEffect = _cardData.SiphonStatusEffect;
-        c_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
-        c_b_manipulateStatusEffect = _cardData.ManipulateStatusEffect;
-
-        //Toggle turncounts
-        c_i_turnCount1 = _cardData.TurnCountForStatusEffect1;
-        c_i_turnCount2 = _cardData.TurnCountForStatusEffect2;
-        c_i_turnCount3 = _cardData.TurnCountForStatusEffect3;
+        crd_b_noEffect = _cardData.NoEffect;
+        crd_b_acidicStatusEffect = _cardData.AcidicStatusEffect;
+        crd_b_bleedStatusEffect = _cardData.BleedStatusEffect;
+        crd_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
+        crd_b_stunnedStatusEffect = _cardData.StunnedStatusEffect;
+        crd_b_resistantStatusEffect = _cardData.ResistantStatusEffect;
 
         //Toggle Color Types, will need to adapt for synergies
 
@@ -205,84 +199,62 @@ public class S_Card : MonoBehaviour
         if (_cardData.RedColorType == true)
         {
             //Toggle Bools
-            c_b_redColorType = true;
-            c_b_blueColorType = false;
-            c_b_yellowColorType = false;
-            c_b_whiteColorType = false;
+            crd_b_redColorType = true;
+            crd_b_blueColorType = false;
+            crd_b_yellowColorType = false;
+            crd_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundArtAsset.sprite = c_a_redBackground;
+            crd_a_cardBackgroundArtAsset.sprite = crd_a_redBackground;
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
         {
             //Toggle Bools
-            c_b_redColorType = false;
-            c_b_blueColorType = true;
-            c_b_yellowColorType = false;
-            c_b_whiteColorType = false;
+            crd_b_redColorType = false;
+            crd_b_blueColorType = true;
+            crd_b_yellowColorType = false;
+            crd_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundArtAsset.sprite = c_a_blueBackground;
+            crd_a_cardBackgroundArtAsset.sprite = crd_a_blueBackground;
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
         {
             //Toggle Bools
-            c_b_redColorType = false;
-            c_b_blueColorType = false;
-            c_b_yellowColorType = true;
-            c_b_whiteColorType = false;
+            crd_b_redColorType = false;
+            crd_b_blueColorType = false;
+            crd_b_yellowColorType = true;
+            crd_b_whiteColorType = false;
 
             //Toggle Graphics
-            c_a_cardBackgroundArtAsset.sprite = c_a_yellowBackground;
+            crd_a_cardBackgroundArtAsset.sprite = crd_a_yellowBackground;
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
         {
             //Toggle Bools
-            c_b_redColorType = false;
-            c_b_blueColorType = false;
-            c_b_yellowColorType = false;
-            c_b_whiteColorType = true;
+            crd_b_redColorType = false;
+            crd_b_blueColorType = false;
+            crd_b_yellowColorType = false;
+            crd_b_whiteColorType = true;
 
             //Toggle Graphics
-            c_a_cardBackgroundArtAsset.sprite = c_a_whiteBackground;
+            crd_a_cardBackgroundArtAsset.sprite = crd_a_whiteBackground;
         }
 
         //set the text for the card
         SetText();
 
         // Set String Color
-        c_str_color = _cardData.ColorString;
+        crd_str_color = _cardData.ColorString;
 
         // Set sound effect for Shielding
-        c_b_shieldSoundEffect = _cardData.PhysicalOrMagicalBoolForShield;
+        crd_b_shieldSoundEffect = _cardData.PhysicalOrMagicalBoolForShield;
 
         // Set sound effect for Attacking
-        c_b_attackSoundEffect = _cardData.PhysicalOrMagicalBoolForAttack;
-
-        // Build bleed percentage 
-        if (c_f_cardRarity == 0) // Common
-        {
-            c_f_bleedDamagePercentage = 0.1f;
-        }
-        else if (c_f_cardRarity == 1) // Uncommon
-        {
-            c_f_bleedDamagePercentage = 0.15f;
-        }
-        else if (c_f_cardRarity == 2) // Rare
-        {
-            c_f_bleedDamagePercentage = 0.2f;
-        }
-        else if (c_f_cardRarity == 3) // Very Rare
-        {
-            c_f_bleedDamagePercentage = 0.3f;
-        }
-        else if (c_f_cardRarity == 4) // Legendary
-        {
-            c_f_bleedDamagePercentage = 0.4f;
-        }
+        crd_b_attackSoundEffect = _cardData.PhysicalOrMagicalBoolForAttack;
 
         // Use helper function for Status Effect Order
         CheckStatusEffectOrder(_cardData);
@@ -290,9 +262,9 @@ public class S_Card : MonoBehaviour
 
     public void SetText()
     {
-        c_tx_header.text = c_str_headerText;
-        c_tx_body.text = c_str_bodyText;
-        c_tx_flavor.text = c_str_flavorText;
+        crd_tx_header.text = crd_str_headerText;
+        crd_tx_body.text = crd_str_bodyText;
+        crd_tx_flavor.text = crd_str_flavorText;
     }
 
     /// <summary>
@@ -305,7 +277,7 @@ public class S_Card : MonoBehaviour
     /// <param name="_cardData"></param>
     private void CheckStatusEffectOrder(S_CardTemplate _cardData)
     {
-        if (c_b_noEffect == true)
+        if (crd_b_noEffect == true)
         {
             //Debug.Log("DEBUG: No status effects for the given card!");
             return;
@@ -316,15 +288,15 @@ public class S_Card : MonoBehaviour
             {
                 if (_cardData.IDForStatusEffectOne == 1) // Check for bleed
                 {
-                    c_str_statusEffectID1 = "bleed";
+                    crd_str_statusEffectID1 = "bleed";
                 }
                 else if (_cardData.IDForStatusEffectOne == 4) // Check for resist
                 {
-                    c_str_statusEffectID1 = "resist";
+                    crd_str_statusEffectID1 = "resist";
                 }
                 else if (_cardData.IDForStatusEffectOne == 6) // Check for stun
                 {
-                    c_str_statusEffectID1 = "stun";
+                    crd_str_statusEffectID1 = "stun";
                 }
             }
 
@@ -332,15 +304,15 @@ public class S_Card : MonoBehaviour
             {
                 if (_cardData.IDForStatusEffectTwo == 1) // Check for bleed
                 {
-                    c_str_statusEffectID2 = "bleed";
+                    crd_str_statusEffectID2 = "bleed";
                 }
                 else if (_cardData.IDForStatusEffectTwo == 4) // Check for resist
                 {
-                    c_str_statusEffectID2 = "resist";
+                    crd_str_statusEffectID2 = "resist";
                 }
                 else if (_cardData.IDForStatusEffectTwo == 6) // Check for stun
                 {
-                    c_str_statusEffectID2 = "stun";
+                    crd_str_statusEffectID2 = "stun";
                 }
             }
 
@@ -348,19 +320,18 @@ public class S_Card : MonoBehaviour
             {
                 if (_cardData.IDForStatusEffectThree == 1) // Check for bleed
                 {
-                    c_str_statusEffectID3 = "bleed";
+                    crd_str_statusEffectID3 = "bleed";
                 }
                 else if (_cardData.IDForStatusEffectThree == 4) // Check for resist
                 {
-                    c_str_statusEffectID3 = "resist";
+                    crd_str_statusEffectID3 = "resist";
                 }
                 else if (_cardData.IDForStatusEffectThree == 6) // Check for stun
                 {
-                    c_str_statusEffectID3 = "stun";
+                    crd_str_statusEffectID3 = "stun";
                 }
             }
         }
-
     }
 
     /// <summary>
@@ -372,105 +343,105 @@ public class S_Card : MonoBehaviour
         {
             S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
             //Debug.Log(_givenEnemy.e_i_enemyCount);
-            if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
+            if (crd_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
-                if (c_str_statusEffectID1 == "bleed") // In slot 1
+                if (crd_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1, _givenEnemy.e_i_enemyCount);
                 }
-                else if (c_str_statusEffectID2 == "bleed") // In slot 2
+                else if (crd_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2, _givenEnemy.e_i_enemyCount);
                 }
-                else if (c_str_statusEffectID3 == "bleed") // In slot 3
+                else if (crd_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
                 }
-
             }
-            if (c_b_stunStatusEffect == true)
+            if (crd_b_resistantStatusEffect == true)
             {
                 // Locate stun effect
-                if (c_str_statusEffectID1 == "stun") // In slot 1
+                if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
-                else if (c_str_statusEffectID2 == "stun") // In slot 2
+                else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
-                else if (c_str_statusEffectID3 == "stun") // In slot 3
+                else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
-            if (c_b_resistStatusEffect == true)
+            if (crd_b_stunnedStatusEffect == true)
             {
                 // Locate stun effect
-                if (c_str_statusEffectID1 == "resist") // In slot 1
+                if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(c_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
-                else if (c_str_statusEffectID2 == "resist") // In slot 2
+                else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(c_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
-                else if (c_str_statusEffectID3 == "resist") // In slot 3
+                else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(c_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
+            
         }
         else if (_character.GetComponent<S_Player>() != null) // If the given character was the player
         {
-            if (c_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
+            if (crd_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
-                if (c_str_statusEffectID1 == "bleed") // In slot 1
+                if (crd_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount1);
+                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1);
                 }
-                else if (c_str_statusEffectID2 == "bleed") // In slot 2
+                else if (crd_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount2);
+                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2);
                 }
-                else if (c_str_statusEffectID3 == "bleed") // In slot 3
+                else if (crd_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(c_f_bleedDamagePercentage, c_i_turnCount3);
+                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3);
                 }
 
             }
-            if (c_b_stunStatusEffect == true)
+            if (crd_b_stunnedStatusEffect == true)
             {
                 // Locate stun effect
-                if (c_str_statusEffectID1 == "stun") // In slot 1
+                if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(c_i_turnCount1);
+                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
                 }
-                else if (c_str_statusEffectID2 == "stun") // In slot 2
+                else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(c_i_turnCount2);
+                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
                 }
-                else if (c_str_statusEffectID3 == "stun") // In slot 3
+                else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(c_i_turnCount3);
+                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
                 }
             }
-            if (c_b_resistStatusEffect == true)
+            if (crd_b_resistantStatusEffect == true)
             {
                 // Locate stun effect
-                if (c_str_statusEffectID1 == "resist") // In slot 1
+                if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_playerState.PlayerResistantEffect(c_i_turnCount1);
+                    g_global.g_playerState.PlayerResistantEffect(0);
                 }
-                else if (c_str_statusEffectID2 == "resist") // In slot 2
+                else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_playerState.PlayerResistantEffect(c_i_turnCount2);
+                    g_global.g_playerState.PlayerResistantEffect(0);
                 }
-                else if (c_str_statusEffectID3 == "resist") // In slot 3
+                else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_playerState.PlayerResistantEffect(c_i_turnCount3);
+                    g_global.g_playerState.PlayerResistantEffect(0);
                 }
             }
         }
@@ -483,7 +454,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void PlayCard(GameObject _character)
     {
-        if (c_b_attackMainEffect == true)
+        if (crd_b_attackMainEffect == true)
         {
             if (_character.GetComponent<S_Enemy>() != null)
             {
@@ -491,13 +462,13 @@ public class S_Card : MonoBehaviour
                 TriggerAttackCard(_character.GetComponent<S_Enemy>());
 
                 // If there are status effects, then trigger them as well
-                if (!c_b_noEffect)
+                if (!crd_b_noEffect)
                 {
-                    if (c_b_enemyEffect == true) // If the status effects are for the enemy
+                    if (crd_b_enemyEffect == true) // If the status effects are for the enemy
                     {
                         TriggerStatusEffects(_character);
                     }
-                    else if (c_b_playerEffect == true) // If the status effects are for the player
+                    else if (crd_b_playerEffect == true) // If the status effects are for the player
                     {
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
@@ -512,7 +483,7 @@ public class S_Card : MonoBehaviour
                 ResetPosition();
             }
         }
-        else if (c_b_shieldMainEffect == true)
+        else if (crd_b_shieldMainEffect == true)
         {
             if (_character.GetComponent<S_Player>() != null)
             {
@@ -520,13 +491,13 @@ public class S_Card : MonoBehaviour
                 TriggerShieldCard();
 
                 // If there are status effects, then trigger them as well
-                if (!c_b_noEffect)
+                if (!crd_b_noEffect)
                 {
-                    if (c_b_enemyEffect == true) // If the status effects are for the enemy
+                    if (crd_b_enemyEffect == true) // If the status effects are for the enemy
                     {
                         TriggerStatusEffects(_character);
                     }
-                    else if (c_b_playerEffect == true) // If the status effects are for the player
+                    else if (crd_b_playerEffect == true) // If the status effects are for the player
                     {
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
@@ -546,7 +517,7 @@ public class S_Card : MonoBehaviour
                 ResetPosition();
             }
         }
-        else if (c_b_uniqueMainEffect == true)
+        else if (crd_b_uniqueMainEffect == true)
         {
             // Note using any unique cards but we'd trigger special behavior here
         }
@@ -562,12 +533,12 @@ public class S_Card : MonoBehaviour
     private void TriggerAttackCard(S_Enemy _enemy)
     {
 
-        _enemy.EnemyAttacked(_enemy.e_str_enemyType, c_i_damageValue);
-        if (c_b_attackSoundEffect == false) // Play physical sound
+        _enemy.EnemyAttacked(_enemy.e_str_enemyType, crd_i_damageValue);
+        if (crd_b_attackSoundEffect == false) // Play physical sound
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-physical");
         }
-        else if (c_b_attackSoundEffect == true) // Play Magic sound
+        else if (crd_b_attackSoundEffect == true) // Play Magic sound
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
@@ -583,7 +554,7 @@ public class S_Card : MonoBehaviour
     /// </summary>
     private void TriggerShieldCard()
     {
-        g_global.g_player.PlayerShielded(c_i_shieldValue, c_b_shieldSoundEffect);
+        g_global.g_player.PlayerShielded(crd_i_shieldValue, crd_b_shieldSoundEffect);
         DeleteCard();
     }
 
@@ -605,8 +576,8 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void ResetPosition()
     {
-        gameObject.transform.position = c_v3_initialCardPosition;
-        cd_b_resetPositionFlag = false;
+        gameObject.transform.position = crd_v3_initialCardPosition;
+        crd_b_resetPositionFlag = false;
     }
 
     /// <summary>
@@ -614,10 +585,10 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void CheckResetOrPlay()
     {
-        if(c_hoverCharacter != null)
+        if(crd_hoverCharacter != null)
         {
-            Debug.Log(c_hoverCharacter);
-            PlayCard(c_hoverCharacter);
+            Debug.Log(crd_hoverCharacter);
+            PlayCard(crd_hoverCharacter);
         }
         else
         {
@@ -625,77 +596,77 @@ public class S_Card : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.tag == "Enemy" && c_b_attackMainEffect)
+        if (col.transform.tag == "Enemy" && crd_b_attackMainEffect)
         {
-            if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
+            if (crd_hoverCharacter != col.gameObject && crd_hoverCharacter != null)
             {
                 //scale down
                 Debug.Log("Scale Down");
-                if (storedTween.IsPlaying())
+
+                if (an_storedTween.IsPlaying())
                 {
-                    storedTween.PlayBackwards();
+                    an_storedTween.PlayBackwards();
                 }
                 else
                 {
-                    storedTween = c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x - .01f, c_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
+                    an_storedTween = crd_hoverCharacter.transform.DOScale(new Vector3(crd_hoverCharacter.transform.localScale.x - .01f, crd_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
                 }
 
                 //turn off the old enenemies ui
-                g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+                g_global.g_UIManager.SetEnemySelectorOff(crd_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
 
             //select the new enemy as the hovercharacter and turn on their ui
-            c_hoverCharacter = col.gameObject;
+            crd_hoverCharacter = col.gameObject;
 
             //scale Up
             Debug.Log("Scale Up");
-            storedTween = c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x + .01f, c_hoverCharacter.transform.localScale.y + .01f, 0), 0.2f);
+            an_storedTween = crd_hoverCharacter.transform.DOScale(new Vector3(crd_hoverCharacter.transform.localScale.x + .01f, crd_hoverCharacter.transform.localScale.y + .01f, 0), 0.2f);
 
-            g_global.g_UIManager.SetEnemySelectorOn(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+            g_global.g_UIManager.SetEnemySelectorOn(crd_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
         }
-        else if (col.transform.tag == "Player" && c_b_shieldMainEffect)
+        else if (col.transform.tag == "Player" && crd_b_shieldMainEffect)
         {
-            if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
+            if (crd_hoverCharacter != col.gameObject && crd_hoverCharacter != null)
             {
                 //turn off the old enenemies ui
-                g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+                g_global.g_UIManager.SetEnemySelectorOff(crd_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
 
             //set the hoverCharacter and turn on the ui selector
-            c_hoverCharacter = col.gameObject;
+            crd_hoverCharacter = col.gameObject;
             g_global.g_UIManager.sc_characterGraphics.TogglePlayerSelectorUI(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject == c_hoverCharacter)
+        if (col.gameObject == crd_hoverCharacter)
         {
             //remove the enemy/player selector
             if(col.transform.tag == "Enemy")
             {
                 //scale down
                 Debug.Log("Scale Down2");
-                if (storedTween.IsPlaying())
+                if (an_storedTween.IsPlaying())
                 {
-                    storedTween.PlayBackwards();
+                    an_storedTween.PlayBackwards();
                 }
                 else
                 {
-                    storedTween = c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x - .01f, c_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
+                    an_storedTween = crd_hoverCharacter.transform.DOScale(new Vector3(crd_hoverCharacter.transform.localScale.x - .01f, crd_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
                 }
 
-                g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
+                g_global.g_UIManager.SetEnemySelectorOff(crd_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
             else if (col.transform.tag == "Player")
             {
                 g_global.g_UIManager.sc_characterGraphics.TogglePlayerSelectorUI(false);
             }
 
-            c_hoverCharacter = null;
+            crd_hoverCharacter = null;
         }
     }
 
@@ -708,12 +679,12 @@ public class S_Card : MonoBehaviour
     /// <param name="_cardInitialPosition"></param>
     public void SetCardInitialPosition(Vector3 _cardInitialPosition) 
     {
-        c_v3_initialCardPosition = _cardInitialPosition;
+        crd_v3_initialCardPosition = _cardInitialPosition;
     }
 
     public void SetCardDrag(bool _bool)
     {
-        c_b_cardIsDragged = _bool;
+        crd_b_cardIsDragged = _bool;
     }
 
     // Getters \\ 
@@ -724,7 +695,7 @@ public class S_Card : MonoBehaviour
     /// <returns></returns>
     public bool GetCardDrag()
     {
-        return c_b_cardIsDragged;
+        return crd_b_cardIsDragged;
     }
 
 }

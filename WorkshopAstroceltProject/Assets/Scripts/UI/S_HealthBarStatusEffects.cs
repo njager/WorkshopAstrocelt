@@ -489,7 +489,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Fade Child
             _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
 
@@ -629,8 +628,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             // First item
             (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
-
-
         }
     }
 
@@ -669,8 +666,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
         }
     }
-
-
 
     /// <summary>
     /// Helper function to seek and return the duration for a given effect 
