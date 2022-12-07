@@ -218,25 +218,18 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
-        bool _red = false;
-        bool _blue = false;
-        bool _yellow = false;
-
+        Debug.Log("Move bich");
         yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
 
         foreach (S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())
         {
-            if (_starPopup.b_isBluePopup) { _blue = true; }
-            if (_starPopup.b_isRedPopup) { _red = true; }
-            if (_starPopup.b_isYellowPopup) { _yellow = true; }
-
             _starPopup.MovePopupToEnergyTracker();
         }
 
         b_popupClear = false;
         i_popupUpClearInt = g_global.g_ls_starPopup.Count;
-        //StartCoroutine(ClearPopupsForRound());
+        StartCoroutine(ClearPopupsForRound());
     }
 
     /// <summary>
@@ -295,7 +288,7 @@ public class S_PopupManager : MonoBehaviour
         foreach (S_StarPopUp _starPop in g_global.g_ls_starPopup.ToList())
         {
             StartCoroutine(_starPop.DeletionTimer());
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.5f);
         }
 
         if (i_popupUpClearInt == 0)
