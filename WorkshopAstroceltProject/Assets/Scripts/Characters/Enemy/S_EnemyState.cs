@@ -579,17 +579,18 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper function of a helper function, used to calculate percentage of health
+    /// Helper function of a helper function, used to calculate new bleed damage effect
     /// - Josh
     /// </summary>
-    /// <param name="_damageRate"></param>
+    /// <param name="_currentDamage"></param>
     /// <param name="_enemyNum"></param>
     /// <returns>
-    /// float _bleedingCalc
+    /// _bleedingCalc (int)
     /// </returns>
-    private int BleedingEffectCalculator(float _damageRate, int _enemyNum)
+    private int BleedingEffectCalculator(int _currentDamage, int _enemyNum)
     {
-        int _bleedingCalc = Mathf.RoundToInt(GetEnemyDataSheet(_enemyNum).GetEnemyHealthValue() * _damageRate);
+        float seperateCalc = _currentDamage * 0.5f;
+        int _bleedingCalc = Mathf.FloorToInt(_currentDamage); 
         return _bleedingCalc;
     }
 
@@ -597,11 +598,11 @@ public class S_EnemyState : MonoBehaviour
     /// Helper to trigger bleed after intial function
     /// - Josh
     /// </summary>
-    /// <param name="_damageRate"></param>
+    /// <param name="_currentDamage"></param>
     /// <param name="_enemyNum"></param>
-    private void BleedEffectPerTurn(float _damageRate, int _enemyNum)
+    private void BleedEffectPerTurn(int _currentDamage, int _enemyNum)
     {
-        int _bleedingDamageForTurn = BleedingEffectCalculator(_damageRate, _enemyNum);
+        int _bleedingDamageForTurn = BleedingEffectCalculator(_currentDamage, _enemyNum);
         g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
     }
 
