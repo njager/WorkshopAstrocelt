@@ -266,29 +266,6 @@ public class S_Card : MonoBehaviour
         // Set sound effect for Attacking
         crd_b_attackSoundEffect = _cardData.PhysicalOrMagicalBoolForAttack;
 
-        // Build resistant percentage 
-        if (crd_b_commonTier == true) // Common
-        {
-            crd_f_resistantValue = 0f;
-            //crd_f_fralitizeValue = 
-        }
-        else if (crd_b_uncommonTier == true) // Uncommon
-        {
-            crd_f_resistantValue = 0.15f;
-        }
-        else if (crd_b_rareTier == true) // Rare
-        {
-            crd_f_resistantValue = 0.2f;
-        }
-        else if (crd_b_veryRareTier == true) // Very Rare
-        {
-            crd_f_resistantValue = 0.3f;
-        }
-        else if (crd_b_legendaryTier == true) // Legendary
-        {
-            crd_f_resistantValue = 0.4f;
-        }
-
         // Use helper function for Status Effect Order
         CheckStatusEffectOrder(_cardData);
     }
@@ -382,15 +359,15 @@ public class S_Card : MonoBehaviour
                 // There is empirically a bleed effect, question is where
                 if (crd_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
                 }
 
             }
@@ -434,15 +411,15 @@ public class S_Card : MonoBehaviour
                 // There is empirically a bleed effect, question is where
                 if (crd_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1);
+                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1);
                 }
                 else if (crd_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2);
+                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2);
                 }
                 else if (crd_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3);
+                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3);
                 }
 
             }
