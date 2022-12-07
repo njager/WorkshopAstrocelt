@@ -119,6 +119,9 @@ public class S_Card : MonoBehaviour
     [Header("CardDrag Bool")]
     public bool c_b_cardIsDragged;
 
+    [Header("Tween Storage")]
+    public Tweener storedTween;
+
     private GameObject c_hoverCharacter;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
@@ -629,7 +632,16 @@ public class S_Card : MonoBehaviour
         {
             if (c_hoverCharacter != col.gameObject && c_hoverCharacter != null)
             {
+                //scale down
                 Debug.Log("Scale Down");
+                if (storedTween.IsPlaying())
+                {
+                    storedTween.PlayBackwards();
+                }
+                else
+                {
+                    storedTween = c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x - .01f, c_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
+                }
 
                 //turn off the old enenemies ui
                 g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
@@ -638,7 +650,9 @@ public class S_Card : MonoBehaviour
             //select the new enemy as the hovercharacter and turn on their ui
             c_hoverCharacter = col.gameObject;
 
-            Debug.Log("here");
+            //scale Up
+            Debug.Log("Scale Up");
+            storedTween = c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x + .01f, c_hoverCharacter.transform.localScale.y + .01f, 0), 0.2f);
 
             g_global.g_UIManager.SetEnemySelectorOn(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
         }
@@ -665,7 +679,14 @@ public class S_Card : MonoBehaviour
             {
                 //scale down
                 Debug.Log("Scale Down2");
-                c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x - .01f, c_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
+                if (storedTween.IsPlaying())
+                {
+                    storedTween.PlayBackwards();
+                }
+                else
+                {
+                    storedTween = c_hoverCharacter.transform.DOScale(new Vector3(c_hoverCharacter.transform.localScale.x - .01f, c_hoverCharacter.transform.localScale.y - .01f, 0), 0.2f);
+                }
 
                 g_global.g_UIManager.SetEnemySelectorOff(c_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
             }
