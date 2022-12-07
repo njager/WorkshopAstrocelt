@@ -10,14 +10,16 @@ public class S_PlayerState : MonoBehaviour
 
     //Multiple Status Effects could be active at once
     [Header("Status Effect Turn Counts")]
-    public int p_i_bleedingTurnCount;
-    public int p_i_stunnedTurnCount;
-    public int p_i_resistantTurnCount;
+    [SerializeField] int p_i_acidicTurnCount;
+    [SerializeField] int p_i_bleedingTurnCount;
+    [SerializeField] int p_i_resistantTurnCount;
+    [SerializeField] int p_i_stunnedTurnCount;
 
     [Header("Status Effect States")]
+    [SerializeField] bool p_b_inAcidicState;
     public bool p_b_inBleedingState;
-    public bool p_b_inStunnedState;
     public bool p_b_inResistantState;
+    public bool p_b_inStunnedState;
 
     [Header("Audio Prefabs")]
     public GameObject p_playerWinMusic;
@@ -30,14 +32,16 @@ public class S_PlayerState : MonoBehaviour
     [Header("Status Effect Stores")]
     public float p_f_currentDamageRateForBleed;
 
-    void Awake()
+    private void Awake()
     {
         g_global = S_Global.Instance;
     }
 
-    void Update()
+    private void Update()
     {
         PlayerWinOrLose(); // Update isn't evil, we want some things to be instantanous - Josh
+
+        // It's become evil -J
     }
 
     /// <summary>
@@ -248,6 +252,10 @@ public class S_PlayerState : MonoBehaviour
         }
     }
 
+    /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Private Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     private void PlaySoundWin()
     {
         p_playerWinMusic.SetActive(true);
@@ -256,5 +264,45 @@ public class S_PlayerState : MonoBehaviour
     private void PlaySoundLose()
     {
         p_playerLoseMusic.SetActive(true);
+    }
+
+    /////////////////////////////---------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Status Effect Duration Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_acidicTurnCount
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_i_acidicTurnCount
+    /// </returns>
+    public int GetPlayerAcidicEffectDuration()
+    {
+        return p_i_acidicTurnCount;
+    }
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_bleedingTurnCount
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_i_bleedingTurnCount
+    /// </returns>
+    public int GetPlayerBleedEffectDuration()
+    {
+        return p_i_bleedingTurnCount;
+    }
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_resistantTurnCount
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_i_resistantTurnCount
+    /// </returns>
+    public int GetPlayerResistantEffectDuration()
+    {
+        return p_i_resistantTurnCount;
     }
 }

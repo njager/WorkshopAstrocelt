@@ -23,23 +23,22 @@ public class S_CardTemplate : ScriptableObject
     public int DamageValue;
     public int ShieldValue; 
 
-    [Header("Status Effect Numbers")]
-    public int EffectValue1;
-    public int EffectValue2;
-    public int EffectValue3;
-
-    [Header("Turn Counts")]
-    public int TurnCountForStatusEffect1;
-    public int TurnCountForStatusEffect2;
-    public int TurnCountForStatusEffect3;
+    [Header("Status Effect Stack Count")]
+    public int StackCount1;
+    public int StackCount2;
+    public int StackCount3;
 
     [Header("Status Effect IDs (On Card Excel Doc)")]
     public int IDForStatusEffectOne;
     public int IDForStatusEffectTwo;
     public int IDForStatusEffectThree;
 
-    [Header("Card Rarity")]
-    public float CardRarity;
+    [Header("Card Rarity Tiers")]
+    public bool Common;
+    public bool Uncommon;
+    public bool Rare;
+    public bool VeryRare;
+    public bool Legendary;
 
     [Header("Primary Destinaton for Main Effect")]
     public bool AffectsNone; 
@@ -64,20 +63,12 @@ public class S_CardTemplate : ScriptableObject
     public bool UniqueEffect;
 
     [Header("Status Effect Types")]
-    public bool NoEffect; 
+    public bool NoEffect;
+    public bool AcidicStatusEffect;
     public bool BleedStatusEffect;
-    public bool AcidStatusEffect;
-    public bool BurnStatusEffect;
-    public bool ResistStatusEffect;
-    public bool SiphonStatusEffect;
-    public bool StunStatusEffect;
-    public bool DrawStatusEffect;
     public bool FralityStatusEffect;
-    public bool ManipulateStatusEffect;
-    public bool ThornStatusEffect;
-
-    [Header("Art Asset")]
-    public Sprite CardArtAsset;
+    public bool ResistantStatusEffect;
+    public bool StunnedStatusEffect;
 
     // These will probably be strings as the sound effect list grows
     [Header("Shield Sound Effect: True if Magic, false if Physical")]
