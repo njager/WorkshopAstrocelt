@@ -44,11 +44,6 @@ public class S_Card : MonoBehaviour
     public string crd_str_statusEffectID2;
     public string crd_str_statusEffectID3;
 
-    [Header("Turn Counts for Status Effects")]
-    public int crd_i_turnCount1;
-    public int crd_i_turnCount2;
-    public int crd_i_turnCount3;
-
     [Header("Card Rarity Tier")]
     public bool crd_b_commonTier;
     public bool crd_b_uncommonTier;
@@ -197,11 +192,6 @@ public class S_Card : MonoBehaviour
         crd_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
         crd_b_stunnedStatusEffect = _cardData.StunnedStatusEffect;
         crd_b_resistantStatusEffect = _cardData.ResistantStatusEffect;
-
-        //Toggle turncounts
-        crd_i_turnCount1 = _cardData.TurnCountForStatusEffect1;
-        crd_i_turnCount2 = _cardData.TurnCountForStatusEffect2;
-        crd_i_turnCount3 = _cardData.TurnCountForStatusEffect3;
 
         //Toggle Color Types, will need to adapt for synergies
 
@@ -376,15 +366,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(crd_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(crd_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
             if (crd_b_resistantStatusEffect == true)
@@ -392,15 +382,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(crd_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(crd_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
         }
@@ -428,15 +418,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(crd_i_turnCount1);
+                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
                 }
                 else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(crd_i_turnCount2);
+                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
                 }
                 else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(crd_i_turnCount3);
+                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
                 }
             }
             if (crd_b_resistantStatusEffect == true)
@@ -444,15 +434,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_playerState.PlayerResistantEffect(crd_i_turnCount1);
+                    g_global.g_playerState.PlayerResistantEffect(0);
                 }
                 else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_playerState.PlayerResistantEffect(crd_i_turnCount2);
+                    g_global.g_playerState.PlayerResistantEffect(0);
                 }
                 else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_playerState.PlayerResistantEffect(crd_i_turnCount3);
+                    g_global.g_playerState.PlayerResistantEffect(0);
                 }
             }
         }
