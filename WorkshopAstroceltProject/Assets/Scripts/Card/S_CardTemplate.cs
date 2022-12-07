@@ -28,11 +28,6 @@ public class S_CardTemplate : ScriptableObject
     public int EffectValue2;
     public int EffectValue3;
 
-    [Header("Turn Counts")]
-    public int TurnCountForStatusEffect1;
-    public int TurnCountForStatusEffect2;
-    public int TurnCountForStatusEffect3;
-
     [Header("Status Effect IDs (On Card Excel Doc)")]
     public int IDForStatusEffectOne;
     public int IDForStatusEffectTwo;
