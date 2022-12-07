@@ -14,6 +14,7 @@ public class S_MapGeneration : MonoBehaviour
 
     [Header("Map References")]
     public GameObject map1;
+    public GameObject roof;
   
 
     public GameObject activeMap;
@@ -136,6 +137,7 @@ public class S_MapGeneration : MonoBehaviour
         List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
         RunSpringRBConnect(springList,clusters);
         RemoveLockandGravConstraint(clusters);
+        ConnectToRoof(springList);
         //cluster_checker(clusters);
 
     }
@@ -213,17 +215,23 @@ public class S_MapGeneration : MonoBehaviour
             {
                 Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
                 rb.constraints = RigidbodyConstraints2D.None;
-                //clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 1;
+                clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 1;
 
             }
         }
     }
 
-    public void ConnectToRoof(List<List<Transform>> clusters)
+    public void ConnectToRoof(List<List<List<SpringJoint2D>>> springList)
     {
         for (int i = 0; i < 8; i++)
         {
-            
+            for (int j = 0; j < 5; j++)
+            {
+               springList[i][j][5].connectedBody = roof.GetComponent<Rigidbody2D>();
+               
+                
+            }
+
         }
     }
 }
