@@ -222,6 +222,25 @@ public class S_CharacterGraphics : MonoBehaviour
     }
 
     /// <summary>
+    /// Toggle the Acid UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleAcidPlayerUI(bool _state) // True for on, false for off
+    {
+        if (_state == true)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+            p_playerBleedEffect.SetActive(true);
+        }
+        else if (_state == false)
+        {
+            p_playerBleedEffect.SetActive(false);
+        }
+    }
+
+    /// <summary>
     /// Toggle the Bleed UI element
     /// True for _state is on, false is off
     /// - Josh
@@ -241,12 +260,12 @@ public class S_CharacterGraphics : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggle the Stun UI element
+    /// Toggle the Frail UI element
     /// True for _state is on, false is off
     /// - Josh
     /// </summary>
     /// <param name="_state"></param>
-    public void ToggleStunPlayerUI(bool _state)
+    public void ToggleFrailtyPlayerUI(bool _state)
     {
         if (_state == true)
         {
@@ -254,11 +273,11 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
             }
-            p_playerStunEffect.SetActive(true);
+
         }
         else if (_state == false)
         {
-            p_playerStunEffect.SetActive(false);
+
         }
     }
 
@@ -463,7 +482,7 @@ public class S_CharacterGraphics : MonoBehaviour
     /// </summary>
     /// <param name="_state"></param>
     /// /// <param name="_enemyCount"></param>
-    public void ToggleFralityEnemyUI(bool _state, int _enemyCount)
+    public void ToggleFrailtyEnemyUI(bool _state, int _enemyCount)
     {
         if (_enemyCount == 1)
         {
@@ -531,6 +550,87 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Resistant UI element for a given enemy (_enemycount)
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// <param name="_enemyCount"></param>
+    public void ToggleResistantEnemyUI(bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                if (_state == true)
+                {
 
                 }
                 else if (_state == false)
@@ -610,88 +710,6 @@ public class S_CharacterGraphics : MonoBehaviour
         else if (_enemyCount == 5)
         {
             if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
-            {
-                if (_state == true)
-                {
-
-                }
-                else if (_state == false)
-                {
-
-                }
-            }
-        }
-    }
-
-
-    /// <summary>
-    /// Toggle the Resistant UI element for a given enemy (_enemycount)
-    /// True is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    /// <param name="_enemyCount"></param>
-    public void ToggleResistantEnemyUI(bool _state, int _enemyCount)
-    {
-        if (_enemyCount == 1)
-        {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
-            {
-                if (_state == true)
-                {
-
-                }
-                else if (_state == false)
-                {
-
-                }
-            }
-        }
-        else if (_enemyCount == 2)
-        {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
-            {
-                if (_state == true)
-                {
-
-                }
-                else if (_state == false)
-                {
-
-                }
-            }
-        }
-        else if (_enemyCount == 3)
-        {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
-            {
-                if (_state == true)
-                {
-
-                }
-                else if (_state == false)
-                {
-
-                }
-            }
-        }
-        else if (_enemyCount == 4)
-        {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
-            {
-                if (_state == true)
-                {
-
-                }
-                else if (_state == false)
-                {
-
-                }
-            }
-        }
-        else if (_enemyCount == 5)
-        {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
             {
                 if (_state == true)
                 {

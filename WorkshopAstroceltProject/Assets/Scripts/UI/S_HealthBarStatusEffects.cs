@@ -854,23 +854,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyFralitizeEffectStackCount(1);
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyFralitizeEffectStackCount(2);
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyFralitizeEffectStackCount(3);
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyFralitizeEffectStackCount(4);
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyFralitizeEffectStackCount(5);
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
