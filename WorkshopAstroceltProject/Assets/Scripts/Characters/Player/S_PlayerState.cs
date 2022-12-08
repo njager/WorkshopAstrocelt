@@ -9,28 +9,25 @@ public class S_PlayerState : MonoBehaviour
     private S_Global g_global;
 
     //Multiple Status Effects could be active at once
-    [Header("Status Effect Turn Counts")]
-    [SerializeField] int p_i_acidicTurnCount;
-    [SerializeField] int p_i_bleedingTurnCount;
-    [SerializeField] int p_i_resistantTurnCount;
-    [SerializeField] int p_i_stunnedTurnCount;
+    [Header("PlayerStatus Effect Turn Counts")]
+    [SerializeField] int p_i_acidicStackCount;
+    [SerializeField] int p_i_bleedingStackCount;
+    [SerializeField] int p_i_frailtyStackCount;
+    [SerializeField] int p_i_resistantStackCount;
 
     [Header("Status Effect States")]
     [SerializeField] bool p_b_inAcidicState;
-    public bool p_b_inBleedingState;
-    public bool p_b_inResistantState;
-    public bool p_b_inStunnedState;
+    [SerializeField] bool p_b_inBleedingState;
+    [SerializeField] bool p_b_inFrailState;
+    [SerializeField] bool p_b_inResistantState;
 
     [Header("Audio Prefabs")]
-    public GameObject p_playerWinMusic;
-    public GameObject p_playerLoseMusic;
+    [SerializeField] GameObject p_playerWinMusic;
+    [SerializeField] GameObject p_playerLoseMusic;
 
     [Header("Turns passed for Status effects")]
-    public int p_i_turnsPassedForStun;
-    public int p_i_turnsPassedForResistant;
-
-    [Header("Status Effect Stores")]
-    public float p_f_currentDamageRateForBleed;
+    [SerializeField] int p_i_playerResistantStackRemainder;
+    [SerializeField] int p_i_playerFrailtyStackRemainder;
 
     private void Awake()
     {
@@ -70,19 +67,25 @@ public class S_PlayerState : MonoBehaviour
     public void PlayerStatusEffectDecrement()
     {
         // Check for state
-        if(p_i_bleedingTurnCount <= 0)
+        if (p_i_acidicStackCount <= 0)
+        {
+             = false;
+            g_global.g_UIManager.ToggleBleedPlayerUI(false);
+        }
+        // Check for state
+        if (p_i_bleedingStackCount <= 0)
         {
             p_b_inBleedingState = false;
             g_global.g_UIManager.ToggleBleedPlayerUI(false);
         }
-        if (p_i_stunnedTurnCount <= 0)
+        if (p_i_frailtyStackCount <= 0)
         {
             g_global.g_turnManager.p_b_playerTurnSkipped = false;
             p_b_inStunnedState = false;
             g_global.g_UIManager.ToggleStunPlayerUI(false);
             p_i_turnsPassedForStun = 0;
         }
-        if (p_i_resistantTurnCount <= 0)
+        if (p_i_resistantStackCount <= 0)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = false;
             p_b_inResistantState = false;
@@ -93,21 +96,21 @@ public class S_PlayerState : MonoBehaviour
         // Trigger remaining effects
         if (p_b_inBleedingState == true)
         {
-            p_i_bleedingTurnCount -= 1;
+            p_i_bleedingStackCount -= 1;
             BleedEffectPerTurn(p_f_currentDamageRateForBleed);
             g_global.g_UIManager.ToggleBleedPlayerUI(true);
         }
         if (p_b_inStunnedState == true)
         {
             g_global.g_turnManager.p_b_playerTurnSkipped = true;
-            p_i_stunnedTurnCount -= 1;
+            p_i_stunnedStackCount -= 1;
             p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
         }
         if (p_b_inResistantState == true)
         {
             g_global.g_playerAttributeSheet.p_b_resistant = true;
-            p_i_resistantTurnCount -= 1;
+            p_i_resistantStackCount -= 1;
             p_i_turnsPassedForResistant += 1;
             g_global.g_UIManager.ToggleResistantPlayerUI(true); 
         }
@@ -124,7 +127,7 @@ public class S_PlayerState : MonoBehaviour
         if (p_b_inBleedingState == false)
         {
             g_global.g_UIManager.ToggleBleedPlayerUI(true);
-            p_i_bleedingTurnCount = _turnCount;
+            p_i_bleedingStackCount = _turnCount;
             p_f_currentDamageRateForBleed = _damageRate;
             p_b_inBleedingState = true;
         }
@@ -146,7 +149,7 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_turnManager.p_b_playerTurnSkipped = true;
             p_i_turnsPassedForStun += 1;
             g_global.g_UIManager.ToggleStunPlayerUI(true);
-            p_i_stunnedTurnCount = _turnCount;
+            p_i_stunnedStackCount = _turnCount;
             p_b_inStunnedState = true; 
         }
         else
@@ -167,7 +170,7 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_playerAttributeSheet.p_b_resistant = true;
             p_i_turnsPassedForResistant += 1;
             g_global.g_UIManager.ToggleResistantPlayerUI(true);
-            p_i_resistantTurnCount = _turnCount;
+            p_i_resistantStackCount = _turnCount;
             p_b_inResistantState = true; 
         }
         else
@@ -266,43 +269,187 @@ public class S_PlayerState : MonoBehaviour
         p_playerLoseMusic.SetActive(true);
     }
 
-    /////////////////////////////---------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Player Status Effect Duration Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////---------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /////////////////////////////------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Status Effect Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Return the int value of S_PlayerState.p_i_acidicTurnCount
+    /// Set the int value of S_PlayerState.
     /// - Josh
     /// </summary>
-    /// <returns>
-    /// S_PlayerState.p_i_acidicTurnCount
-    /// </returns>
-    public int GetPlayerAcidicEffectDuration()
+    /// <param name="_stackCount"></param>
+    public void SetPlayerAcidicEffectStackCount(int _stackCount)
     {
-        return p_i_acidicTurnCount;
+        p_i_acidicStackCount = _stackCount;
     }
 
     /// <summary>
-    /// Return the int value of S_PlayerState.p_i_bleedingTurnCount
+    /// Set the int value of S_PlayerState.
     /// - Josh
     /// </summary>
-    /// <returns>
-    /// S_PlayerState.p_i_bleedingTurnCount
-    /// </returns>
-    public int GetPlayerBleedEffectDuration()
+    /// <param name="_stackCount"></param>
+    public void SetPlayerBleedEffectStackCount(int _stackCount)
     {
-        return p_i_bleedingTurnCount;
+        p_i_bleedingStackCount = _stackCount;
     }
 
     /// <summary>
-    /// Return the int value of S_PlayerState.p_i_resistantTurnCount
+    /// Set the int value of S_PlayerState.
+    /// - Josh
+    /// </summary>
+    /// <param name="_stackCount"></param>
+    public void SetPlayerFrailtyEffectStackCount(int _stackCount)
+    {
+        p_i_frailtyStackCount = _stackCount;
+    }
+
+    /// <summary>
+    /// Set the int value of S_PlayerState.
+    /// - Josh
+    /// </summary>
+    /// <param name="_stackCount"></param>
+    public void SetPlayerResistantEffectStackCount(int _stackCount)
+    {
+        p_i_resistantStackCount = _stackCount;
+    }
+
+    /// <summary>
+    /// Set the bool state of S_PlayerState.p_b_inAcidicState
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void SetPlayerAcidicEffectState(bool _state)
+    {
+        p_b_inAcidicState = _state;
+    }
+
+    /// <summary>
+    /// Set the bool state of S_PlayerState.p_b_inBleedingState
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void SetPlayerBleedEffectState(bool _state)
+    {
+        p_b_inBleedingState = _state;
+    }
+
+    /// <summary>
+    /// Set the bool state of S_PlayerState.p_b_inFrailState
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void SetPlayerFrailtytEffectState(bool _state)
+    {
+        p_b_inFrailState = _state;
+    }
+
+    /// <summary>
+    /// Set the bool state of S_PlayerState.p_b_inResistantState
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void SetPlayerResistantEffectState(bool _state)
+    {
+        p_b_inResistantState = _state;
+    }
+
+    /////////////////////////////------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Player Status Effect Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_acidicStackCount
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_PlayerState.p_i_resistantTurnCount
+    /// S_PlayerState.p_i_acidicStackCount
     /// </returns>
-    public int GetPlayerResistantEffectDuration()
+    public int GetPlayerAcidicEffectStackCount()
     {
-        return p_i_resistantTurnCount;
+        return p_i_acidicStackCount;
+    }
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_bleedingStackCount
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_i_bleedingStackCount
+    /// </returns>
+    public int GetPlayerBleedEffectStackCount()
+    {
+        return p_i_bleedingStackCount;
+    }
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_frailtyStackCount
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_i_frailtyStackCount
+    /// </returns>
+    public int GetPlayerFrailtyEffectStackCount()
+    {
+        return p_i_frailtyStackCount;
+    }
+
+    /// <summary>
+    /// Return the int value of S_PlayerState.p_i_resistantStackCount
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_i_resistantStackCount
+    /// </returns>
+    public int GetPlayerResistantEffectStackCount()
+    {
+        return p_i_resistantStackCount;
+    }
+
+    /// <summary>
+    /// Return the bool state of S_PlayerState.p_b_inAcidicState
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_b_inAcidicState
+    /// </returns>
+    public bool GetPlayerAcidicEffectState()
+    {
+        return p_b_inAcidicState;
+    }
+
+    /// <summary>
+    /// Return the bool state of S_PlayerState.p_b_inBleedingState
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_b_inBleedingState
+    /// </returns>
+    public bool GetPlayerBleedEffectState()
+    {
+        return p_b_inBleedingState;
+    }
+
+    /// <summary>
+    /// Return the bool state of S_PlayerState.p_b_inFrailState
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_b_inFrailState
+    /// </returns>
+    public bool GetPlayerFrailtyEffectState()
+    {
+        return p_b_inFrailState;
+    }
+
+    /// <summary>
+    /// Return the bool state of S_PlayerState.p_b_inResistantState
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.p_b_inResistantState
+    /// </returns>
+    public bool GetPlayerResistantEffectState()
+    {
+        return p_b_inResistantState;
     }
 }

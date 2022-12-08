@@ -786,7 +786,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if(GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerAcidicEffectDuration();
+                return g_global.g_playerState.GetPlayerAcidicEffectStackCount();
             }
             else if(GetHealthBarOwner() == 1) // Enemy 1
             {
@@ -818,7 +818,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerBleedEffectDuration();
+                return g_global.g_playerState.GetPlayerBleedEffectStackCount();
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
@@ -882,7 +882,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerResistantEffectDuration();
+                return g_global.g_playerState.GetPlayerResistantEffectStackCount();
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
