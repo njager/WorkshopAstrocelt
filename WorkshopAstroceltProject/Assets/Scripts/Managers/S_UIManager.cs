@@ -1075,7 +1075,7 @@ public class S_UIManager : MonoBehaviour
     /// <returns>
     /// S_UIManager.rsg_OriginalScale;
     /// </returns>
-    public Vector3 getOriginalScale()
+    public Vector3 GetOriginalScale()
     {
         
         return rsg_OriginalScale;
@@ -1087,7 +1087,7 @@ public class S_UIManager : MonoBehaviour
     /// <returns>
     /// S_UIManager.rsg_ScaleTo;
     /// </returns>
-    public Vector3 getScaleTo()
+    public Vector3 GetScaleTo()
     {
         rsg_ScaleTo = new Vector3(1, 1, 1);
         return rsg_ScaleTo;

@@ -20,11 +20,11 @@ public class S_EnemyState : MonoBehaviour
     public string e_str_enemy5Action;
 
     [Header("Enemy Types")]
-    public string str_enemy1Type;
-    public string str_enemy2Type;
-    public string str_enemy3Type;
-    public string str_enemy4Type;
-    public string str_enemy5Type;
+    public string e_str_enemy1Type;
+    public string e_str_enemy2Type;
+    public string e_str_enemy3Type;
+    public string e_str_enemy4Type;
+    public string e_str_enemy5Type;
 
     [Header("Bool Living Status Check")]
     public bool e_b_enemy1Dead;
@@ -40,8 +40,7 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy4Turn;
     public bool e_b_enemy5Turn;
 
-    [Header("Turn Skips")]
-    [SerializeField] bool p_b_playerTurnSkipped;
+    [Header("Enemy Turn Skips")]
     [SerializeField] bool e_b_enemy1TurnSkipped;
     [SerializeField] bool e_b_enemy2TurnSkipped;
     [SerializeField] bool e_b_enemy3TurnSkipped;
@@ -197,7 +196,7 @@ public class S_EnemyState : MonoBehaviour
                     e_b_inResistantStateEnemy1 = false;
                     e_b_inStunStateEnemy1 = false;
 
-                    enemy1.EnemyDied(str_enemy1Type);
+                    enemy1.EnemyDied(e_str_enemy1Type);
                     e_b_enemy1Dead = true; 
                 }
             }
@@ -222,7 +221,7 @@ public class S_EnemyState : MonoBehaviour
                     e_b_inResistantStateEnemy2 = false;
                     e_b_inStunStateEnemy2 = false;
 
-                    enemy2.EnemyDied(str_enemy2Type);
+                    enemy2.EnemyDied(e_str_enemy2Type);
                     e_b_enemy2Dead = true;
                 }
             }
@@ -247,7 +246,7 @@ public class S_EnemyState : MonoBehaviour
                     e_b_inResistantStateEnemy3 = false;
                     e_b_inStunStateEnemy3 = false;
 
-                    enemy3.EnemyDied(str_enemy3Type);
+                    enemy3.EnemyDied(e_str_enemy3Type);
                     e_b_enemy3Dead = true; 
                 }
             }
@@ -272,7 +271,7 @@ public class S_EnemyState : MonoBehaviour
                     e_b_inResistantStateEnemy4 = false;
                     e_b_inStunStateEnemy4 = false;
 
-                    enemy4.EnemyDied(str_enemy4Type);
+                    enemy4.EnemyDied(e_str_enemy4Type);
                     e_b_enemy4Dead = true;
                 }
             }
@@ -297,7 +296,7 @@ public class S_EnemyState : MonoBehaviour
                     e_b_inResistantStateEnemy5 = false;
                     e_b_inStunStateEnemy5 = false;
 
-                    enemy5.EnemyDied(str_enemy5Type);
+                    enemy5.EnemyDied(e_str_enemy5Type);
                     e_b_enemy5Dead = true;
                 }
             }
@@ -789,10 +788,11 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_currentDamage"></param>
-    private int BleedEffectPerTurn(int _currentDamage)
+    /// <param name="_enemyNum"></param>
+    private int BleedEffectPerTurn(int _currentDamage, int _enemyNum)
     {
         int _bleedingDamageForTurn = BleedEffectCalculator(_currentDamage);
-        g_global.g_player.PlayerAttacked(_bleedingDamageForTurn);
+        GetEnemyScript(_enemyNum).EnemyAttacked(e_str_enemy1Type, _bleedingDamageForTurn);
         return _bleedingDamageForTurn;
     }
 
@@ -843,7 +843,7 @@ public class S_EnemyState : MonoBehaviour
         // Update Bleed state For Enemy 1
         if (GetEnemyBleedEffectState(1) == true)
         {
-            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(1));
+            SetEnemyBleedEffectStackCount(BleedEffectPerTurn(GetEnemyBleedEffectStackCount(1), 1), 1);
             g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 1);
         }
 
@@ -853,7 +853,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyFrailtyEffectStackCount(0, 1);
             g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 1);
             // Check Stack Remainder
-            UpdateFrailtyStackRemainder(1);
+            UpdateEnemyFrailtyStackRemainder(1);
         }
 
         // Update Resistant state For Enemy 1
@@ -862,7 +862,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyResistantEffectStackCount(0, 1);
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 1);
             //Check Stack Remainder
-            UpdateResistantStackRemainder(1);
+            UpdateEnemyResistantStackRemainder(1);
         }
 
         // Update Stun state For Enemy 1
@@ -920,7 +920,7 @@ public class S_EnemyState : MonoBehaviour
         // Update Bleed state For Enemy 2
         if (GetEnemyBleedEffectState(2) == true)
         {
-            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(2));
+            SetEnemyBleedEffectStackCount(BleedEffectPerTurn(GetEnemyBleedEffectStackCount(2), 2), 2);
             g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 2);
         }
 
@@ -930,7 +930,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyFrailtyEffectStackCount(0, 2);
             g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 2);
             // Check Stack Remainder
-            UpdateFrailtyStackRemainder(2);
+            UpdateEnemyFrailtyStackRemainder(2);
         }
 
         // Update Resistant state For Enemy 2
@@ -939,7 +939,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyResistantEffectStackCount(0, 2);
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 2);
             //Check Stack Remainder
-            UpdateResistantStackRemainder(2);
+            UpdateEnemyResistantStackRemainder(2);
         }
 
         // Update Stun state For Enemy 2
@@ -997,7 +997,7 @@ public class S_EnemyState : MonoBehaviour
         // Update Bleed state For Enemy 3
         if (GetEnemyBleedEffectState(3) == true)
         {
-            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(3));
+            SetEnemyBleedEffectStackCount(BleedEffectPerTurn(GetEnemyBleedEffectStackCount(3), 3), 3);
             g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 3);
         }
 
@@ -1007,7 +1007,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyFrailtyEffectStackCount(0, 3);
             g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 3);
             // Check Stack Remainder
-            UpdateFrailtyStackRemainder(3);
+            UpdateEnemyFrailtyStackRemainder(3);
         }
 
         // Update Resistant state For Enemy 3
@@ -1016,7 +1016,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyResistantEffectStackCount(0, 3);
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 3);
             //Check Stack Remainder
-            UpdateResistantStackRemainder(3);
+            UpdateEnemyResistantStackRemainder(3);
         }
 
         // Update Stun state For Enemy 3
@@ -1074,7 +1074,7 @@ public class S_EnemyState : MonoBehaviour
         // Update Bleed state For Enemy 4
         if (GetEnemyBleedEffectState(4) == true)
         {
-            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(4));
+            SetEnemyBleedEffectStackCount(BleedEffectPerTurn(GetEnemyBleedEffectStackCount(4), 4), 4);
             g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 4);
         }
 
@@ -1084,7 +1084,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyFrailtyEffectStackCount(0, 4);
             g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 4);
             // Check Stack Remainder
-            UpdateFrailtyStackRemainder(4);
+            UpdateEnemyFrailtyStackRemainder(4);
         }
 
         // Update Resistant state For Enemy 4
@@ -1093,7 +1093,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyResistantEffectStackCount(0, 4);
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 4);
             //Check Stack Remainder
-            UpdateResistantStackRemainder(4);
+            UpdateEnemyResistantStackRemainder(4);
         }
 
         // Update Stun state For Enemy 4
@@ -1151,7 +1151,7 @@ public class S_EnemyState : MonoBehaviour
         // Update Bleed state For Enemy 5
         if (GetEnemyBleedEffectState(5) == true)
         {
-            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(5));
+            SetEnemyBleedEffectStackCount(BleedEffectPerTurn(GetEnemyBleedEffectStackCount(5), 5), 5);
             g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 5);
         }
 
@@ -1161,7 +1161,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyFrailtyEffectStackCount(0, 5);
             g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 5);
             // Check Stack Remainder
-            UpdateFrailtyStackRemainder(5);
+            UpdateEnemyFrailtyStackRemainder(5);
         }
 
         // Update Resistant state For Enemy 5
@@ -1170,7 +1170,7 @@ public class S_EnemyState : MonoBehaviour
             SetEnemyResistantEffectStackCount(0, 5);
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 5);
             //Check Stack Remainder
-            UpdateResistantStackRemainder(5);
+            UpdateEnemyResistantStackRemainder(5);
         }
 
         // Update Stun state For Enemy 5
@@ -1821,7 +1821,7 @@ public class S_EnemyState : MonoBehaviour
     /// Helper function for updating the frailty stack remainder
     /// - Josh
     /// </summary>
-    private void UpdateFrailtyStackRemainder(int _enemyNum) 
+    private void UpdateEnemyFrailtyStackRemainder(int _enemyNum) 
     {
         if (GetEnemyFrailtyEffectStackCount(_enemyNum) == 0 && GetEnemyFrailtyEffectStackRemainder(_enemyNum) >= 1)
         {
@@ -1843,7 +1843,7 @@ public class S_EnemyState : MonoBehaviour
     /// Helper function for updating the resistant stack remainder
     /// - Josh
     /// </summary>
-    private void UpdateResistantStackRemainder(int _enemyNum)
+    private void UpdateEnemyResistantStackRemainder(int _enemyNum)
     {
         if(GetEnemyResistantEffectStackCount(_enemyNum) == 0 && GetEnemyResistantEffectStackRemainder(_enemyNum) >= 1)
         {

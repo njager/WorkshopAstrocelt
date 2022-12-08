@@ -27,15 +27,6 @@ public class S_PlayerAttributes : MonoBehaviour
     [Header("Constellation Effects")]
     public bool p_b_playerHasConstellationEffects;
 
-    [Header("Status Effects")]
-    public bool p_b_stunned;
-    public bool p_b_bleeding;
-    public bool p_b_empowered;
-    public bool p_b_lucky;
-    public bool p_b_resistant;
-    public bool p_b_burned;
-    public bool p_b_shocked;
-
     [Header("Particle Effect")]
     public ParticleSystem p_pe_blood;
     public ParticleSystem p_pe_shield;
@@ -58,9 +49,6 @@ public class S_PlayerAttributes : MonoBehaviour
         p_i_shield = _gameManager.i_shield;
         p_i_maxShield = _gameManager.i_shieldMax;
         p_f_playerEnergyGenerationRate = _gameManager.f_playerEnergyGenerationRate;
-        p_b_bleeding = _gameManager.b_bleeding;
-        p_b_resistant = _gameManager.b_resistant;
-        p_b_stunned = _gameManager.b_stunned;
 
         g_global.g_player.PlayerValuesLimitCheck();
     }

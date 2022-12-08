@@ -786,7 +786,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if(GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerAcidicEffectStackCount();
+                return g_global.g_playerState.GetPlayerAcidEffectStackCount();
             }
             else if(GetHealthBarOwner() == 1) // Enemy 1
             {
