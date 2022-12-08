@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b5fc9fdbd8402c81fdc203ca6b95e, type: 3}
-  m_Name: Wall of Wonder
+  m_Name: Ocean Vein II
   m_EditorClassIdentifier: 
-  CardName: Wall of Wonder
-  HeaderText: Wall of Wonder
-  BodyText: Gain 50 shield
+  CardName: Ocean Vein II
+  HeaderText: Ocean Vein II
+  BodyText: Deal 20 damage, Acid attack
   FlavorText: 
-  ColorString: yellow
-  EnergyCost: 5
-  DamageValue: 0
-  ShieldValue: 50
-  StackCount1: 0
+  ColorString: blue
+  EnergyCost: 4
+  DamageValue: 20
+  ShieldValue: 0
+  StackCount1: 1
   StackCount2: 0
   StackCount3: 0
-  IDForStatusEffectOne: 0
+  IDForStatusEffectOne: 1
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
   Common: 0
-  Uncommon: 0
+  Uncommon: 1
   Rare: 0
   VeryRare: 0
   Legendary: 0
@@ -37,21 +37,21 @@ MonoBehaviour:
   AffectsAllEnemies: 0
   AffectsAllCharacters: 0
   PlayerEffect: 0
-  EnemyEffect: 0
+  EnemyEffect: 1
   RedColorType: 0
-  BlueColorType: 0
-  YellowColorType: 1
+  BlueColorType: 1
+  YellowColorType: 0
   WhiteColorType: 0
-  AttackEffect: 0
-  ShieldEffect: 1
+  AttackEffect: 1
+  ShieldEffect: 0
   UniqueEffect: 0
-  NoEffect: 1
-  AcidicStatusEffect: 0
+  NoEffect: 0
+  AcidicStatusEffect: 1
   BleedStatusEffect: 0
   FralityStatusEffect: 0
   ResistantStatusEffect: 0
   StunnedStatusEffect: 0
-  PhysicalOrMagicalBoolForShield: 1
-  PhysicalOrMagicalBoolForAttack: 0
-  CardDatabaseID: 19
+  PhysicalOrMagicalBoolForShield: 0
+  PhysicalOrMagicalBoolForAttack: 1
+  CardDatabaseID: 11
   ExtraInfo: 
