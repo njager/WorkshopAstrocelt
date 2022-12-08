@@ -850,17 +850,19 @@ public class S_EnemyState : MonoBehaviour
         // Update Frailty state For Enemy 1
         if (GetEnemyFrailtyEffectState(1) == true)
         {
-            SetEnemyFrailtyEffectStackCount((GetEnemyFrailtyEffectStackCount(1) - 5), 1);
+            SetEnemyFrailtyEffectStackCount(0, 1);
             g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 1);
             // Check Stack Remainder
+            UpdateFrailtyStackRemainder(1);
         }
 
         // Update Resistant state For Enemy 1
         if (GetEnemyResistantEffectState(1) == true)
         {
-            SetEnemyResistantEffectStackCount((GetEnemyResistantEffectStackCount(1) - 5), 1);
+            SetEnemyResistantEffectStackCount(0, 1);
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 1);
             //Check Stack Remainder
+            UpdateResistantStackRemainder(1);
         }
 
         // Update Stun state For Enemy 1
@@ -872,201 +874,321 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper function for legibility
+    /// Helper function for status effect checking legibility
     /// Controller for Enemy 2 Status Effects
     /// - Josh
     /// </summary>
     private void Enemy2StatusChecks()
     {
-        // Check for state For Enemy 2
-        if (e_i_bleedStackCountEnemy2 <= 0)
+        // Check Acid state For Enemy 2 is over
+        if (GetEnemyAcidEffectStackCount(2) <= 0)
         {
-            e_b_inBleedStateEnemy2 = false;
-            g_global.g_UIManager.ToggleBleedEnemyUI(false, 2);
-        }
-        if (e_i_resistantStackCountEnemy2 <= 0)
-        {
-            e_b_inResistantStateEnemy2 = false;
-            g_global.g_UIManager.ToggleResistantEnemyUI(false, 2);
-            e_i_enemy2ResistantTurnsPassed = 0;
-        }
-        if (e_i_stunStackCountEnemy2 <= 0)
-        {
-            e_b_inStunStateEnemy2 = false;
-            g_global.g_UIManager.ToggleStunEnemyUI(false, 2);
-            e_i_enemy2StunTurnsPassed = 0;
+            SetEnemyAcidEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 2);
         }
 
-        // Trigger remaining effects
-        if (e_b_inBleedStateEnemy2)
+        // Check Bleed state For Enemy 2 is over
+        if (GetEnemyBleedEffectStackCount(2) <= 0)
         {
-            e_i_bleedStackCountEnemy2 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy2, 2);
-            g_global.g_UIManager.ToggleBleedEnemyUI(true, 2);
+            SetEnemyBleedEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 2);
         }
-        if (e_b_inStunStateEnemy2)
+
+        // Check Frailty state For Enemy 2 is over
+        if (GetEnemyFrailtyEffectStackCount(2) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 2);
+        }
+
+        // Check Resistant state For Enemy 2 is over
+        if (GetEnemyResistantEffectStackCount(2) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 2);
+        }
+
+        // Check Stun state For Enemy 2 is over
+        if (GetEnemyStunEffectStackCount(2) <= 0)
+        {
+            SetEnemyStunEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 2);
+        }
+
+        // Then if not over, then update, stun and acid are different cases
+
+        // Update Bleed state For Enemy 2
+        if (GetEnemyBleedEffectState(2) == true)
+        {
+            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(2));
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 2);
+        }
+
+        // Update Frailty state For Enemy 2
+        if (GetEnemyFrailtyEffectState(2) == true)
+        {
+            SetEnemyFrailtyEffectStackCount(0, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 2);
+            // Check Stack Remainder
+            UpdateFrailtyStackRemainder(2);
+        }
+
+        // Update Resistant state For Enemy 2
+        if (GetEnemyResistantEffectState(2) == true)
+        {
+            SetEnemyResistantEffectStackCount(0, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 2);
+            //Check Stack Remainder
+            UpdateResistantStackRemainder(2);
+        }
+
+        // Update Stun state For Enemy 2
+        if (GetEnemyStunEffectState(2) == true)
         {
             e_i_stunStackCountEnemy2 -= 1;
-            g_global.g_UIManager.ToggleStunEnemyUI(true, 2);
-            e_i_enemy2StunTurnsPassed += 1;
-        }
-        if (e_b_inResistantStateEnemy2)
-        {
-            e_i_resistantStackCountEnemy2 -= 1;
-            g_global.g_UIManager.ToggleResistantEnemyUI(true, 2);
-            e_i_enemy2ResistantTurnsPassed += 1;
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 2);
         }
     }
 
     /// <summary>
-    /// Helper function for legibility
+    /// Helper function for status effect checking legibility
     /// Controller for Enemy 3 Status Effects
     /// - Josh
     /// </summary>
     private void Enemy3StatusChecks()
     {
-        // Check for state For Enemy 3
-        if (e_i_bleedStackCountEnemy3 <= 0)
+        // Check Acid state For Enemy 3 is over
+        if (GetEnemyAcidEffectStackCount(3) <= 0)
         {
-            e_b_inBleedStateEnemy3 = false;
-            g_global.g_UIManager.ToggleBleedEnemyUI(false, 3);
-        }
-        if (e_i_stunStackCountEnemy3 <= 0)
-        {
-            e_b_inStunStateEnemy3 = false;
-            g_global.g_UIManager.ToggleStunEnemyUI(false, 3);
-            e_i_enemy3StunTurnsPassed = 0;
-        }
-        if (e_i_resistantStackCountEnemy3 <= 0)
-        {
-            e_b_inResistantStateEnemy3 = false;
-            g_global.g_UIManager.ToggleResistantEnemyUI(false, 3);
-            e_i_enemy3ResistantTurnsPassed = 0;
+            SetEnemyAcidEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 3);
         }
 
-        // Trigger remaining effects
-        if (e_b_inBleedStateEnemy3)
+        // Check Bleed state For Enemy 3 is over
+        if (GetEnemyBleedEffectStackCount(3) <= 0)
         {
-            e_i_bleedStackCountEnemy3 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy3, 3);
-            g_global.g_UIManager.ToggleBleedEnemyUI(true, 2);
+            SetEnemyBleedEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 3);
         }
-        if (e_b_inStunStateEnemy3)
+
+        // Check Frailty state For Enemy 3 is over
+        if (GetEnemyFrailtyEffectStackCount(3) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 3);
+        }
+
+        // Check Resistant state For Enemy 3 is over
+        if (GetEnemyResistantEffectStackCount(3) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 3);
+        }
+
+        // Check Stun state For Enemy 3 is over
+        if (GetEnemyStunEffectStackCount(3) <= 0)
+        {
+            SetEnemyStunEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 3);
+        }
+
+        // Then if not over, then update, stun and acid are different cases
+
+        // Update Bleed state For Enemy 3
+        if (GetEnemyBleedEffectState(3) == true)
+        {
+            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(3));
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 3);
+        }
+
+        // Update Frailty state For Enemy 3
+        if (GetEnemyFrailtyEffectState(3) == true)
+        {
+            SetEnemyFrailtyEffectStackCount(0, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 3);
+            // Check Stack Remainder
+            UpdateFrailtyStackRemainder(3);
+        }
+
+        // Update Resistant state For Enemy 3
+        if (GetEnemyResistantEffectState(3) == true)
+        {
+            SetEnemyResistantEffectStackCount(0, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 3);
+            //Check Stack Remainder
+            UpdateResistantStackRemainder(3);
+        }
+
+        // Update Stun state For Enemy 3
+        if (GetEnemyStunEffectState(3) == true)
         {
             e_i_stunStackCountEnemy3 -= 1;
-            g_global.g_UIManager.ToggleStunEnemyUI(true, 3);
-            e_i_enemy3StunTurnsPassed += 1;
-        }
-        if (e_b_inResistantStateEnemy3)
-        {
-            e_i_resistantStackCountEnemy3 -= 1;
-            g_global.g_UIManager.ToggleResistantEnemyUI(true, 3);
-            e_i_enemy3ResistantTurnsPassed += 1;
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 3);
         }
     }
 
     /// <summary>
-    /// Helper function for legibility
+    /// Helper function for status effect checking legibility
     /// Controller for Enemy 4 Status Effects
     /// - Josh
     /// </summary>
     private void Enemy4StatusChecks()
     {
-        // Check for state For Enemy 4
-        if (e_i_bleedStackCountEnemy4 <= 0)
+        // Check Acid state For Enemy 4 is over
+        if (GetEnemyAcidEffectStackCount(4) <= 0)
         {
-            e_b_inBleedStateEnemy4 = false;
-            g_global.g_UIManager.ToggleBleedEnemyUI(false, 4);
-        }
-        if (e_i_stunStackCountEnemy4 <= 0)
-        {
-            e_b_inStunStateEnemy4 = false;
-            g_global.g_UIManager.ToggleStunEnemyUI(false, 4);
-            e_i_enemy1StunTurnsPassed = 0;
-        }
-        if (e_i_resistantStackCountEnemy4 <= 0)
-        {
-            e_b_inResistantStateEnemy4 = false;
-            g_global.g_UIManager.ToggleResistantEnemyUI(false, 4);
-            e_i_enemy4ResistantTurnsPassed = 0;
+            SetEnemyAcidEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 4);
         }
 
-        // Trigger remaining effects
-        if (e_b_inBleedStateEnemy4)
+        // Check Bleed state For Enemy 4 is over
+        if (GetEnemyBleedEffectStackCount(4) <= 0)
         {
-            e_i_bleedStackCountEnemy4 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy4, 4);
-            g_global.g_UIManager.ToggleBleedEnemyUI(true, 4);
+            SetEnemyBleedEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 4);
         }
-        if (e_b_inStunStateEnemy4)
+
+        // Check Frailty state For Enemy 4 is over
+        if (GetEnemyFrailtyEffectStackCount(4) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 4);
+        }
+
+        // Check Resistant state For Enemy 4 is over
+        if (GetEnemyResistantEffectStackCount(4) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 4);
+        }
+
+        // Check Stun state For Enemy 1 is over
+        if (GetEnemyStunEffectStackCount(4) <= 0)
+        {
+            SetEnemyStunEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 4);
+        }
+
+        // Then if not over, then update, stun and acid are different cases
+
+        // Update Bleed state For Enemy 4
+        if (GetEnemyBleedEffectState(4) == true)
+        {
+            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(4));
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 4);
+        }
+
+        // Update Frailty state For Enemy 4
+        if (GetEnemyFrailtyEffectState(4) == true)
+        {
+            SetEnemyFrailtyEffectStackCount(0, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 4);
+            // Check Stack Remainder
+            UpdateFrailtyStackRemainder(4);
+        }
+
+        // Update Resistant state For Enemy 4
+        if (GetEnemyResistantEffectState(4) == true)
+        {
+            SetEnemyResistantEffectStackCount(0, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 4);
+            //Check Stack Remainder
+            UpdateResistantStackRemainder(4);
+        }
+
+        // Update Stun state For Enemy 4
+        if (GetEnemyStunEffectState(4) == true)
         {
             e_i_stunStackCountEnemy4 -= 1;
-            g_global.g_UIManager.ToggleStunEnemyUI(true, 4);
-            e_i_enemy4StunTurnsPassed += 1;
-        }
-        if (e_b_inResistantStateEnemy4)
-        {
-            e_i_resistantStackCountEnemy4 -= 1;
-            g_global.g_UIManager.ToggleResistantEnemyUI(true, 4);
-            e_i_enemy4ResistantTurnsPassed += 1;
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 4);
         }
     }
 
     /// <summary>
-    /// Helper function for legibility
+    /// Helper function for status effect checking legibility
     /// Controller for Enemy 5 Status Effects
     /// - Josh
     /// </summary>
     private void Enemy5StatusChecks()
     {
-        // Check for state For Enemy 5
-        if (e_i_bleedStackCountEnemy5 <= 0)
+        // Check Acid state For Enemy 5 is over
+        if (GetEnemyAcidEffectStackCount(5) <= 0)
         {
-            e_b_inBleedStateEnemy5 = false;
-            g_global.g_UIManager.ToggleBleedEnemyUI(false, 5);
-        }
-        if (e_i_stunStackCountEnemy5 <= 0)
-        {
-            e_b_inStunStateEnemy5 = false;
-            g_global.g_UIManager.ToggleStunEnemyUI(false, 5);
-            e_i_enemy5StunTurnsPassed = 0;
-        }
-        if (e_i_resistantStackCountEnemy5 <= 0)
-        {
-            e_b_inResistantStateEnemy5 = false;
-            g_global.g_UIManager.ToggleResistantEnemyUI(false, 5);
-            e_i_enemy5ResistantTurnsPassed = 0;
+            SetEnemyAcidEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 5);
         }
 
-        // Trigger remaining effects
-        if (e_b_inBleedStateEnemy5)
+        // Check Bleed state For Enemy 5 is over
+        if (GetEnemyBleedEffectStackCount(5) <= 0)
         {
-            e_i_bleedStackCountEnemy5 -= 1;
-            BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy5, 5);
-            g_global.g_UIManager.ToggleBleedEnemyUI(true, 5);
+            SetEnemyBleedEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 5);
         }
-        if (e_b_inStunStateEnemy5)
+
+        // Check Frailty state For Enemy 5 is over
+        if (GetEnemyFrailtyEffectStackCount(5) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 5);
+        }
+
+        // Check Resistant state For Enemy 5 is over
+        if (GetEnemyResistantEffectStackCount(5) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 5);
+        }
+
+        // Check Stun state For Enemy 5 is over
+        if (GetEnemyStunEffectStackCount(5) <= 0)
+        {
+            SetEnemyStunEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 5);
+        }
+
+        // Then if not over, then update, stun and acid are different cases
+
+        // Update Bleed state For Enemy 5
+        if (GetEnemyBleedEffectState(5) == true)
+        {
+            BleedEffectPerTurn(GetEnemyBleedEffectStackCount(5));
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 5);
+        }
+
+        // Update Frailty state For Enemy 5
+        if (GetEnemyFrailtyEffectState(5) == true)
+        {
+            SetEnemyFrailtyEffectStackCount(0, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 5);
+            // Check Stack Remainder
+            UpdateFrailtyStackRemainder(5);
+        }
+
+        // Update Resistant state For Enemy 5
+        if (GetEnemyResistantEffectState(5) == true)
+        {
+            SetEnemyResistantEffectStackCount(0, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 5);
+            //Check Stack Remainder
+            UpdateResistantStackRemainder(5);
+        }
+
+        // Update Stun state For Enemy 5
+        if (GetEnemyStunEffectState(5) == true)
         {
             e_i_stunStackCountEnemy5 -= 1;
-            g_global.g_UIManager.ToggleStunEnemyUI(true, 5);
-            e_i_enemy5StunTurnsPassed += 1;
-        }
-        if (e_b_inResistantStateEnemy5)
-        {
-            e_i_resistantStackCountEnemy5 -= 1;
-            g_global.g_UIManager.ToggleResistantEnemyUI(true, 5);
-            e_i_enemy5ResistantTurnsPassed += 1;
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 5);
         }
     }
 
     /// <summary>
     /// This helper function switches whether the enemy is going to attack or defend
     /// Called in S_TurnManager
-    /// -Josh
+    /// -Josh & Riley
     /// </summary>
     public void EnemyActionCheck()
     {
-        if (e_b_enemy1IsActive == true) // Check if enemy 1 is present
+        if (GetEnemyActiveState(1) == true) // Check if enemy 1 is present
         {
             if (g_global.g_iconManager.ls_e_statusStrings[0] == "attack") //Enemy 1 Attack
             {
@@ -1088,21 +1210,21 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (e_b_enemy2IsActive == true) // Check if enemy 2 is present
+        if (GetEnemyActiveState(2) == true) // Check if enemy 2 is present
         {
-            if (g_global.g_iconManager.ls_e_statusStrings[1] == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[1] == "attack") //Enemy 2 Attack
             {
                 e_b_enemy2Attacking = true;
                 e_b_enemy2Shielding = false;
                 e_b_enemy2SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[1] == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[1] == "shield") // Enemy 2 Shields
             {
                 e_b_enemy2Attacking = false;
                 e_b_enemy2Shielding = true;
                 e_b_enemy2SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[1] == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[1] == "ability") // Enemy 2 does their ability
             {
                 e_b_enemy2Attacking = false;
                 e_b_enemy2Shielding = false;
@@ -1110,21 +1232,21 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (e_b_enemy3IsActive == true) // Check if enemy 3 is present
+        if (GetEnemyActiveState(3) == true) // Check if enemy 3 is present
         {
-            if (g_global.g_iconManager.ls_e_statusStrings[2] == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[2] == "attack") //Enemy = 3 Attack
             {
                 e_b_enemy3Attacking = true;
                 e_b_enemy3Shielding = false;
                 e_b_enemy3SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[2] == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[2] == "shield") // Enemy 3 Shields
             {
                 e_b_enemy3Attacking = false;
                 e_b_enemy3Shielding = true;
                 e_b_enemy3SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[2] == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[2] == "ability") // Enemy 3 does their ability
             {
                 e_b_enemy3Attacking = false;
                 e_b_enemy3Shielding = false;
@@ -1132,21 +1254,21 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (e_b_enemy4IsActive == true) // Check if enemy 4 is present
+        if (GetEnemyActiveState(4) == true) // Check if enemy 4 is present
         {
-            if (g_global.g_iconManager.ls_e_statusStrings[3] == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[3] == "attack") //Enemy 4 Attack
             {
                 e_b_enemy4Attacking = true;
                 e_b_enemy4Shielding = false;
                 e_b_enemy4SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[3] == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[3] == "shield") // Enemy 4 Shields
             {
                 e_b_enemy4Attacking = false;
                 e_b_enemy4Shielding = true;
                 e_b_enemy4SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[3] == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[3] == "ability") // Enemy 4 does their ability
             {
                 e_b_enemy4Attacking = false;
                 e_b_enemy4Shielding = false;
@@ -1154,21 +1276,21 @@ public class S_EnemyState : MonoBehaviour
             }
         }
 
-        if (e_b_enemy5IsActive == true) // Check if enemy 5 is present
+        if (GetEnemyActiveState(5) == true) // Check if enemy 5 is present
         {
-            if (g_global.g_iconManager.ls_e_statusStrings[4] == "attack") //Enemy 1 Attack
+            if (g_global.g_iconManager.ls_e_statusStrings[4] == "attack") //Enemy 5 Attack
             {
                 e_b_enemy5Attacking = true;
                 e_b_enemy5Shielding = false;
                 e_b_enemy5SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[4] == "shield") // Enemy 1 Shields
+            else if (g_global.g_iconManager.ls_e_statusStrings[4] == "shield") // Enemy 5 Shields
             {
                 e_b_enemy5Attacking = false;
                 e_b_enemy5Shielding = true;
                 e_b_enemy5SpecialAbility = false;
             }
-            else if (g_global.g_iconManager.ls_e_statusStrings[4] == "ability") // Enemy 1 does their ability
+            else if (g_global.g_iconManager.ls_e_statusStrings[4] == "ability") // Enemy 5 does their ability
             {
                 e_b_enemy5Attacking = false;
                 e_b_enemy5Shielding = false;
@@ -1701,18 +1823,18 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     private void UpdateFrailtyStackRemainder(int _enemyNum) 
     {
-        if (GetEnemyResistantEffectStackCount(_enemyNum) == 0 && GetEnemyResistantEffectStackRemainder(_enemyNum) >= 1)
+        if (GetEnemyFrailtyEffectStackCount(_enemyNum) == 0 && GetEnemyFrailtyEffectStackRemainder(_enemyNum) >= 1)
         {
-            if (GetEnemyResistantEffectStackRemainder(_enemyNum) <= 5)
+            if (GetEnemyFrailtyEffectStackRemainder(_enemyNum) <= 5)
             {
-                SetEnemyResistantEffectStackCount(GetEnemyResistantEffectStackRemainder(_enemyNum), _enemyNum);
-                SetEnemyResistantEffectStackRemainder(0, _enemyNum);
+                SetEnemyFrailtyEffectStackCount(GetEnemyFrailtyEffectStackRemainder(_enemyNum), _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder(0, _enemyNum);
             }
             else
             {
                 int _remainder = GetEnemyFrailtyEffectStackRemainder(_enemyNum) - 5;
-                SetEnemyResistantEffectStackCount(5, _enemyNum);
-                SetEnemyResistantEffectStackRemainder(_remainder, _enemyNum);
+                SetEnemyFrailtyEffectStackCount(5, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder(_remainder, _enemyNum);
             }
         }
     }
