@@ -87,7 +87,7 @@ public class S_Player : MonoBehaviour
     /// <param name="_damageValue"></param>
     public void PlayerAttacked(int _damageValue)
     {
-        if(p_sc_playerAttributes.p_b_resistant == true)
+        if(g_global.g_playerState.GetPlayerResistantEffectState() == true == true)
         {
             int _newDamageValue = (int)_damageValue / 2;
             if (p_sc_playerAttributes.GetPlayerShieldValue() <= 0)

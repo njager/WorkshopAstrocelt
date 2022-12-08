@@ -12,6 +12,10 @@ public class S_SceneManager : MonoBehaviour
     [Header("Final Scene Bool")]
     public bool b_finalScene = false;
 
+    [Header("After this reward scene")]
+    public bool b_toRewardScene = false;
+    public int[] ls_i_rewardIndices;
+
 
 
     /// <summary>
@@ -42,6 +46,14 @@ public class S_SceneManager : MonoBehaviour
     public void ChangeScene()
     {
         Debug.Log("Have not set the index for the reward scene");
-        SceneManager.LoadScene(i_sceneIndex);
+        if (b_toRewardScene)
+        {
+            //if this goes to a reward scene chose a random one
+            SceneManager.LoadScene(ls_i_rewardIndices[Random.Range(0, ls_i_rewardIndices.Length)]); 
+        }
+        else
+        {
+            SceneManager.LoadScene(i_sceneIndex);
+        }
     }
 }
