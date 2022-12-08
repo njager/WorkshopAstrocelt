@@ -15,7 +15,7 @@ public class S_UIManager : MonoBehaviour
     [Header("Player UI")]
     [SerializeField] TextMeshProUGUI p_tx_playerHealthText;
     [SerializeField] TextMeshProUGUI p_tx_playerShieldText;
-    [SerializeField] Image p_playerHealthBar;
+    [SerializeField] Image p_UI_playerHealthBar;
     [SerializeField] TextMeshProUGUI p_playerHealthResourceBarText;
     public TextMeshProUGUI c_cardCount;
 
@@ -34,11 +34,11 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI e_tx_enemy5ShieldText;
 
     [Header("Enemy Healthbars")]
-    [SerializeField] Image e_enemy1HealthBar;
-    [SerializeField] Image e_enemy2HealthBar;
-    [SerializeField] Image e_enemy3HealthBar;
-    [SerializeField] Image e_enemy4HealthBar;
-    [SerializeField] Image e_enemy5HealthBar;
+    [SerializeField] Image e_UI_enemy1HealthBar;
+    [SerializeField] Image e_UI_enemy2HealthBar;
+    [SerializeField] Image e_UI_enemy3HealthBar;
+    [SerializeField] Image e_UI_enemy4HealthBar;
+    [SerializeField] Image e_UI_enemy5HealthBar;
 
     [Header("Enemy Selector")]
     [SerializeField] GameObject e_enemy1Selector;
@@ -83,30 +83,14 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] GameObject e_enemy5ShieldIcon;
 
     [Header("Player Status Effect References")]
-    public GameObject p_playerBleedEffect;
-    public GameObject p_playerStunEffect;
-    public GameObject p_playerResistantEffect;
+    public GameObject p_playerHealthBar;
 
-    [Header("Enemy Bleed Status Effect References")]
-    public GameObject e_enemy1BleedEffect;
-    public GameObject e_enemy2BleedEffect;
-    public GameObject e_enemy3BleedEffect;
-    public GameObject e_enemy4BleedEffect;
-    public GameObject e_enemy5BleedEffect;
-
-    [Header("Enemy Stun Status Effect References")]
-    public GameObject e_enemy1StunEffect;
-    public GameObject e_enemy2StunEffect;
-    public GameObject e_enemy3StunEffect;
-    public GameObject e_enemy4StunEffect;
-    public GameObject e_enemy5StunEffect;
-
-    [Header("Enemy Resistant Status Effect References")]
-    public GameObject e_enemy1ResistantEffect;
-    public GameObject e_enemy2ResistantEffect;
-    public GameObject e_enemy3ResistantEffect;
-    public GameObject e_enemy4ResistantEffect;
-    public GameObject e_enemy5ResistantEffect;
+    [Header("Enemy Healthbar Refereneces")]
+    public GameObject e_enemy1HealthBar;
+    public GameObject e_enemy2HealthBar;
+    public GameObject e_enemy3HealthBar;
+    public GameObject e_enemy4HealthBar;
+    public GameObject e_enemy5HealthBar;
 
     [Header("Debug Turnbar")]
     public GameObject debugTurnbar;
@@ -117,7 +101,7 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI en_tx_blueEnergyTrackerText;
     public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
 
-    [Header("Constelation Length Elements")]
+    [Header("Constellation Length Elements")]
     public TextMeshProUGUI co_tx_constellationTrackerText;
 
     [Header("Resource Graphics Encounter Tracker Asset Object References")]
@@ -162,11 +146,7 @@ public class S_UIManager : MonoBehaviour
     [Header("Resource Graphics Scale Tracker")]
     [SerializeField] Vector3 rsg_OriginalScale;
     [SerializeField] Vector3 rsg_ScaleTo;
-    /*[SerializeField] Vector3 rsg_blueGraphicOriginalScale;
-    [SerializeField] Vector3 rsg_yellowGraphocORiginalScale;
-    */
-
-
+    
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -222,7 +202,6 @@ public class S_UIManager : MonoBehaviour
             b_blueEnergy = false;
             b_yellowEnergy = false;
         }
-
     }
 
     /// <summary>
@@ -237,31 +216,31 @@ public class S_UIManager : MonoBehaviour
         {
             e_tx_enemy1ShieldText.text = g_global.g_enemyAttributeSheet1.GetEnemyShieldValue().ToString();
             e_tx_enemy1HealthText.text = g_global.g_enemyAttributeSheet1.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet1.e_i_healthMax.ToString();
-            e_enemy1HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet1.e_i_health / (float)g_global.g_enemyAttributeSheet1.e_i_healthMax;
+            e_UI_enemy1HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet1.e_i_health / (float)g_global.g_enemyAttributeSheet1.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet2 != null)
         {
             e_tx_enemy2ShieldText.text = g_global.g_enemyAttributeSheet2.GetEnemyShieldValue().ToString();
             e_tx_enemy2HealthText.text = g_global.g_enemyAttributeSheet2.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet2.e_i_healthMax.ToString();
-            e_enemy2HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet2.e_i_health / (float)g_global.g_enemyAttributeSheet2.e_i_healthMax;
+            e_UI_enemy2HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet2.e_i_health / (float)g_global.g_enemyAttributeSheet2.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet3 != null) 
         {
             e_tx_enemy3ShieldText.text = g_global.g_enemyAttributeSheet3.GetEnemyShieldValue().ToString();
             e_tx_enemy3HealthText.text = g_global.g_enemyAttributeSheet3.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet3.e_i_healthMax.ToString();
-            e_enemy3HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet3.e_i_health / (float)g_global.g_enemyAttributeSheet3.e_i_healthMax;
+            e_UI_enemy3HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet3.e_i_health / (float)g_global.g_enemyAttributeSheet3.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet4 != null)
         {
             e_tx_enemy4ShieldText.text = g_global.g_enemyAttributeSheet4.GetEnemyShieldValue().ToString();
             e_tx_enemy4HealthText.text = g_global.g_enemyAttributeSheet4.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet4.e_i_healthMax.ToString();
-            e_enemy4HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet4.e_i_health / (float)g_global.g_enemyAttributeSheet4.e_i_healthMax;
+            e_UI_enemy4HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet4.e_i_health / (float)g_global.g_enemyAttributeSheet4.e_i_healthMax;
         }
         if (g_global.g_enemyAttributeSheet5 != null)
         {
             e_tx_enemy5ShieldText.text = g_global.g_enemyAttributeSheet5.GetEnemyShieldValue().ToString();
             e_tx_enemy5HealthText.text = g_global.g_enemyAttributeSheet5.e_i_health.ToString() + " / " + g_global.g_enemyAttributeSheet5.e_i_healthMax.ToString();
-            e_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
+            e_UI_enemy5HealthBar.fillAmount = (float)g_global.g_enemyAttributeSheet5.e_i_health / (float)g_global.g_enemyAttributeSheet5.e_i_healthMax;
         }
 
         if(debugTurnbar.activeInHierarchy == true) 
@@ -271,358 +250,6 @@ public class S_UIManager : MonoBehaviour
 
         // Anurag's UI element
         //c_cardCount.text = g_global.g_ls_p_playerHand.Count.ToString();
-    }
-
-    /// <summary>
-    /// Toggle the Bleed UI element
-    /// True for _state is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    public void ToggleBleedPlayerUI(bool _state) // True for on, false for off
-    {
-        if(_state == true)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-            p_playerBleedEffect.SetActive(true);
-        }
-        else if (_state == false)
-        {
-            p_playerBleedEffect.SetActive(false);
-        }
-    }
-
-    /// <summary>
-    /// Toggle the Stun UI element
-    /// True for _state is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    public void ToggleStunPlayerUI(bool _state)
-    {
-        if (_state == true)
-        {
-            if(g_global.g_playerState.p_i_turnsPassedForStun == 1)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-            }
-            p_playerStunEffect.SetActive(true);
-        }
-        else if (_state == false)
-        {
-            p_playerStunEffect.SetActive(false);
-        }
-    }
-
-    /// <summary>
-    /// Toggle the Resistant UI element
-    /// True for _state is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    public void ToggleResistantPlayerUI(bool _state)
-    {
-        if (_state == true)
-        {
-            if (g_global.g_playerState.p_i_turnsPassedForResistant == 1)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-            }
-            p_playerResistantEffect.SetActive(true);
-        }
-        else if (_state == false)
-        {
-            p_playerResistantEffect.SetActive(false);
-        }
-    }
-
-    /// <summary>
-    /// Toggle the Bleed UI element for a given enemy
-    /// True is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    /// /// <param name="_enemyCount"></param>
-    public void ToggleBleedEnemyUI(bool _state, int _enemyCount)
-    {
-        if(_enemyCount == 1)
-        {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
-            {
-                if (_state == true)
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    e_enemy1BleedEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy1BleedEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 2)
-        {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
-            {
-                if (_state == true)
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    e_enemy2BleedEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy2BleedEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 3)
-        {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
-            {
-                if (_state == true)
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    e_enemy3BleedEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy3BleedEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 4)
-        {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
-            {
-                if (_state == true)
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    e_enemy4BleedEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy4BleedEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 5)
-        {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
-            {
-                if (_state == true)
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    e_enemy5BleedEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy5BleedEffect.SetActive(false);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Toggle the Stun UI element for a given enemy (_enemycount)
-    /// True is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    /// <param name="_enemyCount"></param>
-    public void ToggleStunEnemyUI(bool _state, int _enemyCount)
-    {
-        if (_enemyCount == 1)
-        {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy1ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    e_enemy1StunEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy1StunEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 2)
-        {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy2ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    e_enemy2StunEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy2StunEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 3)
-        {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy3ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    e_enemy3StunEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy3StunEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 4)
-        {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy4ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    e_enemy4StunEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy4StunEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 5)
-        {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy5ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    e_enemy5StunEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy5StunEffect.SetActive(false);
-                }
-            }
-        }
-    }
-
-
-    /// <summary>
-    /// Toggle the Resistant UI element for a given enemy (_enemycount)
-    /// True is on, false is off
-    /// - Josh
-    /// </summary>
-    /// <param name="_state"></param>
-    /// <param name="_enemyCount"></param>
-    public void ToggleResistantEnemyUI(bool _state, int _enemyCount)
-    {
-        if (_enemyCount == 1)
-        {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy1ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    e_enemy1ResistantEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy1ResistantEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 2)
-        {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy2ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    e_enemy2ResistantEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy2ResistantEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 3)
-        {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy3ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    e_enemy3ResistantEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy3ResistantEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 4)
-        {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy4ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    e_enemy4ResistantEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy4ResistantEffect.SetActive(false);
-                }
-            }
-        }
-        else if (_enemyCount == 5)
-        {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
-            {
-                if (_state == true)
-                {
-                    if (g_global.g_enemyState.e_i_enemy5ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    e_enemy5ResistantEffect.SetActive(true);
-                }
-                else if (_state == false)
-                {
-                    e_enemy5ResistantEffect.SetActive(false);
-                }
-            }
-        }
     }
 
     /// <summary>
@@ -706,8 +333,6 @@ public class S_UIManager : MonoBehaviour
     {
         return co_tx_constellationTrackerText;
     }
-
-
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Player Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -896,23 +521,23 @@ public class S_UIManager : MonoBehaviour
     {
         if (_enemyNum == 1)
         {
-            e_enemy1HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_enemy1HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 2)
         {
-            e_enemy2HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_enemy2HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 3)
         {
-            e_enemy3HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_enemy3HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 4)
         {
-            e_enemy4HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_enemy4HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 5)
         {
-            e_enemy5HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_enemy5HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
     }
 

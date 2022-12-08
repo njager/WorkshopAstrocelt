@@ -684,23 +684,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if(GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyAcidicEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyAcidicEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyAcidicEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyAcidicEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyAcidicEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
@@ -716,23 +716,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
@@ -748,23 +748,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
@@ -776,23 +776,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (GetHealthBarOwner() == 1) // Enemy 1, player doesn't have stun
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyStunnedEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyStunnedEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyStunnedEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyStunnedEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyStunnedEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
