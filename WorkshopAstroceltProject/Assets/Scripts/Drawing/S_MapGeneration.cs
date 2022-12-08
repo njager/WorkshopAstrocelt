@@ -14,7 +14,7 @@ public class S_MapGeneration : MonoBehaviour
 
     [Header("Map References")]
     public GameObject map1;
-    public GameObject roof;
+    public GameObject Sides;
   
 
     public GameObject activeMap;
@@ -137,7 +137,8 @@ public class S_MapGeneration : MonoBehaviour
         List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
         RunSpringRBConnect(springList,clusters);
         RemoveLockandGravConstraint(clusters);
-        ConnectToRoof(springList);
+        ConnectToRoof(springList,clusters);
+        ConnectClusters(springList, clusters);
         //cluster_checker(clusters);
 
     }
@@ -150,7 +151,7 @@ public class S_MapGeneration : MonoBehaviour
             List<Transform> this_cluster = clusters[i];
             for (int j = 0; j < 5; j++)
             {
-                for (int k = 0; k < 6; k++)
+                for (int k = 0; k < 8; k++)
                 {
                     this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
                     /*
@@ -201,7 +202,8 @@ public class S_MapGeneration : MonoBehaviour
                 for (int k = 0; k < 5; k++)
                 {
                     springList[i][j][k].connectedBody = clusters[i][k].GetComponent<Rigidbody2D>();
-                    springList[i][j][k].distance = 6;
+                    springList[i][j][k].distance = 200;
+                    springList[i][j][k].frequency = 100;
                 }
             }
         }
@@ -215,24 +217,53 @@ public class S_MapGeneration : MonoBehaviour
             {
                 Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
                 rb.constraints = RigidbodyConstraints2D.None;
-                clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 1;
+                clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = .1f;
 
             }
         }
     }
 
-    public void ConnectToRoof(List<List<List<SpringJoint2D>>> springList)
+    public void ConnectToRoof(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
     {
-        for (int i = 0; i < 8; i++)
+       List<Transform> sidesList = new List<Transform>();
+       foreach(Transform side in Sides.GetComponent<Transform>())
         {
-            for (int j = 0; j < 5; j++)
-            {
-               springList[i][j][5].connectedBody = roof.GetComponent<Rigidbody2D>();
-               
-                
-            }
-
+            sidesList.Add(side);
         }
+       for (int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                float tempDist = 1000f;
+                int nn = 0;
+                for (int k = 0; k < 6; k++)
+                {
+                    float dist = Vector2.Distance(new Vector2(clusters[i][j].position.x, clusters[i][j].position.y), new Vector2(sidesList[k].position.x, sidesList[k].position.y));
+                    if (dist < tempDist)
+                    {
+                        nn = k;
+                        tempDist = dist;
+                    }
+                    
+                }
+                springList[i][j][5].connectedBody = sidesList[nn].GetComponent<Rigidbody2D>();
+                //clusters[i][j]
+                //loop through sides and attach each star based on distance 
+            }
+        }
+    }
+    public void ConnectClusters(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
+    {
+        springList[0][0][6].connectedBody = clusters[1][0].GetComponent<Rigidbody2D>();
+        springList[0][0][7].connectedBody = clusters[2][0].GetComponent<Rigidbody2D>();
+        springList[1][0][6].connectedBody = clusters[3][0].GetComponent<Rigidbody2D>();
+        springList[2][0][6].connectedBody = clusters[3][1].GetComponent<Rigidbody2D>();
+        springList[2][0][7].connectedBody = clusters[4][0].GetComponent<Rigidbody2D>();
+        springList[3][0][6].connectedBody = clusters[5][0].GetComponent<Rigidbody2D>();
+        springList[4][0][6].connectedBody = clusters[5][1].GetComponent<Rigidbody2D>();
+        springList[4][0][7].connectedBody = clusters[6][0].GetComponent<Rigidbody2D>();
+        springList[5][0][6].connectedBody = clusters[7][0].GetComponent<Rigidbody2D>();
+        springList[6][0][6].connectedBody = clusters[7][1].GetComponent<Rigidbody2D>();
     }
 }
 
