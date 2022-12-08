@@ -331,11 +331,11 @@ public class S_Enemy : MonoBehaviour
         }
         if(_enemyType == "Brawler")
         {
-            g_global.g_enemyState.EnemyResistantEffect(1, e_i_enemyCount); 
+            g_global.g_enemyState.EnemyResistantStatusEffect(1, e_i_enemyCount); 
         }
         if(_enemyType == "Beast")
         {
-            g_global.g_playerState.PlayerBleedingStatusEffect(3, 3);
+            g_global.g_playerState.PlayerBleedingStatusEffect(3);
         }
     }
 
@@ -412,7 +412,7 @@ public class S_Enemy : MonoBehaviour
     /// <returns></returns>
     public IEnumerator EnemyTurnAction(int _enemyNum)
     {
-        if (!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
+        if (!g_global.g_enemyState.GetEnemySkipTurnState(_enemyNum))
         {
             // Declare Turn for UI
             g_global.g_enemyState.DeclareCurrentTurn(_enemyNum);

@@ -78,7 +78,7 @@ public class S_Card : MonoBehaviour
     public bool crd_b_noEffect;
     public bool crd_b_acidicStatusEffect;
     public bool crd_b_bleedStatusEffect;
-    public bool crd_b_fralitizeStatusEffect;
+    public bool crd_b_fralityStatusEffect;
     public bool crd_b_stunnedStatusEffect;
     public bool crd_b_resistantStatusEffect;
 
@@ -189,7 +189,7 @@ public class S_Card : MonoBehaviour
         crd_b_noEffect = _cardData.NoEffect;
         crd_b_acidicStatusEffect = _cardData.AcidicStatusEffect;
         crd_b_bleedStatusEffect = _cardData.BleedStatusEffect;
-        crd_b_fralitizeStatusEffect = _cardData.FralityStatusEffect;
+        crd_b_fralityStatusEffect = _cardData.FralityStatusEffect;
         crd_b_stunnedStatusEffect = _cardData.StunnedStatusEffect;
         crd_b_resistantStatusEffect = _cardData.ResistantStatusEffect;
 
@@ -364,15 +364,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyResistantEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
             if (crd_b_stunnedStatusEffect == true)
@@ -380,15 +380,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
             
@@ -411,22 +411,6 @@ public class S_Card : MonoBehaviour
                     //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3);
                 }
 
-            }
-            if (crd_b_stunnedStatusEffect == true)
-            {
-                // Locate stun effect
-                if (crd_str_statusEffectID1 == "stun") // In slot 1
-                {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
-                }
-                else if (crd_str_statusEffectID2 == "stun") // In slot 2
-                {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
-                }
-                else if (crd_str_statusEffectID3 == "stun") // In slot 3
-                {
-                    g_global.g_playerState.PlayerStunnedStatusEffect(0);
-                }
             }
             if (crd_b_resistantStatusEffect == true)
             {

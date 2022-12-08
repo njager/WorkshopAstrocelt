@@ -15,14 +15,6 @@ public class S_TurnManager : MonoBehaviour
     public bool p_b_playerInitialTurn = true;
     public bool e_b_enemyInitialTurn = false;
 
-    [Header("Turn Skips")]
-    public bool p_b_playerTurnSkipped;
-    public bool e_b_enemy1TurnSkipped;
-    public bool e_b_enemy2TurnSkipped;
-    public bool e_b_enemy3TurnSkipped;
-    public bool e_b_enemy4TurnSkipped;
-    public bool e_b_enemy5TurnSkipped;
-
     [Header("Coroutine Bool Check")]
     public bool e_b_enemyIsActive;
 
@@ -37,12 +29,11 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_b_enemyTurn = e_b_enemyInitialTurn;
 
         // Make sure turn skips are false
-        p_b_playerTurnSkipped = false;
-        e_b_enemy1TurnSkipped = false;
-        e_b_enemy2TurnSkipped = false;
-        e_b_enemy3TurnSkipped = false;
-        e_b_enemy4TurnSkipped = false;
-        e_b_enemy5TurnSkipped = false;
+        g_global.g_enemyState.SetEnemySkipTurnState(false, 1);
+        g_global.g_enemyState.SetEnemySkipTurnState(false, 2);
+        g_global.g_enemyState.SetEnemySkipTurnState(false, 3);
+        g_global.g_enemyState.SetEnemySkipTurnState(false, 4);
+        g_global.g_enemyState.SetEnemySkipTurnState(false, 5);
 
         g_global.g_enemyState.EnemyActionCheck();
     }
@@ -186,7 +177,7 @@ public class S_TurnManager : MonoBehaviour
 
     private void PlayerTurnCheck()
     {
-        if (g_global.g_b_playerTurn == false && p_b_playerTurnSkipped)
+        if (g_global.g_b_playerTurn == false)
         {
             //decrement the player's status effect
             g_global.g_playerState.PlayerStatusEffectDecrement();
@@ -237,7 +228,9 @@ public class S_TurnManager : MonoBehaviour
         
     }
 
-    // Getters \\
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
     /// Return the bool value of S_TurnManager.e_b_enemyIsActive;
