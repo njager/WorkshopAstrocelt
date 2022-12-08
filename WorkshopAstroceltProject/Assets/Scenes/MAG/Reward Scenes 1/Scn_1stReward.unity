@@ -172,8 +172,8 @@ MonoBehaviour:
   rRewardCover: {fileID: 1279487570}
   lRewardSelector: {fileID: 162037240}
   rRewardSelector: {fileID: 1772652324}
-  ls_cardBundle1: 0e0000000c000000160000001300000012000000
-  ls_cardBundle2: 150000001200000003000000
+  ls_cardBundle1: 0600000010000000
+  ls_cardBundle2: 030000000d000000
   s_gameManager: {fileID: 2033668449}
 --- !u!1 &93036730 stripped
 GameObject:
@@ -627,6 +627,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 22677179}
+    - target: {fileID: 6111685431505685581, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_text
+      value: 2 uncommon attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431578494200, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_text
+      value: 2 uncommon shield
+      objectReference: {fileID: 0}
     - target: {fileID: 6111685431998996936, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
       propertyPath: m_Name
       value: RewardObject
