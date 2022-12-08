@@ -71,38 +71,38 @@ public class S_EnemyState : MonoBehaviour
     public bool e_b_enemy5SpecialAbility;
 
     [Header("Status Effect Stack Count For Enemy 1")]
-    [SerializeField] int e_i_acidicStackCountEnemy1;
+    [SerializeField] int e_i_acidStackCountEnemy1;
     [SerializeField] int e_i_bleedStackCountEnemy1;
     [SerializeField] int e_i_frailtyStackCountEnemy1;
-    [SerializeField] int e_i_stunnedStackCountEnemy1;
+    [SerializeField] int e_i_stunStackCountEnemy1;
     [SerializeField] int e_i_resistantStackCountEnemy1;
 
     [Header("Status Effect Stack Count For Enemy 2")]
-    [SerializeField] int e_i_acidicStackCountEnemy2;
+    [SerializeField] int e_i_acidStackCountEnemy2;
     [SerializeField] int e_i_bleedStackCountEnemy2;
     [SerializeField] int e_i_frailtyStackCountEnemy2;
-    [SerializeField] int e_i_stunnedStackCountEnemy2;
+    [SerializeField] int e_i_stunStackCountEnemy2;
     [SerializeField] int e_i_resistantStackCountEnemy2;
 
     [Header("Status Effect Stack Count For Enemy 3")]
-    [SerializeField] int e_i_acidicStackCountEnemy3;
+    [SerializeField] int e_i_acidStackCountEnemy3;
     [SerializeField] int e_i_bleedStackCountEnemy3;
     [SerializeField] int e_i_frailtyStackCountEnemy3;
-    [SerializeField] int e_i_stunnedStackCountEnemy3;
+    [SerializeField] int e_i_stunStackCountEnemy3;
     [SerializeField] int e_i_resistantStackCountEnemy3;
 
     [Header("Status Effect Stack Count For Enemy 4")]
-    [SerializeField] int e_i_acidicStackCountEnemy4;
+    [SerializeField] int e_i_acidStackCountEnemy4;
     [SerializeField] int e_i_bleedStackCountEnemy4;
     [SerializeField] int e_i_frailtyStackCountEnemy4;
-    [SerializeField] int e_i_stunnedStackCountEnemy4;
+    [SerializeField] int e_i_stunStackCountEnemy4;
     [SerializeField] int e_i_resistantStackCountEnemy4;
 
     [Header("Status Effect Stack Count For Enemy 5")]
-    [SerializeField] int e_i_acidicStackCountEnemy5;
+    [SerializeField] int e_i_acidStackCountEnemy5;
     [SerializeField] int e_i_bleedStackCountEnemy5;
     [SerializeField] int e_i_frailtyStackCountEnemy5;
-    [SerializeField] int e_i_stunnedStackCountEnemy5;
+    [SerializeField] int e_i_stunStackCountEnemy5;
     [SerializeField] int e_i_resistantStackCountEnemy5;
 
     [Header("Status Effect Enemy 1 Remainders")]
@@ -127,37 +127,37 @@ public class S_EnemyState : MonoBehaviour
 
     [Header("Status Effect States For Enemy 1")]
     [SerializeField] bool e_b_inAcidicStateEnemy1;
-    [SerializeField] bool e_b_inBleedingStateEnemy1;
+    [SerializeField] bool e_b_inBleedStateEnemy1;
     [SerializeField] bool e_b_inFralitizedStateEnemy1;
-    [SerializeField] bool e_b_inStunnedStateEnemy1;
+    [SerializeField] bool e_b_inStunStateEnemy1;
     [SerializeField] bool e_b_inResistantStateEnemy1;
 
     [Header("Status Effect States For Enemy 2")]
     [SerializeField] bool e_b_inAcidicStateEnemy2;
-    [SerializeField] bool e_b_inBleedingStateEnemy2;
+    [SerializeField] bool e_b_inBleedStateEnemy2;
     [SerializeField] bool e_b_inFralitizedStateEnemy2;
-    [SerializeField] bool e_b_inStunnedStateEnemy2;
+    [SerializeField] bool e_b_inStunStateEnemy2;
     [SerializeField] bool e_b_inResistantStateEnemy2;
 
     [Header("Status Effect States For Enemy 3")]
     [SerializeField] bool e_b_inAcidicStateEnemy3;
-    [SerializeField] bool e_b_inBleedingStateEnemy3;
+    [SerializeField] bool e_b_inBleedStateEnemy3;
     [SerializeField] bool e_b_inFralitizedStateEnemy3;
-    [SerializeField] bool e_b_inStunnedStateEnemy3;
+    [SerializeField] bool e_b_inStunStateEnemy3;
     [SerializeField] bool e_b_inResistantStateEnemy3;
 
     [Header("Status Effect States For Enemy 4")]
     [SerializeField] bool e_b_inAcidicStateEnemy4;
-    [SerializeField] bool e_b_inBleedingStateEnemy4;
+    [SerializeField] bool e_b_inBleedStateEnemy4;
     [SerializeField] bool e_b_inFralitizedStateEnemy4;
-    [SerializeField] bool e_b_inStunnedStateEnemy4;
+    [SerializeField] bool e_b_inStunStateEnemy4;
     [SerializeField] bool e_b_inResistantStateEnemy4;
 
     [Header("Status Effect States For Enemy 5")]
     [SerializeField] bool e_b_inAcidicStateEnemy5;
-    [SerializeField] bool e_b_inBleedingStateEnemy5;
+    [SerializeField] bool e_b_inBleedStateEnemy5;
     [SerializeField] bool e_b_inFralitizedStateEnemy5;
-    [SerializeField] bool e_b_inStunnedStateEnemy5;
+    [SerializeField] bool e_b_inStunStateEnemy5;
     [SerializeField] bool e_b_inResistantStateEnemy5;
 
     [Header("Active (true) or Inactive (false) Bool Check for Enemies")]
@@ -192,10 +192,10 @@ public class S_EnemyState : MonoBehaviour
                 {
                     // Turn off status effects
                     e_b_inAcidicStateEnemy1 = false;
-                    e_b_inBleedingStateEnemy1 = false;
+                    e_b_inBleedStateEnemy1 = false;
                     e_b_inFralitizedStateEnemy1 = false;
                     e_b_inResistantStateEnemy1 = false;
-                    e_b_inStunnedStateEnemy1 = false;
+                    e_b_inStunStateEnemy1 = false;
 
                     enemy1.EnemyDied(str_enemy1Type);
                     e_b_enemy1Dead = true; 
@@ -217,10 +217,10 @@ public class S_EnemyState : MonoBehaviour
                 {
                     // Turn off status effects
                     e_b_inAcidicStateEnemy2 = false;
-                    e_b_inBleedingStateEnemy2 = false;
+                    e_b_inBleedStateEnemy2 = false;
                     e_b_inFralitizedStateEnemy2 = false;
                     e_b_inResistantStateEnemy2 = false;
-                    e_b_inStunnedStateEnemy2 = false;
+                    e_b_inStunStateEnemy2 = false;
 
                     enemy2.EnemyDied(str_enemy2Type);
                     e_b_enemy2Dead = true;
@@ -242,10 +242,10 @@ public class S_EnemyState : MonoBehaviour
                 {
                     // Turn off status effects
                     e_b_inAcidicStateEnemy3 = false;
-                    e_b_inBleedingStateEnemy3 = false;
+                    e_b_inBleedStateEnemy3 = false;
                     e_b_inFralitizedStateEnemy3 = false;
                     e_b_inResistantStateEnemy3 = false;
-                    e_b_inStunnedStateEnemy3 = false;
+                    e_b_inStunStateEnemy3 = false;
 
                     enemy3.EnemyDied(str_enemy3Type);
                     e_b_enemy3Dead = true; 
@@ -267,10 +267,10 @@ public class S_EnemyState : MonoBehaviour
                 {
                     // Turn off status effects
                     e_b_inAcidicStateEnemy4 = false;
-                    e_b_inBleedingStateEnemy4 = false;
+                    e_b_inBleedStateEnemy4 = false;
                     e_b_inFralitizedStateEnemy4 = false;
                     e_b_inResistantStateEnemy4 = false;
-                    e_b_inStunnedStateEnemy4 = false;
+                    e_b_inStunStateEnemy4 = false;
 
                     enemy4.EnemyDied(str_enemy4Type);
                     e_b_enemy4Dead = true;
@@ -292,10 +292,10 @@ public class S_EnemyState : MonoBehaviour
                 {
                     // Turn off status effects
                     e_b_inAcidicStateEnemy5 = false;
-                    e_b_inBleedingStateEnemy5 = false;
+                    e_b_inBleedStateEnemy5 = false;
                     e_b_inFralitizedStateEnemy5 = false;
                     e_b_inResistantStateEnemy5 = false;
-                    e_b_inStunnedStateEnemy5 = false;
+                    e_b_inStunStateEnemy5 = false;
 
                     enemy5.EnemyDied(str_enemy5Type);
                     e_b_enemy5Dead = true;
@@ -353,11 +353,11 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 1
         if (_enemyNum == 1)
         {
-            if (GetEnemyAcidicEffectState(1) == false)
+            if (GetEnemyAcidEffectState(1) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(true, 1);
                 SetEnemyAcidicEffectStackCount(_stackValue, 1);
-                SetEnemyAcidicEffectState(true, 1);
+                SetEnemyAcidEffectState(true, 1);
             }
             else
             {
@@ -368,11 +368,11 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 2
         if (_enemyNum == 2)
         {
-            if (GetEnemyAcidicEffectState(2) == false)
+            if (GetEnemyAcidEffectState(2) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(true, 2);
                 SetEnemyAcidicEffectStackCount(_stackValue, 2);
-                SetEnemyAcidicEffectState(true, 2);
+                SetEnemyAcidEffectState(true, 2);
             }
             else
             {
@@ -383,11 +383,11 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 3
         if (_enemyNum == 3)
         {
-            if (GetEnemyAcidicEffectState(3) == false)
+            if (GetEnemyAcidEffectState(3) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(true, 3);
                 SetEnemyAcidicEffectStackCount(_stackValue, 3);
-                SetEnemyAcidicEffectState(true, 3);
+                SetEnemyAcidEffectState(true, 3);
             }
             else
             {
@@ -398,11 +398,11 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 4
         if (_enemyNum == 4)
         {
-            if (GetEnemyAcidicEffectState(4) == false)
+            if (GetEnemyAcidEffectState(4) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(true, 4);
                 SetEnemyAcidicEffectStackCount(_stackValue, 4);
-                SetEnemyAcidicEffectState(true, 4);
+                SetEnemyAcidEffectState(true, 4);
             }
             else
             {
@@ -413,11 +413,11 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 5
         if (_enemyNum == 5)
         {
-            if (GetEnemyAcidicEffectState(5) == false)
+            if (GetEnemyAcidEffectState(5) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(true, 5);
                 SetEnemyAcidicEffectStackCount(_stackValue, 5);
-                SetEnemyAcidicEffectState(true, 5);
+                SetEnemyAcidEffectState(true, 5);
             }
             else
             {
@@ -437,7 +437,7 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 1
         if(_enemyNum == 1)
         {
-            if (GetEnemyBleedingEffectState(1) == false)
+            if (GetEnemyBleedEffectState(1) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 1);
                 SetEnemyBleedEffectStackCount(_stackValue, 1);
@@ -453,7 +453,7 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 2
         if (_enemyNum == 2)
         {
-            if (GetEnemyBleedingEffectState(2) == false)
+            if (GetEnemyBleedEffectState(2) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 2);
                 SetEnemyBleedEffectStackCount(_stackValue, 2);
@@ -468,7 +468,7 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 3
         if (_enemyNum == 3)
         {
-            if (GetEnemyBleedingEffectState(3) == false)
+            if (GetEnemyBleedEffectState(3) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 3);
                 SetEnemyBleedEffectStackCount(_stackValue, 3);
@@ -483,7 +483,7 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 4
         if (_enemyNum == 4)
         {
-            if (GetEnemyBleedingEffectState(4) == false)
+            if (GetEnemyBleedEffectState(4) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 4);
                 SetEnemyBleedEffectStackCount(_stackValue, 4);
@@ -498,7 +498,7 @@ public class S_EnemyState : MonoBehaviour
         // If the Enemy was Enemy 5
         if (_enemyNum == 5)
         {
-            if (GetEnemyBleedingEffectState(5) == false)
+            if (GetEnemyBleedEffectState(5) == false)
             {
                 g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 5);
                 SetEnemyBleedEffectStackCount(_stackValue, 5);
@@ -686,16 +686,16 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="_stackValue"></param>
     /// <param name="_enemyNum"></param>
-    public void EnemyStunnedStatusEffect(int _stackValue, int _enemyNum)
+    public void EnemyStunStatusEffect(int _stackValue, int _enemyNum)
     {
         //If enemy was enemy 1
         if (_enemyNum == 1)
         {
-            if (e_b_inStunnedStateEnemy1 == false)
+            if (GetEnemyStunEffectState(1) == false)
             {
                 SetEnemySkipTurnState(true, 1);
                 g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(true, 1);
-                e_i_stunnedStackCountEnemy1 = _stackValue;
+                SetEnemyStunEffectStackCount(_stackValue, 1);
                 SetEnemyStunEffectState(true, 1);
             }
             else
@@ -707,11 +707,11 @@ public class S_EnemyState : MonoBehaviour
         //If enemy was enemy 2
         if (_enemyNum == 2)
         {
-            if (e_b_inStunnedStateEnemy2 == false)
+            if (GetEnemyStunEffectState(2) == false)
             {
                 SetEnemySkipTurnState(true, 2);
                 g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(true, 2);
-                e_i_stunnedStackCountEnemy2 = _stackValue;
+                SetEnemyStunEffectStackCount(_stackValue, 2);
                 SetEnemyStunEffectState(true, 2);
             }
             else
@@ -723,11 +723,11 @@ public class S_EnemyState : MonoBehaviour
         //If enemy was enemy 3
         if (_enemyNum == 3)
         {
-            if (e_b_inStunnedStateEnemy3 == false)
+            if (GetEnemyStunEffectState(3) == false)
             {
                 SetEnemySkipTurnState(true, 3);
                 g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(true, 3);
-                e_i_stunnedStackCountEnemy3 = _stackValue;
+                SetEnemyStunEffectStackCount(_stackValue, 3);
                 SetEnemyStunEffectState(true, 3);
             }
             else
@@ -739,11 +739,11 @@ public class S_EnemyState : MonoBehaviour
         //If enemy was enemy 4
         if (_enemyNum == 4)
         {
-            if (e_b_inStunnedStateEnemy4 == false)
+            if (GetEnemyStunEffectState(4) == false)
             {
                 SetEnemySkipTurnState(true, 4);
                 g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(true, 4);
-                e_i_stunnedStackCountEnemy4 = _stackValue;
+                SetEnemyStunEffectStackCount(_stackValue, 4);
                 SetEnemyStunEffectState(true, 4);
             }
             else
@@ -755,11 +755,11 @@ public class S_EnemyState : MonoBehaviour
         //If enemy was enemy 5
         if (_enemyNum == 5)
         {
-            if (e_b_inStunnedStateEnemy5 == false)
+            if (GetEnemyStunEffectState(5) == false)
             {
                 SetEnemySkipTurnState(true, 5);
                 g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(true, 5);
-                e_i_stunnedStackCountEnemy5 = _stackValue;
+                SetEnemyStunEffectStackCount(_stackValue, 5);
                 SetEnemyStunEffectState(true, 5);
             }
             else
@@ -808,7 +808,7 @@ public class S_EnemyState : MonoBehaviour
         // Check for state For Enemy 1
         if (e_i_bleedStackCountEnemy1 <= 0)
         {
-            e_b_inBleedingStateEnemy1 = false;
+            e_b_inBleedStateEnemy1 = false;
             g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 1);
         }
         
@@ -817,19 +817,19 @@ public class S_EnemyState : MonoBehaviour
             e_b_inResistantStateEnemy1 = false;
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 1);
         }
-        if (e_i_stunnedStackCountEnemy1 <= 0)
+        if (e_i_stunStackCountEnemy1 <= 0)
         {
-            e_b_inStunnedStateEnemy1 = false;
+            e_b_inStunStateEnemy1 = false;
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 1);
         }
 
         // Trigger remaining effects
         if (e_b_inAcidicStateEnemy1 == true)
         {
-            e_i_stunnedStackCountEnemy1 -= 1;
+            e_i_stunStackCountEnemy1 -= 1;
             g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(true, 1);
         }
-        if (e_b_inBleedingStateEnemy1 == true)
+        if (e_b_inBleedStateEnemy1 == true)
         {
             BleedEffectPerTurn(e_i_bleedStackCountEnemy1, 1);
             e_i_bleedStackCountEnemy1 -= 1;
@@ -847,9 +847,9 @@ public class S_EnemyState : MonoBehaviour
             g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 1);
             //CheckStackRemainder
         }
-        if (e_b_inStunnedStateEnemy1 == true)
+        if (e_b_inStunStateEnemy1 == true)
         {
-            e_i_stunnedStackCountEnemy1 -= 1;
+            e_i_stunStackCountEnemy1 -= 1;
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(true, 1);
         }
     }
@@ -864,7 +864,7 @@ public class S_EnemyState : MonoBehaviour
         // Check for state For Enemy 2
         if (e_i_bleedStackCountEnemy2 <= 0)
         {
-            e_b_inBleedingStateEnemy2 = false;
+            e_b_inBleedStateEnemy2 = false;
             g_global.g_UIManager.ToggleBleedEnemyUI(false, 2);
         }
         if (e_i_resistantStackCountEnemy2 <= 0)
@@ -873,23 +873,23 @@ public class S_EnemyState : MonoBehaviour
             g_global.g_UIManager.ToggleResistantEnemyUI(false, 2);
             e_i_enemy2ResistantTurnsPassed = 0;
         }
-        if (e_i_stunnedStackCountEnemy2 <= 0)
+        if (e_i_stunStackCountEnemy2 <= 0)
         {
-            e_b_inStunnedStateEnemy2 = false;
+            e_b_inStunStateEnemy2 = false;
             g_global.g_UIManager.ToggleStunEnemyUI(false, 2);
             e_i_enemy2StunTurnsPassed = 0;
         }
 
         // Trigger remaining effects
-        if (e_b_inBleedingStateEnemy2)
+        if (e_b_inBleedStateEnemy2)
         {
             e_i_bleedStackCountEnemy2 -= 1;
             BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy2, 2);
             g_global.g_UIManager.ToggleBleedEnemyUI(true, 2);
         }
-        if (e_b_inStunnedStateEnemy2)
+        if (e_b_inStunStateEnemy2)
         {
-            e_i_stunnedStackCountEnemy2 -= 1;
+            e_i_stunStackCountEnemy2 -= 1;
             g_global.g_UIManager.ToggleStunEnemyUI(true, 2);
             e_i_enemy2StunTurnsPassed += 1;
         }
@@ -911,12 +911,12 @@ public class S_EnemyState : MonoBehaviour
         // Check for state For Enemy 3
         if (e_i_bleedStackCountEnemy3 <= 0)
         {
-            e_b_inBleedingStateEnemy3 = false;
+            e_b_inBleedStateEnemy3 = false;
             g_global.g_UIManager.ToggleBleedEnemyUI(false, 3);
         }
-        if (e_i_stunnedStackCountEnemy3 <= 0)
+        if (e_i_stunStackCountEnemy3 <= 0)
         {
-            e_b_inStunnedStateEnemy3 = false;
+            e_b_inStunStateEnemy3 = false;
             g_global.g_UIManager.ToggleStunEnemyUI(false, 3);
             e_i_enemy3StunTurnsPassed = 0;
         }
@@ -928,15 +928,15 @@ public class S_EnemyState : MonoBehaviour
         }
 
         // Trigger remaining effects
-        if (e_b_inBleedingStateEnemy3)
+        if (e_b_inBleedStateEnemy3)
         {
             e_i_bleedStackCountEnemy3 -= 1;
             BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy3, 3);
             g_global.g_UIManager.ToggleBleedEnemyUI(true, 2);
         }
-        if (e_b_inStunnedStateEnemy3)
+        if (e_b_inStunStateEnemy3)
         {
-            e_i_stunnedStackCountEnemy3 -= 1;
+            e_i_stunStackCountEnemy3 -= 1;
             g_global.g_UIManager.ToggleStunEnemyUI(true, 3);
             e_i_enemy3StunTurnsPassed += 1;
         }
@@ -958,12 +958,12 @@ public class S_EnemyState : MonoBehaviour
         // Check for state For Enemy 4
         if (e_i_bleedStackCountEnemy4 <= 0)
         {
-            e_b_inBleedingStateEnemy4 = false;
+            e_b_inBleedStateEnemy4 = false;
             g_global.g_UIManager.ToggleBleedEnemyUI(false, 4);
         }
-        if (e_i_stunnedStackCountEnemy4 <= 0)
+        if (e_i_stunStackCountEnemy4 <= 0)
         {
-            e_b_inStunnedStateEnemy4 = false;
+            e_b_inStunStateEnemy4 = false;
             g_global.g_UIManager.ToggleStunEnemyUI(false, 4);
             e_i_enemy1StunTurnsPassed = 0;
         }
@@ -975,15 +975,15 @@ public class S_EnemyState : MonoBehaviour
         }
 
         // Trigger remaining effects
-        if (e_b_inBleedingStateEnemy4)
+        if (e_b_inBleedStateEnemy4)
         {
             e_i_bleedStackCountEnemy4 -= 1;
             BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy4, 4);
             g_global.g_UIManager.ToggleBleedEnemyUI(true, 4);
         }
-        if (e_b_inStunnedStateEnemy4)
+        if (e_b_inStunStateEnemy4)
         {
-            e_i_stunnedStackCountEnemy4 -= 1;
+            e_i_stunStackCountEnemy4 -= 1;
             g_global.g_UIManager.ToggleStunEnemyUI(true, 4);
             e_i_enemy4StunTurnsPassed += 1;
         }
@@ -1005,12 +1005,12 @@ public class S_EnemyState : MonoBehaviour
         // Check for state For Enemy 5
         if (e_i_bleedStackCountEnemy5 <= 0)
         {
-            e_b_inBleedingStateEnemy5 = false;
+            e_b_inBleedStateEnemy5 = false;
             g_global.g_UIManager.ToggleBleedEnemyUI(false, 5);
         }
-        if (e_i_stunnedStackCountEnemy5 <= 0)
+        if (e_i_stunStackCountEnemy5 <= 0)
         {
-            e_b_inStunnedStateEnemy5 = false;
+            e_b_inStunStateEnemy5 = false;
             g_global.g_UIManager.ToggleStunEnemyUI(false, 5);
             e_i_enemy5StunTurnsPassed = 0;
         }
@@ -1022,15 +1022,15 @@ public class S_EnemyState : MonoBehaviour
         }
 
         // Trigger remaining effects
-        if (e_b_inBleedingStateEnemy5)
+        if (e_b_inBleedStateEnemy5)
         {
             e_i_bleedStackCountEnemy5 -= 1;
             BleedEffectPerTurn(e_f_currentDamageRateForBleedEnemy5, 5);
             g_global.g_UIManager.ToggleBleedEnemyUI(true, 5);
         }
-        if (e_b_inStunnedStateEnemy5)
+        if (e_b_inStunStateEnemy5)
         {
-            e_i_stunnedStackCountEnemy5 -= 1;
+            e_i_stunStackCountEnemy5 -= 1;
             g_global.g_UIManager.ToggleStunEnemyUI(true, 5);
             e_i_enemy5StunTurnsPassed += 1;
         }
@@ -1683,7 +1683,7 @@ public class S_EnemyState : MonoBehaviour
     /////////////////////////////-----------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the bool state of S_EnemyState.e_i_acidicStackCountEnemy1 || S_EnemyState.e_i_acidicStackCountEnemy2 || S_EnemyState.e_i_acidicStackCountEnemy3 || S_EnemyState.e_i_acidicStackCountEnemy4 || S_EnemyState.e_i_acidicStackCountEnemy5
+    /// Set the bool state of S_EnemyState.e_i_acidStackCountEnemy1 || S_EnemyState.e_i_acidStackCountEnemy2 || S_EnemyState.e_i_acidStackCountEnemy3 || S_EnemyState.e_i_acidStackCountEnemy4 || S_EnemyState.e_i_acidStackCountEnemy5
     /// - Josh
     /// </summary>
     /// <param name="_stackCount"></param>
@@ -1692,23 +1692,23 @@ public class S_EnemyState : MonoBehaviour
     {
         if (_enemyNum == 1)
         {
-            e_i_acidicStackCountEnemy1 = _stackCount;
+            e_i_acidStackCountEnemy1 = _stackCount;
         }
         else if (_enemyNum == 2)
         {
-            e_i_acidicStackCountEnemy2 = _stackCount;
+            e_i_acidStackCountEnemy2 = _stackCount;
         }
         else if (_enemyNum == 3)
         {
-            e_i_acidicStackCountEnemy3 = _stackCount;
+            e_i_acidStackCountEnemy3 = _stackCount;
         }
         else if (_enemyNum == 4)
         {
-            e_i_acidicStackCountEnemy4 = _stackCount;
+            e_i_acidStackCountEnemy4 = _stackCount;
         }
         else if (_enemyNum == 5)
         {
-            e_i_acidicStackCountEnemy5 = _stackCount;
+            e_i_acidStackCountEnemy5 = _stackCount;
         }
         else
         {
@@ -1819,32 +1819,32 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the bool state of S_EnemyState.e_i_stunnedStackCountEnemy1 || S_EnemyState.e_i_stunnedStackCountEnemy2 || S_EnemyState.e_i_stunnedStackCountEnemy3 || S_EnemyState.e_i_stunnedStackCountEnemy4 || S_EnemyState.e_i_stunnedStackCountEnemy5
+    /// Set the bool state of S_EnemyState.e_i_stunStackCountEnemy1 || S_EnemyState.e_i_stunStackCountEnemy2 || S_EnemyState.e_i_stunStackCountEnemy3 || S_EnemyState.e_i_stunStackCountEnemy4 || S_EnemyState.e_i_stunStackCountEnemy5
     /// - Josh
     /// </summary>
     /// <param name="_stackCount"></param>
     /// <param name="_enemyNum"></param>
-    public void SetEnemyStunnedEffectStackCount(int _stackCount, int _enemyNum)
+    public void SetEnemyStunEffectStackCount(int _stackCount, int _enemyNum)
     {
         if (_enemyNum == 1)
         {
-            e_i_stunnedStackCountEnemy1 = _stackCount;
+            e_i_stunStackCountEnemy1 = _stackCount;
         }
         else if (_enemyNum == 2)
         {
-            e_i_stunnedStackCountEnemy2 = _stackCount;
+            e_i_stunStackCountEnemy2 = _stackCount;
         }
         else if (_enemyNum == 3)
         {
-            e_i_stunnedStackCountEnemy3 = _stackCount;
+            e_i_stunStackCountEnemy3 = _stackCount;
         }
         else if (_enemyNum == 4)
         {
-            e_i_stunnedStackCountEnemy4 = _stackCount;
+            e_i_stunStackCountEnemy4 = _stackCount;
         }
         else if (_enemyNum == 5)
         {
-            e_i_stunnedStackCountEnemy5 = _stackCount;
+            e_i_stunStackCountEnemy5 = _stackCount;
         }
         else
         {
@@ -1858,7 +1858,7 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="_state"></param>
     /// <param name="_enemyNum"></param>
-    public void SetEnemyAcidicEffectState(bool _state, int _enemyNum)
+    public void SetEnemyAcidEffectState(bool _state, int _enemyNum)
     {
         if (_enemyNum == 1)
         {
@@ -1887,7 +1887,7 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the bool state of S_EnemyState.e_b_inBleedingStateEnemy1 || S_EnemyState.e_b_inBleedingStateEnemy2 || S_EnemyState.e_b_inBleedingStateEnemy3 || S_EnemyState.e_b_inBleedingStateEnemy4 || S_EnemyState.e_b_inBleedingStateEnemy5
+    /// Set the bool state of S_EnemyState.e_b_inBleedStateEnemy1 || S_EnemyState.e_b_inBleedStateEnemy2 || S_EnemyState.e_b_inBleedStateEnemy3 || S_EnemyState.e_b_inBleedStateEnemy4 || S_EnemyState.e_b_inBleedStateEnemy5
     /// - Josh
     /// </summary>
     /// <param name="_state"></param>
@@ -1896,23 +1896,23 @@ public class S_EnemyState : MonoBehaviour
     {
         if (_enemyNum == 1)
         {
-            e_b_inBleedingStateEnemy1 = _state;
+            e_b_inBleedStateEnemy1 = _state;
         }
         else if (_enemyNum == 2)
         {
-            e_b_inBleedingStateEnemy2 = _state;
+            e_b_inBleedStateEnemy2 = _state;
         }
         else if (_enemyNum == 3)
         {
-            e_b_inBleedingStateEnemy3 = _state;
+            e_b_inBleedStateEnemy3 = _state;
         }
         else if (_enemyNum == 4)
         {
-            e_b_inBleedingStateEnemy4 = _state;
+            e_b_inBleedStateEnemy4 = _state;
         }
         else if (_enemyNum == 5)
         {
-            e_b_inBleedingStateEnemy5 = _state;
+            e_b_inBleedStateEnemy5 = _state;
         }
         else
         {
@@ -1989,7 +1989,7 @@ public class S_EnemyState : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the bool state of S_EnemyState.e_b_inStunnedStateEnemy1 || S_EnemyState.e_b_inStunnedStateEnemy2 || S_EnemyState.e_b_inStunnedStateEnemy3 || S_EnemyState.e_b_inStunnedStateEnemy4 || S_EnemyState.e_b_inStunnedStateEnemy5
+    /// Set the bool state of S_EnemyState.e_b_inStunStateEnemy1 || S_EnemyState.e_b_inStunStateEnemy2 || S_EnemyState.e_b_inStunStateEnemy3 || S_EnemyState.e_b_inStunStateEnemy4 || S_EnemyState.e_b_inStunStateEnemy5
     /// - Josh
     /// </summary>
     /// <param name="_state"></param>
@@ -1998,23 +1998,23 @@ public class S_EnemyState : MonoBehaviour
     {
         if (_enemyNum == 1)
         {
-            e_b_inStunnedStateEnemy1 = _state;
+            e_b_inStunStateEnemy1 = _state;
         }
         else if (_enemyNum == 2)
         {
-            e_b_inStunnedStateEnemy2 = _state;
+            e_b_inStunStateEnemy2 = _state;
         }
         else if (_enemyNum == 3)
         {
-            e_b_inStunnedStateEnemy3 = _state;
+            e_b_inStunStateEnemy3 = _state;
         }
         else if (_enemyNum == 4)
         {
-            e_b_inStunnedStateEnemy4 = _state;
+            e_b_inStunStateEnemy4 = _state;
         }
         else if (_enemyNum == 5)
         {
-            e_b_inStunnedStateEnemy5 = _state;
+            e_b_inStunStateEnemy5 = _state;
         }
         else
         {
@@ -2065,34 +2065,34 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyState.e_i_acidicStackCountEnemy1 || S_EnemyState.e_i_acidicStackCountEnemy2 || S_EnemyState.e_i_acidicStackCountEnemy3 || S_EnemyState.e_i_acidicStackCountEnemy4 || S_EnemyState.e_i_acidicStackCountEnemy5
+    /// S_EnemyState.e_i_acidStackCountEnemy1 || S_EnemyState.e_i_acidStackCountEnemy2 || S_EnemyState.e_i_acidStackCountEnemy3 || S_EnemyState.e_i_acidStackCountEnemy4 || S_EnemyState.e_i_acidStackCountEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public int GetEnemyAcidicEffectStackCount(int _enemyNum)
+    public int GetEnemyAcidEffectStackCount(int _enemyNum)
     {
         if(_enemyNum == 1) 
         {
-            return e_i_acidicStackCountEnemy1;
+            return e_i_acidStackCountEnemy1;
         }
         else if(_enemyNum == 2) 
         {
-            return e_i_acidicStackCountEnemy2;
+            return e_i_acidStackCountEnemy2;
         }
         else if (_enemyNum == 3)
         {
-            return e_i_acidicStackCountEnemy3;
+            return e_i_acidStackCountEnemy3;
         }
         else if (_enemyNum == 4)
         {
-            return e_i_acidicStackCountEnemy4;
+            return e_i_acidStackCountEnemy4;
         }
         else if (_enemyNum == 5)
         {
-            return e_i_acidicStackCountEnemy5;
+            return e_i_acidStackCountEnemy5;
         }
         else 
         {
-            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyAcidicEffectStackCount()");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyAcidEffectStackCount()");
             return 0;
         }
     }
@@ -2139,7 +2139,7 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyState.e_i_frailtyStackCountEnemy1 || S_EnemyState.e_i_fralityStackCountEnemy2 || e_i_frailtyStackCountEnemy3 || e_i_frailtyStackCountEnemy4 || S_EnemyState.e_i_frailtyStackCountEnemy5
+    /// S_EnemyState.e_i_frailtyStackCountEnemy1 || S_EnemyState.e_i_frailtyStackCountEnemy2 || e_i_frailtyStackCountEnemy3 || e_i_frailtyStackCountEnemy4 || S_EnemyState.e_i_frailtyStackCountEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
     public int GetEnemyFrailtyEffectStackCount(int _enemyNum)
@@ -2213,34 +2213,34 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyState.e_i_stunnedStackCountEnemy1 || S_EnemyState.e_i_stunnedStackCountEnemy2 || S_EnemyState.e_i_stunnedStackCountEnemy3 || S_EnemyState.e_i_stunnedStackCountEnemy4 || S_EnemyState.e_i_stunnedStackCountEnemy5
+    /// S_EnemyState.e_i_stunStackCountEnemy1 || S_EnemyState.e_i_stunStackCountEnemy2 || S_EnemyState.e_i_stunStackCountEnemy3 || S_EnemyState.e_i_stunStackCountEnemy4 || S_EnemyState.e_i_stunStackCountEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public int GetEnemyStunnedEffectStackCount(int _enemyNum)
+    public int GetEnemyStunEffectStackCount(int _enemyNum)
     {
         if (_enemyNum == 1)
         {
-            return e_i_stunnedStackCountEnemy1;
+            return e_i_stunStackCountEnemy1;
         }
         else if (_enemyNum == 2)
         {
-            return e_i_stunnedStackCountEnemy2;
+            return e_i_stunStackCountEnemy2;
         }
         else if (_enemyNum == 3)
         {
-            return e_i_stunnedStackCountEnemy3;
+            return e_i_stunStackCountEnemy3;
         }
         else if (_enemyNum == 4)
         {
-            return e_i_stunnedStackCountEnemy4;
+            return e_i_stunStackCountEnemy4;
         }
         else if (_enemyNum == 5)
         {
-            return e_i_stunnedStackCountEnemy5;
+            return e_i_stunStackCountEnemy5;
         }
         else
         {
-            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyStunnedEffectStackCount()");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyStunEffectStackCount()");
             return 0;
         }
     }
@@ -2290,7 +2290,7 @@ public class S_EnemyState : MonoBehaviour
     /// S_EnemyState.e_b_inAcidicStateEnemy1 || S_EnemyState.e_b_inAcidicStateEnemy2 || S_EnemyState.e_b_inAcidicStateEnemy3 || S_EnemyState.e_b_inAcidicStateEnemy4 || S_EnemyState.e_b_inAcidicStateEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public bool GetEnemyAcidicEffectState(int _enemyNum)
+    public bool GetEnemyAcidEffectState(int _enemyNum)
     {
         if (_enemyNum == 1)
         {
@@ -2314,7 +2314,7 @@ public class S_EnemyState : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyAcidicEffectState()");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyAcidEffectState()");
             return false;
         }
     }
@@ -2324,34 +2324,34 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyState.e_b_inBleedingStateEnemy1 || S_EnemyState.e_b_inBleedingStateEnemy2 || S_EnemyState.e_b_inBleedingStateEnemy3 || S_EnemyState.e_b_inBleedingStateEnemy4 || S_EnemyState.e_b_inBleedingStateEnemy5
+    /// S_EnemyState.e_b_inBleedStateEnemy1 || S_EnemyState.e_b_inBleedStateEnemy2 || S_EnemyState.e_b_inBleedStateEnemy3 || S_EnemyState.e_b_inBleedStateEnemy4 || S_EnemyState.e_b_inBleedStateEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public bool GetEnemyBleedingEffectState(int _enemyNum)
+    public bool GetEnemyBleedEffectState(int _enemyNum)
     {
         if (_enemyNum == 1)
         {
-            return e_b_inBleedingStateEnemy1;
+            return e_b_inBleedStateEnemy1;
         }
         else if (_enemyNum == 2)
         {
-            return e_b_inBleedingStateEnemy2;
+            return e_b_inBleedStateEnemy2;
         }
         else if (_enemyNum == 3)
         {
-            return e_b_inBleedingStateEnemy3;
+            return e_b_inBleedStateEnemy3;
         }
         else if (_enemyNum == 4)
         {
-            return e_b_inBleedingStateEnemy4;
+            return e_b_inBleedStateEnemy4;
         }
         else if (_enemyNum == 5)
         {
-            return e_b_inBleedingStateEnemy5;
+            return e_b_inBleedStateEnemy5;
         }
         else
         {
-            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyBleedingEffectState()");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyBleedEffectState()");
             return false;
         }
     }
@@ -2398,7 +2398,7 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// 
+    /// S_EnemyState.e_b_inResistantStateEnemy1 || S_EnemyState.e_b_inResistantStateEnemy2 || S_EnemyState.e_b_inResistantStateEnemy3 || S_EnemyState.e_b_inResistantStateEnemy4 || S_EnemyState.e_b_inResistantStateEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
     public bool GetEnemyResistantEffectState(int _enemyNum)
@@ -2425,7 +2425,7 @@ public class S_EnemyState : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyAcidicEffectState()");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyResistantEffectState()");
             return false;
         }
     }
@@ -2435,30 +2435,30 @@ public class S_EnemyState : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyState.e_b_inStunnedStateEnemy1 || S_EnemyState.e_b_inStunnedStateEnemy2 || S_EnemyState.e_b_inStunnedStateEnemy3 || S_EnemyState.e_b_inStunnedStateEnemy4 || S_EnemyState.e_b_inStunnedStateEnemy5
+    /// S_EnemyState.e_b_inStunStateEnemy1 || S_EnemyState.e_b_inStunStateEnemy2 || S_EnemyState.e_b_inStunStateEnemy3 || S_EnemyState.e_b_inStunStateEnemy4 || S_EnemyState.e_b_inStunStateEnemy5
     /// </returns>
     /// <param name="_enemyNum"></param>
-    public bool GetEnemyStunnedEffectState(int _enemyNum)
+    public bool GetEnemyStunEffectState(int _enemyNum)
     {
         if (_enemyNum == 1)
         {
-            return e_b_inStunnedStateEnemy1;
+            return e_b_inStunStateEnemy1;
         }
         else if (_enemyNum == 2)
         {
-            return e_b_inStunnedStateEnemy2;
+            return e_b_inStunStateEnemy2;
         }
         else if (_enemyNum == 3)
         {
-            return e_b_inStunnedStateEnemy3;
+            return e_b_inStunStateEnemy3;
         }
         else if (_enemyNum == 4)
         {
-            return e_b_inStunnedStateEnemy4;
+            return e_b_inStunStateEnemy4;
         }
         else if (_enemyNum == 5)
         {
-            return e_b_inStunnedStateEnemy5;
+            return e_b_inStunStateEnemy5;
         }
         else
         {

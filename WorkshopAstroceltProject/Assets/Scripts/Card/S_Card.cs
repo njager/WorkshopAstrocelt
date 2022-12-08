@@ -380,15 +380,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyStunnedStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
                 }
             }
             
