@@ -180,7 +180,7 @@ public class S_PlayerState : MonoBehaviour
         }
         else
         {
-            Debug.Log("Effect already active!");
+            Debug.Log("Player Bleed Effect already active!");
             SetPlayerBleedEffectStackCount(GetPlayerBleedEffectStackCount() + _stackCount);
         }
     }
@@ -192,26 +192,90 @@ public class S_PlayerState : MonoBehaviour
     /// <param name="_stackCount"></param>
     public void PlayerFrailtyStatusEffect(int _stackCount)
     {
-        if (GetPlayerFrailtyEffectState() == false)
-        {
-            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(true);
-            SetPlayerFrailtyEffectStackCount(_stackCount);
-            SetPlayerFrailtyEffectState(true); 
-        }
-        else
+        if (GetPlayerResistantEffectStackCount() == 0)
         {
             int _combinedTotal = GetPlayerFrailtyEffectStackCount() + _stackCount;
             int _remainder = _stackCount - GetPlayerFrailtyEffectStackCount();
-            if (_combinedTotal <= 5) 
+            if (_combinedTotal <= 5)
             {
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(true);
+                SetPlayerFrailtyEffectState(true);
                 SetPlayerFrailtyEffectStackCount(_combinedTotal);
             }
-            else 
+            else
             {
-                SetPlayerFrailtyEffectStackRemainder(_remainder);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(true);
+                SetPlayerFrailtyEffectState(true);
+                SetPlayerFrailtyEffectStackRemainder(_remainder + GetPlayerFrailtyEffectStackRemainder());
                 SetPlayerFrailtyEffectStackCount(5);
             }
-            Debug.Log("Effect already active!");
+        }
+        else
+        {
+            int _totalResistant = GetPlayerResistantEffectStackCount() + GetPlayerResistantEffectStackRemainder() + _stackCount;
+            int _totalFrality = GetPlayerFrailtyEffectStackCount() + GetPlayerFrailtyEffectStackRemainder();
+
+            int _option1 = _totalResistant - _totalFrality; // Higher Resistant
+            int _option2 = _totalFrality - _totalResistant; // Higher Frality
+
+            if (_option1 > _option2)
+            {
+                // Set up Resistant
+                if (_option1 <= 5)
+                {
+                    SetPlayerResistantEffectStackCount(_option1);
+                }
+                else
+                {
+                    int _remainder = _option1 - 5;
+                    SetPlayerResistantEffectStackCount(5);
+                    SetPlayerResistantEffectStackRemainder(_remainder + GetPlayerResistantEffectStackRemainder());
+                }
+                SetPlayerResistantEffectState(true);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(true);
+
+                // Turn off Frailty 
+                SetPlayerFrailtyEffectStackCount(0);
+                SetPlayerFrailtyEffectStackRemainder(0);
+                SetPlayerFrailtyEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(false);
+            }
+            else if (_option1 == _option2)
+            {
+                // Turn off Resistant 
+                SetPlayerResistantEffectStackCount(0);
+                SetPlayerResistantEffectStackRemainder(0);
+                SetPlayerResistantEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(false);
+
+                // Turn off Frailty 
+                SetPlayerFrailtyEffectStackCount(0);
+                SetPlayerFrailtyEffectStackRemainder(0);
+                SetPlayerFrailtyEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(false);
+            }
+            else
+            {
+                // Set up Frality
+                if (_option2 <= 5)
+                {
+                    SetPlayerFrailtyEffectStackCount(_option2);
+                }
+                else
+                {
+                    int _remainder = _option2 - 5;
+                    SetPlayerFrailtyEffectStackCount(5);
+                    SetPlayerFrailtyEffectStackRemainder(_remainder + GetPlayerFrailtyEffectStackRemainder());
+                }
+                SetPlayerFrailtyEffectState(true);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(true);
+
+                // Turn off Resistant 
+                SetPlayerResistantEffectStackCount(0);
+                SetPlayerResistantEffectStackRemainder(0);
+                SetPlayerResistantEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(false);
+            }
         }
     }
 
@@ -222,35 +286,90 @@ public class S_PlayerState : MonoBehaviour
     /// <param name="_stackCount"></param>
     public void PlayerResistantEffect(int _stackCount)
     {
-        if (GetPlayerResistantEffectState() == false)
+        if (GetPlayerFrailtyEffectStackCount() == 0)
         {
-            g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(true);
-            SetPlayerResistantEffectStackCount(_stackCount);
-            SetPlayerResistantEffectState(true); 
+            int _combinedTotal = GetPlayerResistantEffectStackCount() + _stackCount;
+            int _remainder = _stackCount - GetPlayerResistantEffectStackCount();
+            if (_combinedTotal <= 5)
+            {
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(true);
+                SetPlayerResistantEffectState(true);
+                SetPlayerResistantEffectStackCount(_combinedTotal);
+            }
+            else
+            {
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(true);
+                SetPlayerResistantEffectState(true);
+                SetPlayerResistantEffectStackRemainder(_remainder + GetPlayerResistantEffectStackRemainder());
+                SetPlayerResistantEffectStackCount(5);
+            }
         }
         else
         {
-            if(GetPlayerFrailtyEffectStackCount() == 0) 
+            int _totalResistant = GetPlayerResistantEffectStackCount() + GetPlayerResistantEffectStackRemainder() + _stackCount;
+            int _totalFrality = GetPlayerFrailtyEffectStackCount() + GetPlayerFrailtyEffectStackRemainder();
+
+            int _option1 = _totalResistant - _totalFrality; // Higher Resistant
+            int _option2 = _totalFrality - _totalResistant; // Higher Frality
+
+            if (_option1 > _option2)
             {
-                int _combinedTotal = GetPlayerResistantEffectStackCount() + _stackCount;
-                int _remainder = _stackCount - GetPlayerResistantEffectStackCount();
-                if (_combinedTotal <= 5)
+                // Set up Resistant
+                if (_option1 <= 5)
                 {
-                    SetPlayerResistantEffectStackCount(_combinedTotal);
+                    SetPlayerResistantEffectStackCount(_option1);
                 }
                 else
                 {
-                    SetPlayerResistantEffectStackRemainder(_remainder);
+                    int _remainder = _option1 - 5;
                     SetPlayerResistantEffectStackCount(5);
+                    SetPlayerResistantEffectStackRemainder(_remainder + GetPlayerResistantEffectStackRemainder());
                 }
+                SetPlayerResistantEffectState(true);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(true);
+
+                // Turn off Frailty 
+                SetPlayerFrailtyEffectStackCount(0);
+                SetPlayerFrailtyEffectStackRemainder(0);
+                SetPlayerFrailtyEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(false);
             }
-            else 
+            else if (_option1 == _option2)
             {
-                int _totalResistant = GetPlayerResistantEffectStackCount() + GetPlayerResistantEffectStackRemainder() + _stackCount;
-                int _totalRes
+                // Turn off Resistant 
+                SetPlayerResistantEffectStackCount(0);
+                SetPlayerResistantEffectStackRemainder(0);
+                SetPlayerResistantEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(false);
+
+                // Turn off Frailty 
+                SetPlayerFrailtyEffectStackCount(0);
+                SetPlayerFrailtyEffectStackRemainder(0);
+                SetPlayerFrailtyEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(false);
             }
-            
-            Debug.Log("Effect already active!");
+            else
+            {
+                // Set up Frality
+                if (_option2 <= 5)
+                {
+                    SetPlayerFrailtyEffectStackCount(_option2);
+                }
+                else
+                {
+                    int _remainder = _option2 - 5;
+                    SetPlayerFrailtyEffectStackCount(5);
+                    SetPlayerFrailtyEffectStackRemainder(_remainder + GetPlayerFrailtyEffectStackRemainder());
+                }
+                SetPlayerFrailtyEffectState(true);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(true);
+
+                // Turn off Resistant 
+                SetPlayerResistantEffectStackCount(0);
+                SetPlayerResistantEffectStackRemainder(0);
+                SetPlayerResistantEffectState(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(false);
+            }
         }
     }
 

@@ -367,7 +367,7 @@ public class S_UIManager : MonoBehaviour
     /// <param name="_maxHealthValue"></param>
     public void SetPlayerHealthBar(int _healthValue, int _maxHealthValue) 
     {
-        p_playerHealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        p_UI_playerHealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
     }
 
     /// <summary>

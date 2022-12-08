@@ -232,11 +232,11 @@ public class S_CharacterGraphics : MonoBehaviour
         if (_state == true)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-            p_playerBleedEffect.SetActive(true);
+
         }
         else if (_state == false)
         {
-            p_playerBleedEffect.SetActive(false);
+
         }
     }
 
@@ -251,11 +251,11 @@ public class S_CharacterGraphics : MonoBehaviour
         if (_state == true)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-            p_playerBleedEffect.SetActive(true);
+
         }
         else if (_state == false)
         {
-            p_playerBleedEffect.SetActive(false);
+
         }
     }
 
@@ -269,7 +269,7 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         if (_state == true)
         {
-            if (g_global.g_playerState.p_i_turnsPassedForStun == 1)
+            if (true)
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
             }
@@ -291,15 +291,15 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         if (_state == true)
         {
-            if (g_global.g_playerState.p_i_turnsPassedForResistant == 1)
+            if (true)
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
             }
-            p_playerResistantEffect.SetActive(true);
+
         }
         else if (_state == false)
         {
-            p_playerResistantEffect.SetActive(false);
+
         }
     }
 

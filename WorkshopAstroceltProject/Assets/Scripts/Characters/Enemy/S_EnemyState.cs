@@ -431,7 +431,7 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="_stackValue"></param>
     /// /// <param name="_enemyNum"></param>
-    public void EnemyBleedingStatusEffect(int _stackValue, int _enemyNum)
+    public void EnemyBleedStatusEffect(int _stackValue, int _enemyNum)
     {
         // If the Enemy was Enemy 1
         if(_enemyNum == 1)
@@ -444,8 +444,8 @@ public class S_EnemyState : MonoBehaviour
             }
             else
             {
-                Debug.Log("Effect already active!");
-                
+                Debug.Log("Enemy 1 Bleed Effect already active!");
+                SetEnemyBleedEffectStackCount((GetEnemyBleedEffectStackCount(1) + _stackValue), 1);
             }
         }
 
@@ -460,7 +460,8 @@ public class S_EnemyState : MonoBehaviour
             }
             else
             {
-                Debug.Log("Effect already active!");
+                Debug.Log("Enemy 2 Bleed Effect already active!");
+                SetEnemyBleedEffectStackCount((GetEnemyBleedEffectStackCount(2) + _stackValue), 2);
             }
         }
 
@@ -475,7 +476,8 @@ public class S_EnemyState : MonoBehaviour
             }
             else
             {
-                Debug.Log("Effect already active!");
+                Debug.Log("Enemy 3 Bleed Effect already active!");
+                SetEnemyBleedEffectStackCount((GetEnemyBleedEffectStackCount(3) + _stackValue), 3);
             }
         }
 
@@ -490,7 +492,8 @@ public class S_EnemyState : MonoBehaviour
             }
             else
             {
-                Debug.Log("Effect already active!");
+                Debug.Log("Enemy 4 Bleed Effect already active!");
+                SetEnemyBleedEffectStackCount((GetEnemyBleedEffectStackCount(4) + _stackValue), 4);
             }
         }
 
@@ -505,7 +508,8 @@ public class S_EnemyState : MonoBehaviour
             }
             else
             {
-                Debug.Log("Effect already active!");
+                Debug.Log("Enemy 5 Bleed Effect already active!");
+                SetEnemyBleedEffectStackCount((GetEnemyBleedEffectStackCount(5) + _stackValue), 5);
             }
         }
     }
@@ -803,43 +807,6 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     private void Enemy1StatusChecks()
     {
-        // Check Acid state For Enemy 1 is over
-        if (GetEnemyAcidEffectStackCount(1) <= 0)
-        {
-            SetEnemyAcidEffectState(false, 1);
-            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 1);
-        }
-
-        // Check Bleed state For Enemy 1 is over
-        if (GetEnemyBleedEffectStackCount(1) <= 0)
-        {
-            SetEnemyBleedEffectState(false, 1);
-            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 1);
-        }
-
-        // Check Frailty state For Enemy 1 is over
-        if (GetEnemyFrailtyEffectStackCount(1) <= 0)
-        {
-            SetEnemyFrailtyEffectState(false, 1);
-            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 1);
-        }
-
-        // Check Resistant state For Enemy 1 is over
-        if (GetEnemyResistantEffectStackCount(1) <= 0)
-        {
-            SetEnemyResistantEffectState(false, 1);
-            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 1);
-        }
-
-        // Check Stun state For Enemy 1 is over
-        if (GetEnemyStunEffectStackCount(1) <= 0)
-        {
-            SetEnemyStunEffectState(false, 1);
-            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 1);
-        }
-
-        // Then if not over, then update, stun and acid are different cases
-
         // Update Bleed state For Enemy 1
         if (GetEnemyBleedEffectState(1) == true)
         {
@@ -871,6 +838,53 @@ public class S_EnemyState : MonoBehaviour
             e_i_stunStackCountEnemy1 -= 1;
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 1);
         }
+
+        // Check Acid state For Enemy 1 is over
+        if (GetEnemyAcidEffectStackCount(1) <= 0)
+        {
+            SetEnemyAcidEffectState(false, 1);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 1);
+        }
+
+        // Check Bleed state For Enemy 1 is over
+        if (GetEnemyBleedEffectStackCount(1) <= 0)
+        {
+            SetEnemyBleedEffectState(false, 1);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 1);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 1);
+        }
+
+        // Check Frailty state For Enemy 1 is over
+        if (GetEnemyFrailtyEffectStackCount(1) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 1);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 1);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 1);
+        }
+
+        // Check Resistant state For Enemy 1 is over
+        if (GetEnemyResistantEffectStackCount(1) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 1);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 1);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 1);
+        }
+
+        // Check Stun state For Enemy 1 is over
+        if (GetEnemyStunEffectStackCount(1) <= 0)
+        {
+            SetEnemyStunEffectState(false, 1);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 1);
+        }
     }
 
     /// <summary>
@@ -880,43 +894,6 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     private void Enemy2StatusChecks()
     {
-        // Check Acid state For Enemy 2 is over
-        if (GetEnemyAcidEffectStackCount(2) <= 0)
-        {
-            SetEnemyAcidEffectState(false, 2);
-            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 2);
-        }
-
-        // Check Bleed state For Enemy 2 is over
-        if (GetEnemyBleedEffectStackCount(2) <= 0)
-        {
-            SetEnemyBleedEffectState(false, 2);
-            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 2);
-        }
-
-        // Check Frailty state For Enemy 2 is over
-        if (GetEnemyFrailtyEffectStackCount(2) <= 0)
-        {
-            SetEnemyFrailtyEffectState(false, 2);
-            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 2);
-        }
-
-        // Check Resistant state For Enemy 2 is over
-        if (GetEnemyResistantEffectStackCount(2) <= 0)
-        {
-            SetEnemyResistantEffectState(false, 2);
-            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 2);
-        }
-
-        // Check Stun state For Enemy 2 is over
-        if (GetEnemyStunEffectStackCount(2) <= 0)
-        {
-            SetEnemyStunEffectState(false, 2);
-            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 2);
-        }
-
-        // Then if not over, then update, stun and acid are different cases
-
         // Update Bleed state For Enemy 2
         if (GetEnemyBleedEffectState(2) == true)
         {
@@ -948,6 +925,53 @@ public class S_EnemyState : MonoBehaviour
             e_i_stunStackCountEnemy2 -= 1;
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 2);
         }
+
+        // Check Acid state For Enemy 2 is over
+        if (GetEnemyAcidEffectStackCount(2) <= 0)
+        {
+            SetEnemyAcidEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 2);
+        }
+
+        // Check Bleed state For Enemy 2 is over
+        if (GetEnemyBleedEffectStackCount(2) <= 0)
+        {
+            SetEnemyBleedEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 2);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 2);
+        }
+
+        // Check Frailty state For Enemy 2 is over
+        if (GetEnemyFrailtyEffectStackCount(2) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 2);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 2);
+        }
+
+        // Check Resistant state For Enemy 2 is over
+        if (GetEnemyResistantEffectStackCount(2) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 2);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 2);
+        }
+
+        // Check Stun state For Enemy 2 is over
+        if (GetEnemyStunEffectStackCount(2) <= 0)
+        {
+            SetEnemyStunEffectState(false, 2);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 2);
+        }
     }
 
     /// <summary>
@@ -957,43 +981,6 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     private void Enemy3StatusChecks()
     {
-        // Check Acid state For Enemy 3 is over
-        if (GetEnemyAcidEffectStackCount(3) <= 0)
-        {
-            SetEnemyAcidEffectState(false, 3);
-            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 3);
-        }
-
-        // Check Bleed state For Enemy 3 is over
-        if (GetEnemyBleedEffectStackCount(3) <= 0)
-        {
-            SetEnemyBleedEffectState(false, 3);
-            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 3);
-        }
-
-        // Check Frailty state For Enemy 3 is over
-        if (GetEnemyFrailtyEffectStackCount(3) <= 0)
-        {
-            SetEnemyFrailtyEffectState(false, 3);
-            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 3);
-        }
-
-        // Check Resistant state For Enemy 3 is over
-        if (GetEnemyResistantEffectStackCount(3) <= 0)
-        {
-            SetEnemyResistantEffectState(false, 3);
-            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 3);
-        }
-
-        // Check Stun state For Enemy 3 is over
-        if (GetEnemyStunEffectStackCount(3) <= 0)
-        {
-            SetEnemyStunEffectState(false, 3);
-            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 3);
-        }
-
-        // Then if not over, then update, stun and acid are different cases
-
         // Update Bleed state For Enemy 3
         if (GetEnemyBleedEffectState(3) == true)
         {
@@ -1025,6 +1012,53 @@ public class S_EnemyState : MonoBehaviour
             e_i_stunStackCountEnemy3 -= 1;
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 3);
         }
+
+        // Check Acid state For Enemy 3 is over
+        if (GetEnemyAcidEffectStackCount(3) <= 0)
+        {
+            SetEnemyAcidEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 3);
+        }
+
+        // Check Bleed state For Enemy 3 is over
+        if (GetEnemyBleedEffectStackCount(3) <= 0)
+        {
+            SetEnemyBleedEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 3);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 3);
+        }
+
+        // Check Frailty state For Enemy 3 is over
+        if (GetEnemyFrailtyEffectStackCount(3) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 3);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 3);
+        }
+
+        // Check Resistant state For Enemy 3 is over
+        if (GetEnemyResistantEffectStackCount(3) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 3);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 3);
+        }
+
+        // Check Stun state For Enemy 3 is over
+        if (GetEnemyStunEffectStackCount(3) <= 0)
+        {
+            SetEnemyStunEffectState(false, 3);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 3);
+        }
     }
 
     /// <summary>
@@ -1034,43 +1068,6 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     private void Enemy4StatusChecks()
     {
-        // Check Acid state For Enemy 4 is over
-        if (GetEnemyAcidEffectStackCount(4) <= 0)
-        {
-            SetEnemyAcidEffectState(false, 4);
-            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 4);
-        }
-
-        // Check Bleed state For Enemy 4 is over
-        if (GetEnemyBleedEffectStackCount(4) <= 0)
-        {
-            SetEnemyBleedEffectState(false, 4);
-            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 4);
-        }
-
-        // Check Frailty state For Enemy 4 is over
-        if (GetEnemyFrailtyEffectStackCount(4) <= 0)
-        {
-            SetEnemyFrailtyEffectState(false, 4);
-            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 4);
-        }
-
-        // Check Resistant state For Enemy 4 is over
-        if (GetEnemyResistantEffectStackCount(4) <= 0)
-        {
-            SetEnemyResistantEffectState(false, 4);
-            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 4);
-        }
-
-        // Check Stun state For Enemy 1 is over
-        if (GetEnemyStunEffectStackCount(4) <= 0)
-        {
-            SetEnemyStunEffectState(false, 4);
-            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 4);
-        }
-
-        // Then if not over, then update, stun and acid are different cases
-
         // Update Bleed state For Enemy 4
         if (GetEnemyBleedEffectState(4) == true)
         {
@@ -1102,6 +1099,53 @@ public class S_EnemyState : MonoBehaviour
             e_i_stunStackCountEnemy4 -= 1;
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 4);
         }
+
+        // Check Acid state For Enemy 4 is over
+        if (GetEnemyAcidEffectStackCount(4) <= 0)
+        {
+            SetEnemyAcidEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 4);
+        }
+
+        // Check Bleed state For Enemy 4 is over
+        if (GetEnemyBleedEffectStackCount(4) <= 0)
+        {
+            SetEnemyBleedEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 4);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 4);
+        }
+
+        // Check Frailty state For Enemy 4 is over
+        if (GetEnemyFrailtyEffectStackCount(4) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 4);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 4);
+        }
+
+        // Check Resistant state For Enemy 4 is over
+        if (GetEnemyResistantEffectStackCount(4) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 4);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 4);
+        }
+
+        // Check Stun state For Enemy 1 is over
+        if (GetEnemyStunEffectStackCount(4) <= 0)
+        {
+            SetEnemyStunEffectState(false, 4);
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 4);
+        }
     }
 
     /// <summary>
@@ -1111,43 +1155,6 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     private void Enemy5StatusChecks()
     {
-        // Check Acid state For Enemy 5 is over
-        if (GetEnemyAcidEffectStackCount(5) <= 0)
-        {
-            SetEnemyAcidEffectState(false, 5);
-            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 5);
-        }
-
-        // Check Bleed state For Enemy 5 is over
-        if (GetEnemyBleedEffectStackCount(5) <= 0)
-        {
-            SetEnemyBleedEffectState(false, 5);
-            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 5);
-        }
-
-        // Check Frailty state For Enemy 5 is over
-        if (GetEnemyFrailtyEffectStackCount(5) <= 0)
-        {
-            SetEnemyFrailtyEffectState(false, 5);
-            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 5);
-        }
-
-        // Check Resistant state For Enemy 5 is over
-        if (GetEnemyResistantEffectStackCount(5) <= 0)
-        {
-            SetEnemyResistantEffectState(false, 5);
-            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 5);
-        }
-
-        // Check Stun state For Enemy 5 is over
-        if (GetEnemyStunEffectStackCount(5) <= 0)
-        {
-            SetEnemyStunEffectState(false, 5);
-            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 5);
-        }
-
-        // Then if not over, then update, stun and acid are different cases
-
         // Update Bleed state For Enemy 5
         if (GetEnemyBleedEffectState(5) == true)
         {
@@ -1177,6 +1184,53 @@ public class S_EnemyState : MonoBehaviour
         if (GetEnemyStunEffectState(5) == true)
         {
             e_i_stunStackCountEnemy5 -= 1;
+            g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 5);
+        }
+
+        // Check Acid state For Enemy 5 is over
+        if (GetEnemyAcidEffectStackCount(5) <= 0)
+        {
+            SetEnemyAcidEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleAcidEnemyUI(false, 5);
+        }
+
+        // Check Bleed state For Enemy 5 is over
+        if (GetEnemyBleedEffectStackCount(5) <= 0)
+        {
+            SetEnemyBleedEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(false, 5);
+        }
+        else 
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleBleedEnemyUI(true, 5);
+        }
+
+        // Check Frailty state For Enemy 5 is over
+        if (GetEnemyFrailtyEffectStackCount(5) <= 0)
+        {
+            SetEnemyFrailtyEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, 5);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 5);
+        }
+
+        // Check Resistant state For Enemy 5 is over
+        if (GetEnemyResistantEffectStackCount(5) <= 0)
+        {
+            SetEnemyResistantEffectState(false, 5);
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, 5);
+        }
+        else
+        {
+            g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 5);
+        }
+
+        // Check Stun state For Enemy 5 is over
+        if (GetEnemyStunEffectStackCount(5) <= 0)
+        {
+            SetEnemyStunEffectState(false, 5);
             g_global.g_UIManager.sc_characterGraphics.ToggleStunEnemyUI(false, 5);
         }
     }
