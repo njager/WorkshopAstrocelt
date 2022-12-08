@@ -293,7 +293,81 @@ public class S_CharacterGraphics : MonoBehaviour
     /// /// <param name="_enemyCount"></param>
     public void ToggleAcidEnemyUI(bool _state, int _enemyCount) 
     {
+        if (_enemyCount == 1) 
+        {
+            if(g_global.g_enemyState.GetEnemyActiveState(1) == true) 
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
 
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -307,76 +381,76 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         if (_enemyCount == 1)
         {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
             {
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    //e_enemy1BleedEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy1BleedEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 2)
         {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
             {
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    //e_enemy2BleedEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy2BleedEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 3)
         {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
             {
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    //e_enemy3BleedEffect.SetActive(true);
+ 
                 }
                 else if (_state == false)
                 {
-                    //e_enemy3BleedEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 4)
         {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
             {
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    //e_enemy4BleedEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy4BleedEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 5)
         {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
             {
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-                    //e_enemy5BleedEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy5BleedEffect.SetActive(false);
+
                 }
             }
         }
@@ -391,7 +465,80 @@ public class S_CharacterGraphics : MonoBehaviour
     /// /// <param name="_enemyCount"></param>
     public void ToggleFralityEnemyUI(bool _state, int _enemyCount)
     {
+        if (_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+                }
+                else if (_state == false)
+                {
 
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+                   
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -401,95 +548,76 @@ public class S_CharacterGraphics : MonoBehaviour
     /// </summary>
     /// <param name="_state"></param>
     /// <param name="_enemyCount"></param>
-    public void ToggleStunEnemyUI(bool _state, int _enemyCount)
+    public void ToggleStunEnemyUI (bool _state, int _enemyCount)
     {
         if (_enemyCount == 1)
         {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy1ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    //e_enemy1StunEffect.SetActive(true);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+                    //e_enemy1StunEffect.SetActive(true);                                 
                 }
                 else if (_state == false)
                 {
-                    //e_enemy1StunEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 2)
         {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy2ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    //e_enemy2StunEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy2StunEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 3)
         {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy3ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    //e_enemy3StunEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy3StunEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 4)
         {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy4ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    //e_enemy4StunEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy4StunEffect.SetActive(false);
+
                 }
             }
         }
         else if (_enemyCount == 5)
         {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy5ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    }
-                    //e_enemy5StunEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy5StunEffect.SetActive(false);
+
                 }
             }
         }
@@ -511,15 +639,11 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy1ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    //e_enemy1ResistantEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy1ResistantEffect.SetActive(false);
+
                 }
             }
         }
@@ -529,15 +653,11 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy2ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    //e_enemy2ResistantEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy2ResistantEffect.SetActive(false);
+
                 }
             }
         }
@@ -547,15 +667,11 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy3ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    //e_enemy3ResistantEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy3ResistantEffect.SetActive(false);
+
                 }
             }
         }
@@ -565,15 +681,11 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy4ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    //e_enemy4ResistantEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy4ResistantEffect.SetActive(false);
+
                 }
             }
         }
@@ -583,15 +695,11 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    if (g_global.g_enemyState.e_i_enemy5ResistantTurnsPassed == 1)
-                    {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-                    }
-                    //e_enemy5ResistantEffect.SetActive(true);
+
                 }
                 else if (_state == false)
                 {
-                    //e_enemy5ResistantEffect.SetActive(false);
+
                 }
             }
         }

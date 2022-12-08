@@ -412,7 +412,7 @@ public class S_Enemy : MonoBehaviour
     /// <returns></returns>
     public IEnumerator EnemyTurnAction(int _enemyNum)
     {
-        if (!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
+        if (!g_global.g_enemyState.GetEnemySkipTurnState(_enemyNum))
         {
             // Declare Turn for UI
             g_global.g_enemyState.DeclareCurrentTurn(_enemyNum);
