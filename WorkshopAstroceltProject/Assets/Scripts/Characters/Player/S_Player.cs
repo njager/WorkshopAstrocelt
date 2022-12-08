@@ -101,7 +101,7 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.p_pe_blood.Play();
 
                 //trigger a coroutine to change sprite and go back
-                StartCoroutine(ChangeDamageSprite());
+                //StartCoroutine(ChangeDamageSprite());
 
                 //Debug.Log("Player Attacked!");
             }
@@ -124,7 +124,7 @@ public class S_Player : MonoBehaviour
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
-                    StartCoroutine(ChangeDamageSprite());
+                    //StartCoroutine(ChangeDamageSprite());
                 }
                 else
                 {
@@ -149,7 +149,7 @@ public class S_Player : MonoBehaviour
                 Flash(Color.white);
 
                 //trigger a coroutine to change sprite and go back
-                StartCoroutine(ChangeDamageSprite());
+                //StartCoroutine(ChangeDamageSprite());
             }
             else
             {
@@ -170,7 +170,7 @@ public class S_Player : MonoBehaviour
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
-                    StartCoroutine(ChangeDamageSprite());
+                    //StartCoroutine(ChangeDamageSprite());
                 }
                 else
                 {
@@ -184,7 +184,9 @@ public class S_Player : MonoBehaviour
         // Update Player UI
         PlayerValuesLimitCheck();
     }
-
+    /// <summary>
+    /// Trigger function for when the player is attacked, sprite will flash white when takes damage
+    /// Sprite flashes blue when takes damage with sheild
     public void Flash(Color color)
     {
         // If the flashRoutine is not null, then it is currently running.
@@ -247,7 +249,7 @@ public class S_Player : MonoBehaviour
         PlayerValuesLimitCheck();
 
         //trigger a coroutine to change back to og sprite
-        StartCoroutine(ChangeBlockSprite());
+        //StartCoroutine(ChangeBlockSprite());
     }
 
     /// <summary>
@@ -365,62 +367,4 @@ public class S_Player : MonoBehaviour
     ///////////////////////////// Animation Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    public void TriggerAttackSprite()
-    {
-        StartCoroutine(ChangeAttackSprite());
-    }
-
-    /// <summary>
-    /// Change player sprite to attack sprite
-    ///  - "Riley"
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ChangeAttackSprite()
-    {
-        playerSprite.sprite = attackSprite;
-
-        Debug.Log("Player will animate");
-
-        p_sc_playerAttributes.p_a_AttackAnimator.Play("attack");
-
-        Debug.Log("Player will wait for 2 seconds");
-
-        yield return new WaitForSeconds(2);
-
-        Debug.Log("Player will change to idle");
-
-        playerSprite.sprite = idleSprite;
-
-        yield return null;
-    }
-
-    /// <summary>
-    /// Change player sprite to block sprite
-    ///  - "Riley"
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ChangeBlockSprite()
-    {
-        playerSprite.sprite = blockSprite;
-
-        yield return new WaitForSeconds(2);
-
-        playerSprite.sprite = idleSprite;
-    }
-
-    /// <summary>
-    /// Change player sprite to damaged sprite
-    ///  - "Riley"
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ChangeDamageSprite()
-    {
-        playerSprite.sprite = damagedSprite;
-
-        p_sc_playerAttributes.p_a_AttackAnimator.Play("Damaged");
-
-        yield return new WaitForSeconds(2);
-
-        playerSprite.sprite = idleSprite;
-    }
 }
