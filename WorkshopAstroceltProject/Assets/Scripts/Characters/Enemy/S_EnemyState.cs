@@ -704,6 +704,7 @@ public class S_EnemyState : MonoBehaviour
             else
             {
                 Debug.Log("Effect already active!");
+                // Play particle effect
             }
         }
 
