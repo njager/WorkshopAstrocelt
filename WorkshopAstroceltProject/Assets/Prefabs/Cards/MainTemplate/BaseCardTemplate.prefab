@@ -205,70 +205,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bc18ff36d4d43dd81c111fd6da2da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_cardTemplate: {fileID: 0}
-  c_a_cardBackgroundArtAsset: {fileID: 3118737832167657015}
-  c_i_cardDataBaseIndex: 0
-  c_str_cardName: 
-  c_str_headerText: 
-  c_str_bodyText: 
-  c_str_flavorText: 
-  c_i_damageValue: 0
-  c_i_shieldValue: 0
-  c_i_energyCost: 0
-  c_i_effectValue1: 0
-  c_i_effectValue2: 0
-  c_i_effectValue3: 0
-  c_f_bleedDamagePercentage: 0
-  c_str_statusEffectID1: 
-  c_str_statusEffectID2: 
-  c_str_statusEffectID3: 
-  c_i_turnCount1: 0
-  c_i_turnCount2: 0
-  c_i_turnCount3: 0
-  c_f_cardRarity: 0
-  c_b_redColorType: 0
-  c_b_blueColorType: 0
-  c_b_yellowColorType: 0
-  c_b_whiteColorType: 0
-  c_str_color: 
-  c_b_affectsNone: 0
-  c_b_affectsPlayer: 0
-  c_b_affectsOne: 0
-  c_b_affectsAllEnemies: 0
-  c_b_affectsAllCharacters: 0
-  c_b_playerEffect: 0
-  c_b_enemyEffect: 0
-  c_b_attackMainEffect: 0
-  c_b_shieldMainEffect: 0
-  c_b_uniqueMainEffect: 0
-  c_b_noEffect: 0
-  c_b_bleedStatusEffect: 0
-  c_b_stunStatusEffect: 0
-  c_b_acidStatusEffect: 0
-  c_b_resistStatusEffect: 0
-  c_b_burnStatusEffect: 0
-  c_b_drawStatusEffect: 0
-  c_b_siphonStatusEffect: 0
-  c_b_fralitizeStatusEffect: 0
-  c_b_manipulateStatusEffect: 0
-  c_b_thornsStatusEffect: 0
-  c_f_damagePercentage: 0
-  c_f_turnCount: 0
-  c_tx_header: {fileID: 8519685718915682676}
-  c_tx_body: {fileID: 7994180667109303153}
-  c_tx_flavor: {fileID: 6248408915480781643}
-  c_tx_energyCost: {fileID: 0}
-  e_cd_grabbedEnemy: {fileID: 0}
-  c_a_redBackground: {fileID: 21300000, guid: ed40e80fef110e9498058f414b3b4fce, type: 3}
-  c_a_blueBackground: {fileID: 21300000, guid: 3db929a2fd89eb04eae9b376f3c4ce24, type: 3}
-  c_a_yellowBackground: {fileID: 21300000, guid: 61fc7cd5c41397942add88ac9be405f4, type: 3}
-  c_a_whiteBackground: {fileID: 21300000, guid: c4fc4ce2e5c0f1145bda31bcf7d6cddd, type: 3}
-  c_b_shieldSoundEffect: 0
-  c_b_attackSoundEffect: 0
-  cd_b_resetPositionFlag: 0
-  c_v3_CardPosition: {x: 0, y: 0, z: 0}
-  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
-  c_b_cardIsDragged: 0
+  crd_cardTemplate: {fileID: 0}
+  crd_a_cardBackgroundArtAsset: {fileID: 3118737832167657015}
+  crd_i_cardDataBaseIndex: 0
+  crd_str_cardName: 
+  crd_str_headerText: 
+  crd_str_bodyText: 
+  crd_str_flavorText: 
+  crd_i_damageValue: 0
+  crd_i_shieldValue: 0
+  crd_i_energyCost: 0
+  crd_i_effectValue1: 0
+  crd_i_effectValue2: 0
+  crd_i_effectValue3: 0
+  crd_f_resistantValue: 0
+  crd_f_fralitizeValue: 0
+  crd_str_statusEffectID1: 
+  crd_str_statusEffectID2: 
+  crd_str_statusEffectID3: 
+  crd_b_commonTier: 0
+  crd_b_uncommonTier: 0
+  crd_b_rareTier: 0
+  crd_b_veryRareTier: 0
+  crd_b_legendaryTier: 0
+  crd_b_redColorType: 0
+  crd_b_blueColorType: 0
+  crd_b_yellowColorType: 0
+  crd_b_whiteColorType: 0
+  crd_str_color: 
+  crd_b_affectsNone: 0
+  crd_b_affectsPlayer: 0
+  crd_b_affectsOne: 0
+  crd_b_affectsAllEnemies: 0
+  crd_b_affectsAllCharacters: 0
+  crd_b_playerEffect: 0
+  crd_b_enemyEffect: 0
+  crd_b_attackMainEffect: 0
+  crd_b_shieldMainEffect: 0
+  crd_b_uniqueMainEffect: 0
+  crd_b_noEffect: 0
+  crd_b_acidicStatusEffect: 0
+  crd_b_bleedStatusEffect: 0
+  crd_b_fralityStatusEffect: 0
+  crd_b_stunnedStatusEffect: 0
+  crd_b_resistantStatusEffect: 0
+  crd_f_damagePercentage: 0
+  crd_f_turnCount: 0
+  crd_tx_header: {fileID: 8519685718915682676}
+  crd_tx_body: {fileID: 7994180667109303153}
+  crd_tx_flavor: {fileID: 6248408915480781643}
+  crd_tx_energyCost: {fileID: 0}
+  crd_e_grabbedEnemy: {fileID: 0}
+  crd_a_redBackground: {fileID: 0}
+  crd_a_blueBackground: {fileID: 0}
+  crd_a_yellowBackground: {fileID: 0}
+  crd_a_whiteBackground: {fileID: 0}
+  crd_b_shieldSoundEffect: 0
+  crd_b_attackSoundEffect: 0
+  crd_b_resetPositionFlag: 0
+  crd_v3_cardPosition: {x: 0, y: 0, z: 0}
+  crd_v3_initialCardPosition: {x: 0, y: 0, z: 0}
+  crd_b_cardIsDragged: 0
 --- !u!114 &8596015523136984958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,9 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c48b94fbe71e145a85e5ba2f55ab7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_v3_initialPosition: {x: 0, y: 0, z: 0}
-  c_cardTransform: {fileID: 0}
-  cd_cardData: {fileID: 0}
+  crd_v3_initialPosition: {x: 0, y: 0, z: 0}
+  crd_cardTransform: {fileID: 0}
+  crd_cardData: {fileID: 0}
 --- !u!50 &1732291931699124592
 Rigidbody2D:
   serializedVersion: 4
