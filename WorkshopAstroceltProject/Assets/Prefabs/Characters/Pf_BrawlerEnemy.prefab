@@ -83,27 +83,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_e_moveQueue1:
   - s_action: shield
-    i_actionValue: 25
+    i_actionValue: 20
   - s_action: ability
     i_actionValue: 0
   - s_action: attack
     i_actionValue: 15
+  - s_action: ability
+    i_actionValue: 0
   ls_e_moveQueue2:
-  - s_action: attack
+  - s_action: shield
     i_actionValue: 25
-  - s_action: shield
-    i_actionValue: 20
-  - s_action: ability
-    i_actionValue: 0
-  ls_e_moveQueue3:
-  - s_action: shield
-    i_actionValue: 20
   - s_action: attack
-    i_actionValue: 15
+    i_actionValue: 10
   - s_action: ability
     i_actionValue: 0
-  e_i_health: 150
-  e_i_healthMax: 150
+  - s_action: attack
+    i_actionValue: 10
+  ls_e_moveQueue3:
+  - s_action: ability
+    i_actionValue: 0
+  - s_action: shield
+    i_actionValue: 10
+  - s_action: attack
+    i_actionValue: 12
+  - s_action: shield
+    i_actionValue: 10
+  e_i_health: 210
+  e_i_healthMax: 210
   e_str_enemyName: Bodach
   e_f_challengeRating: 0.3
   e_str_enemyType: Brawler
@@ -111,14 +117,10 @@ MonoBehaviour:
   e_b_Magician: 0
   e_b_Beast: 0
   e_b_Brawler: 1
-  e_b_poisoned: 0
-  e_b_stunned: 0
+  e_b_acidic: 0
   e_b_bleeding: 0
-  e_b_empowered: 0
-  e_b_lucky: 0
   e_b_resistant: 0
-  e_b_burned: 0
-  e_b_shocked: 0
+  e_b_stunned: 0
   e_enemy: {fileID: 0}
   e_pe_enemyAttacked: {fileID: 2879112014776961866}
   e_pe_enemyShielded: {fileID: 4126231022674326522}
