@@ -47,9 +47,6 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
 
         if (g_global.g_enemyState.CurrentEnemyTurnNumber() == 2) // Enemy 2 Turn Effects
         {
-            // Highlight Circle Toggle
-            g_global.g_enemyState.enemy2.EnemyHighlightToggle();
-
             // Scale importance
             g_global.g_enemyState.enemy2.SetToActiveTurnScale();
         }
@@ -64,9 +61,6 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
 
         if (g_global.g_enemyState.CurrentEnemyTurnNumber() == 3) // Enemy 3 Turn Effects
         {
-            // Highlight Circle Toggle
-            g_global.g_enemyState.enemy3.EnemyHighlightToggle();
-
             // Scale importance
             g_global.g_enemyState.enemy3.SetToActiveTurnScale();
         }
@@ -81,9 +75,6 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
 
         if (g_global.g_enemyState.CurrentEnemyTurnNumber() == 4) // Enemy 4 Turn Effects
         {
-            // Highlight Circle Toggle
-            g_global.g_enemyState.enemy4.EnemyHighlightToggle();
-
             // Scale importance
             g_global.g_enemyState.enemy4.SetToActiveTurnScale();
         }
@@ -98,9 +89,6 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
 
         if (g_global.g_enemyState.CurrentEnemyTurnNumber() == 5) // Enemy 5 Turn Effects 
         {
-            // Highlight Circle Toggle
-            g_global.g_enemyState.enemy5.EnemyHighlightToggle();
-
             // Scale importance
             g_global.g_enemyState.enemy5.SetToActiveTurnScale();
         }
@@ -123,7 +111,6 @@ public class S_TurnEffectManager : MonoBehaviour // Enemy Turn Highlighting Scri
         foreach(S_Enemy _enemy in g_global.e_ls_enemyList.ToList()) 
         {
             _enemy.SetToPlayerTurnScale();
-            _enemy.EnemyHighlightToggle();
         }
     }
 }

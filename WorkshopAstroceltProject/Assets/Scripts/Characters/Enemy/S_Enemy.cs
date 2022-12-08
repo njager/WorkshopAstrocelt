@@ -14,12 +14,9 @@ public class S_Enemy : MonoBehaviour
 
     public S_EnemyAttributes e_sc_enemyAttributes;
 
-    [Header("Real name identifier")]
-    public string e_str_enemyName;
-
     [Header("Enemy Type")]
     [Tooltip("This is a string, do not add quotes on it. - Josh")]
-    public string e_str_enemyType; //Also in attributes, delete from here later, improper placing
+    public string e_str_enemyType; // Also in attributes, delete from here later, improper placing
 
     [Header("Enemy Count")]
     public int e_i_enemyCount;
@@ -37,7 +34,7 @@ public class S_Enemy : MonoBehaviour
     [Header("Intent Duration Value")]
     public float f_intentDuration;
 
-    //getting cardball object
+    // Getting cardball object
     public GameObject cardball;
 
     [Header("Sprite Assets")]
@@ -48,13 +45,16 @@ public class S_Enemy : MonoBehaviour
     public Sprite defeatedSprite;
     public Sprite victorySprite;
 
+    [Header("Nameplate Text Object")]
+    [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
+
     void Awake()
     {
         g_global = S_Global.Instance;
 
         SetCount(); 
         
-        //Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
+        // Debug.Log("Testing for enemy count: " + e_i_enemyCount.ToString());
 
         g_global.e_ls_enemyList.Add(this);
 
@@ -68,19 +68,19 @@ public class S_Enemy : MonoBehaviour
 
     private void Start()
     {
-        //If enemy 1, move spots
+        // If enemy 1, move spots
         if (e_i_enemyCount == 1)
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition1.transform, false);
         }
 
-        //If enemy 2, move spots
+        // If enemy 2, move spots
         if (e_i_enemyCount == 2)
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition2.transform, false);
         }
 
-        //If enemy 3, move spots
+        // If enemy 3, move spots
         if (e_i_enemyCount == 3)
         {
             gameObject.transform.SetParent(g_global.g_e_enemyPosition3.transform, false);
@@ -88,6 +88,9 @@ public class S_Enemy : MonoBehaviour
 
         // Need to add in enemy 4 and 5 placement and the scene knowing if it should have 3 enemies or 5 enemies from S_GameManager or even get something set initially as a bool in S_Global we toggle
         // - Josh
+
+        // Set the enemy nameplate
+        e_tx_enemyNameplate.text = e_sc_enemyAttributes.GetEnemyName();
     }
 
     /// <summary>
@@ -113,15 +116,21 @@ public class S_Enemy : MonoBehaviour
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
             int _newDamageValue = (int)_damageValue / 2;
-            if(e_sc_enemyAttributes.e_b_resistant == true) //If the enemy is resisitant
+            if(e_sc_enemyAttributes.GetEnemyResistantBool() == true) // If the enemy is resisitant
             {
-                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //The enemy has no sheilds
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // The enemy has no sheilds
                 {
                     e_sc_enemyAttributes.e_i_health -= _newDamageValue;
+
+                    // Trigger Damage Sprite
                     StartCoroutine(ChangeDamageSprite());
+
+                    // Attacked Particle Effect
+                    e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
                     Debug.Log("Enemy Attacked!");
                 }
-                else //enemy has shields
+                else // Enemy has shields
                 {
                     int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue;
                     if (_tempVal < 0) 
@@ -131,28 +140,43 @@ public class S_Enemy : MonoBehaviour
                         {
                             e_sc_enemyAttributes.SetEnemyShield(0);
                         }
+
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+
+                        // Trigger Damage Sprite
                         StartCoroutine(ChangeDamageSprite());
+
+                        // Attacked Particle Effect
+                        e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+
+                        // Sufficient Shields Particle Effect
+                        e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
-            else //if the enemy is not resistant
+            else // If the enemy is not resistant
             {
-                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // Enemy has no shields
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
-                    //trigger the sprite change and particle effects
 
+                    // Trigger the sprite change
                     StartCoroutine(ChangeDamageSprite());
+
+                    // Attacked Particle Effect
+                    e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
                     Debug.Log("Enemy Attacked!");
                 }
-                else //enemy has shields
+                else // Enemy has shields
                 {
                     int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue;
                     if (_tempVal < 0)
@@ -162,30 +186,44 @@ public class S_Enemy : MonoBehaviour
                         {
                             e_sc_enemyAttributes.SetEnemyShield(0);
                         }
+
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
+                        // Trigger Sprite Change
                         StartCoroutine(ChangeDamageSprite());
+
+                        // Attacked Particle Effect 
+                        e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+
+                        // Sufficient Shields Particle Effect
+                        e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
         }
-        else //The enemy is not a predetermined type
+        else // The enemy is not a predetermined type
         {
-            if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) //enemy has no shields
+            if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // Enemy has no shields
             {
                 e_sc_enemyAttributes.e_i_health -= _damageValue;
 
-                //trigger the sprite change and particle effects
+                // Trigger the sprite change
                 StartCoroutine(ChangeDamageSprite());
+
+                // Attacked Particle Effect
+                e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
                 Debug.Log("Enemy Attacked!");
             }
-            else //enemy has shields
+            else // Enemy has shields
             {
                 int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue;
                 if (_tempVal < 0)
@@ -197,13 +235,21 @@ public class S_Enemy : MonoBehaviour
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
-                    //trigger the sprite change and particle effects
+                    // Trigger the Sprite Change
                     StartCoroutine(ChangeDamageSprite());
+
+                    // Attacked Particle Effect
+                    e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
                     Debug.Log("Enemy didn't have enough shields!");
                 }
                 else
                 {
                     e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+
+                    // Sufficient Shields Particle Effect
+                    e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+
                     Debug.Log("Enemy had shields!");
                 }
             }
@@ -230,15 +276,24 @@ public class S_Enemy : MonoBehaviour
         if (_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
+
+            // Play Shield Particle 
+            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
         }
         else if(_enemyType == "Brawler") // Shield Magic
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
+
+            // Play Shield Particle 
+            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
         }
         else if(_enemyType == "Brawler")
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
+
+            // Play Shield Particle 
+            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
         }
 
         // Update the UI
@@ -346,23 +401,6 @@ public class S_Enemy : MonoBehaviour
     {
         e_sp_spriteIcon.GetComponent<SpriteRenderer>().DOFade(255, 0);
         e_tx_intentTextObject.GetComponent<TextMeshProUGUI>().DOFade(255, 0);
-    }
-
-    /// <summary>
-    /// Toggle the highlight element for the enemy
-    /// - Josh
-    /// </summary>
-    /// <param name="_enemy"></param>
-    public void EnemyHighlightToggle()
-    {
-        /*if(e_sc_enemyAttributes.e_highlightCircle.activeInHierarchy == false) 
-        {
-            e_sc_enemyAttributes.e_highlightCircle.SetActive(true);
-        }
-        else 
-        {
-            e_sc_enemyAttributes.e_highlightCircle.SetActive(false);
-        }*/
     }
 
     /// <summary>
@@ -612,7 +650,6 @@ public class S_Enemy : MonoBehaviour
     public IEnumerator ChangeDamageSprite()
     {
         Debug.Log("Damaged Here");
-        e_sc_enemyAttributes.e_pe_blood.Play();
 
         sr_enemySprite.sprite = damagedSprite;
 

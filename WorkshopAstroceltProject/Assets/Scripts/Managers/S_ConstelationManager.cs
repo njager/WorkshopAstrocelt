@@ -76,7 +76,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     /// <param name="_star"></param>
     /// <returns></returns>
-    public IEnumerator LineWait(S_StarClass _star)
+    public IEnumerator LineWait(S_StarClass _star, S_ConstellationLine _line)
     {
         //Debug.Log("does this work");
 
@@ -84,8 +84,12 @@ public class S_ConstelationManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         if (!_star.s_star.m_previousLine) { Debug.Log("line is gone so no star added"); yield return null; }
+        else if (_line.b_isColliding) { Debug.Log("line is gone so no star added"); yield return null; }
         else 
         {
+            //turn the popups on now that we know it is a valid line
+            _line.TriggerPopup();
+
             if (_star.starType == "Energy")
             {
                 _star.gameObject.GetComponent<S_EnergyStar>().ConfirmClickable(_star);

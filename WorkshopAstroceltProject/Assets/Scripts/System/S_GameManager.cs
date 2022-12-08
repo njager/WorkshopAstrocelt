@@ -35,6 +35,12 @@ public class S_GameManager : MonoBehaviour
         }
         Debug.Log("We initialized");
 
+        //if the player restarts the game give them max health
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            i_playerHealth = i_healthMax;
+        }
+
         Instance = this;
         GameObject.DontDestroyOnLoad(this.gameObject);
     }

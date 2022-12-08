@@ -50,7 +50,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8d2ee55b3ac117047a4ddc9e4abaec15, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,8 +102,8 @@ LineRenderer:
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 16384
-      ctime1: 49151
+      ctime0: 0
+      ctime1: 65535
       ctime2: 49151
       ctime3: 65535
       ctime4: 65535
@@ -118,13 +118,13 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -179,16 +179,20 @@ MonoBehaviour:
   s_nextStar: {fileID: 0}
   m_childLineRendererObject: {fileID: 2478283170881642634}
   m_lineRendererInst: {fileID: 2478283170881642632}
-  f_boxOffsetX: 0.05
-  f_boxOffsetY: 0.9
   constellationLinePrefab: {fileID: 2478283171175456657}
   i_index: 0
+  m_dottedLine: {fileID: 2100000, guid: 8d2ee55b3ac117047a4ddc9e4abaec15, type: 2}
+  m_solidLine: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  cl_errorLineColor: {r: 1, g: 0.10606913, b: 0, a: 1}
+  cl_correctLineColor: {r: 1, g: 1, b: 1, a: 1}
+  f_boxOffsetX: 0.05
+  f_boxOffsetY: 0.9
+  f_lineWidthMin: 0.1
+  f_lineWidthMax: 0.15
   f_lineWidth: 0
   f_lineLength: 0
   s_nullStarInst: {fileID: 9071395285117141641, guid: 1854591a6d64533478290a431eac38c1, type: 3}
   b_starAdded: 0
-  f_lineWidthMin: 0.1
-  f_lineWidthMax: 0.15
 --- !u!50 &2478283171175456660
 Rigidbody2D:
   serializedVersion: 4

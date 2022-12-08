@@ -69,9 +69,14 @@ public class S_TurnManager : MonoBehaviour
 
                 g_global.g_altar.SetCardballsSpawnedBool(false);
 
+                //lock out the player from drawing
                 g_global.g_ConstellationManager.SetStarLockOutBool(false);
 
                 g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+
+                //clear the energy
+                g_global.g_energyManager.ClearEnergy();
+
                 StartCoroutine(EnemyPhase()); //Then change the enemies state
             }
             else
@@ -206,10 +211,11 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void PlayerStateChange()
     {
+        //g_global.g_player.playerSprite.transform.DOShakePosition(1f, new Vector3(0, 5, 5), 10, 0f, true, false);
         //Debug.Log("Triggerd");
         //clear the card balls and deal a new hand
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs(true));
-
+        
         //Turn to night
         g_global.g_backgroundManager.ChangeBackground(0);
 
@@ -227,6 +233,8 @@ public class S_TurnManager : MonoBehaviour
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
+
+        
     }
 
     // Getters \\
