@@ -445,6 +445,18 @@ public class S_UIManager : MonoBehaviour
         return p_playerCardSelector;
     }
 
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.p_playerHealthBar
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_playerHealthBar
+    /// </returns>
+    public GameObject GetPlayerHealthBarObject()
+    {
+        return p_playerHealthBar;
+    }
+
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Enemy Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -712,6 +724,43 @@ public class S_UIManager : MonoBehaviour
         else
         {
             Debug.Log("RETURNED NULL GAMEOBJECT - GetEnemyShieldOverlay()");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Returns the gameobject of the enemy health bar for a given enemy number
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.e_enemy1HealthBar || S_UIManager.e_enemy2HealthBar || S_UIManager.e_enemy3HealthBar || S_UIManager.e_enemy4HealthBar || S_UIManager.e_enemy5HealthBar 
+    /// </returns>
+    /// <param name="_enemyNum"></param>
+    public GameObject GetEnemyHealthBarObject(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            return e_enemy1HealthBar;
+        }
+        else if (_enemyNum == 2)
+        {
+            return e_enemy2HealthBar;
+        }
+        else if (_enemyNum == 3)
+        {
+            return e_enemy3HealthBar;
+        }
+        else if (_enemyNum == 4)
+        {
+            return e_enemy4HealthBar;
+        }
+        else if (_enemyNum == 5)
+        {
+            return e_enemy5HealthBar;
+        }
+        else
+        {
+            Debug.Log("DEBUG: FUNCTION FAILEd - S_UIManager - GetEnemyHealthBarObject()");
             return null;
         }
     }
@@ -1092,17 +1141,5 @@ public class S_UIManager : MonoBehaviour
     {
         rsg_ScaleTo = new Vector3(1, 1, 1);
         return rsg_ScaleTo;
-    }
-
-    /// <summary>
-    /// Returns the gameobject of S_UIManager.p_playerHealthBar
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_UIManager.p_playerHealthBar
-    /// </returns>
-    public GameObject GetPlayerHealthBarObject()
-    {
-        return p_playerHealthBar;
-    }
+    }    
 }
