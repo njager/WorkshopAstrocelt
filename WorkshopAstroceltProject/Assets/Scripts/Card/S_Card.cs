@@ -279,7 +279,6 @@ public class S_Card : MonoBehaviour
     {
         if (crd_b_noEffect == true)
         {
-            //Debug.Log("DEBUG: No status effects for the given card!");
             return;
         }
         else
@@ -288,13 +287,21 @@ public class S_Card : MonoBehaviour
             {
                 if (_cardData.IDForStatusEffectOne == 1) // Check for bleed
                 {
+                    crd_str_statusEffectID1 = "acid";
+                }
+                else if (_cardData.IDForStatusEffectOne == 2) // Check for bleed
+                {
                     crd_str_statusEffectID1 = "bleed";
                 }
-                else if (_cardData.IDForStatusEffectOne == 4) // Check for resist
+                else if (_cardData.IDForStatusEffectOne == 3) // Check for resist
+                {
+                    crd_str_statusEffectID1 = "frail";
+                }
+                else if (_cardData.IDForStatusEffectOne == 4) // Check for bleed
                 {
                     crd_str_statusEffectID1 = "resist";
                 }
-                else if (_cardData.IDForStatusEffectOne == 6) // Check for stun
+                else if (_cardData.IDForStatusEffectOne == 5) // Check for stun
                 {
                     crd_str_statusEffectID1 = "stun";
                 }
@@ -304,13 +311,21 @@ public class S_Card : MonoBehaviour
             {
                 if (_cardData.IDForStatusEffectTwo == 1) // Check for bleed
                 {
+                    crd_str_statusEffectID2 = "acid";
+                }
+                else if (_cardData.IDForStatusEffectTwo == 2) // Check for bleed
+                {
                     crd_str_statusEffectID2 = "bleed";
                 }
-                else if (_cardData.IDForStatusEffectTwo == 4) // Check for resist
+                else if (_cardData.IDForStatusEffectTwo == 3) // Check for resist
+                {
+                    crd_str_statusEffectID2 = "frail";
+                }
+                else if (_cardData.IDForStatusEffectTwo == 4) // Check for bleed
                 {
                     crd_str_statusEffectID2 = "resist";
                 }
-                else if (_cardData.IDForStatusEffectTwo == 6) // Check for stun
+                else if (_cardData.IDForStatusEffectTwo == 5) // Check for stun
                 {
                     crd_str_statusEffectID2 = "stun";
                 }
@@ -320,13 +335,21 @@ public class S_Card : MonoBehaviour
             {
                 if (_cardData.IDForStatusEffectThree == 1) // Check for bleed
                 {
+                    crd_str_statusEffectID3 = "acid";
+                }
+                else if (_cardData.IDForStatusEffectThree == 2) // Check for bleed
+                {
                     crd_str_statusEffectID3 = "bleed";
                 }
-                else if (_cardData.IDForStatusEffectThree == 4) // Check for resist
+                else if (_cardData.IDForStatusEffectThree == 3) // Check for resist
+                {
+                    crd_str_statusEffectID3 = "frail";
+                }
+                else if (_cardData.IDForStatusEffectThree == 4) // Check for bleed
                 {
                     crd_str_statusEffectID3 = "resist";
                 }
-                else if (_cardData.IDForStatusEffectThree == 6) // Check for stun
+                else if (_cardData.IDForStatusEffectThree == 5) // Check for stun
                 {
                     crd_str_statusEffectID3 = "stun";
                 }
@@ -336,6 +359,7 @@ public class S_Card : MonoBehaviour
 
     /// <summary>
     /// Play the given Status Effects, check for player and enemy respectively
+    /// - Josh
     /// </summary>
     private void TriggerStatusEffects(GameObject _character)
     {
@@ -491,7 +515,6 @@ public class S_Card : MonoBehaviour
                 }
             }
         }
-
     }
 
     /// <summary>
