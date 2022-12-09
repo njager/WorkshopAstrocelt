@@ -687,13 +687,13 @@ public class S_EnemyState : MonoBehaviour
                     SetEnemyResistantEffectStackRemainder((_remainder + GetEnemyResistantEffectStackRemainder(_enemyNum)), _enemyNum);
                 }
                 SetEnemyResistantEffectState(true, _enemyNum);
-                g_global.g_UIManager.sc_characterGraphics.ToggleResistantPlayerUI(true);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, _enemyNum);
 
                 // Turn off Frailty 
                 SetEnemyFrailtyEffectStackCount(0, _enemyNum);
                 SetEnemyFrailtyEffectStackRemainder(0, _enemyNum);
                 SetEnemyFrailtyEffectState(false, _enemyNum);
-                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyPlayerUI(false);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, _enemyNum);
             }
             else if (_option1 == _option2)
             {
