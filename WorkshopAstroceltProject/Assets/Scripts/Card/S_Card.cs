@@ -526,7 +526,7 @@ public class S_Card : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
-
+        g_global.g_player.animator.SetTrigger("Attack");
         DeleteCard();
     }
 
