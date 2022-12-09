@@ -122,9 +122,9 @@ MonoBehaviour:
   e_b_stunned: 0
   e_enemy: {fileID: 0}
   e_pe_enemyAttacked: {fileID: 1010174215697406002}
-  e_pe_enemyShielded: {fileID: 3459796551942760023}
-  e_pe_enemySufficientShield: {fileID: 3459796551942760023}
-  e_pe_enemyCardFailed: {fileID: 0}
+  e_pe_enemyShieldApplied: {fileID: 3459796551942760023}
+  e_pe_enemyShieldAttacked: {fileID: 8539660122381842992}
+  e_pe_enemyShieldBreak: {fileID: 1349382085488885315}
   e_a_AttackAnimator: {fileID: 1358277532405405128}
   e_a_DamagedAnimator: {fileID: 1358277532405405128}
 --- !u!70 &684450524107534984
@@ -1097,6 +1097,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5847687764674643661, guid: c8251b222848d08479aba472774c2535, type: 3}
   m_PrefabInstance: {fileID: 2856934355060128771}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &8539660122381842992 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5847687764674643507, guid: c8251b222848d08479aba472774c2535, type: 3}
+  m_PrefabInstance: {fileID: 2856934355060128771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5115556907796189484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1232,6 +1237,11 @@ PrefabInstance:
 --- !u!4 &1349382085488885437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6398961887470631283, guid: fca60606c46656847adaa232286d81a0, type: 3}
+  m_PrefabInstance: {fileID: 5365012242035378126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1349382085488885315 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6398961887470631309, guid: fca60606c46656847adaa232286d81a0, type: 3}
   m_PrefabInstance: {fileID: 5365012242035378126}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9002787182887690738
