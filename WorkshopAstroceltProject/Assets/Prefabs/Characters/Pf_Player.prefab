@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 4749422031476742391}
   - component: {fileID: 4516814499410397528}
   - component: {fileID: 3012146145674270234}
+  - component: {fileID: 4761793320161749045}
   m_Layer: 0
   m_Name: Pf_Player
   m_TagString: Player
@@ -198,6 +199,9 @@ MonoBehaviour:
   attackSprite: {fileID: 21300000, guid: 02e3e8907b0e86c46af0ba6c85ae7fae, type: 3}
   blockSprite: {fileID: 21300000, guid: 0b9b3dbb50250274bba263599050146b, type: 3}
   damagedSprite: {fileID: 21300000, guid: 5e99d24c795a09c478ca5636d8301e3d, type: 3}
+  isComplete: 0
+  flashMaterial: {fileID: 0}
+  duration: 0
 --- !u!114 &6364323939937959218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,13 +222,6 @@ MonoBehaviour:
   p_b_playerHasRelicSlotted: 0
   p_b_playerHasUpgrades: 0
   p_b_playerHasConstellationEffects: 0
-  p_b_stunned: 0
-  p_b_bleeding: 0
-  p_b_empowered: 0
-  p_b_lucky: 0
-  p_b_resistant: 0
-  p_b_burned: 0
-  p_b_shocked: 0
   p_pe_blood: {fileID: 8887399772052366165}
   p_pe_shield: {fileID: 2856763022673507568}
   p_a_AttackAnimator: {fileID: 6219738315216529723}
@@ -281,6 +278,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 5, y: 10}
   m_Direction: 0
+--- !u!95 &4761793320161749045
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364323939937959180}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2472934304548590152
 PrefabInstance:
   m_ObjectHideFlags: 0

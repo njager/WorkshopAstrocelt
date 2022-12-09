@@ -45,8 +45,8 @@ public class S_Player : MonoBehaviour
     {
         // Get the SpriteRenderer to be used,
         // alternatively you could set it from the inspector.
-        playerSprite = GetComponent<SpriteRenderer>();
-
+        //playerSprite = GetComponent<SpriteRenderer>();
+        
         // Get the material that the SpriteRenderer uses, 
         // so we can switch back to it after the flash ended.
         originalMaterial = playerSprite.material;
