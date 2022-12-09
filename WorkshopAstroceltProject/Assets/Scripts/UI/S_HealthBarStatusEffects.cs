@@ -567,6 +567,29 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
+            else if (chg_i_slotsOccupied == 4)
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_stunnedStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
+
+                // Move Child
+                chg_UI_stunnedStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_stunnedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition4Child = chg_UI_stunnedStatusEffect;
+
+                // Set identifier
+                chg_str_position4Identifier = "stun";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
+            }
         }
     }
 
@@ -594,6 +617,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
+
+            // Clear List Index
+            ResetIndexFromIndex(0);
 
             // Clear Child
             chg_statusEffectPosition1Child = null;
@@ -624,6 +650,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Clear Child
             chg_statusEffectPosition2Child = null;
 
+            // Clear List Index
+            ResetIndexFromIndex(1);
+
             // Remove effect from the list
             RemoveEffectFromList(chg_str_position2Identifier);
 
@@ -646,6 +675,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
+
+            // Clear List Index
+            ResetIndexFromIndex(2);
 
             // Clear Child
             chg_statusEffectPosition3Child = null;
@@ -673,6 +705,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
 
+            // Clear List Index
+            ResetIndexFromIndex(3);
+
             // Clear Child
             chg_statusEffectPosition4Child = null;
 
@@ -698,6 +733,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Set New parent
             _child.transform.SetParent(chg_statusEffectSpawn.transform);
+
+            // Clear List Index
+            ResetIndexFromIndex(4);
 
             // Clear Child
             chg_statusEffectPosition5Child = null;
@@ -1082,6 +1120,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Helper 
+    /// </summary>
+    /// <param name="_index"></param>
     private void ResetIndexFromIndex(int _index)
     {
         if(_index == 1)
