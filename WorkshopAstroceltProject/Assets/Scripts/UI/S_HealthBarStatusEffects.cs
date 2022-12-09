@@ -66,11 +66,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] List<(string, int, int)> chg_ls_activeEffectsList = new List<(string _effectType, int _effectStackCount, int _healthBarOwner)>();
 
     [Header("Status Effect List Indices")] // Default to -1 when not in list
-    [SerializeField] int chg_i_acidicEffectListIndex;
+    [SerializeField] int chg_i_acidEffectListIndex;
     [SerializeField] int chg_i_bleedEffectListIndex;
-    [SerializeField] int chg_i_frailitizeEffectListIndex;
+    [SerializeField] int chg_i_frailtyEffectListIndex;
     [SerializeField] int chg_i_resistantEffectListIndex;
-    [SerializeField] int chg_i_stunnedEffectListIndex;
+    [SerializeField] int chg_i_stunEffectListIndex;
 
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
@@ -116,7 +116,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "acid";
 
                 // Add effect to the list, tupled with duration
-                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -139,7 +139,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -162,7 +162,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -185,7 +185,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "acid";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("bleed"))
@@ -211,7 +211,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -234,7 +234,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -257,7 +257,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -280,7 +280,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "bleed";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("frail"))
@@ -306,7 +306,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "frail";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -329,7 +329,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "frail";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -352,7 +352,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "frail";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -375,7 +375,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "frail";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("resist"))
@@ -401,7 +401,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -424,7 +424,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -447,7 +447,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -470,7 +470,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "resist";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("stun"))
@@ -496,7 +496,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position1Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 1)
             {
@@ -519,7 +519,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position2Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 2)
             {
@@ -542,7 +542,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position3Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
             else if (chg_i_slotsOccupied == 3)
             {
@@ -565,7 +565,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_str_position4Identifier = "stun";
 
                 // Add effect to the list
-                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
         }
     }
@@ -575,8 +575,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// using int for clarity
     /// - Josh
     /// </summary>
-    public void EndStatusEffect(int _positionNum)
+    public void EndStatusEffect(string _effect)
     {
+        int _positionNum = GetIndexFromEffect(_effect);
         if (_positionNum == 1)
         {
             // Adjust slot count
@@ -681,6 +682,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position4Identifier = "none";
         }
+        else
+        {
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EndStatusEffect() - Given Effect either already is ended or doesn't exist!");
+        }
     }
 
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -763,11 +768,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
 
         }
-        else if (_statusEffect.Equals("resistant"))
+        else if (_statusEffect.Equals("resist"))
         {
 
         }
-        else if (_statusEffect.Equals("stunned"))
+        else if (_statusEffect.Equals("stun"))
         {
 
         }
@@ -780,7 +785,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// </summary>
     /// <param name="_effectType"></param>
     /// <returns></returns>
-    private int GetEffectDuration(string _effectType) 
+    private int GetEffectStackCount(string _effectType) 
     {
         if (_effectType.Equals("acid")) 
         {
@@ -810,7 +815,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
-                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Acidic");
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Acidic");
                 return -1;
             }
         }
@@ -842,7 +847,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
-                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Bleed");
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Bleed");
                 return -1;
             }
         }
@@ -874,7 +879,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
-                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Fraility");
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Frailty");
                 return -1;
             }
         }
@@ -906,7 +911,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
-                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Resist");
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Resist");
                 return -1;
             }
         }
@@ -934,13 +939,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
-                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Stun");
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Stun");
                 return -1;
             }
         }
         else // Return methods require all paths to return a value, even the failed behavior potential paths
         {
-            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Top Layer");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Top Layer");
             return -1;
         }
     }
@@ -981,7 +986,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
         else // Return methods require all paths to return a value, even the failed behavior potential paths
         {
-            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveHealthBarOwner()");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveHealthBarOwner()");
             return 0; 
         }
     }
@@ -1013,7 +1018,41 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
         else 
         {
-            Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
+        }
+    }
+
+    /// <summary>
+    /// Helper function to give the index from a specified effect
+    ///  - Josh
+    /// </summary>
+    /// <param name="_statusEffect"></param>
+    private int GetIndexFromEffect(string _effect)
+    {
+        if (_effect.Equals("acid"))
+        {
+            return chg_i_acidEffectListIndex;
+        }
+        else if (_effect.Equals("bleed"))
+        {
+            return chg_i_bleedEffectListIndex;
+        }
+        else if (_effect.Equals("frail"))
+        {
+            return chg_i_frailtyEffectListIndex;
+        }
+        else if (_effect.Equals("resist"))
+        {
+            return chg_i_resistantEffectListIndex;
+        }
+        else if (_effect.Equals("stun"))
+        {
+            return chg_i_stunEffectListIndex;
+        }
+        else
+        {
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
+            return -1;
         }
     }
 }

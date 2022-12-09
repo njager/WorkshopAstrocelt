@@ -59,7 +59,7 @@ public class S_CharacterGraphics : MonoBehaviour
     public void PlayerShieldingUIToggle()
     {
         //Toggle Shields for player
-        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() <= 0) //If no shields don't turn on shield UI
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() <= 0) // If no shields don't turn on shield UI
         {
             sc_UIManager.GetPlayerShieldText().gameObject.SetActive(false);
             sc_UIManager.GetPlayerShieldIcon().SetActive(false);
@@ -222,7 +222,7 @@ public class S_CharacterGraphics : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggle the Acid UI element
+    /// Toggle the Player Acid UI element
     /// True for _state is on, false is off
     /// - Josh
     /// </summary>
@@ -231,17 +231,19 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         if (_state == true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-poison"); // Change Sound Effect
+
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("acid");
 
         }
         else if (_state == false)
         {
-
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("acid");
         }
     }
 
     /// <summary>
-    /// Toggle the Bleed UI element
+    /// Toggle the Player Bleed UI element
     /// True for _state is on, false is off
     /// - Josh
     /// </summary>
@@ -251,16 +253,17 @@ public class S_CharacterGraphics : MonoBehaviour
         if (_state == true)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("bleed");
 
         }
         else if (_state == false)
         {
-
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("bleed");
         }
     }
 
     /// <summary>
-    /// Toggle the Frail UI element
+    /// Toggle the Player Frail UI element
     /// True for _state is on, false is off
     /// - Josh
     /// </summary>
@@ -269,20 +272,17 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         if (_state == true)
         {
-            if (true)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-            }
-
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("frail");
         }
         else if (_state == false)
         {
-
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("frail");
         }
     }
 
     /// <summary>
-    /// Toggle the Resistant UI element
+    /// Toggle the Player Resistant UI element
     /// True for _state is on, false is off
     /// - Josh
     /// </summary>
@@ -290,16 +290,13 @@ public class S_CharacterGraphics : MonoBehaviour
     public void ToggleResistantPlayerUI(bool _state)
     {
         if (_state == true)
-        {
-            if (true)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
-            }
-
+        { 
+           FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+           sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("resist");
         }
         else if (_state == false)
         {
-
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
         }
     }
 
@@ -318,12 +315,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-poison");
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("acid");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("acid");
                 }
             }
         }
@@ -333,12 +330,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-poison");
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("acid");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("acid");
                 }
             }
         }
@@ -348,12 +345,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-poison");
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("acid");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("acid");
                 }
             }
         }
@@ -363,12 +360,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-poison");
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("acid");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("acid");
                 }
             }
         }
@@ -378,12 +375,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-poison");
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("acid");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("acid");
                 }
             }
         }
@@ -405,11 +402,11 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("bleed");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("bleed");
                 }
             }
         }
@@ -420,11 +417,11 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("bleed");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("bleed");
                 }
             }
         }
@@ -435,11 +432,11 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
- 
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("bleed");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("bleed");
                 }
             }
         }
@@ -450,11 +447,11 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("bleed");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("bleed");
                 }
             }
         }
@@ -465,11 +462,11 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("bleed");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("bleed");
                 }
             }
         }
@@ -490,11 +487,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("frail");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("frail");
                 }
             }
         }
@@ -504,12 +502,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("frail");
                 }
                 else if (_state == false)
                 {
-                   
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("frail");
                 }
             }
         }
@@ -519,12 +517,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("frail");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("frail");
                 }
             }
         }
@@ -534,12 +532,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("frail");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("frail");
                 }
             }
         }
@@ -549,12 +547,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("frail");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("frail");
                 }
             }
         }
@@ -571,71 +569,76 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         if (_enemyCount == 1)
         {
-            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("resist");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
                 }
             }
         }
         else if (_enemyCount == 2)
         {
-            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("resist");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
                 }
             }
         }
         else if (_enemyCount == 3)
         {
-            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("resist");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
                 }
             }
         }
         else if (_enemyCount == 4)
         {
-            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("resist");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
                 }
             }
         }
         else if (_enemyCount == 5)
         {
-            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("resist");
                 }
             }
         }
@@ -657,11 +660,11 @@ public class S_CharacterGraphics : MonoBehaviour
                 if (_state == true)
                 {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
-                    //e_enemy1StunEffect.SetActive(true);                                 
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("stun");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(1).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("stun");
                 }
             }
         }
@@ -671,11 +674,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("stun");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(2).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("stun");
                 }
             }
         }
@@ -685,11 +689,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("stun");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(3).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("stun");
                 }
             }
         }
@@ -699,11 +704,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("stun");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(4).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("stun");
                 }
             }
         }
@@ -713,11 +719,12 @@ public class S_CharacterGraphics : MonoBehaviour
             {
                 if (_state == true)
                 {
-
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("stun");
                 }
                 else if (_state == false)
                 {
-
+                    sc_UIManager.GetEnemyHealthBarObject(5).GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("stun");
                 }
             }
         }

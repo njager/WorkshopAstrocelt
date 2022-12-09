@@ -347,7 +347,7 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="_stackValue"></param>
     /// /// <param name="_enemyNum"></param>
-    public void EnemyAcidicStatusEffect(int _stackValue, int _enemyNum)
+    public void EnemyAcidStatusEffect(int _stackValue, int _enemyNum)
     {
         // If the Enemy was Enemy 1
         if (_enemyNum == 1)
@@ -358,9 +358,15 @@ public class S_EnemyState : MonoBehaviour
                 SetEnemyAcidicEffectStackCount(_stackValue, 1);
                 SetEnemyAcidEffectState(true, 1);
             }
+
+            if (GetEnemyDataSheet(1).GetEnemyShieldValue() >= 1)
+            {
+                int _doubleStack = _stackValue * 2;
+                GetEnemyScript(1).EnemyAttacked(GetEnemyScript(1).e_str_enemyType, _doubleStack);
+            }
             else
             {
-                Debug.Log("Effect already active!");
+                GetEnemyScript(1).EnemyAttacked(GetEnemyScript(1).e_str_enemyType, _stackValue);
             }
         }
 
@@ -373,9 +379,15 @@ public class S_EnemyState : MonoBehaviour
                 SetEnemyAcidicEffectStackCount(_stackValue, 2);
                 SetEnemyAcidEffectState(true, 2);
             }
+
+            if (GetEnemyDataSheet(2).GetEnemyShieldValue() >= 1)
+            {
+                int _doubleStack = _stackValue * 2;
+                GetEnemyScript(2).EnemyAttacked(GetEnemyScript(2).e_str_enemyType, _doubleStack);
+            }
             else
             {
-                Debug.Log("Effect already active!");
+                GetEnemyScript(2).EnemyAttacked(GetEnemyScript(2).e_str_enemyType, _stackValue);
             }
         }
 
@@ -388,9 +400,15 @@ public class S_EnemyState : MonoBehaviour
                 SetEnemyAcidicEffectStackCount(_stackValue, 3);
                 SetEnemyAcidEffectState(true, 3);
             }
+
+            if (GetEnemyDataSheet(3).GetEnemyShieldValue() >= 1)
+            {
+                int _doubleStack = _stackValue * 2;
+                GetEnemyScript(3).EnemyAttacked(GetEnemyScript(3).e_str_enemyType, _doubleStack);
+            }
             else
             {
-                Debug.Log("Effect already active!");
+                GetEnemyScript(3).EnemyAttacked(GetEnemyScript(3).e_str_enemyType, _stackValue);
             }
         }
 
@@ -403,9 +421,15 @@ public class S_EnemyState : MonoBehaviour
                 SetEnemyAcidicEffectStackCount(_stackValue, 4);
                 SetEnemyAcidEffectState(true, 4);
             }
+
+            if (GetEnemyDataSheet(4).GetEnemyShieldValue() >= 1)
+            {
+                int _doubleStack = _stackValue * 2;
+                GetEnemyScript(4).EnemyAttacked(GetEnemyScript(4).e_str_enemyType, _doubleStack);
+            }
             else
             {
-                Debug.Log("Effect already active!");
+                GetEnemyScript(4).EnemyAttacked(GetEnemyScript(4).e_str_enemyType, _stackValue);
             }
         }
 
@@ -418,9 +442,15 @@ public class S_EnemyState : MonoBehaviour
                 SetEnemyAcidicEffectStackCount(_stackValue, 5);
                 SetEnemyAcidEffectState(true, 5);
             }
+
+            if (GetEnemyDataSheet(5).GetEnemyShieldValue() >= 1)
+            {
+                int _doubleStack = _stackValue * 2;
+                GetEnemyScript(5).EnemyAttacked(GetEnemyScript(5).e_str_enemyType ,_doubleStack);
+            }
             else
             {
-                Debug.Log("Effect already active!");
+                GetEnemyScript(5).EnemyAttacked(GetEnemyScript(5).e_str_enemyType, _stackValue);
             }
         }
     }
@@ -522,79 +552,89 @@ public class S_EnemyState : MonoBehaviour
     /// /// <param name="_enemyNum"></param>
     public void EnemyFrailtyStatusEffect(int _stackValue, int _enemyNum)
     {
-        // If the Enemy was Enemy 1
-        if (_enemyNum == 1)
+        if (GetEnemyResistantEffectStackCount(_enemyNum) == 0)
         {
-            if (GetEnemyFrailtyEffectState(1) == false)
+            int _combinedTotal = GetEnemyFrailtyEffectStackCount(_enemyNum) + _stackValue;
+            int _remainder = _stackValue - GetEnemyFrailtyEffectStackCount(_enemyNum);
+            if (_combinedTotal <= 5)
             {
-                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 1);
-                SetEnemyFrailtyEffectStackCount(_stackValue, 1);
-                SetEnemyFrailtyEffectState(true, 1);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, _enemyNum);
+                SetEnemyFrailtyEffectState(true, _enemyNum);
+                SetEnemyFrailtyEffectStackCount(_combinedTotal, _enemyNum);
             }
             else
             {
-                Debug.Log("Effect already active!");
-
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, _enemyNum);
+                SetEnemyFrailtyEffectState(true, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder((_remainder + GetEnemyFrailtyEffectStackRemainder(_enemyNum)), _enemyNum);
+                SetEnemyFrailtyEffectStackCount(5, _enemyNum);
             }
         }
-
-        // If the Enemy was Enemy 2
-        if (_enemyNum == 2)
+        else
         {
-            if (GetEnemyFrailtyEffectState(2) == false)
+            int _totalResistant = GetEnemyResistantEffectStackCount(_enemyNum) + GetEnemyResistantEffectStackRemainder(_enemyNum) + _stackValue;
+            int _totalFrality = GetEnemyFrailtyEffectStackCount(_stackValue) + GetEnemyFrailtyEffectStackRemainder(_stackValue);
+
+            int _option1 = _totalResistant - _totalFrality; // Higher Resistant
+            int _option2 = _totalFrality - _totalResistant; // Higher Frality
+
+            if (_option1 > _option2)
             {
-                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 2);
-                SetEnemyFrailtyEffectStackCount(_stackValue, 2);
-                SetEnemyFrailtyEffectState(true, 2);
+                // Set up Resistant
+                if (_option1 <= 5)
+                {
+                    SetEnemyResistantEffectStackCount(_option1, _stackValue);
+                }
+                else
+                {
+                    int _remainder = _option1 - 5;
+                    SetEnemyResistantEffectStackCount(5, _enemyNum);
+                    SetEnemyResistantEffectStackRemainder((_remainder + GetEnemyResistantEffectStackRemainder(_enemyNum)), _enemyNum);
+                }
+                SetEnemyResistantEffectState(true, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, _enemyNum);
+
+                // Turn off Frailty 
+                SetEnemyFrailtyEffectStackCount(0, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder(0, _enemyNum);
+                SetEnemyFrailtyEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, _enemyNum);
+            }
+            else if (_option1 == _option2)
+            {
+                // Turn off Resistant 
+                SetEnemyResistantEffectStackCount(0, _enemyNum);
+                SetEnemyResistantEffectStackRemainder(0, _enemyNum);
+                SetEnemyResistantEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, _enemyNum);
+
+                // Turn off Frailty 
+                SetEnemyFrailtyEffectStackCount(0, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder(0, _enemyNum);
+                SetEnemyFrailtyEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, _enemyNum);
             }
             else
             {
-                Debug.Log("Effect already active!");
-            }
-        }
+                // Set up Frality
+                if (_option2 <= 5)
+                {
+                    SetEnemyFrailtyEffectStackCount(_option2, _enemyNum);
+                }
+                else
+                {
+                    int _remainder = _option2 - 5;
+                    SetEnemyFrailtyEffectStackCount(5, _enemyNum);
+                    SetEnemyFrailtyEffectStackRemainder((_remainder + GetEnemyFrailtyEffectStackRemainder(_enemyNum)), _enemyNum);
+                }
+                SetEnemyFrailtyEffectState(true, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, _enemyNum);
 
-        // If the Enemy was Enemy 3
-        if (_enemyNum == 3)
-        {
-            if (GetEnemyFrailtyEffectState(3) == false)
-            {
-                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 3);
-                SetEnemyFrailtyEffectStackCount(_stackValue, 3);
-                SetEnemyFrailtyEffectState(true, 3);
-            }
-            else
-            {
-                Debug.Log("Effect already active!");
-            }
-        }
-
-        // If the Enemy was Enemy 4
-        if (_enemyNum == 4)
-        {
-            if (GetEnemyFrailtyEffectState(4) == false)
-            {
-                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 4);
-                SetEnemyFrailtyEffectStackCount(_stackValue, 4);
-                SetEnemyFrailtyEffectState(true, 4);
-            }
-            else
-            {
-                Debug.Log("Effect already active!");
-            }
-        }
-
-        // If the Enemy was Enemy 5
-        if (_enemyNum == 5)
-        {
-            if (GetEnemyFrailtyEffectState(5) == false)
-            {
-                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, 5);
-                SetEnemyFrailtyEffectStackCount(_stackValue, 5);
-                SetEnemyFrailtyEffectState(true, 5);
-            }
-            else
-            {
-                Debug.Log("Effect already active!");
+                // Turn off Resistant 
+                SetEnemyResistantEffectStackCount(0, _enemyNum);
+                SetEnemyResistantEffectStackRemainder(0, _enemyNum);
+                SetEnemyResistantEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, _enemyNum);
             }
         }
     }
@@ -607,78 +647,89 @@ public class S_EnemyState : MonoBehaviour
     /// <param name="_enemyNum"></param>
     public void EnemyResistantStatusEffect(int _stackValue, int _enemyNum)
     {
-        // If Enemy was Enemy 1
-        if(_enemyNum == 1)
+        if (GetEnemyResistantEffectStackCount(_enemyNum) == 0)
         {
-            if (GetEnemyResistantEffectState(1) == false)
+            int _combinedTotal = GetEnemyFrailtyEffectStackCount(_enemyNum) + _stackValue;
+            int _remainder = _stackValue - GetEnemyFrailtyEffectStackCount(_enemyNum);
+            if (_combinedTotal <= 5)
             {
-                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 1);
-                SetEnemyResistantEffectStackCount(_stackValue, 1);
-                SetEnemyResistantEffectState(true, 1);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, _enemyNum);
+                SetEnemyFrailtyEffectState(true, _enemyNum);
+                SetEnemyFrailtyEffectStackCount(_combinedTotal, _enemyNum);
             }
             else
             {
-                Debug.Log("Effect already active!");
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, _enemyNum);
+                SetEnemyFrailtyEffectState(true, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder((_remainder + GetEnemyFrailtyEffectStackRemainder(_enemyNum)), _enemyNum);
+                SetEnemyFrailtyEffectStackCount(5, _enemyNum);
             }
         }
-
-        // If Enemy was Enemy 2
-        if (_enemyNum == 2)
+        else
         {
-            if (GetEnemyResistantEffectState(2) == false)
+            int _totalResistant = GetEnemyResistantEffectStackCount(_enemyNum) + GetEnemyResistantEffectStackRemainder(_enemyNum) + _stackValue;
+            int _totalFrality = GetEnemyFrailtyEffectStackCount(_enemyNum) + GetEnemyFrailtyEffectStackRemainder(_enemyNum);
+
+            int _option1 = _totalResistant - _totalFrality; // Higher Resistant
+            int _option2 = _totalFrality - _totalResistant; // Higher Frality
+
+            if (_option1 > _option2)
             {
-                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 2);
-                SetEnemyResistantEffectStackCount(_stackValue, 2);
-                SetEnemyResistantEffectState(true, 2);
+                // Set up Resistant
+                if (_option1 <= 5)
+                {
+                    SetEnemyResistantEffectStackCount(_option1, _enemyNum);
+                }
+                else
+                {
+                    int _remainder = _option1 - 5;
+                    SetEnemyResistantEffectStackCount(5, _enemyNum);
+                    SetEnemyResistantEffectStackRemainder((_remainder + GetEnemyResistantEffectStackRemainder(_enemyNum)), _enemyNum);
+                }
+                SetEnemyResistantEffectState(true, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, _enemyNum);
+
+                // Turn off Frailty 
+                SetEnemyFrailtyEffectStackCount(0, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder(0, _enemyNum);
+                SetEnemyFrailtyEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, _enemyNum);
+            }
+            else if (_option1 == _option2)
+            {
+                // Turn off Resistant 
+                SetEnemyResistantEffectStackCount(0, _enemyNum);
+                SetEnemyResistantEffectStackRemainder(0, _enemyNum);
+                SetEnemyResistantEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, _enemyNum);
+
+                // Turn off Frailty 
+                SetEnemyFrailtyEffectStackCount(0, _enemyNum);
+                SetEnemyFrailtyEffectStackRemainder(0, _enemyNum);
+                SetEnemyFrailtyEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(false, _enemyNum);
             }
             else
             {
-                Debug.Log("Effect already active!");
-            }
-        }
+                // Set up Frality
+                if (_option2 <= 5)
+                {
+                    SetEnemyFrailtyEffectStackCount(_option2, _enemyNum);
+                }
+                else
+                {
+                    int _remainder = _option2 - 5;
+                    SetEnemyFrailtyEffectStackCount(5, _enemyNum);
+                    SetEnemyFrailtyEffectStackRemainder(_remainder + GetEnemyFrailtyEffectStackRemainder(_enemyNum), _enemyNum);
+                }
+                SetEnemyFrailtyEffectState(true, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleFrailtyEnemyUI(true, _enemyNum);
 
-        // If Enemy was Enemy 3
-        if (_enemyNum == 3)
-        {
-            if (GetEnemyResistantEffectState(3) == false)
-            {
-                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 3);
-                SetEnemyResistantEffectStackCount(_stackValue, 3);
-                SetEnemyResistantEffectState(true, 3);
-            }
-            else
-            {
-                Debug.Log("Effect already active!");
-            }
-        }
-
-        // If Enemy was Enemy 4
-        if (_enemyNum == 4)
-        {
-            if (GetEnemyResistantEffectState(4) == false)
-            {
-                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 4);
-                SetEnemyResistantEffectStackCount(_stackValue, 4);
-                SetEnemyResistantEffectState(true, 4);
-            }
-            else
-            {
-                Debug.Log("Effect already active!");
-            }
-        }
-
-        // If Enemy was Enemy 5
-        if (_enemyNum == 5)
-        {
-            if (GetEnemyResistantEffectState(5) == false)
-            {
-                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(true, 5);
-                SetEnemyResistantEffectStackCount(_stackValue, 5);
-                SetEnemyResistantEffectState(true, 5);
-            }
-            else
-            {
-                Debug.Log("Effect already active!");
+                // Turn off Resistant 
+                SetEnemyResistantEffectStackCount(0, _enemyNum);
+                SetEnemyResistantEffectStackRemainder(0, _enemyNum);
+                SetEnemyResistantEffectState(false, _enemyNum);
+                g_global.g_UIManager.sc_characterGraphics.ToggleResistantEnemyUI(false, _enemyNum);
             }
         }
     }
@@ -704,7 +755,6 @@ public class S_EnemyState : MonoBehaviour
             else
             {
                 Debug.Log("Effect already active!");
-                // Play particle effect
             }
         }
 
