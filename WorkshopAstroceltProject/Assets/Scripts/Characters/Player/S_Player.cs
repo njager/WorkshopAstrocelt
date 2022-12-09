@@ -33,6 +33,11 @@ public class S_Player : MonoBehaviour
     [Tooltip("Duration of the flash.")]
     [SerializeField] private float duration;
 
+    [Tooltip("player animation")]
+    [SerializeField] public Animator animator;
+
+
+
 
     // The material that was in use, when the script started.
     private Material originalMaterial;
@@ -73,6 +78,7 @@ public class S_Player : MonoBehaviour
     {
         g_global = S_Global.Instance;
         p_sc_playerAttributes = this.GetComponent<S_PlayerAttributes>();
+        animator = GetComponent<Animator>();
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -100,6 +106,8 @@ public class S_Player : MonoBehaviour
                 //trigger particle effects
                 p_sc_playerAttributes.p_pe_blood.Play();
 
+                animator.SetTrigger("Blocking");
+
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
 
@@ -121,6 +129,7 @@ public class S_Player : MonoBehaviour
 
                     //trigger particle effects
                     p_sc_playerAttributes.p_pe_blood.Play();
+                    animator.SetTrigger("Blocking");
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -147,7 +156,7 @@ public class S_Player : MonoBehaviour
                 //Debug.Log("Player Attacked!");
 
                 Flash(Color.white);
-
+                animator.SetTrigger("Damaged");
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
             }
@@ -167,6 +176,7 @@ public class S_Player : MonoBehaviour
 
                     //trigger particle effects
                     p_sc_playerAttributes.p_pe_blood.Play();
+                    animator.SetTrigger("Damaged");
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
