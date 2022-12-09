@@ -25,6 +25,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [Header("Health Bar Status Effects")]
     [SerializeField] GameObject chg_UI_acidicStatusEffect;
     [SerializeField] GameObject chg_UI_bleedingStatusEffect;
+    [SerializeField] GameObject chg_UI_frailtyStatusEffect;
     [SerializeField] GameObject chg_UI_resistantStatusEffect;
     [SerializeField] GameObject chg_UI_stunnedStatusEffect;
 
@@ -33,6 +34,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_statusEffectPosition2;
     [SerializeField] GameObject chg_statusEffectPosition3;
     [SerializeField] GameObject chg_statusEffectPosition4;
+    [SerializeField] GameObject chg_statusEffectPosition5;
     [SerializeField] GameObject chg_statusEffectSpawn;
 
     [Header("Child Status Effects")]
@@ -40,16 +42,19 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_statusEffectPosition2Child;
     [SerializeField] GameObject chg_statusEffectPosition3Child;
     [SerializeField] GameObject chg_statusEffectPosition4Child;
+    [SerializeField] GameObject chg_statusEffectPosition5Child;
 
     [Header("Position Identifer Strings")]
     [SerializeField] string chg_str_position1Identifier;
     [SerializeField] string chg_str_position2Identifier;
     [SerializeField] string chg_str_position3Identifier;
     [SerializeField] string chg_str_position4Identifier;
+    [SerializeField] string chg_str_position5Identifier;
 
     [Header("Status Effect Tooltips")]
     [SerializeField] S_TooltipTemplate chg_tl_acidicStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_bleedingStatusEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_frailtyStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_resistantStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_stunnedStatusEffectTooltip;
 
@@ -58,11 +63,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
     [Header("Active Effects List")]
     [Tooltip("String is effect type, int is duration")]
-    [SerializeField] List<(string, int, int)> chg_ls_activeEffectsList = new List<(string _effectType, int _effectDuration, int _healthBarOwner)>();
+    [SerializeField] List<(string, int, int)> chg_ls_activeEffectsList = new List<(string _effectType, int _effectStackCount, int _healthBarOwner)>();
 
     [Header("Status Effect List Indices")] // Default to -1 when not in list
     [SerializeField] int chg_i_acidicEffectListIndex;
     [SerializeField] int chg_i_bleedEffectListIndex;
+    [SerializeField] int chg_i_frailitizeEffectListIndex;
     [SerializeField] int chg_i_resistantEffectListIndex;
     [SerializeField] int chg_i_stunnedEffectListIndex;
 
@@ -71,19 +77,20 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] float chg_f_fadeDurationValue;
     [SerializeField] float chg_f_endMoveValue;
 
-    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Public Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
     private void Awake()
     {
         g_global = S_Global.Instance;
     }
 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Public Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     /// <summary>
     /// Set the position for a given Status Effect
+    /// - Josh
     /// </summary>
-    /// <param name="_image"></param>
+    /// <param name="_effect"></param>
     public void AddStatusEffect(string _effect)
     {
         if (_effect.Equals("acid"))
@@ -271,6 +278,101 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
                 // Set identifier
                 chg_str_position4Identifier = "bleed";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
+            }
+        }
+        else if (_effect.Equals("frail"))
+        {
+            if (chg_i_slotsOccupied == 0)
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
+
+                // Move Child
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition1Child = chg_UI_frailtyStatusEffect;
+
+                // Set identifier
+                chg_str_position1Identifier = "frail";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectDuration(chg_str_position1Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 1)
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
+
+                // Move Child
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition2Child = chg_UI_frailtyStatusEffect;
+
+                // Set identifier
+                chg_str_position2Identifier = "frail";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectDuration(chg_str_position2Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 2)
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
+
+                // Move Child
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition3Child = chg_UI_frailtyStatusEffect;
+
+                // Set identifier
+                chg_str_position3Identifier = "frail";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectDuration(chg_str_position3Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 3)
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
+
+                // Move Child
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition4Child = chg_UI_frailtyStatusEffect;
+
+                // Set identifier
+                chg_str_position4Identifier = "frail";
 
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectDuration(chg_str_position4Identifier), GetHealthBarOwner()));
@@ -657,6 +759,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
 
         }
+        else if (_statusEffect.Equals("frail"))
+        {
+
+        }
         else if (_statusEffect.Equals("resistant"))
         {
 
@@ -680,27 +786,27 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if(GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerAcidicEffectDuration();
+                return g_global.g_playerState.GetPlayerAcidEffectStackCount();
             }
             else if(GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyAcidEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyAcidEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyAcidEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyAcidEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyAcidicEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyAcidEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
@@ -712,27 +818,27 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerBleedEffectDuration();
+                return g_global.g_playerState.GetPlayerBleedEffectStackCount();
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyBleedEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyBleedEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
@@ -740,31 +846,63 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 return -1;
             }
         }
+        else if (_effectType.Equals("frail"))
+        {
+            if (GetHealthBarOwner() == -1) // Player
+            {
+                return g_global.g_playerState.GetPlayerFrailtyEffectStackCount();
+            }
+            else if (GetHealthBarOwner() == 1) // Enemy 1
+            {
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(1);
+            }
+            else if (GetHealthBarOwner() == 2) // Enemy 2
+            {
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(2);
+            }
+            else if (GetHealthBarOwner() == 3) // Enemy 3
+            {
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(3);
+            }
+            else if (GetHealthBarOwner() == 4) // Enemy 4
+            {
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(4);
+            }
+            else if (GetHealthBarOwner() == 5) // Enemy 5
+            {
+                return g_global.g_enemyState.GetEnemyFrailtyEffectStackCount(5);
+            }
+            else // Return methods require all paths to return a value, even the failed behavior potential paths
+            {
+                Debug.Log("FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectDuration() - Fraility");
+                return -1;
+            }
+        }
         else if (_effectType.Equals("resist"))
         {
             if (GetHealthBarOwner() == -1) // Player
             {
-                return g_global.g_playerState.GetPlayerResistantEffectDuration();
+                return g_global.g_playerState.GetPlayerResistantEffectStackCount();
             }
             else if (GetHealthBarOwner() == 1) // Enemy 1
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyResistantEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyResistantEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {
@@ -776,23 +914,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (GetHealthBarOwner() == 1) // Enemy 1, player doesn't have stun
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(1);
+                return g_global.g_enemyState.GetEnemyStunEffectStackCount(1);
             }
             else if (GetHealthBarOwner() == 2) // Enemy 2
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(2);
+                return g_global.g_enemyState.GetEnemyStunEffectStackCount(2);
             }
             else if (GetHealthBarOwner() == 3) // Enemy 3
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(3);
+                return g_global.g_enemyState.GetEnemyStunEffectStackCount(3);
             }
             else if (GetHealthBarOwner() == 4) // Enemy 4
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(4);
+                return g_global.g_enemyState.GetEnemyStunEffectStackCount(4);
             }
             else if (GetHealthBarOwner() == 5) // Enemy 5
             {
-                return g_global.g_enemyState.GetEnemyStunnedEffectDuration(5);
+                return g_global.g_enemyState.GetEnemyStunEffectStackCount(5);
             }
             else // Return methods require all paths to return a value, even the failed behavior potential paths
             {

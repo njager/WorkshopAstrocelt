@@ -220,4 +220,506 @@ public class S_CharacterGraphics : MonoBehaviour
     {
         sc_UIManager.GetPlayerCardSelector().SetActive(_boolean);
     }
+
+    /// <summary>
+    /// Toggle the Acid UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleAcidPlayerUI(bool _state) // True for on, false for off
+    {
+        if (_state == true)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+        }
+        else if (_state == false)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Bleed UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleBleedPlayerUI(bool _state) // True for on, false for off
+    {
+        if (_state == true)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+        }
+        else if (_state == false)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Frail UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleFrailtyPlayerUI(bool _state)
+    {
+        if (_state == true)
+        {
+            if (true)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+            }
+
+        }
+        else if (_state == false)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Resistant UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleResistantPlayerUI(bool _state)
+    {
+        if (_state == true)
+        {
+            if (true)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-resist");
+            }
+
+        }
+        else if (_state == false)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Acidic UI element for a given enemy
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// /// <param name="_enemyCount"></param>
+    public void ToggleAcidEnemyUI(bool _state, int _enemyCount) 
+    {
+        if (_enemyCount == 1) 
+        {
+            if(g_global.g_enemyState.GetEnemyActiveState(1) == true) 
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Bleed UI element for a given enemy
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// /// <param name="_enemyCount"></param>
+    public void ToggleBleedEnemyUI(bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+ 
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Frality UI element for a given enemy
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// /// <param name="_enemyCount"></param>
+    public void ToggleFrailtyEnemyUI(bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+                   
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-bleed");
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Resistant UI element for a given enemy (_enemycount)
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// <param name="_enemyCount"></param>
+    public void ToggleResistantEnemyUI(bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.e_b_enemy1Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.e_b_enemy2Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.e_b_enemy3Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.e_b_enemy4Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.e_b_enemy5Dead == false)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Toggle the Stun UI element for a given enemy (_enemycount)
+    /// True is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    /// <param name="_enemyCount"></param>
+    public void ToggleStunEnemyUI (bool _state, int _enemyCount)
+    {
+        if (_enemyCount == 1)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+            {
+                if (_state == true)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/stat-stun");
+                    //e_enemy1StunEffect.SetActive(true);                                 
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 2)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 3)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 4)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(4) == true)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+        else if (_enemyCount == 5)
+        {
+            if (g_global.g_enemyState.GetEnemyActiveState(5) == true)
+            {
+                if (_state == true)
+                {
+
+                }
+                else if (_state == false)
+                {
+
+                }
+            }
+        }
+    }
 }

@@ -325,17 +325,29 @@ public class S_Enemy : MonoBehaviour
             Debug.Log("Lumberjack doesn't have a special ability!");
             return;
         }
-        if(_enemyType == "Magician")
+        else if(_enemyType == "Magician")
         {
             MagicianSpecialAbility();
         }
-        if(_enemyType == "Brawler")
+        else if(_enemyType == "Beast")
         {
-            g_global.g_enemyState.EnemyResistantEffect(1, e_i_enemyCount); 
+            g_global.g_playerState.PlayerBleedingStatusEffect(3);
         }
-        if(_enemyType == "Beast")
+        else if(_enemyType == "Brawler")
         {
-            g_global.g_playerState.PlayerBleedingStatusEffect(3, 3);
+            g_global.g_playerState.PlayerBleedingStatusEffect(4);
+        }
+        else if(_enemyType == "Claurichan")
+        {
+            MagicianSpecialAbility();
+        }
+        else if(_enemyType == "Puca")
+        {
+            g_global.g_playerState.PlayerFrailtyStatusEffect(2);
+        }
+        else if (_enemyType == "Realmwalker")
+        {
+            g_global.g_enemyState.EnemyResistantStatusEffect(5, e_i_enemyCount);
         }
     }
 
@@ -412,7 +424,7 @@ public class S_Enemy : MonoBehaviour
     /// <returns></returns>
     public IEnumerator EnemyTurnAction(int _enemyNum)
     {
-        if (!g_global.g_enemyState.EnemySkipTurnCheck(_enemyNum))
+        if (!g_global.g_enemyState.GetEnemySkipTurnState(_enemyNum))
         {
             // Declare Turn for UI
             g_global.g_enemyState.DeclareCurrentTurn(_enemyNum);
