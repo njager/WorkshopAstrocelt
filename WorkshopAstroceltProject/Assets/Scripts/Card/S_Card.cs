@@ -76,9 +76,9 @@ public class S_Card : MonoBehaviour
 
     [Header("Status Effect Triggers")]
     public bool crd_b_noEffect;
-    public bool crd_b_acidicStatusEffect;
+    public bool crd_b_acidStatusEffect;
     public bool crd_b_bleedStatusEffect;
-    public bool crd_b_fralityStatusEffect;
+    public bool crd_b_frailtyStatusEffect;
     public bool crd_b_stunnedStatusEffect;
     public bool crd_b_resistantStatusEffect;
 
@@ -187,9 +187,9 @@ public class S_Card : MonoBehaviour
 
         //Toggle Status Effects
         crd_b_noEffect = _cardData.NoEffect;
-        crd_b_acidicStatusEffect = _cardData.AcidicStatusEffect;
+        crd_b_acidStatusEffect = _cardData.AcidicStatusEffect;
         crd_b_bleedStatusEffect = _cardData.BleedStatusEffect;
-        crd_b_fralityStatusEffect = _cardData.FralityStatusEffect;
+        crd_b_frailtyStatusEffect = _cardData.FralityStatusEffect;
         crd_b_stunnedStatusEffect = _cardData.StunnedStatusEffect;
         crd_b_resistantStatusEffect = _cardData.ResistantStatusEffect;
 
@@ -342,73 +342,135 @@ public class S_Card : MonoBehaviour
         if (_character.GetComponent<S_Enemy>() != null) // If the given character was an enemy
         {
             S_Enemy _givenEnemy = _character.GetComponent<S_Enemy>();
-            //Debug.Log(_givenEnemy.e_i_enemyCount);
+            if (crd_b_acidStatusEffect == true) // If Bleed effect is on card, toggle for enemy
+            {
+                if (crd_str_statusEffectID1 == "acid") // In slot 1
+                {
+                    g_global.g_enemyState.EnemyAcidStatusEffect(crd_i_effectValue1, _givenEnemy.e_i_enemyCount);
+                }
+                else if (crd_str_statusEffectID2 == "acid") // In slot 2
+                {
+                    g_global.g_enemyState.EnemyAcidStatusEffect(crd_i_effectValue2, _givenEnemy.e_i_enemyCount);
+                }
+                else if (crd_str_statusEffectID3 == "acid") // In slot 3
+                {
+                    g_global.g_enemyState.EnemyAcidStatusEffect(crd_i_effectValue3, _givenEnemy.e_i_enemyCount);
+                }
+            }
             if (crd_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
-                // There is empirically a bleed effect, question is where
                 if (crd_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedStatusEffect(crd_i_effectValue1, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedStatusEffect(crd_i_effectValue2, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    //g_global.g_enemyState.EnemyBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyBleedStatusEffect(crd_i_effectValue3, _givenEnemy.e_i_enemyCount);
                 }
+            }
+            if (crd_b_frailtyStatusEffect == true) 
+            {
+                if (crd_str_statusEffectID1 == "frail") // In slot 1
+                {
+                    g_global.g_enemyState.EnemyFrailtyStatusEffect(crd_i_effectValue1, _givenEnemy.e_i_enemyCount);
+                }
+                else if (crd_str_statusEffectID2 == "frail") // In slot 2
+                {
+                    g_global.g_enemyState.EnemyFrailtyStatusEffect(crd_i_effectValue2, _givenEnemy.e_i_enemyCount);
+                }
+                else if (crd_str_statusEffectID3 == "frail") // In slot 3
+                {
+                    g_global.g_enemyState.EnemyFrailtyStatusEffect(crd_i_effectValue3, _givenEnemy.e_i_enemyCount);
+                }
+
             }
             if (crd_b_resistantStatusEffect == true)
             {
-                // Locate stun effect
                 if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyResistantStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantStatusEffect(crd_i_effectValue1, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyResistantStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantStatusEffect(crd_i_effectValue2, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyResistantStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyResistantStatusEffect(crd_i_effectValue3, _givenEnemy.e_i_enemyCount);
                 }
             }
             if (crd_b_stunnedStatusEffect == true)
             {
-                // Locate stun effect
                 if (crd_str_statusEffectID1 == "stun") // In slot 1
                 {
-                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(crd_i_effectValue1, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID2 == "stun") // In slot 2
                 {
-                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(crd_i_effectValue2, _givenEnemy.e_i_enemyCount);
                 }
                 else if (crd_str_statusEffectID3 == "stun") // In slot 3
                 {
-                    g_global.g_enemyState.EnemyStunStatusEffect(0, _givenEnemy.e_i_enemyCount);
+                    g_global.g_enemyState.EnemyStunStatusEffect(crd_i_effectValue3, _givenEnemy.e_i_enemyCount);
                 }
             }
             
         }
         else if (_character.GetComponent<S_Player>() != null) // If the given character was the player
         {
+            if (crd_b_acidStatusEffect == true) 
+            {
+                // There is empirically a bleed effect, question is where
+                if (crd_str_statusEffectID1 == "acid") // In slot 1
+                {
+                    g_global.g_playerState.PlayerAcidStatusEffect(crd_i_effectValue1);
+                }
+                else if (crd_str_statusEffectID2 == "acid") // In slot 2
+                {
+                    g_global.g_playerState.PlayerAcidStatusEffect(crd_i_effectValue2);
+                }
+                else if (crd_str_statusEffectID3 == "acid") // In slot 3
+                {
+                    g_global.g_playerState.PlayerAcidStatusEffect(crd_i_effectValue3);
+                }
+
+            }
             if (crd_b_bleedStatusEffect == true) // If Bleed effect is on card, toggle for enemy
             {
                 // There is empirically a bleed effect, question is where
                 if (crd_str_statusEffectID1 == "bleed") // In slot 1
                 {
-                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount1);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(crd_i_effectValue1);
                 }
                 else if (crd_str_statusEffectID2 == "bleed") // In slot 2
                 {
-                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount2);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(crd_i_effectValue2);
                 }
                 else if (crd_str_statusEffectID3 == "bleed") // In slot 3
                 {
-                    //g_global.g_playerState.PlayerBleedingStatusEffect(crd_f_bleedDamagePercentage, crd_i_turnCount3);
+                    g_global.g_playerState.PlayerBleedingStatusEffect(crd_i_effectValue3);
+                }
+
+            }
+            if (crd_b_frailtyStatusEffect == true) 
+            {
+                // There is empirically a bleed effect, question is where
+                if (crd_str_statusEffectID1 == "frail") // In slot 1
+                {
+                    g_global.g_playerState.PlayerFrailtyStatusEffect(crd_i_effectValue1);
+
+                }
+                else if (crd_str_statusEffectID2 == "frail") // In slot 2
+                {
+                    g_global.g_playerState.PlayerFrailtyStatusEffect(crd_i_effectValue2);
+                }
+                else if (crd_str_statusEffectID3 == "frail") // In slot 3
+                {
+                    g_global.g_playerState.PlayerFrailtyStatusEffect(crd_i_effectValue3);
                 }
 
             }
@@ -417,15 +479,15 @@ public class S_Card : MonoBehaviour
                 // Locate stun effect
                 if (crd_str_statusEffectID1 == "resist") // In slot 1
                 {
-                    g_global.g_playerState.PlayerResistantEffect(0);
+                    g_global.g_playerState.PlayerResistantEffect(crd_i_effectValue1);
                 }
                 else if (crd_str_statusEffectID2 == "resist") // In slot 2
                 {
-                    g_global.g_playerState.PlayerResistantEffect(0);
+                    g_global.g_playerState.PlayerResistantEffect(crd_i_effectValue2);
                 }
                 else if (crd_str_statusEffectID3 == "resist") // In slot 3
                 {
-                    g_global.g_playerState.PlayerResistantEffect(0);
+                    g_global.g_playerState.PlayerResistantEffect(crd_i_effectValue3);
                 }
             }
         }
