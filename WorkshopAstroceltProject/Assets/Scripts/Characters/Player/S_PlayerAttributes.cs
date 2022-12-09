@@ -28,8 +28,10 @@ public class S_PlayerAttributes : MonoBehaviour
     public bool p_b_playerHasConstellationEffects;
 
     [Header("Particle Effect")]
-    public ParticleSystem p_pe_blood;
-    public ParticleSystem p_pe_shield;
+    public ParticleSystem p_pe_playerAttacked;
+    public ParticleSystem p_pe_shieldApplied;
+    public ParticleSystem p_pe_shieldAttacked;
+    public ParticleSystem p_pe_shieldBreak;
 
     [Header("Animatiors")]
     public Animator p_a_AttackAnimator;

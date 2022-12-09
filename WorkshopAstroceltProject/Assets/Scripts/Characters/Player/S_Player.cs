@@ -104,7 +104,7 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue1);
                 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_blood.Play();
+                p_sc_playerAttributes.p_pe_playerAttacked.Play();
 
                 animator.SetTrigger("Blocking");
 
@@ -128,7 +128,7 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue3);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_blood.Play();
+                    p_sc_playerAttributes.p_pe_playerAttacked.Play();
                     animator.SetTrigger("Blocking");
                     //Debug.Log("Player didn't have enough shields!");
 
@@ -152,7 +152,7 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue5);
 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_blood.Play();
+                p_sc_playerAttributes.p_pe_playerAttacked.Play();
                 //Debug.Log("Player Attacked!");
 
                 Flash(Color.white);
@@ -175,7 +175,7 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue7);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_blood.Play();
+                    p_sc_playerAttributes.p_pe_playerAttacked.Play();
                     animator.SetTrigger("Damaged");
                     //Debug.Log("Player didn't have enough shields!");
 
@@ -249,7 +249,7 @@ public class S_Player : MonoBehaviour
         }
 
         //trigger the shield particle effect
-        p_sc_playerAttributes.p_pe_shield.Play();
+        p_sc_playerAttributes.p_pe_shieldApplied.Play();
 
         // Calculate and set shield values
         int _tempValue = p_sc_playerAttributes.GetPlayerShieldValue() + _shieldValue;
