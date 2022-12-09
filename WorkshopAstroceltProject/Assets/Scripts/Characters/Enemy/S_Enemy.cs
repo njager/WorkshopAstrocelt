@@ -156,7 +156,7 @@ public class S_Enemy : MonoBehaviour
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
 
                         // Sufficient Shields Particle Effect
-                        e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+                        e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -202,7 +202,7 @@ public class S_Enemy : MonoBehaviour
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
 
                         // Sufficient Shields Particle Effect
-                        e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+                        e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -248,7 +248,7 @@ public class S_Enemy : MonoBehaviour
                     e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
 
                     // Sufficient Shields Particle Effect
-                    e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+                    e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
                     Debug.Log("Enemy had shields!");
                 }
@@ -278,14 +278,14 @@ public class S_Enemy : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
 
             // Play Shield Particle 
-            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
+            e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
         else if(_enemyType == "Brawler") // Shield Magic
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
 
             // Play Shield Particle 
-            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
+            e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
         else if(_enemyType == "Brawler")
         {
@@ -293,7 +293,7 @@ public class S_Enemy : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
 
             // Play Shield Particle 
-            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
+            e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
 
         // Update the UI

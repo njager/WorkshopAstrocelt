@@ -52,9 +52,9 @@ public class S_EnemyAttributes : MonoBehaviour
 
     [Header("Particle Effects")]
     [SerializeField] ParticleSystem e_pe_enemyAttacked;
-    [SerializeField] ParticleSystem e_pe_enemyShielded;
-    [SerializeField] ParticleSystem e_pe_enemySufficientShield;
-    [SerializeField] ParticleSystem e_pe_enemyCardFailed;
+    [SerializeField] ParticleSystem e_pe_enemyShieldApplied;
+    [SerializeField] ParticleSystem e_pe_enemyShieldAttacked;
+    [SerializeField] ParticleSystem e_pe_enemyShieldBreak;
 
     [Header("Animatiors")]
     public Animator e_a_AttackAnimator;
@@ -345,39 +345,39 @@ public class S_EnemyAttributes : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShielded
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShieldApplied
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_pe_enemyShielded
+    /// S_EnemyAttributes.e_pe_enemyShieldApplied
     /// </returns>
-    public ParticleSystem GetEnemyShieldedParticle()
+    public ParticleSystem GetEnemyShieldAppliedParticle()
     {
-        return e_pe_enemyShielded;
+        return e_pe_enemyShieldApplied;
     }
 
     /// <summary>
-    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemySufficientShield
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShieldAttacked
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_pe_enemySufficientShield
+    /// S_EnemyAttributes.e_pe_enemyShieldAttacked
     /// </returns>
-    public ParticleSystem GetEnemySufficientShieldParticle()
+    public ParticleSystem GetEnemyShieldAttackedParticle()
     {
-        return e_pe_enemySufficientShield;
+        return e_pe_enemyShieldAttacked;
     }
 
     /// <summary>
-    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemySufficientShield
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShieldBreak
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_pe_enemySufficientShield
+    /// S_EnemyAttributes.e_pe_enemyShieldBreak
     /// </returns>
-    public ParticleSystem GetEnemyCardFailedParticle()
+    public ParticleSystem GetEnemyShieldBreakParticle()
     {
-        return e_pe_enemyCardFailed;
+        return e_pe_enemyShieldBreak;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
