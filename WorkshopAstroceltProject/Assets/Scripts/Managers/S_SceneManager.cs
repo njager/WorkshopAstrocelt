@@ -8,15 +8,22 @@ public class S_SceneManager : MonoBehaviour
     [Header("Scene Changes")]
     public int i_sceneIndex;
 
+    [Header("Reward Canvas")]
+    public GameObject r_rewardCanvas;
 
     [Header("Final Scene Bool")]
     public bool b_finalScene = false;
 
     [Header("After this reward scene")]
-    public bool b_toRewardScene = false;
-    public int[] ls_i_rewardIndices;
+    public bool b_toEventScene = false;
+    public int[] ls_i_eventIndices;
 
+    private S_Global g_global;
 
+    private void Start()
+    {
+        g_global = S_Global.Instance;
+    }
 
     /// <summary>
     /// Used to by end and lose screens to bring back to the first scene
@@ -45,15 +52,20 @@ public class S_SceneManager : MonoBehaviour
     /// </summary>
     public void ChangeScene()
     {
-        Debug.Log("Have not set the index for the reward scene");
-        if (b_toRewardScene)
-        {
-            //if this goes to a reward scene chose a random one
-            SceneManager.LoadScene(ls_i_rewardIndices[Random.Range(0, ls_i_rewardIndices.Length)]); 
-        }
-        else
+        if(g_global.g_rewardVisualScript.b_rewardClaimed)
         {
             SceneManager.LoadScene(i_sceneIndex);
         }
+    }
+
+    public void ToEventScene()
+    {
+            //if this goes to a reward scene chose a random one
+            SceneManager.LoadScene(ls_i_eventIndices[Random.Range(0, ls_i_eventIndices.Length)]);
+    }
+
+    public void DisplayRewards()
+    {
+        r_rewardCanvas.SetActive(true);
     }
 }

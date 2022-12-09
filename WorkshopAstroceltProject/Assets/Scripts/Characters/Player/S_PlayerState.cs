@@ -390,7 +390,14 @@ public class S_PlayerState : MonoBehaviour
             Debug.Log("Player health " + g_global.g_gameManager.i_playerHealth);
 
             //go to the new scene
-            g_global.g_sceneManager.ChangeScene();
+            if (g_global.g_sceneManager.b_toEventScene)
+            {
+                g_global.g_sceneManager.ToEventScene();
+            }
+            else
+            {
+                g_global.g_sceneManager.DisplayRewards();
+            }
         }
         else
         {
