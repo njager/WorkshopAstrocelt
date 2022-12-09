@@ -492,6 +492,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Set child
                 chg_statusEffectPosition1Child = chg_UI_stunnedStatusEffect;
 
+                // Set Index
+                 SetIndex
+
                 // Set identifier
                 chg_str_position1Identifier = "stun";
 
@@ -1244,6 +1247,35 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - ResetIndexFromIndex() - Index Not Found Error");
+        }
+    }
+
+
+    /// <summary>
+    /// Helper to set the effect index
+    /// </summary>
+    /// <param name="_index"></param>
+    private void SetEffectIndex(int _index, string _effect)
+    {
+        if (_effect.Equals("acid"))
+        {
+            chg_i_acidEffectListIndex = _index;
+        }
+        else if (_effect.Equals("bleed"))
+        {
+            chg_i_bleedEffectListIndex = _index;
+        }
+        else if (_effect.Equals("frailty"))
+        {
+            chg_i_frailtyEffectListIndex = _index;
+        }
+        else if (_effect.Equals("resist"))
+        {
+            chg_i_resistantEffectListIndex = _index;
+        }
+        else if (_effect.Equals("stun"))
+        {
+            chg_i_stunEffectListIndex = _index;
         }
     }
 }
