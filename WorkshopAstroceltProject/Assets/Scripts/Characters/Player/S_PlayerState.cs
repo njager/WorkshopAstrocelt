@@ -138,30 +138,16 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_UIManager.sc_characterGraphics.ToggleAcidPlayerUI(true);
             SetPlayerAcidEffectStackCount(_stackCount);
             SetPlayerAcidEffectState(true);
+        }
 
-            if(g_global.g_playerAttributeSheet.GetPlayerShieldValue() >= 1) 
-            {
-
-            }
-            else 
-            {
-
-            }
+        if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() >= 1)
+        {
+            int _doubleStack = _stackCount * 2;
+            g_global.g_player.PlayerAttacked(_doubleStack);
         }
         else
         {
-            g_global.g_UIManager.sc_characterGraphics.ToggleAcidPlayerUI(true);
-            SetPlayerAcidEffectStackCount(_stackCount);
-            SetPlayerAcidEffectState(true);
-
-            if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() >= 1)
-            {
-
-            }
-            else 
-            {
-
-            }
+            g_global.g_player.PlayerAttacked(_stackCount);
         }
     }
 
