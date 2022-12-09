@@ -730,7 +730,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     public void EndStatusEffect(string _effect)
     {
         int _positionNum = GetIndexFromEffect(_effect);
-        if (_positionNum == 1)
+        if (_positionNum == 0)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -759,7 +759,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position1Identifier = "none";
         }
-        else if (_positionNum == 2)
+        else if (_positionNum == 1)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -788,7 +788,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position2Identifier = "none";
         }
-        else if (_positionNum == 3)
+        else if (_positionNum == 2)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -817,7 +817,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position3Identifier = "none";
         }
-        else if (_positionNum == 4)
+        else if (_positionNum == 3)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -846,7 +846,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position5Identifier = "none";
         }
-        else if (_positionNum == 5)
+        else if (_positionNum == 4)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
