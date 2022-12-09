@@ -575,7 +575,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// using int for clarity
     /// - Josh
     /// </summary>
-    public void EndStatusEffect(int _positionNum)
+    public void EndStatusEffect(string _effect)
     {
         if (_positionNum == 1)
         {

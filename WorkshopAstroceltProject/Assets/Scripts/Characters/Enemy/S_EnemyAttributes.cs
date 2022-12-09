@@ -54,6 +54,7 @@ public class S_EnemyAttributes : MonoBehaviour
     [SerializeField] ParticleSystem e_pe_enemyAttacked;
     [SerializeField] ParticleSystem e_pe_enemyShielded;
     [SerializeField] ParticleSystem e_pe_enemySufficientShield;
+    [SerializeField] ParticleSystem e_pe_enemyCardFailed;
 
     [Header("Animatiors")]
     public Animator e_a_AttackAnimator;
@@ -354,6 +355,7 @@ public class S_EnemyAttributes : MonoBehaviour
     {
         return e_pe_enemyShielded;
     }
+
     /// <summary>
     /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemySufficientShield
     /// - Josh
@@ -364,6 +366,18 @@ public class S_EnemyAttributes : MonoBehaviour
     public ParticleSystem GetEnemySufficientShieldParticle()
     {
         return e_pe_enemySufficientShield;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemySufficientShield
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_pe_enemySufficientShield
+    /// </returns>
+    public ParticleSystem GetEnemyCardFailedParticle()
+    {
+        return e_pe_enemyCardFailed;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

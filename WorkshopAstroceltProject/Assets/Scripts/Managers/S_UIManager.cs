@@ -96,7 +96,7 @@ public class S_UIManager : MonoBehaviour
     public GameObject debugTurnbar;
     public TextMeshProUGUI debugTurnbarText;
 
-    [Header("Energy UI Text Elements")] // Keep en_
+    [Header("Energy UI Text Elements")] 
     public TextMeshProUGUI en_tx_redEnergyTrackerText;
     public TextMeshProUGUI en_tx_blueEnergyTrackerText;
     public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
@@ -1069,27 +1069,40 @@ public class S_UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the gameobject of S_UIManager.rsg_OriginalScale;
+    /// Returns the gameobject of S_UIManager.rsg_OriginalScale
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.rsg_OriginalScale;
+    /// S_UIManager.rsg_OriginalScale
     /// </returns>
     public Vector3 GetOriginalScale()
     {
         
         return rsg_OriginalScale;
     }
+
     /// <summary>
-    /// Returns the gameobject of S_UIManager.rsg_ScaleTo;
+    /// Returns the gameobject of S_UIManager.rsg_ScaleTo
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_UIManager.rsg_ScaleTo;
+    /// S_UIManager.rsg_ScaleTo
     /// </returns>
     public Vector3 GetScaleTo()
     {
         rsg_ScaleTo = new Vector3(1, 1, 1);
         return rsg_ScaleTo;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_UIManager.p_playerHealthBar
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.p_playerHealthBar
+    /// </returns>
+    public GameObject GetPlayerHealthBarObject()
+    {
+        return p_playerHealthBar;
     }
 }

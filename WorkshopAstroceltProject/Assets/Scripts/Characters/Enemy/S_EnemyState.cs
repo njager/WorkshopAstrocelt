@@ -347,7 +347,7 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="_stackValue"></param>
     /// /// <param name="_enemyNum"></param>
-    public void EnemyAcidicStatusEffect(int _stackValue, int _enemyNum)
+    public void EnemyAcidStatusEffect(int _stackValue, int _enemyNum)
     {
         // If the Enemy was Enemy 1
         if (_enemyNum == 1)
@@ -755,7 +755,6 @@ public class S_EnemyState : MonoBehaviour
             else
             {
                 Debug.Log("Effect already active!");
-                // Play particle effect
             }
         }
 
