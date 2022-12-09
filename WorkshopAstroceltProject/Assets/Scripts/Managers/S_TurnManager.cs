@@ -104,7 +104,7 @@ public class S_TurnManager : MonoBehaviour
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
         // Toggle day
-        g_global.g_backgroundManager.ChangeBackground(1);
+        g_global.g_backgroundManager.ChangeBackground(0);
 
         //change all the things that need to be changed for the enemies turn
         //g_global.g_energyManager.ClearEnergy();
