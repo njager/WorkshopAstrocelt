@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using DG.Tweening;
 
 public class S_Tooltip : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class S_Tooltip : MonoBehaviour
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    private S_Global g_global; 
+    private S_Global g_global;
 
     [Header("Identifying String")]
     [SerializeField] string tlp_str_identifier; // Set to Image or SpriteRenderer
@@ -23,12 +25,29 @@ public class S_Tooltip : MonoBehaviour
     [SerializeField] List<S_TooltipIcon> tlp_ls_a_artIconEntryList;
     //[SerializeField] InspectorBasedDictionarySpriteString iconEntryDictionary;
 
+    [Header("Layout Element")]
+    [SerializeField] LayoutElement tlp_layoutElement;
+
+    [Header("Character Wrap Limit")]
+    [SerializeField] int tlp_characterWrapLimit;
+
+    [Header("Rect Transform")]
+    [SerializeField] RectTransform tlp_rectTransform;
+
+    [Header("Tween Delay")]
+    [SerializeField] Tween tlp_an_delay; 
+
     [Header("Backup List Method")]
     public List<Sprite> tlp_ls_a_spriteList;
 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Constructor \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    private void Awake()
+    {
+        tlp_an_delay.SetAutoKill(false);
+    }
 
     /// <summary>
     /// Constructor used to set the behavior of the tool tip based on if it exists in Canvas or Sprite based mode
@@ -67,8 +86,19 @@ public class S_Tooltip : MonoBehaviour
     ///////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+    private void Update()
+    {
+        Vector2 _mousePosition = Input.mousePosition;
+
+        float _pivotX = _mousePosition.x / Screen.width;
+        float _pivotY = _mousePosition.y / Screen.height;
+
+        tlp_rectTransform.pivot = new Vector2(_pivotX, _pivotY);
+        transform.position = _mousePosition;
+    }
+
     /// <summary>
-    /// Overload 1 with Updating of all text elements
+    /// Custom Update
     /// - Josh
     /// </summary>
     /// <param name="_headerText"></param>
@@ -81,27 +111,16 @@ public class S_Tooltip : MonoBehaviour
         // Set Body Text
         SetTooltipBodyText(_bodyText);
 
-        //
-        gameObject.SetActive(true);
-    }
+        if (CheckHeaderTextLength() == false && CheckBodyTextLength() == false)
+        {
+            tlp_layoutElement.enabled = false;
+        }
+        else
+        {
+            tlp_layoutElement.enabled = true;
+        }
 
-    /// <summary>
-    /// Overload 2 to update just one element
-    /// Set 2nd variable to true for the header text element, false for the body text element
-    /// - Josh
-    /// </summary>
-    /// <param name="_text"></param>
-    /// <param name="_whichBody"></param>
-    public void UpdateDebugTooltipUI(string _text, bool _whichBody)
-    {
-        if(_whichBody == true) // If True set Header Text
-        {
-            SetTooltipHeaderText(_text);
-        }
-        else // If False set Body Text
-        {
-            SetTooltipBodyText(_text);
-        }
+        gameObject.SetActive(true);
     }
 
     public void AddIconEntry() 
@@ -118,9 +137,45 @@ public class S_Tooltip : MonoBehaviour
     /// Reset the tooltip when it's no longer applicable
     ///  - Josh
     /// </summary>
-    public void ResetToolTip() 
+    public void ResetToolTip()
     {
         gameObject.SetActive(false);
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Helpers \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Check the character length for header text to determine if content size should be restricted
+    ///  - Josh
+    /// </summary>
+    private bool CheckHeaderTextLength()
+    {
+        if(tlp_tx_headerText.text.Length < tlp_characterWrapLimit)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    /// <summary>
+    /// Check the character length for header text to determine if content size should be restricted
+    ///  - Josh
+    /// </summary>
+    private bool CheckBodyTextLength()
+    {
+        if (tlp_tx_bodyText.text.Length < tlp_characterWrapLimit)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

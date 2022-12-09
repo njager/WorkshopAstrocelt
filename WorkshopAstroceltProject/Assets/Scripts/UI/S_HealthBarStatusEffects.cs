@@ -680,7 +680,33 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             RemoveEffectFromList(chg_str_position4Identifier);
 
             // Reset Identifer
-            chg_str_position4Identifier = "none";
+            chg_str_position5Identifier = "none";
+        }
+        else if (_positionNum == 5)
+        {
+            // Adjust slot count
+            chg_i_slotsOccupied -= 1;
+
+            // Grab Child
+            GameObject _child = chg_statusEffectPosition5Child;
+
+            // Move Child
+            _child.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+
+            // Fade Child
+            _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+
+            // Set New parent
+            _child.transform.SetParent(chg_statusEffectSpawn.transform);
+
+            // Clear Child
+            chg_statusEffectPosition5Child = null;
+
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position5Identifier);
+
+            // Reset Identifer
+            chg_str_position5Identifier = "none";
         }
         else
         {
@@ -1053,6 +1079,129 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
             return -1;
+        }
+    }
+
+    private void ResetIndexFromIndex(int _index)
+    {
+        if(_index == 1)
+        {
+            if(chg_i_acidEffectListIndex == 1) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if(chg_i_bleedEffectListIndex == 1) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 1) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 1) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 1) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+        }
+        else if (_index == 2)
+        {
+            if (chg_i_acidEffectListIndex == 2) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if (chg_i_bleedEffectListIndex == 2) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 2) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 2) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 2) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+        }
+        else if (_index == 3)
+        {
+            if (chg_i_acidEffectListIndex == 3) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if (chg_i_bleedEffectListIndex == 3) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 3) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 3) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 3) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+        }
+        else if (_index == 4)
+        {
+            if (chg_i_acidEffectListIndex == 4) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if (chg_i_bleedEffectListIndex == 4) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 4) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 4) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 4) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+        }
+        else if (_index == 5)
+        {
+            if (chg_i_acidEffectListIndex == 5) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if (chg_i_bleedEffectListIndex == 5) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 5) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 5) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 5) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+        }
+        else
+        {
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - ResetIndexFromIndex() - Index Not Found Error");
         }
     }
 }
