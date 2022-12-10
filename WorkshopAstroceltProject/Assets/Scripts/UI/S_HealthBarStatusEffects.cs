@@ -758,6 +758,8 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
         }
+
+        SortStatusEffectList();
     }
 
     /// <summary>
@@ -927,46 +929,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// Helper function to sort the list according to duration
     /// - Josh
     /// </summary>
-    private void SortStatusEffectList()
+    private void SortStatusEffectList() // Put in turn manager
     {
-        if(chg_ls_activeEffectsList.Count == 4)
-        {
-            // First item
-            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
-
-            // Second item
-            (string, int, int) _itemAtPosition2 = chg_ls_activeEffectsList[1];
-
-            // Third item
-            (string, int, int) _itemAtPosition3 = chg_ls_activeEffectsList[2];
-
-            // Fourth item
-            (string, int, int) _itemAtPosition4 = chg_ls_activeEffectsList[3];
-        }
-        else if (chg_ls_activeEffectsList.Count == 3)
-        {
-            // First item
-            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
-
-            // Second item
-            (string, int, int) _itemAtPosition2 = chg_ls_activeEffectsList[1];
-
-            // Third item
-            (string, int, int) _itemAtPosition3 = chg_ls_activeEffectsList[2];
-        }
-        else if (chg_ls_activeEffectsList.Count == 2)
-        {
-            // First item
-            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
-
-            // Second item
-            (string, int, int) _itemAtPosition2 = chg_ls_activeEffectsList[1];
-        }
-        else if (chg_ls_activeEffectsList.Count == 1)
-        {
-            // First item
-            (string, int, int) _itemAtPosition1 = chg_ls_activeEffectsList[0];
-        }
+        chg_ls_activeEffectsList.OrderByDescending(x => x.Item2);
     }
 
     /// <summary>
