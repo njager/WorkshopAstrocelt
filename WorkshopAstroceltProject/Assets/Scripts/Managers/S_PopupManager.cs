@@ -47,11 +47,6 @@ public class S_PopupManager : MonoBehaviour
     [Header("Int test value")]
     public int i_popupUpClearInt;
 
-    [Header("Particle effects")]
-    [SerializeField] ParticleSystem pe_redParticle;
-    [SerializeField] ParticleSystem pe_blueParticle;
-    [SerializeField] ParticleSystem pe_yellowParticle;
-
     [Header("Temporary Popup Colors")]
     [SerializeField] Color redPopupTempColor;
     [SerializeField] Color bluePopupTempColor;
@@ -230,33 +225,6 @@ public class S_PopupManager : MonoBehaviour
         b_popupClear = false;
         i_popupUpClearInt = g_global.g_ls_starPopup.Count;
         StartCoroutine(ClearPopupsForRound());
-    }
-
-    /// <summary>
-    /// Someone's particle effect trigger
-    /// - Josh
-    /// </summary>
-    /// <param name="_color"></param>
-    public void TriggerParticleEffects(string _color)
-    {
-        if (_color == "blue")
-        {
-            pe_blueParticle.Play();
-        }
-        else if (_color == "red")
-        {
-            pe_redParticle.Play();
-        }
-        else if (_color == "yellow")
-        {
-            pe_yellowParticle.Play();
-        }
-        else if (_color == "white")
-        {
-            pe_blueParticle.Play();
-            pe_redParticle.Play();
-            pe_yellowParticle.Play();
-        }
     }
 
     /// <summary>

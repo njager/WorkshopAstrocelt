@@ -33,6 +33,8 @@ public class S_Player : MonoBehaviour
     [Tooltip("Duration of the flash.")]
     [SerializeField] private float duration;
 
+    [Tooltip("player animation")]
+    [SerializeField] public Animator animator;
 
     // The material that was in use, when the script started.
     private Material originalMaterial;
@@ -45,8 +47,8 @@ public class S_Player : MonoBehaviour
     {
         // Get the SpriteRenderer to be used,
         // alternatively you could set it from the inspector.
-        playerSprite = GetComponent<SpriteRenderer>();
-
+        //playerSprite = GetComponent<SpriteRenderer>();
+        
         // Get the material that the SpriteRenderer uses, 
         // so we can switch back to it after the flash ended.
         originalMaterial = playerSprite.material;
@@ -56,23 +58,11 @@ public class S_Player : MonoBehaviour
         flashMaterial = new Material(flashMaterial);
     }
 
-    /// <summary>
-    /// Basic Start S_Global setup, grabbing playerAttributes; 
-    /// </summary>
-
-    /*  public void Update()
-      {
-          if (g_global.g_b_playerTurn == true && isComplete == false)
-          {
-              playerSprite.transform.DOShakePosition(1000f, new Vector3(0, 0.00001f, 1), 1, 0, false, false);
-              isComplete = true;
-          }
-      }*/
-
     void Awake()
     {
         g_global = S_Global.Instance;
         p_sc_playerAttributes = this.GetComponent<S_PlayerAttributes>();
+        animator = GetComponent<Animator>();
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -87,18 +77,21 @@ public class S_Player : MonoBehaviour
     /// <param name="_damageValue"></param>
     public void PlayerAttacked(int _damageValue)
     {
-        if(g_global.g_playerState.GetPlayerResistantEffectState() == true == true)
+        int _resistantDamageValue = (int)_damageValue / 2;
+        int _frailtyDamageValue = (int)_damageValue * 2;
+        if (g_global.g_playerState.GetPlayerResistantEffectState() == true)
         {
-            int _newDamageValue = (int)_damageValue / 2;
             if (p_sc_playerAttributes.GetPlayerShieldValue() <= 0)
             {
                 Flash(Color.blue);
                 // Calculate and set health values
-                int _newValue1 = p_sc_playerAttributes.GetPlayerHealthValue() - _newDamageValue;
+                int _newValue1 = p_sc_playerAttributes.GetPlayerHealthValue() - _resistantDamageValue;
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue1);
                 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_blood.Play();
+                p_sc_playerAttributes.GetPlayerAttackedParticle().Play();
+
+                animator.SetTrigger("Blocking");
 
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
@@ -107,12 +100,12 @@ public class S_Player : MonoBehaviour
             }
             else
             {
-                int _tempValue = _newDamageValue - p_sc_playerAttributes.GetPlayerShieldValue();
+                int _tempValue = _resistantDamageValue - p_sc_playerAttributes.GetPlayerShieldValue();
                 //Debug.Log("Temp Val: " + _tempVal);
                 if (_tempValue > 0)
                 {
                     // Calculate and set shield values
-                    int _newValue2 = p_sc_playerAttributes.GetPlayerShieldValue() - _newDamageValue;
+                    int _newValue2 = p_sc_playerAttributes.GetPlayerShieldValue() - _resistantDamageValue;
                     p_sc_playerAttributes.SetPlayerShieldValue(_newValue2);
 
                     // Calculate and set health values
@@ -120,7 +113,9 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue3);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_blood.Play();
+                    p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
+
+                    animator.SetTrigger("Blocking");
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -128,7 +123,52 @@ public class S_Player : MonoBehaviour
                 }
                 else
                 {
-                    int _newValue4 = p_sc_playerAttributes.GetPlayerShieldValue() - _newDamageValue;
+                    int _newValue4 = p_sc_playerAttributes.GetPlayerShieldValue() - _resistantDamageValue;
+                    p_sc_playerAttributes.SetPlayerShieldValue(_newValue4);
+                    //Debug.Log("Player had shields!");
+                }
+            }
+        }
+        else if (g_global.g_playerState.GetPlayerFrailtyEffectState() == true)
+        {
+            if (p_sc_playerAttributes.GetPlayerShieldValue() <= 0)
+            {
+                Flash(Color.blue);
+                // Calculate and set health values
+                int _newValue9 = p_sc_playerAttributes.GetPlayerHealthValue() - _frailtyDamageValue;
+                p_sc_playerAttributes.SetPlayerHealthValue(_newValue9);
+
+                //trigger particle effects
+                p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
+
+                animator.SetTrigger("Blocking");
+
+                //trigger a coroutine to change sprite and go back
+                //StartCoroutine(ChangeDamageSprite());
+            }
+            else
+            {
+                int _tempValue = _resistantDamageValue - p_sc_playerAttributes.GetPlayerShieldValue();
+                //Debug.Log("Temp Val: " + _tempVal);
+                if (_tempValue > 0)
+                {
+                    // Calculate and set shield values
+                    int _newValue10 = p_sc_playerAttributes.GetPlayerShieldValue() - _frailtyDamageValue;
+                    p_sc_playerAttributes.SetPlayerShieldValue(_newValue10);
+
+                    // Calculate and set health values
+                    int _newValue11 = p_sc_playerAttributes.GetPlayerShieldValue() - _tempValue;
+                    p_sc_playerAttributes.SetPlayerHealthValue(_newValue11);
+
+                    //trigger particle effects
+                    p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
+
+                    animator.SetTrigger("Blocking");
+                    //Debug.Log("Player didn't have enough shields!");
+                }
+                else
+                {
+                    int _newValue4 = p_sc_playerAttributes.GetPlayerShieldValue() - _frailtyDamageValue;
                     p_sc_playerAttributes.SetPlayerShieldValue(_newValue4);
                     //Debug.Log("Player had shields!");
                 }
@@ -143,11 +183,11 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue5);
 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_blood.Play();
+                p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
                 //Debug.Log("Player Attacked!");
 
                 Flash(Color.white);
-
+                animator.SetTrigger("Damaged");
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
             }
@@ -166,7 +206,8 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue7);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_blood.Play();
+                    p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
+                    animator.SetTrigger("Damaged");
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -239,7 +280,7 @@ public class S_Player : MonoBehaviour
         }
 
         //trigger the shield particle effect
-        p_sc_playerAttributes.p_pe_shield.Play();
+        p_sc_playerAttributes.GetPlayerShieldAppliedParticle().Play();
 
         // Calculate and set shield values
         int _tempValue = p_sc_playerAttributes.GetPlayerShieldValue() + _shieldValue;
@@ -247,9 +288,6 @@ public class S_Player : MonoBehaviour
 
         // Update Player UI
         PlayerValuesLimitCheck();
-
-        //trigger a coroutine to change back to og sprite
-        //StartCoroutine(ChangeBlockSprite());
     }
 
     /// <summary>
@@ -290,6 +328,9 @@ public class S_Player : MonoBehaviour
         {
             // Set value
             g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
+
+            // Shield Break Particle Check
+            g_global.g_playerAttributeSheet.GetPlayerShieldBreakParticle().Play();
         }
 
         // If health value goes below 0, set back to 0
@@ -362,9 +403,4 @@ public class S_Player : MonoBehaviour
 
         g_global.g_audioManager.SetPlayerAudioPercentage(_temp * 100);
     }
-
-    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Animation Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 }

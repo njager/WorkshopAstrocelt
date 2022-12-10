@@ -48,7 +48,7 @@ public class S_Enemy : MonoBehaviour
     [Header("Nameplate Text Object")]
     [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
 
-    void Awake()
+    private void Awake()
     {
         g_global = S_Global.Instance;
 
@@ -109,18 +109,19 @@ public class S_Enemy : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_enemyType"></param>
-    /// <param name="_damageVal"></param>
+    /// <param name="_damageValue"></param>
     public void EnemyAttacked(string _enemyType, int _damageValue) 
     {
-        Debug.Log("Enemy takes damage");
-        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
+       // Debug.Log("Enemy takes damage");
+        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler" || _enemyType == "Realmwalker")
         {
-            int _newDamageValue = (int)_damageValue / 2;
-            if(e_sc_enemyAttributes.GetEnemyResistantBool() == true) // If the enemy is resisitant
+            int _resistantDamageValue = (int)_damageValue / 2;
+            int _frailtyDamageValue = (int)_damageValue * 2;
+            if (g_global.g_enemyState.GetEnemyResistantEffectState(e_i_enemyCount) == true) // If the enemy is resisitant
             {
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // The enemy has no sheilds
                 {
-                    e_sc_enemyAttributes.e_i_health -= _newDamageValue;
+                    e_sc_enemyAttributes.e_i_health -= _resistantDamageValue;
 
                     // Trigger Damage Sprite
                     StartCoroutine(ChangeDamageSprite());
@@ -132,10 +133,10 @@ public class S_Enemy : MonoBehaviour
                 }
                 else // Enemy has shields
                 {
-                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue;
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _resistantDamageValue;
                     if (_tempVal < 0) 
                     {
-                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _resistantDamageValue);
                         if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
                             e_sc_enemyAttributes.SetEnemyShield(0);
@@ -153,16 +154,62 @@ public class S_Enemy : MonoBehaviour
                     }
                     else
                     {
-                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _resistantDamageValue);
 
                         // Sufficient Shields Particle Effect
-                        e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+                        e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
                         Debug.Log("Enemy had shields!");
                     }
                 }
             }
-            else // If the enemy is not resistant
+            else if (g_global.g_enemyState.GetEnemyFrailtyEffectState(e_i_enemyCount) == true) // If the enemy has frailty
+            {
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // The enemy has no sheilds
+                {
+                    e_sc_enemyAttributes.e_i_health -= _frailtyDamageValue;
+
+                    // Trigger Damage Sprite
+                    StartCoroutine(ChangeDamageSprite());
+
+                    // Attacked Particle Effect
+                    e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                    Debug.Log("Enemy Attacked!");
+                }
+                else // Enemy has shields
+                {
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _frailtyDamageValue;
+                    if (_tempVal < 0)
+                    {
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _frailtyDamageValue);
+                        if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
+                        {
+                            e_sc_enemyAttributes.SetEnemyShield(0);
+                        }
+
+                        EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+
+                        // Trigger Damage Sprite
+                        StartCoroutine(ChangeDamageSprite());
+
+                        // Attacked Particle Effect
+                        e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                        Debug.Log("Enemy didn't have enough shields!");
+                    }
+                    else
+                    {
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _frailtyDamageValue);
+
+                        // Sufficient Shields Particle Effect
+                        e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                        Debug.Log("Enemy had shields!");
+                    }
+                }
+            }
+            else // If the enemy is not resistant or frail
             {
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // Enemy has no shields
                 {
@@ -185,6 +232,9 @@ public class S_Enemy : MonoBehaviour
                         if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
                             e_sc_enemyAttributes.SetEnemyShield(0);
+
+                            // Shield Break Particle Check
+                            g_global.g_enemyState.GetEnemyDataSheet(1).GetEnemyShieldBreakParticle().Play();
                         }
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
@@ -202,7 +252,7 @@ public class S_Enemy : MonoBehaviour
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
 
                         // Sufficient Shields Particle Effect
-                        e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+                        e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -248,7 +298,7 @@ public class S_Enemy : MonoBehaviour
                     e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
 
                     // Sufficient Shields Particle Effect
-                    e_sc_enemyAttributes.GetEnemySufficientShieldParticle().Play();
+                    e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
                     Debug.Log("Enemy had shields!");
                 }
@@ -278,39 +328,27 @@ public class S_Enemy : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
 
             // Play Shield Particle 
-            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
+            e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
-        else if(_enemyType == "Brawler") // Shield Magic
+        else if(_enemyType == "Brawler" || _enemyType == "Magician") // Shield Magic
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
 
             // Play Shield Particle 
-            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
+            e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
-        else if(_enemyType == "Brawler")
+        else if(_enemyType == "Realmwalker")
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
 
             // Play Shield Particle 
-            e_sc_enemyAttributes.GetEnemyShieldedParticle().Play();
+            e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
 
         // Update the UI
         UpdateEnemyHealthUI();
     }
-
-    /// <summary>
-    /// If an enemy heals itself down the line
-    /// - Josh
-    /// </summary>
-    /// <param name="_healthVal"></param>
-    public void EnemyHealed(int _healthVal)
-    {
-        e_sc_enemyAttributes.e_i_health += _healthVal;
-        Debug.Log("Enemy Heals");
-    }
-
 
     /// <summary>
     /// Enemy Special ability function
@@ -329,19 +367,11 @@ public class S_Enemy : MonoBehaviour
         {
             MagicianSpecialAbility();
         }
-        else if(_enemyType == "Beast")
-        {
-            g_global.g_playerState.PlayerBleedingStatusEffect(3);
-        }
         else if(_enemyType == "Brawler")
         {
             g_global.g_playerState.PlayerBleedingStatusEffect(4);
         }
-        else if(_enemyType == "Claurichan")
-        {
-            MagicianSpecialAbility();
-        }
-        else if(_enemyType == "Puca")
+        else if(_enemyType == "Beast")
         {
             g_global.g_playerState.PlayerFrailtyStatusEffect(2);
         }
@@ -478,18 +508,28 @@ public class S_Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// magiciain unique ablility
-    /// gnerates random number from 1-5
-    /// deletes that card
-    /// resets list
-    /// - GOAT
+    /// Magician increases the cost of all cardballs for a single round
     /// </summary>
     public void MagicianSpecialAbility()
     {
-        //int numDelete = Random.Range(1, 6);
+        if(g_global.g_enemyState.GetMagicianAbilityBool() == true) 
+        {
+            g_global.g_enemyState.SetMagicianAbilityValue(1);
+        }
+        else 
+        {
+            // Set the bool
+            g_global.g_enemyState.SetMagicianAbilityBool(true);
 
-        //S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
-        //_cardball.TrueDeleteCardball();
+            // Add the value
+            g_global.g_enemyState.SetMagicianAbilityValue(1);
+
+            // Update current cardballs
+            foreach(S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList()) 
+            {
+                _cardball.AdjustEnergyCost(true, 1);
+            }
+        }
     }
 
     /// <summary>

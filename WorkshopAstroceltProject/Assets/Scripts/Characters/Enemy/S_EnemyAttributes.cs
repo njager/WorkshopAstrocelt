@@ -40,20 +40,15 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_Beast;
     public bool e_b_Brawler;
 
-    [Header("Status Effects")]
-    [SerializeField] bool e_b_acidic;
-    [SerializeField] bool e_b_bleeding;
-    [SerializeField] bool e_b_resistant;
-    [SerializeField] bool e_b_stunned;
-
     //It's attached enemy script
     [Header("Attached Enemy Script")]
     public S_Enemy e_enemy;
 
     [Header("Particle Effects")]
     [SerializeField] ParticleSystem e_pe_enemyAttacked;
-    [SerializeField] ParticleSystem e_pe_enemyShielded;
-    [SerializeField] ParticleSystem e_pe_enemySufficientShield;
+    [SerializeField] ParticleSystem e_pe_enemyShieldApplied;
+    [SerializeField] ParticleSystem e_pe_enemyShieldAttacked;
+    [SerializeField] ParticleSystem e_pe_enemyShieldBreak;
 
     [Header("Animatiors")]
     public Animator e_a_AttackAnimator;
@@ -272,54 +267,6 @@ public class S_EnemyAttributes : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the bool state for acidic for the enemy
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_acidic
-    /// </returns>
-    public bool GetEnemyAcidicBool()
-    {
-        return e_b_acidic;
-    }
-
-    /// <summary>
-    /// Get the bool state for bleed for the enemy
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_bleeding
-    /// </returns>
-    public bool GetEnemyBleedingBool()
-    {
-        return e_b_bleeding;
-    }
-
-    /// <summary>
-    /// Get the bool state for resistant for the enemy 
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_resistant
-    /// </returns>
-    public bool GetEnemyResistantBool()
-    {
-        return e_b_resistant;
-    }
-
-    /// <summary>
-    /// Get the bool state for stun for the enemy 
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_stunned
-    /// </returns>
-    public bool GetEnemyStunnedBool()
-    {
-        return e_b_stunned;
-    }
-
-    /// <summary>
     /// Get the string text for S_EnemyAttributes.e_str_enemyName
     /// - Josh
     /// </summary>
@@ -344,26 +291,39 @@ public class S_EnemyAttributes : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShielded
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShieldApplied
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_pe_enemyShielded
+    /// S_EnemyAttributes.e_pe_enemyShieldApplied
     /// </returns>
-    public ParticleSystem GetEnemyShieldedParticle()
+    public ParticleSystem GetEnemyShieldAppliedParticle()
     {
-        return e_pe_enemyShielded;
+        return e_pe_enemyShieldApplied;
     }
+
     /// <summary>
-    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemySufficientShield
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShieldAttacked
     /// - Josh
     /// </summary>
     /// <returns>
-    /// S_EnemyAttributes.e_pe_enemySufficientShield
+    /// S_EnemyAttributes.e_pe_enemyShieldAttacked
     /// </returns>
-    public ParticleSystem GetEnemySufficientShieldParticle()
+    public ParticleSystem GetEnemyShieldAttackedParticle()
     {
-        return e_pe_enemySufficientShield;
+        return e_pe_enemyShieldAttacked;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_EnemyAttributes.e_pe_enemyShieldBreak
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyAttributes.e_pe_enemyShieldBreak
+    /// </returns>
+    public ParticleSystem GetEnemyShieldBreakParticle()
+    {
+        return e_pe_enemyShieldBreak;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

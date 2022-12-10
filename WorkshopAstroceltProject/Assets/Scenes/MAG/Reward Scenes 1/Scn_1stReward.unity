@@ -395,6 +395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   i_sceneIndex: 3
   b_finalScene: 0
+  b_toRewardScene: 0
+  ls_i_rewardIndices: 
 --- !u!1 &1259748941
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +645,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6111685430301829928, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6111685430561295543, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -755,6 +761,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1092722923}
+    - target: {fileID: 6111685432171935337, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6111685432171935339, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

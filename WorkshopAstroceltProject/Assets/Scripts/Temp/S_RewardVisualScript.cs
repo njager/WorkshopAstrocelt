@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardVisualScript : MonoBehaviour
+public class S_RewardVisualScript : MonoBehaviour
 {
     [SerializeField] GameObject lReward;
     [SerializeField] GameObject rReward;
-    [SerializeField] GameObject lRewardCover;
-    [SerializeField] GameObject rRewardCover;
 
     [SerializeField] GameObject lRewardSelector;
     [SerializeField] GameObject rRewardSelector;
@@ -15,7 +13,7 @@ public class RewardVisualScript : MonoBehaviour
     [SerializeField] int[] ls_cardBundle1;
     [SerializeField] int[] ls_cardBundle2;
 
-    private bool b_rewardClaimed = false;
+    public bool b_rewardClaimed = false;
 
     public S_GameManager s_gameManager;
 
@@ -26,15 +24,15 @@ public class RewardVisualScript : MonoBehaviour
 
     public void LeftRewardButtonClick()
     {
+        Debug.Log("Did this happen?");
         if (!b_rewardClaimed)
         {
             b_rewardClaimed = true;
 
-            lRewardCover.SetActive(false);
             lReward.SetActive(true);
 
-            rRewardCover.SetActive(false);
-            rRewardSelector.SetActive(false);
+            lRewardSelector.SetActive(false);
+
 
             foreach (int _cardID in ls_cardBundle1)
             {
@@ -48,12 +46,9 @@ public class RewardVisualScript : MonoBehaviour
         {
             b_rewardClaimed = true;
 
-            rRewardCover.SetActive(false);
             rReward.SetActive(true);
 
-
-            lRewardCover.SetActive(false);
-            lRewardSelector.SetActive(false);
+            rRewardSelector.SetActive(false);
 
             foreach (int _cardID in ls_cardBundle2)
             {

@@ -166,8 +166,9 @@ public class S_EnemyState : MonoBehaviour
     [SerializeField] bool e_b_enemy4IsActive;
     [SerializeField] bool e_b_enemy5IsActive;
 
-    [Header("Boss Enemy")]
-    public S_Enemy e_bossEnemy;
+    [Header("Magician Ability")]
+    [SerializeField] int e_i_magicianAbilityValue;
+    [SerializeField] bool e_b_magicianAbilityBool;
 
     private void Awake()
     {
@@ -347,7 +348,7 @@ public class S_EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="_stackValue"></param>
     /// /// <param name="_enemyNum"></param>
-    public void EnemyAcidicStatusEffect(int _stackValue, int _enemyNum)
+    public void EnemyAcidStatusEffect(int _stackValue, int _enemyNum)
     {
         // If the Enemy was Enemy 1
         if (_enemyNum == 1)
@@ -755,7 +756,6 @@ public class S_EnemyState : MonoBehaviour
             else
             {
                 Debug.Log("Effect already active!");
-                // Play particle effect
             }
         }
 
@@ -1694,6 +1694,16 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reset the magician special ability as it is only supposed to last one turn
+    /// - Josh
+    /// </summary>
+    public void ResetMagicianAbility() 
+    {
+        e_i_magicianAbilityValue = 0;
+        e_b_magicianAbilityBool = false;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -2413,6 +2423,26 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the int value of S_EnemyState.e_i_magicianAbilityValue
+    /// - Josh
+    /// </summary>
+    /// <param name="e_i_magicianAbilityValue"></param>
+    public void SetMagicianAbilityValue(int _magicianAbilityValue) 
+    {
+        e_i_magicianAbilityValue += _magicianAbilityValue;
+    }
+
+    /// <summary>
+    /// Set the bool state of S_EnemyState.e_b_magicianAbilityBool
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void SetMagicianAbilityBool(bool _state)
+    {
+        e_b_magicianAbilityBool = _state;
+    }
+
     /////////////////////////////-----------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Enemy Status Effect Stack Count Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-----------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -2896,5 +2926,29 @@ public class S_EnemyState : MonoBehaviour
             Debug.Log("DEBUG: FAILED FUNCTION - S_EnemyState - GetEnemyResistantEffectStackRemainder()");
             return 0;
         }
+    }
+
+    /// <summary>
+    /// Get the int value of S_EnemyState.e_i_magicianAbilityValue
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyState.e_i_magicianAbilityValue
+    /// </returns>
+    public int GetMagicianAbilityValue()
+    {
+        return e_i_magicianAbilityValue;
+    }
+
+    /// <summary>
+    /// Get the bool state of S_EnemyState.e_b_magicianAbilityBool
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_EnemyState.e_b_magicianAbilityBool
+    /// </returns>
+    public bool GetMagicianAbilityBool()
+    {
+        return e_b_magicianAbilityBool;
     }
 }

@@ -8,53 +8,78 @@ public class S_VFXManager : MonoBehaviour
     [SerializeField] S_Global g_global;
 
     [Header("Enemy Hurts Player")]
-    [SerializeField] ParticleSystem a_enemyAttacksPlayer;
+    [SerializeField] ParticleSystem pe_enemyAttacksPlayer;
 
     [Header("Player Hurts Enemy")]
-    [SerializeField] ParticleSystem a_playerAttacksEnemy;
+    [SerializeField] ParticleSystem pe_playerAttacksEnemy;
 
     [Header("Player Shields")]
-    [SerializeField] ParticleSystem a_playerShields;
+    [SerializeField] ParticleSystem pe_playerShields;
 
     [Header("Enemy Shields")]
-    [SerializeField] ParticleSystem a_enemyShields;
+    [SerializeField] ParticleSystem pe_enemyShields;
 
     [Header("Enemy Special - General")]
-    [SerializeField] ParticleSystem a_enemySpecialGeneral;
+    [SerializeField] ParticleSystem pe_enemySpecialGeneral;
 
     [Header("Red Card Spawn")]
-    [SerializeField] ParticleSystem a_redCardSpawn;
+    [SerializeField] ParticleSystem pe_redCardSpawn;
 
     [Header("Blue Card Spawn")]
-    [SerializeField] ParticleSystem a_blueCardSpawn;
+    [SerializeField] ParticleSystem pe_blueCardSpawn;
 
     [Header("Yellow Card spawn")]
-    [SerializeField] ParticleSystem a_yellowCardSpawn;
+    [SerializeField] ParticleSystem pe_yellowCardSpawn;
 
     [Header("White Card Spawn")]
-    [SerializeField] ParticleSystem a_whiteCardSpawn;
+    [SerializeField] ParticleSystem pe_whiteCardSpawn;
 
     [Header("Enemy Died")]
-    [SerializeField] ParticleSystem a_enemyDied;
+    [SerializeField] ParticleSystem pe_enemyDied;
 
     [Header("Reward Scene")]
-    [SerializeField] ParticleSystem a_rewardScene;
+    [SerializeField] ParticleSystem pe_rewardScene;
 
     [Header("Reward Chosen")]
-    [SerializeField] ParticleSystem a_rewardChosen;
+    [SerializeField] ParticleSystem pe_rewardChosen;
 
     [Header("End Turn Clicked")]
-    [SerializeField] ParticleSystem a_endTurnClicked;
+    [SerializeField] ParticleSystem pe_endTurnClicked;
 
     [Header("Star Connected")]
-    [SerializeField] ParticleSystem a_starConnected;
+    [SerializeField] ParticleSystem pe_starConnected;
 
     [Header("Constellation Completed")]
-    [SerializeField] ParticleSystem a_constellationCompleted;
+    [SerializeField] ParticleSystem pe_constellationCompleted;
 
     private void Awake()
     {
         g_global = S_Global.Instance;
+    }
+
+    /// <summary>
+    /// Card spawn particle effect triggers
+    /// - Josh
+    /// </summary>
+    /// <param name="_color"></param>
+    public void TriggerParticleEffects(string _color)
+    {
+        if (_color == "blue")
+        {
+            pe_blueCardSpawn.Play();
+        }
+        else if (_color == "red")
+        {
+            pe_redCardSpawn.Play();
+        }
+        else if (_color == "yellow")
+        {
+            pe_yellowCardSpawn.Play();
+        }
+        else if (_color == "white")
+        {
+            pe_whiteCardSpawn.Play();
+        }
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -70,7 +95,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem GetEnemyAttackedPlayerParticle()
     {
-        return a_enemyAttacksPlayer;
+        return pe_enemyAttacksPlayer;
     }
 
     /// <summary>
@@ -82,7 +107,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem PlayerShieldsParticle()
     {
-        return a_playerShields;
+        return pe_playerShields;
     }
 
     /// <summary>
@@ -94,7 +119,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem EnemyShieldsParticle()
     {
-        return a_enemyShields;
+        return pe_enemyShields;
     }
 
     /// <summary>
@@ -106,7 +131,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem GeneralEnemySpecialParticle()
     {
-        return a_enemySpecialGeneral;
+        return pe_enemySpecialGeneral;
     }
 
     /// <summary>
@@ -118,7 +143,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem RedCardSpawnParticle()
     {
-        return a_redCardSpawn;
+        return pe_redCardSpawn;
     }
 
     /// <summary>
@@ -130,7 +155,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem BlueCardSpawnParticle()
     {
-        return a_blueCardSpawn;
+        return pe_blueCardSpawn;
     }
 
     /// <summary>
@@ -142,7 +167,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem YellowCardSpawnParticle()
     {
-        return a_yellowCardSpawn;
+        return pe_yellowCardSpawn;
     }
 
     /// <summary>
@@ -154,7 +179,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem WhiteCardSpawnParticle()
     {
-        return a_whiteCardSpawn;
+        return pe_whiteCardSpawn;
     }
 
     /// <summary>
@@ -166,7 +191,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem EnemyDied()
     {
-        return a_enemyDied;
+        return pe_enemyDied;
     }
 
     /// <summary>
@@ -178,7 +203,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem RewardScene()
     {
-        return a_rewardScene;
+        return pe_rewardScene;
     }
 
     /// <summary>
@@ -190,7 +215,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem RewardChosen()
     {
-        return a_rewardChosen;
+        return pe_rewardChosen;
     }
 
     /// <summary>
@@ -202,7 +227,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem EndTurnClicked()
     {
-        return a_rewardChosen;
+        return pe_rewardChosen;
     }
 
     /// <summary>
@@ -214,7 +239,7 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem StarConnected() 
     {
-        return a_starConnected;
+        return pe_starConnected;
     }
 
     /// <summary>
@@ -226,6 +251,6 @@ public class S_VFXManager : MonoBehaviour
     /// </returns>
     public ParticleSystem ConstellationCompleted() 
     {
-        return a_constellationCompleted;
+        return pe_constellationCompleted;
     }
 }

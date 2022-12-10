@@ -28,8 +28,10 @@ public class S_PlayerAttributes : MonoBehaviour
     public bool p_b_playerHasConstellationEffects;
 
     [Header("Particle Effect")]
-    public ParticleSystem p_pe_blood;
-    public ParticleSystem p_pe_shield;
+    [SerializeField] ParticleSystem p_pe_playerAttacked;
+    [SerializeField] ParticleSystem p_pe_playerShieldApplied;
+    [SerializeField] ParticleSystem p_pe_playerShieldAttacked;
+    [SerializeField] ParticleSystem p_pe_playerShieldBreak;
 
     [Header("Animatiors")]
     public Animator p_a_AttackAnimator;
@@ -103,6 +105,54 @@ public class S_PlayerAttributes : MonoBehaviour
     public int GetPlayerMaxHealthValue()
     {
         return p_i_maxHealth;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_PlayerAttributes.p_pe_playerAttacked
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_pe_playerAttacked
+    /// </returns>
+    public ParticleSystem GetPlayerAttackedParticle()
+    {
+        return p_pe_playerAttacked;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_PlayerAttributes.p_pe_playerShieldApplied
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_pe_playerShieldApplied
+    /// </returns>
+    public ParticleSystem GetPlayerShieldAppliedParticle()
+    {
+        return p_pe_playerShieldApplied;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_PlayerAttributes.p_pe_playerShieldAttacked
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_pe_playerShieldAttacked
+    /// </returns>
+    public ParticleSystem GetPlayerShieldAttackedParticle()
+    {
+        return p_pe_playerShieldAttacked;
+    }
+
+    /// <summary>
+    /// Get the ParticleSystem for S_PlayerAttributes.p_pe_playerShieldBreak
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerAttributes.p_pe_playerShieldBreak
+    /// </returns>
+    public ParticleSystem GetPlayerShieldBreakParticle()
+    {
+        return p_pe_playerShieldBreak;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
