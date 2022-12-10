@@ -48,7 +48,7 @@ public class S_Enemy : MonoBehaviour
     [Header("Nameplate Text Object")]
     [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
 
-    void Awake()
+    private void Awake()
     {
         g_global = S_Global.Instance;
 
@@ -109,11 +109,11 @@ public class S_Enemy : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <param name="_enemyType"></param>
-    /// <param name="_damageVal"></param>
+    /// <param name="_damageValue"></param>
     public void EnemyAttacked(string _enemyType, int _damageValue) 
     {
         Debug.Log("Enemy takes damage");
-        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
+        if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler" || _enemyType == "Realmwalker")
         {
             int _resistantDamageValue = (int)_damageValue / 2;
             int _frailtyDamageValue = (int)_damageValue * 2;
@@ -327,14 +327,14 @@ public class S_Enemy : MonoBehaviour
             // Play Shield Particle 
             e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
-        else if(_enemyType == "Brawler") // Shield Magic
+        else if(_enemyType == "Brawler" || _enemyType == "Magician") // Shield Magic
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
 
             // Play Shield Particle 
             e_sc_enemyAttributes.GetEnemyShieldAppliedParticle().Play();
         }
-        else if(_enemyType == "Brawler")
+        else if(_enemyType == "Realmwalker")
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
@@ -376,19 +376,11 @@ public class S_Enemy : MonoBehaviour
         {
             MagicianSpecialAbility();
         }
-        else if(_enemyType == "Beast")
-        {
-            g_global.g_playerState.PlayerBleedingStatusEffect(3);
-        }
         else if(_enemyType == "Brawler")
         {
             g_global.g_playerState.PlayerBleedingStatusEffect(4);
         }
-        else if(_enemyType == "Claurichan")
-        {
-            MagicianSpecialAbility();
-        }
-        else if(_enemyType == "Puca")
+        else if(_enemyType == "Beast")
         {
             g_global.g_playerState.PlayerFrailtyStatusEffect(2);
         }
