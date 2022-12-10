@@ -1694,6 +1694,16 @@ public class S_EnemyState : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reset the magician special ability as it is only supposed to last one turn
+    /// - Josh
+    /// </summary>
+    public void ResetMagicianAbility() 
+    {
+        e_i_magicianAbilityValue = 0;
+        e_b_magicianAbilityBool = false;
+    }
+
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

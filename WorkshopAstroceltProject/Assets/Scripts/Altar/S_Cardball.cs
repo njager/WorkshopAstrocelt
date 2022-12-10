@@ -271,6 +271,29 @@ public class S_Cardball : MonoBehaviour
     }
 
     /// <summary>
+    /// Set the energy cost, have it adjust up or down for a given value
+    /// false for subtract
+    /// true for add
+    /// - Josh
+    /// </summary>
+    /// <param name="_operation"></param>
+    /// <param name="_value"></param>
+    public void AdjustEnergyCost(bool _operation, int _value) 
+    {
+        if(_operation == false) 
+        {
+            c_i_cardEnergyCost -= _value;
+        }
+        else 
+        {
+            c_i_cardEnergyCost += _value;
+        }
+
+        // Set the text again
+        c_cardballText.text = "" + c_i_cardEnergyCost;
+    }
+
+    /// <summary>
     /// Toggle altar text on when mouse enters Cardball
     /// also adjust the borders based off of the color
     /// </summary>

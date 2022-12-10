@@ -112,7 +112,7 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_damageValue"></param>
     public void EnemyAttacked(string _enemyType, int _damageValue) 
     {
-        Debug.Log("Enemy takes damage");
+       // Debug.Log("Enemy takes damage");
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler" || _enemyType == "Realmwalker")
         {
             int _resistantDamageValue = (int)_damageValue / 2;
@@ -348,18 +348,6 @@ public class S_Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// If an enemy heals itself down the line
-    /// - Josh
-    /// </summary>
-    /// <param name="_healthVal"></param>
-    public void EnemyHealed(int _healthVal)
-    {
-        e_sc_enemyAttributes.e_i_health += _healthVal;
-        Debug.Log("Enemy Heals");
-    }
-
-
-    /// <summary>
     /// Enemy Special ability function
     /// Has to be iterated upon per new enemy type
     /// - Josh
@@ -517,18 +505,28 @@ public class S_Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// magiciain unique ablility
-    /// gnerates random number from 1-5
-    /// deletes that card
-    /// resets list
-    /// - GOAT
+    /// Magician increases the cost of all cardballs for a single round
     /// </summary>
     public void MagicianSpecialAbility()
     {
-        //int numDelete = Random.Range(1, 6);
+        if(g_global.g_enemyState.GetMagicianAbilityBool() == true) 
+        {
+            g_global.g_enemyState.SetMagicianAbilityValue(1);
+        }
+        else 
+        {
+            // Set the bool
+            g_global.g_enemyState.SetMagicianAbilityBool(true);
 
-        //S_Cardball _cardball = g_global.g_ls_cardBallPrefabs[numDelete];
-        //_cardball.TrueDeleteCardball();
+            // Add the value
+            g_global.g_enemyState.SetMagicianAbilityValue(1);
+
+            // Update current cardballs
+            foreach(S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList()) 
+            {
+                _cardball.AdjustEnergyCost(false, 1);
+            }
+        }
     }
 
     /// <summary>

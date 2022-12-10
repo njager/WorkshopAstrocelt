@@ -149,13 +149,19 @@ public class S_Altar : MonoBehaviour
         Debug.Log(_cardTemplate);
 
         // Instantiate Cardball
-        GameObject c_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
-        c_cardball.transform.SetParent(_cardballPosition.transform, false);
+        GameObject crd_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
+        crd_cardball.transform.SetParent(_cardballPosition.transform, false);
 
-        Debug.Log(c_cardball.transform.parent);
+        Debug.Log(crd_cardball.transform.parent);
         
         // Grab card ball script
-        S_Cardball _cardballScript = c_cardball.GetComponent<S_Cardball>();
+        S_Cardball _cardballScript = crd_cardball.GetComponent<S_Cardball>();
+
+        // Check and see if Magician's ability is active
+        if(g_global.g_enemyState.GetMagicianAbilityBool() == true) 
+        {
+            _cardballScript.AdjustEnergyCost(true, g_global.g_enemyState.GetMagicianAbilityValue());
+        }
 
         // Setup cardball (this is where it'd be loaded with it's scriptable object
         _cardballScript.c_cardData = _cardTemplate;
