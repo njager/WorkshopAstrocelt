@@ -58,19 +58,6 @@ public class S_Player : MonoBehaviour
         flashMaterial = new Material(flashMaterial);
     }
 
-    /// <summary>
-    /// Basic Start S_Global setup, grabbing playerAttributes; 
-    /// </summary>
-
-    /*  public void Update()
-      {
-          if (g_global.g_b_playerTurn == true && isComplete == false)
-          {
-              playerSprite.transform.DOShakePosition(1000f, new Vector3(0, 0.00001f, 1), 1, 0, false, false);
-              isComplete = true;
-          }
-      }*/
-
     void Awake()
     {
         g_global = S_Global.Instance;
@@ -102,7 +89,7 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue1);
                 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_playerAttacked.Play();
+                p_sc_playerAttributes.GetPlayerAttackedParticle().Play();
 
                 animator.SetTrigger("Blocking");
 
@@ -126,7 +113,8 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue3);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_playerAttacked.Play();
+                    p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
+
                     animator.SetTrigger("Blocking");
                     //Debug.Log("Player didn't have enough shields!");
 
@@ -151,7 +139,7 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue9);
 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_playerAttacked.Play();
+                p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
 
                 animator.SetTrigger("Blocking");
 
@@ -173,7 +161,7 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue11);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_playerAttacked.Play();
+                    p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
 
                     animator.SetTrigger("Blocking");
                     //Debug.Log("Player didn't have enough shields!");
@@ -195,7 +183,7 @@ public class S_Player : MonoBehaviour
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue5);
 
                 //trigger particle effects
-                p_sc_playerAttributes.p_pe_playerAttacked.Play();
+                p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
                 //Debug.Log("Player Attacked!");
 
                 Flash(Color.white);
@@ -218,7 +206,7 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue7);
 
                     //trigger particle effects
-                    p_sc_playerAttributes.p_pe_playerAttacked.Play();
+                    p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
                     animator.SetTrigger("Damaged");
                     //Debug.Log("Player didn't have enough shields!");
 
@@ -300,9 +288,6 @@ public class S_Player : MonoBehaviour
 
         // Update Player UI
         PlayerValuesLimitCheck();
-
-        //trigger a coroutine to change back to og sprite
-        //StartCoroutine(ChangeBlockSprite());
     }
 
     /// <summary>
