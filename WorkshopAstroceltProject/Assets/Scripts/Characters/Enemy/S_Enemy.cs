@@ -115,12 +115,13 @@ public class S_Enemy : MonoBehaviour
         Debug.Log("Enemy takes damage");
         if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler")
         {
-            int _newDamageValue = (int)_damageValue / 2;
-            if(e_sc_enemyAttributes.GetEnemyResistantBool() == true) // If the enemy is resisitant
+            int _resistantDamageValue = (int)_damageValue / 2;
+            int _frailtyDamageValue = (int)_damageValue * 2;
+            if (g_global.g_enemyState.GetEnemyResistantEffectState(e_i_enemyCount) == true) // If the enemy is resisitant
             {
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // The enemy has no sheilds
                 {
-                    e_sc_enemyAttributes.e_i_health -= _newDamageValue;
+                    e_sc_enemyAttributes.e_i_health -= _resistantDamageValue;
 
                     // Trigger Damage Sprite
                     StartCoroutine(ChangeDamageSprite());
@@ -132,10 +133,10 @@ public class S_Enemy : MonoBehaviour
                 }
                 else // Enemy has shields
                 {
-                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue;
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _resistantDamageValue;
                     if (_tempVal < 0) 
                     {
-                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _resistantDamageValue);
                         if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
                             e_sc_enemyAttributes.SetEnemyShield(0);
@@ -153,7 +154,53 @@ public class S_Enemy : MonoBehaviour
                     }
                     else
                     {
-                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _newDamageValue);
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _resistantDamageValue);
+
+                        // Sufficient Shields Particle Effect
+                        e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                        Debug.Log("Enemy had shields!");
+                    }
+                }
+            }
+            else if (g_global.g_enemyState.GetEnemyFrailtyEffectState(e_i_enemyCount) == true) // If the enemy has frailty
+            {
+                if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // The enemy has no sheilds
+                {
+                    e_sc_enemyAttributes.e_i_health -= _frailtyDamageValue;
+
+                    // Trigger Damage Sprite
+                    StartCoroutine(ChangeDamageSprite());
+
+                    // Attacked Particle Effect
+                    e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                    Debug.Log("Enemy Attacked!");
+                }
+                else // Enemy has shields
+                {
+                    int _tempVal = e_sc_enemyAttributes.GetEnemyShieldValue() - _frailtyDamageValue;
+                    if (_tempVal < 0)
+                    {
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _frailtyDamageValue);
+                        if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
+                        {
+                            e_sc_enemyAttributes.SetEnemyShield(0);
+                        }
+
+                        EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
+
+                        // Trigger Damage Sprite
+                        StartCoroutine(ChangeDamageSprite());
+
+                        // Attacked Particle Effect
+                        e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                        Debug.Log("Enemy didn't have enough shields!");
+                    }
+                    else
+                    {
+                        e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _frailtyDamageValue);
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();

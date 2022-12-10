@@ -40,12 +40,6 @@ public class S_EnemyAttributes : MonoBehaviour
     public bool e_b_Beast;
     public bool e_b_Brawler;
 
-    [Header("Status Effects")]
-    [SerializeField] bool e_b_acidic;
-    [SerializeField] bool e_b_bleeding;
-    [SerializeField] bool e_b_resistant;
-    [SerializeField] bool e_b_stunned;
-
     //It's attached enemy script
     [Header("Attached Enemy Script")]
     public S_Enemy e_enemy;
@@ -270,54 +264,6 @@ public class S_EnemyAttributes : MonoBehaviour
     public int GetEnemyTempShield()
     {
         return e_i_tempSheild;
-    }
-
-    /// <summary>
-    /// Get the bool state for acidic for the enemy
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_acidic
-    /// </returns>
-    public bool GetEnemyAcidicBool()
-    {
-        return e_b_acidic;
-    }
-
-    /// <summary>
-    /// Get the bool state for bleed for the enemy
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_bleeding
-    /// </returns>
-    public bool GetEnemyBleedingBool()
-    {
-        return e_b_bleeding;
-    }
-
-    /// <summary>
-    /// Get the bool state for resistant for the enemy 
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_resistant
-    /// </returns>
-    public bool GetEnemyResistantBool()
-    {
-        return e_b_resistant;
-    }
-
-    /// <summary>
-    /// Get the bool state for stun for the enemy 
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_EnemyAttributes.e_b_stunned
-    /// </returns>
-    public bool GetEnemyStunnedBool()
-    {
-        return e_b_stunned;
     }
 
     /// <summary>
