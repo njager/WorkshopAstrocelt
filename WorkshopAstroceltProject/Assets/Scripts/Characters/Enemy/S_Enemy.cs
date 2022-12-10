@@ -209,7 +209,7 @@ public class S_Enemy : MonoBehaviour
                     }
                 }
             }
-            else // If the enemy is not resistant
+            else // If the enemy is not resistant or frail
             {
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // Enemy has no shields
                 {

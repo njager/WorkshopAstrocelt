@@ -292,7 +292,7 @@ public class S_Player : MonoBehaviour
         }
 
         //trigger the shield particle effect
-        p_sc_playerAttributes.p_pe_shieldApplied.Play();
+        p_sc_playerAttributes.GetPlayerShieldAppliedParticle().Play();
 
         // Calculate and set shield values
         int _tempValue = p_sc_playerAttributes.GetPlayerShieldValue() + _shieldValue;
@@ -343,6 +343,9 @@ public class S_Player : MonoBehaviour
         {
             // Set value
             g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
+
+            // Shield Break Particle Check
+            g_global.g_playerAttributeSheet.GetPlayerShieldBreakParticle().Play();
         }
 
         // If health value goes below 0, set back to 0
