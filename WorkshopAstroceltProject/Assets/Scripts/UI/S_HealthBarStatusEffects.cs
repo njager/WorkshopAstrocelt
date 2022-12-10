@@ -104,13 +104,16 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_acidStatusEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
 
                 // Move Child
-                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_acidStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
 
                 // Set child
                 chg_statusEffectPosition1Child = chg_UI_acidStatusEffect;
+
+                // Set Index
+                SetEffectIndex(0, "acid");
 
                 // Set identifier
                 chg_str_position1Identifier = "acid";
@@ -127,13 +130,16 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_acidStatusEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
 
                 // Move Child
-                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_acidStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
 
                 // Set child
                 chg_statusEffectPosition2Child = chg_UI_acidStatusEffect;
+
+                // Set Index
+                SetEffectIndex(1, "acid");
 
                 // Set identifier
                 chg_str_position2Identifier = "acid";
@@ -150,13 +156,16 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_acidStatusEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
 
                 // Move Child
-                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_acidStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
 
                 // Set child
                 chg_statusEffectPosition3Child = chg_UI_acidStatusEffect;
+
+                // Set Index
+                SetEffectIndex(2, "acid");
 
                 // Set identifier
                 chg_str_position3Identifier = "acid";
@@ -173,7 +182,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_acidStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
 
                 // Move Child
-                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_acidStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -181,11 +190,40 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Set child
                 chg_statusEffectPosition4Child = chg_UI_acidStatusEffect;
 
+                // Set Index
+                SetEffectIndex(3, "acid");
+
                 // Set identifier
                 chg_str_position4Identifier = "acid";
 
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 4)
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_acidStatusEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
+
+                // Move Child
+                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_acidStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition5Child = chg_UI_acidStatusEffect;
+
+                // Set Index
+                SetEffectIndex(4, "acid");
+
+                // Set identifier
+                chg_str_position5Identifier = "acid";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
         }
         else if (_effect.Equals("bleed"))
@@ -199,7 +237,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_bleedStatusEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
 
                 // Move Child
-                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_bleedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -225,7 +263,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_bleedStatusEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
 
                 // Move Child
-                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_bleedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -251,7 +289,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_bleedStatusEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
 
                 // Move Child
-                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_bleedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -277,7 +315,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_bleedStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
 
                 // Move Child
-                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_bleedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -303,7 +341,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_bleedStatusEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
 
                 // Move Child
-                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_bleedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -332,7 +370,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
 
                 // Move Child
-                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -358,7 +396,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
 
                 // Move Child
-                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -384,7 +422,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
 
                 // Move Child
-                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -410,7 +448,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
 
                 // Move Child
-                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -436,7 +474,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
 
                 // Move Child
-                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -465,7 +503,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_resistantStatusEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
 
                 // Move Child
-                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_resistantStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -491,7 +529,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_resistantStatusEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
 
                 // Move Child
-                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_resistantStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -517,7 +555,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_resistantStatusEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
 
                 // Move Child
-                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_resistantStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -543,7 +581,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_resistantStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
 
                 // Move Child
-                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_resistantStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -569,7 +607,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_resistantStatusEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
 
                 // Move Child
-                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_resistantStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -598,7 +636,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_stunStatusEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
 
                 // Move Child
-                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_stunStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -624,7 +662,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_stunStatusEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
 
                 // Move Child
-                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_stunStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -650,7 +688,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_stunStatusEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
 
                 // Move Child
-                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_stunStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -676,7 +714,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_stunStatusEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
 
                 // Move Child
-                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_stunStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
@@ -702,7 +740,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_UI_stunStatusEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
 
                 // Move Child
-                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_spawnMoveValue);
+                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
 
                 // Fade in Child
                 chg_UI_stunStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
