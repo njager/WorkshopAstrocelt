@@ -80,6 +80,8 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     private void Awake()
     {
         g_global = S_Global.Instance;
+
+        ThreeElementTuple.tupleList = chg_ls_activeEffectsList;
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

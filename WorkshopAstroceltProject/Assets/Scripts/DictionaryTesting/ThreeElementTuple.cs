@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ThreeElementTuple : MonoBehaviour
 {
-    public List<(string, int, int)> tupleList;
+    public static List<(string, int, int)> tupleList;
 }
