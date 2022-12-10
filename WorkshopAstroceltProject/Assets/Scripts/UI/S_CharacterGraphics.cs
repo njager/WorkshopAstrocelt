@@ -115,6 +115,9 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldText(1).gameObject.SetActive(false);
                 sc_UIManager.GetEnemyShieldIcon(1).SetActive(false);
                 sc_UIManager.GetEnemyShieldOverlay(1).SetActive(false);
+
+                // Shield Break Particle Check
+                g_global.g_enemyState.GetEnemyDataSheet(1).GetEnemyShieldBreakParticle().Play();
             }
             else
             {
@@ -137,6 +140,9 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldText(2).gameObject.SetActive(false);
                 sc_UIManager.GetEnemyShieldIcon(2).SetActive(false);
                 sc_UIManager.GetEnemyShieldOverlay(2).SetActive(false);
+
+                // Shield Break Particle Check
+                g_global.g_enemyState.GetEnemyDataSheet(2).GetEnemyShieldBreakParticle().Play();
             }
             else
             {
@@ -158,6 +164,9 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldText(3).gameObject.SetActive(false);
                 sc_UIManager.GetEnemyShieldIcon(3).SetActive(false);
                 sc_UIManager.GetEnemyShieldOverlay(3).SetActive(false);
+
+                // Shield Break Particle Check
+                g_global.g_enemyState.GetEnemyDataSheet(3).GetEnemyShieldBreakParticle().Play();
             }
             else
             {
@@ -180,6 +189,9 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldText(4).gameObject.SetActive(false);
                 sc_UIManager.GetEnemyShieldIcon(4).SetActive(false);
                 sc_UIManager.GetEnemyShieldOverlay(4).SetActive(false);
+
+                // Shield Break Particle Check
+                g_global.g_enemyState.GetEnemyDataSheet(4).GetEnemyShieldBreakParticle().Play();
             }
             else
             {
@@ -202,6 +214,9 @@ public class S_CharacterGraphics : MonoBehaviour
                 sc_UIManager.GetEnemyShieldText(5).gameObject.SetActive(false);
                 sc_UIManager.GetEnemyShieldIcon(5).SetActive(false);
                 sc_UIManager.GetEnemyShieldOverlay(5).SetActive(false);
+
+                // Shield Break Particle Check
+                g_global.g_enemyState.GetEnemyDataSheet(5).GetEnemyShieldBreakParticle().Play();
             }
             else
             {
