@@ -125,17 +125,17 @@ MonoBehaviour:
   chg_e_b_enemy3HealthBar: 0
   chg_e_b_enemy4HealthBar: 0
   chg_e_b_enemy5HealthBar: 0
-  chg_UI_acidStatusEffect: {fileID: 0}
-  chg_UI_bleedStatusEffect: {fileID: 0}
-  chg_UI_frailtyStatusEffect: {fileID: 0}
-  chg_UI_resistantStatusEffect: {fileID: 0}
-  chg_UI_stunStatusEffect: {fileID: 0}
-  chg_statusEffectPosition1: {fileID: 0}
-  chg_statusEffectPosition2: {fileID: 0}
-  chg_statusEffectPosition3: {fileID: 0}
-  chg_statusEffectPosition4: {fileID: 0}
-  chg_statusEffectPosition5: {fileID: 0}
-  chg_statusEffectSpawn: {fileID: 0}
+  chg_UI_acidStatusEffect: {fileID: 8819406125855631485}
+  chg_UI_bleedStatusEffect: {fileID: 7983213477481510540}
+  chg_UI_frailtyStatusEffect: {fileID: 4785522517668534133}
+  chg_UI_resistantStatusEffect: {fileID: 8989632453072894049}
+  chg_UI_stunStatusEffect: {fileID: 1692325565739897680}
+  chg_statusEffectPosition1: {fileID: 6031942206613698232}
+  chg_statusEffectPosition2: {fileID: 6498117452502031982}
+  chg_statusEffectPosition3: {fileID: 5520199711807328944}
+  chg_statusEffectPosition4: {fileID: 6398319613015639218}
+  chg_statusEffectPosition5: {fileID: 8126206485834943680}
+  chg_statusEffectSpawn: {fileID: 8435864669050583190}
   chg_statusEffectPosition1Child: {fileID: 0}
   chg_statusEffectPosition2Child: {fileID: 0}
   chg_statusEffectPosition3Child: {fileID: 0}
@@ -504,15 +504,15 @@ RectTransform:
   m_GameObject: {fileID: 1692325565739897680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_Children: []
   m_Father: {fileID: 199344088608030019}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 218.3, y: 24.9}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 224.5, y: 29.9}
+  m_SizeDelta: {x: 120, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5284131879361195035
 CanvasRenderer:
@@ -718,15 +718,15 @@ RectTransform:
   m_GameObject: {fileID: 4785522517668534133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2725, y: 0.2725, z: 0}
   m_Children: []
   m_Father: {fileID: 199344088608030019}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268.19986, y: 23.70003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 283.2, y: 29.9}
+  m_SizeDelta: {x: 100, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4646566381501195076
 CanvasRenderer:
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47dd0bd360ae74b81bea7f77309791b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8f59ab64f21a3241ae5f133887d5b14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -775,7 +775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8571175999302192186}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffectPosition3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 199344088608030019}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,8 +895,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5984050059525908693}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -526, y: 531, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.9, y: -2.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5679906369016384515}
   - {fileID: 6422349099945828933}
@@ -915,7 +915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3747889429251771123}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffectPosition1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3232592306752246574}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffectPosition4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3198888704187351806}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffectPosition2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5525606103561465998}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6598246444833775163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -35.7, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2721412882369576521}
@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 6422349099945828933}
   - component: {fileID: 807444305071134893}
   - component: {fileID: 2085526950399807079}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BleedEffectIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,15 +1225,15 @@ RectTransform:
   m_GameObject: {fileID: 7983213477481510540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0}
   m_Children: []
   m_Father: {fileID: 199344088608030019}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 170.79988, y: 21.500029}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 314.5, y: 29.9}
+  m_SizeDelta: {x: 120, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &807444305071134893
 CanvasRenderer:
@@ -1282,7 +1282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4680696074224643796}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatusEffectPosition5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1419,7 +1419,7 @@ GameObject:
   - component: {fileID: 5679906369016384515}
   - component: {fileID: 1590434233392827837}
   - component: {fileID: 1594450113825282685}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AcidEffectIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,15 +1435,15 @@ RectTransform:
   m_GameObject: {fileID: 8819406125855631485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children: []
   m_Father: {fileID: 199344088608030019}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268.19986, y: 23.70003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 255.3, y: 29.9}
+  m_SizeDelta: {x: 100, y: 155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1590434233392827837
 CanvasRenderer:
@@ -1510,14 +1510,14 @@ RectTransform:
   m_GameObject: {fileID: 8989632453072894049}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_Children: []
   m_Father: {fileID: 199344088608030019}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268.19986, y: 23.70003}
+  m_AnchoredPosition: {x: 191.5, y: 29.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1330677370001051291
