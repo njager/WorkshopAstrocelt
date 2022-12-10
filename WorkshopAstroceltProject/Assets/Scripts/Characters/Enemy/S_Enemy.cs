@@ -524,7 +524,7 @@ public class S_Enemy : MonoBehaviour
             // Update current cardballs
             foreach(S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList()) 
             {
-                _cardball.AdjustEnergyCost(false, 1);
+                _cardball.AdjustEnergyCost(true, 1);
             }
         }
     }
