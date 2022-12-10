@@ -166,7 +166,10 @@ public class S_TurnManager : MonoBehaviour
 
         g_global.g_UIManager.sc_characterGraphics.EnemyShieldingUIToggle();
 
+        // Enemy State stuff
         g_global.g_enemyState.EnemyStatusEffectDecrement();
+
+        g_global.g_enemyState.ResetMagicianAbility();
 
         //Clear Popups
         StartCoroutine(g_global.g_popupManager.ClearAllPopups());
@@ -224,8 +227,6 @@ public class S_TurnManager : MonoBehaviour
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
-
-        
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
