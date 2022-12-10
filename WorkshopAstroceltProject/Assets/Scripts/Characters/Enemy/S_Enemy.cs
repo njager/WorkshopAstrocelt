@@ -232,6 +232,9 @@ public class S_Enemy : MonoBehaviour
                         if (e_sc_enemyAttributes.GetEnemyShieldValue() < 0)
                         {
                             e_sc_enemyAttributes.SetEnemyShield(0);
+
+                            // Shield Break Particle Check
+                            g_global.g_enemyState.GetEnemyDataSheet(1).GetEnemyShieldBreakParticle().Play();
                         }
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
