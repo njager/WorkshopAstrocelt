@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.Linq;
 
-[CustomEditor(typeof(ThreeElementTuple))]
-public class ThreeElementTupleEditor : Editor
+//[CustomEditor(typeof(ThreeElementTuple))]
+public class ThreeElementTupleEditor : MonoBehaviour //Editor
 {
-    public List<(string, int, int)> tupleList;
+    /*public List<(string, int, int)> tupleList;
 
     private void OnEnable()
     {
@@ -45,4 +45,5 @@ public class ThreeElementTupleEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
     }
+    */
 }
