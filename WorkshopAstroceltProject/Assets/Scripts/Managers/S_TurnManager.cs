@@ -185,14 +185,6 @@ public class S_TurnManager : MonoBehaviour
             //decrement the player's status effect
             g_global.g_playerState.PlayerStatusEffectDecrement();
 
-            Debug.Log("Player Turn Skipped");
-            StartCoroutine(EnemyPhase());
-        }
-        else if (g_global.g_b_playerTurn == false)
-        {
-            //decrement the player's status effect
-            g_global.g_playerState.PlayerStatusEffectDecrement();
-
             PlayerStateChange();
         }
     }
