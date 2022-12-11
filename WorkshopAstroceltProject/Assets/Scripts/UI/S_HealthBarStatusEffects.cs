@@ -761,7 +761,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
         }
 
-        SortStatusEffectList();
+        //SortStatusEffectList();
     }
 
     /// <summary>
@@ -772,22 +772,22 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     public void EndStatusEffect(string _effect)
     {
         int _positionNum = GetIndexFromEffect(_effect);
-        if (_positionNum == 0)
+        if (_positionNum == 0 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
 
             // Grab Child
-            GameObject _child = chg_statusEffectPosition1Child;
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
             // Move Child
-            _child.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
             // Fade Child
-            _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
             // Set New parent
-            _child.transform.SetParent(chg_statusEffectSpawn.transform);
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear List Index
             ResetIndexFromIndex(0);
@@ -801,22 +801,22 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position1Identifier = "none";
         }
-        else if (_positionNum == 1)
+        else if (_positionNum == 1 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
 
             // Grab Child
-            GameObject _child = chg_statusEffectPosition2Child;
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
             // Move Child
-            _child.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
             // Fade Child
-            _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
             // Set New parent
-            _child.transform.SetParent(chg_statusEffectSpawn.transform);
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear Child
             chg_statusEffectPosition2Child = null;
@@ -830,22 +830,22 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position2Identifier = "none";
         }
-        else if (_positionNum == 2)
+        else if (_positionNum == 2 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
 
             // Grab Child
-            GameObject _child = chg_statusEffectPosition3Child;
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
             // Move Child
-            _child.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
             // Fade Child
-            _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
             // Set New parent
-            _child.transform.SetParent(chg_statusEffectSpawn.transform);
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear List Index
             ResetIndexFromIndex(2);
@@ -859,22 +859,22 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position3Identifier = "none";
         }
-        else if (_positionNum == 3)
+        else if (_positionNum == 3 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
 
             // Grab Child
-            GameObject _child = chg_statusEffectPosition4Child;
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
             // Move Child
-            _child.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
             // Fade Child
-            _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
             // Set New parent
-            _child.transform.SetParent(chg_statusEffectSpawn.transform);
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear List Index
             ResetIndexFromIndex(3);
@@ -888,22 +888,22 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             // Reset Identifer
             chg_str_position5Identifier = "none";
         }
-        else if (_positionNum == 4)
+        else if (_positionNum == 4 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
 
             // Grab Child
-            GameObject _child = chg_statusEffectPosition5Child;
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
             // Move Child
-            _child.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
             // Fade Child
-            _child.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
             // Set New parent
-            _child.transform.SetParent(chg_statusEffectSpawn.transform);
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
             // Clear List Index
             ResetIndexFromIndex(4);
@@ -1381,7 +1381,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Helper to set the effect index
     /// </summary>
@@ -1407,6 +1406,415 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else if (_effect.Equals("stun"))
         {
             chg_i_stunEffectListIndex = _index;
+        }
+    }
+
+    /// <summary>
+    /// Helper function to determine if an effect is an active state or not for a specific health bar owner
+    /// - Josh
+    /// </summary>
+    /// <param name="_effect"></param>
+    /// <param name="_healthBarOwner"></param>
+    private bool EffectStateActive(string _effect, int _healthBarOwner) 
+    {
+        if (_effect.Equals("acid")) 
+        {
+            if(_healthBarOwner == -1) // Player
+            {
+                if (g_global.g_playerState.GetPlayerAcidEffectState() == true) 
+                {
+                    return true; // Effect is active
+                }
+                else 
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if(_healthBarOwner == 1) // Enemy 1
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if(_healthBarOwner == 2) // Enemy 2
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 3) // Enemy 3
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(3) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 4) // Enemy 4
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(4) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 5) // Enemy 5
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(5) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else 
+            {
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
+                return false;
+            }
+        }
+        else if(_effect.Equals("bleed"))
+        {
+            if (_healthBarOwner == -1) // Player
+            {
+                if (g_global.g_playerState.GetPlayerBleedEffectState() == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 1) // Enemy 1
+            {
+                if (g_global.g_enemyState.GetEnemyBleedEffectState(1) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 2) // Enemy 2
+            {
+                if (g_global.g_enemyState.GetEnemyBleedEffectState(2) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 3) // Enemy 3
+            {
+                if (g_global.g_enemyState.GetEnemyBleedEffectState(3) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 4) // Enemy 4
+            {
+                if (g_global.g_enemyState.GetEnemyBleedEffectState(4) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 5) // Enemy 5
+            {
+                if (g_global.g_enemyState.GetEnemyBleedEffectState(5) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else
+            {
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
+                return false;
+            }
+        }
+        else if (_effect.Equals("frail"))
+        {
+            if (_healthBarOwner == -1) // Player
+            {
+                if (g_global.g_playerState.GetPlayerFrailtyEffectState() == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 1) // Enemy 1
+            {
+                if (g_global.g_enemyState.GetEnemyFrailtyEffectState(1) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 2) // Enemy 2
+            {
+                if (g_global.g_enemyState.GetEnemyFrailtyEffectState(2) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 3) // Enemy 3
+            {
+                if (g_global.g_enemyState.GetEnemyFrailtyEffectState(3) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 4) // Enemy 4
+            {
+                if (g_global.g_enemyState.GetEnemyFrailtyEffectState(4) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 5) // Enemy 5
+            {
+                if (g_global.g_enemyState.GetEnemyFrailtyEffectState(5) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else
+            {
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
+                return false;
+            }
+        }
+        else if (_effect.Equals("resist"))
+        {
+            if (_healthBarOwner == -1) // Player
+            {
+                if (g_global.g_playerState.GetPlayerResistantEffectState() == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 1) // Enemy 1
+            {
+                if (g_global.g_enemyState.GetEnemyResistantEffectState(1) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 2) // Enemy 2
+            {
+                if (g_global.g_enemyState.GetEnemyResistantEffectState(2) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 3) // Enemy 3
+            {
+                if (g_global.g_enemyState.GetEnemyResistantEffectState(3) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 4) // Enemy 4
+            {
+                if (g_global.g_enemyState.GetEnemyResistantEffectState(4) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 5) // Enemy 5
+            {
+                if (g_global.g_enemyState.GetEnemyResistantEffectState(5) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else
+            {
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
+                return false;
+            }
+        }
+        else if (_effect.Equals("stun"))
+        {
+            if (_healthBarOwner == 1) // Enemy 1, player doesn't have stun
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 2) // Enemy 2
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 3) // Enemy 3
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(3) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 4) // Enemy 4
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(4) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 5) // Enemy 5
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(5) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else
+            {
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
+                return false;
+            }
+        }
+        else
+        {
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Effect Not Found Error");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Helper function to give child from effect
+    /// Get around race conditions
+    /// - Josh
+    /// </summary>
+    /// <param name="_effect"></param>
+    private GameObject GetEffectObjectFromEffect(string _effect)
+    {
+        if (_effect.Equals("acid")) 
+        {
+            return chg_UI_acidStatusEffect;
+        }
+        else if (_effect.Equals("bleed"))
+        {
+            return chg_UI_bleedStatusEffect;
+        }
+        else if (_effect.Equals("frail"))
+        {
+            return chg_UI_frailtyStatusEffect;
+        }
+        else if (_effect.Equals("resist"))
+        {
+            return chg_UI_resistantStatusEffect;
+        }
+        else if (_effect.Equals("stun"))
+        {
+            return chg_UI_stunStatusEffect;
+        }
+        else
+        {
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - GetEffectObjectFromEffect() - Effect Not Found Error");
+            return null;
         }
     }
 }
