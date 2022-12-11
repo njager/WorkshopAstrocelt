@@ -139,6 +139,8 @@ public class S_MapGeneration : MonoBehaviour
         RemoveLockandGravConstraint(clusters);
         ConnectToRoof(springList,clusters);
         ConnectClusters(springList, clusters);
+        StartCoroutine(WaitForGen());
+        ReAddLockandGravConstraint(clusters);
         //cluster_checker(clusters);
 
     }
@@ -202,7 +204,7 @@ public class S_MapGeneration : MonoBehaviour
                 for (int k = 0; k < 5; k++)
                 {
                     springList[i][j][k].connectedBody = clusters[i][k].GetComponent<Rigidbody2D>();
-                    springList[i][j][k].distance = 200;
+                    springList[i][j][k].distance = 12;
                     springList[i][j][k].frequency = 100;
                 }
             }
@@ -264,6 +266,26 @@ public class S_MapGeneration : MonoBehaviour
         springList[4][0][7].connectedBody = clusters[6][0].GetComponent<Rigidbody2D>();
         springList[5][0][6].connectedBody = clusters[7][0].GetComponent<Rigidbody2D>();
         springList[6][0][6].connectedBody = clusters[7][1].GetComponent<Rigidbody2D>();
+    }
+
+    IEnumerator WaitForGen()
+    {
+        Debug.Log("waiting");
+        yield return new WaitForSecondsRealtime(4);
+    }
+
+    public void ReAddLockandGravConstraint(List<List<Transform>> clusters)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 0f;
+
+            }
+        }
     }
 }
 
