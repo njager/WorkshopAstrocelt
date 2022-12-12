@@ -18,9 +18,12 @@ public class S_SceneManager : MonoBehaviour
     public bool b_toEventScene = false;
     public int[] ls_i_eventIndices;
 
+    [Header("Next Turn Button")]
+    public GameObject nextTurnButton;
+
     private S_Global g_global;
 
-    private void Start()
+    private void Awake()
     {
         g_global = S_Global.Instance;
     }
@@ -66,6 +69,22 @@ public class S_SceneManager : MonoBehaviour
 
     public void DisplayRewards()
     {
+        nextTurnButton.SetActive(false);
+
+        //lock out the player from drawing
+        g_global.g_ConstellationManager.SetStarLockOutBool(false);
+
+        g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+
+        //clear the energy
+        g_global.g_energyManager.ClearEnergy();
+
+        // Turn Off Maps
+        g_global.g_backgroundManager.ChangeBackground(0);
+
+        //Clear Popups
+        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+
         r_rewardCanvas.SetActive(true);
     }
 }
