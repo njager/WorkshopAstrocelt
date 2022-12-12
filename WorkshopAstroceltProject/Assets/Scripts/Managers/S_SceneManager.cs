@@ -53,12 +53,17 @@ public class S_SceneManager : MonoBehaviour
     /// This function changes the scene to the player reward scene
     /// -Riley
     /// </summary>
-    public void ChangeScene()
+    public void ChangeSceneReward()
     {
         if(g_global.g_rewardVisualScript.b_rewardClaimed)
         {
             SceneManager.LoadScene(i_sceneIndex);
         }
+    }
+
+    public void ChangeScene() 
+    {
+        SceneManager.LoadScene(i_sceneIndex);
     }
 
     public void ToEventScene()
