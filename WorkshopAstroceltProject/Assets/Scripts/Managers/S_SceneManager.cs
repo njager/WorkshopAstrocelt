@@ -76,14 +76,18 @@ public class S_SceneManager : MonoBehaviour
 
         g_global.g_ConstellationManager.DeleteWholeCurConstellation();
 
+        // Line removal
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false;
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
+
         //clear the energy
         g_global.g_energyManager.ClearEnergy();
 
         // Turn Off Maps
-        g_global.g_backgroundManager.ChangeBackground(0);
+        g_global.g_backgroundManager.TurnOffMaps();
 
         //Clear Popups
-        StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+        //StartCoroutine(g_global.g_popupManager.ClearAllPopups());
 
         r_rewardCanvas.SetActive(true);
     }
