@@ -91,7 +91,7 @@ public class S_Player : MonoBehaviour
                 //trigger particle effects
                 p_sc_playerAttributes.GetPlayerAttackedParticle().Play();
 
-                animator.SetTrigger("Blocking");
+                animator.Play("Blocking");
 
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
@@ -113,9 +113,20 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue3);
 
                     //trigger particle effects
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    p_sc_playerAttributes.p_pe_blood.Play();
+                    animator.Play("Blocking");
+=======
+=======
+>>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
+>>>>>>> Stashed changes
                     p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
 
                     animator.SetTrigger("Blocking");
+>>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -187,7 +198,7 @@ public class S_Player : MonoBehaviour
                 //Debug.Log("Player Attacked!");
 
                 Flash(Color.white);
-                animator.SetTrigger("Damaged");
+                animator.Play("Damaged");
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
             }
@@ -206,8 +217,19 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue7);
 
                     //trigger particle effects
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    p_sc_playerAttributes.p_pe_blood.Play();
+                    animator.Play("Damaged");
+=======
+=======
+>>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
+>>>>>>> Stashed changes
                     p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
                     animator.SetTrigger("Damaged");
+>>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
