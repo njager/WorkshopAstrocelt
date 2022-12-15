@@ -10,7 +10,7 @@ public class S_Player : MonoBehaviour
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    
+
     private S_Global g_global;
 
     public S_PlayerAttributes p_sc_playerAttributes;
@@ -48,7 +48,7 @@ public class S_Player : MonoBehaviour
         // Get the SpriteRenderer to be used,
         // alternatively you could set it from the inspector.
         //playerSprite = GetComponent<SpriteRenderer>();
-        
+
         // Get the material that the SpriteRenderer uses, 
         // so we can switch back to it after the flash ended.
         originalMaterial = playerSprite.material;
@@ -87,11 +87,11 @@ public class S_Player : MonoBehaviour
                 // Calculate and set health values
                 int _newValue1 = p_sc_playerAttributes.GetPlayerHealthValue() - _resistantDamageValue;
                 p_sc_playerAttributes.SetPlayerHealthValue(_newValue1);
-                
+
                 //trigger particle effects
                 p_sc_playerAttributes.GetPlayerAttackedParticle().Play();
 
-                animator.Play("Blocking");
+                animator.SetTrigger("Blocking");
 
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
@@ -113,20 +113,9 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue3);
 
                     //trigger particle effects
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    p_sc_playerAttributes.p_pe_blood.Play();
-                    animator.Play("Blocking");
-=======
-=======
->>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
->>>>>>> Stashed changes
                     p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
 
                     animator.SetTrigger("Blocking");
->>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -198,7 +187,7 @@ public class S_Player : MonoBehaviour
                 //Debug.Log("Player Attacked!");
 
                 Flash(Color.white);
-                animator.Play("Damaged");
+                animator.SetTrigger("Damaged");
                 //trigger a coroutine to change sprite and go back
                 //StartCoroutine(ChangeDamageSprite());
             }
@@ -217,19 +206,8 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.SetPlayerHealthValue(_newValue7);
 
                     //trigger particle effects
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    p_sc_playerAttributes.p_pe_blood.Play();
-                    animator.Play("Damaged");
-=======
-=======
->>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
->>>>>>> Stashed changes
                     p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
                     animator.SetTrigger("Damaged");
->>>>>>> 0d3477d2c8f56990da766d199e13271dc7c955b1
                     //Debug.Log("Player didn't have enough shields!");
 
                     //trigger a coroutine to change sprite and go back
@@ -296,7 +274,7 @@ public class S_Player : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-physical");
         }
-        else if(_soundEffectState == true) // True = magic
+        else if (_soundEffectState == true) // True = magic
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/shield-magic");
         }
