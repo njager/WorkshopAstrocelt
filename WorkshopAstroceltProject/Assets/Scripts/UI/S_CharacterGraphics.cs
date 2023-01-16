@@ -75,6 +75,15 @@ public class S_CharacterGraphics : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Function to shake and then move the healthbars out of the screen
+    /// </summary>
+    /// <param name="_enemyIndex"></param>
+    public void DropHealthBar(int _enemyIndex)
+    {
+
+    }
+
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Enemy Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

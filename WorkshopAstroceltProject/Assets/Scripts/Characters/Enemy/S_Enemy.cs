@@ -389,6 +389,7 @@ public class S_Enemy : MonoBehaviour
     public void EnemyDied(string _enemyType)
     {
         g_global.g_i_enemyCount -= 1;
+
         Debug.Log("Enemy Perished");
         e_sc_enemyAttributes.e_i_health = 0;
         g_global.g_ls_activeEnemies.Remove(this);
