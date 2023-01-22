@@ -18,6 +18,11 @@ public class S_TurnManager : MonoBehaviour
     [Header("Coroutine Bool Check")]
     public bool e_b_enemyIsActive;
 
+    [Header("Camera Reference")]
+    public Camera cam;
+
+
+
     /// <summary>
     /// Fetch the global script and assign the global states to the inital choice
     /// - Riley & Josh
@@ -67,6 +72,12 @@ public class S_TurnManager : MonoBehaviour
 
                 //clear the energy
                 g_global.g_energyManager.ClearEnergy();
+
+                if (g_global.g_cam != null)
+                {
+                    //Pan the camera
+                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -10, 1f);
+                }
 
                 StartCoroutine(EnemyPhase()); //Then change the enemies state
             }

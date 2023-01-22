@@ -132,7 +132,17 @@ public class S_Altar : MonoBehaviour
         SetCardballsSpawnedBool(true);
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
+        Debug.Log("Before");
+        if (g_global.g_cam != null)
+        {
+            Debug.Log("Camera Move");
+            //Pan the camera
+            g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 10, 1f);
+        }
+
         yield return new S_WaitForCardballMovement();
+
+        
 
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
