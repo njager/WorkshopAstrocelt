@@ -12,6 +12,7 @@ public class S_PauseMenu : MonoBehaviour
     public List<ResItem> resolutions = new List<ResItem>();
     private int selectedResolution;
     public TMP_Text resolutionLabel;
+    public TMP_Text resolutionLabel2;
     public Toggle fullscreenTog;
 
     [Header("Tutorial Canvas Bool")]
@@ -128,6 +129,7 @@ public class S_PauseMenu : MonoBehaviour
     public void updateResLabel()
     {
         resolutionLabel.text = resolutions[selectedResolution].horizontal.ToString() + " x " + resolutions[selectedResolution].vertical.ToString();
+        resolutionLabel2.text = resolutionLabel.text;
     }
 
     public void TutorialCanvasToggle() 
