@@ -137,7 +137,7 @@ public class S_Altar : MonoBehaviour
         {
             Debug.Log("Camera Move");
             //Pan the camera
-            g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 10, 1f);
+            g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
         }
 
         yield return new S_WaitForCardballMovement();
@@ -247,6 +247,13 @@ public class S_Altar : MonoBehaviour
             {
                 //This is for if the player can play more card
 
+                //pan down to pla cards
+                if (g_global.g_cam != null)
+                {
+                    //Pan the camera
+                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
+                }
+
                 // Lock Spawning
                 SetCardBeingActiveBool(false);
 
@@ -284,6 +291,13 @@ public class S_Altar : MonoBehaviour
                 //g_global.g_energyManager.ClearEnergy();
 
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
+
+                //pan up now that there are no cards
+                if (g_global.g_cam != null)
+                {
+                    //Pan the camera
+                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
+                }
 
                 //Click the node star
                 g_global.g_ConstellationManager.NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
@@ -402,6 +416,8 @@ public class S_Altar : MonoBehaviour
         _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
         _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
+
+        
 
         if (_activeCard == true) 
         {

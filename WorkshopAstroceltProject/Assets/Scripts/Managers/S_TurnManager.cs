@@ -76,7 +76,7 @@ public class S_TurnManager : MonoBehaviour
                 if (g_global.g_cam != null)
                 {
                     //Pan the camera
-                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -10, 1f);
+                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
                 }
 
                 StartCoroutine(EnemyPhase()); //Then change the enemies state
