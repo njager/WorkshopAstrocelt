@@ -18,9 +18,12 @@ public class S_SceneManager : MonoBehaviour
     public bool b_toEventScene = false;
     public int[] ls_i_eventIndices;
 
+    [Header("Next Turn Button")]
+    public GameObject nextTurnButton;
+
     private S_Global g_global;
 
-    private void Start()
+    private void Awake()
     {
         g_global = S_Global.Instance;
     }
@@ -50,12 +53,17 @@ public class S_SceneManager : MonoBehaviour
     /// This function changes the scene to the player reward scene
     /// -Riley
     /// </summary>
-    public void ChangeScene()
+    public void ChangeSceneReward()
     {
         if(g_global.g_rewardVisualScript.b_rewardClaimed)
         {
             SceneManager.LoadScene(i_sceneIndex);
         }
+    }
+
+    public void ChangeScene() 
+    {
+        SceneManager.LoadScene(i_sceneIndex);
     }
 
     public void ToEventScene()
@@ -66,6 +74,26 @@ public class S_SceneManager : MonoBehaviour
 
     public void DisplayRewards()
     {
+        nextTurnButton.SetActive(false);
+
+        //lock out the player from drawing
+        g_global.g_ConstellationManager.SetStarLockOutBool(false);
+
+        g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+
+        // Line removal
+        g_global.g_DrawingManager.b_lineDeletionCompletion = false;
+        StartCoroutine(g_global.g_DrawingManager.LineDeletion());
+
+        //clear the energy
+        g_global.g_energyManager.ClearEnergy();
+
+        // Turn Off Maps
+        g_global.g_backgroundManager.TurnOffMaps();
+
+        //Clear Popups
+        //StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+
         r_rewardCanvas.SetActive(true);
     }
 }

@@ -58,4 +58,25 @@ public class S_BackgroundManager : MonoBehaviour
             g_global.g_mapManager.map13.SetActive(false);
         }
     }
+
+    /// <summary>
+    /// Turn off maps
+    /// </summary>
+    public void TurnOffMaps() 
+    {
+        // Toggle maps
+        g_global.g_mapManager.map1.SetActive(false);
+        g_global.g_mapManager.map2.SetActive(false);
+        g_global.g_mapManager.map3.SetActive(false);
+        g_global.g_mapManager.map4.SetActive(false);
+        g_global.g_mapManager.map5.SetActive(false);
+        g_global.g_mapManager.map6.SetActive(false);
+        g_global.g_mapManager.map7.SetActive(false);
+        g_global.g_mapManager.map8.SetActive(false);
+        g_global.g_mapManager.map9.SetActive(false);
+        g_global.g_mapManager.map10.SetActive(false);
+        g_global.g_mapManager.map11.SetActive(false);
+        g_global.g_mapManager.map12.SetActive(false);
+        g_global.g_mapManager.map13.SetActive(false);
+    }
 }

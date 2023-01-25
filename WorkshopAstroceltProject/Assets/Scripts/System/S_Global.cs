@@ -97,7 +97,10 @@ public class S_Global : MonoBehaviour
 
     [Header("Temp Tutorial Keypress")]
     public GameObject g_tutorialCanvas;
-    public bool g_b_tutorialCanvasState; 
+    public bool g_b_tutorialCanvasState;
+
+    [Header("Camera")]
+    public Camera g_cam;
 
     private void Awake()
     {
