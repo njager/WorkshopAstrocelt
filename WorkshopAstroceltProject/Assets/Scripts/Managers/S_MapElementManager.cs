@@ -47,7 +47,8 @@ public class S_MapElementManager : MonoBehaviour
     /// <returns></returns>
     public Transform GetTransformFromObjectID(int _objectIndex)
     {
-        Transform _transformToReturn = new Transform();
+        Transform _transformToReturn = null;
+
         foreach ((Transform, int) _currentMapInstance in mp_ls_masterMapList.ToList())
         {
             if(_currentMapInstance.Item2 == _objectIndex) 
