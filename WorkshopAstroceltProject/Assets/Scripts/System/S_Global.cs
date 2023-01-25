@@ -40,6 +40,7 @@ public class S_Global : MonoBehaviour
     public S_VFXManager g_vfxManager;
     public S_AudioManager g_audioManager;
     public S_RewardVisualScript g_rewardVisualScript;
+    public S_MapManager g_newMapManager; // Thoman's
 
     [Header("Character States")]
     public bool g_b_playerTurn;
