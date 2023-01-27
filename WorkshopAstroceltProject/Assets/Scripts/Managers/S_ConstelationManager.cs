@@ -33,6 +33,8 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Null star")]
     public S_StarClass s_nullStarInst;
 
+    [Header("Node star Instance")]
+    public S_NodeStar s_nodeStarReference;
     [Header("Constellation Sizes")]
     public int i_minSize;
     public int i_maxSize;
@@ -287,8 +289,7 @@ public class S_ConstelationManager : MonoBehaviour
         //reset the prvious star
         ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
-        // Delete popup - depriciated
-        //StartCoroutine(g_global.g_popupManager.ClearAllPopups());
+        NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
     }
 
     public IEnumerator CardballSpawnCheck()
@@ -366,8 +367,6 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void FinishConstellation(S_StarClass _node)
     {
-        //lock out stars while calculating
-        SetStarLockOutBool(false);
 
         //set up the energy
         int _energy = ls_curConstellation.Count() - 2;
@@ -437,7 +436,7 @@ public class S_ConstelationManager : MonoBehaviour
             //Print total line lenght, then reset to 0
 
             b_makingConstellation = false;
-            Debug.Log("Making constellations NOT");
+            //Debug.Log("Making constellations NOT");
 
             ls_curConstellation.Clear();
 
@@ -471,6 +470,8 @@ public class S_ConstelationManager : MonoBehaviour
         g_global.g_mapManager.activeMapList.Remove(_oldStar.GetComponent<S_StarClass>());
         Destroy(_oldStar); //this will remove it from the map 
         b_nodeStarChosen = true;
+
+        s_nodeStarReference = _newNodeStar.GetComponent<S_NodeStar>();
     }
 
     /// <summary>

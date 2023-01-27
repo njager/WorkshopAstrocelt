@@ -60,7 +60,7 @@ public class S_Altar : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
-    public GameObject s_nodeStarReference;
+    
 
     private void Awake()
     {
@@ -132,18 +132,9 @@ public class S_Altar : MonoBehaviour
         SetCardballsSpawnedBool(true);
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
-        Debug.Log("Before");
-        if (g_global.g_cam != null)
-        {
-            Debug.Log("Camera Move");
-            //Pan the camera
-            g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
-        }
-
         yield return new S_WaitForCardballMovement();
 
         
-
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(true);
@@ -247,13 +238,6 @@ public class S_Altar : MonoBehaviour
             {
                 //This is for if the player can play more card
 
-                //pan down to pla cards
-                if (g_global.g_cam != null)
-                {
-                    //Pan the camera
-                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
-                }
-
                 // Lock Spawning
                 SetCardBeingActiveBool(false);
 
@@ -291,13 +275,6 @@ public class S_Altar : MonoBehaviour
                 //g_global.g_energyManager.ClearEnergy();
 
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
-
-                //pan up now that there are no cards
-                if (g_global.g_cam != null)
-                {
-                    //Pan the camera
-                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
-                }
 
                 //Click the node star
                 g_global.g_ConstellationManager.NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
@@ -449,7 +426,6 @@ public class S_Altar : MonoBehaviour
             else
             {
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                g_global.g_ConstellationManager.NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
                 //g_global.g_energyManager.ClearEnergy();
                 //Debug.Log("MoveCardballPrefabs() Called");
             }

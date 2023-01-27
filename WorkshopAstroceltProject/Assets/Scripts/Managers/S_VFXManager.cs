@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +53,15 @@ public class S_VFXManager : MonoBehaviour
     [Header("Constellation Completed")]
     [SerializeField] ParticleSystem pe_constellationCompleted;
 
+    [Header("Ui for down camera")]
+    public List<GameObject> ls_downCamUI;
+
+    [Header("Ui for up camera")]
+    public List<GameObject> ls_upCamUI;
+
+    //private vars
+    private bool b_camPanPos = false; //false means down true means up
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -79,6 +89,46 @@ public class S_VFXManager : MonoBehaviour
         else if (_color == "white")
         {
             pe_whiteCardSpawn.Play();
+        }
+    }
+
+    /// <summary>
+    /// function is tied to a button that pans the camera in the overworld. 
+    /// the camera can only be one or the other state
+    /// -Thats Riley Halloran to you Sir
+    /// </summary>
+    public void PanCamera()
+    {
+        if (g_global.g_cam != null)
+        {
+            if (b_camPanPos == true) //is up
+            {
+                //swap the val
+                b_camPanPos = false;
+
+                //Pan the camera down
+                g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
+            
+                //turn on down ui
+                foreach(GameObject ui in ls_downCamUI)
+                {
+                    ui.SetActive(true);
+                }
+            }
+            else //is down
+            {
+                //swap the val
+                b_camPanPos = true;
+
+                //Pan the camera up
+                g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
+
+                //turn off down ui
+                foreach (GameObject ui in ls_downCamUI)
+                {
+                    ui.SetActive(false);
+                }
+            }
         }
     }
 
