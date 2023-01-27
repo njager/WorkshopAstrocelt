@@ -275,9 +275,6 @@ public class S_Altar : MonoBehaviour
                 //g_global.g_energyManager.ClearEnergy();
 
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
-
-                //Click the node star
-                g_global.g_ConstellationManager.NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
             }
         }
         else

@@ -34,7 +34,7 @@ public class S_ConstelationManager : MonoBehaviour
     public S_StarClass s_nullStarInst;
 
     [Header("Node star Instance")]
-    public S_NodeStar s_nodeStarReference;
+    public S_StarClass s_nodeStarReference;
     [Header("Constellation Sizes")]
     public int i_minSize;
     public int i_maxSize;
@@ -289,7 +289,7 @@ public class S_ConstelationManager : MonoBehaviour
         //reset the prvious star
         ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
-        NodeStarClicked(s_nodeStarReference.GetComponent<S_StarClass>(), s_nodeStarReference.transform.position);
+        NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
     }
 
     public IEnumerator CardballSpawnCheck()
@@ -454,6 +454,8 @@ public class S_ConstelationManager : MonoBehaviour
 
             //call the altar
             g_global.g_altar.CheckFirstCardball();
+
+            NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
         }
     }
 
@@ -471,7 +473,7 @@ public class S_ConstelationManager : MonoBehaviour
         Destroy(_oldStar); //this will remove it from the map 
         b_nodeStarChosen = true;
 
-        s_nodeStarReference = _newNodeStar.GetComponent<S_NodeStar>();
+        s_nodeStarReference = _newNodeStar.GetComponent<S_StarClass>();
     }
 
     /// <summary>

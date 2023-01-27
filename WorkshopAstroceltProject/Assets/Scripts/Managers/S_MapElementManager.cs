@@ -56,14 +56,14 @@ public class S_MapElementManager : MonoBehaviour
     public Transform GetTransformFromObjectID(int _objectIndex)
     {
         Transform _transformToReturn = null;
-        foreach((List<Transform>, int))
-        foreach ((Transform, int) _currentMapInstance in mp_ls_masterMapList.ToList())
-        {
-            if(_currentMapInstance.Item2 == _objectIndex) 
-            {
-                _transformToReturn = _currentMapInstance.Item1;
-            }
-        }
+        //foreach((List<Transform>, int))
+        //foreach ((Transform, int) _currentMapInstance in mp_ls_masterMapList.ToList())
+        //{
+        //    if(_currentMapInstance.Item2 == _objectIndex) 
+        //    {
+        //        _transformToReturn = _currentMapInstance.Item1;
+        //    }
+        //}
 
         return _transformToReturn;
     }

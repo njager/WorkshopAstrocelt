@@ -230,9 +230,6 @@ public class S_DrawingManager : MonoBehaviour
         //call the constellation manager to clear the list
         g_global.g_ConstellationManager.DeleteWholeCurConstellation();
 
-        //click the node star
-        g_global.g_ConstellationManager.NodeStarClicked(g_global.g_altar.s_nodeStarReference.GetComponent<S_StarClass>(), g_global.g_altar.s_nodeStarReference.transform.position);
-        
         //done drawing now, let the player start again
         g_global.g_ConstellationManager.SetStarLockOutBool(true);
     }
