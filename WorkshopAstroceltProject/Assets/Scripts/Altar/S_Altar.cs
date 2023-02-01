@@ -9,6 +9,9 @@ public class S_Altar : MonoBehaviour
 {
     private S_Global g_global;
 
+    [Header("Number of Active Card Balls")]
+    public int i_cardBallNum = 3;
+
     [Header("Text Boxes")]
     public TextMeshProUGUI c_tx_cardName;
     public TextMeshProUGUI c_tx_cardBody;
@@ -60,6 +63,12 @@ public class S_Altar : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
+    [Header("Displayed CardBall List")]
+    public List<S_CardTemplate> ls_cardBallActive;
+
+    [Header("CardBall completed List")]
+    public List<S_Cardball> ls_cardBallStorage;
+
     
 
     private void Awake()
@@ -85,7 +94,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(SpawnCardballPrefabs(3));
+        StartCoroutine(SpawnVisualCardballPrefabs(3));
     }
 
     /// <summary>
@@ -109,12 +118,28 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
+    /// First part of the logic chain for card balls
+    /// adds the first cardballs to the active list
+    /// calls spawn cardball prefabs
+    /// -Riley Halloran
+    /// </summary>
+    public void AddActiveCardBalls()
+    {
+        for (int i = 0; i < i_cardBallNum; i++)
+        {
+            ls_cardBallActive.Add(g_global.g_cardManager.GetCardFromDeck());
+        }
+
+        SpawnVisualCardballPrefabs(i_cardBallNum);
+    }
+
+    /// <summary>
     /// Initial Start Funciton
     /// Fill with 5 cardballs
     /// May be fully temporary
     /// - Josh
     /// </summary>
-    public IEnumerator SpawnCardballPrefabs(int _numCards)
+    public IEnumerator SpawnVisualCardballPrefabs(int _numCards)
     {
         c_i_movementInt = 0;
 
@@ -125,7 +150,7 @@ public class S_Altar : MonoBehaviour
         for (int i = 0; i < _numCards; i++)
         {
             yield return new WaitForSeconds(1);
-            AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[i]);
+            AddNewCardBall(cardballSpawnPosition, ls_cardBallActive[i]);
             StartCoroutine(MoveCardballPrefabs());
         }
 
@@ -219,7 +244,7 @@ public class S_Altar : MonoBehaviour
             c_i_movementInt = 0;
             c_b_movementBool = false;
 
-            StartCoroutine(SpawnCardballPrefabs(3));
+            StartCoroutine(SpawnVisualCardballPrefabs(3));
         }
     }
 
@@ -234,53 +259,44 @@ public class S_Altar : MonoBehaviour
         //yield return new S_WaitForEnergyTextDecrement();
         if(cardballPosition1.transform.childCount > 0)
         {
-            if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+            var _firstCardBall = cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>();
+
+            if (g_global.g_energyManager.CheckEnergy(_firstCardBall.c_i_cardEnergyCost, _firstCardBall.c_cardData.ColorString))
             {
-                //This is for if the player can play more card
+                //use the energy
+                g_global.g_energyManager.UseEnergy(_firstCardBall.c_i_cardEnergyCost, _firstCardBall.c_cardData.ColorString);
 
-                // Lock Spawning
-                SetCardBeingActiveBool(false);
+                //add the cardball to the list
+                ls_cardBallStorage.Add(_firstCardBall);
 
-                // Possibly tier up the next card
-                if (g_global.g_ls_p_playerHand.Count == 1)
-                {
-                    b_lastCard = true;
-                    SetCardballDelaySpawnBool(false);
-                }
-                else
-                {
-                    GameObject _tempObject = GetChildOfSecondAltarPosition();
+                //move the cardballs?
 
-                    if (_tempObject.Equals(nullObject))
-                    {
-                        SetCardballDelaySpawnBool(CheckSecondCardball());
-                        b_lastCard = false;
-                    }
-                }
 
-                g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
-
-                g_global.g_vfxManager.TriggerParticleEffects(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
-
-                //turn the cardball into a card and move over the rest of the cardballs
-                cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
-
-                //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+                //spawn another
             }
             else
             {
                 //This is when there are no more cards to play
-
-                //clear energy and reset the bool
-                //g_global.g_energyManager.ClearEnergy();
-
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
             }
         }
         else
         {
             // Nothing
         }
+    }
+
+    /// <summary>
+    /// Called from the vfx manager when the down button gets hit
+    /// create a card from the first cardball
+    /// </summary>
+    public void CreateCardFromList()
+    {
+        var _firstCardBall = ls_cardBallStorage[0];
+        ls_cardBallStorage.RemoveAt(0);
+
+        _firstCardBall.CardballToCard();
+
+        
     }
 
     /// <summary>

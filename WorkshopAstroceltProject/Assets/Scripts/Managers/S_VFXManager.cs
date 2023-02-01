@@ -114,6 +114,11 @@ public class S_VFXManager : MonoBehaviour
                 {
                     ui.SetActive(true);
                 }
+
+                if(g_global.g_altar.ls_cardBallStorage.Count > 0)
+                {
+                    g_global.g_altar.CreateCardFromList();
+                }
             }
             else //is down
             {

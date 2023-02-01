@@ -37,6 +37,34 @@ public class S_CardManager : MonoBehaviour
         return _number;
     }
 
+
+    public S_CardTemplate GetCardFromDeck()
+    {
+        //if the deck is empty move the cards over
+        if (g_global.g_ls_p_playerDeck.Count() <= 0)
+        {
+            ShuffleGraveToDeck();
+        }
+
+        //get a random number and get a random key from the deck
+        int _rand = randomNumGenerator(g_global.g_ls_p_playerDeck.Count() - 1);
+        int _cardKey = g_global.g_ls_p_playerDeck[_rand];
+
+        //remove a key from the deck (gets added to the grave when it gets deleted)
+        g_global.g_ls_p_playerDeck.RemoveAt(_rand);
+
+        //get the card game object and add it to the player hand
+        //Debug.Log("The card key is " + _cardKey);
+        S_CardTemplate _randomCard = g_global.g_cardDatabase.GetCard(_cardKey);
+
+        return _randomCard;
+    }
+
+    public void AddToGrave(S_CardTemplate _cardTemplate)
+    {
+
+    }
+
     /// <summary>
     /// This Function removes cards from the deck and adds them to the player hand
     /// - Riley
