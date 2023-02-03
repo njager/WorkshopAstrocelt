@@ -59,6 +59,9 @@ public class S_VFXManager : MonoBehaviour
     [Header("Ui for up camera")]
     public List<GameObject> ls_upCamUI;
 
+    [Header("MapPan Button")]
+    public GameObject bt_mapPanButton;
+
     //private vars
     private bool b_camPanPos = false; //false means down true means up
 
@@ -108,14 +111,23 @@ public class S_VFXManager : MonoBehaviour
 
                 //Pan the camera down
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
-            
+
+                //Set rotation for the button
+                bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+
                 //turn on down ui
-                foreach(GameObject ui in ls_downCamUI)
+                foreach (GameObject ui in ls_downCamUI)
                 {
-                    ui.SetActive(true);
+                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
                 }
 
-                if(g_global.g_altar.ls_cardBallStorage.Count > 0)
+                //turn off up ui
+                foreach (GameObject ui in ls_upCamUI)
+                {
+                    StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+                }
+
+                if (g_global.g_altar.ls_cardBallStorage.Count > 0)
                 {
                     g_global.g_altar.CreateCardFromList();
                 }
@@ -128,12 +140,49 @@ public class S_VFXManager : MonoBehaviour
                 //Pan the camera up
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
 
+                //turn on up ui
+                foreach (GameObject ui in ls_upCamUI)
+                {
+                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
+                }
+
                 //turn off down ui
                 foreach (GameObject ui in ls_downCamUI)
                 {
-                    ui.SetActive(false);
+                    StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
                 }
+
+                //set rotation for the button
+                bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
             }
+        }
+    }
+
+    /// <summary>
+    /// Fade out elements
+    /// </summary>
+    /// <param name="canvas"></param>
+    /// <returns></returns>
+    public IEnumerator FadeOut(CanvasGroup canvas)
+    {
+        for (float i = 1; i > 0; i -= 0.01f)
+        {
+            canvas.alpha = i;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    /// <summary>
+    /// Fade in elements 
+    /// </summary>
+    /// <param name="canvas"></param>
+    /// <returns></returns>
+    public IEnumerator FadeIn(CanvasGroup canvas)
+    {
+        for (float i = 0; i < 1; i += 0.01f)
+        {
+            canvas.alpha = i;
+            yield return new WaitForEndOfFrame();
         }
     }
 

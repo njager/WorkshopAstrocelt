@@ -257,9 +257,7 @@ public class S_Cardball : MonoBehaviour
     {
         //Debug.Log("DEBUG: Cardball Deletion Triggered");
         g_global.g_ls_cardBallPrefabs.Remove(this);
-
-        //add the card to the grave
-        g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
+        
         yield return StartCoroutine(g_global.g_altar.MoveAndDeleteAllCardBalls(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
         //StartCoroutine(CarballDestroyVFX())
     }

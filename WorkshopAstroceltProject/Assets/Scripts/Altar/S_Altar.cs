@@ -94,27 +94,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(SpawnVisualCardballPrefabs(3));
-    }
-
-    /// <summary>
-    /// This method gets called when the first card in the altar changes
-    /// It changes all the text on the altar and the color borders
-    /// - Riley and Josh
-    /// </summary>
-    /// <param name="_card"></param>
-    public void ChangeCard(GameObject _cardball)
-    {
-        //change the text boxes
-        S_Cardball _cardballScript = _cardball.GetComponent<S_Cardball>();
-        c_tx_cardName.text = _cardballScript.c_cardName;
-        c_tx_cardBody.text = _cardballScript.c_cardBody;
-
-        //set all the borders to false
-        a_blueBorder.SetActive(false);
-        a_redBorder.SetActive(false);
-        a_yellowBorder.SetActive(false);
-        a_colorlessBorder.SetActive(false);
+        AddActiveCardBalls(i_cardBallNum);
     }
 
     /// <summary>
@@ -123,14 +103,14 @@ public class S_Altar : MonoBehaviour
     /// calls spawn cardball prefabs
     /// -Riley Halloran
     /// </summary>
-    public void AddActiveCardBalls()
+    public void AddActiveCardBalls(int _numOfCards)
     {
-        for (int i = 0; i < i_cardBallNum; i++)
+        for (int i = 0; i < _numOfCards; i++)
         {
             ls_cardBallActive.Add(g_global.g_cardManager.GetCardFromDeck());
         }
 
-        SpawnVisualCardballPrefabs(i_cardBallNum);
+        StartCoroutine(SpawnVisualCardballPrefabs(_numOfCards));
     }
 
     /// <summary>
@@ -159,11 +139,12 @@ public class S_Altar : MonoBehaviour
 
         yield return new S_WaitForCardballMovement();
 
-        
+
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(true);
     }
+
 
     /// <summary>
     /// CardBall Setup and Spawning for when new Cardballs are needed for the altar. 
@@ -199,12 +180,11 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void DealAnotherCard()
     {
-        //deal the card
-        g_global.g_cardManager.DealCards(1);
+        //get the card from deck
+        ls_cardBallActive.Add(g_global.g_cardManager.GetCardFromDeck()); ;
 
         //spawn the cardballs and move them
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[g_global.g_ls_p_playerHand.Count-1]);
-        //StartCoroutine(MoveCardballPrefabs());
+        AddNewCardBall(cardballSpawnPosition, ls_cardBallActive[ls_cardBallActive.Count-1]);
     }
 
     /// <summary>
@@ -230,16 +210,12 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(_cardball.DeleteAllCardballs());
         }
 
-        //clear the player hand since none of these cards were played
-        g_global.g_cardManager.ClearPlayerHand();
-
         //Trigger if the bool is passed
         if (_newCardBalls == true)
         {
             yield return null; //euivalent but slightly faster for optimization for one second
 
             //give the player cards to load
-            g_global.g_cardManager.DealCards(g_global.g_cardManager.p_i_drawPerTurn);
 
             c_i_movementInt = 0;
             c_b_movementBool = false;
