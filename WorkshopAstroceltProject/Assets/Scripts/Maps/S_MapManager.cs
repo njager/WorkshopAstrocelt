@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class S_MapManager : MonoBehaviour
 {
     /// <summary>
@@ -47,57 +48,45 @@ public class S_MapManager : MonoBehaviour
         }
     }
 
+
     public Vector3 RandomVector(int clusternum)
     {
-        float rand_x;
-        float rand_y;
+        Vector3 temp = new Vector3(0, 0, 0);
         if (clusternum == 1)
         {
-            rand_x = Random.Range(-12, -6);
-            rand_y = Random.Range(3, 7);
+            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(3.0f, 7.0f), 0);
         }
         else if (clusternum == 2)
         {
-            rand_x = Random.Range(-12, -6);
-            rand_y = Random.Range(-1, 3);
+            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(-1.0f, 3.0f), 0);
         }
         else if (clusternum == 3)
         {
-            rand_x = Random.Range(-6, 0);
-            rand_y = Random.Range(3, 7);
+            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(3.0f, 7.0f), 0);
         }
         else if (clusternum == 4)
         {
-            rand_x = Random.Range(-6, 0);
-            rand_y = Random.Range(-1, 3);
+            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(-1.0f, 3.0f), 0);
         }
         else if (clusternum == 5)
         {
-            rand_x = Random.Range(0, 6);
-            rand_y = Random.Range(3, 7);
+            temp = new Vector3(Random.Range(0.0f, 6.0f), Random.Range(3.0f, 7.0f), 0);
         }
         else if (clusternum == 6)
         {
-            rand_x = Random.Range(0, 6);
-            rand_y = Random.Range(-1, 3);
+            temp = new Vector3(Random.Range(0.0f, 6.0f), 0, Random.Range(-1.0f, 3.0f));
         }
         else if (clusternum == 7)
         {
-            rand_x = Random.Range(6, 12);
-            rand_y = Random.Range(3, 7);
+            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(3.0f, 7.0f), 0);
         }
         else
         {
-            rand_x = Random.Range(6, 12);
-            rand_y = Random.Range(-1, 3);
+            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(-1.0f, 3.0f), 0);
         }
-
-
-
-
-        Vector3 temp = new Vector3(rand_x, rand_y, 0);
         return temp;
     }
+
 
 
 
@@ -140,8 +129,8 @@ public class S_MapManager : MonoBehaviour
         RemoveLockandGravConstraint(clusters);
         ConnectToRoof(springList, clusters);
         ConnectClusters(springList, clusters);
-        StartCoroutine(WaitForGen());
-        ReAddLockandGravConstraint(clusters);
+        StartCoroutine(WaitForGen(clusters));
+        
         //cluster_checker(clusters);
 
     }
@@ -195,7 +184,10 @@ public class S_MapManager : MonoBehaviour
         return springList;
     }
 
-
+    public float RandDist() 
+    {
+        return Random.Range(2.3f, 6.2f);
+    }
     public void RunSpringRBConnect(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
@@ -204,9 +196,11 @@ public class S_MapManager : MonoBehaviour
             {
                 for (int k = 0; k < 5; k++)
                 {
+                    float this_dist = RandDist();
                     springList[i][j][k].connectedBody = clusters[i][k].GetComponent<Rigidbody2D>();
-                    springList[i][j][k].distance = 12;
-                    springList[i][j][k].frequency = 100;
+                    springList[i][j][k].autoConfigureDistance = false;
+                    springList[i][j][k].distance = this_dist;
+                    springList[i][j][k].frequency = 2;
                 }
             }
         }
@@ -239,7 +233,7 @@ public class S_MapManager : MonoBehaviour
             {
                 float tempDist = 1000f;
                 int nn = 0;
-                for (int k = 0; k < 6; k++)
+                for (int k = 0; k < 4; k++)
                 {
                     float dist = Vector2.Distance(new Vector2(clusters[i][j].position.x, clusters[i][j].position.y), new Vector2(sidesList[k].position.x, sidesList[k].position.y));
                     if (dist < tempDist)
@@ -269,10 +263,11 @@ public class S_MapManager : MonoBehaviour
         springList[6][0][6].connectedBody = clusters[7][1].GetComponent<Rigidbody2D>();
     }
 
-    IEnumerator WaitForGen()
+    IEnumerator WaitForGen(List<List<Transform>> clusters)
     {
         Debug.Log("waiting");
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSeconds(2);
+        ReAddLockandGravConstraint(clusters);
     }
 
     public void ReAddLockandGravConstraint(List<List<Transform>> clusters)
