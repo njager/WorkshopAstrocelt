@@ -245,6 +245,9 @@ public class S_Altar : MonoBehaviour
                 //add the cardball to the list
                 ls_cardBallStorage.Add(_firstCardBall);
 
+                //remove the first card ball of
+                ls_cardBallActive.RemoveAt(0);
+
                 //move the cardballs?
 
 
@@ -267,12 +270,13 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CreateCardFromList()
     {
-        var _firstCardBall = ls_cardBallStorage[0];
-        ls_cardBallStorage.RemoveAt(0);
+        if (ls_cardBallStorage.Count() > 0)
+        {
+            var _firstCardBall = ls_cardBallStorage[0];
+            ls_cardBallStorage.RemoveAt(0);
 
-        _firstCardBall.CardballToCard();
-
-        
+            _firstCardBall.CardballToCard();
+        }
     }
 
     /// <summary>

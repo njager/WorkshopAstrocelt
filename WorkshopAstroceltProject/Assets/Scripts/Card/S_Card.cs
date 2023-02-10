@@ -545,6 +545,9 @@ public class S_Card : MonoBehaviour
 
                 g_global.g_altar.SetCardBeingActiveBool(true);
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+
+                //card was played play another
+                g_global.g_altar.CreateCardFromList();
             }
             else
             {
@@ -571,6 +574,9 @@ public class S_Card : MonoBehaviour
                         TriggerStatusEffects(g_global.g_player.gameObject);
                     }
                 }
+
+                //card was played play another
+                g_global.g_altar.CreateCardFromList();
 
                 // Unpause IEnumerator
                 g_global.g_altar.SetCardBeingActiveBool(true);

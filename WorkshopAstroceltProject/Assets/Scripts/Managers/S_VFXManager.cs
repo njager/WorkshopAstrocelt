@@ -2,6 +2,8 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class S_VFXManager : MonoBehaviour
 {
@@ -62,12 +64,93 @@ public class S_VFXManager : MonoBehaviour
     [Header("MapPan Button")]
     public GameObject bt_mapPanButton;
 
+    [Header("EnemyUI Slots")]
+    public GameObject e_enemyUI1;
+    public GameObject e_enemyUI2;
+    public GameObject e_enemyUI3;
+
+    [Header("EnemyUI Slots")]
+    public Image e_enemyImageUI1;
+    public Image e_enemyImageUI2;
+    public Image e_enemyImageUI3;
+
+    [Header("EnemyUI Headshot Images")]
+    public Sprite i_clurichaunHeadshot;
+    public Sprite i_pucaHeadshot;
+    public Sprite i_troupeHeadshot;
+    public Sprite i_bananachHeadshot;
+    public Sprite i_bodachHeadshot;
+
     //private vars
     private bool b_camPanPos = false; //false means down true means up
 
     private void Awake()
     {
         g_global = S_Global.Instance;
+
+        //turn off up ui
+        foreach (GameObject ui in ls_upCamUI)
+        {
+            StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+        }
+    }
+
+
+    private void Start()
+    {
+        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies)
+        {
+            _enemy.UpdateEnemyHealthUI();
+        }
+
+        //Set the number and image for the enemy ui
+        if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+        {
+            e_enemyUI1.SetActive(true);
+
+            if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Magician")
+            {
+                e_enemyImageUI1.sprite = i_clurichaunHeadshot;
+            }
+            if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Brawler")
+            {
+
+            }
+        }
+        else { e_enemyUI1.SetActive(false); }
+
+        //Set the number and image for the enemy ui
+        if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+        {
+            e_enemyUI2.SetActive(true);
+
+            if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Magician")
+            {
+                e_enemyImageUI2.sprite = i_clurichaunHeadshot;
+            }
+            if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Brawler")
+            {
+
+            }
+        }
+        else
+        { e_enemyUI2.SetActive(false); }
+
+        //Set the number and image for the enemy ui
+        if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+        {
+            e_enemyUI3.SetActive(true);
+
+            if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Magician")
+            {
+                e_enemyImageUI3.sprite = i_clurichaunHeadshot;
+            }
+            if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Brawler")
+            {
+
+            }
+        }
+        else { e_enemyUI3.SetActive(false); }
     }
 
     /// <summary>
@@ -115,22 +198,20 @@ public class S_VFXManager : MonoBehaviour
                 //Set rotation for the button
                 bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
 
-                //turn on down ui
-                foreach (GameObject ui in ls_downCamUI)
-                {
-                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
-                }
-
                 //turn off up ui
                 foreach (GameObject ui in ls_upCamUI)
                 {
                     StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
                 }
 
-                if (g_global.g_altar.ls_cardBallStorage.Count > 0)
+                //turn on down ui
+                foreach (GameObject ui in ls_downCamUI)
                 {
-                    g_global.g_altar.CreateCardFromList();
+                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
                 }
+
+                //check if there is an available card ball
+                g_global.g_altar.CreateCardFromList();
             }
             else //is down
             {
@@ -140,16 +221,16 @@ public class S_VFXManager : MonoBehaviour
                 //Pan the camera up
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
 
-                //turn on up ui
-                foreach (GameObject ui in ls_upCamUI)
-                {
-                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
-                }
-
                 //turn off down ui
                 foreach (GameObject ui in ls_downCamUI)
                 {
                     StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+                }
+
+                //turn on up ui
+                foreach (GameObject ui in ls_upCamUI)
+                {
+                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
                 }
 
                 //set rotation for the button
@@ -165,11 +246,13 @@ public class S_VFXManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator FadeOut(CanvasGroup canvas)
     {
-        for (float i = 1; i > 0; i -= 0.01f)
+        for (float i = 1; i >= 0; i -= 0.05f)
         {
             canvas.alpha = i;
             yield return new WaitForEndOfFrame();
         }
+
+        canvas.alpha = 0;
     }
 
     /// <summary>
@@ -179,11 +262,13 @@ public class S_VFXManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator FadeIn(CanvasGroup canvas)
     {
-        for (float i = 0; i < 1; i += 0.01f)
+        for (float i = 0; i <= 1; i += 0.05f)
         {
             canvas.alpha = i;
             yield return new WaitForEndOfFrame();
         }
+
+        canvas.alpha = 1;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
