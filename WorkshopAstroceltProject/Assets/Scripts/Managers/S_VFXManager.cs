@@ -98,13 +98,9 @@ public class S_VFXManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies)
-        {
-            _enemy.UpdateEnemyHealthUI();
-        }
-
+        Debug.Log("Setting active");
         //Set the number and image for the enemy ui
-        if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+        if (g_global.g_enemyAttributeSheet1 != null)
         {
             e_enemyUI1.SetActive(true);
 
@@ -117,10 +113,10 @@ public class S_VFXManager : MonoBehaviour
 
             }
         }
-        else { e_enemyUI1.SetActive(false); }
+        else { e_enemyUI1.SetActive(false); Debug.Log("Turned  off"); }
 
         //Set the number and image for the enemy ui
-        if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+        if (g_global.g_enemyAttributeSheet2 != null)
         {
             e_enemyUI2.SetActive(true);
 
@@ -134,10 +130,10 @@ public class S_VFXManager : MonoBehaviour
             }
         }
         else
-        { e_enemyUI2.SetActive(false); }
+        { e_enemyUI2.SetActive(false); Debug.Log("Turned  off"); }
 
         //Set the number and image for the enemy ui
-        if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+        if (g_global.g_enemyAttributeSheet3 != null)
         {
             e_enemyUI3.SetActive(true);
 
@@ -150,7 +146,7 @@ public class S_VFXManager : MonoBehaviour
 
             }
         }
-        else { e_enemyUI3.SetActive(false); }
+        else { e_enemyUI3.SetActive(false); Debug.Log("Turned  off"); }
     }
 
     /// <summary>
