@@ -63,8 +63,11 @@ public class S_Altar : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
-    [Header("Displayed CardBall List")]
-    public List<S_CardTemplate> ls_cardBallActive;
+    [Header("CardBalls in Hand List")]
+    public List<S_CardTemplate> ls_cardBallHand;
+
+    [Header("Active CardBalls")]
+    public List<S_Cardball> ls_activeCardBalls;
 
     [Header("CardBall completed List")]
     public List<S_Cardball> ls_cardBallStorage;
@@ -107,7 +110,7 @@ public class S_Altar : MonoBehaviour
     {
         for (int i = 0; i < _numOfCards; i++)
         {
-            ls_cardBallActive.Add(g_global.g_cardManager.GetCardFromDeck());
+            ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck());
         }
 
         StartCoroutine(SpawnVisualCardballPrefabs(_numOfCards));
@@ -130,9 +133,11 @@ public class S_Altar : MonoBehaviour
         for (int i = 0; i < _numCards; i++)
         {
             yield return new WaitForSeconds(1);
-            AddNewCardBall(cardballSpawnPosition, ls_cardBallActive[i]);
+            AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[i]);
             StartCoroutine(MoveCardballPrefabs());
         }
+
+        ls_cardBallHand.Clear();
 
         SetCardballsSpawnedBool(true);
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
@@ -173,6 +178,8 @@ public class S_Altar : MonoBehaviour
         // Setup cardball (this is where it'd be loaded with it's scriptable object
         _cardballScript.c_cardData = _cardTemplate;
         _cardballScript.CardballSetup();
+
+        ls_activeCardBalls.Add(_cardballScript);
     }
 
     /// <summary>
@@ -181,10 +188,10 @@ public class S_Altar : MonoBehaviour
     public void DealAnotherCard()
     {
         //get the card from deck
-        ls_cardBallActive.Add(g_global.g_cardManager.GetCardFromDeck()); ;
+        ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck()); ;
 
         //spawn the cardballs and move them
-        AddNewCardBall(cardballSpawnPosition, ls_cardBallActive[ls_cardBallActive.Count-1]);
+        AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[ls_cardBallHand.Count-1]);
     }
 
     /// <summary>
@@ -246,7 +253,7 @@ public class S_Altar : MonoBehaviour
                 ls_cardBallStorage.Add(_firstCardBall);
 
                 //remove the first card ball of
-                ls_cardBallActive.RemoveAt(0);
+                ls_activeCardBalls.RemoveAt(0);
 
                 //move the cardballs?
 
