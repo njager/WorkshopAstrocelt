@@ -91,20 +91,23 @@ public class S_VFXManager : MonoBehaviour
         //turn off up ui
         foreach (GameObject ui in ls_upCamUI)
         {
-            StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+            MakeTransparent(ui.GetComponent<CanvasGroup>());
         }
+
+        //set all ui to false
+        e_enemyUI1.SetActive(false);
+        e_enemyUI2.SetActive(false);
+        e_enemyUI3.SetActive(false);
     }
 
-
-    private void Start()
+    /// <summary>
+    /// Have each enemy call the vfx manager to set the ui for the first enemy
+    /// -Riley
+    /// </summary>
+    public void SetEnemyUI1()
     {
-        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies)
-        {
-            _enemy.UpdateEnemyHealthUI();
-        }
-
         //Set the number and image for the enemy ui
-        if (g_global.g_enemyState.GetEnemyActiveState(1) == true)
+        if (g_global.g_enemyAttributeSheet1.e_str_enemyType != null)
         {
             e_enemyUI1.SetActive(true);
 
@@ -112,15 +115,29 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI1.sprite = i_clurichaunHeadshot;
             }
-            if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Brawler")
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Beast")
             {
-
+                e_enemyImageUI1.sprite = i_pucaHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Brawler")
+            {
+                e_enemyImageUI1.sprite = i_bodachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Realmwalker")
+            {
+                e_enemyImageUI1.sprite = i_bananachHeadshot;
             }
         }
-        else { e_enemyUI1.SetActive(false); }
+    }
 
+    /// <summary>
+    /// Have each enemy call the vfx manager to set the ui for the second enemy
+    /// -Riley Halloran
+    /// </summary>
+    public void SetEnemyUI2()
+    {
         //Set the number and image for the enemy ui
-        if (g_global.g_enemyState.GetEnemyActiveState(2) == true)
+        if (g_global.g_enemyAttributeSheet2.e_str_enemyType != null)
         {
             e_enemyUI2.SetActive(true);
 
@@ -128,16 +145,29 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI2.sprite = i_clurichaunHeadshot;
             }
-            if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Brawler")
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Beast")
             {
-
+                e_enemyImageUI2.sprite = i_pucaHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Brawler")
+            {
+                e_enemyImageUI2.sprite = i_bodachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Realmwalker")
+            {
+                e_enemyImageUI2.sprite = i_bananachHeadshot;
             }
         }
-        else
-        { e_enemyUI2.SetActive(false); }
+    }
 
+    /// <summary>
+    /// Have each enemy call the vfx manager to set the ui for the third enemy
+    /// -Riley Halloran
+    /// </summary>
+    public void SetEnemyUI3()
+    {
         //Set the number and image for the enemy ui
-        if (g_global.g_enemyState.GetEnemyActiveState(3) == true)
+        if (g_global.g_enemyAttributeSheet3.e_str_enemyType != null)
         {
             e_enemyUI3.SetActive(true);
 
@@ -145,13 +175,21 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI3.sprite = i_clurichaunHeadshot;
             }
-            if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Brawler")
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Beast")
             {
-
+                e_enemyImageUI3.sprite = i_pucaHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Brawler")
+            {
+                e_enemyImageUI3.sprite = i_bodachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Realmwalker")
+            {
+                e_enemyImageUI3.sprite = i_bananachHeadshot;
             }
         }
-        else { e_enemyUI3.SetActive(false); }
     }
+
 
     /// <summary>
     /// Card spawn particle effect triggers
@@ -237,6 +275,12 @@ public class S_VFXManager : MonoBehaviour
                 bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
             }
         }
+    }
+
+    //Set the Opacity to 0
+    public void MakeTransparent(CanvasGroup canvas)
+    {
+        canvas.alpha = 0;
     }
 
     /// <summary>

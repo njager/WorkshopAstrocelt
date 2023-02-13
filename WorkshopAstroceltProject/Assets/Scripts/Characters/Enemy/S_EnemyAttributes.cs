@@ -105,6 +105,9 @@ public class S_EnemyAttributes : MonoBehaviour
             if (g_global.g_enemyAttributeSheet1 == null)
             {
                 g_global.g_enemyAttributeSheet1 = this;
+
+                //set the UI for the upper map
+                g_global.g_vfxManager.SetEnemyUI1();
             }
             else
             {
@@ -118,6 +121,9 @@ public class S_EnemyAttributes : MonoBehaviour
             if (g_global.g_enemyAttributeSheet2 == null)
             {
                 g_global.g_enemyAttributeSheet2 = this;
+
+                //set the UI for the upper map
+                g_global.g_vfxManager.SetEnemyUI2();
             }
             else
             {
@@ -131,6 +137,9 @@ public class S_EnemyAttributes : MonoBehaviour
             if (g_global.g_enemyAttributeSheet3 == null)
             {
                 g_global.g_enemyAttributeSheet3 = this;
+
+                //set the UI for the upper map
+                g_global.g_vfxManager.SetEnemyUI3();
             }
             else
             {
