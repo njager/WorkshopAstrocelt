@@ -986,7 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crd_i_stockpileClickCount: 0
   crd_i_stockpileTotalIndex: 0
-  crd_stockpileTopPosition: {fileID: 0}
+  crd_stockpileTopPosition: {fileID: 1449614336}
 --- !u!114 &713300110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,7 +1041,19 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 713300109}
+          m_TargetAssemblyTypeName: S_CardStockpile, Assembly-CSharp
+          m_MethodName: OnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &724688744 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7637182451495944990, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
@@ -1652,7 +1664,7 @@ Transform:
   - {fileID: 2126031770}
   - {fileID: 1483670045}
   - {fileID: 1707201155}
-  - {fileID: 980003525}
+  - {fileID: 1449614336}
   m_Father: {fileID: 491687968753776829}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1666,37 +1678,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4553803423840061754, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
   m_PrefabInstance: {fileID: 2102037177}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &980003524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 980003525}
-  m_Layer: 0
-  m_Name: CardStockpilePositions
-  m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &980003525
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980003524}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.75, y: 1.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1449614336}
-  m_Father: {fileID: 937180987}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043160446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2500,9 +2481,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1449614336}
   m_Layer: 0
-  m_Name: CardStockpilePosition1
+  m_Name: CardStockpileTopPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2514,11 +2495,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449614335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.75, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 980003525}
-  m_RootOrder: 0
+  m_Father: {fileID: 937180987}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483670044
 GameObject:
