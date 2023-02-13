@@ -12,7 +12,7 @@ public class S_CardStockpile : MonoBehaviour
     [SerializeField] int crd_i_stockpileTotalIndex;
 
     [Header("Card Stockpile Positions")]
-    [SerializeField] GameObject crd_stockpileTopPosition;
+    [SerializeField] Transform crd_stockpileTopPosition;
 
     [Header("Card Stockpile List")]
     [SerializeField] List<(GameObject, int)> lst_crd_stockpile = new List<(GameObject, int)>();
@@ -25,6 +25,31 @@ public class S_CardStockpile : MonoBehaviour
     {
         // Increment count for visual changes 
         crd_i_stockpileClickCount += 1;
+    }
+
+    /// <summary>
+    /// Determine the visual positions based off index
+    /// - Josh
+    /// </summary>
+    public void SortCardPositions() 
+    {
+        foreach ((GameObject, int) _stockpileEntry in lst_crd_stockpile.ToList())
+        {
+            if(_stockpileEntry.Item2 == 0) 
+            {
+                _stockpileEntry.Item1.transform.position = crd_stockpileTopPosition.position;
+            }
+            else // Determine subsequent positions
+            {
+                float _indexBasedXValue = _stockpileEntry.Item2 * 1.1f;
+
+                // Build dynamic position
+                Vector3 _calculatedPositon = new Vector3(crd_stockpileTopPosition.position.x + _indexBasedXValue, crd_stockpileTopPosition.position.y, crd_stockpileTopPosition.position.z + _stockpileEntry.Item2);
+
+                // Set position for card
+                _stockpileEntry.Item1.transform.position = _calculatedPositon;
+            }
+        }
     }
 
     /// <summary>
@@ -45,6 +70,9 @@ public class S_CardStockpile : MonoBehaviour
 
         // Set Card's Stockpile Index in Card
         _card.GetComponent<S_Card>().SetCardStockpileListIndex(crd_i_stockpileTotalIndex);
+
+        // Now Sort Cards
+        SortCardPositions();
     }
 
     /// <summary>
@@ -68,10 +96,10 @@ public class S_CardStockpile : MonoBehaviour
 
         // Set Card's Stockpile Index in Card
         _card.GetComponent<S_Card>().SetCardStockpileListIndex(0);
-    }
-    
 
-    // Add boolean toggle in S_Card for if in stockpile or not
+        // Now Sort Cards
+        SortCardPositions();
+    }
 
     // Add check to now to toggle stockpile bool when cards get added and positions 1-5 are filled
 }
