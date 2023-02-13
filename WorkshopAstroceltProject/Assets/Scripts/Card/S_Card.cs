@@ -545,6 +545,9 @@ public class S_Card : MonoBehaviour
 
                 g_global.g_altar.SetCardBeingActiveBool(true);
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+
+                //card was played play another
+                g_global.g_altar.CreateCardFromList();
             }
             else
             {
@@ -572,13 +575,12 @@ public class S_Card : MonoBehaviour
                     }
                 }
 
+                //card was played play another
+                g_global.g_altar.CreateCardFromList();
+
                 // Unpause IEnumerator
-                if (g_global.g_ls_p_playerHand.Count > 0)
-                {
-                    //Debug.Log("Triggered the bool");
-                    g_global.g_altar.SetCardBeingActiveBool(true);
-                    //g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                }
+                g_global.g_altar.SetCardBeingActiveBool(true);
+
             }
             else
             {
@@ -633,7 +635,6 @@ public class S_Card : MonoBehaviour
     {
         //if a cardball persists
         g_global.g_altar.c_b_cardSpawned = false;
-        g_global.g_cardManager.RemoveFirstCard();
 
         Destroy(gameObject); // Remove card from play
     }

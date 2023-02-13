@@ -213,7 +213,6 @@ public class S_PopupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TriggerPopupMove()
     {
-        Debug.Log("Move bich");
         yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
 

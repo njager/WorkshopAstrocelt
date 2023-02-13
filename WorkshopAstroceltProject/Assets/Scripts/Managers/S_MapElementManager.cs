@@ -12,7 +12,7 @@ public class S_MapElementManager : MonoBehaviour
     [SerializeField] GameObject mp_activeMap;
 
     [Header("Master Map List")]
-    [SerializeField] List<(List<GameObject>, int mp_i_masterListID)> mp_ls_masterMapList = new List<(List<GameObject>, int)>();
+    [SerializeField] List<(List<(Transform, int mp_i_masterListObjectID)>, int mp_i_mapMasterListIndex)> mp_ls_masterMapList = new List<(List<(Transform, int)>, int)>();
 
     [Header("Current Map Index")]
     [SerializeField] int mp_i_currentMapID;
@@ -20,12 +20,11 @@ public class S_MapElementManager : MonoBehaviour
     [Header("Previous Map Index")]
     [SerializeField] int mp_i_previousMapID;
 
+
     [Header("Energy Star Prefab")]
-    [SerializeField] GameObject s_energyStarPrefab;
+    [SerializeField] GameObject s_energyStarPrefab; // Keeping for abilites that would add a star
 
-
-    [Header("Map 1 Star List")]
-    public List<S_StarClass> ls_s_map1Stars = new List<S_StarClass>();
+    // Throw out empty objects in the generation system that allow us to have a list of valid locations to add stars to? - Thoughts for post integretation
 
     private void Awake()
     {
@@ -34,7 +33,7 @@ public class S_MapElementManager : MonoBehaviour
 
     private void Start()
     {
-        // Create the map list
+        mp_activeMap = g_global.g_newMapManager.activeMap;
         GenerateDynamicMapList();
     }
 
@@ -43,7 +42,7 @@ public class S_MapElementManager : MonoBehaviour
     /// Run the map generation list function to dynamically make maps
     /// - Josh
     /// </summary>
-    private void GenerateDynamicMapList()
+    private void GenerateDynamicMapList() // Do this every round with turn manager (place after Thoman figures out his logic calls)
     {
 
     }
@@ -52,20 +51,46 @@ public class S_MapElementManager : MonoBehaviour
     /// Helper function to get parent function to reparent newly added stars
     /// - Josh
     /// </summary>
-    /// <param name="_mapNum"></param>
+    /// <param name="_objectIndex"></param>
     /// <returns></returns>
-    public Transform GetTransformFromMapID(int _mapIndex)
+    public Transform GetTransformFromObjectID(int _objectIndex)
     {
-        return null;
+        Transform _transformToReturn = null;
+        //foreach((List<Transform>, int))
+        //foreach ((Transform, int) _currentMapInstance in mp_ls_masterMapList.ToList())
+        //{
+        //    if(_currentMapInstance.Item2 == _objectIndex) 
+        //    {
+        //        _transformToReturn = _currentMapInstance.Item1;
+        //    }
+        //}
+
+        return _transformToReturn;
     }
 
     /// <summary>
     /// Helper function to get map list
+    /// - Josh 
     /// </summary>
-    /// <param name="_mapNum"></param>
+    /// <param name="_objectIndex"></param>
     /// <returns></returns>
-    public List<S_StarClass> GetMapListFromID(int _mapIndex)
+    public List<S_StarClass> GetMapListObjectID(int _objectIndex)
     {
         return null;
+    }
+
+    public void AddStarToMapPreRun() 
+    {
+
+    }
+
+    public void AddStarToMapPostRun() // Pops a star into existence at a viable spot
+    {
+
+    }
+
+    public void RemoveStarFromMapPreRun() 
+    {
+
     }
 }

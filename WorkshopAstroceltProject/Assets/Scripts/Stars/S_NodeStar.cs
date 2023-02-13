@@ -46,8 +46,6 @@ public class S_NodeStar : MonoBehaviour
 
         // Node Star Add (may break, lets see)
         g_global.g_ls_nodeStarList.Add(this);
-
-        g_global.g_altar.s_nodeStarReference = this.gameObject;
     }
 
     private void Start()

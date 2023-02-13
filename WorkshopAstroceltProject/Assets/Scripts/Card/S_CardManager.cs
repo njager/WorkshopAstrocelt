@@ -17,12 +17,9 @@ public class S_CardManager : MonoBehaviour
 
     public GameObject c_cardPrefabTemplate;
 
-    private void Start()
+    private void Awake()
     {
         g_global = S_Global.Instance;
-
-        //once the game starts give the players some cards
-        NewHand();
     }
 
     /// <summary>
@@ -37,53 +34,38 @@ public class S_CardManager : MonoBehaviour
         return _number;
     }
 
-    /// <summary>
-    /// This Function removes cards from the deck and adds them to the player hand
-    /// - Riley
-    /// </summary>
-    public void DealCards(int _deal)
+    public S_CardTemplate GetCardFromDeck()
     {
-        //loop for how many times the player is drawing
-        for(int i=0; i<_deal; i++)
+        //if the deck is empty move the cards over
+        if (g_global.g_ls_p_playerDeck.Count() <= 0)
         {
-            //prevent deck drawing if hand is too big
-            if(g_global.g_ls_p_playerHand.Count() < p_i_handSizeLimit)
-            {
-                //if the deck is empty move the cards over
-                if (g_global.g_ls_p_playerDeck.Count() <= 0)
-                {
-                    ShuffleGraveToDeck();
-                }
-                
-                //get a random number and get a random key from the deck
-                int _rand = randomNumGenerator(g_global.g_ls_p_playerDeck.Count()-1);
-                int _cardKey = g_global.g_ls_p_playerDeck[_rand];
-
-                //remove a key from the deck (gets added to the grave when it gets deleted)
-                g_global.g_ls_p_playerDeck.RemoveAt(_rand);
-
-                //get the card game object and add it to the player hand
-                //Debug.Log("The card key is " + _cardKey);
-                S_CardTemplate _randomCard = g_global.g_cardDatabase.GetCard(_cardKey);
-
-                //add the card to the hand
-                g_global.g_ls_p_playerHand.Add(_randomCard);
-
-            }
+            ShuffleGraveToDeck();
         }
+
+        //get a random number and get a random key from the deck
+        int _rand = randomNumGenerator(g_global.g_ls_p_playerDeck.Count() - 1);
+        int _cardKey = g_global.g_ls_p_playerDeck[_rand];
+
+        //remove a key from the deck (gets added to the grave when it gets deleted)
+        g_global.g_ls_p_playerDeck.RemoveAt(_rand);
+
+        //get the card game object and add it to the player hand
+        //Debug.Log("The card key is " + _cardKey);
+        S_CardTemplate _randomCard = g_global.g_cardDatabase.GetCard(_cardKey);
+
+        //add card to grave
+        AddToGrave(_cardKey);
+
+        return _randomCard;
     }
 
     /// <summary>
-    /// This gets called from turn manager and is the new hand the player gets at a start of a turn
-    /// - Riley
+    /// Function takes a key and adds it to grave
     /// </summary>
-    public void NewHand()
+    /// <param name="_cardKey"></param>
+    public void AddToGrave(int _cardKey)
     {
-        //clear the hand
-        ClearPlayerHand();
-
-        //deal the new cards now that all cards are in the deck
-        DealCards(p_i_drawPerTurn);
+        g_global.g_ls_p_playerGrave.Add(_cardKey);
     }
 
     /// <summary>
@@ -102,26 +84,6 @@ public class S_CardManager : MonoBehaviour
 
         //clear the grave
         ClearPlayerGrave();
-    }
-
-    /// <summary>
-    /// This method removes the first card from the list
-    /// This gets called from global
-    /// -Riley Halloran
-    /// </summary>
-    /// <param name="_cardTemplate"></param>
-    public void RemoveFirstCard()
-    {
-        g_global.g_ls_p_playerHand.RemoveAt(0);
-    }
-
-    /// <summary>
-    /// Manual clear function, other one wasn't working
-    /// - Josh
-    /// </summary>
-    public void ClearPlayerHand() 
-    {
-        g_global.g_ls_p_playerHand.Clear();
     }
 
     /// <summary>

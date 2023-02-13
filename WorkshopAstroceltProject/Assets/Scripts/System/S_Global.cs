@@ -40,6 +40,7 @@ public class S_Global : MonoBehaviour
     public S_VFXManager g_vfxManager;
     public S_AudioManager g_audioManager;
     public S_RewardVisualScript g_rewardVisualScript;
+    public S_MapManager g_newMapManager; // Thoman's
 
     [Header("Character States")]
     public bool g_b_playerTurn;
@@ -78,7 +79,6 @@ public class S_Global : MonoBehaviour
     public List<GameObject> g_ls_completedLineRendererList;
     public List<int> g_ls_p_playerDeck;
     public List<int> g_ls_p_playerGrave;
-    public List<S_CardTemplate> g_ls_p_playerHand;
     public List<S_StarPopUp> g_ls_starPopup;
     public List<S_Cardball> g_ls_cardBallPrefabs;
     public List<S_Enemy> g_ls_activeEnemies;
