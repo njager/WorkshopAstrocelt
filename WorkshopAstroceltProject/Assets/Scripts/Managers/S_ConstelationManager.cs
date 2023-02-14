@@ -545,8 +545,8 @@ public class S_ConstelationManager : MonoBehaviour
         return b_makingConstellation;
     }
 
-    // <summary>
-    /// Get the bool state of S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// <summary>
+    /// Return the bool state of S_ConstelationManager.b_curStarSpawnedPopupsAlready
     /// </summary>
     /// <returns>
     /// S_ConstelationManager.b_curStarSpawnedPopupsAlready

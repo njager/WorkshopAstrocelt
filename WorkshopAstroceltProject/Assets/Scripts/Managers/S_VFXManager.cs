@@ -64,6 +64,11 @@ public class S_VFXManager : MonoBehaviour
     [Header("MapPan Button")]
     public GameObject bt_mapPanButton;
 
+    [Header("Cardball locations")]
+    public GameObject cb_upperPosition1Location;
+    public GameObject cb_upperPosition2Location;
+    public GameObject cb_upperPosition3Location;
+
     [Header("EnemyUI Slots")]
     public GameObject e_enemyUI1;
     public GameObject e_enemyUI2;
@@ -230,6 +235,8 @@ public class S_VFXManager : MonoBehaviour
                 //swap the val
                 b_camPanPos = false;
 
+                MoveCardBallsDown();
+
                 //Pan the camera down
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
 
@@ -256,6 +263,9 @@ public class S_VFXManager : MonoBehaviour
                 //swap the val
                 b_camPanPos = true;
 
+                //move card balls
+                MoveCardBallsDown();
+
                 //Pan the camera up
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
 
@@ -274,6 +284,42 @@ public class S_VFXManager : MonoBehaviour
                 //set rotation for the button
                 bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
             }
+        }
+    }
+
+    /// <summary>
+    /// Move the card balls to the top ui
+    /// -Riley
+    /// </summary>
+    public void MoveCardBallsUp()
+    {
+
+    }
+
+    /// <summary>
+    /// Moves the card balls back to the altar
+    /// -Riley
+    /// </summary>
+    public void MoveCardBallsDown()
+    {
+        int _i = 0;
+
+        foreach (S_Cardball _cardBall in g_global.g_altar.ls_activeCardBalls)
+        {
+            //if(_i == 0)
+            //{
+            //    _cardBall.gameObject.transform.parent = cb_upperPosition1Location.transform;
+            //}
+            //else if (_i == 1)
+            //{
+            //    _cardBall.gameObject.transform.parent = cb_upperPosition2Location.transform;
+            //}
+            //else if (_i == 0)
+            //{
+            //    _cardBall.gameObject.transform.parent = cb_upperPosition3Location.transform;
+            //}
+
+            _i++;
         }
     }
 
