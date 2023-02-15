@@ -2,6 +2,8 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class S_VFXManager : MonoBehaviour
 {
@@ -59,13 +61,140 @@ public class S_VFXManager : MonoBehaviour
     [Header("Ui for up camera")]
     public List<GameObject> ls_upCamUI;
 
+    [Header("MapPan Button")]
+    public GameObject bt_mapPanButton;
+
+    [Header("Cardball locations")]
+    public GameObject cb_upperPosition1Location;
+    public GameObject cb_upperPosition2Location;
+    public GameObject cb_upperPosition3Location;
+
+    [Header("EnemyUI Slots")]
+    public GameObject e_enemyUI1;
+    public GameObject e_enemyUI2;
+    public GameObject e_enemyUI3;
+
+    [Header("EnemyUI Slots")]
+    public Image e_enemyImageUI1;
+    public Image e_enemyImageUI2;
+    public Image e_enemyImageUI3;
+
+    [Header("EnemyUI Headshot Images")]
+    public Sprite i_clurichaunHeadshot;
+    public Sprite i_pucaHeadshot;
+    public Sprite i_troupeHeadshot;
+    public Sprite i_bananachHeadshot;
+    public Sprite i_bodachHeadshot;
+
     //private vars
     private bool b_camPanPos = false; //false means down true means up
 
     private void Awake()
     {
         g_global = S_Global.Instance;
+
+        //turn off up ui
+        foreach (GameObject ui in ls_upCamUI)
+        {
+            MakeTransparent(ui.GetComponent<CanvasGroup>());
+        }
+
+        //set all ui to false
+        e_enemyUI1.SetActive(false);
+        e_enemyUI2.SetActive(false);
+        e_enemyUI3.SetActive(false);
     }
+
+    /// <summary>
+    /// Have each enemy call the vfx manager to set the ui for the first enemy
+    /// -Riley
+    /// </summary>
+    public void SetEnemyUI1()
+    {
+        //Set the number and image for the enemy ui
+        if (g_global.g_enemyAttributeSheet1.e_str_enemyType != null)
+        {
+            e_enemyUI1.SetActive(true);
+
+            if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Magician")
+            {
+                e_enemyImageUI1.sprite = i_clurichaunHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Beast")
+            {
+                e_enemyImageUI1.sprite = i_pucaHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Brawler")
+            {
+                e_enemyImageUI1.sprite = i_bodachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Realmwalker")
+            {
+                e_enemyImageUI1.sprite = i_bananachHeadshot;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Have each enemy call the vfx manager to set the ui for the second enemy
+    /// -Riley Halloran
+    /// </summary>
+    public void SetEnemyUI2()
+    {
+        //Set the number and image for the enemy ui
+        if (g_global.g_enemyAttributeSheet2.e_str_enemyType != null)
+        {
+            e_enemyUI2.SetActive(true);
+
+            if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Magician")
+            {
+                e_enemyImageUI2.sprite = i_clurichaunHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Beast")
+            {
+                e_enemyImageUI2.sprite = i_pucaHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Brawler")
+            {
+                e_enemyImageUI2.sprite = i_bodachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Realmwalker")
+            {
+                e_enemyImageUI2.sprite = i_bananachHeadshot;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Have each enemy call the vfx manager to set the ui for the third enemy
+    /// -Riley Halloran
+    /// </summary>
+    public void SetEnemyUI3()
+    {
+        //Set the number and image for the enemy ui
+        if (g_global.g_enemyAttributeSheet3.e_str_enemyType != null)
+        {
+            e_enemyUI3.SetActive(true);
+
+            if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Magician")
+            {
+                e_enemyImageUI3.sprite = i_clurichaunHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Beast")
+            {
+                e_enemyImageUI3.sprite = i_pucaHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Brawler")
+            {
+                e_enemyImageUI3.sprite = i_bodachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Realmwalker")
+            {
+                e_enemyImageUI3.sprite = i_bananachHeadshot;
+            }
+        }
+    }
+
 
     /// <summary>
     /// Card spawn particle effect triggers
@@ -106,19 +235,36 @@ public class S_VFXManager : MonoBehaviour
                 //swap the val
                 b_camPanPos = false;
 
+                MoveCardBallsDown();
+
                 //Pan the camera down
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
-            
-                //turn on down ui
-                foreach(GameObject ui in ls_downCamUI)
+
+                //Set rotation for the button
+                bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+
+                //turn off up ui
+                foreach (GameObject ui in ls_upCamUI)
                 {
-                    ui.SetActive(true);
+                    StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
                 }
+
+                //turn on down ui
+                foreach (GameObject ui in ls_downCamUI)
+                {
+                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
+                }
+
+                //check if there is an available card ball
+                g_global.g_altar.CreateCardFromList();
             }
             else //is down
             {
                 //swap the val
                 b_camPanPos = true;
+
+                //move card balls
+                MoveCardBallsDown();
 
                 //Pan the camera up
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
@@ -126,10 +272,93 @@ public class S_VFXManager : MonoBehaviour
                 //turn off down ui
                 foreach (GameObject ui in ls_downCamUI)
                 {
-                    ui.SetActive(false);
+                    StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
                 }
+
+                //turn on up ui
+                foreach (GameObject ui in ls_upCamUI)
+                {
+                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
+                }
+
+                //set rotation for the button
+                bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
             }
         }
+    }
+
+    /// <summary>
+    /// Move the card balls to the top ui
+    /// -Riley
+    /// </summary>
+    public void MoveCardBallsUp()
+    {
+
+    }
+
+    /// <summary>
+    /// Moves the card balls back to the altar
+    /// -Riley
+    /// </summary>
+    public void MoveCardBallsDown()
+    {
+        int _i = 0;
+
+        foreach (S_Cardball _cardBall in g_global.g_altar.ls_activeCardBalls)
+        {
+            //if(_i == 0)
+            //{
+            //    _cardBall.gameObject.transform.parent = cb_upperPosition1Location.transform;
+            //}
+            //else if (_i == 1)
+            //{
+            //    _cardBall.gameObject.transform.parent = cb_upperPosition2Location.transform;
+            //}
+            //else if (_i == 0)
+            //{
+            //    _cardBall.gameObject.transform.parent = cb_upperPosition3Location.transform;
+            //}
+
+            _i++;
+        }
+    }
+
+    //Set the Opacity to 0
+    public void MakeTransparent(CanvasGroup canvas)
+    {
+        canvas.alpha = 0;
+    }
+
+    /// <summary>
+    /// Fade out elements
+    /// </summary>
+    /// <param name="canvas"></param>
+    /// <returns></returns>
+    public IEnumerator FadeOut(CanvasGroup canvas)
+    {
+        for (float i = 1; i >= 0; i -= 0.05f)
+        {
+            canvas.alpha = i;
+            yield return new WaitForEndOfFrame();
+        }
+
+        canvas.alpha = 0;
+    }
+
+    /// <summary>
+    /// Fade in elements 
+    /// </summary>
+    /// <param name="canvas"></param>
+    /// <returns></returns>
+    public IEnumerator FadeIn(CanvasGroup canvas)
+    {
+        for (float i = 0; i <= 1; i += 0.05f)
+        {
+            canvas.alpha = i;
+            yield return new WaitForEndOfFrame();
+        }
+
+        canvas.alpha = 1;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

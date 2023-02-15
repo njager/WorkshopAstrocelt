@@ -56,6 +56,8 @@ public class S_Player : MonoBehaviour
         // Copy the flashMaterial material, this is needed, 
         // so it can be modified without any side effects.
         flashMaterial = new Material(flashMaterial);
+
+        animator.CrossFade("ErinIdle1", 0, 0);
     }
 
     void Awake()

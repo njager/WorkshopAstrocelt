@@ -119,6 +119,10 @@ public class S_Card : MonoBehaviour
     [Header("Tween Storage")]
     public Tweener an_storedTween;
 
+    [Header("Card Stockpile Boolean Toggle")]
+    [SerializeField] bool crd_b_presentInStockpile = false;
+    [SerializeField] int crd_i_stockpileIndex; // If in stockpile, it will have an index assigned
+
     private GameObject crd_hoverCharacter;
 
     // Will likely need to toggle bools for icons on the card itself at some point - Note for later
@@ -545,6 +549,9 @@ public class S_Card : MonoBehaviour
 
                 g_global.g_altar.SetCardBeingActiveBool(true);
                 //g_global.g_ConstellationManager.SetStarLockOutBool(true);
+
+                //card was played play another
+                g_global.g_altar.CreateCardFromList();
             }
             else
             {
@@ -572,13 +579,12 @@ public class S_Card : MonoBehaviour
                     }
                 }
 
+                //card was played play another
+                g_global.g_altar.CreateCardFromList();
+
                 // Unpause IEnumerator
-                if (g_global.g_ls_p_playerHand.Count > 0)
-                {
-                    //Debug.Log("Triggered the bool");
-                    g_global.g_altar.SetCardBeingActiveBool(true);
-                    //g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                }
+                g_global.g_altar.SetCardBeingActiveBool(true);
+
             }
             else
             {
@@ -633,7 +639,6 @@ public class S_Card : MonoBehaviour
     {
         //if a cardball persists
         g_global.g_altar.c_b_cardSpawned = false;
-        g_global.g_cardManager.RemoveFirstCard();
 
         Destroy(gameObject); // Remove card from play
     }
@@ -738,10 +743,12 @@ public class S_Card : MonoBehaviour
         }
     }
 
-    // Setters \\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /// <summary>
-    /// Set the bool value of S_Card.c_v3_initialCardPosition;
+    /// Set the Vector3 of S_Card.c_v3_initialCardPosition;
     /// - Josh 
     /// </summary>
     /// <param name="_cardInitialPosition"></param>
@@ -750,20 +757,73 @@ public class S_Card : MonoBehaviour
         crd_v3_initialCardPosition = _cardInitialPosition;
     }
 
-    public void SetCardDrag(bool _bool)
+    /// <summary>
+    /// Set the truth value of S_Card.crd_b_cardIsDragged;
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetCardDragBool(bool _truthValue)
     {
-        crd_b_cardIsDragged = _bool;
+        crd_b_cardIsDragged = _truthValue;
     }
 
-    // Getters \\ 
+    /// <summary>
+    /// Set the truth value of S_Card.crd_b_presentInStockpile;
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetCardStockpileStatusBool(bool _truthValue)
+    {
+        crd_b_presentInStockpile = _truthValue;
+    }
 
     /// <summary>
-    /// Func that returns the card drag
+    /// Set the int value of S_Card.crd_i_stockpileIndex;
+    /// - Josh 
     /// </summary>
-    /// <returns></returns>
-    public bool GetCardDrag()
+    /// <param name="_indexValue"></param>
+    public void SetCardStockpileListIndex(int _indexValue)
+    {
+        crd_i_stockpileIndex = _indexValue;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Get the truth value of S_Card.crd_b_cardIsDragged;
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Card.crd_b_cardIsDragged
+    /// </returns>
+    public bool GetCardDragBool()
     {
         return crd_b_cardIsDragged;
     }
 
+    /// <summary>
+    /// Get the truth value of S_Card.crd_b_presentInStockpile;
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Card.crd_b_presentInStockpile
+    /// </returns>
+    public bool GetCardStockpileStatusBool()
+    {
+        return crd_b_presentInStockpile;
+    }
+
+    /// <summary>
+    /// Get the int value of S_Card.crd_i_stockpileIndex;
+    /// - Josh 
+    /// </summary>
+    /// <returns>
+    /// S_Card.crd_i_stockpileIndex
+    /// </returns>
+    public int GetCardStockpileListIndex()
+    {
+        return crd_i_stockpileIndex;
+    }
 }

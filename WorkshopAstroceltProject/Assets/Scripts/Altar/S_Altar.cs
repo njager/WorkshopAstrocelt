@@ -9,6 +9,9 @@ public class S_Altar : MonoBehaviour
 {
     private S_Global g_global;
 
+    [Header("Number of Active Card Balls")]
+    public int i_cardBallNum = 3;
+
     [Header("Text Boxes")]
     public TextMeshProUGUI c_tx_cardName;
     public TextMeshProUGUI c_tx_cardBody;
@@ -60,6 +63,15 @@ public class S_Altar : MonoBehaviour
     [Header("Mouse Enter Check")]
     public bool tl_b_mouseEntered;
 
+    [Header("CardBalls in Hand List")]
+    public List<S_CardTemplate> ls_cardBallHand;
+
+    [Header("Active CardBalls")]
+    public List<S_Cardball> ls_activeCardBalls;
+
+    [Header("CardBall completed List")]
+    public List<S_Cardball> ls_cardBallStorage;
+
     
 
     private void Awake()
@@ -85,27 +97,23 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(SpawnCardballPrefabs(3));
+        AddActiveCardBalls(i_cardBallNum);
     }
 
     /// <summary>
-    /// This method gets called when the first card in the altar changes
-    /// It changes all the text on the altar and the color borders
-    /// - Riley and Josh
+    /// First part of the logic chain for card balls
+    /// adds the first cardballs to the active list
+    /// calls spawn cardball prefabs
+    /// -Riley Halloran
     /// </summary>
-    /// <param name="_card"></param>
-    public void ChangeCard(GameObject _cardball)
+    public void AddActiveCardBalls(int _numOfCards)
     {
-        //change the text boxes
-        S_Cardball _cardballScript = _cardball.GetComponent<S_Cardball>();
-        c_tx_cardName.text = _cardballScript.c_cardName;
-        c_tx_cardBody.text = _cardballScript.c_cardBody;
+        for (int i = 0; i < _numOfCards; i++)
+        {
+            ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck());
+        }
 
-        //set all the borders to false
-        a_blueBorder.SetActive(false);
-        a_redBorder.SetActive(false);
-        a_yellowBorder.SetActive(false);
-        a_colorlessBorder.SetActive(false);
+        StartCoroutine(SpawnVisualCardballPrefabs(_numOfCards));
     }
 
     /// <summary>
@@ -114,7 +122,7 @@ public class S_Altar : MonoBehaviour
     /// May be fully temporary
     /// - Josh
     /// </summary>
-    public IEnumerator SpawnCardballPrefabs(int _numCards)
+    public IEnumerator SpawnVisualCardballPrefabs(int _numCards)
     {
         c_i_movementInt = 0;
 
@@ -125,20 +133,23 @@ public class S_Altar : MonoBehaviour
         for (int i = 0; i < _numCards; i++)
         {
             yield return new WaitForSeconds(1);
-            AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[i]);
+            AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[i]);
             StartCoroutine(MoveCardballPrefabs());
         }
+
+        ls_cardBallHand.Clear();
 
         SetCardballsSpawnedBool(true);
         // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         yield return new S_WaitForCardballMovement();
 
-        
+
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(true);
     }
+
 
     /// <summary>
     /// CardBall Setup and Spawning for when new Cardballs are needed for the altar. 
@@ -167,6 +178,8 @@ public class S_Altar : MonoBehaviour
         // Setup cardball (this is where it'd be loaded with it's scriptable object
         _cardballScript.c_cardData = _cardTemplate;
         _cardballScript.CardballSetup();
+
+        ls_activeCardBalls.Add(_cardballScript);
     }
 
     /// <summary>
@@ -174,12 +187,11 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void DealAnotherCard()
     {
-        //deal the card
-        g_global.g_cardManager.DealCards(1);
+        //get the card from deck
+        ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck()); ;
 
         //spawn the cardballs and move them
-        AddNewCardBall(cardballSpawnPosition, g_global.g_ls_p_playerHand[g_global.g_ls_p_playerHand.Count-1]);
-        //StartCoroutine(MoveCardballPrefabs());
+        AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[ls_cardBallHand.Count-1]);
     }
 
     /// <summary>
@@ -205,21 +217,17 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(_cardball.DeleteAllCardballs());
         }
 
-        //clear the player hand since none of these cards were played
-        g_global.g_cardManager.ClearPlayerHand();
-
         //Trigger if the bool is passed
         if (_newCardBalls == true)
         {
             yield return null; //euivalent but slightly faster for optimization for one second
 
             //give the player cards to load
-            g_global.g_cardManager.DealCards(g_global.g_cardManager.p_i_drawPerTurn);
 
             c_i_movementInt = 0;
             c_b_movementBool = false;
 
-            StartCoroutine(SpawnCardballPrefabs(3));
+            StartCoroutine(SpawnVisualCardballPrefabs(3));
         }
     }
 
@@ -234,52 +242,47 @@ public class S_Altar : MonoBehaviour
         //yield return new S_WaitForEnergyTextDecrement();
         if(cardballPosition1.transform.childCount > 0)
         {
-            if (g_global.g_energyManager.CheckEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString))
+            var _firstCardBall = cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>();
+
+            if (g_global.g_energyManager.CheckEnergy(_firstCardBall.c_i_cardEnergyCost, _firstCardBall.c_cardData.ColorString))
             {
-                //This is for if the player can play more card
+                //use the energy
+                g_global.g_energyManager.UseEnergy(_firstCardBall.c_i_cardEnergyCost, _firstCardBall.c_cardData.ColorString);
 
-                // Lock Spawning
-                SetCardBeingActiveBool(false);
+                //add the cardball to the list
+                ls_cardBallStorage.Add(_firstCardBall);
 
-                // Possibly tier up the next card
-                if (g_global.g_ls_p_playerHand.Count == 1)
-                {
-                    b_lastCard = true;
-                    SetCardballDelaySpawnBool(false);
-                }
-                else
-                {
-                    GameObject _tempObject = GetChildOfSecondAltarPosition();
+                //remove the first card ball of
+                ls_activeCardBalls.RemoveAt(0);
 
-                    if (_tempObject.Equals(nullObject))
-                    {
-                        SetCardballDelaySpawnBool(CheckSecondCardball());
-                        b_lastCard = false;
-                    }
-                }
+                //move the cardballs?
 
-                g_global.g_energyManager.UseEnergy(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
 
-                g_global.g_vfxManager.TriggerParticleEffects(cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().c_cardData.ColorString);
-
-                //turn the cardball into a card and move over the rest of the cardballs
-                cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>().CardballToCard();
-
-                //ChangeCard(cardballPosition1.transform.GetChild(0).gameObject);
+                //spawn another
             }
             else
             {
                 //This is when there are no more cards to play
-
-                //clear energy and reset the bool
-                //g_global.g_energyManager.ClearEnergy();
-
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
             }
         }
         else
         {
             // Nothing
+        }
+    }
+
+    /// <summary>
+    /// Called from the vfx manager when the down button gets hit
+    /// create a card from the first cardball
+    /// </summary>
+    public void CreateCardFromList()
+    {
+        if (ls_cardBallStorage.Count() > 0)
+        {
+            var _firstCardBall = ls_cardBallStorage[0];
+            ls_cardBallStorage.RemoveAt(0);
+
+            _firstCardBall.CardballToCard();
         }
     }
 
