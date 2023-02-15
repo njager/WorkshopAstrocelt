@@ -191,7 +191,7 @@ public class S_Altar : MonoBehaviour
         ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck()); ;
 
         //spawn the cardballs and move them
-        AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[ls_cardBallHand.Count-1]);
+        StartCoroutine(SpawnVisualCardballPrefabs(1));
     }
 
     /// <summary>
@@ -210,7 +210,7 @@ public class S_Altar : MonoBehaviour
         //Debug.Log(" Debug - Triggered 2");
         b_lastCard = false; 
         SetCardBeingActiveBool(false);
-        foreach (S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList())
+        foreach (S_Cardball _cardball in ls_activeCardBalls)
         {
             //wait and then remove the cardball from the list and delete it from the game
             yield return new WaitForSeconds(0.25f);
@@ -227,7 +227,7 @@ public class S_Altar : MonoBehaviour
             c_i_movementInt = 0;
             c_b_movementBool = false;
 
-            StartCoroutine(SpawnVisualCardballPrefabs(3));
+            AddActiveCardBalls(i_cardBallNum); 
         }
     }
 
@@ -430,6 +430,16 @@ public class S_Altar : MonoBehaviour
                 //Debug.Log("MoveCardballPrefabs() Called");
             }
         }
+    }
+
+    /// <summary>
+    /// This is the function that gets called after the player finishes the constellation
+    /// Needs to manage the data structures for the card balls and enforces them for the visuals
+    /// -Riley Halloran
+    /// </summary>
+    public void CheckCardBallData()
+    {
+
     }
 
 

@@ -453,7 +453,7 @@ public class S_ConstelationManager : MonoBehaviour
             g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
 
             //call the altar
-            g_global.g_altar.CheckFirstCardball();
+            g_global.g_altar.CheckCardBallData();
 
             NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
         }
