@@ -340,29 +340,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ls_e_moveQueue1:
   - s_action: attack
-    i_actionValue: 25
+    i_actionValue: 15
   - s_action: attack
-    i_actionValue: 5
-  - s_action: shield
-    i_actionValue: 10
+    i_actionValue: 20
   - s_action: ability
     i_actionValue: 0
+  - s_action: shield
+    i_actionValue: 10
   ls_e_moveQueue2:
   - s_action: attack
-    i_actionValue: 12
-  - s_action: attack
     i_actionValue: 20
   - s_action: ability
     i_actionValue: 0
-  - s_action: shield
-    i_actionValue: 10
-  ls_e_moveQueue3:
-  - s_action: attack
-    i_actionValue: 20
   - s_action: shield
     i_actionValue: 10
   - s_action: attack
     i_actionValue: 15
+  ls_e_moveQueue3:
+  - s_action: attack
+    i_actionValue: 15
+  - s_action: attack
+    i_actionValue: 20
+  - s_action: ability
+    i_actionValue: 0
   - s_action: shield
     i_actionValue: 10
   e_i_health: 60
@@ -374,10 +374,6 @@ MonoBehaviour:
   e_b_Magician: 0
   e_b_Beast: 1
   e_b_Brawler: 0
-  e_b_acidic: 0
-  e_b_bleeding: 0
-  e_b_resistant: 0
-  e_b_stunned: 0
   e_enemy: {fileID: 0}
   e_pe_enemyAttacked: {fileID: 3019897339618985349}
   e_pe_enemyShieldApplied: {fileID: 2546455512166232549}
