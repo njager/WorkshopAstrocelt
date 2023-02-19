@@ -22,6 +22,15 @@ public class S_Altar : MonoBehaviour
     public GameObject a_blueBorder;
     public GameObject a_yellowBorder;
 
+    [Header("Upper Text Boxes")]
+    public TextMeshProUGUI c_tx_upperCardName;
+
+    [Header("Upper Borders")]
+    public GameObject a_upperColorlessBorder;
+    public GameObject a_upperRedBorder;
+    public GameObject a_upperBlueBorder;
+    public GameObject a_upperYellowBorder;
+
     [Header("Cardball Prefab")]
     public GameObject c_cardballPrefab; 
 
@@ -467,16 +476,15 @@ public class S_Altar : MonoBehaviour
         { 
             if(i==0)
             {
-                //ls_activeCardBalls[i].transform.DOMove(upperCardballPosition1.transform.position, 1f);
                 ls_activeCardBalls[i].transform.SetParent(upperCardballPosition1.transform, false);
             }
             else if (i == 1)
             {
-                ls_activeCardBalls[i].transform.DOMove(upperCardballPosition2.transform.position, 1f);
+                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition2.transform, false);
             }
             else if (i == 2)
             {
-                ls_activeCardBalls[i].transform.DOMove(upperCardballPosition3.transform.position, 1f);
+                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition3.transform, false);
             }
         }
     }
@@ -491,15 +499,15 @@ public class S_Altar : MonoBehaviour
         {
             if (i == 0)
             {
-                ls_activeCardBalls[i].transform.DOMove(cardballPosition1.transform.position, 1f);
+                ls_activeCardBalls[i].transform.SetParent(cardballPosition1.transform, false);
             }
             else if (i == 1)
             {
-                ls_activeCardBalls[i].transform.DOMove(cardballPosition2.transform.position, 1f);
+                ls_activeCardBalls[i].transform.SetParent(cardballPosition2.transform, false);
             }
             else if (i == 2)
             {
-                ls_activeCardBalls[i].transform.DOMove(cardballPosition3.transform.position, 1f);
+                ls_activeCardBalls[i].transform.SetParent(cardballPosition3.transform, false);
             }
         }
     }

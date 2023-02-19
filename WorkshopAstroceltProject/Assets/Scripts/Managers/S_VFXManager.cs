@@ -83,6 +83,12 @@ public class S_VFXManager : MonoBehaviour
     public Sprite i_bananachHeadshot;
     public Sprite i_bodachHeadshot;
 
+    [Header("Button Reference")]
+    public GameObject ui_mapPanButton;
+
+    [Header("if false then ")]
+    [SerializeField] private bool b_mapPanLockout = true;
+
     //private vars
     private bool b_camPanPos = false; //false means down true means up
 
@@ -101,6 +107,7 @@ public class S_VFXManager : MonoBehaviour
         e_enemyUI2.SetActive(false);
         e_enemyUI3.SetActive(false);
     }
+ 
 
     /// <summary>
     /// Have each enemy call the vfx manager to set the ui for the first enemy
@@ -225,63 +232,77 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
-        if (g_global.g_cam != null)
+        if (b_mapPanLockout)
         {
-            if (b_camPanPos == true) //is up
+            if (g_global.g_cam != null)
             {
-                //swap the val
-                b_camPanPos = false;
-
-                MoveCardBallsDown();
-
-                //Pan the camera down
-                g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
-
-                //turn off up ui
-                foreach (GameObject ui in ls_upCamUI)
+                if (b_camPanPos == true) //is up
                 {
-                    StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+                    //swap the val
+                    b_camPanPos = false;
+
+                    //Pan the camera down
+                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
+
+                    //turn off up ui
+                    foreach (GameObject ui in ls_upCamUI)
+                    {
+                        StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+                    }
+
+                    //turn on down ui
+                    foreach (GameObject ui in ls_downCamUI)
+                    {
+                        StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
+                    }
+
+                    //move the cardballs down
+                    g_global.g_altar.MoveCardBallsDown();
+
+                    //check if there is an available card ball
+                    g_global.g_altar.CreateCardFromList();
+                }
+                else //is down
+                {
+                    //swap the val
+                    b_camPanPos = true;
+
+                    //Pan the camera up
+                    g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
+
+                    //turn off down ui
+                    foreach (GameObject ui in ls_downCamUI)
+                    {
+                        StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
+                    }
+
+                    //turn on up ui
+                    foreach (GameObject ui in ls_upCamUI)
+                    {
+                        StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
+                    }
+
+                    //move the card balls up
+                    g_global.g_altar.MoveCardBallsUp();
                 }
 
-                //turn on down ui
-                foreach (GameObject ui in ls_downCamUI)
-                {
-                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
-                }
+                //change button interactivity
+                ui_mapPanButton.GetComponent<Button>().interactable = false;
 
-                //move the cardballs down
-                g_global.g_altar.MoveCardBallsDown();
-
-                //check if there is an available card ball
-                g_global.g_altar.CreateCardFromList();
-            }
-            else //is down
-            {
-                //swap the val
-                b_camPanPos = true;
-
-                //move card balls
-                MoveCardBallsDown();
-
-                //Pan the camera up
-                g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * 12, 1f);
-
-                //turn off down ui
-                foreach (GameObject ui in ls_downCamUI)
-                {
-                    StartCoroutine(FadeOut(ui.GetComponent<CanvasGroup>()));
-                }
-
-                //turn on up ui
-                foreach (GameObject ui in ls_upCamUI)
-                {
-                    StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
-                }
-
-                //move the card balls up
-                g_global.g_altar.MoveCardBallsUp();
+                //trigger resetting the map bool
+                StartCoroutine(MapBoolReset());
             }
         }
+    }
+
+    public IEnumerator MapBoolReset()
+    {
+        yield return new WaitForSeconds (1f);
+
+        b_mapPanLockout= true;
+
+        //change button interactivity
+        ui_mapPanButton.GetComponent<Button>().interactable = true;
     }
 
     /// <summary>
@@ -356,6 +377,16 @@ public class S_VFXManager : MonoBehaviour
         }
 
         canvas.alpha = 1;
+    }
+
+    /// <summary>
+    /// Setter for the map pan bool
+    /// -Riley
+    /// </summary>
+    /// <param name="_val"></param>
+    public void SetMapPanLockout(bool _val)
+    {
+        b_mapPanLockout = _val;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -528,5 +559,10 @@ public class S_VFXManager : MonoBehaviour
     public ParticleSystem ConstellationCompleted() 
     {
         return pe_constellationCompleted;
+    }
+
+    public bool GetMapPanLockout()
+    {
+        return b_mapPanLockout;
     }
 }
