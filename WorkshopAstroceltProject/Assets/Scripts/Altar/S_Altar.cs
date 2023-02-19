@@ -31,6 +31,11 @@ public class S_Altar : MonoBehaviour
     public GameObject cardballPosition3;
     public GameObject cardballSpawnPosition;
 
+    [Header("Upper Altar Positions")]
+    public GameObject upperCardballPosition1;
+    public GameObject upperCardballPosition2;
+    public GameObject upperCardballPosition3;
+
     [Header("Card Holder Reference (In Engine)")]
     public GameObject c_cardHolder;
 
@@ -232,46 +237,6 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if the first card can be played and converted into a card based off the current constellation energy that the player has generated.
-    /// The trigger mechanism for Cardball to cards.
-    /// - Josh
-    /// </summary>
-    public void CheckFirstCardball()
-    {
-        //Debug.Log("We made it here for the star bool check");
-        //yield return new S_WaitForEnergyTextDecrement();
-        if(cardballPosition1.transform.childCount > 0)
-        {
-            var _firstCardBall = cardballPosition1.transform.GetChild(0).gameObject.GetComponent<S_Cardball>();
-
-            if (g_global.g_energyManager.CheckEnergy(_firstCardBall.c_i_cardEnergyCost, _firstCardBall.c_cardData.ColorString))
-            {
-                //use the energy
-                g_global.g_energyManager.UseEnergy(_firstCardBall.c_i_cardEnergyCost, _firstCardBall.c_cardData.ColorString);
-
-                //add the cardball to the list
-                ls_cardBallStorage.Add(_firstCardBall);
-
-                //remove the first card ball of
-                ls_activeCardBalls.RemoveAt(0);
-
-                //move the cardballs?
-
-
-                //spawn another
-            }
-            else
-            {
-                //This is when there are no more cards to play
-            }
-        }
-        else
-        {
-            // Nothing
-        }
-    }
-
-    /// <summary>
     /// Called from the vfx manager when the down button gets hit
     /// create a card from the first cardball
     /// </summary>
@@ -283,34 +248,6 @@ public class S_Altar : MonoBehaviour
             ls_cardBallStorage.RemoveAt(0);
 
             _firstCardBall.CardballToCard();
-        }
-    }
-
-    /// <summary>
-    /// Use this to get the status of viability for playing the next card
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// </returns>
-    public bool CheckSecondCardball()
-    {
-        if (cardballPosition2.transform.childCount > 0) 
-        {
-            if (g_global.g_energyManager.CheckEnergy(cardballPosition2.transform.GetChild(0).GetComponent<S_Cardball>().c_i_cardEnergyCost, cardballPosition2.transform.GetChild(0).GetComponent<S_Cardball>().c_cardData.ColorString))
-            {
-                //Debug.Log("Second cardball was valid");
-                return true;
-            }
-            else
-            {
-                //Debug.Log("Where do you lead me");
-                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                return false;
-            }
-        }
-        else 
-        {
-            return false;
         }
     }
 
@@ -439,7 +376,23 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckCardBallData()
     {
+        var _fst_cardBall = ls_activeCardBalls[0];
+        
+        //check the first card Ball and user energy
+        if (g_global.g_energyManager.UseEnergy(_fst_cardBall.c_i_cardEnergyCost, _fst_cardBall.c_cardData.ColorString))
+        {
+            ls_cardBallStorage.Add(_fst_cardBall);
 
+            ls_activeCardBalls.RemoveAt(0);
+
+            _fst_cardBall.transform.SetParent(nullObject.transform);
+
+            _fst_cardBall.gameObject.SetActive(false);
+
+            DealAnotherCard();
+
+            CheckCardBallData();
+        }
     }
 
 
@@ -501,7 +454,54 @@ public class S_Altar : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         // Then try to play card
-        CheckFirstCardball();
+    }
+
+
+    /// <summary>
+    /// Function that moves all the cardballs to the upper side of the map
+    /// -Riley
+    /// </summary>
+    public void MoveCardBallsUp()
+    {
+        for(int i=0; i < ls_activeCardBalls.Count(); i++) 
+        { 
+            if(i==0)
+            {
+                //ls_activeCardBalls[i].transform.DOMove(upperCardballPosition1.transform.position, 1f);
+                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition1.transform, false);
+            }
+            else if (i == 1)
+            {
+                ls_activeCardBalls[i].transform.DOMove(upperCardballPosition2.transform.position, 1f);
+            }
+            else if (i == 2)
+            {
+                ls_activeCardBalls[i].transform.DOMove(upperCardballPosition3.transform.position, 1f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Function that moves all the cardballs to the upper side of the map
+    /// -Riley
+    /// </summary>
+    public void MoveCardBallsDown()
+    {
+        for (int i = 0; i < ls_activeCardBalls.Count(); i++)
+        {
+            if (i == 0)
+            {
+                ls_activeCardBalls[i].transform.DOMove(cardballPosition1.transform.position, 1f);
+            }
+            else if (i == 1)
+            {
+                ls_activeCardBalls[i].transform.DOMove(cardballPosition2.transform.position, 1f);
+            }
+            else if (i == 2)
+            {
+                ls_activeCardBalls[i].transform.DOMove(cardballPosition3.transform.position, 1f);
+            }
+        }
     }
 
     /////////////////////////////--------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

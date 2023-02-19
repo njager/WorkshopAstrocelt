@@ -34,6 +34,11 @@ public class S_CardManager : MonoBehaviour
         return _number;
     }
 
+    /// <summary>
+    /// new deal card function
+    /// -Riley
+    /// </summary>
+    /// <returns></returns>
     public S_CardTemplate GetCardFromDeck()
     {
         //if the deck is empty move the cards over

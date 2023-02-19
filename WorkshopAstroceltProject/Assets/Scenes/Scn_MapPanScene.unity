@@ -2089,11 +2089,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421026600}
   m_CullTransparentMesh: 1
---- !u!1 &1568131081 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2652367389034605390, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-  m_PrefabInstance: {fileID: 8047176381484923552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1605543214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,7 +3090,7 @@ PrefabInstance:
     - target: {fileID: 840620545612551189, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: bt_mapPanButton
       value: 
-      objectReference: {fileID: 1568131081}
+      objectReference: {fileID: 0}
     - target: {fileID: 840620545612551189, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: a_yellowCardSpawn
       value: 
@@ -3123,6 +3118,10 @@ PrefabInstance:
     - target: {fileID: 1885217086233950845, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019944869837720637, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3385533615627047410, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_ClearFlags
@@ -3272,6 +3271,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6415791976539687030, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443907188265520287, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 6554969854521824517, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3303,6 +3310,10 @@ PrefabInstance:
     - target: {fileID: 7197962568787801319, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290550701039232179, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 7354999803209805299, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive

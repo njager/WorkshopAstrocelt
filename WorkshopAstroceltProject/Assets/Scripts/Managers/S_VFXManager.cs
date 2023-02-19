@@ -61,9 +61,6 @@ public class S_VFXManager : MonoBehaviour
     [Header("Ui for up camera")]
     public List<GameObject> ls_upCamUI;
 
-    [Header("MapPan Button")]
-    public GameObject bt_mapPanButton;
-
     [Header("Cardball locations")]
     public GameObject cb_upperPosition1Location;
     public GameObject cb_upperPosition2Location;
@@ -240,9 +237,6 @@ public class S_VFXManager : MonoBehaviour
                 //Pan the camera down
                 g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
 
-                //Set rotation for the button
-                bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
-
                 //turn off up ui
                 foreach (GameObject ui in ls_upCamUI)
                 {
@@ -254,6 +248,9 @@ public class S_VFXManager : MonoBehaviour
                 {
                     StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
                 }
+
+                //move the cardballs down
+                g_global.g_altar.MoveCardBallsDown();
 
                 //check if there is an available card ball
                 g_global.g_altar.CreateCardFromList();
@@ -281,8 +278,8 @@ public class S_VFXManager : MonoBehaviour
                     StartCoroutine(FadeIn(ui.GetComponent<CanvasGroup>()));
                 }
 
-                //set rotation for the button
-                bt_mapPanButton.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+                //move the card balls up
+                g_global.g_altar.MoveCardBallsUp();
             }
         }
     }
