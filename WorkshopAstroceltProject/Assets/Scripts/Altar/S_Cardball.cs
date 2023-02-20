@@ -303,32 +303,45 @@ public class S_Cardball : MonoBehaviour
             g_global.g_altar.c_tx_cardName.text = c_cardName;
             g_global.g_altar.c_tx_cardBody.text = c_cardBody;
 
+            //change the upper card name
+            g_global.g_altar.c_tx_upperCardName.text = c_cardName;
+
             //turn all borders off
             g_global.g_altar.a_redBorder.SetActive(false);
             g_global.g_altar.a_blueBorder.SetActive(false);
             g_global.g_altar.a_yellowBorder.SetActive(false);
             g_global.g_altar.a_colorlessBorder.SetActive(false);
 
+            //turn all borders off
+            g_global.g_altar.a_upperRedBorder.SetActive(false);
+            g_global.g_altar.a_upperBlueBorder.SetActive(false);
+            g_global.g_altar.a_upperYellowBorder.SetActive(false);
+            g_global.g_altar.a_upperColorlessBorder.SetActive(false);
+
             // Toggle Border based off cardball color
             if (c_b_redCardball == true) // If Red
             {
                 // Toggle Red border
                 g_global.g_altar.a_redBorder.SetActive(true);
+                g_global.g_altar.a_upperRedBorder.SetActive(true);
             }
             else if (c_b_blueCardball == true) // If Blue
             {
                 // Toggle Blue border
                 g_global.g_altar.a_blueBorder.SetActive(true);
+                g_global.g_altar.a_upperBlueBorder.SetActive(true);
             }
             else if (c_b_yellowCardball == true) // If Yellow
             {
                 // Toggle Yellow border
                 g_global.g_altar.a_yellowBorder.SetActive(true);
+                g_global.g_altar.a_upperYellowBorder.SetActive(true);
             }
             else if (c_b_colorlessCardball == true) // If Colorless
             {
                 // Toggle Colorless border
                 g_global.g_altar.a_colorlessBorder.SetActive(true);
+                g_global.g_altar.a_upperColorlessBorder.SetActive(true);
             }
         }
     }
@@ -346,11 +359,20 @@ public class S_Cardball : MonoBehaviour
             g_global.g_altar.c_tx_cardName.text = "";
             g_global.g_altar.c_tx_cardBody.text = "";
 
+            //chang upper textbox to blank
+            g_global.g_altar.c_tx_upperCardName.text = "";
+
             // Turn off all borders
             g_global.g_altar.a_redBorder.SetActive(false);
             g_global.g_altar.a_blueBorder.SetActive(false);
             g_global.g_altar.a_yellowBorder.SetActive(false);
             g_global.g_altar.a_colorlessBorder.SetActive(false);
+
+            // Turn off all upper borders
+            g_global.g_altar.a_upperRedBorder.SetActive(false);
+            g_global.g_altar.a_upperBlueBorder.SetActive(false);
+            g_global.g_altar.a_upperYellowBorder.SetActive(false);
+            g_global.g_altar.a_upperColorlessBorder.SetActive(false);
         }
     }
 

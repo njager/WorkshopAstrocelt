@@ -17,7 +17,9 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI p_tx_playerHealthText;
     [SerializeField] TextMeshProUGUI p_tx_playerShieldText;
     [SerializeField] Image p_UI_playerHealthBar;
+    [SerializeField] Image p_UI_upperPlayerHealthBar;
     [SerializeField] TextMeshProUGUI p_playerHealthResourceBarText;
+    [SerializeField] TextMeshProUGUI p_upperPlayerHealthBarText;
     public TextMeshProUGUI c_cardCount;
 
     [Header("Enemy Health Textboxes")]
@@ -27,6 +29,11 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI e_tx_enemy4HealthText;
     [SerializeField] TextMeshProUGUI e_tx_enemy5HealthText;
 
+    [Header("Upper Enemy Health Textboxes")]
+    [SerializeField] TextMeshProUGUI e_tx_upperEnemy1HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_upperEnemy2HealthText;
+    [SerializeField] TextMeshProUGUI e_tx_upperEnemy3HealthText;
+
     [Header("Enemy Shield Textboxes")]
     [SerializeField] TextMeshProUGUI e_tx_enemy1ShieldText;
     [SerializeField] TextMeshProUGUI e_tx_enemy2ShieldText;
@@ -34,12 +41,22 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI e_tx_enemy4ShieldText;
     [SerializeField] TextMeshProUGUI e_tx_enemy5ShieldText;
 
+    [Header("Upper Enemy Shield Textboxes")]
+    [SerializeField] TextMeshProUGUI e_tx_upperEnemy1ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_upperEnemy2ShieldText;
+    [SerializeField] TextMeshProUGUI e_tx_upperEnemy3ShieldText;
+
     [Header("Enemy Healthbars")]
     [SerializeField] Image e_UI_enemy1HealthBar;
     [SerializeField] Image e_UI_enemy2HealthBar;
     [SerializeField] Image e_UI_enemy3HealthBar;
     [SerializeField] Image e_UI_enemy4HealthBar;
     [SerializeField] Image e_UI_enemy5HealthBar;
+
+    [Header("Upper Enemy Healthbars")]
+    [SerializeField] Image e_UI_upperEnemy1HealthBar;
+    [SerializeField] Image e_UI_upperEnemy2HealthBar;
+    [SerializeField] Image e_UI_upperEnemy3HealthBar;
 
     [Header("Enemy Selector")]
     [SerializeField] GameObject e_enemy1Selector;
@@ -348,6 +365,7 @@ public class S_UIManager : MonoBehaviour
     public void SetPlayerHealthText(int _healthValue, int _maxHealthValue)
     {
         p_tx_playerHealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+        p_upperPlayerHealthBarText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
     }
 
     /// <summary>
@@ -369,6 +387,7 @@ public class S_UIManager : MonoBehaviour
     public void SetPlayerHealthBar(int _healthValue, int _maxHealthValue) 
     {
         p_UI_playerHealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+        p_UI_upperPlayerHealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
     }
 
     /// <summary>
@@ -380,6 +399,7 @@ public class S_UIManager : MonoBehaviour
     public void SetPlayerResourceHealthText(int _healthValue, int _maxHealthValue)
     {
         p_playerHealthResourceBarText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+
     }
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -504,14 +524,17 @@ public class S_UIManager : MonoBehaviour
         if (_enemyNum == 1)
         {
             e_tx_enemy1HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+            e_tx_upperEnemy1HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
         }
         else if (_enemyNum == 2)
         {
             e_tx_enemy2HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+            e_tx_upperEnemy2HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
         }
         else if (_enemyNum == 3)
         {
             e_tx_enemy3HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
+            e_tx_upperEnemy3HealthText.text = _healthValue.ToString() + " / " + _maxHealthValue.ToString();
         }
         else if (_enemyNum == 4)
         {
@@ -535,14 +558,17 @@ public class S_UIManager : MonoBehaviour
         if (_enemyNum == 1)
         {
             e_UI_enemy1HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_upperEnemy1HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 2)
         {
             e_UI_enemy2HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_upperEnemy2HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 3)
         {
             e_UI_enemy3HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
+            e_UI_upperEnemy3HealthBar.fillAmount = (float)_healthValue / (float)_maxHealthValue;
         }
         else if (_enemyNum == 4)
         {

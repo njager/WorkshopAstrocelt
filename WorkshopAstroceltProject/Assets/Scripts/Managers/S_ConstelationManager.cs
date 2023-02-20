@@ -453,7 +453,7 @@ public class S_ConstelationManager : MonoBehaviour
             g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
 
             //call the altar
-            g_global.g_altar.CheckFirstCardball();
+            g_global.g_altar.CheckCardBallData();
 
             NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
         }
@@ -545,8 +545,8 @@ public class S_ConstelationManager : MonoBehaviour
         return b_makingConstellation;
     }
 
-    // <summary>
-    /// Get the bool state of S_ConstelationManager.b_curStarSpawnedPopupsAlready
+    /// <summary>
+    /// Return the bool state of S_ConstelationManager.b_curStarSpawnedPopupsAlready
     /// </summary>
     /// <returns>
     /// S_ConstelationManager.b_curStarSpawnedPopupsAlready
