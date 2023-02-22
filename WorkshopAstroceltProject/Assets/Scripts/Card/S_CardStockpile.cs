@@ -121,16 +121,27 @@ public class S_CardStockpile : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Method to return the first index card to top position on Pointer Enter
     /// - Josh
     /// </summary>
     public void OnPointerEnter() 
+    {
+       
+    }
+
+    /// <summary>
+    /// Method to determine if Pointer is hovering
+    /// Locks out behaviour if not hovering
+    /// - Josh
+    /// </summary>
+    public void OnPointerHover() 
     {
 
     }
 
     /// <summary>
     /// Method to return the first index card to it's original position on Pointer Exit
+    /// - Josh
     /// </summary>
     public void OnPointerExit() 
     {
