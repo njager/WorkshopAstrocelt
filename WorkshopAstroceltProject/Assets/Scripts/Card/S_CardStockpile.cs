@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
 public class S_CardStockpile : MonoBehaviour
 {
@@ -11,11 +12,23 @@ public class S_CardStockpile : MonoBehaviour
     [Header("Stockpile Total Index")]
     [SerializeField] int crd_i_stockpileTotalIndex;
 
-    [Header("Card Stockpile Positions")]
+    [Header("Card Stockpile Top Position")]
     [SerializeField] Transform crd_stockpileTopPosition;
+
+    [Header("Card Stockpile Stack")]
+    [SerializeField] GameObject crd_cardStockpileStack;
+
+    [Header("Card Stockpile Base Position")]
+    [SerializeField] Transform crd_stockpileBasePosition;
+
+    [Header("Card Holder Top Position")]
+    [SerializeField] Transform crd_cardHolderTopPosition;
 
     [Header("Card Stockpile List")]
     [SerializeField] List<(GameObject, int)> lst_crd_stockpile = new List<(GameObject, int)>();
+
+    [Header("Stockpile is being hovered over bool check")]
+    [SerializeField] bool crd_b_stockpileHoveredOver;
 
     /// <summary>
     /// When player clicks on the stockpile locator, swap between the stockpiled cards positions, bringing them to the forefront
@@ -23,8 +36,24 @@ public class S_CardStockpile : MonoBehaviour
     /// </summary>
     public void OnClick() 
     {
-        // Increment count for visual changes 
-        crd_i_stockpileClickCount += 1;
+        if(crd_b_stockpileHoveredOver == false) 
+        {
+            return; // Do nothing, not valid conditions
+        }
+        else if (crd_b_stockpileHoveredOver == true)
+        {
+            if (crd_i_stockpileTotalIndex <= 5)
+            {
+                return; // Do nothing, not valid conditions
+            }
+            else
+            {
+                // Increment count for visual changes 
+                crd_i_stockpileClickCount += 1;
+
+
+            }
+        }
     }
 
     /// <summary>
@@ -61,6 +90,9 @@ public class S_CardStockpile : MonoBehaviour
     {
         // Increment Total Index
         crd_i_stockpileTotalIndex += 1;
+
+        // Parent Card to Stockpile Object
+        _card.transform.parent = crd_cardStockpileStack.transform;
 
         // Add card from list
         lst_crd_stockpile.Add((_card, crd_i_stockpileTotalIndex));
@@ -99,6 +131,32 @@ public class S_CardStockpile : MonoBehaviour
 
         // Now Sort Cards
         SortCardPositions();
+    }
+
+    /// <summary>
+    /// Method to return the first index card to top position on Pointer Enter
+    /// - Josh
+    /// </summary>
+    public void OnPointerEnter() 
+    {
+        // Change Hover Bool
+        crd_b_stockpileHoveredOver = true;
+
+        // Move card stockpile stack up
+        crd_cardStockpileStack.transform.position = crd_cardHolderTopPosition.position;
+    }
+
+    /// <summary>
+    /// Method to return the first index card to it's original position on Pointer Exit
+    /// - Josh
+    /// </summary>
+    public void OnPointerExit() 
+    {
+        // Change Hover Bool
+        crd_b_stockpileHoveredOver = false;
+
+        // Move card stockpile stack back
+        crd_cardStockpileStack.transform.position = crd_stockpileBasePosition.position;
     }
 
     // Add check to now to toggle stockpile bool when cards get added and positions 1-5 are filled

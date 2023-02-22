@@ -201,7 +201,7 @@ public class S_RitualStar : MonoBehaviour
         {
             if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
-                g_global.g_ConstellationManager.StarClicked(this.GetComponent<S_StarClass>(), transform.position);
+                g_global.g_ConstellationManager.StarHovered(this.GetComponent<S_StarClass>(), transform.position);
             }
         }
     }
