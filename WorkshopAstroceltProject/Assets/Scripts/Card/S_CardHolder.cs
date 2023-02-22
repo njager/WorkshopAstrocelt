@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class S_CardHolder : MonoBehaviour
 {
-    // Left to right which doesn't follow this order for spawning
-
     [Header("Card Positions")]
     [SerializeField] GameObject crd_cardPosition1;
     [SerializeField] GameObject crd_cardPosition2;

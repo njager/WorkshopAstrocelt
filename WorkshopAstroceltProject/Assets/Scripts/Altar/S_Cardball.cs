@@ -191,7 +191,9 @@ public class S_Cardball : MonoBehaviour
         //Debug.Log("CardballToCard() called");
 
         // Determine transform
-        Transform _whereToSpawnCard = g_global.g_cardHolder.c_cardPosition1.transform;
+        Transform _whereToSpawnCard = null; //g_global.g_cardHolder.crd_cardPosition1.transform;
+
+        // Need to fix this - Josh
         
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
