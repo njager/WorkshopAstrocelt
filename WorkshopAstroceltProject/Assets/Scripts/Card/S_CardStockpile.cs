@@ -23,8 +23,17 @@ public class S_CardStockpile : MonoBehaviour
     /// </summary>
     public void OnClick() 
     {
-        // Increment count for visual changes 
-        crd_i_stockpileClickCount += 1;
+        if(crd_i_stockpileTotalIndex <= 5) 
+        {
+            return;
+        }
+        else 
+        {
+            // Increment count for visual changes 
+            crd_i_stockpileClickCount += 1;
+
+
+        }
     }
 
     /// <summary>
@@ -99,6 +108,23 @@ public class S_CardStockpile : MonoBehaviour
 
         // Now Sort Cards
         SortCardPositions();
+    }
+
+    /// <summary>
+    /// 
+    /// - Josh
+    /// </summary>
+    public void OnPointerEnter() 
+    {
+
+    }
+
+    /// <summary>
+    /// Method to return the first index card to it's original position on Pointer Exit
+    /// </summary>
+    public void OnPointerExit() 
+    {
+        
     }
 
     // Add check to now to toggle stockpile bool when cards get added and positions 1-5 are filled
