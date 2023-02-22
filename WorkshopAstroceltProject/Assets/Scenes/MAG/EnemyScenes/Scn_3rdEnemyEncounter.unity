@@ -827,7 +827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732501453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.35, y: -4.26, z: 0}
+  m_LocalPosition: {x: 1.4, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1322799023}
@@ -933,6 +933,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &797135268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6415791976539687025, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+  m_PrefabInstance: {fileID: 8047176381484923552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee7f320e723f8b43ae079bfe883671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &843503405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.9, y: -4.5}
+  m_AnchoredPosition: {x: 10.2, y: 0.3}
   m_SizeDelta: {x: 205.29, y: 327.6858}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1890144414 stripped
@@ -2832,6 +2843,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 652894177333105590, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 678214752384889694, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: winText
       value: 
@@ -2866,6 +2881,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1885217086233950845, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979949598794960688, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3472153715032741750, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
@@ -2972,13 +2991,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5658082700441581353, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: pm_pauseMenuObj
+      value: 
+      objectReference: {fileID: 797135268}
     - target: {fileID: 5824754130802897840, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: b_combatScene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5871920314796316364, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6415791974840009472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6415791976377145769, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive
@@ -3000,6 +3027,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 32767
       objectReference: {fileID: 0}
+    - target: {fileID: 6415791976539687030, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7094432091799698301, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3010,6 +3041,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7925283415955417402, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936644030307514239, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7993955199637254332, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
