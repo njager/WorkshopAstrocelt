@@ -17,22 +17,32 @@ public class S_CardStockpile : MonoBehaviour
     [Header("Card Stockpile List")]
     [SerializeField] List<(GameObject, int)> lst_crd_stockpile = new List<(GameObject, int)>();
 
+    [Header("Stockpile is being hovered over bool check")]
+    [SerializeField] bool crd_b_stockpileHoveredOver;
+
     /// <summary>
     /// When player clicks on the stockpile locator, swap between the stockpiled cards positions, bringing them to the forefront
     /// - Josh
     /// </summary>
     public void OnClick() 
     {
-        if(crd_i_stockpileTotalIndex <= 5) 
+        if(crd_b_stockpileHoveredOver == false) 
         {
-            return;
+            return; // Do nothing
         }
-        else 
+        else if (crd_b_stockpileHoveredOver == true)
         {
-            // Increment count for visual changes 
-            crd_i_stockpileClickCount += 1;
+            if (crd_i_stockpileTotalIndex <= 5)
+            {
+                return; // Do nothing
+            }
+            else
+            {
+                // Increment count for visual changes 
+                crd_i_stockpileClickCount += 1;
 
 
+            }
         }
     }
 
