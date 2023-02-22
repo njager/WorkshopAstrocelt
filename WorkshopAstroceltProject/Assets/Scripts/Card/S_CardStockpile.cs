@@ -11,8 +11,14 @@ public class S_CardStockpile : MonoBehaviour
     [Header("Stockpile Total Index")]
     [SerializeField] int crd_i_stockpileTotalIndex;
 
-    [Header("Card Stockpile Positions")]
+    [Header("Card Stockpile Top Position")]
     [SerializeField] Transform crd_stockpileTopPosition;
+
+    [Header("Card Stockpile Stack")]
+    [SerializeField] GameObject crd_cardStockpileStack;
+
+    [Header("Card Holder Top Position")]
+    [SerializeField] Transform crd_cardHolderTopPosition;
 
     [Header("Card Stockpile List")]
     [SerializeField] List<(GameObject, int)> lst_crd_stockpile = new List<(GameObject, int)>();
@@ -126,17 +132,11 @@ public class S_CardStockpile : MonoBehaviour
     /// </summary>
     public void OnPointerEnter() 
     {
-       
-    }
+        // Change Hover Bool
+        crd_b_stockpileHoveredOver = true;
 
-    /// <summary>
-    /// Method to determine if Pointer is hovering
-    /// Locks out behaviour if not hovering
-    /// - Josh
-    /// </summary>
-    public void OnPointerHover() 
-    {
-
+        // Move card stockpile stack up
+        crd_cardStockpileStack.transform.position = crd_cardHolderTopPosition.position;
     }
 
     /// <summary>
@@ -145,7 +145,11 @@ public class S_CardStockpile : MonoBehaviour
     /// </summary>
     public void OnPointerExit() 
     {
-        
+        // Change Hover Bool
+        crd_b_stockpileHoveredOver = false;
+
+        // Move card stockpile stack back
+        crd_cardStockpileStack.transform.position = crd_stockpileTopPosition.position;
     }
 
     // Add check to now to toggle stockpile bool when cards get added and positions 1-5 are filled
