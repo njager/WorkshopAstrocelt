@@ -213,7 +213,7 @@ public class S_EnergyStar : MonoBehaviour
         {
             if (!b_hasBeenClicked && _starClassScript.s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
-                g_global.g_ConstellationManager.StarClicked(_starClassScript, transform.position);
+                g_global.g_ConstellationManager.StarHovered(_starClassScript, transform.position);
             }
         }
     }
@@ -256,8 +256,6 @@ public class S_EnergyStar : MonoBehaviour
         }
         else if(g_global.g_ConstellationManager.GetStarLockOutBool() && b_clickableStar)
         {
-            Debug.Log("Here?");
-            Debug.Log(b_hasBeenClicked);
             if (_starClassScript.s_star.m_previousLine != null && !b_hasBeenClicked && _starClassScript.s_star.m_nextLine == null)
             {
                 // Set b_hasBeenClickedBool

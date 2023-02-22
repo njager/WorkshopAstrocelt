@@ -346,7 +346,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// Added functionallity for clicking on a star before a node star
     /// - Riley & Josh
     /// </summary>
-    public void StarClicked(S_StarClass _star, Vector2 _loc)
+    public void StarHovered(S_StarClass _star, Vector2 _loc)
     {
         if (b_makingConstellation)
         {
