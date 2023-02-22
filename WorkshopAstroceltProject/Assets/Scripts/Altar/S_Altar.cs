@@ -131,15 +131,13 @@ public class S_Altar : MonoBehaviour
     }
 
     /// <summary>
-    /// Initial Start Funciton
-    /// Fill with 5 cardballs
-    /// May be fully temporary
+    /// spawns the card balls
+    /// 
     /// - Josh
     /// </summary>
     public IEnumerator SpawnVisualCardballPrefabs(int _numCards)
     {
         c_i_movementInt = 0;
-
 
         //set the constellation manager bools until the card balls finish spawning
         StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck());
@@ -148,13 +146,21 @@ public class S_Altar : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[i]);
-            StartCoroutine(MoveCardballPrefabs());
+
+
+            if (g_global.g_vfxManager.GetCamPos() == false)
+            {
+                StartCoroutine(MoveCardballPrefabs());
+            }
+        }
+
+        //do this outside the loop so all cardballs are in the active list
+        if (g_global.g_vfxManager.GetCamPos())
+        {
+            StartCoroutine(SlideUpperCardBalls());
         }
 
         ls_cardBallHand.Clear();
-
-        SetCardballsSpawnedBool(true);
-        // Perhaps Tween a fade as they spawn in? Sound on spawn? Things to tweak - Josh
 
         yield return new S_WaitForCardballMovement();
 
@@ -230,6 +236,9 @@ public class S_Altar : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             StartCoroutine(_cardball.DeleteAllCardballs());
         }
+
+        //clear the card balls from the list
+        ls_activeCardBalls.Clear();
 
         //Trigger if the bool is passed
         if (_newCardBalls == true)
@@ -485,6 +494,35 @@ public class S_Altar : MonoBehaviour
             else if (i == 2)
             {
                 ls_activeCardBalls[i].transform.SetParent(upperCardballPosition3.transform, false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Moves all the upper card balls to the left
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator SlideUpperCardBalls()
+    {
+        for (int i = 0; i < ls_activeCardBalls.Count(); i++)
+        {
+            if (i == 0)
+            {
+                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition1.transform, false);
+
+                yield return new WaitForSeconds(0.2f);
+            }
+            else if (i == 1)
+            {
+                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition2.transform, false);
+
+                yield return new WaitForSeconds(0.2f);
+            }
+            else if (i == 2)
+            {
+                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition3.transform, false);
+
+                yield return new WaitForSeconds(0.2f);
             }
         }
     }

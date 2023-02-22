@@ -232,7 +232,7 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
-        if (b_mapPanLockout)
+        if (b_mapPanLockout || g_global.g_altar.GetCardballsSpawnedBool())
         {
             if (g_global.g_cam != null)
             {
@@ -564,5 +564,16 @@ public class S_VFXManager : MonoBehaviour
     public bool GetMapPanLockout()
     {
         return b_mapPanLockout;
+    }
+
+
+    /// <summary>
+    /// Getter for the campos bool
+    /// false means down true means up
+    /// </summary>
+    /// <returns></returns>
+    public bool GetCamPos()
+    {
+        return b_camPanPos;
     }
 }
