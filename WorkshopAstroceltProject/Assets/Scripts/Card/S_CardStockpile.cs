@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
 public class S_CardStockpile : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class S_CardStockpile : MonoBehaviour
 
     [Header("Card Stockpile Stack")]
     [SerializeField] GameObject crd_cardStockpileStack;
+
+    [Header("Card Stockpile Base Position")]
+    [SerializeField] Transform crd_stockpileBasePosition;
 
     [Header("Card Holder Top Position")]
     [SerializeField] Transform crd_cardHolderTopPosition;
@@ -34,13 +38,13 @@ public class S_CardStockpile : MonoBehaviour
     {
         if(crd_b_stockpileHoveredOver == false) 
         {
-            return; // Do nothing
+            return; // Do nothing, not valid conditions
         }
         else if (crd_b_stockpileHoveredOver == true)
         {
             if (crd_i_stockpileTotalIndex <= 5)
             {
-                return; // Do nothing
+                return; // Do nothing, not valid conditions
             }
             else
             {
@@ -86,6 +90,9 @@ public class S_CardStockpile : MonoBehaviour
     {
         // Increment Total Index
         crd_i_stockpileTotalIndex += 1;
+
+        // Parent Card to Stockpile Object
+        _card.transform.parent = crd_cardStockpileStack.transform;
 
         // Add card from list
         lst_crd_stockpile.Add((_card, crd_i_stockpileTotalIndex));
@@ -149,7 +156,7 @@ public class S_CardStockpile : MonoBehaviour
         crd_b_stockpileHoveredOver = false;
 
         // Move card stockpile stack back
-        crd_cardStockpileStack.transform.position = crd_stockpileTopPosition.position;
+        crd_cardStockpileStack.transform.position = crd_stockpileBasePosition.position;
     }
 
     // Add check to now to toggle stockpile bool when cards get added and positions 1-5 are filled
