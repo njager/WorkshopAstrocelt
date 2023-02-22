@@ -387,6 +387,7 @@ public class S_VFXManager : MonoBehaviour
     public void SetMapPanLockout(bool _val)
     {
         b_mapPanLockout = _val;
+
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
