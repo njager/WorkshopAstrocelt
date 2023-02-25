@@ -160,6 +160,8 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(SlideUpperCardBalls());
         }
 
+        SetCardballsSpawnedBool(true);
+
         ls_cardBallHand.Clear();
 
         yield return new S_WaitForCardballMovement();
