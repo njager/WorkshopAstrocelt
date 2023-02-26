@@ -188,7 +188,9 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballToCard()
     {
-        //Debug.Log("CardballToCard() called");
+        Debug.Log("CardballToCard() called");
+
+        Debug.Log(c_cardData);
 
         // Determine transform
         Transform _whereToSpawnCard = null; //g_global.g_cardHolder.crd_cardPosition1.transform;
@@ -200,13 +202,14 @@ public class S_Cardball : MonoBehaviour
         c_card.transform.SetParent(_whereToSpawnCard, false);
 
         // Grab the script from this cardball
-        S_Card _cardScript = c_card.GetComponent<S_Card>();
+        S_Card _cardScript = c_card.GetComponent<S_Card>();        
+
+        // Send information From Template
+        _cardScript.FetchCardData(c_cardData);
 
         // Pass over the parent postion for initial position
         _cardScript.SetCardInitialPosition(_whereToSpawnCard.position);
 
-        // Send information From Template
-        _cardScript.FetchCardData(c_cardData);
         g_global.g_altar.c_b_cardSpawned = true;
 
         // Delete the cardball and add the card to the grave
