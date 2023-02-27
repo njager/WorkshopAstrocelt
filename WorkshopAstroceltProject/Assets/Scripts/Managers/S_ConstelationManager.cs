@@ -13,7 +13,7 @@ public class S_ConstelationManager : MonoBehaviour
 
     // Private variables
     private S_Global g_global;
-    private bool b_makingConstellation;
+    [SerializeField] private bool b_makingConstellation;
 
     [Header("Current Constellation Values")]
     public List<S_StarClass> ls_curConstellation;
@@ -146,7 +146,7 @@ public class S_ConstelationManager : MonoBehaviour
             else
             {
                 //now that the node is added, change the bool
-                b_makingConstellation = true;
+                SetMakingConstellation(true);
                 _node.NodeClickedColor();
                 _node.SetNodeClicked(true);
             }
@@ -515,6 +515,16 @@ public class S_ConstelationManager : MonoBehaviour
     public void SetPopupStatusForCurrentLine(bool _boolState)
     {
         b_curStarSpawnedPopupsAlready = _boolState;
+    }
+
+    /// <summary>
+    /// Setter for making the constellation
+    /// </summary>
+    /// <param name="_boolState"></param>
+    public void SetMakingConstellation(bool _boolState)
+    {
+        Debug.Log("Where are you getting called from");
+        b_makingConstellation = _boolState;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
