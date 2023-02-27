@@ -99,44 +99,42 @@ public class S_Cardball : MonoBehaviour
         c_b_colorlessCardball = false;
         c_whiteGraphic.SetActive(false);
 
-        if(c_b_locatedInFirstPosition || c_b_locatedInSecondPosition || c_b_locatedInThirdPosition)
+
+        if (c_cardData.RedColorType) // Check if Card is Red
         {
-            if (c_cardData.RedColorType) // Check if Card is Red
-            {
-                // Cardball is Red
-                c_b_redCardball = true;
-                c_redGraphic.SetActive(true);
-            }
-            else if (c_cardData.BlueColorType) // Check if card is Blue
-            {
-                // Cardball is Blue
-                c_b_blueCardball = true;
-                c_blueGraphic.SetActive(true);
-            }
-            else if (c_cardData.YellowColorType) // Check if card is Yellow
-            {
-                // Cardball is Yellow
-                c_b_yellowCardball = true;
-                c_yellowGraphic.SetActive(true);
-            }
-            else if (c_cardData.WhiteColorType) // Check if card is Colorless
-            {
-                // Cardball is Colorless
-                c_b_colorlessCardball = true;
-                c_whiteGraphic.SetActive(true);
-            }
-            else { Debug.Log("Card data is null!"); }
-
-            // Then determine the energy cost
-            c_i_cardEnergyCost = c_cardData.EnergyCost;
-
-            //Update text
-            c_cardballText.text = "" + c_i_cardEnergyCost;
-
-            // Then lastly the card name and body(for altar use)
-            c_cardName = c_cardData.CardName;
-            c_cardBody = c_cardData.BodyText;
+            // Cardball is Red
+            c_b_redCardball = true;
+            c_redGraphic.SetActive(true);
         }
+        else if (c_cardData.BlueColorType) // Check if card is Blue
+        {
+            // Cardball is Blue
+            c_b_blueCardball = true;
+            c_blueGraphic.SetActive(true);
+        }
+        else if (c_cardData.YellowColorType) // Check if card is Yellow
+        {
+            // Cardball is Yellow
+            c_b_yellowCardball = true;
+            c_yellowGraphic.SetActive(true);
+        }
+        else if (c_cardData.WhiteColorType) // Check if card is Colorless
+        {
+            // Cardball is Colorless
+            c_b_colorlessCardball = true;
+            c_whiteGraphic.SetActive(true);
+        }
+        else { Debug.Log("Card data is null!"); }
+
+        // Then determine the energy cost
+        c_i_cardEnergyCost = c_cardData.EnergyCost;
+
+        //Update text
+        c_cardballText.text = "" + c_i_cardEnergyCost;
+
+        // Then lastly the card name and body(for altar use)
+        c_cardName = c_cardData.CardName;
+        c_cardBody = c_cardData.BodyText;
     }
 
 

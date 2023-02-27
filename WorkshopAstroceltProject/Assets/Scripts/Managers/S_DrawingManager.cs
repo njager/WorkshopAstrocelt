@@ -109,7 +109,7 @@ public class S_DrawingManager : MonoBehaviour
         //reset the data for the star
         g_global.g_ConstellationManager.s_previousStar.s_star.m_next = s_nullStarInst;
         g_global.g_ConstellationManager.s_previousStar.s_star.m_nextLine = null;
-        Debug.Log("deleted a line and no star added to star list");
+        //Debug.Log("deleted a line and no star added to star list");
 
         S_StarClass _starClassScript = _lineScript.s_nextStar;
 

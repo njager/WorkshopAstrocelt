@@ -115,7 +115,7 @@ public class S_ResourceGraphics : MonoBehaviour
     /// <param name="_star"></param>
     public void BonusTracker(string _starColor, int _bonusCounter)
     {
-        print(_bonusCounter);
+        //print(_bonusCounter);
         if (_starColor.Equals("red"))
         {
             //turn off the other containers and turn on the red one

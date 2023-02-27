@@ -260,12 +260,12 @@ public class S_EnergyStar : MonoBehaviour
             {
                 // Set b_hasBeenClickedBool
                 b_hasBeenClicked = true;
-                Debug.Log("S_EnergyStar - clicked logic chain");
+                //Debug.Log("S_EnergyStar - clicked logic chain");
 
                 // Set star permanent status
                 _starClassScript.SetTemporaryVisualBool(false);
 
-                Debug.Log("Does broken?");
+                //Debug.Log("Does broken?");
 
                 // Actually add the star to the constellation list
                 g_global.g_ConstellationManager.AddStarToCurConstellation(s_thisStar);
@@ -333,7 +333,7 @@ public class S_EnergyStar : MonoBehaviour
         }
         else
         {
-            Debug.Log("Star isn't addable to the constellation - logic error.");
+            //Debug.Log("Star isn't addable to the constellation - logic error.");
             return;
         }
     }

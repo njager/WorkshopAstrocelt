@@ -670,7 +670,7 @@ public class S_Card : MonoBehaviour
             if (crd_hoverCharacter != col.gameObject && crd_hoverCharacter != null)
             {
                 //scale down
-                Debug.Log("Scale Down");
+                //Debug.Log("Scale Down");
 
                 if (an_storedTween.IsPlaying())
                 {
@@ -689,7 +689,7 @@ public class S_Card : MonoBehaviour
             crd_hoverCharacter = col.gameObject;
 
             //scale Up
-            Debug.Log("Scale Up");
+            //Debug.Log("Scale Up");
             an_storedTween = crd_hoverCharacter.transform.DOScale(new Vector3(crd_hoverCharacter.transform.localScale.x + .01f, crd_hoverCharacter.transform.localScale.y + .01f, 0), 0.2f);
 
             g_global.g_UIManager.SetEnemySelectorOn(crd_hoverCharacter.GetComponent<S_Enemy>().e_i_enemyCount);
@@ -716,7 +716,7 @@ public class S_Card : MonoBehaviour
             if(col.transform.tag == "Enemy")
             {
                 //scale down
-                Debug.Log("Scale Down2");
+                //Debug.Log("Scale Down2");
                 if (an_storedTween.IsPlaying())
                 {
                     an_storedTween.PlayBackwards();

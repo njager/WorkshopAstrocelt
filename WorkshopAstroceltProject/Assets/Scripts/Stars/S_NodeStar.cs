@@ -88,7 +88,7 @@ public class S_NodeStar : MonoBehaviour
         {
             if (is_clicked == false && this.GetComponent<S_StarClass>().s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count - 1) < 7)
             {
-                Debug.Log("Node star going back once");
+                //Debug.Log("Node star going back once");
                 g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
             }
 
