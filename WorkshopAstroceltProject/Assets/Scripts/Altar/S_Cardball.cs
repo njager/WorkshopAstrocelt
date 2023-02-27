@@ -199,6 +199,9 @@ public class S_Cardball : MonoBehaviour
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(_whereToSpawnCard, false);
 
+        //set the scale of spawned cards
+        c_card.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
+
         // Grab the script from this cardball
         S_Card _cardScript = c_card.GetComponent<S_Card>();        
 
