@@ -11,6 +11,7 @@ public class S_Player : MonoBehaviour
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+    //here
     private S_Global g_global;
 
     public S_PlayerAttributes p_sc_playerAttributes;
