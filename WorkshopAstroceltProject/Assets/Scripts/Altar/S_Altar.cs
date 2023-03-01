@@ -184,6 +184,8 @@ public class S_Altar : MonoBehaviour
 
         // Instantiate Cardball
         GameObject crd_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
+
+        //set the parent to the card holder
         crd_cardball.transform.SetParent(_cardballPosition.transform, false);
 
         Debug.Log(crd_cardball.transform.parent);

@@ -30,7 +30,6 @@ public class S_Global : MonoBehaviour
     public S_EnergyManager g_energyManager;
     public S_PopupManager g_popupManager;
     public S_Altar g_altar;
-    public S_CardHolder g_cardHolder;
     public S_SceneManager g_sceneManager;
     public S_BackgroundManager g_backgroundManager;
     public S_TurnEffectManager g_turnEffectManager;
@@ -91,6 +90,9 @@ public class S_Global : MonoBehaviour
 
     [Header("Card Dragging")]
     public bool g_c_b_firstCard = true;
+
+    [Header("Card Holder")]
+    public GameObject g_cardHolder;
 
     [Header("Required Audio Object For Now")]
     public GameObject g_a_audioPlayer;
