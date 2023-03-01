@@ -22500,7 +22500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &718261831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46820,17 +46820,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5311232104089699053, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
   m_PrefabInstance: {fileID: 5311232102466658104}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1623711192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5152179855962767840, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
-  m_PrefabInstance: {fileID: 5311232102466658104}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623711189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c9bdc480b673ee4ba914afc7391dd43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1625053460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47043,7 +47032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1628880445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50972,7 +50961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1763594880
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61722,6 +61711,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 677010431}
     m_Modifications:
+    - target: {fileID: 4581190146224425281, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5311232104089699053, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
       propertyPath: m_Name
       value: CardHolder
@@ -61828,9 +61821,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
---- !u!4 &5311232102466658105 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7861696361013437331, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
+--- !u!224 &5311232102466658105 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4581190146224425281, guid: 88a892fc29b61d6468b6b03882954ac8, type: 3}
   m_PrefabInstance: {fileID: 5311232102466658104}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5509854089465955769
@@ -62650,7 +62643,7 @@ PrefabInstance:
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_cardHolder
       value: 
-      objectReference: {fileID: 1623711192}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_gameManager
       value: 
