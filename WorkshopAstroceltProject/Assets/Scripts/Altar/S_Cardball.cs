@@ -99,44 +99,42 @@ public class S_Cardball : MonoBehaviour
         c_b_colorlessCardball = false;
         c_whiteGraphic.SetActive(false);
 
-        if(c_b_locatedInFirstPosition || c_b_locatedInSecondPosition || c_b_locatedInThirdPosition)
+
+        if (c_cardData.RedColorType) // Check if Card is Red
         {
-            if (c_cardData.RedColorType) // Check if Card is Red
-            {
-                // Cardball is Red
-                c_b_redCardball = true;
-                c_redGraphic.SetActive(true);
-            }
-            else if (c_cardData.BlueColorType) // Check if card is Blue
-            {
-                // Cardball is Blue
-                c_b_blueCardball = true;
-                c_blueGraphic.SetActive(true);
-            }
-            else if (c_cardData.YellowColorType) // Check if card is Yellow
-            {
-                // Cardball is Yellow
-                c_b_yellowCardball = true;
-                c_yellowGraphic.SetActive(true);
-            }
-            else if (c_cardData.WhiteColorType) // Check if card is Colorless
-            {
-                // Cardball is Colorless
-                c_b_colorlessCardball = true;
-                c_whiteGraphic.SetActive(true);
-            }
-            else { Debug.Log("Card data is null!"); }
-
-            // Then determine the energy cost
-            c_i_cardEnergyCost = c_cardData.EnergyCost;
-
-            //Update text
-            c_cardballText.text = "" + c_i_cardEnergyCost;
-
-            // Then lastly the card name and body(for altar use)
-            c_cardName = c_cardData.CardName;
-            c_cardBody = c_cardData.BodyText;
+            // Cardball is Red
+            c_b_redCardball = true;
+            c_redGraphic.SetActive(true);
         }
+        else if (c_cardData.BlueColorType) // Check if card is Blue
+        {
+            // Cardball is Blue
+            c_b_blueCardball = true;
+            c_blueGraphic.SetActive(true);
+        }
+        else if (c_cardData.YellowColorType) // Check if card is Yellow
+        {
+            // Cardball is Yellow
+            c_b_yellowCardball = true;
+            c_yellowGraphic.SetActive(true);
+        }
+        else if (c_cardData.WhiteColorType) // Check if card is Colorless
+        {
+            // Cardball is Colorless
+            c_b_colorlessCardball = true;
+            c_whiteGraphic.SetActive(true);
+        }
+        else { Debug.Log("Card data is null!"); }
+
+        // Then determine the energy cost
+        c_i_cardEnergyCost = c_cardData.EnergyCost;
+
+        //Update text
+        c_cardballText.text = "" + c_i_cardEnergyCost;
+
+        // Then lastly the card name and body(for altar use)
+        c_cardName = c_cardData.CardName;
+        c_cardBody = c_cardData.BodyText;
     }
 
 
@@ -188,7 +186,9 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballToCard()
     {
-        //Debug.Log("CardballToCard() called");
+        Debug.Log("CardballToCard() called");
+
+        Debug.Log(c_cardData);
 
         // Determine transform
         Transform _whereToSpawnCard = null; //g_global.g_cardHolder.crd_cardPosition1.transform;
@@ -199,14 +199,18 @@ public class S_Cardball : MonoBehaviour
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
         c_card.transform.SetParent(_whereToSpawnCard, false);
 
+        //set the scale of spawned cards
+        c_card.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
+
         // Grab the script from this cardball
-        S_Card _cardScript = c_card.GetComponent<S_Card>();
+        S_Card _cardScript = c_card.GetComponent<S_Card>();        
+
+        // Send information From Template
+        _cardScript.FetchCardData(c_cardData);
 
         // Pass over the parent postion for initial position
         _cardScript.SetCardInitialPosition(_whereToSpawnCard.position);
 
-        // Send information From Template
-        _cardScript.FetchCardData(c_cardData);
         g_global.g_altar.c_b_cardSpawned = true;
 
         // Delete the cardball and add the card to the grave

@@ -171,7 +171,7 @@ public class S_ConstellationLine : MonoBehaviour
 
         if(_startPoint == _endPoint)
         {
-            Debug.Log("This should trigger a too small constellation degug");
+            //Debug.Log("This should trigger a too small constellation degug");
         }
         else
         {

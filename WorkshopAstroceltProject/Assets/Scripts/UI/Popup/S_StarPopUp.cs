@@ -179,7 +179,7 @@ public class S_StarPopUp : MonoBehaviour
 
             if (b_isTempPopup == true)
             {
-                Debug.Log("Is this triggering?");
+                //Debug.Log("Is this triggering?");
                 // Set Original
                 SetOriginalColorValue(spriteRenderer.color);
 
@@ -202,7 +202,7 @@ public class S_StarPopUp : MonoBehaviour
 
             if (b_isTempPopup == true)
             {
-                Debug.Log("Is this triggering?");
+                //Debug.Log("Is this triggering?");
                 // Set Original
                 SetOriginalColorValue(spriteRenderer.color);
 
@@ -225,7 +225,7 @@ public class S_StarPopUp : MonoBehaviour
 
             if (b_isTempPopup == true)
             {
-                Debug.Log("Is this triggering?");
+                //Debug.Log("Is this triggering?");
                 // Set Original
                 SetOriginalColorValue(spriteRenderer.color);
 

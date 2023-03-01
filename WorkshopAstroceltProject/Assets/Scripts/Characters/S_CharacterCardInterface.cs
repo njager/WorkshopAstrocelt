@@ -53,7 +53,7 @@ public class S_CharacterCardInterface : MonoBehaviour
 
                     if (crd_cardData.crd_b_cardIsDragged == false)
                     {
-                        Debug.Log("MouseLetGo");
+                        //Debug.Log("MouseLetGo");
                         crd_cardData.crd_b_resetPositionFlag = true;
 
                         if (crd_cardData.crd_e_grabbedEnemy != e_attachedEnemy)
@@ -71,7 +71,7 @@ public class S_CharacterCardInterface : MonoBehaviour
                 {
                     if (crd_cardData.crd_b_cardIsDragged == false)
                     {
-                        Debug.Log("MouseLetGo");
+                        //Debug.Log("MouseLetGo");
                         crd_cardData.crd_b_resetPositionFlag = true;
 
                         //TriggerCard(cd_cardData);

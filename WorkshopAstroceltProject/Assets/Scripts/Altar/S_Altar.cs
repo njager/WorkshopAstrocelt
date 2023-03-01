@@ -160,6 +160,8 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(SlideUpperCardBalls());
         }
 
+        SetCardballsSpawnedBool(true);
+
         ls_cardBallHand.Clear();
 
         yield return new S_WaitForCardballMovement();
@@ -207,11 +209,16 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void DealAnotherCard()
     {
-        //get the card from deck
-        ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck()); ;
+        //get the card from deck and add to the hand equal to difference
+        for(int i = ls_activeCardBalls.Count(); i < 3 ; i++)
+        {
+            ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck());
+        }
 
-        //spawn the cardballs and move them
-        StartCoroutine(SpawnVisualCardballPrefabs(1));
+        print("Card ball count " + ls_cardBallHand.Count());
+
+        //spawn the cardballs equal to the amount in hand
+        StartCoroutine(SpawnVisualCardballPrefabs(ls_cardBallHand.Count()));
     }
 
     /// <summary>
@@ -394,23 +401,38 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckCardBallData()
     {
-        var _fst_cardBall = ls_activeCardBalls[0];
-        
-        //check the first card Ball and user energy
-        if (g_global.g_energyManager.UseEnergy(_fst_cardBall.c_i_cardEnergyCost, _fst_cardBall.c_cardData.ColorString))
+        bool _loopBool = true;
+
+        while (_loopBool)
         {
-            ls_cardBallStorage.Add(_fst_cardBall);
+            if (ls_activeCardBalls.Count > 0)
+            {
+                var _fst_cardBall = ls_activeCardBalls[0];
 
-            ls_activeCardBalls.RemoveAt(0);
 
-            _fst_cardBall.transform.SetParent(nullObject.transform);
+                //check the first card Ball and user energy
+                if (g_global.g_energyManager.UseEnergy(_fst_cardBall.c_i_cardEnergyCost, _fst_cardBall.c_cardData.ColorString))
+                {
+                    ls_cardBallStorage.Add(_fst_cardBall);
 
-            _fst_cardBall.gameObject.SetActive(false);
+                    ls_activeCardBalls.RemoveAt(0);
 
-            DealAnotherCard();
+                    _fst_cardBall.transform.SetParent(nullObject.transform);
 
-            CheckCardBallData();
+                    _fst_cardBall.gameObject.SetActive(false);
+                }
+                else
+                {
+                    _loopBool = false;
+                }
+            }
+            else
+            {
+                _loopBool = false;
+            }
         }
+
+        DealAnotherCard();
     }
 
 
@@ -506,23 +528,36 @@ public class S_Altar : MonoBehaviour
     {
         for (int i = 0; i < ls_activeCardBalls.Count(); i++)
         {
+            Debug.Log("Were sliding");
+
+            S_Cardball _cardBall = ls_activeCardBalls[i];
+
+            //set up any cardballs that need it
+            if(_cardBall.c_cardName == "")
+            {
+                Debug.Log("Do we hit here");
+                _cardBall.CardballSetup();
+            }
+
             if (i == 0)
             {
-                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition1.transform, false);
+                _cardBall.transform.SetParent(upperCardballPosition1.transform, false);
 
-                yield return new WaitForSeconds(0.2f);
+                _cardBall.transform.DOScale(new Vector3(.8f, .8f, 0), f_cardballMoveSpeed);
+
+                yield return new WaitForSeconds(0.1f);
             }
             else if (i == 1)
             {
-                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition2.transform, false);
+                _cardBall.transform.SetParent(upperCardballPosition2.transform, false);
 
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
             else if (i == 2)
             {
-                ls_activeCardBalls[i].transform.SetParent(upperCardballPosition3.transform, false);
+                _cardBall.transform.SetParent(upperCardballPosition3.transform, false);
 
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }

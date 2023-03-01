@@ -63,12 +63,17 @@ public class S_TurnManager : MonoBehaviour
                 //set here to prevent queueing up end turns
                 //g_global.g_altar.Set_b_spawningCardballs(true);
 
+                //delete first so that making constellation gets set to false
+                g_global.g_ConstellationManager.DeleteWholeCurConstellation();
+
+                //Turn off making constellation bool so no funky errors
+                g_global.g_ConstellationManager.SetMakingConstellation(false);
+
                 g_global.g_altar.SetCardballsSpawnedBool(false);
 
                 //lock out the player from drawing
                 g_global.g_ConstellationManager.SetStarLockOutBool(false);
 
-                g_global.g_ConstellationManager.DeleteWholeCurConstellation();
 
                 //clear the energy
                 g_global.g_energyManager.ClearEnergy();
