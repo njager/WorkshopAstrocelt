@@ -191,22 +191,26 @@ public class S_Cardball : MonoBehaviour
         Debug.Log(c_cardData);
 
         // Determine transform
-        Transform _whereToSpawnCard = null; //g_global.g_cardHolder.crd_cardPosition1.transform;
-
-        // Need to fix this - Josh
+        Transform _whereToSpawnCard = g_global.g_cardHolder.transform;
         
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
+
+        Debug.Log(c_card.transform.parent);
+
         c_card.transform.SetParent(_whereToSpawnCard, false);
+
+        Debug.Log(c_card.transform.parent);
+        Debug.Log(_whereToSpawnCard.GetChild(0));
+
+        //set the scale of spawned cards
+        c_card.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 
         // Grab the script from this cardball
         S_Card _cardScript = c_card.GetComponent<S_Card>();        
 
         // Send information From Template
         _cardScript.FetchCardData(c_cardData);
-
-        // Pass over the parent postion for initial position
-        _cardScript.SetCardInitialPosition(_whereToSpawnCard.position);
 
         g_global.g_altar.c_b_cardSpawned = true;
 

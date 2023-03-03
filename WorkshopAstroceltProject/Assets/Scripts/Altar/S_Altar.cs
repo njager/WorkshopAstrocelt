@@ -184,6 +184,8 @@ public class S_Altar : MonoBehaviour
 
         // Instantiate Cardball
         GameObject crd_cardball = Instantiate(c_cardballPrefab, Vector3.zero, Quaternion.identity);
+
+        //set the parent to the card holder
         crd_cardball.transform.SetParent(_cardballPosition.transform, false);
 
         Debug.Log(crd_cardball.transform.parent);
@@ -407,8 +409,6 @@ public class S_Altar : MonoBehaviour
         {
             if (ls_activeCardBalls.Count > 0)
             {
-
-
                 var _fst_cardBall = ls_activeCardBalls[0];
 
 
@@ -544,6 +544,8 @@ public class S_Altar : MonoBehaviour
             if (i == 0)
             {
                 _cardBall.transform.SetParent(upperCardballPosition1.transform, false);
+
+                _cardBall.transform.DOScale(new Vector3(.8f, .8f, 0), f_cardballMoveSpeed);
 
                 yield return new WaitForSeconds(0.1f);
             }

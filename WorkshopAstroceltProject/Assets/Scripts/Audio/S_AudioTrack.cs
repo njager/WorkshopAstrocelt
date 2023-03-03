@@ -29,6 +29,7 @@ public class S_AudioTrack : MonoBehaviour
 
     void Update()
     {
+        //changeVolume();
         f_timeInScene += Time.deltaTime;
 
         i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
@@ -62,5 +63,11 @@ public class S_AudioTrack : MonoBehaviour
             emitter.SetParameter("CurrentScene", 2);
         }
         else { Debug.Log("No scene music selected"); }
+    }
+
+    void changeVolume()
+    {
+        var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+        //emitter.SetParameter("Volume", volume float varibale from pause script);
     }
 }
