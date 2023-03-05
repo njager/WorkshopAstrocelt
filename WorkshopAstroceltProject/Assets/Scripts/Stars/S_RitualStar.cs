@@ -288,6 +288,9 @@ public class S_RitualStar : MonoBehaviour
                     g_global.g_energyManager.StoreEnergy("yellow", -s_starClass.s_star.i_energy);
                 }
 
+                //SET The clickable star to false so lines cant connect when red
+                SetClickableStarBool(false);
+
                 // Reset has been clicked
                 b_hasBeenClicked = false;
 
