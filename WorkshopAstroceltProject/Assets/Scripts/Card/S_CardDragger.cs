@@ -44,6 +44,8 @@ public class S_CardDragger : MonoBehaviour // Event Handling to best facilitate 
     public void OnMouseDown()
     {
         crd_cardData.crd_b_cardIsDragged = true;
+
+        crd_cardData.gameObject.transform.parent = null;
     }
 
     public void OnMouseUp()

@@ -232,7 +232,9 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
-        if (b_mapPanLockout || g_global.g_altar.GetCardballsSpawnedBool())
+        if (b_mapPanLockout 
+            && g_global.g_altar.GetCardballsSpawnedBool() 
+            && g_global.g_cardHolder.transform.childCount <= 0)
         {
             if (g_global.g_cam != null)
             {
@@ -303,15 +305,6 @@ public class S_VFXManager : MonoBehaviour
 
         //change button interactivity
         ui_mapPanButton.GetComponent<Button>().interactable = true;
-    }
-
-    /// <summary>
-    /// Move the card balls to the top ui
-    /// -Riley
-    /// </summary>
-    public void MoveCardBallsUp()
-    {
-
     }
 
     /// <summary>
@@ -387,7 +380,6 @@ public class S_VFXManager : MonoBehaviour
     public void SetMapPanLockout(bool _val)
     {
         b_mapPanLockout = _val;
-
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

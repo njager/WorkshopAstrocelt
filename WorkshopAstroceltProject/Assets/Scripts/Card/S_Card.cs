@@ -112,6 +112,7 @@ public class S_Card : MonoBehaviour
     public bool crd_b_resetPositionFlag;
     public Vector3 crd_v3_cardPosition;
     public Vector3 crd_v3_initialCardPosition;
+    public GameObject crd_cardHolder;
 
     [Header("CardDrag Bool")]
     public bool crd_b_cardIsDragged;
@@ -643,7 +644,10 @@ public class S_Card : MonoBehaviour
     /// </summary>
     public void ResetPosition()
     {
-        gameObject.transform.position = crd_v3_initialCardPosition;
+        gameObject.transform.SetParent(g_global.g_cardHolder.transform, false);
+        
+        //reset the scale
+        gameObject.transform.localScale= Vector3.one * 10;
         crd_b_resetPositionFlag = false;
     }
 
@@ -746,7 +750,7 @@ public class S_Card : MonoBehaviour
     /// - Josh 
     /// </summary>
     /// <param name="_cardInitialPosition"></param>
-    public void SetCardInitialPosition(Vector3 _cardInitialPosition) 
+    public void SetCardHolderReference(Vector3 _cardInitialPosition) 
     {
         crd_v3_initialCardPosition = _cardInitialPosition;
     }
