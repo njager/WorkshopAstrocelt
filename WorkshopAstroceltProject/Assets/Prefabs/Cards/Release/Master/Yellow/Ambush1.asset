@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Ambush I
   HeaderText: Ambush I
-  BodyText: 
-  FlavorText: 
+  BodyText: Deal 12 damage, apply Stun
+  FlavorText: Deal 12 damage, apply Stun
   ColorString: yellow
   EnergyCost: 3
   DamageValue: 12
@@ -26,7 +26,7 @@ MonoBehaviour:
   IDForStatusEffectOne: 5
   IDForStatusEffectTwo: 0
   IDForStatusEffectThree: 0
-  Common: 0
+  Common: 1
   Uncommon: 0
   Rare: 0
   VeryRare: 0
@@ -52,6 +52,6 @@ MonoBehaviour:
   ResistantStatusEffect: 0
   StunnedStatusEffect: 1
   PhysicalOrMagicalBoolForShield: 0
-  PhysicalOrMagicalBoolForAttack: 0
+  PhysicalOrMagicalBoolForAttack: 1
   CardDatabaseID: 44
   ExtraInfo: 
