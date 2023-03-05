@@ -144,7 +144,7 @@ public class S_Altar : MonoBehaviour
 
         for (int i = 0; i < _numCards; i++)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.3f);
             AddNewCardBall(cardballSpawnPosition, ls_cardBallHand[i]);
 
 
@@ -170,6 +170,9 @@ public class S_Altar : MonoBehaviour
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(true);
+
+        //check to see if the player can play any of the newly spawned cards
+        CheckCardBallData();
     }
 
 
@@ -188,7 +191,7 @@ public class S_Altar : MonoBehaviour
         //set the parent to the card holder
         crd_cardball.transform.SetParent(_cardballPosition.transform, false);
 
-        Debug.Log(crd_cardball.transform.parent);
+        //Debug.Log(crd_cardball.transform.parent);
         
         // Grab card ball script
         S_Cardball _cardballScript = crd_cardball.GetComponent<S_Cardball>();
@@ -269,7 +272,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CreateCardFromList()
     {
-        if (ls_cardBallStorage.Count() > 0)
+        while (ls_cardBallStorage.Count() > 0)
         {
             var _firstCardBall = ls_cardBallStorage[0];
             ls_cardBallStorage.RemoveAt(0);
@@ -341,58 +344,6 @@ public class S_Altar : MonoBehaviour
         foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList()) 
         {
             _enemy.UpdateEnemyHealthUI();
-        }
-    }
-
-    /// <summary>
-    /// Used so the cardball can't delete itself too early and and so we can trigger proper moving of the cardballs
-    /// - Josh
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator WaitForCardPlayToMoveAndDelete(GameObject _cardball, bool _activeCard)
-    {
-        // Hide, but don't delete just yet
-        _cardball.GetComponent<S_Cardball>().c_redGraphic.SetActive(false);
-        _cardball.GetComponent<S_Cardball>().c_blueGraphic.SetActive(false);
-        _cardball.GetComponent<S_Cardball>().c_yellowGraphic.SetActive(false);
-        _cardball.GetComponent<S_Cardball>().c_whiteGraphic.SetActive(false);
-        _cardball.GetComponent<S_Cardball>().c_cardballText.gameObject.SetActive(false);
-
-        
-
-        if (_activeCard == true) 
-        {
-            yield return null;
-            Destroy(_cardball);
-        }
-        else if (_activeCard == false)
-        {
-            //deal another card
-            DealAnotherCard();
-
-            //move the card balls before the card is played
-            yield return StartCoroutine(MoveCardballPrefabs());
-
-            //Debug.Log("Gonna wait for card play");
-            yield return new S_WaitForCardPlay();
-
-            yield return null;
-
-            //Debug.Log("Do I reach here");
-            Destroy(_cardball);
-
-            if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
-            {
-                //g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                Debug.Log("Attempting to delay spawn of second card after a first");
-                yield return StartCoroutine(WaitForCardballMovementToPlay());
-            }
-            else
-            {
-                g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                //g_global.g_energyManager.ClearEnergy();
-                //Debug.Log("MoveCardballPrefabs() Called");
-            }
         }
     }
 
@@ -530,14 +481,14 @@ public class S_Altar : MonoBehaviour
     {
         for (int i = 0; i < ls_activeCardBalls.Count(); i++)
         {
-            Debug.Log("Were sliding");
+            //Debug.Log("Were sliding");
 
             S_Cardball _cardBall = ls_activeCardBalls[i];
 
             //set up any cardballs that need it
             if(_cardBall.c_cardName == "")
             {
-                Debug.Log("Do we hit here");
+                //Debug.Log("Do we hit here");
                 _cardBall.CardballSetup();
             }
 
@@ -547,19 +498,19 @@ public class S_Altar : MonoBehaviour
 
                 _cardBall.transform.DOScale(new Vector3(.8f, .8f, 0), f_cardballMoveSpeed);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
             else if (i == 1)
             {
                 _cardBall.transform.SetParent(upperCardballPosition2.transform, false);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
             else if (i == 2)
             {
                 _cardBall.transform.SetParent(upperCardballPosition3.transform, false);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
     }

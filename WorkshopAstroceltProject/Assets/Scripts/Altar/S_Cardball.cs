@@ -196,26 +196,23 @@ public class S_Cardball : MonoBehaviour
         // Spawn Card 
         GameObject c_card = Instantiate(c_cardTemplate, Vector3.zero, Quaternion.identity);
 
-        Debug.Log(c_card.transform.parent);
+        //Debug.Log(c_card.transform.parent);
 
         c_card.transform.SetParent(_whereToSpawnCard, false);
 
-        Debug.Log(c_card.transform.parent);
-        Debug.Log(_whereToSpawnCard.GetChild(0));
-
         //set the scale of spawned cards
-        c_card.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
+        c_card.transform.localScale = new Vector3(10f, 10f, 10f);
 
         // Grab the script from this cardball
-        S_Card _cardScript = c_card.GetComponent<S_Card>();        
+        S_Card _cardScript = c_card.GetComponent<S_Card>();
 
         // Send information From Template
         _cardScript.FetchCardData(c_cardData);
 
         g_global.g_altar.c_b_cardSpawned = true;
 
-        // Delete the cardball and add the card to the grave
-        StartCoroutine(DeleteCardball());
+        // Delete the cardball
+        TrueDeleteCardball();
     }
 
 
@@ -236,23 +233,6 @@ public class S_Cardball : MonoBehaviour
         }
         c_b_pauseBool = true;
         yield return c_b_pauseBool == true;
-    }
-
-    /// <summary>
-    /// Now that it has built the card,
-    /// delete the cardball
-    /// - Josh
-    /// </summary>
-    public IEnumerator DeleteCardball()
-    {
-        //Debug.Log("DEBUG: Cardball Deletion Triggered");
-        g_global.g_ls_cardBallPrefabs.Remove(this);
-
-        //add the card to the grave
-        g_global.g_ls_p_playerGrave.Add(c_cardData.CardDatabaseID);
-        //Debug.Log("Where does this happen from");
-        yield return StartCoroutine(g_global.g_altar.WaitForCardPlayToMoveAndDelete(gameObject, g_global.g_altar.GetCardBeingActiveBool()));
-        //StartCoroutine(CarballDestroyVFX());
     }
 
 
