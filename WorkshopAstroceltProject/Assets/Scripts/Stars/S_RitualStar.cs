@@ -221,6 +221,9 @@ public class S_RitualStar : MonoBehaviour
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
+                    //reset the clickable nature of the star
+                    b_clickableStar = false;
+
                     g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
                 }
             }

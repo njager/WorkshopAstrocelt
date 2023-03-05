@@ -166,7 +166,6 @@ public class S_Altar : MonoBehaviour
 
         yield return new S_WaitForCardballMovement();
 
-
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(true);
@@ -354,18 +353,21 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckCardBallData()
     {
+        Debug.Log("reached here");
         bool _loopBool = true;
 
         while (_loopBool)
         {
             if (ls_activeCardBalls.Count > 0)
             {
+                Debug.Log("Made it past the first bool");
                 var _fst_cardBall = ls_activeCardBalls[0];
-
 
                 //check the first card Ball and user energy
                 if (g_global.g_energyManager.UseEnergy(_fst_cardBall.c_i_cardEnergyCost, _fst_cardBall.c_cardData.ColorString))
                 {
+                    Debug.Log("got da energy");
+
                     ls_cardBallStorage.Add(_fst_cardBall);
 
                     ls_activeCardBalls.RemoveAt(0);

@@ -365,6 +365,7 @@ public class S_Enemy : MonoBehaviour
         }
         else if(_enemyType == "Magician")
         {
+            Debug.Log("MAGICIAN USED SPECIAL ABILITY");
             MagicianSpecialAbility();
         }
         else if(_enemyType == "Brawler")
@@ -524,12 +525,6 @@ public class S_Enemy : MonoBehaviour
 
             // Add the value
             g_global.g_enemyState.SetMagicianAbilityValue(1);
-
-            // Update current cardballs
-            foreach(S_Cardball _cardball in g_global.g_ls_cardBallPrefabs.ToList()) 
-            {
-                _cardball.AdjustEnergyCost(true, 1);
-            }
         }
     }
 

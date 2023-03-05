@@ -73,6 +73,12 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballSetup()
     {
+        //check if the energy cost should be increased
+        if (g_global.g_enemyState.GetMagicianAbilityBool())
+        {
+            c_i_cardEnergyCost += g_global.g_enemyState.GetMagicianAbilityValue();
+        }
+
         // set all positions to false and then turn on based off of the tags
         c_b_locatedInFirstPosition = false;
         c_b_locatedInSecondPosition = false;

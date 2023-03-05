@@ -235,6 +235,9 @@ public class S_EnergyStar : MonoBehaviour
             {
                 if (_starClassScript.s_star.m_nextLine == null)
                 {
+                    //reset the clickable nature of the star
+                    b_clickableStar = false;
+
                     // Trigger go back once
                     g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
 
