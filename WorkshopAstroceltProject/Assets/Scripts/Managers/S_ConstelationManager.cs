@@ -136,17 +136,18 @@ public class S_ConstelationManager : MonoBehaviour
         {
             S_NodeStar _node = _star.gameObject.GetComponent<S_NodeStar>();
 
-            if (b_makingConstellation)
+            if (GetMakingConstellation())
             {
                 //finsih making the constellation
 
                 _node.SetNodeClicked(false);
                 FinishConstellation(_star);
+
+                //now that the node is added, change the bool
+                SetMakingConstellation(true);
             }
             else
             {
-                //now that the node is added, change the bool
-                SetMakingConstellation(true);
                 _node.NodeClickedColor();
                 _node.SetNodeClicked(true);
             }
@@ -230,37 +231,6 @@ public class S_ConstelationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This function deletes the most recent star.
-    /// It gets called from no where atm
-    /// -Riley
-    /// </summary>
-    public void DeleteTopStarCurConstellation()
-    {
-        //decrement the star sound
-        i_starSound--;
-
-        S_StarClass _star = ls_curConstellation[ls_curConstellation.Count()-1];
-
-        ls_curConstellation.RemoveAt(ls_curConstellation.Count()-1);
-
-        if (_star.starType == "Ritual")
-        {
-            str_curColor = "";
-        }
-        if (_star.starType == "Node")
-        {
-            if (b_makingConstellation)
-            {
-                //removed the node star so reset
-                b_makingConstellation = false;
-            }
-        }
-
-        //Make sure popups don't move
-        s_b_popupMove = false;
-    }
-
-    /// <summary>
     /// This function gets called internally if a constraint gets triggered and the constellation needs resetting, 
     /// or after a constellation is finished and everything needs reset to normal.  
     /// -Riley
@@ -281,7 +251,7 @@ public class S_ConstelationManager : MonoBehaviour
         //g_global.g_popupManager.ClearAllPopups();
 
         //set the bool
-        b_makingConstellation = false;
+        SetMakingConstellation(false);
 
         //reset the color
         str_curColor = "";
@@ -313,7 +283,7 @@ public class S_ConstelationManager : MonoBehaviour
     {
         if (c_cardballsSpawned == true)
         {
-            if (b_makingConstellation) //if you have started a constellation
+            if (GetMakingConstellation()) //if you have started a constellation
             {
                 g_global.g_DrawingManager.SpawnLine(s_previousStar, _starN, v2_prevLoc, _locN);
             }
@@ -352,7 +322,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void StarHovered(S_StarClass _star, Vector2 _loc)
     {
-        if (b_makingConstellation)
+        if (GetMakingConstellation())
         {
             if (s_previousStar != s_nullStarInst)
             {
@@ -439,7 +409,7 @@ public class S_ConstelationManager : MonoBehaviour
 
             //Print total line lenght, then reset to 0
 
-            b_makingConstellation = false;
+            SetMakingConstellation(false);
             //Debug.Log("Making constellations NOT");
 
             ls_curConstellation.Clear();
