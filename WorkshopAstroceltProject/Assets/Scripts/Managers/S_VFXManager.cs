@@ -171,7 +171,7 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI2.sprite = i_bananachHeadshot;
             }
-            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Crone")
+            else if (g_global.g_enemyAttributeSheet2.e_str_enemyType == "Crone")
             {
                 e_enemyImageUI2.sprite = i_sluaHeadshot;
             }
@@ -205,7 +205,7 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI3.sprite = i_bananachHeadshot;
             }
-            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Crone")
+            else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Crone")
             {
                 e_enemyImageUI3.sprite = i_sluaHeadshot;
             }
