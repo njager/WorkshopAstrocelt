@@ -37,7 +37,7 @@ public class S_Enemy : MonoBehaviour
     // Getting cardball object
     public GameObject cardball;
 
-<<<<<<< HEAD
+
     [Header("Sprite Assets")]
     public Sprite idleSprite;
     public Sprite attackSprite;
@@ -49,8 +49,6 @@ public class S_Enemy : MonoBehaviour
     public Animator e_idleAnim;
     public float f_idleAnimWait;
 
-=======
->>>>>>> aa29beb0e58088b21cd3f0ab134366cbee7da854
     [Header("Nameplate Text Object")]
     [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
 
