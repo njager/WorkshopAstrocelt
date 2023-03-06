@@ -46,7 +46,8 @@ public class S_Enemy : MonoBehaviour
     public Sprite defeatedSprite;
     public Sprite victorySprite;
 
-    private Animator e_idleAnim;
+    [Header("Animator")]
+    public Animator e_idleAnim;
     private float f_idleAnimWait;
 
     [Header("Nameplate Text Object")]
@@ -87,7 +88,6 @@ public class S_Enemy : MonoBehaviour
 
     private void Start()
     {
-        e_idleAnim = GetComponent<Animator>();
         // If enemy 1, move spots
         if (e_i_enemyCount == 1)
         {
@@ -390,6 +390,8 @@ public class S_Enemy : MonoBehaviour
         g_global.g_ls_activeEnemies.Remove(this);
         g_global.e_ls_enemyList.Remove(this);
         gameObject.SetActive(false);
+
+        g_global.g_UIManager.turnOffEnemyUI(e_i_enemyCount);
     }
 
     /// <summary>

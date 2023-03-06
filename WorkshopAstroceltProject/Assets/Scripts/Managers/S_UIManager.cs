@@ -181,13 +181,9 @@ public class S_UIManager : MonoBehaviour
 
     }
 
-    private void Start()
+    public void turnOffEnemyUI(int _enemyNum)
     {
-        turnOffEnemyUI();
-    }
-    void turnOffEnemyUI()
-    {
-        if (g_global.g_enemyState.e_b_enemy1Dead == true)
+        if (_enemyNum == 1)
         {
             e_enemy1HealthBar.SetActive(false);
             e_tx_enemy1HealthText.enabled = false;
@@ -196,13 +192,23 @@ public class S_UIManager : MonoBehaviour
             e_tx_upperEnemy1ShieldText.enabled = false;
             e_UI_upperEnemy1HealthBar.enabled = false;
         }
-        if (g_global.g_enemyState.e_b_enemy2Dead)
+        if (_enemyNum == 2)
         {
             e_enemy2HealthBar.SetActive(false);
+            e_tx_enemy2HealthText.enabled = false;
+            e_tx_upperEnemy2HealthText.enabled = false;
+            e_tx_enemy2ShieldText.enabled = false;
+            e_tx_upperEnemy2ShieldText.enabled = false;
+            e_UI_upperEnemy2HealthBar.enabled = false;
         }
-        if (g_global.g_enemyState.e_b_enemy3Dead)
+        if (_enemyNum == 3)
         {
             e_enemy3HealthBar.SetActive(false);
+            e_tx_enemy3HealthText.enabled = false;
+            e_tx_upperEnemy3HealthText.enabled = false;
+            e_tx_enemy3ShieldText.enabled = false;
+            e_tx_upperEnemy3ShieldText.enabled = false;
+            e_UI_upperEnemy3HealthBar.enabled = false;
         }
     }
 

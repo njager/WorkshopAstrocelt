@@ -73,9 +73,12 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballSetup()
     {
+        Debug.Log("Cardball setting up");
+
         //check if the energy cost should be increased
         if (g_global.g_enemyState.GetMagicianAbilityBool())
         {
+            Debug.Log("I da BICH");
             c_i_cardEnergyCost += g_global.g_enemyState.GetMagicianAbilityValue();
         }
 

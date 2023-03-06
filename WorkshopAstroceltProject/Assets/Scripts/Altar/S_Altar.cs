@@ -419,7 +419,7 @@ public class S_Altar : MonoBehaviour
         {
             yield return null;
 
-            Debug.Log("Do I reach here");
+            //Debug.Log("Do I reach here");
             Destroy(_cardball);
 
             if (GetCardballDelaySpawnBool() == true || b_lastCard == true)
@@ -431,7 +431,7 @@ public class S_Altar : MonoBehaviour
             else
             {
                 g_global.g_ConstellationManager.SetStarLockOutBool(true);
-                Debug.Log("MoveCardballPrefabs() Called");
+                //Debug.Log("MoveCardballPrefabs() Called");
                 yield return StartCoroutine(MoveCardballPrefabs());
             }
         }

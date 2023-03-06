@@ -82,6 +82,7 @@ public class S_VFXManager : MonoBehaviour
     public Sprite i_troupeHeadshot;
     public Sprite i_bananachHeadshot;
     public Sprite i_bodachHeadshot;
+    public Sprite i_sluaHeadshot;
 
     [Header("Button Reference")]
     public GameObject ui_mapPanButton;
@@ -136,6 +137,10 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI1.sprite = i_bananachHeadshot;
             }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Crone")
+            {
+                e_enemyImageUI1.sprite = i_sluaHeadshot;
+            }
         }
     }
 
@@ -166,6 +171,10 @@ public class S_VFXManager : MonoBehaviour
             {
                 e_enemyImageUI2.sprite = i_bananachHeadshot;
             }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Crone")
+            {
+                e_enemyImageUI2.sprite = i_sluaHeadshot;
+            }
         }
     }
 
@@ -195,6 +204,10 @@ public class S_VFXManager : MonoBehaviour
             else if (g_global.g_enemyAttributeSheet3.e_str_enemyType == "Realmwalker")
             {
                 e_enemyImageUI3.sprite = i_bananachHeadshot;
+            }
+            else if (g_global.g_enemyAttributeSheet1.e_str_enemyType == "Crone")
+            {
+                e_enemyImageUI3.sprite = i_sluaHeadshot;
             }
         }
     }
