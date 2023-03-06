@@ -40,6 +40,8 @@ public class S_Global : MonoBehaviour
     public S_AudioManager g_audioManager;
     public S_RewardVisualScript g_rewardVisualScript;
     public S_MapManager g_newMapManager; // Thoman's
+    public S_PauseMenu g_pauseMenu;
+
 
     [Header("Character States")]
     public bool g_b_playerTurn;

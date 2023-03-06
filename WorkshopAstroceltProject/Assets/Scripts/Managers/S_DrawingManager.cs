@@ -151,8 +151,11 @@ public class S_DrawingManager : MonoBehaviour
         {
             if (_previousStar.starType == "Node")
             {
-                _previousStar.gameObject.GetComponent<S_NodeStar>().NodeStarColor();
-                _previousStar.gameObject.GetComponent<S_NodeStar>().SetNodeClicked(false);
+                S_NodeStar _nStar = _previousStar.gameObject.GetComponent<S_NodeStar>();
+
+                _nStar.SetNodeClicked(false);
+                _nStar.NodeStarColor();
+                _nStar.SetNodeClicked(false);
             }
             else if (_previousStar.starType == "Ritual")
             {
@@ -160,6 +163,8 @@ public class S_DrawingManager : MonoBehaviour
                 //make the star clickable again
                 S_RitualStar _rStar = _previousStar.gameObject.GetComponent<S_RitualStar>();
                 _rStar.b_hasBeenClicked = false;
+
+                _rStar.SetClickableStarBool(false);
 
                 if (_rStar.s_b_redColor)
                 {
@@ -182,6 +187,8 @@ public class S_DrawingManager : MonoBehaviour
                 //make the star clickable again
                 S_EnergyStar _eStar = _previousStar.gameObject.GetComponent<S_EnergyStar>();
                 _eStar.b_hasBeenClicked = false;
+
+                _eStar.SetClickableStarBool(false);
 
                 //get the color
                 if (_eStar.s_b_redColor)

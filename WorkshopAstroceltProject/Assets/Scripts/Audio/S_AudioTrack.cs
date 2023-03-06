@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class S_AudioTrack : MonoBehaviour
 {
     private S_Global g_global;
@@ -16,6 +17,8 @@ public class S_AudioTrack : MonoBehaviour
     [Header("Time Interval")]
     [SerializeField] public float f_intensityBreakpoint;
 
+
+
     public float f_timeInScene = 0;
 
     public GameObject _sceneAudio;
@@ -29,7 +32,7 @@ public class S_AudioTrack : MonoBehaviour
 
     void Update()
     {
-        //changeVolume();
+        changeVolume();
         f_timeInScene += Time.deltaTime;
 
         i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
@@ -68,6 +71,6 @@ public class S_AudioTrack : MonoBehaviour
     void changeVolume()
     {
         var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-        //emitter.SetParameter("Volume", volume float varibale from pause script);
+        //emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
     }
 }
