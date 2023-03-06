@@ -771,6 +771,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7922033642159026864, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
   m_PrefabInstance: {fileID: 2102037177}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &606824526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5339192922659101858, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+  m_PrefabInstance: {fileID: 8047176381484923552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &677010430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,20 +3430,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6415791975262108359, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6415791975262108359, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 583387114766205540, guid: 5013bf418688134439a40b9acb18edbc, type: 3}
+      objectReference: {fileID: 8047176381484923553}
     - target: {fileID: 6415791975262108359, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: TutorialCanvasToggle
       objectReference: {fileID: 0}
     - target: {fileID: 6415791975262108359, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: S_PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6415791975262108359, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415791976539687025, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: tutorial
+      value: 
+      objectReference: {fileID: 606824526}
     - target: {fileID: 6415791976539687030, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3915,6 +3928,10 @@ PrefabInstance:
       propertyPath: g_a_audioPlayer
       value: 
       objectReference: {fileID: 1117891840}
+    - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: g_tutorialCanvas
+      value: 
+      objectReference: {fileID: 606824526}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_e_enemyPosition1
       value: 

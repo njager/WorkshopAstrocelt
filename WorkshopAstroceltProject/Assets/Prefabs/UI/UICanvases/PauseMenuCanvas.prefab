@@ -2022,10 +2022,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 583387114766205540, guid: 5013bf418688134439a40b9acb18edbc, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1965705455459941458}
+        m_TargetAssemblyTypeName: S_PauseMenu, Assembly-CSharp
+        m_MethodName: TutorialCanvasToggle
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3218,6 +3218,7 @@ MonoBehaviour:
   UI_background: {fileID: 1965705455616224650}
   mainMenuAssets: {fileID: 1965705455547473094}
   optionsMenuAssets: {fileID: 1965705453936293667}
+  tutorial: {fileID: 0}
   musicSlider: {fileID: 0}
   sfxSlider: {fileID: 0}
   musicVolume: 0
