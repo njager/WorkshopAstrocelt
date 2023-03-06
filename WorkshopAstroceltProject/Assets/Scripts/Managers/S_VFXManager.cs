@@ -247,7 +247,8 @@ public class S_VFXManager : MonoBehaviour
     {
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
-            && g_global.g_cardHolder.transform.childCount <= 0)
+            && g_global.g_cardHolder.transform.childCount <= 0
+            && g_global.g_ConstellationManager.GetMakingConstellation() == false)
         {
             if (g_global.g_cam != null)
             {
