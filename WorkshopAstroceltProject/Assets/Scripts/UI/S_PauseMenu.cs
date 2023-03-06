@@ -39,11 +39,12 @@ public class S_PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(optionsMenuAssets.activeInHierarchy == false) 
             {
-                Debug.Log("esc hit");
+                //Debug.Log("esc hit");
                 if (GameIsPaused)
                 {
                     Resume();
@@ -56,11 +57,20 @@ public class S_PauseMenu : MonoBehaviour
         }   
     }
 
+    public void OnValueChanged(float value)
+    {
+        musicVolume = value;
+
+        Debug.Log(musicVolume);
+    }
+
     public void Start()
     {
 
 
-        musicSlider.onValueChanged.AddListener((v) => { musicVolume = v; });
+        //musicSlider.onValueChanged.AddListener((v) => { musicVolume = v; });
+        //print(musicVolume);
+        
 
 
 
