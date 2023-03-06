@@ -176,7 +176,36 @@ public class S_UIManager : MonoBehaviour
 
         // Turn off debug elements
         debugTurnbar.SetActive(false);
+
+
+
     }
+
+    private void Start()
+    {
+        turnOffEnemyUI();
+    }
+    void turnOffEnemyUI()
+    {
+        if (g_global.g_enemyState.e_b_enemy1Dead == true)
+        {
+            e_enemy1HealthBar.SetActive(false);
+            e_tx_enemy1HealthText.enabled = false;
+            e_tx_upperEnemy1HealthText.enabled = false;
+            e_tx_enemy1ShieldText.enabled = false;
+            e_tx_upperEnemy1ShieldText.enabled = false;
+            e_UI_upperEnemy1HealthBar.enabled = false;
+        }
+        if (g_global.g_enemyState.e_b_enemy2Dead)
+        {
+            e_enemy2HealthBar.SetActive(false);
+        }
+        if (g_global.g_enemyState.e_b_enemy3Dead)
+        {
+            e_enemy3HealthBar.SetActive(false);
+        }
+    }
+
 
     //Some of this should be in turn manager?, probably
     void Update()
