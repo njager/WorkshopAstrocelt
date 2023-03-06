@@ -45,11 +45,17 @@ public class S_Enemy : MonoBehaviour
     public Sprite defeatedSprite;
     public Sprite victorySprite;
 
+    public Animator e_idleAnim;
+    public float f_idleAnimWait;
+
     [Header("Nameplate Text Object")]
     [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
 
     private void Awake()
     {
+        f_idleAnimWait = Random.Range(0, 1);
+
+
         g_global = S_Global.Instance;
 
         SetCount(); 
@@ -64,6 +70,17 @@ public class S_Enemy : MonoBehaviour
         e_v3_defaultScale = gameObject.transform.localScale;
 
         g_global.g_ls_activeEnemies.Add(this);
+
+
+        StartCoroutine(PlayIdleAnim());
+ 
+    }
+
+    IEnumerator PlayIdleAnim() {
+
+        yield return new WaitForSeconds(f_idleAnimWait);
+        e_idleAnim.Play("Idle Animation Start");
+    
     }
 
     private void Start()
