@@ -28,11 +28,12 @@ public class S_AudioTrack : MonoBehaviour
     void Start()
     {
         g_global = S_Global.Instance;
+        changeVolume();
     }
 
     void Update()
     {
-        changeVolume();
+        
         f_timeInScene += Time.deltaTime;
 
         i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
@@ -71,6 +72,6 @@ public class S_AudioTrack : MonoBehaviour
     void changeVolume()
     {
         var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-        //emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
+        emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
     }
 }
