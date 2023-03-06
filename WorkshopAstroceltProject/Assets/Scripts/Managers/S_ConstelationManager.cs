@@ -451,7 +451,7 @@ public class S_ConstelationManager : MonoBehaviour
             Debug.Log("Red Energy: " + g_global.g_energyManager.GetRedEnergyInt() + "  Yellow Energy: " + g_global.g_energyManager.GetYellowEnergyInt() + "  Blue Energy: " + g_global.g_energyManager.GetBlueEnergyInt());
 
             // Popups now move to card
-            StartCoroutine(g_global.g_popupManager.TriggerPopupMove());
+            g_global.g_popupManager.TriggerPopupMove();
 
             //Reset bonus energy
             g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
