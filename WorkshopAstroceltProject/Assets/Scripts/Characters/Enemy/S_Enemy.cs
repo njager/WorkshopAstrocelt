@@ -83,7 +83,8 @@ public class S_Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(f_idleAnimWait);
         e_idleAnim.Play("Idle Animation Start");
-    
+        //idle delay
+
     }
 
     private void Start()
