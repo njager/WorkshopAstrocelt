@@ -22,6 +22,7 @@ public class S_PauseMenu : MonoBehaviour
     public GameObject UI_background;
     public GameObject mainMenuAssets;
     public GameObject optionsMenuAssets;
+    public GameObject tutorial;
 
     private S_Global g_global;
 
@@ -30,6 +31,8 @@ public class S_PauseMenu : MonoBehaviour
 
     public float musicVolume;
     public float sfxVolume;
+
+    private bool p_b_tutIsOn = false;
 
     private void Awake()
     {
@@ -91,6 +94,15 @@ public class S_PauseMenu : MonoBehaviour
         {
             GameObject.setActive = false;
         }*/
+    }
+
+    void openTutorial()
+    {
+        if (p_b_tutIsOn == false)
+        {
+            tutorial.SetActive(true);
+            p_b_tutIsOn = true;
+        }
     }
 
     public void Resume()
