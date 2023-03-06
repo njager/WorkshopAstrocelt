@@ -75,9 +75,9 @@ public class S_AudioTrack : MonoBehaviour
 
     void changeVolume()
     {
-        vol = g_global.g_pauseMenu.musicVolume;
+        //vol = g_global.g_pauseMenu.musicVolume;
         var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-        emitter.SetParameter("Volume", vol);
+        emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
         
     }
 }
