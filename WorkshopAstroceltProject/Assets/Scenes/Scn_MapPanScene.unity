@@ -862,6 +862,11 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!4 &698505732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+  m_PrefabInstance: {fileID: 1285423331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &724688744 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7637182451495944990, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
@@ -1264,6 +1269,7 @@ Transform:
   - {fileID: 827661925}
   - {fileID: 1166878455}
   - {fileID: 2082358047}
+  - {fileID: 698505732}
   m_Father: {fileID: 677010431}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1735,6 +1741,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+--- !u!1001 &1285423331
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 843503406}
+    m_Modifications:
+    - target: {fileID: 277175424826721227, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_Name
+      value: Pf_CroneEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983592368429054910, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc6c4299b34c29e429eaae6fa07a4930, type: 3}
 --- !u!1 &1322799022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,7 +2292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.9, y: -4.5}
+  m_AnchoredPosition: {x: 7.36, y: -4.5}
   m_SizeDelta: {x: 205.29, y: 327.6858}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1855718332 stripped
@@ -3371,6 +3434,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7285703943705897478, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7352535213938583374, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 4.100006
@@ -3426,159 +3493,159 @@ PrefabInstance:
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[10]
       value: 
-      objectReference: {fileID: 11400000, guid: 74c11ac13f622194bb399f557203d553, type: 2}
+      objectReference: {fileID: 11400000, guid: 193dcc4fa1ed73549b55e96d45977d82, type: 2}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[11]
       value: 
-      objectReference: {fileID: 11400000, guid: cd7616abc8002e54eb0e6f8c66570ac5, type: 2}
+      objectReference: {fileID: 11400000, guid: 193dcc4fa1ed73549b55e96d45977d82, type: 2}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[12]
       value: 
-      objectReference: {fileID: 11400000, guid: f98505299385e7f4abcc84cb023b16d2, type: 2}
+      objectReference: {fileID: 11400000, guid: 193dcc4fa1ed73549b55e96d45977d82, type: 2}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[13]
       value: 
-      objectReference: {fileID: 11400000, guid: a6e9124bec5f8cf42aaf8a0924734183, type: 2}
+      objectReference: {fileID: 11400000, guid: 193dcc4fa1ed73549b55e96d45977d82, type: 2}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[14]
       value: 
-      objectReference: {fileID: 11400000, guid: 86628606759fc1a41ba29622820f9e35, type: 2}
+      objectReference: {fileID: 11400000, guid: 193dcc4fa1ed73549b55e96d45977d82, type: 2}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[15]
       value: 
-      objectReference: {fileID: 11400000, guid: 5e5c0b5eaa6f7d9448abbf20277a2eb1, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[16]
       value: 
-      objectReference: {fileID: 11400000, guid: 16c0678514bfbbf40a3b647f5a79e12e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[17]
       value: 
-      objectReference: {fileID: 11400000, guid: f9751a64eede8ce42bb31e574dbe2e28, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[18]
       value: 
-      objectReference: {fileID: 11400000, guid: d313b708cc1a8164886e0e650106f6cc, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[19]
       value: 
-      objectReference: {fileID: 11400000, guid: 8ad17405ce76488449ba10f418dfe7ef, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[20]
       value: 
-      objectReference: {fileID: 11400000, guid: 934f9d7a698453c4c87d026f559dfb48, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[21]
       value: 
-      objectReference: {fileID: 11400000, guid: e73b5471266e3df4fabe8df677ab1b94, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[22]
       value: 
-      objectReference: {fileID: 11400000, guid: 0c049a6d74938624184542fd051cc28a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[23]
       value: 
-      objectReference: {fileID: 11400000, guid: 1a46ff1f07df7d14a934c2d6eed91752, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[24]
       value: 
-      objectReference: {fileID: 11400000, guid: 63de9510f18d0c944a2554e74aceb2ec, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[25]
       value: 
-      objectReference: {fileID: 11400000, guid: 3c364357d33b1324daf02f3e4938e9c3, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[26]
       value: 
-      objectReference: {fileID: 11400000, guid: 8a789a667f547994abfbcc89d828b8a6, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[27]
       value: 
-      objectReference: {fileID: 11400000, guid: fd20d2dd6c6815a46abf9acfa6854c65, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[28]
       value: 
-      objectReference: {fileID: 11400000, guid: f05f8717b871dba4abcfba9a7d300c5b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[29]
       value: 
-      objectReference: {fileID: 11400000, guid: 6d62f5267169912478dc3fb56e98b104, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[30]
       value: 
-      objectReference: {fileID: 11400000, guid: 33af589eaafaac34b9a2cf2281066592, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[31]
       value: 
-      objectReference: {fileID: 11400000, guid: 00c5552781697c24abdc0697449ad188, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[32]
       value: 
-      objectReference: {fileID: 11400000, guid: b669ef07a2d070c458593f6795841a58, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[33]
       value: 
-      objectReference: {fileID: 11400000, guid: 493e291868a9c794d9b5ee2e69253977, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[34]
       value: 
-      objectReference: {fileID: 11400000, guid: 115e673d8a79a3f43ac9a7e1deb932bd, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[35]
       value: 
-      objectReference: {fileID: 11400000, guid: 3f01450ee60b74546b9b8e12ec549155, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[36]
       value: 
-      objectReference: {fileID: 11400000, guid: 38e9fd8c2f0bb414db1842657c669ce1, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[37]
       value: 
-      objectReference: {fileID: 11400000, guid: 650c4addef5b80445bff2f5089d6d1f9, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[38]
       value: 
-      objectReference: {fileID: 11400000, guid: 5498ebb870b1c3d40824ed75f0d98953, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[39]
       value: 
-      objectReference: {fileID: 11400000, guid: a4a949cbd38c4874180d25e278542436, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[40]
       value: 
-      objectReference: {fileID: 11400000, guid: 2907e0313352c8e4da2da0c64c5b0d48, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[41]
       value: 
-      objectReference: {fileID: 11400000, guid: 2b5b947b927b92e4aa29c3d692b677f1, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[42]
       value: 
-      objectReference: {fileID: 11400000, guid: 51aa82a2a41b02e4f8cf24609d350679, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[43]
       value: 
-      objectReference: {fileID: 11400000, guid: aef71e10bac55304682bc360ae15e9fd, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[44]
       value: 
-      objectReference: {fileID: 11400000, guid: 49c437da3158b8c40afc51df318c8220, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[45]
       value: 
-      objectReference: {fileID: 11400000, guid: 1cd6c189879e111479f6ae797cd39225, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[46]
       value: 
-      objectReference: {fileID: 11400000, guid: 0445291012506624581d034b7ea4e8fe, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[47]
       value: 
-      objectReference: {fileID: 11400000, guid: e9b741819d4d83f46aee5a9e0348fc38, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[48]
       value: 
-      objectReference: {fileID: 11400000, guid: 219057fe5e436654bb46a1c5a3d9554b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8047176379400075472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: cardList.Array.data[49]
       value: 
