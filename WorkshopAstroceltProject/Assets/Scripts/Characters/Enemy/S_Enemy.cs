@@ -46,8 +46,8 @@ public class S_Enemy : MonoBehaviour
     public Sprite defeatedSprite;
     public Sprite victorySprite;
 
-    public Animator e_idleAnim;
-    public float f_idleAnimWait;
+    private Animator e_idleAnim;
+    private float f_idleAnimWait;
 
     [Header("Nameplate Text Object")]
     [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
