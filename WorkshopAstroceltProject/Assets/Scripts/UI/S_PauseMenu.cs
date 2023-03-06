@@ -61,7 +61,7 @@ public class S_PauseMenu : MonoBehaviour
     {
         musicVolume = value;
 
-        Debug.Log(musicVolume);
+        
     }
 
     public void Start()
