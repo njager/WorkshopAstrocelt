@@ -211,9 +211,8 @@ public class S_PopupManager : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator TriggerPopupMove()
+    public void TriggerPopupMove()
     {
-        yield return new S_WaitForConstellationFinish();
         b_visualPopupFinished = true;
 
         foreach (S_StarPopUp _starPopup in g_global.g_ls_starPopup.ToList())

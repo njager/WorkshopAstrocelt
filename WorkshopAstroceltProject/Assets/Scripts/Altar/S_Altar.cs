@@ -137,7 +137,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnVisualCardballPrefabs(int _numCards)
     {
-        Debug.Log("Number of cards is " + _numCards.ToString());
+        //Debug.Log("Number of cards is " + _numCards.ToString());
 
         c_i_movementInt = 0;
 
@@ -387,7 +387,11 @@ public class S_Altar : MonoBehaviour
             }
         }
 
-        DealAnotherCard();
+        if(ls_activeCardBalls.Count() < 3)
+        {
+            //deal more cards if there are now cards in ls_cardBall storage
+            DealAnotherCard();
+        }
     }
 
 
