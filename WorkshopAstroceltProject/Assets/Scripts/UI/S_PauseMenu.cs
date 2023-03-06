@@ -96,15 +96,7 @@ public class S_PauseMenu : MonoBehaviour
         }*/
     }
 
-    void openTutorial()
-    {
-        if (p_b_tutIsOn == false)
-        {
-            tutorial.SetActive(true);
-            p_b_tutIsOn = true;
-        }
-    }
-
+    
     public void Resume()
     {
         UI_background.SetActive(false);
@@ -171,6 +163,8 @@ public class S_PauseMenu : MonoBehaviour
     {
         g_global.g_tutorialCanvas.SetActive(g_global.g_b_tutorialCanvasState);
         g_global.g_b_tutorialCanvasState = !g_global.g_b_tutorialCanvasState;
+        mainMenuAssets.SetActive(false);
+        UI_background.SetActive(false);
     }
 }
 
