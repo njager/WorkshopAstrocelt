@@ -84,6 +84,14 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         ThreeElementTuple.tupleList = chg_ls_activeEffectsList;
     }
 
+   /* private void Update()
+    {
+        if (g_global.g_enemyState.e_b_enemy1Dead)
+        {
+            healthbar1.setactive(false);
+        }
+    }*/
+
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Public Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

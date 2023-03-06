@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7760862986094364634, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
 --- !u!1 &470833515
@@ -758,8 +762,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1079039331}
   - {fileID: 1322799023}
+  - {fileID: 1969022260}
   - {fileID: 843503406}
   m_Father: {fileID: 1043160447}
   m_RootOrder: 1
@@ -1410,11 +1414,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1079039331 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 540533621240488759, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
-  m_PrefabInstance: {fileID: 378234283}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1104269946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1793,7 +1792,7 @@ Transform:
   - {fileID: 1882813095}
   - {fileID: 1833727385}
   m_Father: {fileID: 677010431}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1330287152 stripped
 MonoBehaviour:
@@ -2298,6 +2297,11 @@ RectTransform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4694868179480249387, guid: 0781a5a36b443ed4695e374cd3019937, type: 3}
   m_PrefabInstance: {fileID: 4694868180829328565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1969022260 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7760862986094364634, guid: 8c3ad9831adf4fd4fb20eae9110ca5f7, type: 3}
+  m_PrefabInstance: {fileID: 378234283}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1970867160 stripped
 GameObject:
@@ -3053,6 +3057,34 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 165735210212939334, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 165735210212939334, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 165735210212939334, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228724403334648542, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5066305262922275057, guid: d0542606244212649b1652015d094215, type: 2}
+    - target: {fileID: 228724403334648542, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228724404935439758, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5066305262922275057, guid: d0542606244212649b1652015d094215, type: 2}
+    - target: {fileID: 228724404935439758, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 381366598888463889, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3284,6 +3316,10 @@ PrefabInstance:
     - target: {fileID: 5967364625463488564, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243357341385510176, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6401628011795521547, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_LocalScale.x

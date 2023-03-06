@@ -37,6 +37,7 @@ public class S_Enemy : MonoBehaviour
     // Getting cardball object
     public GameObject cardball;
 
+
     [Header("Sprite Assets")]
     public Sprite idleSprite;
     public Sprite attackSprite;
@@ -45,11 +46,17 @@ public class S_Enemy : MonoBehaviour
     public Sprite defeatedSprite;
     public Sprite victorySprite;
 
+    private Animator e_idleAnim;
+    private float f_idleAnimWait;
+
     [Header("Nameplate Text Object")]
     [SerializeField] TextMeshProUGUI e_tx_enemyNameplate;
 
     private void Awake()
     {
+        f_idleAnimWait = Random.Range(0, 1);
+
+
         g_global = S_Global.Instance;
 
         SetCount(); 
@@ -64,10 +71,23 @@ public class S_Enemy : MonoBehaviour
         e_v3_defaultScale = gameObject.transform.localScale;
 
         g_global.g_ls_activeEnemies.Add(this);
+
+
+        StartCoroutine(PlayIdleAnim());
+ 
+    }
+
+    IEnumerator PlayIdleAnim() {
+
+        yield return new WaitForSeconds(f_idleAnimWait);
+        e_idleAnim.Play("Idle Animation Start");
+        //idle delay
+
     }
 
     private void Start()
     {
+        e_idleAnim = GetComponent<Animator>();
         // If enemy 1, move spots
         if (e_i_enemyCount == 1)
         {
@@ -123,9 +143,6 @@ public class S_Enemy : MonoBehaviour
                 {
                     e_sc_enemyAttributes.e_i_health -= _resistantDamageValue;
 
-                    // Trigger Damage Sprite
-                    StartCoroutine(ChangeDamageSprite());
-
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
@@ -143,9 +160,6 @@ public class S_Enemy : MonoBehaviour
                         }
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-
-                        // Trigger Damage Sprite
-                        StartCoroutine(ChangeDamageSprite());
 
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
@@ -169,9 +183,6 @@ public class S_Enemy : MonoBehaviour
                 {
                     e_sc_enemyAttributes.e_i_health -= _frailtyDamageValue;
 
-                    // Trigger Damage Sprite
-                    StartCoroutine(ChangeDamageSprite());
-
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
@@ -189,9 +200,6 @@ public class S_Enemy : MonoBehaviour
                         }
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-
-                        // Trigger Damage Sprite
-                        StartCoroutine(ChangeDamageSprite());
 
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
@@ -215,9 +223,6 @@ public class S_Enemy : MonoBehaviour
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
 
-                    // Trigger the sprite change
-                    StartCoroutine(ChangeDamageSprite());
-
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
@@ -238,9 +243,6 @@ public class S_Enemy : MonoBehaviour
                         }
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
-
-                        // Trigger Sprite Change
-                        StartCoroutine(ChangeDamageSprite());
 
                         // Attacked Particle Effect 
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
@@ -265,9 +267,6 @@ public class S_Enemy : MonoBehaviour
             {
                 e_sc_enemyAttributes.e_i_health -= _damageValue;
 
-                // Trigger the sprite change
-                StartCoroutine(ChangeDamageSprite());
-
                 // Attacked Particle Effect
                 e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
@@ -285,8 +284,6 @@ public class S_Enemy : MonoBehaviour
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
-                    // Trigger the Sprite Change
-                    StartCoroutine(ChangeDamageSprite());
 
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
@@ -319,9 +316,6 @@ public class S_Enemy : MonoBehaviour
     public void EnemyShielded(string _enemyType, int _shieldVal)
     {
         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() + _shieldVal);
-
-        //change the block sprite
-        StartCoroutine(ChangeBlockSprite());
 
         if (_enemyType == "Beast" || _enemyType == "Lumberjack") // Shield Physical
         {
@@ -468,10 +462,6 @@ public class S_Enemy : MonoBehaviour
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
-                //play enemy animation
-                //trigger the sprite change and particle effects
-                StartCoroutine(ChangeAttackSprite());
-
                 g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyDamageValue());
 
                 //Then play sounds
@@ -640,73 +630,5 @@ public class S_Enemy : MonoBehaviour
                 g_global.g_audioManager.SetEnemy5AudioPercentage(_temp * 100);
             }
         }
-    }
-
-
-    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    ///////////////////////////// Animation Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-    /////////////////////////////-------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    /// <summary>
-    /// Change player sprite to attack sprite
-    ///  - "Riley"
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ChangeAttackSprite()
-    {
-        Debug.Log("Attack Here");
-        sr_enemySprite.sprite = attackSprite;
-
-        //Debug.Log("Player will animate");
-
-        e_sc_enemyAttributes.e_a_AttackAnimator.Play("attack");
-
-        //Debug.Log("Player will wait for 2 seconds");
-
-        yield return new WaitForSeconds(2f);
-
-        //Debug.Log("Player will change to idle");
-
-        sr_enemySprite.sprite = idleSprite;
-
-
-        Debug.Log("Attack After");
-    }
-
-    /// <summary>
-    /// Change player sprite to block sprite
-    ///  - "Riley"
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ChangeBlockSprite()
-    {
-        Debug.Log("Block Here");
-        sr_enemySprite.sprite = blockSprite;
-
-        yield return new WaitForSeconds(2);
-
-        sr_enemySprite.sprite = idleSprite;
-
-        Debug.Log("Block After");
-    }
-
-    /// <summary>
-    /// Change player sprite to damaged sprite
-    ///  - "Riley"
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ChangeDamageSprite()
-    {
-        Debug.Log("Damaged Here");
-
-        sr_enemySprite.sprite = damagedSprite;
-
-        e_sc_enemyAttributes.e_a_AttackAnimator.Play("Damaged");
-
-        yield return new WaitForSeconds(2);
-
-        Debug.Log("Damaged After");
-
-        sr_enemySprite.sprite = idleSprite;
     }
 }
