@@ -289,7 +289,11 @@ public class S_ConstelationManager : MonoBehaviour
         //reset the prvious star
         ChangePrevStarAndLoc(s_nullStarInst, new Vector2(0, 0));
 
-        NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
+        //to prevent the player from breaking the game if they end turn before selecting a stars
+        if(s_nodeStarReference!= null)
+        {
+            NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
+        }
     }
 
     public IEnumerator CardballSpawnCheck()

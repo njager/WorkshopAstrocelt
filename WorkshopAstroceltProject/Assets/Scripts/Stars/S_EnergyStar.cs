@@ -235,6 +235,9 @@ public class S_EnergyStar : MonoBehaviour
             {
                 if (_starClassScript.s_star.m_nextLine == null)
                 {
+                    //reset the clickable nature of the star
+                    b_clickableStar = false;
+
                     // Trigger go back once
                     g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
 
@@ -288,7 +291,6 @@ public class S_EnergyStar : MonoBehaviour
                 //remove energy by subbing the line first and then seeing what you would get if you did it again
                 g_global.g_consecutiveColorTrackerManager.GoBackForColorTracker(s_starClass.s_star.s_previousColor, s_starClass.s_star.i_previousBonus);
 
-
                 // Determine energy storage bin
                 if (s_b_redColor)
                 {
@@ -302,6 +304,9 @@ public class S_EnergyStar : MonoBehaviour
                 {
                     g_global.g_energyManager.StoreEnergy("yellow", -s_starClass.s_star.i_energy);
                 }
+
+                //SET The clickable star to false so lines cant connect when red
+                SetClickableStarBool(false);
 
                 // Reset has been clicked
                 b_hasBeenClicked = false;

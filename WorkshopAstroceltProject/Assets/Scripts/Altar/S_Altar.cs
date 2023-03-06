@@ -137,6 +137,8 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public IEnumerator SpawnVisualCardballPrefabs(int _numCards)
     {
+        Debug.Log("Number of cards is " + _numCards.ToString());
+
         c_i_movementInt = 0;
 
         //set the constellation manager bools until the card balls finish spawning
@@ -166,13 +168,9 @@ public class S_Altar : MonoBehaviour
 
         yield return new S_WaitForCardballMovement();
 
-
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
         SetCardballsSpawnedBool(true);
-
-        //check to see if the player can play any of the newly spawned cards
-        CheckCardBallData();
     }
 
 
@@ -217,6 +215,7 @@ public class S_Altar : MonoBehaviour
         //get the card from deck and add to the hand equal to difference
         for(int i = ls_activeCardBalls.Count(); i < 3 ; i++)
         {
+            Debug.Log("Card got added");
             ls_cardBallHand.Add(g_global.g_cardManager.GetCardFromDeck());
         }
 
@@ -354,18 +353,21 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void CheckCardBallData()
     {
+        Debug.Log("reached here");
         bool _loopBool = true;
 
         while (_loopBool)
         {
             if (ls_activeCardBalls.Count > 0)
             {
+                Debug.Log("Made it past the first bool");
                 var _fst_cardBall = ls_activeCardBalls[0];
-
 
                 //check the first card Ball and user energy
                 if (g_global.g_energyManager.UseEnergy(_fst_cardBall.c_i_cardEnergyCost, _fst_cardBall.c_cardData.ColorString))
                 {
+                    Debug.Log("got da energy");
+
                     ls_cardBallStorage.Add(_fst_cardBall);
 
                     ls_activeCardBalls.RemoveAt(0);
@@ -513,6 +515,9 @@ public class S_Altar : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
         }
+
+        //check to see if the player can play any of the newly spawned cards
+        CheckCardBallData();
     }
 
     /// <summary>

@@ -221,6 +221,9 @@ public class S_RitualStar : MonoBehaviour
             {
                 if (this.GetComponent<S_StarClass>().s_star.m_nextLine == null)
                 {
+                    //reset the clickable nature of the star
+                    b_clickableStar = false;
+
                     g_global.g_DrawingManager.GoBackOnce(this.GetComponent<S_StarClass>().s_star.m_previousLine.gameObject);
                 }
             }
@@ -284,6 +287,9 @@ public class S_RitualStar : MonoBehaviour
                 {
                     g_global.g_energyManager.StoreEnergy("yellow", -s_starClass.s_star.i_energy);
                 }
+
+                //SET The clickable star to false so lines cant connect when red
+                SetClickableStarBool(false);
 
                 // Reset has been clicked
                 b_hasBeenClicked = false;

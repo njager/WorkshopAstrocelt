@@ -25,6 +25,12 @@ public class S_PauseMenu : MonoBehaviour
 
     private S_Global g_global;
 
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
+
+    public float musicVolume;
+    public float sfxVolume;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -52,6 +58,13 @@ public class S_PauseMenu : MonoBehaviour
 
     public void Start()
     {
+
+
+        musicSlider.onValueChanged.AddListener((v) => { musicVolume = v; });
+
+
+
+
         fullscreenTog.isOn = Screen.fullScreen;
         bool foundRes = false;
         for (int i =0; i < resolutions.Count; i++)
