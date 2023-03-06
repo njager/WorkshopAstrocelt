@@ -762,9 +762,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 822492659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97efc81b06ac8240b2c60c6ad129a69, type: 3}
+  m_Script: {fileID: 11500000, guid: 40d9063e7f7f80248ad6136229901aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i_sceneIndex: 1
+  r_rewardCanvas: {fileID: 0}
+  b_finalScene: 0
+  b_toEventScene: 0
+  ls_i_eventIndices: 
+  nextTurnButton: {fileID: 0}
 --- !u!1 &889820655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,9 +1281,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1188544667}
+      - m_Target: {fileID: 822492661}
         m_TargetAssemblyTypeName: S_SceneManager, Assembly-CSharp
-        m_MethodName: StartScene
+        m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
