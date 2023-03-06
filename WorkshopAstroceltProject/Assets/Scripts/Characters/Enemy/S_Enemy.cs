@@ -87,6 +87,7 @@ public class S_Enemy : MonoBehaviour
 
     private void Start()
     {
+        e_idleAnim = GetComponent<Animator>();
         // If enemy 1, move spots
         if (e_i_enemyCount == 1)
         {
