@@ -1159,6 +1159,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843503406}
     m_Modifications:
+    - target: {fileID: 1068484044281633899, guid: 196b042fc048d37468ce633364be803b, type: 3}
+      propertyPath: e_i_health
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068484044281633899, guid: 196b042fc048d37468ce633364be803b, type: 3}
+      propertyPath: e_i_healthMax
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 1068484044281633941, guid: 196b042fc048d37468ce633364be803b, type: 3}
       propertyPath: m_Name
       value: MagicianEnemy
@@ -1583,6 +1591,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843503406}
     m_Modifications:
+    - target: {fileID: 1068484044281633899, guid: 196b042fc048d37468ce633364be803b, type: 3}
+      propertyPath: e_i_health
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068484044281633899, guid: 196b042fc048d37468ce633364be803b, type: 3}
+      propertyPath: e_i_healthMax
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 1068484044281633941, guid: 196b042fc048d37468ce633364be803b, type: 3}
       propertyPath: m_Name
       value: MagicianEnemy (2)
@@ -2068,6 +2084,14 @@ PrefabInstance:
     - target: {fileID: 1681320326654544049, guid: a2f0ee572f8ea8e42b70917fb24af79e, type: 3}
       propertyPath: m_Name
       value: Pf_CroneEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440388293588325588, guid: a2f0ee572f8ea8e42b70917fb24af79e, type: 3}
+      propertyPath: e_i_health
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440388293588325588, guid: a2f0ee572f8ea8e42b70917fb24af79e, type: 3}
+      propertyPath: e_i_healthMax
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7146673426725338950, guid: a2f0ee572f8ea8e42b70917fb24af79e, type: 3}
       propertyPath: m_RootOrder
@@ -3102,6 +3126,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 228724403681504581, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 371931645}
+    - target: {fileID: 228724403681504581, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Scene0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228724403681504581, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: S_SceneManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 228724404950424983, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 398756890668400288, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.8999939
@@ -3732,7 +3772,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 6ae04e8465f09e740be4bb647173a278, type: 2}
     - target: {fileID: 8047176379975663402, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: i_sceneIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8047176379975663402, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: r_rewardCanvas

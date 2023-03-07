@@ -197,9 +197,11 @@ public class S_RitualStar : MonoBehaviour
         {
             s_starSprite.color = s_c_yellowStarHoverColor;
         }
-        if (g_global.g_ConstellationManager.GetStarLockOutBool())
+        if (g_global.g_ConstellationManager.GetStarLockOutBool()
+            && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (this.GetComponent<S_StarClass>().s_star.m_previousLine == null 
+                && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 g_global.g_ConstellationManager.StarHovered(this.GetComponent<S_StarClass>(), transform.position);
             }

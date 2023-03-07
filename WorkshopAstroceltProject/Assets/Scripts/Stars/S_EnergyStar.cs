@@ -233,7 +233,9 @@ public class S_EnergyStar : MonoBehaviour
         //Check only if making a constellation and the node star has been clicked
         if (g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (b_hasBeenClicked == false && _starClassScript.s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (b_hasBeenClicked == false 
+                && _starClassScript.s_star.m_previousLine != null 
+                && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 if (_starClassScript.s_star.m_nextLine == null)
                 {
