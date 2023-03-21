@@ -28,7 +28,8 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_UI_frailtyStatusEffect;
     [SerializeField] GameObject chg_UI_resistantStatusEffect;
     [SerializeField] GameObject chg_UI_stunStatusEffect;
-
+    [SerializeField] GameObject chg_UI_clurichaunSpecialEffect;
+ 
     [Header("Position GameObjects")]
     [SerializeField] GameObject chg_statusEffectPosition1;
     [SerializeField] GameObject chg_statusEffectPosition2;
