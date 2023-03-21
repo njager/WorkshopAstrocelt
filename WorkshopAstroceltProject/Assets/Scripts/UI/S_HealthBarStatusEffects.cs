@@ -28,7 +28,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_UI_frailtyStatusEffect;
     [SerializeField] GameObject chg_UI_resistantStatusEffect;
     [SerializeField] GameObject chg_UI_stunStatusEffect;
-    [SerializeField] GameObject chg_UI_clurichaunSpecialEffect;
+    [SerializeField] GameObject chg_UI_enemySpecialEffect;
  
     [Header("Position GameObjects")]
     [SerializeField] GameObject chg_statusEffectPosition1;
@@ -983,6 +983,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
 
         }
+        else if(_statusEffect.Equals("special"))
+        {
+
+        }
     }
 
     /// <summary>
@@ -1426,20 +1430,20 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// <param name="_healthBarOwner"></param>
     private bool EffectStateActive(string _effect, int _healthBarOwner) 
     {
-        if (_effect.Equals("acid")) 
+        if (_effect.Equals("acid"))
         {
-            if(_healthBarOwner == -1) // Player
+            if (_healthBarOwner == -1) // Player
             {
-                if (g_global.g_playerState.GetPlayerAcidEffectState() == true) 
+                if (g_global.g_playerState.GetPlayerAcidEffectState() == true)
                 {
                     return true; // Effect is active
                 }
-                else 
+                else
                 {
                     return false; // Effect isn't active
                 }
             }
-            else if(_healthBarOwner == 1) // Enemy 1
+            else if (_healthBarOwner == 1) // Enemy 1
             {
                 if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true)
                 {
@@ -1450,7 +1454,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                     return false; // Effect isn't active
                 }
             }
-            else if(_healthBarOwner == 2) // Enemy 2
+            else if (_healthBarOwner == 2) // Enemy 2
             {
                 if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true)
                 {
@@ -1494,13 +1498,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                     return false; // Effect isn't active
                 }
             }
-            else 
+            else
             {
                 Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
                 return false;
             }
         }
-        else if(_effect.Equals("bleed"))
+        else if (_effect.Equals("bleed"))
         {
             if (_healthBarOwner == -1) // Player
             {
@@ -1726,7 +1730,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (_healthBarOwner == 1) // Enemy 1, player doesn't have stun
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(1) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1737,7 +1741,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 2) // Enemy 2
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(2) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1748,7 +1752,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 3) // Enemy 3
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(3) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(3) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1759,7 +1763,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 4) // Enemy 4
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(4) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(4) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1770,7 +1774,70 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 5) // Enemy 5
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(5) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(5) == true)
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else
+            {
+                Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
+                return false;
+            }
+        }
+        else if (_effect.Equals("chaun"))
+        {
+            if (_healthBarOwner == 1) // Enemy 1, player doesn't have stun
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true) //
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 2) // Enemy 2
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true) //
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 3) // Enemy 3
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(3) == true) //
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 4) // Enemy 4
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(4) == true) //
+                {
+                    return true; // Effect is active
+                }
+                else
+                {
+                    return false; // Effect isn't active
+                }
+            }
+            else if (_healthBarOwner == 5) // Enemy 5
+            {
+                if (g_global.g_enemyState.GetEnemyAcidEffectState(5) == true) //
                 {
                     return true; // Effect is active
                 }
@@ -1819,6 +1886,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else if (_effect.Equals("stun"))
         {
             return chg_UI_stunStatusEffect;
+        }
+        else if (_effect.Equals("special"))
+        {
+            return chg_UI_enemySpecialEffect;
         }
         else
         {

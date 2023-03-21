@@ -16,10 +16,18 @@ public class S_PlayerState : MonoBehaviour
     [SerializeField] int p_i_resistantStackCount;
 
     [Header("Status Effect States")]
-    [SerializeField] bool p_b_inAcidicState;
-    [SerializeField] bool p_b_inBleedingState;
-    [SerializeField] bool p_b_inFrailState;
-    [SerializeField] bool p_b_inResistantState;
+    [SerializeField] bool chg_p_b_inAcidicState;
+    [SerializeField] bool chg_p_b_inBleedingState;
+    [SerializeField] bool chg_p_b_inFrailState;
+    [SerializeField] bool chg_p_b_inResistantState;
+    [SerializeField] bool chg_p_b_inSpecialAttackState;
+
+    [Header("Special Attack States")]
+    [SerializeField] bool chg_p_b_attackedByClurichaun;
+    [SerializeField] bool chg_p_b_attackedByPuca;
+    [SerializeField] bool chg_p_b_attackedByBodach;
+    [SerializeField] bool chg_p_b_attackedByBananach;
+    [SerializeField] bool chg_p_b_attackedByTroopFae;
 
     [Header("Audio Prefabs")]
     [SerializeField] GameObject p_playerWinMusic;
@@ -555,7 +563,7 @@ public class S_PlayerState : MonoBehaviour
     /// <param name="_state"></param>
     public void SetPlayerAcidEffectState(bool _state)
     {
-        p_b_inAcidicState = _state;
+        chg_p_b_inAcidicState = _state;
     }
 
     /// <summary>
@@ -565,7 +573,7 @@ public class S_PlayerState : MonoBehaviour
     /// <param name="_state"></param>
     public void SetPlayerBleedEffectState(bool _state)
     {
-        p_b_inBleedingState = _state;
+        chg_p_b_inBleedingState = _state;
     }
 
     /// <summary>
@@ -575,7 +583,7 @@ public class S_PlayerState : MonoBehaviour
     /// <param name="_state"></param>
     public void SetPlayerFrailtyEffectState(bool _state)
     {
-        p_b_inFrailState = _state;
+        chg_p_b_inFrailState = _state;
     }
 
     /// <summary>
@@ -585,7 +593,7 @@ public class S_PlayerState : MonoBehaviour
     /// <param name="_state"></param>
     public void SetPlayerResistantEffectState(bool _state)
     {
-        p_b_inResistantState = _state;
+        chg_p_b_inResistantState = _state;
     }
 
     /// <summary>
@@ -669,7 +677,7 @@ public class S_PlayerState : MonoBehaviour
     /// </returns>
     public bool GetPlayerAcidEffectState()
     {
-        return p_b_inAcidicState;
+        return chg_p_b_inAcidicState;
     }
 
     /// <summary>
@@ -681,7 +689,7 @@ public class S_PlayerState : MonoBehaviour
     /// </returns>
     public bool GetPlayerBleedEffectState()
     {
-        return p_b_inBleedingState;
+        return chg_p_b_inBleedingState;
     }
 
     /// <summary>
@@ -693,7 +701,7 @@ public class S_PlayerState : MonoBehaviour
     /// </returns>
     public bool GetPlayerFrailtyEffectState()
     {
-        return p_b_inFrailState;
+        return chg_p_b_inFrailState;
     }
 
     /// <summary>
@@ -705,7 +713,19 @@ public class S_PlayerState : MonoBehaviour
     /// </returns>
     public bool GetPlayerResistantEffectState()
     {
-        return p_b_inResistantState;
+        return chg_p_b_inResistantState;
+    }
+
+    /// <summary>
+    /// Return the bool state of S_PlayerState.chg_p_b_inSpecialAttackState
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_PlayerState.chg_p_b_inSpecialAttackState
+    /// </returns>
+    public bool GetPlayerSpecialAttackEffectState()
+    {
+        return chg_p_b_inSpecialAttackState;
     }
 
     /// <summary>
