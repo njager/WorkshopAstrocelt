@@ -36,6 +36,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_statusEffectPosition3;
     [SerializeField] GameObject chg_statusEffectPosition4;
     [SerializeField] GameObject chg_statusEffectPosition5;
+    [SerializeField] GameObject chg_statusEffectPosition6;
     [SerializeField] GameObject chg_statusEffectSpawn;
 
     [Header("Child Status Effects")]
@@ -51,6 +52,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] string chg_str_position3Identifier;
     [SerializeField] string chg_str_position4Identifier;
     [SerializeField] string chg_str_position5Identifier;
+    [SerializeField] string chg_str_position6Identifier;
 
     [Header("Status Effect Tooltips")]
     [SerializeField] S_TooltipTemplate chg_tl_acidStatusEffectTooltip;
@@ -58,6 +60,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] S_TooltipTemplate chg_tl_frailtyStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_resistantStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_stunStatusEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackBodachSpecialEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackBananachEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackClurichanEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackPucaEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackTroopfaeEffectTooltip;
 
     [Header("Occupied Slot Count")]
     [SerializeField] int chg_i_slotsOccupied;
@@ -72,11 +79,18 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] int chg_i_frailtyEffectListIndex;
     [SerializeField] int chg_i_resistantEffectListIndex;
     [SerializeField] int chg_i_stunEffectListIndex;
+    [SerializeField] int chg_p_i_enemySpecialEffect;
 
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
     [SerializeField] float chg_f_fadeDurationValue;
     [SerializeField] float chg_f_endMoveValue;
+
+    // Add a func to switch the asset depending on the enemy who triggered the special effect
+
+    // Rework how stack counts inform data values
+
+    // Finish movement for status effects
 
     private void Awake()
     {
