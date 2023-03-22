@@ -45,6 +45,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_statusEffectPosition3Child;
     [SerializeField] GameObject chg_statusEffectPosition4Child;
     [SerializeField] GameObject chg_statusEffectPosition5Child;
+    [SerializeField] GameObject chg_statusEffectPosition6Child;
 
     [Header("Position Identifer Strings")]
     [SerializeField] string chg_str_position1Identifier;
@@ -946,6 +947,35 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position5Identifier = "none";
+        }
+        else if (_positionNum == 5 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
+        {
+            // Adjust slot count
+            chg_i_slotsOccupied -= 1;
+
+            // Grab Child
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+
+            // Move Child
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+
+            // Fade Child
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+
+            // Set New parent
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+
+            // Clear List Index
+            ResetIndexFromIndex(5);
+
+            // Clear Child
+            chg_statusEffectPosition6Child = null;
+
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position6Identifier);
+
+            // Reset Identifer
+            chg_str_position6Identifier = "none";
         }
         else
         {
