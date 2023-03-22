@@ -79,7 +79,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] int chg_i_frailtyEffectListIndex;
     [SerializeField] int chg_i_resistantEffectListIndex;
     [SerializeField] int chg_i_stunEffectListIndex;
-    [SerializeField] int chg_p_i_enemySpecialEffect;
+    [SerializeField] int chg_p_i_enemySpecialEffectIndex;
 
     [Header("Special Attack Status Effect Image Assets")]
     [SerializeField] Sprite chg_UI_bananachSpecialAttackEffectImage;
@@ -1429,7 +1429,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             chg_i_bleedEffectListIndex = _index;
         }
-        else if (_effect.Equals("frailty"))
+        else if (_effect.Equals("frail"))
         {
             chg_i_frailtyEffectListIndex = _index;
         }
@@ -1440,6 +1440,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else if (_effect.Equals("stun"))
         {
             chg_i_stunEffectListIndex = _index;
+        }
+        else if (_effect.Equals("special"))
+        {
+            chg_p_i_enemySpecialEffectIndex = _index;
         }
     }
 
@@ -1810,11 +1814,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 return false;
             }
         }
-        else if (_effect.Equals("chaun"))
+        else if (_effect.Equals("special"))
         {
-            if (_healthBarOwner == 1) // Enemy 1, player doesn't have stun
+            if (_healthBarOwner == -1) // Player
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true) //
+                if (g_global.g_playerState.GetPlayerSpecialAttackEffectState() == true)
                 {
                     return true; // Effect is active
                 }
@@ -1823,51 +1827,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                     return false; // Effect isn't active
                 }
             }
-            else if (_healthBarOwner == 2) // Enemy 2
-            {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true) //
-                {
-                    return true; // Effect is active
-                }
-                else
-                {
-                    return false; // Effect isn't active
-                }
-            }
-            else if (_healthBarOwner == 3) // Enemy 3
-            {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(3) == true) //
-                {
-                    return true; // Effect is active
-                }
-                else
-                {
-                    return false; // Effect isn't active
-                }
-            }
-            else if (_healthBarOwner == 4) // Enemy 4
-            {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(4) == true) //
-                {
-                    return true; // Effect is active
-                }
-                else
-                {
-                    return false; // Effect isn't active
-                }
-            }
-            else if (_healthBarOwner == 5) // Enemy 5
-            {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(5) == true) //
-                {
-                    return true; // Effect is active
-                }
-                else
-                {
-                    return false; // Effect isn't active
-                }
-            }
-            else
+            else // Enemies won't be attacked by other enemies, or so I'm led to believe
             {
                 Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
                 return false;
@@ -1893,23 +1853,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     {
         if (_owner == 1) //Bananach
         {
-
+            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_bananachSpecialAttackEffectImage;
         }
         else if (_owner == 2) // Bodach
         {
-
+            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_bodachSpecialAttackEffectImage;
         }
         else if (_owner == 3) // Clurichaun
         {
-
+            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_clurichaunSpecialAttackEffectImage;
         }
         else if (_owner == 4) // Puca
         {
-
+            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_pucaSpecialAttackEffectImage;
         }
         else if (_owner == 5) // Troop Fae
         {
-
+            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_troopFaeSpecialAttackEffectImage;
         }
     }
 
