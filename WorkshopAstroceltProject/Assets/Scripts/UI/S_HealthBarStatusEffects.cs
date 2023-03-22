@@ -81,6 +81,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] int chg_i_stunEffectListIndex;
     [SerializeField] int chg_p_i_enemySpecialEffect;
 
+    [Header("Special Attack Status Effect Image Assets")]
+    [SerializeField] Sprite chg_UI_bananachSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_bodachSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_clurichaunSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_pucaSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_troopFaeSpecialAttackEffectImage;
+
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
     [SerializeField] float chg_f_fadeDurationValue;
@@ -1870,6 +1877,39 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Effect Not Found Error");
             return false;
+        }
+    }
+
+    /// <summary>
+    /// Special Attack Owner Declare Helper function
+    /// int = 1, Bananach
+    /// int = 2, Bodach
+    /// int = 3, Clurichaun
+    /// int = 4, Puca
+    /// int = 5, Troop Fae
+    /// - Josh
+    /// </summary>
+    private void SpecialAttackOwner(int _owner)
+    {
+        if (_owner == 1) //Bananach
+        {
+
+        }
+        else if (_owner == 2) // Bodach
+        {
+
+        }
+        else if (_owner == 3) // Clurichaun
+        {
+
+        }
+        else if (_owner == 4) // Puca
+        {
+
+        }
+        else if (_owner == 5) // Troop Fae
+        {
+
         }
     }
 
