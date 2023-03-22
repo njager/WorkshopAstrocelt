@@ -291,6 +291,25 @@ public class S_CharacterGraphics : MonoBehaviour
     }
 
     /// <summary>
+    /// Toggle the Player Special Attack UI element
+    /// True for _state is on, false is off
+    /// - Josh
+    /// </summary>
+    /// <param name="_state"></param>
+    public void ToggleSpecialAttackPlayerUI(bool _state)
+    {
+        if (_state == true)
+        {
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().AddStatusEffect("special");
+        }
+        else if (_state == false)
+        {
+            sc_UIManager.GetPlayerHealthBarObject().GetComponent<S_HealthBarStatusEffects>().EndStatusEffect("special");
+        }
+    }
+
+    /// <summary>
     /// Toggle the Player Resistant UI element
     /// True for _state is on, false is off
     /// - Josh

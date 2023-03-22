@@ -28,7 +28,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_UI_frailtyStatusEffect;
     [SerializeField] GameObject chg_UI_resistantStatusEffect;
     [SerializeField] GameObject chg_UI_stunStatusEffect;
-    [SerializeField] GameObject chg_UI_enemySpecialEffect;
+    [SerializeField] GameObject chg_UI_enemySpecialAttackEffect;
  
     [Header("Position GameObjects")]
     [SerializeField] GameObject chg_statusEffectPosition1;
@@ -94,9 +94,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] float chg_f_fadeDurationValue;
     [SerializeField] float chg_f_endMoveValue;
 
-    // Add a func to switch the asset depending on the enemy who triggered the special effect
+    [Header("Current Special Attack Enemy")]
+    [SerializeField] int chg_e_i_specialAttackEnemyIdentifier;
 
-    // Rework how stack counts inform data values
+    // Add a func to switch the asset depending on the enemy who triggered the special effect, now use the function
+
+    // Rework how stack counts inform data values - Is it still  broken ?
 
     // Finish movement for status effects
 
@@ -791,6 +794,167 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
         }
+        else if (_effect.Equals("special")) 
+        {
+            if (chg_i_slotsOccupied == 0) // Slot 1
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition1Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(0, "special");
+
+                // Set identifier
+                chg_str_position1Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 1) // Slot 2
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition2Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(1, "special");
+
+                // Set identifier
+                chg_str_position2Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 2) // Slot 3
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition3Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(2, "special");
+
+                // Set identifier
+                chg_str_position3Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 3) // Slot 4
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition4Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(3, "special");
+
+                // Set identifier
+                chg_str_position4Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 4) // Slot 5
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition5Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(4, "special");
+
+                // Set identifier
+                chg_str_position5Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Check who is attacking
+
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(5, "special");
+
+                // Set identifier
+                chg_str_position6Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
+        }
 
         //SortStatusEffectList();
     }
@@ -1438,6 +1602,37 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if(chg_p_i_enemySpecialEffectIndex == 5) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
+        }
+        else if (_index == 6)
+        {
+            if (chg_i_acidEffectListIndex == 6) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if (chg_i_bleedEffectListIndex == 6) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 6) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 6) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 6) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+            else if (chg_p_i_enemySpecialEffectIndex == 6) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
         else
         {
@@ -1883,23 +2078,23 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     {
         if (_owner == 1) //Bananach
         {
-            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_bananachSpecialAttackEffectImage;
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_bananachSpecialAttackEffectImage;
         }
         else if (_owner == 2) // Bodach
         {
-            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_bodachSpecialAttackEffectImage;
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_bodachSpecialAttackEffectImage;
         }
         else if (_owner == 3) // Clurichaun
         {
-            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_clurichaunSpecialAttackEffectImage;
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_clurichaunSpecialAttackEffectImage;
         }
         else if (_owner == 4) // Puca
         {
-            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_pucaSpecialAttackEffectImage;
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_pucaSpecialAttackEffectImage;
         }
         else if (_owner == 5) // Troop Fae
         {
-            chg_UI_enemySpecialEffect.GetComponent<Image>().sprite = chg_UI_troopFaeSpecialAttackEffectImage;
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_troopFaeSpecialAttackEffectImage;
         }
     }
 
@@ -1933,7 +2128,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
         else if (_effect.Equals("special"))
         {
-            return chg_UI_enemySpecialEffect;
+            return chg_UI_enemySpecialAttackEffect;
         }
         else
         {
