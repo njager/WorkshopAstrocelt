@@ -929,6 +929,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             else if (chg_i_slotsOccupied == 5) // Slot 6
             {
                 // Check who is attacking
+                SpecialAttackOwner(chg_e_i_specialAttackEnemyIdentifier);
 
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -1145,6 +1146,16 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EndStatusEffect() - Given Effect either already is ended or doesn't exist!");
         }
+    }
+
+    /// <summary>
+    /// Setter for the Special Attack Effect owner so the proper graphic shows up
+    /// - Josh
+    /// </summary>
+    /// <param name="_ownerIndex"></param>
+    public void SetSpecialAttackIdentifer(int _ownerIndex)
+    {
+        chg_e_i_specialAttackEnemyIdentifier = _ownerIndex;
     }
 
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -1483,10 +1494,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper 
+    /// Helper function to reset the index in the list
     /// </summary>
     /// <param name="_index"></param>
-    private void ResetIndexFromIndex(int _index)
+    private void ResetIndexFromIndex(int _index) // May need to be offset by 1 - post exodus Josh
     {
         if(_index == 1)
         {
@@ -1509,6 +1520,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             else if (chg_i_stunEffectListIndex == 1) // Index was stun
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+            else if (chg_p_i_enemySpecialEffectIndex == 1) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
             }
         }
         else if (_index == 2)
@@ -1533,6 +1548,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if (chg_p_i_enemySpecialEffectIndex == 2) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
         else if (_index == 3)
         {
@@ -1556,6 +1575,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if (chg_p_i_enemySpecialEffectIndex == 3) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
         else if (_index == 4)
         {
@@ -1578,6 +1601,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             else if (chg_i_stunEffectListIndex == 4) // Index was stun
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+            else if (chg_p_i_enemySpecialEffectIndex == 4) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
             }
         }
         else if (_index == 5)
