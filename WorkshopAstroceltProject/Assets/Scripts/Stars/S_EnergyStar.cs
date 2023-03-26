@@ -209,9 +209,11 @@ public class S_EnergyStar : MonoBehaviour
         }
 
         //Start the chain to make the constellation
-        if (g_global.g_ConstellationManager.GetStarLockOutBool() && g_global.g_ConstellationManager.b_nodeStarChosen)
+        if (g_global.g_ConstellationManager.GetStarLockOutBool() 
+            && g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (!b_hasBeenClicked && _starClassScript.s_star.m_previousLine == null  && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (!b_hasBeenClicked && _starClassScript.s_star.m_previousLine == null  
+                && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 g_global.g_ConstellationManager.StarHovered(_starClassScript, transform.position);
             }
@@ -229,9 +231,11 @@ public class S_EnergyStar : MonoBehaviour
         S_StarClass _starClassScript = gameObject.GetComponent<S_StarClass>();
         s_starSprite.color = s_c_starStartColor;
         //Check only if making a constellation and the node star has been clicked
-        if (g_global.g_ConstellationManager.GetMakingConstellation() && g_global.g_ConstellationManager.b_nodeStarChosen)
+        if (g_global.g_ConstellationManager.b_nodeStarChosen)
         {
-            if (b_hasBeenClicked == false && _starClassScript.s_star.m_previousLine != null && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
+            if (b_hasBeenClicked == false 
+                && _starClassScript.s_star.m_previousLine != null 
+                && (g_global.g_ConstellationManager.ls_curConstellation.Count() - 1) < 7)
             {
                 if (_starClassScript.s_star.m_nextLine == null)
                 {

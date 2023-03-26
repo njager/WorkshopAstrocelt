@@ -37,54 +37,52 @@ public class S_DrawingManager : MonoBehaviour
     /// <param name="_loc2"></param>
     public void SpawnLine(S_StarClass _star1, S_StarClass _star2, Vector2 _loc1, Vector2 _loc2)
     {
-        //Debug.Log(_loc1.ToString() + "       " +  _loc2.ToString());
+        if(_star1 != g_global.g_ConstellationManager.s_nullStarInst)
+        {
 
-        //Instiate the linePrefab and grab it's objects
-        GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
-        S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
-        LineRenderer _newLine = _lineScript.m_childLineRendererObject.GetComponent<LineRenderer>();
+            //Debug.Log(_loc1.ToString() + "       " +  _loc2.ToString());
 
-        //Set Stars in lineScript before changing location otherwise colision will happen before these are set
-        _lineScript.s_previousStar = _star1;
-        _lineScript.s_nextStar = _star2;
+            //Instiate the linePrefab and grab it's objects
+            GameObject _newLineObject = Instantiate(l_constelationLine, s_nullStarInst.transform);
+            S_ConstellationLine _lineScript = _newLineObject.GetComponent<S_ConstellationLine>();
+            LineRenderer _newLine = _lineScript.m_childLineRendererObject.GetComponent<LineRenderer>();
 
-        //give each star their previous and next before the line is made to avoid overwriting the collision trigger
-        _star1.s_star.m_next = _star2;
-        _star2.s_star.m_previous = _star1;
+            //Set Stars in lineScript before changing location otherwise colision will happen before these are set
+            _lineScript.s_previousStar = _star1;
+            _lineScript.s_nextStar = _star2;
 
-        // Set line positions and width
-        _newLine.SetPosition(0, _loc2);
-        _newLine.SetPosition(1, _loc1);
-        _newLine.startWidth = _lineScript.f_lineWidth;
-        _newLine.endWidth = _lineScript.f_lineWidth;
+            //give each star their previous and next before the line is made to avoid overwriting the collision trigger
+            _star1.s_star.m_next = _star2;
+            _star2.s_star.m_previous = _star1;
 
-        // Run set up script
-        _lineScript.SetUp(_star1);
+            // Set line positions and width
+            _newLine.SetPosition(0, _loc2);
+            _newLine.SetPosition(1, _loc1);
+            _newLine.startWidth = _lineScript.f_lineWidth;
+            _newLine.endWidth = _lineScript.f_lineWidth;
 
-        //give the line an index and incranment by 1
-        _lineScript.i_index = i_index;
-        i_index++;
+            // Run set up script
+            _lineScript.SetUp(_star1);
 
-        //set the vars for the stars so that they have the line theyre attached to
-        _star1.s_star.m_nextLine = _lineScript;
-        _star2.s_star.m_previousLine = _lineScript;
+            //give the line an index and incranment by 1
+            _lineScript.i_index = i_index;
+            i_index++;
 
-        //set the previous star and loc
-        g_global.g_ConstellationManager.ChangePrevStarAndLoc(_star2, _loc2);
+            //set the vars for the stars so that they have the line theyre attached to
+            _star1.s_star.m_nextLine = _lineScript;
+            _star2.s_star.m_previousLine = _lineScript;
 
-        //add the line multiplier
-        int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star2.s_star.m_previousLine, _star2.colorType);
+            //set the previous star and loc
+            g_global.g_ConstellationManager.ChangePrevStarAndLoc(_star2, _loc2);
 
-        //set the values in s_star to be used later
-        _star2.s_star.i_energy = _energy;
-        _star2.s_star.s_previousColor = g_global.g_consecutiveColorTrackerManager.GetCurrentEnergyColor();
-        _star2.s_star.i_previousBonus = g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+            //add the line multiplier
+            int _energy = g_global.g_lineMultiplierManager.LineMultiplier(_star2.s_star.m_previousLine, _star2.colorType);
 
-        //// Spawn popups with the
-        //g_global.g_popupManager.CreatePopUpForStar(_star2, _star2.s_star.i_energy, true);
-
-        //// Popups were spawned
-        //g_global.g_ConstellationManager.SetPopupStatusForCurrentLine(true);
+            //set the values in s_star to be used later
+            _star2.s_star.i_energy = _energy;
+            _star2.s_star.s_previousColor = g_global.g_consecutiveColorTrackerManager.GetCurrentEnergyColor();
+            _star2.s_star.i_previousBonus = g_global.g_consecutiveColorTrackerManager.GetColorTierTracker();
+        }
     }
 
     /// <summary>
@@ -123,9 +121,6 @@ public class S_DrawingManager : MonoBehaviour
 
         //destroy the line
         Destroy(_line);
-
-        //dont delete the star from the list just change to null
-        //g_global.g_ConstellationManager.DeleteTopStarCurConstellation();
     }
 
     /// <summary>

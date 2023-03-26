@@ -397,7 +397,7 @@ public class S_MapGeneration : MonoBehaviour
     public void RandomMapSelector()
     {
         // Choose map int
-        int _mapNumChosen = Random.Range(1, 14);
+        int _mapNumChosen = Random.Range(2, 14);
         
         // Toggle maps
 

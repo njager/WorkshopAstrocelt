@@ -46,7 +46,8 @@ public class S_Enemy : MonoBehaviour
     public Sprite defeatedSprite;
     public Sprite victorySprite;
 
-    private Animator e_idleAnim;
+    [Header("Animator")]
+    public Animator e_animator;
     private float f_idleAnimWait;
 
     [Header("Nameplate Text Object")]
@@ -80,14 +81,11 @@ public class S_Enemy : MonoBehaviour
     IEnumerator PlayIdleAnim() {
 
         yield return new WaitForSeconds(f_idleAnimWait);
-        e_idleAnim.Play("Idle Animation Start");
-        //idle delay
-
+        e_animator.Play("Idle Animation Start");
     }
 
     private void Start()
     {
-        e_idleAnim = GetComponent<Animator>();
         // If enemy 1, move spots
         if (e_i_enemyCount == 1)
         {
@@ -146,6 +144,9 @@ public class S_Enemy : MonoBehaviour
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                     Debug.Log("Enemy Attacked!");
                 }
                 else // Enemy has shields
@@ -164,6 +165,9 @@ public class S_Enemy : MonoBehaviour
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -172,6 +176,9 @@ public class S_Enemy : MonoBehaviour
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -185,6 +192,9 @@ public class S_Enemy : MonoBehaviour
 
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     Debug.Log("Enemy Attacked!");
                 }
@@ -204,6 +214,9 @@ public class S_Enemy : MonoBehaviour
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -212,6 +225,9 @@ public class S_Enemy : MonoBehaviour
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -222,6 +238,9 @@ public class S_Enemy : MonoBehaviour
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // Enemy has no shields
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
@@ -244,6 +263,9 @@ public class S_Enemy : MonoBehaviour
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                         // Attacked Particle Effect 
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
@@ -252,6 +274,9 @@ public class S_Enemy : MonoBehaviour
                     else
                     {
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
@@ -270,6 +295,9 @@ public class S_Enemy : MonoBehaviour
                 // Attacked Particle Effect
                 e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                //play the attack animation
+                g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                 Debug.Log("Enemy Attacked!");
             }
             else // Enemy has shields
@@ -284,9 +312,11 @@ public class S_Enemy : MonoBehaviour
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
-
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     Debug.Log("Enemy didn't have enough shields!");
                 }
@@ -296,6 +326,9 @@ public class S_Enemy : MonoBehaviour
 
                     // Sufficient Shields Particle Effect
                     e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     Debug.Log("Enemy had shields!");
                 }
@@ -390,6 +423,8 @@ public class S_Enemy : MonoBehaviour
         g_global.g_ls_activeEnemies.Remove(this);
         g_global.e_ls_enemyList.Remove(this);
         gameObject.SetActive(false);
+
+        g_global.g_UIManager.turnOffEnemyUI(e_i_enemyCount);
     }
 
     /// <summary>
@@ -462,6 +497,9 @@ public class S_Enemy : MonoBehaviour
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
+                Debug.Log("Enemy Attacked");
+                e_animator.Play("AttackAnim");
+
                 g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyDamageValue());
 
                 //Then play sounds

@@ -176,7 +176,42 @@ public class S_UIManager : MonoBehaviour
 
         // Turn off debug elements
         debugTurnbar.SetActive(false);
+
+
+
     }
+
+    public void turnOffEnemyUI(int _enemyNum)
+    {
+        if (_enemyNum == 1)
+        {
+            e_enemy1HealthBar.SetActive(false);
+            e_tx_enemy1HealthText.enabled = false;
+            e_tx_upperEnemy1HealthText.enabled = false;
+            e_tx_enemy1ShieldText.enabled = false;
+            e_tx_upperEnemy1ShieldText.enabled = false;
+            e_UI_upperEnemy1HealthBar.enabled = false;
+        }
+        if (_enemyNum == 2)
+        {
+            e_enemy2HealthBar.SetActive(false);
+            e_tx_enemy2HealthText.enabled = false;
+            e_tx_upperEnemy2HealthText.enabled = false;
+            e_tx_enemy2ShieldText.enabled = false;
+            e_tx_upperEnemy2ShieldText.enabled = false;
+            e_UI_upperEnemy2HealthBar.enabled = false;
+        }
+        if (_enemyNum == 3)
+        {
+            e_enemy3HealthBar.SetActive(false);
+            e_tx_enemy3HealthText.enabled = false;
+            e_tx_upperEnemy3HealthText.enabled = false;
+            e_tx_enemy3ShieldText.enabled = false;
+            e_tx_upperEnemy3ShieldText.enabled = false;
+            e_UI_upperEnemy3HealthBar.enabled = false;
+        }
+    }
+
 
     //Some of this should be in turn manager?, probably
     void Update()

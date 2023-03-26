@@ -73,11 +73,7 @@ public class S_Cardball : MonoBehaviour
     /// </summary>
     public void CardballSetup()
     {
-        //check if the energy cost should be increased
-        if (g_global.g_enemyState.GetMagicianAbilityBool())
-        {
-            c_i_cardEnergyCost += g_global.g_enemyState.GetMagicianAbilityValue();
-        }
+        Debug.Log("Cardball setting up");
 
         // set all positions to false and then turn on based off of the tags
         c_b_locatedInFirstPosition = false;
@@ -135,6 +131,13 @@ public class S_Cardball : MonoBehaviour
         // Then determine the energy cost
         c_i_cardEnergyCost = c_cardData.EnergyCost;
 
+        //check if the energy cost should be increased
+        if (g_global.g_enemyState.GetMagicianAbilityBool())
+        {
+            Debug.Log("I da BICH: " + g_global.g_enemyState.GetMagicianAbilityValue().ToString());
+            c_i_cardEnergyCost += g_global.g_enemyState.GetMagicianAbilityValue();
+        }
+
         //Update text
         c_cardballText.text = "" + c_i_cardEnergyCost;
 
@@ -177,6 +180,13 @@ public class S_Cardball : MonoBehaviour
 
         // Then determine the energy cost
         c_i_cardEnergyCost = c_cardData.EnergyCost;
+
+        //check if the energy cost should be increased
+        if (g_global.g_enemyState.GetMagicianAbilityBool())
+        {
+            Debug.Log("I da BICH: " + g_global.g_enemyState.GetMagicianAbilityValue().ToString());
+            c_i_cardEnergyCost += g_global.g_enemyState.GetMagicianAbilityValue();
+        }
 
         //Update text
         c_cardballText.text = "" + c_i_cardEnergyCost;

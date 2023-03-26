@@ -17,6 +17,8 @@ public class S_AudioTrack : MonoBehaviour
     [Header("Time Interval")]
     [SerializeField] public float f_intensityBreakpoint;
 
+    private float vol = 100;
+
 
 
     public float f_timeInScene = 0;
@@ -33,7 +35,6 @@ public class S_AudioTrack : MonoBehaviour
 
     void Update()
     {
-        
         f_timeInScene += Time.deltaTime;
 
         i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
@@ -71,7 +72,9 @@ public class S_AudioTrack : MonoBehaviour
 
     void changeVolume()
     {
+        //vol = g_global.g_pauseMenu.musicVolume;
         var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
+        
     }
 }

@@ -612,7 +612,7 @@ public class S_Card : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
-        g_global.g_player.animator.SetTrigger("attackingAnimation");
+
         DeleteCard();
     }
 
@@ -623,7 +623,6 @@ public class S_Card : MonoBehaviour
     private void TriggerShieldCard()
     {
         g_global.g_player.PlayerShielded(crd_i_shieldValue, crd_b_shieldSoundEffect);
-        g_global.g_player.animator.Play("Blocking");
         DeleteCard();
     }
 

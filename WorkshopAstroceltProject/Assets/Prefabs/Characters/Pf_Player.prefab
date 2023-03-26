@@ -205,7 +205,7 @@ MonoBehaviour:
   isComplete: 0
   flashMaterial: {fileID: 2100000, guid: c5203d9b0c1afb2498b62d9d4097a2d8, type: 2}
   duration: 0.125
-  animator: {fileID: 4761793320161749045}
+  p_animator: {fileID: 404553397570938817}
 --- !u!114 &6364323939937959218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +379,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4533774385519449056, guid: ab17398b4b7bca748ac648619d7f1507, type: 3}
       propertyPath: m_Name
-      value: ErinIdle1
+      value: ErinAnimator
       objectReference: {fileID: 0}
     - target: {fileID: 4533774385519449058, guid: ab17398b4b7bca748ac648619d7f1507, type: 3}
       propertyPath: m_Enabled
@@ -442,6 +442,11 @@ PrefabInstance:
 --- !u!4 &404553397570938823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4533774385519449061, guid: ab17398b4b7bca748ac648619d7f1507, type: 3}
+  m_PrefabInstance: {fileID: 4284736218673083426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &404553397570938817 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4533774385519449059, guid: ab17398b4b7bca748ac648619d7f1507, type: 3}
   m_PrefabInstance: {fileID: 4284736218673083426}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4825324389152057574

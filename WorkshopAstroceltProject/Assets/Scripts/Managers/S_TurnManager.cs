@@ -58,7 +58,9 @@ public class S_TurnManager : MonoBehaviour
         else
         {
             //Debug.Log("pressed");
-            if (g_global.g_altar.GetCardballsSpawnedBool() == true && g_global.g_ConstellationManager.GetStarLockOutBool() == true)
+            if (g_global.g_altar.GetCardballsSpawnedBool() == true 
+                && g_global.g_ConstellationManager.GetStarLockOutBool() == true
+                && g_global.g_vfxManager.GetCamPos() == false)
             {
                 //set here to prevent queueing up end turns
                 //g_global.g_altar.Set_b_spawningCardballs(true);
@@ -108,6 +110,9 @@ public class S_TurnManager : MonoBehaviour
     {
         // Update Active Enemies
         g_global.g_enemyState.UpdateActiveEnemies();
+
+        //reset the magician abilities
+        g_global.g_enemyState.ResetMagicianAbility();
 
         // Line removal
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
@@ -178,8 +183,6 @@ public class S_TurnManager : MonoBehaviour
 
         // Enemy State stuff
         g_global.g_enemyState.EnemyStatusEffectDecrement();
-
-        g_global.g_enemyState.ResetMagicianAbility();
 
         //Clear Popups
         StartCoroutine(g_global.g_popupManager.ClearAllPopups());

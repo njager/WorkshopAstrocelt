@@ -35,7 +35,7 @@ public class S_CardDatabase : MonoBehaviour
     /// <returns></returns>
     public S_CardTemplate GetCard(int _index)
     {
-        Debug.Log(_index);
+        //Debug.Log(_index);
         S_CardTemplate _returnCard = dict_CardDatabase[_index];
         return _returnCard;
     }
