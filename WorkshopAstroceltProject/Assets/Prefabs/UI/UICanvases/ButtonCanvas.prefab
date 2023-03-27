@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 2737774297864333051}
   - component: {fileID: 2737774297864333050}
   - component: {fileID: 2737774297864333049}
+  - component: {fileID: 2094636963674433486}
   m_Layer: 0
   m_Name: EndTurnButton
   m_TagString: Untagged
@@ -304,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -860, y: -450}
+  m_AnchoredPosition: {x: 860, y: -450}
   m_SizeDelta: {x: 190, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2737774297864333051
@@ -401,6 +402,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &2094636963674433486
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737774297864333031}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7413906003983859294
 GameObject:
   m_ObjectHideFlags: 0
