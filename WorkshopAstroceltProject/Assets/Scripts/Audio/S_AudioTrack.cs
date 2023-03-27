@@ -30,13 +30,13 @@ public class S_AudioTrack : MonoBehaviour
     void Start()
     {
         g_global = S_Global.Instance;
-        changeVolume();
+        
     }
 
     void Update()
     {
         Debug.Log(g_global.g_pauseMenu.musicVolume);
-
+        changeVolume();
 
         f_timeInScene += Time.deltaTime;
 
