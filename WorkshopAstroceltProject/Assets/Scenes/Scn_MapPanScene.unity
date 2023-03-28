@@ -1276,6 +1276,17 @@ Transform:
   m_Father: {fileID: 677010431}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870706680 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+  m_PrefabInstance: {fileID: 8047176381484923552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d2fbe7dca504d41bda1349f81155a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &871086237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,6 +3373,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4719595102101013318, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: g_global
+      value: 
+      objectReference: {fileID: 870706680}
     - target: {fileID: 5002141065835515609, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3437,10 +3452,6 @@ PrefabInstance:
     - target: {fileID: 5126905202400489234, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: yellowBonusIcon3
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5219212025884047551, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 5339192922659101858, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_IsActive
