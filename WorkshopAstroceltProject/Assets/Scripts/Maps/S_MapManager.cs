@@ -23,18 +23,23 @@ public class S_MapManager : MonoBehaviour
     [Header("Map that was Choosen")]
     public int mp_i_previousMapNum;
 
+
+    public GameObject asteroids;
     //Will grab chunks here
     private void Awake()
     {
         global = S_Global.Instance;
-
-        //Temporary calls for current map structure
+        //initial calls
         map1.SetActive(true);
         activeMap = map1;
         RandomMapSelector();
     }
 
-
+    /// <summary>
+    /// used for debugging
+    /// checks each clusters counts
+    /// -Thoman
+    /// </summary>
     public void cluster_checker(List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
@@ -48,53 +53,56 @@ public class S_MapManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Random vector Generator for initial position placement
+    /// -Thoman
+    /// </summary>
     public Vector3 RandomVector(int clusternum)
     {
         Vector3 temp = new Vector3(0, 0, 0);
         if (clusternum == 1)
         {
-            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(3.0f, 7.0f), 0);
+            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(13.0f, 17.0f), 0);
         }
         else if (clusternum == 2)
         {
-            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(-1.0f, 3.0f), 0);
+            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(9.0f, 13.0f), 0);
         }
         else if (clusternum == 3)
         {
-            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(3.0f, 7.0f), 0);
+            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(13.0f, 17.0f), 0);
         }
         else if (clusternum == 4)
         {
-            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(-1.0f, 3.0f), 0);
+            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(9.0f, 13.0f), 0);
         }
         else if (clusternum == 5)
         {
-            temp = new Vector3(Random.Range(0.0f, 6.0f), Random.Range(3.0f, 7.0f), 0);
+            temp = new Vector3(Random.Range(0.0f, 6.0f), Random.Range(13.0f, 17.0f), 0);
         }
         else if (clusternum == 6)
         {
-            temp = new Vector3(Random.Range(0.0f, 6.0f), 0, Random.Range(-1.0f, 3.0f));
+            temp = new Vector3(Random.Range(0.0f, 6.0f),Random.Range(9.0f, 13.0f), 0);
         }
         else if (clusternum == 7)
         {
-            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(3.0f, 7.0f), 0);
+            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(13.0f, 17.0f), 0);
         }
         else
         {
-            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(-1.0f, 3.0f), 0);
+            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(9.0f, 13.0f), 0);
         }
         return temp;
     }
-
-
-
-
 
     /// <summary>
     /// Chooses maps randomly, with no direct repeats
     /// Though yes it's dirty
     /// - Josh
+    /// New System creates lists for clusters
+    /// Adds starsto clusters for later manipulation
+    /// All manipulation calls are in this function (it serves as the main function for Map generation)
+    /// -Thoman
     /// </summary>
     /// 
     public void RandomMapSelector()
@@ -105,7 +113,6 @@ public class S_MapManager : MonoBehaviour
 
         int count = 1;
         int clusternum = 1;
-        //Debug.Log(map1.gameObject.transform.GetChildCount());
 
         foreach (Transform i in map1.GetComponentInChildren<Transform>())
         {
@@ -118,10 +125,8 @@ public class S_MapManager : MonoBehaviour
                 clusters.Add(temp);
                 temp = new List<Transform>();
                 clusternum++;
-                //Debug.Log("thru 5");
             }
             count++;
-            //Debug.Log(clusternum);
         }
         RunSpringGen(clusters);
         List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
@@ -129,13 +134,17 @@ public class S_MapManager : MonoBehaviour
         RemoveLockandGravConstraint(clusters);
         ConnectToRoof(springList, clusters);
         ConnectClusters(springList, clusters);
+        List<Transform> AstList = genAsteroids();
         StartCoroutine(WaitForGen(clusters));
-        
+
         //cluster_checker(clusters);
 
     }
 
-
+    /// <summary>
+    /// Adds spring components to all stars 
+    /// -Thoman
+    /// </summary>
     public void RunSpringGen(List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
@@ -146,19 +155,15 @@ public class S_MapManager : MonoBehaviour
                 for (int k = 0; k < 8; k++)
                 {
                     this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
-                    /*
-                    if (j != k)
-                    {
-                        this_cluster[j].gameObject.AddComponent<SpringJoint2D>();
-                        //Debug.Log("loop be loopin");
-                    }
-                    */
                 }
             }
         }
-
     }
 
+    /// <summary>
+    /// Spring list generated to be used for connections later
+    /// -Thoman
+    /// </summary>
     public List<List<List<SpringJoint2D>>> CreateSpringList(List<List<Transform>> clusters)
     {
         List<List<List<SpringJoint2D>>> springList = new List<List<List<SpringJoint2D>>>();
@@ -169,14 +174,6 @@ public class S_MapManager : MonoBehaviour
             for (int j = 0; j < 5; j++)
             {
                 List<SpringJoint2D> tempSprings = new List<SpringJoint2D>(this_cluster[j].GetComponents<SpringJoint2D>());
-                //List<SpringJoint2D> tempSprings = 
-                //this_cluster[j].GetComponents<SpringJoint2D>();
-                /*
-                foreach (SpringJoint2D spring in this_cluster[j])
-                {
-                    tempSprings.Add(spring);
-                }
-                */
                 this_cluster_springs.Add(tempSprings);
             }
             springList.Add(this_cluster_springs);
@@ -184,10 +181,19 @@ public class S_MapManager : MonoBehaviour
         return springList;
     }
 
-    public float RandDist() 
+    /// <summary>
+    /// Creates new random float for spring distances
+    /// -Thoman
+    /// </summary>
+    public float RandDist()
     {
         return Random.Range(2.3f, 6.2f);
     }
+
+    /// <summary>
+    /// Connects the Rigidbody of all springs to the stars in each cluster
+    /// -Thoman
+    /// </summary>
     public void RunSpringRBConnect(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
@@ -206,6 +212,12 @@ public class S_MapManager : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Allows the phsyics to interact
+    /// removes gravity lock and position freeze
+    /// -Thoman
+    /// </summary>
     public void RemoveLockandGravConstraint(List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
@@ -214,12 +226,19 @@ public class S_MapManager : MonoBehaviour
             {
                 Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
                 rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = .1f;
+                clusters[i][j].GetComponent<CircleCollider2D>().enabled = true;
 
             }
         }
     }
 
+    /// <summary>
+    /// Connects the springs to the boundaries of the map 
+    /// Sorry for bad function name
+    /// -Thoman
+    /// </summary>
     public void ConnectToRoof(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
     {
         List<Transform> sidesList = new List<Transform>();
@@ -249,6 +268,11 @@ public class S_MapManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Connects all clusters to eachother
+    /// -Thoman
+    /// </summary>
     public void ConnectClusters(List<List<List<SpringJoint2D>>> springList, List<List<Transform>> clusters)
     {
         springList[0][0][6].connectedBody = clusters[1][0].GetComponent<Rigidbody2D>();
@@ -263,6 +287,10 @@ public class S_MapManager : MonoBehaviour
         springList[6][0][6].connectedBody = clusters[7][1].GetComponent<Rigidbody2D>();
     }
 
+    /// <summary>
+    /// Wait for seconds to allow generation to fully run
+    /// -Thoman
+    /// </summary>
     IEnumerator WaitForGen(List<List<Transform>> clusters)
     {
         Debug.Log("waiting");
@@ -270,6 +298,35 @@ public class S_MapManager : MonoBehaviour
         ReAddLockandGravConstraint(clusters);
     }
 
+    public int RandAstCount()
+    {
+        return Random.Range(2, 6);
+    }
+
+    public Vector3 RandVectAst()
+    {
+        return new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(10.0f, 16.0f), 0);
+    }
+
+    public List<Transform> genAsteroids()
+    {
+        List<Transform> AstList = new List<Transform>();
+        int rand_ast = RandAstCount();
+        for (int i = 0; i < rand_ast; i++)
+        {
+            Vector3 this_pos = RandVectAst();
+            var temp = Instantiate(asteroids, this_pos, Quaternion.identity);
+            AstList.Add(temp.transform);
+        }
+        return AstList;
+    }
+
+
+
+    /// <summary>
+    /// Lock star positions, remove rb, remove all colliders for walls and stars
+    /// -Thoman
+    /// </summary>
     public void ReAddLockandGravConstraint(List<List<Transform>> clusters)
     {
         for (int i = 0; i < 8; i++)
@@ -279,8 +336,28 @@ public class S_MapManager : MonoBehaviour
                 Rigidbody2D rb = clusters[i][j].GetComponent<Rigidbody2D>();
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 0f;
+                clusters[i][j].GetComponent<CircleCollider2D>().enabled = false;
 
             }
         }
+        List<Transform> sidesList = new List<Transform>();
+        foreach (Transform side in Sides.GetComponent<Transform>())
+        {
+            sidesList.Add(side);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            sidesList[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+
+    public void ast_manip(List<Transform> AstList)
+    {
+        foreach (Transform ast in AstList)
+        {
+            //ast.rotation = 
+        }
+
     }
 }
