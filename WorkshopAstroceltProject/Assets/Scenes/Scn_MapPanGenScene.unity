@@ -462,7 +462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454690211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.76, y: 4.1839, z: 42.335754}
+  m_LocalPosition: {x: 10.62, y: 18.88, z: 42.335754}
   m_LocalScale: {x: 1, y: 15.895181, z: 1}
   m_Children: []
   m_Father: {fileID: 1550693763}
@@ -924,7 +924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580281206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0846, y: 12.5, z: 42.335754}
+  m_LocalPosition: {x: -4.15, y: 26.57, z: 42.335754}
   m_LocalScale: {x: 29.123037, y: 0.87786585, z: 1}
   m_Children: []
   m_Father: {fileID: 1550693763}
@@ -1151,7 +1151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695510901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.99, y: 4.1839, z: 42.335754}
+  m_LocalPosition: {x: -18.99, y: 19.09, z: 42.335754}
   m_LocalScale: {x: 1, y: 15.895181, z: 1}
   m_Children: []
   m_Father: {fileID: 1550693763}
@@ -1895,7 +1895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020979802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0846, y: 0.83, z: 42.335754}
+  m_LocalPosition: {x: -4.15, y: 10.95, z: 42.335754}
   m_LocalScale: {x: 29.123037, y: 0.87786585, z: 1}
   m_Children: []
   m_Father: {fileID: 1550693763}
@@ -3747,6 +3747,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 4.0999756
       objectReference: {fileID: 0}
+    - target: {fileID: 770353497243984472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770353497243984472, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 818357330401369177, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4721,9 +4729,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map1: {fileID: 8047176381484923557}
   Sides: {fileID: 1550693762}
-  activeMap: {fileID: 0}
+  activeMap: {fileID: 8047176381484923557}
   mp_i_previousMapNum: 0
-  asteroids: {fileID: 0}
+  asteroids: {fileID: 40220117276276143, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
 --- !u!1 &8047176381484923557 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7101165620171779024, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
