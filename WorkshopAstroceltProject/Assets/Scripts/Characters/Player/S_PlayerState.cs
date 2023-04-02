@@ -143,10 +143,13 @@ public class S_PlayerState : MonoBehaviour
         if (g_global.g_playerAttributeSheet.GetPlayerShieldValue() >= 1)
         {
             int _doubleStack = _stackCount * 2;
+
+            //deal damage to the player
             g_global.g_player.PlayerAttacked(_doubleStack);
         }
         else
         {
+            //deal damage to the player
             g_global.g_player.PlayerAttacked(_stackCount);
         }
     }

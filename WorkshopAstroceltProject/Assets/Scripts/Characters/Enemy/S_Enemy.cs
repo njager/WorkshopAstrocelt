@@ -47,7 +47,7 @@ public class S_Enemy : MonoBehaviour
     public Sprite victorySprite;
 
     [Header("Animator")]
-    public Animator e_idleAnim;
+    public Animator e_animator;
     private float f_idleAnimWait;
 
     [Header("Nameplate Text Object")]
@@ -81,7 +81,7 @@ public class S_Enemy : MonoBehaviour
     IEnumerator PlayIdleAnim() {
 
         yield return new WaitForSeconds(f_idleAnimWait);
-        e_idleAnim.Play("Idle Animation Start");
+        e_animator.Play("Idle Animation Start");
     }
 
     private void Start()
@@ -144,6 +144,9 @@ public class S_Enemy : MonoBehaviour
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                     Debug.Log("Enemy Attacked!");
                 }
                 else // Enemy has shields
@@ -162,6 +165,9 @@ public class S_Enemy : MonoBehaviour
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -170,6 +176,9 @@ public class S_Enemy : MonoBehaviour
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -183,6 +192,9 @@ public class S_Enemy : MonoBehaviour
 
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     Debug.Log("Enemy Attacked!");
                 }
@@ -202,6 +214,9 @@ public class S_Enemy : MonoBehaviour
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                         Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
@@ -210,6 +225,9 @@ public class S_Enemy : MonoBehaviour
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                         Debug.Log("Enemy had shields!");
                     }
@@ -220,6 +238,9 @@ public class S_Enemy : MonoBehaviour
                 if (e_sc_enemyAttributes.GetEnemyShieldValue() <= 0) // Enemy has no shields
                 {
                     e_sc_enemyAttributes.e_i_health -= _damageValue;
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
@@ -242,6 +263,9 @@ public class S_Enemy : MonoBehaviour
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                         // Attacked Particle Effect 
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
@@ -250,6 +274,9 @@ public class S_Enemy : MonoBehaviour
                     else
                     {
                         e_sc_enemyAttributes.SetEnemyShield(e_sc_enemyAttributes.GetEnemyShieldValue() - _damageValue);
+
+                        //play the attack animation
+                        g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
@@ -268,6 +295,9 @@ public class S_Enemy : MonoBehaviour
                 // Attacked Particle Effect
                 e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
+                //play the attack animation
+                g_global.g_player.p_animator.Play("ErinAttackAnim");
+
                 Debug.Log("Enemy Attacked!");
             }
             else // Enemy has shields
@@ -282,9 +312,11 @@ public class S_Enemy : MonoBehaviour
                     }
                     EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
-
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     Debug.Log("Enemy didn't have enough shields!");
                 }
@@ -294,6 +326,9 @@ public class S_Enemy : MonoBehaviour
 
                     // Sufficient Shields Particle Effect
                     e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
+
+                    //play the attack animation
+                    g_global.g_player.p_animator.Play("ErinAttackAnim");
 
                     Debug.Log("Enemy had shields!");
                 }
@@ -350,19 +385,19 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemyType"></param>
     public void EnemySpecialAbility(string _enemyType)
     {
-        if(_enemyType == "Lumberjack")
+        if(_enemyType == "Magician")
         {
-            Debug.Log("Lumberjack doesn't have a special ability!");
+            Debug.Log("MAGICIAN No longer has special ability");
             return;
         }
-        else if(_enemyType == "Magician")
+        else if (_enemyType == "Crone")
         {
-            Debug.Log("MAGICIAN USED SPECIAL ABILITY");
-            MagicianSpecialAbility();
+            Debug.Log("Lumberjack doesn't have a special ability!");
+            g_global.g_playerState.PlayerAcidStatusEffect(1);
         }
         else if(_enemyType == "Brawler")
         {
-            g_global.g_playerState.PlayerBleedingStatusEffect(4);
+            g_global.g_playerState.PlayerBleedingStatusEffect(2);
         }
         else if(_enemyType == "Beast")
         {
@@ -370,7 +405,7 @@ public class S_Enemy : MonoBehaviour
         }
         else if (_enemyType == "Realmwalker")
         {
-            g_global.g_enemyState.EnemyResistantStatusEffect(5, e_i_enemyCount);
+            g_global.g_enemyState.EnemyResistantStatusEffect(1, e_i_enemyCount);
         }
     }
 
@@ -462,6 +497,9 @@ public class S_Enemy : MonoBehaviour
             }
             else if (g_global.g_enemyState.GetEnemyAction(_enemyNum) == 7) // Check attacking
             {
+                Debug.Log("Enemy Attacked");
+                e_animator.Play("AttackAnim");
+
                 g_global.g_player.PlayerAttacked(g_global.g_enemyState.GetEnemyDataSheet(_enemyNum).GetEnemyDamageValue());
 
                 //Then play sounds

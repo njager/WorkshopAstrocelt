@@ -142,9 +142,6 @@ public class S_ConstelationManager : MonoBehaviour
 
                 _node.SetNodeClicked(false);
                 FinishConstellation(_star);
-
-                //now that the node is added, change the bool
-                SetMakingConstellation(true);
             }
             else
             {
@@ -167,6 +164,9 @@ public class S_ConstelationManager : MonoBehaviour
 
             //get the ritual star component
             S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
+
+            //now that the node is added, change the bool
+            SetMakingConstellation(true);
 
             //compare in hierarchy to get the color
             if (_rStar.s_b_redColor) 
@@ -198,6 +198,9 @@ public class S_ConstelationManager : MonoBehaviour
 
             //get the energy star component
             S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
+
+            //now that the node is added, change the bool
+            SetMakingConstellation(true);
 
             //get the color
             if (_eStar.s_b_redColor) 
@@ -322,15 +325,11 @@ public class S_ConstelationManager : MonoBehaviour
     /// </summary>
     public void StarHovered(S_StarClass _star, Vector2 _loc)
     {
-        if (GetMakingConstellation())
+        if (s_previousStar != s_nullStarInst)
         {
-            if (s_previousStar != s_nullStarInst)
-            {
-                //Create the temp line
-                g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
-            }
+            //Create the temp line
+            g_global.g_DrawingManager.SpawnLine(s_previousStar, _star, v2_prevLoc, _loc);
         }
-        //print(_star.colorType);
     }
 
 
@@ -441,7 +440,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_oldStar"></param>
     public void CreateNodeStar(GameObject _oldStar)
     {
-        GameObject _newNodeStar = Instantiate(s_nodeStarPrefab, g_global.g_mapManager.activeMap.transform);
+        GameObject _newNodeStar = Instantiate(s_nodeStarPrefab);
         _newNodeStar.transform.position = _oldStar.transform.position;
         g_global.g_mapManager.activeMapList.Remove(_oldStar.GetComponent<S_StarClass>());
         Destroy(_oldStar); //this will remove it from the map 

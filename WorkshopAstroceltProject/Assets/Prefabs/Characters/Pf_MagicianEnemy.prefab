@@ -68,7 +68,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 21300000, guid: 61fb91d33260a2e4382edebbca0a3c20, type: 3}
   defeatedSprite: {fileID: 21300000, guid: 277007667988f534bb2059070b937b89, type: 3}
   victorySprite: {fileID: 21300000, guid: e51f12d509c6b904db61b20ed85acc69, type: 3}
-  e_idleAnim: {fileID: 6258219495122123267}
+  e_animator: {fileID: 6258219495122123267}
   e_tx_enemyNameplate: {fileID: 7498320782881958239}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
@@ -303,7 +303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -104}
   m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5856473688589154922
@@ -1251,7 +1251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2603307140771587475, guid: cc34476fa635b2149af5dfc3dba2293d, type: 3}
       propertyPath: m_Name
-      value: CluryIdle
+      value: CluryAnimator
       objectReference: {fileID: 0}
     - target: {fileID: 2603307140771587476, guid: cc34476fa635b2149af5dfc3dba2293d, type: 3}
       propertyPath: m_RootOrder

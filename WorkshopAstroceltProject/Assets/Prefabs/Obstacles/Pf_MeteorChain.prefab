@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 412335825632606560}
   - component: {fileID: 5319751259420549290}
   - component: {fileID: 1307555393429274292}
+  - component: {fileID: 1486138757367334054}
   m_Layer: 0
   m_Name: Pf_MeteorChain
   m_TagString: Meteor
@@ -83,12 +84,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6487c79715ce564fb95281ccc287f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
   tl_tooltipTemplate: {fileID: 11400000, guid: d62ba5063fe5f5e4690ba556b1d2ebaf, type: 2}
   tl_b_mouseEntered: 0
-  f_timerAmount: 0
+  tl_f_timeToWaste: 0
   tl_b_timerComplete: 0
   tl_b_displayedTooltip: 0
-  timerCompleteCheck: 0
+  tl_i_timerCompleteCheck: 0
+  tl_f_timerValue: 0
+--- !u!61 &1486138757367334054
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40220117276276143}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.015957594, y: -0.10441971}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.032984, y: 36.918274}
+  m_EdgeRadius: 0
 --- !u!1 &2899265090330915305
 GameObject:
   m_ObjectHideFlags: 0

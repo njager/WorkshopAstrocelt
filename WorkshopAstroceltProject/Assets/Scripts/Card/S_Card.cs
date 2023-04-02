@@ -97,10 +97,16 @@ public class S_Card : MonoBehaviour
     public S_Enemy crd_e_grabbedEnemy;
 
     [Header("Card Background Art Assets")]
-    public Sprite crd_a_redBackground;
-    public Sprite crd_a_blueBackground;
-    public Sprite crd_a_yellowBackground;
-    public Sprite crd_a_whiteBackground;
+    public Sprite crd_a_redBackgroundAttack;
+    public Sprite crd_a_blueBackgroundAttack;
+    public Sprite crd_a_yellowBackgroundAttack;
+    public Sprite crd_a_whiteBackgroundAttack;
+
+    [Header("Card Background Art Assets")]
+    public Sprite crd_a_redBackgroundShield;
+    public Sprite crd_a_blueBackgroundShield;
+    public Sprite crd_a_yellowBackgroundShield;
+    public Sprite crd_a_whiteBackgroundShield;
 
     [Header("Shield Sound Effect")]
     public bool crd_b_shieldSoundEffect;
@@ -210,7 +216,14 @@ public class S_Card : MonoBehaviour
             crd_b_whiteColorType = false;
 
             //Toggle Graphics
-            crd_a_cardBackgroundArtAsset.sprite = crd_a_redBackground;
+            if (crd_b_attackMainEffect)
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_redBackgroundAttack;
+            }
+            else
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_redBackgroundShield;
+            }
         }
         //Blue Type
         else if (_cardData.BlueColorType == true)
@@ -222,7 +235,14 @@ public class S_Card : MonoBehaviour
             crd_b_whiteColorType = false;
 
             //Toggle Graphics
-            crd_a_cardBackgroundArtAsset.sprite = crd_a_blueBackground;
+            if (crd_b_attackMainEffect)
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_blueBackgroundAttack;
+            }
+            else
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_blueBackgroundShield;
+            }
         }
         //Yellow Type
         else if (_cardData.YellowColorType == true)
@@ -234,7 +254,14 @@ public class S_Card : MonoBehaviour
             crd_b_whiteColorType = false;
 
             //Toggle Graphics
-            crd_a_cardBackgroundArtAsset.sprite = crd_a_yellowBackground;
+            if (crd_b_attackMainEffect)
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_yellowBackgroundAttack;
+            }
+            else
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_yellowBackgroundShield;
+            }
         }
         //White Type
         else if (_cardData.WhiteColorType == true)
@@ -246,7 +273,14 @@ public class S_Card : MonoBehaviour
             crd_b_whiteColorType = true;
 
             //Toggle Graphics
-            crd_a_cardBackgroundArtAsset.sprite = crd_a_whiteBackground;
+            if (crd_b_attackMainEffect)
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_whiteBackgroundAttack;
+            }
+            else
+            {
+                crd_a_cardBackgroundArtAsset.sprite = crd_a_whiteBackgroundShield;
+            }
         }
 
         //set the text for the card
@@ -612,7 +646,7 @@ public class S_Card : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CardSFX/attack-magic");
         }
-        g_global.g_player.animator.SetTrigger("attackingAnimation");
+
         DeleteCard();
     }
 
@@ -623,7 +657,6 @@ public class S_Card : MonoBehaviour
     private void TriggerShieldCard()
     {
         g_global.g_player.PlayerShielded(crd_i_shieldValue, crd_b_shieldSoundEffect);
-        g_global.g_player.animator.Play("Blocking");
         DeleteCard();
     }
 
