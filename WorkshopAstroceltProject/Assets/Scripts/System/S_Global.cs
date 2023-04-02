@@ -19,7 +19,6 @@ public class S_Global : MonoBehaviour
     [Header("Script References")]
     public S_TurnManager g_turnManager;
     public S_Player g_player;
-    public S_MapGeneration g_mapManager;
     public S_DrawingManager g_DrawingManager;
     public S_ConstelationManager g_ConstellationManager;
     public S_UIManager g_UIManager;
