@@ -90,7 +90,7 @@ public class S_ConstelationManager : MonoBehaviour
         else 
         {
             //turn the popups on now that we know it is a valid line
-            //_line.TriggerPopup();
+            _line.TriggerPopup();
 
             if (_star.starType == "Energy")
             {
