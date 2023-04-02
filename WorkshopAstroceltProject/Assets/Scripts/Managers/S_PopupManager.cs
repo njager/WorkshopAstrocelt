@@ -83,6 +83,10 @@ public class S_PopupManager : MonoBehaviour
     /// /// <param name="_isTempStar"></param>
     public void CreatePopUpForStar(S_StarClass _star, int _energy, bool _isTempStar)
     {
+        //set all the popup points
+        _star.SetAllPopupTransforms();
+
+        Debug.Log("spawning popups for " + _star.gameObject.name);
         if (_star.starType.Equals("Node") || _star.starType.Equals("Null"))
         {
             return; 
@@ -110,7 +114,7 @@ public class S_PopupManager : MonoBehaviour
                 _star.ls_energyPopups.Add(_starPopupScript1);
 
                 // Move popup to container
-                _starPopup1.transform.SetParent(v3_vfxContainer);
+                //_starPopup1.transform.SetParent(v3_vfxContainer);
 
             }
             else if (_energy == 2)

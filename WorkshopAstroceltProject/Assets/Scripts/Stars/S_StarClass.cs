@@ -55,6 +55,13 @@ public class S_StarClass : MonoBehaviour
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+    public void SetAllPopupTransforms()
+    {
+        SetPopup1ParentTransform(GetPopup1ParentTransform().position);
+        SetPopup2ParentTransform(GetPopup2ParentTransform().position);
+        SetPopup3ParentTransform(GetPopup3ParentTransform().position);
+    }
 
     /// <summary>
     /// Set the bool value of S_StarClass.s_b_temporaryVisualBool
