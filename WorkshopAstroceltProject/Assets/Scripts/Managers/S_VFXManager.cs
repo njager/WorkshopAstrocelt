@@ -13,11 +13,11 @@ public class S_VFXManager : MonoBehaviour
     [Header("Enemy Hurts Player")]
     [SerializeField] ParticleSystem pe_enemyAttacksPlayer;
 
+    [Header("Enemy Hurts Player")]
+    [SerializeField] ParticleSystem pe_playerShieldsBreak;
+
     [Header("Player Shields")]
     [SerializeField] ParticleSystem pe_playerShields;
-
-    [Header("Enemy Shields")]
-    [SerializeField] ParticleSystem pe_enemyShields;
 
     [Header("Red Card Spawn")]
     [SerializeField] ParticleSystem pe_redCardSpawn;
@@ -401,18 +401,6 @@ public class S_VFXManager : MonoBehaviour
     public ParticleSystem PlayerShieldsParticle()
     {
         return pe_playerShields;
-    }
-
-    /// <summary>
-    /// Return the ParticleSystem of S_VFXManager.a_enemyShields
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_VFXManager.a_enemyShields
-    /// </returns>
-    public ParticleSystem EnemyShieldsParticle()
-    {
-        return pe_enemyShields;
     }
 
     /// <summary>
