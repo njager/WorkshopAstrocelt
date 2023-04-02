@@ -3923,6 +3923,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4068576203647308518, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+      propertyPath: Sides
+      value: 
+      objectReference: {fileID: 1550693762}
     - target: {fileID: 4719595102101013318, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_global
       value: 
@@ -4538,7 +4542,7 @@ PrefabInstance:
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_gameManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 19391959}
     - target: {fileID: 8047176381002654254, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: g_a_audioPlayer
       value: 
@@ -4583,34 +4587,6 @@ PrefabInstance:
       propertyPath: yellowEnergyUITargetPosition
       value: 
       objectReference: {fileID: 1794273510}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: nodeStar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: blackBar1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: blackBar2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: blackBar3
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: blackBar4
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: blackBar5
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-      propertyPath: blackBar6
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8169680752538244689, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4675,8 +4651,35 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8047176381412509012, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
+    - target: {fileID: 0}
+      propertyPath: nodeStar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blackBar1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blackBar2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blackBar3
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blackBar4
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blackBar5
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blackBar6
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
 --- !u!1 &8047176381484923553 stripped
 GameObject:
@@ -4694,33 +4697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee7f320e723f8b43ae079bfe883671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8047176381484923555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8047176381412509010, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-  m_PrefabInstance: {fileID: 8047176381484923552}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8047176381484923556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8047176381484923555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fba8ff0217f5cc47bff3bec0bf0c880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map1: {fileID: 8047176381484923557}
-  Sides: {fileID: 1550693762}
-  activeMap: {fileID: 8047176381484923557}
-  mp_i_previousMapNum: 0
-  asteroids: {fileID: 40220117276276143, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
---- !u!1 &8047176381484923557 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7101165620171779024, guid: 7888514ced681490c814bc91b79b9bed, type: 3}
-  m_PrefabInstance: {fileID: 8047176381484923552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8838929984601024648
 PrefabInstance:
   m_ObjectHideFlags: 0
