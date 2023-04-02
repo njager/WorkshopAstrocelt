@@ -35,12 +35,11 @@ public class S_AudioTrack : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
+
         Debug.Log(g_global.g_pauseMenu.musicVolume);
         changeVolume();
 
-=======
->>>>>>> 4e50dc41f07a3537c1eb98e56aedd51a7d6dba3f
+
         f_timeInScene += Time.deltaTime;
 
         i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
