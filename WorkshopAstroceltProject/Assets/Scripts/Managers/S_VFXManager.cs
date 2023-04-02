@@ -320,33 +320,6 @@ public class S_VFXManager : MonoBehaviour
         ui_mapPanButton.GetComponent<Button>().interactable = true;
     }
 
-    /// <summary>
-    /// Moves the card balls back to the altar
-    /// -Riley
-    /// </summary>
-    public void MoveCardBallsDown()
-    {
-        int _i = 0;
-
-        foreach (S_Cardball _cardBall in g_global.g_altar.ls_activeCardBalls)
-        {
-            //if(_i == 0)
-            //{
-            //    _cardBall.gameObject.transform.parent = cb_upperPosition1Location.transform;
-            //}
-            //else if (_i == 1)
-            //{
-            //    _cardBall.gameObject.transform.parent = cb_upperPosition2Location.transform;
-            //}
-            //else if (_i == 0)
-            //{
-            //    _cardBall.gameObject.transform.parent = cb_upperPosition3Location.transform;
-            //}
-
-            _i++;
-        }
-    }
-
     //Set the Opacity to 0
     public void MakeTransparent(CanvasGroup canvas)
     {

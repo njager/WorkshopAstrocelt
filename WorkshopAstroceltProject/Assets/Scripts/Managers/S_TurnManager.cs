@@ -50,6 +50,8 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EndTurn()
     {
+        Debug.Log("Where is this");
+
         if (g_global.g_b_enemyTurn == true)
         {
             Debug.Log("Not your turn!");

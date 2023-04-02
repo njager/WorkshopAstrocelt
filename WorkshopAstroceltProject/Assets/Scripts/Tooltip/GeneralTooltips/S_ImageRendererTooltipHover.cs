@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class S_ImageRendererTooltipHover : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class S_ImageRendererTooltipHover : MonoBehaviour
     [Header("Timer Value For Reappearing")]
     [SerializeField] float tl_f_timerValue;
 
+    [SerializeField] Image tl_imageComp;
+
     private void Awake()
     {
         g_global = S_Global.Instance;
@@ -42,21 +45,27 @@ public class S_ImageRendererTooltipHover : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (tl_b_mouseEntered == true && tl_b_displayedTooltip == false)
+        if (gameObject.GetComponent<Image>() != null)
         {
-            if (tl_f_timeToWaste > 0)
+            if (gameObject.GetComponent<Image>().color.a != 0)
             {
-                tl_f_timeToWaste -= Time.deltaTime;
-            }
-        }
+                if (tl_b_mouseEntered == true && tl_b_displayedTooltip == false)
+                {
+                    if (tl_f_timeToWaste > 0)
+                    {
+                        tl_f_timeToWaste -= Time.deltaTime;
+                    }
+                }
 
-        if (tl_f_timeToWaste < 0 && tl_i_timerCompleteCheck == 0)
-        {
-            tl_b_timerComplete = true;
-            tl_i_timerCompleteCheck += 1;
-            if (tl_b_displayedTooltip == false)
-            {
-                DisplayTooltip();
+                if (tl_f_timeToWaste < 0 && tl_i_timerCompleteCheck == 0)
+                {
+                    tl_b_timerComplete = true;
+                    tl_i_timerCompleteCheck += 1;
+                    if (tl_b_displayedTooltip == false)
+                    {
+                        DisplayTooltip();
+                    }
+                }
             }
         }
     }
@@ -67,6 +76,7 @@ public class S_ImageRendererTooltipHover : MonoBehaviour
     /// </summary>
     public void OnPointerEnter()
     {
+        Debug.Log("TooltipEnter");
         tl_b_mouseEntered = true;
         tl_b_timerComplete = false;
         tl_b_displayedTooltip = false;

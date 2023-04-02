@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 7746186668020993625}
   - component: {fileID: 6216476291049736013}
   - component: {fileID: 1053496517898871500}
+  - component: {fileID: 5590750180548636055}
+  - component: {fileID: 276174730159024605}
   m_Layer: 5
   m_Name: AcidEffectIcon
   m_TagString: Untagged
@@ -210,6 +212,72 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5590750180548636055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626902695003162853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a656e102af56e497bbff63fcc208266e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: 118829e6ee6e8c74c84504e23edebbd3, type: 2}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 4
+  tl_f_timerValue: 2
+  tl_imageComp: {fileID: 0}
+--- !u!114 &276174730159024605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626902695003162853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5590750180548636055}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5590750180548636055}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &632053073114161077
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +364,8 @@ GameObject:
   - component: {fileID: 5962944860639006291}
   - component: {fileID: 5760104595019025900}
   - component: {fileID: 591443116386905762}
+  - component: {fileID: 3607205172712104965}
+  - component: {fileID: 1056810898643068727}
   m_Layer: 5
   m_Name: FrailtyEffectIcon
   m_TagString: Untagged
@@ -360,6 +430,72 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3607205172712104965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727223646532427806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a656e102af56e497bbff63fcc208266e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: 33a41c73b4a874c498aed5f591274ea5, type: 2}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 4
+  tl_f_timerValue: 2
+  tl_imageComp: {fileID: 0}
+--- !u!114 &1056810898643068727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727223646532427806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3607205172712104965}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3607205172712104965}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &764927612895515141
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +638,8 @@ GameObject:
   - component: {fileID: 369879839414234859}
   - component: {fileID: 2800028977561085396}
   - component: {fileID: 972074950660410422}
+  - component: {fileID: 3435999009744007878}
+  - component: {fileID: 2039923524450896179}
   m_Layer: 5
   m_Name: BleedEffectIcon
   m_TagString: Untagged
@@ -566,6 +704,72 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3435999009744007878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675933125529860921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a656e102af56e497bbff63fcc208266e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: 4f8a0ecff78b9cf42a7ee4d843ba6cab, type: 2}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 4
+  tl_f_timerValue: 2
+  tl_imageComp: {fileID: 0}
+--- !u!114 &2039923524450896179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675933125529860921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3435999009744007878}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3435999009744007878}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2885617546053674447
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +990,8 @@ GameObject:
   - component: {fileID: 7659999382689667407}
   - component: {fileID: 9060075024043812257}
   - component: {fileID: 7100552305735086092}
+  - component: {fileID: 1513509514884002967}
+  - component: {fileID: 8917083024126821053}
   m_Layer: 5
   m_Name: ResistantEffectIcon
   m_TagString: Untagged
@@ -850,6 +1056,72 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1513509514884002967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903624703482926584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a656e102af56e497bbff63fcc208266e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_global: {fileID: 0}
+  tl_tooltipTemplate: {fileID: 11400000, guid: 282af013b09bb2d499f278f5b04280cc, type: 2}
+  tl_b_mouseEntered: 0
+  tl_f_timeToWaste: 2
+  tl_b_timerComplete: 0
+  tl_b_displayedTooltip: 0
+  tl_i_timerCompleteCheck: 4
+  tl_f_timerValue: 2
+  tl_imageComp: {fileID: 0}
+--- !u!114 &8917083024126821053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903624703482926584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1513509514884002967}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1513509514884002967}
+          m_TargetAssemblyTypeName: S_ImageRendererTooltipHover, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4074447115912943494
 GameObject:
   m_ObjectHideFlags: 0
