@@ -385,19 +385,19 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemyType"></param>
     public void EnemySpecialAbility(string _enemyType)
     {
-        if(_enemyType == "Lumberjack")
+        if(_enemyType == "Magician")
         {
-            Debug.Log("Lumberjack doesn't have a special ability!");
+            Debug.Log("MAGICIAN No longer has special ability");
             return;
         }
-        else if(_enemyType == "Magician")
+        else if (_enemyType == "Crone")
         {
-            Debug.Log("MAGICIAN USED SPECIAL ABILITY");
-            MagicianSpecialAbility();
+            Debug.Log("Lumberjack doesn't have a special ability!");
+            g_global.g_playerState.PlayerAcidStatusEffect(1);
         }
         else if(_enemyType == "Brawler")
         {
-            g_global.g_playerState.PlayerBleedingStatusEffect(4);
+            g_global.g_playerState.PlayerBleedingStatusEffect(2);
         }
         else if(_enemyType == "Beast")
         {
@@ -405,7 +405,7 @@ public class S_Enemy : MonoBehaviour
         }
         else if (_enemyType == "Realmwalker")
         {
-            g_global.g_enemyState.EnemyResistantStatusEffect(5, e_i_enemyCount);
+            g_global.g_enemyState.EnemyResistantStatusEffect(1, e_i_enemyCount);
         }
     }
 

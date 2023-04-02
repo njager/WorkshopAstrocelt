@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening;
+using FMOD;
 
 public class S_TurnManager : MonoBehaviour
 {
@@ -50,11 +51,11 @@ public class S_TurnManager : MonoBehaviour
     /// </summary>
     public void EndTurn()
     {
-        Debug.Log("Where is this");
+        print("Where is this");
 
         if (g_global.g_b_enemyTurn == true)
         {
-            Debug.Log("Not your turn!");
+            print("Not your turn!");
             return;
         }
         else
@@ -86,7 +87,7 @@ public class S_TurnManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("pressed when spawning cardballs");
+                print("pressed when spawning cardballs");
                 return;
             }
         }
@@ -213,7 +214,8 @@ public class S_TurnManager : MonoBehaviour
     public void PlayerStateChange()
     {
         //g_global.g_player.playerSprite.transform.DOShakePosition(1f, new Vector3(0, 5, 5), 10, 0f, true, false);
-        //Debug.Log("Triggerd");
+        print("Triggerd");
+
         //clear the card balls and deal a new hand
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs(true));
         
@@ -234,6 +236,8 @@ public class S_TurnManager : MonoBehaviour
         //switch turns
         g_global.g_b_playerTurn = true;
         g_global.g_b_enemyTurn = false;
+
+        print("The enemy turn is " + g_global.g_b_enemyTurn.ToString());
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
