@@ -140,27 +140,27 @@ public class S_StarPopUp : MonoBehaviour
     /// <param name="_positionCount"></param>
     public void SetPosition(int _positionCount, S_StarClass _star)
     {
-        print(_star.transform.position);
+        //print(_star.transform.position);
         if(_positionCount == 1)
         {
-            Debug.Log("First popup!");
-            Debug.Log(_star.GetPopup1ParentPosition());
-            Debug.Log(this.gameObject.name);
+            //Debug.Log("First popup!");
+            //Debug.Log(_star.GetPopup1ParentPosition());
+            //Debug.Log(this.gameObject.name);
 
-            Debug.Log(this.transform.position);
+            //Debug.Log(this.transform.position);
             gameObject.transform.position = _star.GetPopup1ParentPosition();
-            Debug.Log(this.transform.position);
+            //Debug.Log(this.transform.position);
         }
         else if(_positionCount == 2)
         {
-            Debug.Log("Second popup!");
-            Debug.Log(gameObject.transform.position);
+            //Debug.Log("Second popup!");
+            //Debug.Log(gameObject.transform.position);
             gameObject.transform.position = _star.GetPopup2ParentPosition();
-            Debug.Log(gameObject.transform.position);
+            //Debug.Log(gameObject.transform.position);
         }
         else if(_positionCount == 3)
         {
-            Debug.Log("Third popup!");
+            //Debug.Log("Third popup!");
             gameObject.transform.position = _star.GetPopup3ParentPosition();
         }
     }
