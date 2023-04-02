@@ -691,7 +691,7 @@ public class S_Card : MonoBehaviour
     {
         if(crd_hoverCharacter != null)
         {
-            Debug.Log(crd_hoverCharacter);
+            //Debug.Log(crd_hoverCharacter);
             PlayCard(crd_hoverCharacter);
         }
         else
