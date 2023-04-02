@@ -250,7 +250,6 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
-        pe_mapPanSwitch.Play();
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
             && g_global.g_cardHolder.transform.childCount <= 0)
