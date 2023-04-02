@@ -62,35 +62,35 @@ public class S_MapManager : MonoBehaviour
         Vector3 temp = new Vector3(0, 0, 0);
         if (clusternum == 1)
         {
-            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(13.0f, 17.0f), 0);
+            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(14.0f, 18.0f), 0);
         }
         else if (clusternum == 2)
         {
-            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(9.0f, 13.0f), 0);
+            temp = new Vector3(Random.Range(-12.0f, -6.0f), Random.Range(10.0f, 14.0f), 0);
         }
         else if (clusternum == 3)
         {
-            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(13.0f, 17.0f), 0);
+            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(14.0f, 18.0f), 0);
         }
         else if (clusternum == 4)
         {
-            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(9.0f, 13.0f), 0);
+            temp = new Vector3(Random.Range(-6.0f, 0.0f), Random.Range(10.0f, 14.0f), 0);
         }
         else if (clusternum == 5)
         {
-            temp = new Vector3(Random.Range(0.0f, 6.0f), Random.Range(13.0f, 17.0f), 0);
+            temp = new Vector3(Random.Range(0.0f, 6.0f), Random.Range(14.0f, 18.0f), 0);
         }
         else if (clusternum == 6)
         {
-            temp = new Vector3(Random.Range(0.0f, 6.0f),Random.Range(9.0f, 13.0f), 0);
+            temp = new Vector3(Random.Range(0.0f, 6.0f),Random.Range(10.0f, 14.0f), 0);
         }
         else if (clusternum == 7)
         {
-            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(13.0f, 17.0f), 0);
+            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(14.0f, 18.0f), 0);
         }
         else
         {
-            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(9.0f, 13.0f), 0);
+            temp = new Vector3(Random.Range(6.0f, 12.0f), Random.Range(10.0f, 14.0f), 0);
         }
         return temp;
     }
@@ -135,7 +135,8 @@ public class S_MapManager : MonoBehaviour
         ConnectToRoof(springList, clusters);
         ConnectClusters(springList, clusters);
         List<Transform> AstList = genAsteroids();
-        StartCoroutine(WaitForGen(clusters));
+        ast_manip(AstList);
+        StartCoroutine(WaitForGen(clusters, AstList));
 
         //cluster_checker(clusters);
 
@@ -291,16 +292,17 @@ public class S_MapManager : MonoBehaviour
     /// Wait for seconds to allow generation to fully run
     /// -Thoman
     /// </summary>
-    IEnumerator WaitForGen(List<List<Transform>> clusters)
+    IEnumerator WaitForGen(List<List<Transform>> clusters, List<Transform> AstList)
     {
         Debug.Log("waiting");
         yield return new WaitForSeconds(2);
         ReAddLockandGravConstraint(clusters);
+        ast_remove_collider(AstList);
     }
 
     public int RandAstCount()
     {
-        return Random.Range(2, 6);
+        return Random.Range(2, 4);
     }
 
     public Vector3 RandVectAst()
@@ -351,13 +353,26 @@ public class S_MapManager : MonoBehaviour
         }
     }
 
+    public int RandAstRotation()
+    {
+        return Random.Range(0, 180);
+    }
 
     public void ast_manip(List<Transform> AstList)
     {
         foreach (Transform ast in AstList)
         {
-            //ast.rotation = 
+            float rot = RandAstRotation();
+            ast.Rotate(0f, 0f, rot);
         }
 
+    }
+
+    public void ast_remove_collider(List<Transform> AstList)
+    {
+        foreach (Transform ast in AstList)
+        {
+            ast.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 }
