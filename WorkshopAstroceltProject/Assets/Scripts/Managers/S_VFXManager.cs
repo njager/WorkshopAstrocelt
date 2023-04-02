@@ -112,9 +112,6 @@ public class S_VFXManager : MonoBehaviour
         e_enemyUI1.SetActive(false);
         e_enemyUI2.SetActive(false);
         e_enemyUI3.SetActive(false);
-
-        //turn on map pan button partcle effects
-        pe_mapPanButton.Play();
     }
  
 
