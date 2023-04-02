@@ -112,6 +112,9 @@ public class S_VFXManager : MonoBehaviour
         e_enemyUI1.SetActive(false);
         e_enemyUI2.SetActive(false);
         e_enemyUI3.SetActive(false);
+
+        //turn on map pan button partcle effects
+        pe_mapPanButton.Play();
     }
  
 
@@ -250,6 +253,8 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
+        pe_mapPanButton.Stop();
+
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
             && g_global.g_cardHolder.transform.childCount <= 0)
