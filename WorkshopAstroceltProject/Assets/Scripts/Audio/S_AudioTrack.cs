@@ -36,9 +36,8 @@ public class S_AudioTrack : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(g_global.g_pauseMenu.musicVolume);
+        //Debug.Log(g_global.g_pauseMenu.musicVolume);
         changeVolume();
-
 
         f_timeInScene += Time.deltaTime;
 
