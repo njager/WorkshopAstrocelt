@@ -121,9 +121,6 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
-        // Toggle day
-        g_global.g_backgroundManager.ChangeBackground(0);
-
         //change all the things that need to be changed for the enemies turn
         //g_global.g_energyManager.ClearEnergy();
         g_global.g_enemyState.EnemyActionCheck();
@@ -218,9 +215,6 @@ public class S_TurnManager : MonoBehaviour
 
         //clear the card balls and deal a new hand
         StartCoroutine(g_global.g_altar.ClearCardballPrefabs(true));
-        
-        //Turn to night
-        g_global.g_backgroundManager.ChangeBackground(0);
 
         //Reset player
         g_global.g_playerAttributeSheet.SetPlayerShieldValue(0);
@@ -228,7 +222,7 @@ public class S_TurnManager : MonoBehaviour
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
 
         //Map Switching
-        g_global.g_mapManager.RandomMapSelector();
+        g_global.g_newMapManager.RandomMapSelector();
 
         //reset the node star chosen when the player passes the turn
         g_global.g_ConstellationManager.b_nodeStarChosen = false;
