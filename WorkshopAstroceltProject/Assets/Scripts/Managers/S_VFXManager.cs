@@ -55,6 +55,17 @@ public class S_VFXManager : MonoBehaviour
     [Header("Constellation Completed")]
     [SerializeField] ParticleSystem pe_constellationCompleted;
 
+    [Header("Map Pan")]
+    [SerializeField] ParticleSystem pe_mapPanButton;
+    [SerializeField] ParticleSystem pe_mapPanSwitch;
+
+    [Header("Reward")]
+    [SerializeField] ParticleSystem pe_rewardHover;
+    [SerializeField] ParticleSystem pe_rewardTae;
+
+    [Header("Node Star")]
+    [SerializeField] ParticleSystem pe_nodeStarPlace;
+
     [Header("Ui for down camera")]
     public List<GameObject> ls_downCamUI;
 
@@ -245,6 +256,7 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
+        pe_mapPanSwitch.Play();
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
             && g_global.g_cardHolder.transform.childCount <= 0)
@@ -258,6 +270,7 @@ public class S_VFXManager : MonoBehaviour
 
                     //Pan the camera down
                     g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
+                    
 
                     //turn off up ui
                     foreach (GameObject ui in ls_upCamUI)
