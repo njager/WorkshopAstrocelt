@@ -147,7 +147,7 @@ public class S_Enemy : MonoBehaviour
                     //play the attack animation
                     g_global.g_player.p_animator.Play("ErinAttackAnim");
 
-                    Debug.Log("Enemy Attacked!");
+                    //Debug.Log("Enemy Attacked!");
                 }
                 else // Enemy has shields
                 {
@@ -162,13 +162,16 @@ public class S_Enemy : MonoBehaviour
 
                         EnemyAttacked(_enemyType, Mathf.Abs(_tempVal));
 
+                        // Shield broken Particle Effect
+                        e_sc_enemyAttributes.GetEnemyShieldBreakParticle().Play();
+
                         // Attacked Particle Effect
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
                         //play the attack animation
                         g_global.g_player.p_animator.Play("ErinAttackAnim");
 
-                        Debug.Log("Enemy didn't have enough shields!");
+                        //Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
@@ -180,7 +183,7 @@ public class S_Enemy : MonoBehaviour
                         //play the attack animation
                         g_global.g_player.p_animator.Play("ErinAttackAnim");
 
-                        Debug.Log("Enemy had shields!");
+                        //Debug.Log("Enemy had shields!");
                     }
                 }
             }
@@ -196,7 +199,7 @@ public class S_Enemy : MonoBehaviour
                     //play the attack animation
                     g_global.g_player.p_animator.Play("ErinAttackAnim");
 
-                    Debug.Log("Enemy Attacked!");
+                    //Debug.Log("Enemy Attacked!");
                 }
                 else // Enemy has shields
                 {
@@ -217,7 +220,7 @@ public class S_Enemy : MonoBehaviour
                         //play the attack animation
                         g_global.g_player.p_animator.Play("ErinAttackAnim");
 
-                        Debug.Log("Enemy didn't have enough shields!");
+                        //Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
@@ -229,7 +232,7 @@ public class S_Enemy : MonoBehaviour
                         //play the attack animation
                         g_global.g_player.p_animator.Play("ErinAttackAnim");
 
-                        Debug.Log("Enemy had shields!");
+                        //Debug.Log("Enemy had shields!");
                     }
                 }
             }
@@ -245,7 +248,7 @@ public class S_Enemy : MonoBehaviour
                     // Attacked Particle Effect
                     e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
-                    Debug.Log("Enemy Attacked!");
+                    //Debug.Log("Enemy Attacked!");
                 }
                 else // Enemy has shields
                 {
@@ -269,7 +272,7 @@ public class S_Enemy : MonoBehaviour
                         // Attacked Particle Effect 
                         e_sc_enemyAttributes.GetEnemyAttackedParticle().Play();
 
-                        Debug.Log("Enemy didn't have enough shields!");
+                        //Debug.Log("Enemy didn't have enough shields!");
                     }
                     else
                     {
@@ -281,7 +284,7 @@ public class S_Enemy : MonoBehaviour
                         // Sufficient Shields Particle Effect
                         e_sc_enemyAttributes.GetEnemyShieldAttackedParticle().Play();
 
-                        Debug.Log("Enemy had shields!");
+                        //Debug.Log("Enemy had shields!");
                     }
                 }
             }
