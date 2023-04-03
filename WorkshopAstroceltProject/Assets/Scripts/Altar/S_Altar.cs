@@ -162,15 +162,14 @@ public class S_Altar : MonoBehaviour
             StartCoroutine(SlideUpperCardBalls());
         }
 
-        SetCardballsSpawnedBool(true);
-
         ls_cardBallHand.Clear();
 
         yield return new S_WaitForCardballMovement();
 
+        SetCardballsSpawnedBool(true);
+
         // Wait for move cardballs, and then unlock drawing
         //yield return new WaitForSeconds(1 + f_cardballMoveSpeed);
-        SetCardballsSpawnedBool(true);
     }
 
 
@@ -332,7 +331,7 @@ public class S_Altar : MonoBehaviour
             //Debug.Log("DEBUG: No more cardballs to spawn!");
         }
 
-        if (c_i_movementInt == 5)
+        if (c_i_movementInt == 3)
         {
             c_b_movementBool = true;
         }
