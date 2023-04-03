@@ -16,6 +16,9 @@ public class S_ConstelationManager : MonoBehaviour
     [SerializeField] private bool b_makingConstellation;
 
     [Header("Current Constellation Values")]
+    public List<S_StarClass> ls_clickedStars;
+
+    [Header("Current Constellation Values")]
     public List<S_StarClass> ls_curConstellation;
     public string str_curColor = "";
     [SerializeField] bool b_curStarSpawnedPopupsAlready;
@@ -138,6 +141,9 @@ public class S_ConstelationManager : MonoBehaviour
         //add to data structure
         ls_curConstellation.Add(_star);
 
+        //add star to clicked list
+        ls_clickedStars.Add(_star);
+
         if (_star.starType == "Node")
         {
             S_NodeStar _node = _star.gameObject.GetComponent<S_NodeStar>();
@@ -237,6 +243,63 @@ public class S_ConstelationManager : MonoBehaviour
         {
             g_global.g_popupManager.CreatePopUpForStar(_star, _star.s_star.i_energy, _star.GetTemporaryVisualBool());
         }
+    }
+
+    /// <summary>
+    /// Reset the variables for the stars
+    /// -Riley
+    /// </summary>
+    public void ResetAllClickedStars()
+    {
+        foreach (S_StarClass _star in ls_clickedStars)
+        {
+            S_Star _starScript = _star.s_star;
+
+            _starScript.m_previous = null;
+            _starScript.m_next = null;
+            _starScript.m_previousLine = null;
+            _starScript.m_nextLine = null;
+
+            //clear the popup list 
+            _star.ls_energyPopups.Clear();
+
+            if (_star.starType == "Ritual")
+            {
+                //get the ritual star component
+                S_RitualStar _rStar = _star.gameObject.GetComponent<S_RitualStar>();
+
+                _rStar.SetClickableStarBool(false);
+                _rStar.b_hasBeenClicked = false;
+
+                
+            }
+            else if (_star.starType == "Energy")
+            {
+                //get the ritual star component
+                S_EnergyStar _eStar = _star.gameObject.GetComponent<S_EnergyStar>();
+
+                _eStar.SetClickableStarBool(false);
+                _eStar.b_hasBeenClicked = false;
+
+                if (_eStar.s_b_redColor)
+                {
+                    //turnoff anim
+                    _eStar.s_redEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_eStar.s_b_yellowColor)
+                {
+                    //turnoff anim
+                    _eStar.s_yellowEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_eStar.s_b_blueColor)
+                {
+                    //turnoff anim
+                    _eStar.s_blueEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+            }
+        }
+
+        ls_clickedStars.Clear();
     }
 
     /// <summary>

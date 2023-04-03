@@ -335,14 +335,6 @@ public class S_Altar : MonoBehaviour
         {
             c_b_movementBool = true;
         }
-
-        // May not be necessary, check later, part of race condition debugging between turns. 
-        g_global.g_enemyState.UpdateActiveEnemies();
-
-        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList()) 
-        {
-            _enemy.UpdateEnemyHealthUI();
-        }
     }
 
     /// <summary>

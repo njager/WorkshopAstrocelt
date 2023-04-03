@@ -425,7 +425,23 @@ MonoBehaviour:
   map11: {fileID: 0}
   map12: {fileID: 0}
   map13: {fileID: 0}
+  activeMap: {fileID: 0}
+  activeMapList: []
   mp_i_previousMapNum: 0
+  s_energyStarPrefab: {fileID: 0}
+  ls_s_map1Stars: []
+  ls_s_map2Stars: []
+  ls_s_map3Stars: []
+  ls_s_map4Stars: []
+  ls_s_map5Stars: []
+  ls_s_map6Stars: []
+  ls_s_map7Stars: []
+  ls_s_map8Stars: []
+  ls_s_map9Stars: []
+  ls_s_map10Stars: []
+  ls_s_map11Stars: []
+  ls_s_map12Stars: []
+  ls_s_map13Stars: []
 --- !u!1 &73390823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,6 +2467,9 @@ MonoBehaviour:
   yellowEnergyUITargetPosition: {fileID: 0}
   b_visualPopupFinished: 0
   i_popupUpClearInt: 0
+  redPopupTempColor: {r: 0, g: 0, b: 0, a: 0}
+  bluePopupTempColor: {r: 0, g: 0, b: 0, a: 0}
+  yellowPopupTempColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &285875820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4015,16 +4034,21 @@ MonoBehaviour:
   s_nextStar: {fileID: 939871219}
   m_childLineRendererObject: {fileID: 0}
   m_lineRendererInst: {fileID: 0}
-  f_boxOffsetX: 0
-  f_boxOffsetY: 0
   constellationLinePrefab: {fileID: 0}
   i_index: 0
+  m_dottedLine: {fileID: 0}
+  m_solidLine: {fileID: 0}
+  cl_errorLineColor: {r: 0, g: 0, b: 0, a: 0}
+  cl_correctLineColor: {r: 0, g: 0, b: 0, a: 0}
+  f_boxOffsetX: 0
+  f_boxOffsetY: 0
+  f_lineWidthMin: 0
+  f_lineWidthMax: 0
   f_lineWidth: 0
   f_lineLength: 0
   s_nullStarInst: {fileID: 0}
   b_starAdded: 0
-  f_lineWidthMin: 0
-  f_lineWidthMax: 0
+  b_isColliding: 0
 --- !u!4 &470833517
 Transform:
   m_ObjectHideFlags: 0
@@ -4260,24 +4284,40 @@ MonoBehaviour:
   sc_resourceGraphics: {fileID: 0}
   p_tx_playerHealthText: {fileID: 0}
   p_tx_playerShieldText: {fileID: 0}
-  p_playerHealthBar: {fileID: 0}
+  p_UI_playerHealthBar: {fileID: 0}
+  p_UI_upperPlayerHealthBar: {fileID: 0}
   p_playerHealthResourceBarText: {fileID: 0}
+  p_upperPlayerHealthBarText: {fileID: 0}
   c_cardCount: {fileID: 0}
   e_tx_enemy1HealthText: {fileID: 0}
   e_tx_enemy2HealthText: {fileID: 0}
   e_tx_enemy3HealthText: {fileID: 0}
   e_tx_enemy4HealthText: {fileID: 0}
   e_tx_enemy5HealthText: {fileID: 0}
+  e_tx_upperEnemy1HealthText: {fileID: 0}
+  e_tx_upperEnemy2HealthText: {fileID: 0}
+  e_tx_upperEnemy3HealthText: {fileID: 0}
   e_tx_enemy1ShieldText: {fileID: 0}
   e_tx_enemy2ShieldText: {fileID: 0}
   e_tx_enemy3ShieldText: {fileID: 0}
   e_tx_enemy4ShieldText: {fileID: 0}
   e_tx_enemy5ShieldText: {fileID: 0}
-  e_enemy1HealthBar: {fileID: 0}
-  e_enemy2HealthBar: {fileID: 0}
-  e_enemy3HealthBar: {fileID: 0}
-  e_enemy4HealthBar: {fileID: 0}
-  e_enemy5HealthBar: {fileID: 0}
+  e_tx_upperEnemy1ShieldText: {fileID: 0}
+  e_tx_upperEnemy2ShieldText: {fileID: 0}
+  e_tx_upperEnemy3ShieldText: {fileID: 0}
+  e_UI_enemy1HealthBar: {fileID: 0}
+  e_UI_enemy2HealthBar: {fileID: 0}
+  e_UI_enemy3HealthBar: {fileID: 0}
+  e_UI_enemy4HealthBar: {fileID: 0}
+  e_UI_enemy5HealthBar: {fileID: 0}
+  e_UI_upperEnemy1HealthBar: {fileID: 0}
+  e_UI_upperEnemy2HealthBar: {fileID: 0}
+  e_UI_upperEnemy3HealthBar: {fileID: 0}
+  e_enemy1Selector: {fileID: 0}
+  e_enemy2Selector: {fileID: 0}
+  e_enemy3Selector: {fileID: 0}
+  e_enemy4Selector: {fileID: 0}
+  e_enemy5Selector: {fileID: 0}
   winText: {fileID: 0}
   loseText: {fileID: 0}
   cn_resetCanvas: {fileID: 0}
@@ -4297,36 +4337,58 @@ MonoBehaviour:
   e_enemy3ShieldOverlay: {fileID: 0}
   e_enemy4ShieldOverlay: {fileID: 0}
   e_enemy5ShieldOverlay: {fileID: 0}
+  p_playerShieldHeartIcon: {fileID: 0}
   p_playerShieldIcon: {fileID: 0}
   e_enemy1ShieldIcon: {fileID: 0}
   e_enemy2ShieldIcon: {fileID: 0}
   e_enemy3ShieldIcon: {fileID: 0}
   e_enemy4ShieldIcon: {fileID: 0}
   e_enemy5ShieldIcon: {fileID: 0}
-  p_playerBleedEffect: {fileID: 0}
-  p_playerStunEffect: {fileID: 0}
-  p_playerResistantEffect: {fileID: 0}
-  e_enemy1BleedEffect: {fileID: 0}
-  e_enemy2BleedEffect: {fileID: 0}
-  e_enemy3BleedEffect: {fileID: 0}
-  e_enemy4BleedEffect: {fileID: 0}
-  e_enemy5BleedEffect: {fileID: 0}
-  e_enemy1StunEffect: {fileID: 0}
-  e_enemy2StunEffect: {fileID: 0}
-  e_enemy3StunEffect: {fileID: 0}
-  e_enemy4StunEffect: {fileID: 0}
-  e_enemy5StunEffect: {fileID: 0}
-  e_enemy1ResistantEffect: {fileID: 0}
-  e_enemy2ResistantEffect: {fileID: 0}
-  e_enemy3ResistantEffect: {fileID: 0}
-  e_enemy4ResistantEffect: {fileID: 0}
-  e_enemy5ResistantEffect: {fileID: 0}
+  p_playerHealthBar: {fileID: 0}
+  e_enemy1HealthBar: {fileID: 0}
+  e_enemy2HealthBar: {fileID: 0}
+  e_enemy3HealthBar: {fileID: 0}
+  e_enemy4HealthBar: {fileID: 0}
+  e_enemy5HealthBar: {fileID: 0}
   debugTurnbar: {fileID: 0}
   debugTurnbarText: {fileID: 0}
   en_tx_redEnergyTrackerText: {fileID: 0}
   en_tx_blueEnergyTrackerText: {fileID: 0}
   en_tx_yellowEnergyTrackerText: {fileID: 0}
   co_tx_constellationTrackerText: {fileID: 0}
+  rsg_UI_encounterSelector: {fileID: 0}
+  rsg_UI_skull1Parent: {fileID: 0}
+  rsg_UI_skull1BaseAsset: {fileID: 0}
+  rsg_UI_skull1CrackedAsset: {fileID: 0}
+  rsg_UI_skull2Parent: {fileID: 0}
+  rsg_UI_skull2BaseAsset: {fileID: 0}
+  rsg_UI_skull2CrackedAsset: {fileID: 0}
+  rsg_UI_skull3Parent: {fileID: 0}
+  rsg_UI_skull3BaseAsset: {fileID: 0}
+  rsg_UI_skull3CrackedAsset: {fileID: 0}
+  rsg_UI_bossSkullParent: {fileID: 0}
+  rsg_UI_bossSkullBaseAsset: {fileID: 0}
+  rsg_UI_bossSkullCrackedAsset: {fileID: 0}
+  rsg_UI_eventEncounterParent: {fileID: 0}
+  rsg_UI_eventEncounterBaseAsset: {fileID: 0}
+  rsg_UI_eventEncounterFinishedAsset: {fileID: 0}
+  rsg_UI_defaultBonusContainer: {fileID: 0}
+  rsg_UI_redBonusContainer: {fileID: 0}
+  rsg_UI_blueBonusContainer: {fileID: 0}
+  rsg_UI_yellowBonusContainer: {fileID: 0}
+  rsg_UI_redBonusIcon1: {fileID: 0}
+  rsg_UI_redBonusIcon2: {fileID: 0}
+  rsg_UI_redBonusIcon3: {fileID: 0}
+  rsg_UI_blueBonusIcon1: {fileID: 0}
+  rsg_UI_blueBonusIcon2: {fileID: 0}
+  rsg_UI_blueBonusIcon3: {fileID: 0}
+  rsg_UI_yellowBonusIcon1: {fileID: 0}
+  rsg_UI_yellowBonusIcon2: {fileID: 0}
+  rsg_UI_yellowBonusIcon3: {fileID: 0}
+  rsg_UI_i_bonusTracker: 1
+  p_playerCardSelector: {fileID: 0}
+  rsg_OriginalScale: {x: 0, y: 0, z: 0}
+  rsg_ScaleTo: {x: 0, y: 0, z: 0}
 --- !u!1 &489131023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4739,7 +4801,6 @@ MonoBehaviour:
   g_gameManager: {fileID: 0}
   g_turnManager: {fileID: 1269889775}
   g_player: {fileID: 2082358049}
-  g_mapManager: {fileID: 72613876}
   g_DrawingManager: {fileID: 2099707690}
   g_ConstellationManager: {fileID: 1330287152}
   g_UIManager: {fileID: 487312183}
@@ -4750,10 +4811,17 @@ MonoBehaviour:
   g_energyManager: {fileID: 0}
   g_popupManager: {fileID: 0}
   g_altar: {fileID: 0}
-  g_cardHolder: {fileID: 0}
   g_sceneManager: {fileID: 0}
   g_backgroundManager: {fileID: 0}
   g_turnEffectManager: {fileID: 0}
+  g_resourceGraphic: {fileID: 0}
+  g_consecutiveColorTrackerManager: {fileID: 0}
+  g_tooltipManager: {fileID: 0}
+  g_vfxManager: {fileID: 0}
+  g_audioManager: {fileID: 0}
+  g_rewardVisualScript: {fileID: 0}
+  g_newMapManager: {fileID: 0}
+  g_pauseMenu: {fileID: 0}
   g_b_playerTurn: 0
   g_b_enemyTurn: 0
   g_nullStar: {fileID: 826952977}
@@ -4775,15 +4843,19 @@ MonoBehaviour:
   g_ls_completedLineRendererList: []
   g_ls_p_playerDeck: 
   g_ls_p_playerGrave: 
-  g_ls_p_playerHand: []
   g_ls_starPopup: []
   g_ls_cardBallPrefabs: []
   g_ls_activeEnemies: []
+  g_ls_nodeStarList: []
   g_e_enemyPosition1: {fileID: 0}
   g_e_enemyPosition2: {fileID: 0}
   g_e_enemyPosition3: {fileID: 0}
   g_c_b_firstCard: 1
+  g_cardHolder: {fileID: 0}
   g_a_audioPlayer: {fileID: 0}
+  g_tutorialCanvas: {fileID: 0}
+  g_b_tutorialCanvasState: 0
+  g_cam: {fileID: 0}
 --- !u!4 &499243151
 Transform:
   m_ObjectHideFlags: 0
@@ -10197,7 +10269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1043160447
 Transform:
   m_ObjectHideFlags: 0
@@ -10832,9 +10904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c48b94fbe71e145a85e5ba2f55ab7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_v3_initialPosition: {x: 0, y: 0, z: 0}
-  c_cardTransform: {fileID: 1067747213}
-  cd_cardData: {fileID: 0}
+  crd_v3_initialPosition: {x: 0, y: 0, z: 0}
+  crd_cardTransform: {fileID: 0}
+  crd_cardData: {fileID: 0}
 --- !u!114 &1067747220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10847,16 +10919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e02c5ea594b047bf71e06907b0404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_card: {fileID: 1067747221}
-  c_BoxCollider2D: {fileID: 1067747217}
-  c_headerTextObject: {fileID: 996648348}
-  c_bodyTextObject: {fileID: 104739659}
-  c_energyCostTextObject: {fileID: 1023224804}
-  c_flavorTextObject: {fileID: 754368607}
-  c_tx_headerText: {fileID: 996648350}
-  c_tx_bodyText: {fileID: 104739661}
-  c_tx_energyCostText: {fileID: 1023224806}
-  c_tx_flavorText: {fileID: 754368609}
 --- !u!114 &1067747221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10869,76 +10931,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bc18ff36d4d43dd81c111fd6da2da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_cardTemplate: {fileID: 11400000, guid: b903e30478fda2d48b9b75050134f311, type: 2}
-  c_a_cardBackgroundArtAsset: {fileID: 0}
-  c_a_cardArtAsset: {fileID: 0}
-  c_a_cardForegroundArtAsset: {fileID: 0}
-  c_i_cardDataBaseIndex: 0
-  c_str_cardName: Bludgeon
-  c_str_headerText: Bludgeon
-  c_str_bodyText: Deal 5 damage.
-  c_str_flavorText: 
-  c_i_damageValue: 0
-  c_i_shieldValue: 0
-  c_i_energyCost: 9
-  c_i_effectValue1: 0
-  c_i_effectValue2: 0
-  c_i_effectValue3: 0
-  c_f_bleedDamagePercentage: 0
-  c_str_statusEffectID1: 
-  c_str_statusEffectID2: 
-  c_str_statusEffectID3: 
-  c_i_turnCount1: 0
-  c_i_turnCount2: 0
-  c_i_turnCount3: 0
-  c_f_cardRarity: 1
-  c_b_redColorType: 0
-  c_b_blueColorType: 0
-  c_b_yellowColorType: 0
-  c_b_whiteColorType: 1
-  c_str_color: white
-  c_b_affectsNone: 0
-  c_b_affectsPlayer: 0
-  c_b_affectsOne: 1
-  c_b_affectsAllEnemies: 0
-  c_b_affectsAllCharacters: 0
-  c_b_playerEffect: 0
-  c_b_enemyEffect: 0
-  c_b_attackMainEffect: 1
-  c_b_shieldMainEffect: 0
-  c_b_uniqueMainEffect: 0
-  c_b_noEffect: 1
-  c_b_bleedStatusEffect: 0
-  c_b_stunStatusEffect: 0
-  c_b_acidStatusEffect: 0
-  c_b_resistStatusEffect: 0
-  c_b_burnStatusEffect: 0
-  c_b_drawStatusEffect: 0
-  c_b_siphonStatusEffect: 0
-  c_b_fralitizeStatusEffect: 0
-  c_b_manipulateStatusEffect: 0
-  c_b_thornsStatusEffect: 0
-  c_f_damagePercentage: 0
-  c_f_turnCount: 0
-  c_tx_header: {fileID: 996648350}
-  c_tx_body: {fileID: 104739661}
-  c_tx_flavor: {fileID: 754368609}
-  c_tx_energyCost: {fileID: 1023224806}
-  e_cd_grabbedEnemy: {fileID: 0}
-  c_a_redBackground: {fileID: 0}
-  c_a_blueBackground: {fileID: 0}
-  c_a_yellowBackground: {fileID: 0}
-  c_a_whiteBackground: {fileID: 0}
-  c_a_redForeground: {fileID: 0}
-  c_a_blueForeground: {fileID: 0}
-  c_a_yellowForeground: {fileID: 0}
-  c_a_whiteForeground: {fileID: 0}
-  c_b_shieldSoundEffect: 0
-  c_b_attackSoundEffect: 0
-  cd_b_resetPositionFlag: 0
-  c_v3_CardPosition: {x: 0, y: 0, z: 0}
-  c_v3_initialCardPosition: {x: 0, y: 0, z: 0}
-  c_b_cardIsDragged: 0
+  crd_cardTemplate: {fileID: 0}
+  crd_a_cardBackgroundArtAsset: {fileID: 0}
+  crd_i_cardDataBaseIndex: 0
+  crd_str_cardName: 
+  crd_str_headerText: 
+  crd_str_bodyText: 
+  crd_str_flavorText: 
+  crd_i_damageValue: 0
+  crd_i_shieldValue: 0
+  crd_i_energyCost: 0
+  crd_i_effectValue1: 0
+  crd_i_effectValue2: 0
+  crd_i_effectValue3: 0
+  crd_f_resistantValue: 0
+  crd_f_fralitizeValue: 0
+  crd_str_statusEffectID1: 
+  crd_str_statusEffectID2: 
+  crd_str_statusEffectID3: 
+  crd_b_commonTier: 0
+  crd_b_uncommonTier: 0
+  crd_b_rareTier: 0
+  crd_b_veryRareTier: 0
+  crd_b_legendaryTier: 0
+  crd_b_redColorType: 0
+  crd_b_blueColorType: 0
+  crd_b_yellowColorType: 0
+  crd_b_whiteColorType: 0
+  crd_str_color: 
+  crd_b_affectsNone: 0
+  crd_b_affectsPlayer: 0
+  crd_b_affectsOne: 0
+  crd_b_affectsAllEnemies: 0
+  crd_b_affectsAllCharacters: 0
+  crd_b_playerEffect: 0
+  crd_b_enemyEffect: 0
+  crd_b_attackMainEffect: 0
+  crd_b_shieldMainEffect: 0
+  crd_b_uniqueMainEffect: 0
+  crd_b_noEffect: 0
+  crd_b_acidStatusEffect: 0
+  crd_b_bleedStatusEffect: 0
+  crd_b_frailtyStatusEffect: 0
+  crd_b_stunnedStatusEffect: 0
+  crd_b_resistantStatusEffect: 0
+  crd_f_damagePercentage: 0
+  crd_f_turnCount: 0
+  crd_tx_header: {fileID: 0}
+  crd_tx_body: {fileID: 0}
+  crd_tx_flavor: {fileID: 0}
+  crd_tx_energyCost: {fileID: 0}
+  crd_e_grabbedEnemy: {fileID: 0}
+  crd_a_redBackgroundAttack: {fileID: 0}
+  crd_a_blueBackgroundAttack: {fileID: 0}
+  crd_a_yellowBackgroundAttack: {fileID: 0}
+  crd_a_whiteBackgroundAttack: {fileID: 0}
+  crd_a_redBackgroundShield: {fileID: 0}
+  crd_a_blueBackgroundShield: {fileID: 0}
+  crd_a_yellowBackgroundShield: {fileID: 0}
+  crd_a_whiteBackgroundShield: {fileID: 0}
+  crd_b_shieldSoundEffect: 0
+  crd_b_attackSoundEffect: 0
+  crd_b_resetPositionFlag: 0
+  crd_v3_cardPosition: {x: 0, y: 0, z: 0}
+  crd_v3_initialCardPosition: {x: 0, y: 0, z: 0}
+  crd_cardHolder: {fileID: 0}
+  crd_b_cardIsDragged: 0
+  crd_b_presentInStockpile: 0
+  crd_i_stockpileIndex: 0
 --- !u!1001 &1069473940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12438,11 +12498,11 @@ MonoBehaviour:
   e_str_enemy3Action: 
   e_str_enemy4Action: 
   e_str_enemy5Action: 
-  str_enemy1Type: 
-  str_enemy2Type: 
-  str_enemy3Type: 
-  str_enemy4Type: 
-  str_enemy5Type: 
+  e_str_enemy1Type: 
+  e_str_enemy2Type: 
+  e_str_enemy3Type: 
+  e_str_enemy4Type: 
+  e_str_enemy5Type: 
   e_b_enemy1Dead: 0
   e_b_enemy2Dead: 0
   e_b_enemy3Dead: 0
@@ -12453,6 +12513,11 @@ MonoBehaviour:
   e_b_enemy3Turn: 0
   e_b_enemy4Turn: 0
   e_b_enemy5Turn: 0
+  e_b_enemy1TurnSkipped: 0
+  e_b_enemy2TurnSkipped: 0
+  e_b_enemy3TurnSkipped: 0
+  e_b_enemy4TurnSkipped: 0
+  e_b_enemy5TurnSkipped: 0
   e_b_enemy1Shielding: 0
   e_b_enemy2Shielding: 0
   e_b_enemy3Shielding: 0
@@ -12468,56 +12533,73 @@ MonoBehaviour:
   e_b_enemy3SpecialAbility: 0
   e_b_enemy4SpecialAbility: 0
   e_b_enemy5SpecialAbility: 0
-  e_i_bleedingTurnCountEnemy1: 0
-  e_i_stunnedTurnCountEnemy1: 0
-  e_i_resistantTurnCountEnemy1: 0
-  e_i_bleedingTurnCountEnemy2: 0
-  e_i_stunnedTurnCountEnemy2: 0
-  e_i_resistantTurnCountEnemy2: 0
-  e_i_bleedingTurnCountEnemy3: 0
-  e_i_stunnedTurnCountEnemy3: 0
-  e_i_resistantTurnCountEnemy3: 0
-  e_i_bleedingTurnCountEnemy4: 0
-  e_i_stunnedTurnCountEnemy4: 0
-  e_i_resistantTurnCountEnemy4: 0
-  e_i_bleedingTurnCountEnemy5: 0
-  e_i_stunnedTurnCountEnemy5: 0
-  e_i_resistantTurnCountEnemy5: 0
-  e_b_inBleedingStateEnemy1: 0
-  e_b_inStunnedStateEnemy1: 0
+  e_i_acidStackCountEnemy1: 0
+  e_i_bleedStackCountEnemy1: 0
+  e_i_frailtyStackCountEnemy1: 0
+  e_i_stunStackCountEnemy1: 0
+  e_i_resistantStackCountEnemy1: 0
+  e_i_acidStackCountEnemy2: 0
+  e_i_bleedStackCountEnemy2: 0
+  e_i_frailtyStackCountEnemy2: 0
+  e_i_stunStackCountEnemy2: 0
+  e_i_resistantStackCountEnemy2: 0
+  e_i_acidStackCountEnemy3: 0
+  e_i_bleedStackCountEnemy3: 0
+  e_i_frailtyStackCountEnemy3: 0
+  e_i_stunStackCountEnemy3: 0
+  e_i_resistantStackCountEnemy3: 0
+  e_i_acidStackCountEnemy4: 0
+  e_i_bleedStackCountEnemy4: 0
+  e_i_frailtyStackCountEnemy4: 0
+  e_i_stunStackCountEnemy4: 0
+  e_i_resistantStackCountEnemy4: 0
+  e_i_acidStackCountEnemy5: 0
+  e_i_bleedStackCountEnemy5: 0
+  e_i_frailtyStackCountEnemy5: 0
+  e_i_stunStackCountEnemy5: 0
+  e_i_resistantStackCountEnemy5: 0
+  e_i_frailtyStackRemainderEnemy1: 0
+  e_i_resistantStackRemainderEnemy1: 0
+  e_i_frailtyStackRemainderEnemy2: 0
+  e_i_resistantStackRemainderEnemy2: 0
+  e_i_frailtyStackRemainderEnemy3: 0
+  e_i_resistantStackRemainderEnemy3: 0
+  e_i_frailtyStackRemainderEnemy4: 0
+  e_i_resistantStackRemainderEnemy4: 0
+  e_i_frailtyStackRemainderEnemy5: 0
+  e_i_resistantStackRemainderEnemy5: 0
+  e_b_inAcidicStateEnemy1: 0
+  e_b_inBleedStateEnemy1: 0
+  e_b_inFralitizedStateEnemy1: 0
+  e_b_inStunStateEnemy1: 0
   e_b_inResistantStateEnemy1: 0
-  e_b_inBleedingStateEnemy2: 0
-  e_b_inStunnedStateEnemy2: 0
+  e_b_inAcidicStateEnemy2: 0
+  e_b_inBleedStateEnemy2: 0
+  e_b_inFralitizedStateEnemy2: 0
+  e_b_inStunStateEnemy2: 0
   e_b_inResistantStateEnemy2: 0
-  e_b_inBleedingStateEnemy3: 0
-  e_b_inStunnedStateEnemy3: 0
+  e_b_inAcidicStateEnemy3: 0
+  e_b_inBleedStateEnemy3: 0
+  e_b_inFralitizedStateEnemy3: 0
+  e_b_inStunStateEnemy3: 0
   e_b_inResistantStateEnemy3: 0
-  e_b_inBleedingStateEnemy4: 0
-  e_b_inStunnedStateEnemy4: 0
+  e_b_inAcidicStateEnemy4: 0
+  e_b_inBleedStateEnemy4: 0
+  e_b_inFralitizedStateEnemy4: 0
+  e_b_inStunStateEnemy4: 0
   e_b_inResistantStateEnemy4: 0
-  e_b_inBleedingStateEnemy5: 0
-  e_b_inStunnedStateEnemy5: 0
+  e_b_inAcidicStateEnemy5: 0
+  e_b_inBleedStateEnemy5: 0
+  e_b_inFralitizedStateEnemy5: 0
+  e_b_inStunStateEnemy5: 0
   e_b_inResistantStateEnemy5: 0
-  e_f_currentDamageRateForBleedEnemy1: 0
-  e_f_currentDamageRateForBleedEnemy2: 0
-  e_f_currentDamageRateForBleedEnemy3: 0
-  e_f_currentDamageRateForBleedEnemy4: 0
-  e_f_currentDamageRateForBleedEnemy5: 0
-  e_i_enemy1StunTurnsPassed: 0
-  e_i_enemy2StunTurnsPassed: 0
-  e_i_enemy3StunTurnsPassed: 0
-  e_i_enemy4StunTurnsPassed: 0
-  e_i_enemy5StunTurnsPassed: 0
-  e_i_enemy1ResistantTurnsPassed: 0
-  e_i_enemy2ResistantTurnsPassed: 0
-  e_i_enemy3ResistantTurnsPassed: 0
-  e_i_enemy4ResistantTurnsPassed: 0
-  e_i_enemy5ResistantTurnsPassed: 0
   e_b_enemy1IsActive: 0
   e_b_enemy2IsActive: 0
   e_b_enemy3IsActive: 0
   e_b_enemy4IsActive: 0
   e_b_enemy5IsActive: 0
+  e_i_magicianAbilityValue: 0
+  e_b_magicianAbilityBool: 0
 --- !u!114 &1269889774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12530,17 +12612,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6049ad7ffad6d4884272473da8e258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_i_bleedingTurnCount: 0
-  p_i_stunnedTurnCount: 0
-  p_i_resistantTurnCount: 0
+  p_i_acidicStackCount: 0
+  p_i_bleedingStackCount: 0
+  p_i_frailtyStackCount: 0
+  p_i_resistantStackCount: 0
+  p_b_inAcidicState: 0
   p_b_inBleedingState: 0
-  p_b_inStunnedState: 0
+  p_b_inFrailState: 0
   p_b_inResistantState: 0
   p_playerWinMusic: {fileID: 0}
   p_playerLoseMusic: {fileID: 0}
-  p_i_turnsPassedForStun: 0
-  p_i_turnsPassedForResistant: 0
-  p_f_currentDamageRateForBleed: 0
+  p_i_playerResistantStackRemainder: 0
+  p_i_playerFrailtyStackRemainder: 0
 --- !u!114 &1269889775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12555,13 +12638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p_b_playerInitialTurn: 1
   e_b_enemyInitialTurn: 0
-  p_b_playerTurnSkipped: 0
-  e_b_enemy1TurnSkipped: 0
-  e_b_enemy2TurnSkipped: 0
-  e_b_enemy3TurnSkipped: 0
-  e_b_enemy4TurnSkipped: 0
-  e_b_enemy5TurnSkipped: 0
   e_b_enemyIsActive: 0
+  cam: {fileID: 0}
 --- !u!1001 &1285050335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12835,21 +12913,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c950e953d198f4645bb64d4c68938eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_makingConstellation: 0
+  ls_clickedStars: []
   ls_curConstellation: []
   str_curColor: 
+  b_curStarSpawnedPopupsAlready: 0
   b_starLockout: 0
   s_previousStar: {fileID: 0}
   v2_prevLoc: {x: 0, y: 0}
   f_timer: 1
   s_nullStarInst: {fileID: 0}
+  s_nodeStarReference: {fileID: 0}
   i_minSize: 3
   i_maxSize: 7
   i_energyCount: 0
   s_b_popupMove: 0
+  s_nodeStarPrefab: {fileID: 0}
   _starSoundPhase1: {fileID: 0}
   _starSoundPhase2: {fileID: 0}
   c_cardballsSpawned: 0
   i_starSound: 0
+  b_nodeStarChosen: 0
+  s_energyStarPrefab: {fileID: 0}
 --- !u!1001 &1336605811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13611,7 +13696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acf4195bdb074eb9bdeb4dff9ebd95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 0}
 --- !u!1 &1461354531
 GameObject:
   m_ObjectHideFlags: 0
@@ -18687,6 +18771,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8539178483310768944, guid: 26b57fe856530a046bd14ddc2f977b6b, type: 3}
   m_PrefabInstance: {fileID: 2117583799}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2123936476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6111685431998996936, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_Name
+      value: RewardObject-E1A
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3401563
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.063153595
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111685431998996939, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79962e97460f4cc4fb0882270e5a53de, type: 3}
 --- !u!1 &2134934250
 GameObject:
   m_ObjectHideFlags: 0

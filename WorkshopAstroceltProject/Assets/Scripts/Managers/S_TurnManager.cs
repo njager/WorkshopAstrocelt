@@ -119,6 +119,9 @@ public class S_TurnManager : MonoBehaviour
         //reset the magician abilities
         g_global.g_enemyState.ResetMagicianAbility();
 
+        //reset stars
+        g_global.g_ConstellationManager.ResetAllClickedStars();
+
         // Line removal
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
