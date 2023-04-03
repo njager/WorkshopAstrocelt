@@ -127,15 +127,6 @@ public class S_ConstellationLine : MonoBehaviour
                 //change the var for line wait
                 b_isColliding = true;
             }
-            else
-            {
-                if (!b_starAdded)
-                {
-                    //make the line wait to go to the constellation manager too delete itself
-                    StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar, this));
-                    b_starAdded = true;
-                }
-            }
         }
     }
 
@@ -205,6 +196,13 @@ public class S_ConstellationLine : MonoBehaviour
             //change the color to normal
             m_lineRendererInst.startColor = cl_correctLineColor;
             m_lineRendererInst.endColor = cl_correctLineColor;
+
+            if (!b_starAdded)
+            {
+                //make the line wait to go to the constellation manager too delete itself
+                StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar, this));
+                b_starAdded = true;
+            }
         }
     }
 
