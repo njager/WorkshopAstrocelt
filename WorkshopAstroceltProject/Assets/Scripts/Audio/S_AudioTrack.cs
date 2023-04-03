@@ -30,11 +30,15 @@ public class S_AudioTrack : MonoBehaviour
     void Start()
     {
         g_global = S_Global.Instance;
-        changeVolume();
+        
     }
 
     void Update()
     {
+
+        //Debug.Log(g_global.g_pauseMenu.musicVolume);
+        changeVolume();
+
         f_timeInScene += Time.deltaTime;
 
         i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
@@ -75,6 +79,16 @@ public class S_AudioTrack : MonoBehaviour
         //vol = g_global.g_pauseMenu.musicVolume;
         var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
-        
+        //emitter.SetParameter("SFX_Volume", g_global.g_pauseMenu.sfxVolume);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFX_Volume", g_global.g_pauseMenu.sfxVolume);
+        //Debug.Log(g_global.g_pauseMenu.sfxVolume);
+
+        /*musicEvent = target.GetComponent<FMODUnity.StudioEventEmitter>();
+        FMOD.Studio.ParameterInstance myParameter;
+        myParameter = musicEvent.GetParameter(“War”);
+
+        myParameter.getValue(out float);
+        myParameter.setValue(float);*/
+
     }
 }
