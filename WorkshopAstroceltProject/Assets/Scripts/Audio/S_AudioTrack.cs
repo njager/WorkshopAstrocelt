@@ -81,6 +81,14 @@ public class S_AudioTrack : MonoBehaviour
         emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
         //emitter.SetParameter("SFX_Volume", g_global.g_pauseMenu.sfxVolume);
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFX_Volume", g_global.g_pauseMenu.sfxVolume);
+        //Debug.Log(g_global.g_pauseMenu.sfxVolume);
+
+        /*musicEvent = target.GetComponent<FMODUnity.StudioEventEmitter>();
+        FMOD.Studio.ParameterInstance myParameter;
+        myParameter = musicEvent.GetParameter(“War”);
+
+        myParameter.getValue(out float);
+        myParameter.setValue(float);*/
 
     }
 }

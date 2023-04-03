@@ -3825,10 +3825,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   g_global: {fileID: 0}
   pe_enemyAttacksPlayer: {fileID: 0}
-  pe_playerAttacksEnemy: {fileID: 0}
   pe_playerShields: {fileID: 0}
   pe_enemyShields: {fileID: 0}
-  pe_enemySpecialGeneral: {fileID: 0}
   pe_redCardSpawn: {fileID: 7415764323585887227}
   pe_blueCardSpawn: {fileID: 4856195298827463597}
   pe_yellowCardSpawn: {fileID: 1953000200930135827}
@@ -3839,6 +3837,10 @@ MonoBehaviour:
   pe_endTurnClicked: {fileID: 0}
   pe_starConnected: {fileID: 0}
   pe_constellationCompleted: {fileID: 0}
+  pe_mapPanButton: {fileID: 0}
+  pe_rewardHover: {fileID: 0}
+  pe_rewardTae: {fileID: 0}
+  pe_nodeStarPlace: {fileID: 0}
   ls_downCamUI:
   - {fileID: 0}
   - {fileID: 8123688280431264325}
@@ -4074,6 +4076,7 @@ MonoBehaviour:
   c_cardballsSpawned: 0
   i_starSound: 0
   b_nodeStarChosen: 0
+  s_energyStarPrefab: {fileID: 0}
 --- !u!1 &8047176380236070987
 GameObject:
   m_ObjectHideFlags: 0
@@ -4732,7 +4735,6 @@ MonoBehaviour:
   g_gameManager: {fileID: 0}
   g_turnManager: {fileID: 8047176380236070991}
   g_player: {fileID: 0}
-  g_mapManager: {fileID: 0}
   g_DrawingManager: {fileID: 8047176379390002570}
   g_ConstellationManager: {fileID: 8047176380155750544}
   g_UIManager: {fileID: 8047176380998857111}
@@ -5015,6 +5017,8 @@ MonoBehaviour:
   activeMap: {fileID: 7101165620171779024}
   mp_i_previousMapNum: 0
   asteroids: {fileID: 40220117276276143, guid: f618fa807f00d8040afddbebed6e167b, type: 3}
+  AstList_g: []
+  ran_once: 0
 --- !u!1 &8145514955610188644
 GameObject:
   m_ObjectHideFlags: 0
@@ -7441,46 +7445,6 @@ PrefabInstance:
       propertyPath: encounter3
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[10]
-      value: 
-      objectReference: {fileID: 11400000, guid: f7aa0b97da572d343a04494468ae6737, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[11]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0dd20d3a5df258040b3b8b5616871312, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[12]
-      value: 
-      objectReference: {fileID: 11400000, guid: e50e3e6a2f951da4cb3cabbdf71ef886, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[13]
-      value: 
-      objectReference: {fileID: 11400000, guid: a3c2051b9321d7b44a07afc53f634d27, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[14]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9b22e28eb15f0b740ae4ebdbe48c0238, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[15]
-      value: 
-      objectReference: {fileID: 11400000, guid: e79be142c97e8b14fac1b699fd868878, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[16]
-      value: 
-      objectReference: {fileID: 11400000, guid: 081e73491cf9fc64a8f8b5ef75e58a49, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[17]
-      value: 
-      objectReference: {fileID: 11400000, guid: 6070a87f5ef206641accc2b05520b372, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[18]
-      value: 
-      objectReference: {fileID: 11400000, guid: 7d2657ea392abe843beafcf0db49e585, type: 2}
-    - target: {fileID: 152267100547761412, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
-      propertyPath: cardList.Array.data[19]
-      value: 
-      objectReference: {fileID: 11400000, guid: 48b109582d012814fbfda2dd7d1cbb99, type: 2}
     - target: {fileID: 152267100547761434, guid: 20644fef07b651d4db70361b81e395e9, type: 3}
       propertyPath: m_Name
       value: CardDatabaseManager
