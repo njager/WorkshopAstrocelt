@@ -260,6 +260,9 @@ public class S_ConstelationManager : MonoBehaviour
             _starScript.m_previousLine = null;
             _starScript.m_nextLine = null;
 
+            //clear the popup list 
+            _star.ls_energyPopups.Clear();
+
             if (_star.starType == "Ritual")
             {
                 //get the ritual star component
@@ -267,6 +270,8 @@ public class S_ConstelationManager : MonoBehaviour
 
                 _rStar.SetClickableStarBool(false);
                 _rStar.b_hasBeenClicked = false;
+
+                
             }
             else if (_star.starType == "Energy")
             {
@@ -275,8 +280,26 @@ public class S_ConstelationManager : MonoBehaviour
 
                 _eStar.SetClickableStarBool(false);
                 _eStar.b_hasBeenClicked = false;
+
+                if (_eStar.s_b_redColor)
+                {
+                    //turnoff anim
+                    _eStar.s_redEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_eStar.s_b_yellowColor)
+                {
+                    //turnoff anim
+                    _eStar.s_yellowEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
+                else if (_eStar.s_b_blueColor)
+                {
+                    //turnoff anim
+                    _eStar.s_blueEnergyStarGraphic.GetComponent<Animator>().enabled = false;
+                }
             }
         }
+
+        ls_clickedStars.Clear();
     }
 
     /// <summary>

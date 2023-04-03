@@ -42,7 +42,7 @@ public class S_PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(sfxVolume);
+        //Debug.Log(sfxVolume);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
