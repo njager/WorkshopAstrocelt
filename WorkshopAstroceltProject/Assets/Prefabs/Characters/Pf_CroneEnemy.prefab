@@ -143,9 +143,9 @@ GameObject:
   - component: {fileID: 7146673426725338950}
   - component: {fileID: 1136025496327925211}
   - component: {fileID: 5440388293588325588}
+  - component: {fileID: 1048932427662091674}
   - component: {fileID: 6009168374077817207}
   - component: {fileID: 5402993851716691086}
-  - component: {fileID: 1048932427662091674}
   m_Layer: 0
   m_Name: Pf_CroneEnemy
   m_TagString: Enemy
@@ -256,6 +256,21 @@ MonoBehaviour:
   e_pe_enemyShieldBreak: {fileID: 7527380989045351559}
   e_a_AttackAnimator: {fileID: 0}
   e_a_DamagedAnimator: {fileID: 0}
+--- !u!114 &1048932427662091674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681320326654544049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  e_attachedEnemy: {fileID: 1136025496327925211}
+  p_b_attachedToPlayer: 0
+  e_b_attachedToEnemy: 0
 --- !u!70 &6009168374077817207
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -293,21 +308,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &1048932427662091674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681320326654544049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ab5f186b62db64d91a15bb33e614a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  e_attachedEnemy: {fileID: 1136025496327925211}
-  p_b_attachedToPlayer: 0
-  e_b_attachedToEnemy: 0
 --- !u!1 &2191158900449752165
 GameObject:
   m_ObjectHideFlags: 0

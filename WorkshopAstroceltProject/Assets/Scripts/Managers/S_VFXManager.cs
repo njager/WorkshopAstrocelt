@@ -13,17 +13,11 @@ public class S_VFXManager : MonoBehaviour
     [Header("Enemy Hurts Player")]
     [SerializeField] ParticleSystem pe_enemyAttacksPlayer;
 
-    [Header("Player Hurts Enemy")]
-    [SerializeField] ParticleSystem pe_playerAttacksEnemy;
-
     [Header("Player Shields")]
     [SerializeField] ParticleSystem pe_playerShields;
 
     [Header("Enemy Shields")]
     [SerializeField] ParticleSystem pe_enemyShields;
-
-    [Header("Enemy Special - General")]
-    [SerializeField] ParticleSystem pe_enemySpecialGeneral;
 
     [Header("Red Card Spawn")]
     [SerializeField] ParticleSystem pe_redCardSpawn;
@@ -54,6 +48,16 @@ public class S_VFXManager : MonoBehaviour
 
     [Header("Constellation Completed")]
     [SerializeField] ParticleSystem pe_constellationCompleted;
+
+    [Header("Map Pan")]
+    [SerializeField] ParticleSystem pe_mapPanButton;
+
+    [Header("Reward")]
+    [SerializeField] ParticleSystem pe_rewardHover;
+    [SerializeField] ParticleSystem pe_rewardTae;
+
+    [Header("Node Star")]
+    [SerializeField] ParticleSystem pe_nodeStarPlace;
 
     [Header("Ui for down camera")]
     public List<GameObject> ls_downCamUI;
@@ -245,6 +249,9 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
+        //turn off map pan
+        pe_mapPanButton.Stop();
+
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
             && g_global.g_cardHolder.transform.childCount <= 0)
@@ -258,6 +265,7 @@ public class S_VFXManager : MonoBehaviour
 
                     //Pan the camera down
                     g_global.g_cam.transform.DOMove(g_global.g_cam.transform.position + Vector3.up * -12, 1f);
+                    
 
                     //turn off up ui
                     foreach (GameObject ui in ls_upCamUI)
@@ -406,18 +414,6 @@ public class S_VFXManager : MonoBehaviour
     public ParticleSystem EnemyShieldsParticle()
     {
         return pe_enemyShields;
-    }
-
-    /// <summary>
-    /// Return the ParticleSystem of S_VFXManager.a_enemySpecialGeneral
-    /// - Josh
-    /// </summary>
-    /// <returns>
-    /// S_VFXManager.a_enemySpecialGeneral
-    /// </returns>
-    public ParticleSystem GeneralEnemySpecialParticle()
-    {
-        return pe_enemySpecialGeneral;
     }
 
     /// <summary>

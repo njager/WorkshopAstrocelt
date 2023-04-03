@@ -61,6 +61,9 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Bool for Nodestar Placement")]
     public bool b_nodeStarChosen = false;
 
+    [Header("Energy Star Prefab")]
+    public GameObject s_energyStarPrefab;
+
     private void Awake()
     {
         //fetch global, get set previous as null, and start with star lockout
@@ -80,9 +83,12 @@ public class S_ConstelationManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star, S_ConstellationLine _line)
     {
-        //Debug.Log("does this work");
+        Debug.Log("does this work");
 
         //wait for checking stars
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
         if (!_star.s_star.m_previousLine) { Debug.Log("line is gone so no star added"); yield return null; }
@@ -442,11 +448,26 @@ public class S_ConstelationManager : MonoBehaviour
     {
         GameObject _newNodeStar = Instantiate(s_nodeStarPrefab);
         _newNodeStar.transform.position = _oldStar.transform.position;
+        _newNodeStar.transform.parent = g_global.g_newMapManager.activeMap.transform;
         //g_global.g_newMapManager.activeMapList.Remove(_oldStar.GetComponent<S_StarClass>());
         Destroy(_oldStar); //this will remove it from the map 
         b_nodeStarChosen = true;
 
         s_nodeStarReference = _newNodeStar.GetComponent<S_StarClass>();
+    }
+
+
+
+    public void ReplaceNodeStar(GameObject _oldStar)
+    {
+        GameObject _newEnergyStar = Instantiate(s_energyStarPrefab);
+        _newEnergyStar.transform.position = _oldStar.transform.position;
+        _newEnergyStar.transform.parent = g_global.g_newMapManager.activeMap.transform;
+        //g_global.g_newMapManager.activeMapList.Remove(_oldStar.GetComponent<S_StarClass>());
+
+        s_nodeStarReference = null;
+
+        Destroy(_oldStar); //this will remove it from the map 
     }
 
     /// <summary>
