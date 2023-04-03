@@ -249,8 +249,18 @@ public class S_MapManager : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = .1f;
                 clusters[i][j].GetComponent<CircleCollider2D>().enabled = true;
+                
 
             }
+        }
+        List<Transform> sidesList = new List<Transform>();
+        foreach (Transform side in Sides.GetComponent<Transform>())
+        {
+            sidesList.Add(side);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            sidesList[i].GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -361,7 +371,8 @@ public class S_MapManager : MonoBehaviour
                 clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 0f;
                 clusters[i][j].GetComponent<CircleCollider2D>().enabled = false;
                
-                
+
+
 
             }
         }
@@ -398,6 +409,8 @@ public class S_MapManager : MonoBehaviour
             ast.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
+
+
 
     
 
