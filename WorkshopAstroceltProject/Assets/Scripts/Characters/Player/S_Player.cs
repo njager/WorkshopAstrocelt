@@ -118,6 +118,9 @@ public class S_Player : MonoBehaviour
                     p_sc_playerAttributes.GetPlayerShieldAttackedParticle().Play();
 
                     Debug.Log("Player didn't have enough shields!");
+
+                    //trigger a coroutine to change sprite and go back
+                    //StartCoroutine(ChangeDamageSprite());
                 }
                 else
                 {
