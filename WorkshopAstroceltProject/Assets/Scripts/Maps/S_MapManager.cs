@@ -253,6 +253,15 @@ public class S_MapManager : MonoBehaviour
 
             }
         }
+        List<Transform> sidesList = new List<Transform>();
+        foreach (Transform side in Sides.GetComponent<Transform>())
+        {
+            sidesList.Add(side);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            sidesList[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 
     /// <summary>
