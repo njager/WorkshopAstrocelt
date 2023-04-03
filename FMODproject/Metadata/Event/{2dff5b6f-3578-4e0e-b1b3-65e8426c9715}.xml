@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{2dff5b6f-3578-4e0e-b1b3-65e8426c9715}">
 		<property name="name">
-			<value>EnemyHurt-groan</value>
+			<value>enemy-death-clur-bod</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>
@@ -31,6 +31,9 @@
 		<relationship name="timeline">
 			<destination>{900f7295-2138-4f33-9798-1c0b36c68807}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{1e6bf6ce-e8ae-492f-8c9e-09731b86e231}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{2c7c72a3-6d95-4278-b973-f609f018e736}">
 		<relationship name="masterBus">
@@ -43,6 +46,9 @@
 		</relationship>
 	</object>
 	<object class="MixerInput" id="{af02d75a-6051-4f39-a351-626007f012c8}">
+		<relationship name="masters">
+			<destination>{d97b5985-bc4b-449b-8475-c07a516c5f7a}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{ce8a5c65-df25-4c8b-a262-b3c2b808ad55}</destination>
 		</relationship>
@@ -89,6 +95,9 @@
 		<property name="length">
 			<value>0.79566893424036278</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{be806d15-2f72-4757-8c08-5e42edfee3f9}</destination>
+		</relationship>
 		<relationship name="sounds">
 			<destination>{cc6f8297-b128-4bbc-a670-23f73bd335ae}</destination>
 			<destination>{ff216665-aff4-4aea-9ec8-5b791d2e7804}</destination>
@@ -115,6 +124,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{7610a1e3-ed2c-49a4-9f76-cbf910b32188}" />
 	<object class="MixerBusFader" id="{ceba434c-c51b-4177-a3de-39251e9b7963}" />
+	<object class="RandomizerModulator" id="{be806d15-2f72-4757-8c08-5e42edfee3f9}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>4.5</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{cc6f8297-b128-4bbc-a670-23f73bd335ae}">
 		<relationship name="audioFile">
 			<destination>{a2d4b29d-777b-4e1e-8035-f9ffba62a568}</destination>
