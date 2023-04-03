@@ -83,6 +83,8 @@ public class S_TurnManager : MonoBehaviour
                 //clear the energy
                 g_global.g_energyManager.ClearEnergy();
 
+                g_global.g_newMapManager.reset_maps();
+
                 StartCoroutine(EnemyPhase()); //Then change the enemies state
             }
             else
