@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{414c2dff-8614-48d2-b523-a66b0c456446}">
 		<property name="name">
-			<value>EnemyHurt</value>
+			<value>enemy-death-puca-ss</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>
@@ -33,6 +33,9 @@
 		<relationship name="timeline">
 			<destination>{90a751b4-a80f-426f-8006-f0e584b412b3}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{1e6bf6ce-e8ae-492f-8c9e-09731b86e231}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{af9bc0b7-0f28-4cfe-acdf-0d9664f3171f}">
 		<relationship name="masterBus">
@@ -45,6 +48,9 @@
 		</relationship>
 	</object>
 	<object class="MixerInput" id="{9d46b4ba-9e6f-4b9e-8dc3-8e5edc0b7e8f}">
+		<relationship name="masters">
+			<destination>{d97b5985-bc4b-449b-8475-c07a516c5f7a}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{71fdc272-6379-4e99-8515-fbd8a2024045}</destination>
 		</relationship>
