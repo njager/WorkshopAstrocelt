@@ -51,7 +51,6 @@ public class S_VFXManager : MonoBehaviour
 
     [Header("Map Pan")]
     [SerializeField] ParticleSystem pe_mapPanButton;
-    [SerializeField] ParticleSystem pe_mapPanSwitch;
 
     [Header("Reward")]
     [SerializeField] ParticleSystem pe_rewardHover;
@@ -250,7 +249,9 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
-        pe_mapPanSwitch.Play();
+        //turn off map pan
+        pe_mapPanButton.Stop();
+
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
             && g_global.g_cardHolder.transform.childCount <= 0)
