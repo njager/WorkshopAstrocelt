@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5554066982219315847}
   - component: {fileID: 7052261342896429276}
   - component: {fileID: 1510748691716906878}
-  - component: {fileID: -5270920612936123717}
   m_Layer: 0
   m_Name: Pf_RealmWalker
   m_TagString: Enemy
@@ -70,7 +69,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 21300000, guid: 6621791a2bef18b4ea0cc66f01767f85, type: 3}
   defeatedSprite: {fileID: 21300000, guid: fd2beceb32ba8c54599955af46e8c931, type: 3}
   victorySprite: {fileID: 21300000, guid: dab16504a96e44a4daf6d3afe4b95103, type: 3}
-  e_animator: {fileID: -5270920612936123717}
+  e_animator: {fileID: 5226050139302435288}
   e_tx_enemyNameplate: {fileID: 5721133112315511021}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
@@ -199,25 +198,6 @@ MonoBehaviour:
   e_attachedEnemy: {fileID: 0}
   p_b_attachedToPlayer: 0
   e_b_attachedToEnemy: 1
---- !u!95 &-5270920612936123717
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068484044281633941}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b371881f7c2ce624e996fbffa1293818, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2145285783881431140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,6 +1399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47844238f6e26a14caa2b1386eef1504, type: 3}
+--- !u!95 &5226050139302435288 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2838824501381185527, guid: 47844238f6e26a14caa2b1386eef1504, type: 3}
+  m_PrefabInstance: {fileID: 8062339702650349103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5226050139302435270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2838824501381185513, guid: 47844238f6e26a14caa2b1386eef1504, type: 3}
