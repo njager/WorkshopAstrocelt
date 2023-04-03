@@ -30,7 +30,7 @@ public class S_PauseMenu : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
     public float musicVolume;
-    public float sfxVolume;
+    public float sfxVolume = 50f;
 
     private bool p_b_tutIsOn = false;
 
@@ -42,7 +42,8 @@ public class S_PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        Debug.Log(sfxVolume);
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(optionsMenuAssets.activeInHierarchy == false) 
@@ -63,13 +64,18 @@ public class S_PauseMenu : MonoBehaviour
     public void OnValueChanged(float value)
     {
         musicVolume = value;
+        
 
+    }
+    public void SFXValueChanged(float value)
+    {
+        sfxVolume = value;
         
     }
-
+  
     public void Start()
     {
-
+        SFXValueChanged(50f);
 
         //musicSlider.onValueChanged.AddListener((v) => { musicVolume = v; });
         //print(musicVolume);
