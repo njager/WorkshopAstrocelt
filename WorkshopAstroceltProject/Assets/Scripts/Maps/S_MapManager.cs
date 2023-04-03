@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 
 public class S_MapManager : MonoBehaviour
@@ -19,12 +20,16 @@ public class S_MapManager : MonoBehaviour
 
 
     public GameObject activeMap;
+  
 
     [Header("Map that was Choosen")]
     public int mp_i_previousMapNum;
 
 
     public GameObject asteroids;
+    public List<Transform> AstList_g;
+
+    public bool ran_once = false;
     //Will grab chunks here
     private void Awake()
     {
@@ -128,15 +133,29 @@ public class S_MapManager : MonoBehaviour
             }
             count++;
         }
-        RunSpringGen(clusters);
-        List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
-        RunSpringRBConnect(springList, clusters);
-        RemoveLockandGravConstraint(clusters);
-        ConnectToRoof(springList, clusters);
-        ConnectClusters(springList, clusters);
-        List<Transform> AstList = genAsteroids();
-        ast_manip(AstList);
-        StartCoroutine(WaitForGen(clusters, AstList));
+        if(ran_once == false)
+        {
+            RunSpringGen(clusters);
+            List<List<List<SpringJoint2D>>> springList = CreateSpringList(clusters);
+            RunSpringRBConnect(springList, clusters);
+            RemoveLockandGravConstraint(clusters);
+            ConnectToRoof(springList, clusters);
+            ConnectClusters(springList, clusters);
+            List<Transform> AstList = genAsteroids();
+            AstList_g = AstList;
+            ast_manip(AstList);
+            StartCoroutine(WaitForGen(clusters, AstList));
+
+        }
+        else
+        {
+            RemoveLockandGravConstraint(clusters);
+            List<Transform> AstList = genAsteroids();
+            AstList_g = AstList;
+            ast_manip(AstList);
+            StartCoroutine(WaitForGen(clusters, AstList));
+
+        }
 
         //cluster_checker(clusters);
 
@@ -286,6 +305,8 @@ public class S_MapManager : MonoBehaviour
         springList[4][0][7].connectedBody = clusters[6][0].GetComponent<Rigidbody2D>();
         springList[5][0][6].connectedBody = clusters[7][0].GetComponent<Rigidbody2D>();
         springList[6][0][6].connectedBody = clusters[7][1].GetComponent<Rigidbody2D>();
+
+        ran_once = true;
     }
 
     /// <summary>
@@ -339,6 +360,8 @@ public class S_MapManager : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 clusters[i][j].GetComponent<Rigidbody2D>().gravityScale = 0f;
                 clusters[i][j].GetComponent<CircleCollider2D>().enabled = false;
+               
+                
 
             }
         }
@@ -374,5 +397,24 @@ public class S_MapManager : MonoBehaviour
         {
             ast.GetComponent<BoxCollider2D>().enabled = false;
         }
+    }
+
+    
+
+    
+    public void reset_maps()
+    {
+        foreach (Transform ast in AstList_g)
+        {
+            Destroy(ast.gameObject);
+        }
+        if(global.g_ConstellationManager.s_nodeStarReference != null)
+        {
+               global.g_ConstellationManager.ReplaceNodeStar(global.g_ConstellationManager.s_nodeStarReference.gameObject);
+        }
+        
+
+        //PrefabUtility.RevertPrefabInstance(map1);
+        
     }
 }
