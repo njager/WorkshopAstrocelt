@@ -13,11 +13,11 @@ public class S_VFXManager : MonoBehaviour
     [Header("Enemy Hurts Player")]
     [SerializeField] ParticleSystem pe_enemyAttacksPlayer;
 
-    [Header("Enemy Hurts Player")]
-    [SerializeField] ParticleSystem pe_playerShieldsBreak;
-
     [Header("Player Shields")]
     [SerializeField] ParticleSystem pe_playerShields;
+
+    [Header("Enemy Shields")]
+    [SerializeField] ParticleSystem pe_enemyShields;
 
     [Header("Red Card Spawn")]
     [SerializeField] ParticleSystem pe_redCardSpawn;
@@ -51,7 +51,6 @@ public class S_VFXManager : MonoBehaviour
 
     [Header("Map Pan")]
     [SerializeField] ParticleSystem pe_mapPanButton;
-    [SerializeField] ParticleSystem pe_mapPanSwitch;
 
     [Header("Reward")]
     [SerializeField] ParticleSystem pe_rewardHover;
@@ -250,6 +249,9 @@ public class S_VFXManager : MonoBehaviour
     /// </summary>
     public void PanCamera()
     {
+        //turn off map pan
+        pe_mapPanButton.Stop();
+
         if (b_mapPanLockout 
             && g_global.g_altar.GetCardballsSpawnedBool() 
             && g_global.g_cardHolder.transform.childCount <= 0)
@@ -400,6 +402,18 @@ public class S_VFXManager : MonoBehaviour
     public ParticleSystem PlayerShieldsParticle()
     {
         return pe_playerShields;
+    }
+
+    /// <summary>
+    /// Return the ParticleSystem of S_VFXManager.a_enemyShields
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_VFXManager.a_enemyShields
+    /// </returns>
+    public ParticleSystem EnemyShieldsParticle()
+    {
+        return pe_enemyShields;
     }
 
     /// <summary>

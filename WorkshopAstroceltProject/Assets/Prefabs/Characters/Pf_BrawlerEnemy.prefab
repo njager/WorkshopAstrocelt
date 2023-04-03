@@ -69,6 +69,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 21300000, guid: 7fdcd9864801a4740ab2ad7aab4f63e1, type: 3}
   defeatedSprite: {fileID: 21300000, guid: fbc1c58ad0a58834cb39cec395aaf894, type: 3}
   victorySprite: {fileID: 21300000, guid: 4c308d999c6292947ad77510719b5cb6, type: 3}
+  e_animator: {fileID: 4943775219317411907}
   e_tx_enemyNameplate: {fileID: 2981946376682365258}
 --- !u!114 &1068484044281633899
 MonoBehaviour:
@@ -1106,6 +1107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8aa8343587ac9241a5cf1828211ceb7, type: 3}
+--- !u!95 &4943775219317411907 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5509854089639134266, guid: d8aa8343587ac9241a5cf1828211ceb7, type: 3}
+  m_PrefabInstance: {fileID: 643238784735351929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4943775219317411909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5509854089639134268, guid: d8aa8343587ac9241a5cf1828211ceb7, type: 3}
@@ -1306,14 +1312,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f4af335606b3b4e8120bbcb2625c67, type: 3}
---- !u!4 &2879112014776961972 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8283403010958358846, guid: 16f4af335606b3b4e8120bbcb2625c67, type: 3}
-  m_PrefabInstance: {fileID: 6124937520062263946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &2879112014776961866 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8283403010958358976, guid: 16f4af335606b3b4e8120bbcb2625c67, type: 3}
+  m_PrefabInstance: {fileID: 6124937520062263946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2879112014776961972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8283403010958358846, guid: 16f4af335606b3b4e8120bbcb2625c67, type: 3}
   m_PrefabInstance: {fileID: 6124937520062263946}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7945460142161391194

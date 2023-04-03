@@ -80,9 +80,12 @@ public class S_ConstelationManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator LineWait(S_StarClass _star, S_ConstellationLine _line)
     {
-        //Debug.Log("does this work");
+        Debug.Log("does this work");
 
         //wait for checking stars
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
         if (!_star.s_star.m_previousLine) { Debug.Log("line is gone so no star added"); yield return null; }
