@@ -25,6 +25,10 @@ public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
     public bool b_resistant = false;
     public bool b_stunned = false;
 
+    // Required elements
+    public int musicVolume;
+    public int sfxVolume;
+
     private void Awake()
     {
         if (Instance != null)
@@ -43,5 +47,10 @@ public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
 
         Instance = this;
         GameObject.DontDestroyOnLoad(this.gameObject);
+    }
+
+    public int GetPlayerHealthValue() 
+    {
+        return i_playerHealth;
     }
 }
