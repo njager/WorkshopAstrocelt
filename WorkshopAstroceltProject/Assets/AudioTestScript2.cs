@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity; // If you use the library instead you don't have to make calls to the static library instance
 
 public class AudioTestScript2 : MonoBehaviour // Emulating S_AudioTrack
 {
@@ -20,13 +21,26 @@ public class AudioTestScript2 : MonoBehaviour // Emulating S_AudioTrack
 
     public float f_timeInScene = 0;
 
-    public GameObject _sceneAudio;
-
     public int i_playerHealth;
+
+    [Header("Audio Object")]
+    public GameObject _sceneAudio;
+    [SerializeField] StudioEventEmitter emitter1;
+    [SerializeField] StudioEventEmitter emitter2;
 
     void Start()
     {
         g_global = AudioTestScript1.Instance;
+
+        // Fix Code method 1
+        if (b_combatScene == true)
+        {
+            emitter1.Play();
+        }
+        else if (b_eventScene == true)
+        {
+            emitter2.Play();
+        }
     }
 
     void Update()

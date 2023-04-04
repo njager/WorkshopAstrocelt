@@ -25,6 +25,9 @@ public class S_GameManager : MonoBehaviour
     public bool b_resistant = false;
     public bool b_stunned = false;
 
+    [Header("MyTestScene")]
+    [SerializeField] Scene myTestScene;
+
     private void Awake()
     {
         if(Instance != null)
@@ -96,5 +99,10 @@ public class S_GameManager : MonoBehaviour
         {
             i_playerHealth = i_healthMax;
         }
+    }
+
+    public void SwitchScenes() // Method 2
+    {
+        SceneManager.LoadScene(myTestScene.name);
     }
 }
