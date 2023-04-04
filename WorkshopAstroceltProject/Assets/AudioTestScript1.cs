@@ -29,8 +29,6 @@ public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
     public int musicVolume;
     public int sfxVolume;
 
-    [Header("MyTestScene")]
-    [SerializeField] Scene myTestScene;
     private void Awake()
     {
         if (Instance != null)
@@ -58,6 +56,6 @@ public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
 
     public void SwitchScenes() // Method 2
     {
-        SceneManager.LoadScene(myTestScene.name);
+        SceneManager.LoadScene("Assets/Scenes/MusicChangeBugFix2.unity");
     }
 }
