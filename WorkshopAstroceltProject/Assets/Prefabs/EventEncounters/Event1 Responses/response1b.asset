@@ -15,17 +15,17 @@ MonoBehaviour:
   s_responseText: 'I first need to reflect of previous lessons. Perhaps I could use
     my resources more effectively
 
-    [Lose 2 common cards, gain 1 Rare / Lose a
-    common]'
+    [Gain 1 Rare ritual / Lose a common ritual]'
   r_reward:
-    i_value: 12
-    s_rewardString: You've gained a ritual
+    i_value: 36
+    s_rewardString: Through your training, you remember another ritual.
     b_boneReward: 0
     b_healthReward: 0
     b_cardReward: 1
-    i_failureValue: 0
+    i_failureValue: 1
     b_boneFailure: 0
     b_healthFailure: 0
-    b_cardFailure: 0
-  f_failureChance: 35
-  s_failureText: 
+    b_cardFailure: 1
+  f_failureChance: 50
+  s_failureText: You thought you remembered a ritual from your training, but it escapes
+    your grasp. You lost one ritual.
