@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
 {
@@ -28,6 +29,9 @@ public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
     // Required elements
     public int musicVolume;
     public int sfxVolume;
+
+    [Header("Audio Object")]
+    public AudioTestScript2 audioObject;
 
     private void Awake()
     {
@@ -56,6 +60,9 @@ public class AudioTestScript1 : MonoBehaviour // Emulating GameManager Behaviour
 
     public void SwitchScenes() // Method 2
     {
-        SceneManager.LoadScene("Assets/Scenes/MusicChangeBugFix2.unity");
+        audioObject.SetEventSceneBool(true);
+        audioObject.SetCombatSceneBool(false);
+        SceneManager.LoadScene("MusicChangeBugFix2");
+        audioObject.PlayMusic();
     }
 }

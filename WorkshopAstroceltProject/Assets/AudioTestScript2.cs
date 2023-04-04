@@ -32,14 +32,21 @@ public class AudioTestScript2 : MonoBehaviour // Emulating S_AudioTrack
     {
         g_global = AudioTestScript1.Instance;
 
+        PlayMusic();
+    }
+
+    public void PlayMusic() 
+    {
         // Fix Code method 1
         if (b_combatScene == true)
         {
             emitter1.Play();
+            emitter2.Stop();
         }
         else if (b_eventScene == true)
         {
             emitter2.Play();
+            emitter1.Stop();
         }
     }
 
@@ -98,5 +105,17 @@ public class AudioTestScript2 : MonoBehaviour // Emulating S_AudioTrack
         myParameter.getValue(out float);
         myParameter.setValue(float);*/
 
+    }
+
+    // Setters \\ 
+
+    public void SetEventSceneBool(bool _truthValue)
+    {
+        b_eventScene = _truthValue;
+    }
+
+    public void SetCombatSceneBool(bool _truthValue) 
+    {
+        b_combatScene = _truthValue;
     }
 }
