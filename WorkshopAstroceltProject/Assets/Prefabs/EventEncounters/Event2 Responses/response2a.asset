@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response2a
   m_EditorClassIdentifier: 
-  s_responseText: "You'll manage, you just need to endure a little longer. \n[Lose
-    health: HIGH, Gain a Rare Ritual: LOW]"
+  s_responseText: 'Endurance. It''s the only way I''ll survive this journey.
+
+    [Gain
+    Defense Ritual]'
   r_reward:
     i_value: 25
     s_rewardString: You find some sturdy ground to rest on. A pile of stones mark
@@ -26,5 +28,7 @@ MonoBehaviour:
     b_boneFailure: 0
     b_healthFailure: 1
     b_cardFailure: 0
-  f_failureChance: 80
-  s_failureText: You find yourself exhausated from the journey. [Lose 5 health]
+  f_failureChance: 0
+  s_failureText: '
+
+'

@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response1b
   m_EditorClassIdentifier: 
-  s_responseText: "Their beautiful, perhaps a local herbalist would be willing to
-    trade some knowledge for them. \n[Gain an Uncommon Card: HIGH]"
+  s_responseText: 'I first need to reflect of previous lessons. Perhaps I could use
+    my resources more effectively
+
+    [Lose 2 common cards, gain 1 Rare / Lose a
+    common]'
   r_reward:
     i_value: 12
     s_rewardString: You've gained a ritual
@@ -24,5 +27,5 @@ MonoBehaviour:
     b_boneFailure: 0
     b_healthFailure: 0
     b_cardFailure: 0
-  f_failureChance: 0
+  f_failureChance: 35
   s_failureText: 
