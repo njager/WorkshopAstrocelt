@@ -63,11 +63,10 @@ public class S_PauseMenu : MonoBehaviour
 
     public void OnValueChanged(float value)
     {
-        musicVolume = value;
-        g_global.g_gameManager.f_masterVolume = value;
-
-
+        S_FMODStaticSceneIdentifier.SetMusicVolumeFloat(value);
+        //g_global.g_gameManager.f_masterVolume = value;
     }
+
     public void SFXValueChanged(float value)
     {
         sfxVolume = value;

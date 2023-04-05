@@ -15,6 +15,8 @@ public class S_GlobalTrack : MonoBehaviour
 
     private void Update()
     {
+        ChangeVolume();
+
         // Update FMOD track in here
         if (S_FMODStaticSceneIdentifier.GetCombatSceneParameterBool() == true && (S_FMODStaticSceneIdentifier.GetTitleSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetEncounterSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetBossSceneParameterBool() == false))
         {
@@ -67,5 +69,14 @@ public class S_GlobalTrack : MonoBehaviour
                 Debug.Log("We stopped and played");
             }
         }
+    }
+
+    /// <summary>
+    /// Change music volume to pause menu values
+    /// - Josh
+    /// </summary>
+    public void ChangeVolume()
+    {
+        globalTrackEmitter.SetParameter("Volume", S_FMODStaticSceneIdentifier.GetMusicVolumeFloat());
     }
 }
