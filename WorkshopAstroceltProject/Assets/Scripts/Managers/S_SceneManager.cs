@@ -41,6 +41,7 @@ public class S_SceneManager : MonoBehaviour
     }
 
 
+
     /// <summary>
     /// Used to exit the game on the win and lose screens
     /// - Josh
