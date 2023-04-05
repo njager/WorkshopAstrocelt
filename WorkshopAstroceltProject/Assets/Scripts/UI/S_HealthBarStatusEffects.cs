@@ -4,13 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class S_HealthBarStatusEffects : MonoBehaviour
 {
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Script Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////--------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    
+
     [Header("Global sdcript Connections")]
     [SerializeField] S_Global g_global;
 
@@ -28,6 +29,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_UI_frailtyStatusEffect;
     [SerializeField] GameObject chg_UI_resistantStatusEffect;
     [SerializeField] GameObject chg_UI_stunStatusEffect;
+    [SerializeField] GameObject chg_UI_enemySpecialAttackEffect;
 
     [Header("Position GameObjects")]
     [SerializeField] GameObject chg_statusEffectPosition1;
@@ -35,6 +37,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_statusEffectPosition3;
     [SerializeField] GameObject chg_statusEffectPosition4;
     [SerializeField] GameObject chg_statusEffectPosition5;
+    [SerializeField] GameObject chg_statusEffectPosition6;
     [SerializeField] GameObject chg_statusEffectSpawn;
 
     [Header("Child Status Effects")]
@@ -43,6 +46,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] GameObject chg_statusEffectPosition3Child;
     [SerializeField] GameObject chg_statusEffectPosition4Child;
     [SerializeField] GameObject chg_statusEffectPosition5Child;
+    [SerializeField] GameObject chg_statusEffectPosition6Child;
 
     [Header("Position Identifer Strings")]
     [SerializeField] string chg_str_position1Identifier;
@@ -50,6 +54,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] string chg_str_position3Identifier;
     [SerializeField] string chg_str_position4Identifier;
     [SerializeField] string chg_str_position5Identifier;
+    [SerializeField] string chg_str_position6Identifier;
 
     [Header("Status Effect Tooltips")]
     [SerializeField] S_TooltipTemplate chg_tl_acidStatusEffectTooltip;
@@ -57,6 +62,19 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] S_TooltipTemplate chg_tl_frailtyStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_resistantStatusEffectTooltip;
     [SerializeField] S_TooltipTemplate chg_tl_stunStatusEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackBodachSpecialEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackBananachEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackClurichanEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackPucaEffectTooltip;
+    [SerializeField] S_TooltipTemplate chg_tl_specialAttackTroopfaeEffectTooltip;
+
+    [Header("Slot 1 Occupied Bool")]
+    [SerializeField] bool chg_UI_b_slot1Occupied;
+    [SerializeField] bool chg_UI_b_slot2Occupied;
+    [SerializeField] bool chg_UI_b_slot3Occupied;
+    [SerializeField] bool chg_UI_b_slot4Occupied;
+    [SerializeField] bool chg_UI_b_slot5Occupied;
+    [SerializeField] bool chg_UI_b_slot6Occupied;
 
     [Header("Occupied Slot Count")]
     [SerializeField] int chg_i_slotsOccupied;
@@ -71,11 +89,31 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [SerializeField] int chg_i_frailtyEffectListIndex;
     [SerializeField] int chg_i_resistantEffectListIndex;
     [SerializeField] int chg_i_stunEffectListIndex;
+    [SerializeField] int chg_p_i_enemySpecialEffectIndex;
+
+    [Header("Special Attack Status Effect Image Assets")]
+    [SerializeField] Sprite chg_UI_bananachSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_bodachSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_clurichaunSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_pucaSpecialAttackEffectImage;
+    [SerializeField] Sprite chg_UI_troopFaeSpecialAttackEffectImage;
 
     [Header("Float Values")]
     [SerializeField] float chg_f_spawnMoveValue;
     [SerializeField] float chg_f_fadeDurationValue;
     [SerializeField] float chg_f_endMoveValue;
+
+    [Header("Current Special Attack Enemy")]
+    [SerializeField] int chg_e_i_specialAttackEnemyIdentifier;
+
+    [Header("Bleed Text")]
+    [SerializeField] TextMeshProUGUI chg_UI_i_bleedTextMultiplier;
+
+    // Add a func to switch the asset depending on the enemy who triggered the special effect, now use the function
+
+    // Rework how stack counts inform data values - Is it still  broken ?
+
+    // Finish movement for status effects
 
     private void Awake()
     {
@@ -84,13 +122,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         ThreeElementTuple.tupleList = chg_ls_activeEffectsList;
     }
 
-   /* private void Update()
-    {
-        if (g_global.g_enemyState.e_b_enemy1Dead)
-        {
-            healthbar1.setactive(false);
-        }
-    }*/
+    /* private void Update()
+     {
+         if (g_global.g_enemyState.e_b_enemy1Dead)
+         {
+             healthbar1.setactive(false);
+         }
+     }*/
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Public Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -105,7 +143,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     {
         if (_effect.Equals("acid"))
         {
-            if (chg_i_slotsOccupied == 0) // Means first effect
+            if (chg_i_slotsOccupied == 0) // Slot 1
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -131,7 +169,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list, tupled with duration
                 chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 1)
+            else if (chg_i_slotsOccupied == 1) // Slot 2
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -157,7 +195,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 2)
+            else if (chg_i_slotsOccupied == 2) // Slot 3
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -183,7 +221,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 3)
+            else if (chg_i_slotsOccupied == 3) // Slot 4
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -209,7 +247,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 4)
+            else if (chg_i_slotsOccupied == 4) // Slot 5
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -235,10 +273,36 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_acidStatusEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_acidStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_acidStatusEffect;
+
+                // Set Index
+                SetEffectIndex(5, "acid");
+
+                // Set identifier
+                chg_str_position6Identifier = "acid";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
         }
         else if (_effect.Equals("bleed"))
         {
-            if (chg_i_slotsOccupied == 0) // Means first effect
+            if (chg_i_slotsOccupied == 0) // Slot 1
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -264,7 +328,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 1)
+            else if (chg_i_slotsOccupied == 1) // Slot 2
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -290,7 +354,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 2)
+            else if (chg_i_slotsOccupied == 2) // Slot 3
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -316,7 +380,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 3)
+            else if (chg_i_slotsOccupied == 3) // Slot 4
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -342,7 +406,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 4)
+            else if (chg_i_slotsOccupied == 4) // Slot 5
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -368,10 +432,36 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_bleedStatusEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_bleedStatusEffect.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_bleedStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_bleedStatusEffect;
+
+                // Set Index
+                SetEffectIndex(5, "bleed");
+
+                // Set identifier
+                chg_str_position6Identifier = "bleed";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
         }
         else if (_effect.Equals("frail"))
         {
-            if (chg_i_slotsOccupied == 0) // Means first effect
+            if (chg_i_slotsOccupied == 0) // Slot 1
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -397,7 +487,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 1)
+            else if (chg_i_slotsOccupied == 1) // Slot 2
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -423,7 +513,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 2)
+            else if (chg_i_slotsOccupied == 2) // Slot 3
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -449,7 +539,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 3)
+            else if (chg_i_slotsOccupied == 3) // Slot 4
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -475,7 +565,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 4)
+            else if (chg_i_slotsOccupied == 4) // Slot 5
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -501,10 +591,36 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_frailtyStatusEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_frailtyStatusEffect.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_frailtyStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_frailtyStatusEffect;
+
+                // Set Index
+                SetEffectIndex(5, "frail");
+
+                // Set identifier
+                chg_str_position6Identifier = "frail";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
         }
         else if (_effect.Equals("resist"))
         {
-            if (chg_i_slotsOccupied == 0) // Means first effect
+            if (chg_i_slotsOccupied == 0) // Slot 1
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -530,7 +646,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 1)
+            else if (chg_i_slotsOccupied == 1) // Slot 2
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -556,7 +672,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 2)
+            else if (chg_i_slotsOccupied == 2) // Slot 3
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -582,7 +698,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 3)
+            else if (chg_i_slotsOccupied == 3) // Slot 4
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -608,7 +724,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 4)
+            else if (chg_i_slotsOccupied == 4) // Slot 5
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -634,10 +750,36 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_resistantStatusEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_resistantStatusEffect.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_resistantStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_resistantStatusEffect;
+
+                // Set Index
+                SetEffectIndex(5, "resist");
+
+                // Set identifier
+                chg_str_position6Identifier = "resist";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
         }
         else if (_effect.Equals("stun"))
         {
-            if (chg_i_slotsOccupied == 0) // Means first effect
+            if (chg_i_slotsOccupied == 0) // Slot 1
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -663,7 +805,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 1)
+            else if (chg_i_slotsOccupied == 1) // Slot 2
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -689,7 +831,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 2)
+            else if (chg_i_slotsOccupied == 2) // Slot 3
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -715,7 +857,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 3)
+            else if (chg_i_slotsOccupied == 3) // Slot 4
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -741,7 +883,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
             }
-            else if (chg_i_slotsOccupied == 4)
+            else if (chg_i_slotsOccupied == 4) // Slot 5
             {
                 // Adjust slot count
                 chg_i_slotsOccupied += 1;
@@ -767,9 +909,199 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 // Add effect to the list
                 chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
             }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_stunStatusEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_stunStatusEffect.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_stunStatusEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_stunStatusEffect;
+
+                // Set Index
+                SetEffectIndex(5, "stun");
+
+                // Set identifier
+                chg_str_position5Identifier = "stun";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
+        }
+        else if (_effect.Equals("special"))
+        {
+            if (chg_i_slotsOccupied == 0) // Slot 1
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition1.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition1Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(0, "special");
+
+                // Set identifier
+                chg_str_position1Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position1Identifier, GetEffectStackCount(chg_str_position1Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 1) // Slot 2
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition2.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition2Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(1, "special");
+
+                // Set identifier
+                chg_str_position2Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position2Identifier, GetEffectStackCount(chg_str_position2Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 2) // Slot 3
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition3.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition3Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(2, "special");
+
+                // Set identifier
+                chg_str_position3Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position3Identifier, GetEffectStackCount(chg_str_position3Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 3) // Slot 4
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition4.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition4Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(3, "special");
+
+                // Set identifier
+                chg_str_position4Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position4Identifier, GetEffectStackCount(chg_str_position4Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 4) // Slot 5
+            {
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition5.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition5Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(4, "special");
+
+                // Set identifier
+                chg_str_position5Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position5Identifier, GetEffectStackCount(chg_str_position5Identifier), GetHealthBarOwner()));
+            }
+            else if (chg_i_slotsOccupied == 5) // Slot 6
+            {
+                // Check who is attacking
+                SpecialAttackOwner(chg_e_i_specialAttackEnemyIdentifier);
+
+                // Adjust slot count
+                chg_i_slotsOccupied += 1;
+
+                // Set new parent
+                chg_UI_enemySpecialAttackEffect.transform.SetParent(chg_statusEffectPosition6.transform, true);
+
+                // Move Child
+                chg_UI_enemySpecialAttackEffect.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+
+                // Fade in Child
+                chg_UI_enemySpecialAttackEffect.GetComponent<Image>().DOFade(255, chg_f_fadeDurationValue);
+
+                // Set child
+                chg_statusEffectPosition6Child = chg_UI_enemySpecialAttackEffect;
+
+                // Set Index
+                SetEffectIndex(5, "special");
+
+                // Set identifier
+                chg_str_position6Identifier = "special";
+
+                // Add effect to the list
+                chg_ls_activeEffectsList.Add((chg_str_position6Identifier, GetEffectStackCount(chg_str_position6Identifier), GetHealthBarOwner()));
+            }
         }
 
         //SortStatusEffectList();
+
+        // Come back and uncomment
     }
 
     /// <summary>
@@ -779,8 +1111,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// </summary>
     public void EndStatusEffect(string _effect)
     {
+        SortPositions();
         int _positionNum = GetIndexFromEffect(_effect);
-        if (_positionNum == 0 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
+        if (_positionNum == 0 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 1
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -808,8 +1141,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position1Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
-        else if (_positionNum == 1 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
+        else if (_positionNum == 1 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 2
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -837,8 +1173,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position2Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
-        else if (_positionNum == 2 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
+        else if (_positionNum == 2 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 3
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -866,8 +1205,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position3Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
-        else if (_positionNum == 3 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
+        else if (_positionNum == 3 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 4
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -895,8 +1237,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position5Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
-        else if (_positionNum == 4 && EffectStateActive(_effect, GetHealthBarOwner()) == true)
+        else if (_positionNum == 4 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 5
         {
             // Adjust slot count
             chg_i_slotsOccupied -= 1;
@@ -924,6 +1269,41 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position5Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
+        }
+        else if (_positionNum == 5 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // 6
+        {
+            // Adjust slot count
+            chg_i_slotsOccupied -= 1;
+
+            // Grab Child
+            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+
+            // Move Child
+            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+
+            // Fade Child
+            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+
+            // Set New parent
+            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+
+            // Clear List Index
+            ResetIndexFromIndex(5);
+
+            // Clear Child
+            chg_statusEffectPosition6Child = null;
+
+            // Remove effect from the list
+            RemoveEffectFromList(chg_str_position6Identifier);
+
+            // Reset Identifer
+            chg_str_position6Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else
         {
@@ -931,58 +1311,19 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Setter for the Special Attack Effect owner so the proper graphic shows up
+    /// - Josh
+    /// </summary>
+    /// <param name="_ownerIndex"></param>
+    public void SetSpecialAttackIdentifer(int _ownerIndex)
+    {
+        chg_e_i_specialAttackEnemyIdentifier = _ownerIndex;
+    }
+
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Private Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    /// <summary>
-    /// Helper function to sort the list according to duration
-    /// - Josh
-    /// </summary>
-    private void SortStatusEffectList() // Put in turn manager
-    {
-        chg_ls_activeEffectsList.OrderByDescending(x => x.Item2);
-    }
-
-    /// <summary>
-    /// Helper function to help sort the list in terms of position, rather then ordering the list itself
-    /// - Josh
-    /// </summary>
-    private void SwitchPositions(string _statusEffect1, string _statusEffect2)
-    {
-        
-    }
-
-    /// <summary>
-    /// Helper method to move a status effect to a new position
-    /// - Josh 
-    /// </summary>
-    /// <param name="_statusEffect"></param>
-    /// <param name="_positionIndex"></param>
-    private void MovePositions(string _statusEffect, int _positionIndex)
-    {
-        if (_statusEffect.Equals("acid"))
-        {
-            // Move Child
-            chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
-        }
-        else if (_statusEffect.Equals("bleed"))
-        {
-
-        }
-        else if (_statusEffect.Equals("frail"))
-        {
-
-        }
-        else if (_statusEffect.Equals("resist"))
-        {
-
-        }
-        else if (_statusEffect.Equals("stun"))
-        {
-
-        }
-    }
 
     /// <summary>
     /// Helper function to seek and return the duration for a given effect 
@@ -991,15 +1332,15 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// </summary>
     /// <param name="_effectType"></param>
     /// <returns></returns>
-    private int GetEffectStackCount(string _effectType) 
+    private int GetEffectStackCount(string _effectType)
     {
-        if (_effectType.Equals("acid")) 
+        if (_effectType.Equals("acid"))
         {
-            if(GetHealthBarOwner() == -1) // Player
+            if (GetHealthBarOwner() == -1) // Player
             {
                 return g_global.g_playerState.GetPlayerAcidEffectStackCount();
             }
-            else if(GetHealthBarOwner() == 1) // Enemy 1
+            else if (GetHealthBarOwner() == 1) // Enemy 1
             {
                 return g_global.g_enemyState.GetEnemyAcidEffectStackCount(1);
             }
@@ -1164,13 +1505,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// <returns>
     /// -1 for Player || 1 for Enemy 1 || 2 for Enemy 2 || 3 for Enemy 3 || 4 for Enemy 4 || 5 for Enemy 5
     /// </returns>
-    private int GetHealthBarOwner() 
+    private int GetHealthBarOwner()
     {
-        if(chg_p_b_playerHealthBar == true) 
+        if (chg_p_b_playerHealthBar == true)
         {
             return -1; // is Player
         }
-        else if (chg_e_b_enemy1HealthBar == true) 
+        else if (chg_e_b_enemy1HealthBar == true)
         {
             return 1; // is Enemy 1
         }
@@ -1193,7 +1534,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else // Return methods require all paths to return a value, even the failed behavior potential paths
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RetrieveHealthBarOwner()");
-            return 0; 
+            return 0;
         }
     }
 
@@ -1202,13 +1543,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     ///  - Josh
     /// </summary>
     /// <param name="_statusEffect"></param>
-    private void RemoveEffectFromList(string _statusEffect) 
+    private void RemoveEffectFromList(string _statusEffect)
     {
         int _index = -3; // Null condition
         int _counter = -1;
 
         // Find Index
-        foreach((string, int, int) _item in chg_ls_activeEffectsList.ToList()) 
+        foreach ((string, int, int) _item in chg_ls_activeEffectsList.ToList())
         {
             _counter += 1;
             if (_item.Item1.Equals(_statusEffect)) // Tuple list items can be accessed by Item1, Item2, Item3... ItemN 
@@ -1218,13 +1559,158 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
 
         // Cleaner delete from direct access
-        if(_index != -3) 
+        if (_index != -3)
         {
             chg_ls_activeEffectsList.RemoveAt(_index);
         }
-        else 
+        else
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
+        }
+    }
+
+    /// <summary>
+    /// Helper function to sort the list once an effect is removed, based off alphabetical sortinh
+    /// - Josh
+    /// </summary>
+    private void SortPositions()
+    {
+        int _counter = -1;
+        foreach ((string, int, int) _object in chg_ls_activeEffectsList.ToList())
+        {
+            _counter += 1;
+            if (_object.Item1.Equals("acid"))
+            {
+                chg_i_acidEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("bleed"))
+            {
+                chg_i_bleedEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("frail"))
+            {
+                chg_i_frailtyEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("resistant"))
+            {
+                chg_i_resistantEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("special"))
+            {
+                chg_p_i_enemySpecialEffectIndex = _counter;
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Move status effects if they exist into a forced slot
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator MoveStatusEffects()
+    {
+        SortPositions();
+        yield return null;
+        if (chg_i_slotsOccupied > 0)
+        {
+            // Find the first index object
+            string _effectString = GetEffectStringFromIndex(0);
+            if (_effectString.Equals("empty"))
+            {
+
+            }
+            else
+            {
+                GameObject _effectObject = GetEffectObjectFromEffect(_effectString);
+
+                // Move it to slot 1
+                _effectObject.transform.DOMove(chg_statusEffectPosition1.transform.position, chg_f_spawnMoveValue);
+            }
+        }
+        if (chg_i_slotsOccupied >= 1)
+        {
+            // Find the first index object
+            string _effectString = GetEffectStringFromIndex(1);
+            if (_effectString.Equals("empty"))
+            {
+
+            }
+            else
+            {
+                GameObject _effectObject = GetEffectObjectFromEffect(_effectString);
+
+                // Move it to slot 2
+                _effectObject.transform.DOMove(chg_statusEffectPosition2.transform.position, chg_f_spawnMoveValue);
+            }
+        }
+        if (chg_i_slotsOccupied >= 2)
+        {
+            // Find the first index object
+            string _effectString = GetEffectStringFromIndex(2);
+            if (_effectString.Equals("empty"))
+            {
+
+            }
+            else
+            {
+                GameObject _effectObject = GetEffectObjectFromEffect(_effectString);
+
+                // Move it to slot 3
+                _effectObject.transform.DOMove(chg_statusEffectPosition3.transform.position, chg_f_spawnMoveValue);
+            }
+        }
+        if (chg_i_slotsOccupied >= 3)
+        {
+            // Find the first index object
+            string _effectString = GetEffectStringFromIndex(3);
+            if (_effectString.Equals("empty"))
+            {
+
+            }
+            else
+            {
+                GameObject _effectObject = GetEffectObjectFromEffect(_effectString);
+
+                // Move it to slot 4
+                _effectObject.transform.DOMove(chg_statusEffectPosition4.transform.position, chg_f_spawnMoveValue);
+            }
+        }
+        if (chg_i_slotsOccupied >= 4)
+        {
+            // Find the first index object
+            string _effectString = GetEffectStringFromIndex(4);
+            if (_effectString.Equals("empty"))
+            {
+
+            }
+            else
+            {
+                GameObject _effectObject = GetEffectObjectFromEffect(_effectString);
+
+                // Move it to slot 5
+                _effectObject.transform.DOMove(chg_statusEffectPosition5.transform.position, chg_f_spawnMoveValue);
+            }
+        }
+        if (chg_i_slotsOccupied >= 5)
+        {
+            // Find the first index object
+            string _effectString = GetEffectStringFromIndex(5);
+            if (_effectString.Equals("empty"))
+            {
+
+            }
+            else
+            {
+                GameObject _effectObject = GetEffectObjectFromEffect(_effectString);
+
+                // Move it to slot 6
+                _effectObject.transform.DOMove(chg_statusEffectPosition6.transform.position, chg_f_spawnMoveValue);
+            }
+        }
+        else
+        {
+            //Debug.Log("DEBUG: No more cardballs to spawn!");
         }
     }
 
@@ -1263,18 +1749,45 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper 
+    /// Helper function to reset the index in the list
     /// </summary>
     /// <param name="_index"></param>
-    private void ResetIndexFromIndex(int _index)
+    private void ResetIndexFromIndex(int _index) // May need to be offset by 1 - post exodus Josh
     {
-        if(_index == 1)
+        if (_index == 0) // 1st Status Effect
         {
-            if(chg_i_acidEffectListIndex == 1) // Index was acid
+            if (chg_i_acidEffectListIndex == 0) // Index was acid
             {
                 chg_i_acidEffectListIndex = -1; // Reset Acid
             }
-            else if(chg_i_bleedEffectListIndex == 1) // Index was bleed
+            else if (chg_i_bleedEffectListIndex == 0) // Index was bleed
+            {
+                chg_i_bleedEffectListIndex = -1; // Reset Bleed
+            }
+            else if (chg_i_frailtyEffectListIndex == 0) // Index was frail
+            {
+                chg_i_frailtyEffectListIndex = -1; // Reset Frailty
+            }
+            else if (chg_i_resistantEffectListIndex == 0) // Index was resist
+            {
+                chg_i_resistantEffectListIndex = -1; // Reset Resistant
+            }
+            else if (chg_i_stunEffectListIndex == 0) // Index was stun
+            {
+                chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+            else if (chg_p_i_enemySpecialEffectIndex == 0) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
+        }
+        else if (_index == 1) // 2nd Status Effect
+        {
+            if (chg_i_acidEffectListIndex == 1) // Index was acid
+            {
+                chg_i_acidEffectListIndex = -1; // Reset Acid
+            }
+            else if (chg_i_bleedEffectListIndex == 1) // Index was bleed
             {
                 chg_i_bleedEffectListIndex = -1; // Reset Bleed
             }
@@ -1290,8 +1803,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if (chg_p_i_enemySpecialEffectIndex == 1) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
-        else if (_index == 2)
+        else if (_index == 2) // 3rd Status Effect
         {
             if (chg_i_acidEffectListIndex == 2) // Index was acid
             {
@@ -1313,8 +1830,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if (chg_p_i_enemySpecialEffectIndex == 2) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
-        else if (_index == 3)
+        else if (_index == 3) // 4th Status Effect
         {
             if (chg_i_acidEffectListIndex == 3) // Index was acid
             {
@@ -1336,8 +1857,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if (chg_p_i_enemySpecialEffectIndex == 3) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
-        else if (_index == 4)
+        else if (_index == 4) // 5th effect
         {
             if (chg_i_acidEffectListIndex == 4) // Index was acid
             {
@@ -1359,8 +1884,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
             }
+            else if (chg_p_i_enemySpecialEffectIndex == 4) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
+            }
         }
-        else if (_index == 5)
+        else if (_index == 5) // 6th Effect
         {
             if (chg_i_acidEffectListIndex == 5) // Index was acid
             {
@@ -1381,6 +1910,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             else if (chg_i_stunEffectListIndex == 5) // Index was stun
             {
                 chg_i_stunEffectListIndex = -1; // Reset Stun
+            }
+            else if (chg_p_i_enemySpecialEffectIndex == 5) // Index was Special 
+            {
+                chg_p_i_enemySpecialEffectIndex = -1; // Reset Special Attack
             }
         }
         else
@@ -1403,7 +1936,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             chg_i_bleedEffectListIndex = _index;
         }
-        else if (_effect.Equals("frailty"))
+        else if (_effect.Equals("frail"))
         {
             chg_i_frailtyEffectListIndex = _index;
         }
@@ -1415,6 +1948,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             chg_i_stunEffectListIndex = _index;
         }
+        else if (_effect.Equals("special"))
+        {
+            chg_p_i_enemySpecialEffectIndex = _index;
+        }
     }
 
     /// <summary>
@@ -1423,22 +1960,22 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// </summary>
     /// <param name="_effect"></param>
     /// <param name="_healthBarOwner"></param>
-    private bool EffectStateActive(string _effect, int _healthBarOwner) 
+    private bool EffectStateActive(string _effect, int _healthBarOwner)
     {
-        if (_effect.Equals("acid")) 
+        if (_effect.Equals("acid"))
         {
-            if(_healthBarOwner == -1) // Player
+            if (_healthBarOwner == -1) // Player
             {
-                if (g_global.g_playerState.GetPlayerAcidEffectState() == true) 
+                if (g_global.g_playerState.GetPlayerAcidEffectState() == true)
                 {
                     return true; // Effect is active
                 }
-                else 
+                else
                 {
                     return false; // Effect isn't active
                 }
             }
-            else if(_healthBarOwner == 1) // Enemy 1
+            else if (_healthBarOwner == 1) // Enemy 1
             {
                 if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true)
                 {
@@ -1449,7 +1986,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                     return false; // Effect isn't active
                 }
             }
-            else if(_healthBarOwner == 2) // Enemy 2
+            else if (_healthBarOwner == 2) // Enemy 2
             {
                 if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true)
                 {
@@ -1493,13 +2030,13 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                     return false; // Effect isn't active
                 }
             }
-            else 
+            else
             {
                 Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Owner Not Found Error");
                 return false;
             }
         }
-        else if(_effect.Equals("bleed"))
+        else if (_effect.Equals("bleed"))
         {
             if (_healthBarOwner == -1) // Player
             {
@@ -1725,7 +2262,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         {
             if (_healthBarOwner == 1) // Enemy 1, player doesn't have stun
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(1) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(1) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1736,7 +2273,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 2) // Enemy 2
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(2) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(2) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1747,7 +2284,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 3) // Enemy 3
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(3) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(3) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1758,7 +2295,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 4) // Enemy 4
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(4) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(4) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1769,7 +2306,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
             }
             else if (_healthBarOwner == 5) // Enemy 5
             {
-                if (g_global.g_enemyState.GetEnemyAcidEffectState(5) == true)
+                if (g_global.g_enemyState.GetEnemyStunEffectState(5) == true)
                 {
                     return true; // Effect is active
                 }
@@ -1792,6 +2329,51 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     }
 
     /// <summary>
+    /// Special Attack Owner Declare Helper function
+    /// int = 1, Bananach
+    /// int = 2, Bodach
+    /// int = 3, Clurichaun
+    /// int = 4, Puca
+    /// int = 5, Troop Fae
+    /// - Josh
+    /// </summary>
+    private void SpecialAttackOwner(int _owner)
+    {
+        if (_owner == 1) //Bananach
+        {
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_bananachSpecialAttackEffectImage;
+        }
+        else if (_owner == 2) // Bodach
+        {
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_bodachSpecialAttackEffectImage;
+        }
+        else if (_owner == 3) // Clurichaun
+        {
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_clurichaunSpecialAttackEffectImage;
+        }
+        else if (_owner == 4) // Puca
+        {
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_pucaSpecialAttackEffectImage;
+        }
+        else if (_owner == 5) // Troop Fae
+        {
+            chg_UI_enemySpecialAttackEffect.GetComponent<Image>().sprite = chg_UI_troopFaeSpecialAttackEffectImage;
+        }
+    }
+
+    private string GetEffectStringFromIndex(int _index)
+    {
+        if (chg_ls_activeEffectsList[_index].Item1 != null)
+        {
+            return chg_ls_activeEffectsList[_index].Item1;
+        }
+        else
+        {
+            return "null";
+        }
+    }
+
+    /// <summary>
     /// Helper function to give child from effect
     /// Get around race conditions
     /// - Josh
@@ -1799,7 +2381,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// <param name="_effect"></param>
     private GameObject GetEffectObjectFromEffect(string _effect)
     {
-        if (_effect.Equals("acid")) 
+        if (_effect.Equals("acid"))
         {
             return chg_UI_acidStatusEffect;
         }
@@ -1818,6 +2400,10 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else if (_effect.Equals("stun"))
         {
             return chg_UI_stunStatusEffect;
+        }
+        else if (_effect.Equals("special"))
+        {
+            return chg_UI_enemySpecialAttackEffect;
         }
         else
         {
