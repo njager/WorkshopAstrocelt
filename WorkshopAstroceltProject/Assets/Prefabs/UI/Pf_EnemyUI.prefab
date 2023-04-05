@@ -126,9 +126,7 @@ MonoBehaviour:
   chg_e_b_enemy4HealthBar: 0
   chg_e_b_enemy5HealthBar: 0
   chg_UI_acidStatusEffect: {fileID: 8819406125855631485}
-  chg_UI_bleedStatusEffectTierOne: {fileID: 7983213477481510540}
-  chg_UI_bleedStatusEffectTierTwo: {fileID: 0}
-  chg_UI_bleedStatusEffectTierThree: {fileID: 0}
+  chg_UI_bleedStatusEffect: {fileID: 7983213477481510540}
   chg_UI_frailtyStatusEffect: {fileID: 4785522517668534133}
   chg_UI_resistantStatusEffect: {fileID: 8989632453072894049}
   chg_UI_stunStatusEffect: {fileID: 1692325565739897680}
@@ -138,14 +136,14 @@ MonoBehaviour:
   chg_statusEffectPosition3: {fileID: 5520199711807328944}
   chg_statusEffectPosition4: {fileID: 6398319613015639218}
   chg_statusEffectPosition5: {fileID: 8126206485834943680}
-  chg_statusEffectPosition6: {fileID: 0}
+  chg_statusEffectPosition6: {fileID: 8435864669050583190}
   chg_statusEffectSpawn: {fileID: 8435864669050583190}
   chg_statusEffectPosition1Child: {fileID: 6031942206613698232}
   chg_statusEffectPosition2Child: {fileID: 6498117452502031982}
   chg_statusEffectPosition3Child: {fileID: 5520199711807328944}
   chg_statusEffectPosition4Child: {fileID: 6398319613015639218}
   chg_statusEffectPosition5Child: {fileID: 8126206485834943680}
-  chg_statusEffectPosition6Child: {fileID: 0}
+  chg_statusEffectPosition6Child: {fileID: 8435864669050583190}
   chg_str_position1Identifier: 
   chg_str_position2Identifier: 
   chg_str_position3Identifier: 
@@ -184,8 +182,9 @@ MonoBehaviour:
   chg_f_fadeDurationValue: 0.5
   chg_f_endMoveValue: 0.7
   chg_e_i_specialAttackEnemyIdentifier: 0
-  chg_UI_i_bleedLevel: 0
-  c_i_movementInt: 0
+  chg_UI_i_bleedText: {fileID: 0}
+  chg_UI_i_bleedTier: 0
+  chg_UI_b_bleedStatusEffectFirstTimeActive: 0
 --- !u!1 &640770534584424801
 GameObject:
   m_ObjectHideFlags: 0
