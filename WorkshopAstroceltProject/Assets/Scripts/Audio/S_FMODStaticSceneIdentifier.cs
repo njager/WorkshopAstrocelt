@@ -19,6 +19,8 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     private void Start()
     {
         globalTrackEmitter.Play();
+
+        TriggerTitleSceneBool();
     }
 
     private void Update()
@@ -66,7 +68,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// This is the combat scene method
     /// - Josh
     /// </summary>
-    public void TriggerCombatSceneBool() 
+    public static void TriggerCombatSceneBool() 
     {
         b_combatScene = true;
         b_encounterScene = false;
@@ -79,7 +81,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// This is the encounter scene method
     /// - Josh
     /// </summary>
-    public void TriggerEncounterSceneBool()
+    public static void TriggerEncounterSceneBool()
     {
         b_combatScene = false;
         b_encounterScene = true;
@@ -92,7 +94,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// This is the boss scene method
     /// - Josh
     /// </summary>
-    public void TriggerBossSceneBool()
+    public static void TriggerBossSceneBool()
     {
         b_combatScene = false;
         b_encounterScene = false;
@@ -105,7 +107,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// This is the title scene method
     /// - Josh
     /// </summary>
-    public void TriggerTitleSceneBool()
+    public static void TriggerTitleSceneBool()
     {
         b_combatScene = false;
         b_encounterScene = false;
