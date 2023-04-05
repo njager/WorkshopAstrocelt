@@ -111,6 +111,11 @@ public class S_SceneManager : MonoBehaviour
         SceneManager.LoadScene(newSceneIndex);
     }
 
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void TestSceneChanger()
     {
         Scene currentScene = SceneManager.GetActiveScene();
