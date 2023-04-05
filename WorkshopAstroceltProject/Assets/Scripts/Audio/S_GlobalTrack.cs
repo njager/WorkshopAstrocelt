@@ -11,8 +11,6 @@ public class S_GlobalTrack : MonoBehaviour
     private void Start()
     {
         globalTrackEmitter.Play();
-
-        S_FMODStaticSceneIdentifier.TriggerTitleSceneBool();
     }
 
     private void Update()
@@ -21,33 +19,53 @@ public class S_GlobalTrack : MonoBehaviour
         if (S_FMODStaticSceneIdentifier.GetCombatSceneParameterBool() == true && (S_FMODStaticSceneIdentifier.GetTitleSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetEncounterSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetBossSceneParameterBool() == false))
         {
             globalTrackEmitter.SetParameter("CurrentScene", 1);
+
+            if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
+            {
+                S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
+                globalTrackEmitter.Stop();
+                globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
+            }
         }
 
         if (S_FMODStaticSceneIdentifier.GetEncounterSceneParameterBool() == true && (S_FMODStaticSceneIdentifier.GetTitleSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetCombatSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetBossSceneParameterBool() == false))
         {
             globalTrackEmitter.SetParameter("CurrentScene", 0);
-        }
-        else
-        {
-            return;
+
+            if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
+            {
+                S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
+                globalTrackEmitter.Stop();
+                globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
+            }
         }
 
         if (S_FMODStaticSceneIdentifier.GetBossSceneParameterBool() == true && (S_FMODStaticSceneIdentifier.GetTitleSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetEncounterSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetCombatSceneParameterBool() == false))
         {
             globalTrackEmitter.SetParameter("CurrentScene", 2);
-        }
-        else
-        {
-            return;
+
+            if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
+            {
+                S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
+                globalTrackEmitter.Stop();
+                globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
+            }
         }
 
         if (S_FMODStaticSceneIdentifier.GetTitleSceneParameterBool() == true && (S_FMODStaticSceneIdentifier.GetCombatSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetEncounterSceneParameterBool() == false && S_FMODStaticSceneIdentifier.GetBossSceneParameterBool() == false))
         {
             globalTrackEmitter.SetParameter("CurrentScene", 3);
-        }
-        else
-        {
-            return;
+
+            if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
+            {
+                S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
+                globalTrackEmitter.Stop();
+                globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
+            }
         }
     }
 }

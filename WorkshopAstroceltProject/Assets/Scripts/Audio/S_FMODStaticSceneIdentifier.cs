@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public static class S_FMODStaticSceneIdentifier 
+public class S_FMODStaticSceneIdentifier : MonoBehaviour 
 {
     [Header("Scene Types Bool")]
-    [SerializeField] static bool b_combatScene;
-    [SerializeField] static bool b_encounterScene;
-    [SerializeField] static bool b_bossScene;
-    [SerializeField] static bool b_titleScene;
+    private static bool b_combatScene;
+    private static bool b_encounterScene;
+    private static bool b_bossScene;
+    private static bool b_titleScene;
+
+    [Header("Update Loop Blocker")]
+    private static bool b_stopAndPlay;
 
     /// <summary>
     /// Public method to declare the bool to tell FMOD what parameter to use for the global background track
@@ -22,6 +25,10 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = false;
         b_bossScene = false;
         b_titleScene = false;
+
+        // For update loop
+        b_stopAndPlay = true;
+        Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
     }
 
     /// <summary>
@@ -35,6 +42,9 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = true;
         b_bossScene = false;
         b_titleScene = false;
+
+        // For update loop
+        b_stopAndPlay = true;
     }
 
     /// <summary>
@@ -48,6 +58,9 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = false;
         b_bossScene = true;
         b_titleScene = false;
+
+        // For update loop
+        b_stopAndPlay = true;
     }
 
     /// <summary>
@@ -61,6 +74,10 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = false;
         b_bossScene = false;
         b_titleScene = true;
+
+        // For update loop
+        b_stopAndPlay = true;
+        Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -105,6 +122,16 @@ public static class S_FMODStaticSceneIdentifier
     public static void SetTitleSceneBoolParameter(bool _truthValue)
     {
         b_titleScene = _truthValue;
+    }
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.b_stopAndPlay
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public static void SetStopAndPlayParameter(bool _truthValue)
+    {
+        b_stopAndPlay = _truthValue;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -157,5 +184,17 @@ public static class S_FMODStaticSceneIdentifier
     public static bool GetTitleSceneParameterBool()
     {
         return b_titleScene;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.b_stopAndPlay
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.b_stopAndPlay
+    /// </returns>
+    public static bool GetStopAndPlayBool()
+    {
+        return b_stopAndPlay;
     }
 }

@@ -116,17 +116,17 @@ public class S_SceneManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.buildIndex == 0) // Title
         {
-            S_FMODStaticSceneIdentifier.TriggerTitleSceneBool();
+            S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(1);
         }
-        else if (currentScene.buildIndex == 1) // Combat
-        {
-            S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
-            EncounterLoader(2);
-        }
-        else if (currentScene.buildIndex == 2) // Encounter
+        else if (currentScene.buildIndex == 1) // Event
         {
             S_FMODStaticSceneIdentifier.TriggerEncounterSceneBool();
+            EncounterLoader(2);
+        }
+        else if (currentScene.buildIndex == 2) // Combat
+        {
+            S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(Random.Range(3,5));
         }
         else if (currentScene.buildIndex == 3 || currentScene.buildIndex == 4) // Combat
@@ -134,9 +134,9 @@ public class S_SceneManager : MonoBehaviour
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(Random.Range(5,7));
         }
-        else if (currentScene.buildIndex == 5 || currentScene.buildIndex == 6) // Combat
+        else if (currentScene.buildIndex == 5 || currentScene.buildIndex == 6) // Event
         {
-            S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
+            S_FMODStaticSceneIdentifier.TriggerEncounterSceneBool();
             EncounterLoader(7);
         }
         else if (currentScene.buildIndex == 7) // Combat
@@ -149,7 +149,7 @@ public class S_SceneManager : MonoBehaviour
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(Random.Range(10, 13)); 
         }
-        else if (currentScene.buildIndex == 10 || currentScene.buildIndex == 11 || currentScene.buildIndex == 12) // Event Encounter
+        else if (currentScene.buildIndex == 10 || currentScene.buildIndex == 11 || currentScene.buildIndex == 12) // Event
         {
             S_FMODStaticSceneIdentifier.TriggerEncounterSceneBool();
             EncounterLoader(13);
