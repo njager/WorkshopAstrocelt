@@ -2324,6 +2324,11 @@ public class S_HealthBarStatusEffects : MonoBehaviour
                 return false;
             }
         }
+        else
+        {
+            Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - EffectStateActive() - Effect Not Found Error");
+            return false;
+        }
     }
 
     /// <summary>
