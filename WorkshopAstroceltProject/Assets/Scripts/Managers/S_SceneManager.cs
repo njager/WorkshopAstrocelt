@@ -118,46 +118,55 @@ public class S_SceneManager : MonoBehaviour
         {
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(1);
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 1) // Event
         {
             S_FMODStaticSceneIdentifier.TriggerEncounterSceneBool();
             EncounterLoader(2);
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 2) // Combat
         {
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(Random.Range(3,5));
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 3 || currentScene.buildIndex == 4) // Combat
         {
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(Random.Range(5,7));
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 5 || currentScene.buildIndex == 6) // Event
         {
             S_FMODStaticSceneIdentifier.TriggerEncounterSceneBool();
             EncounterLoader(7);
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 7) // Combat
         {
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(Random.Range(8, 10));
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 8 || currentScene.buildIndex == 9) // Combat
         {
             S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
-            EncounterLoader(Random.Range(10, 13)); 
+            EncounterLoader(Random.Range(10, 13));
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 10 || currentScene.buildIndex == 11 || currentScene.buildIndex == 12) // Event
         {
             S_FMODStaticSceneIdentifier.TriggerEncounterSceneBool();
             EncounterLoader(13);
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
         else if (currentScene.buildIndex == 13) // Boss
         {
             S_FMODStaticSceneIdentifier.TriggerBossSceneBool();
             EncounterLoader(14);
+            S_FMODStaticSceneIdentifier.SetTimeInSceneFloat(0f);
         }
 
     }
