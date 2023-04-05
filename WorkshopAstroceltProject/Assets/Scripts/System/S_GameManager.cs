@@ -25,7 +25,7 @@ public class S_GameManager : MonoBehaviour
 
     public float f_sfxVolume;
 
-    //Status Effects
+    [Header("Status Effects")]
     public bool b_bleeding = false;
     public bool b_resistant = false;
     public bool b_stunned = false;
@@ -49,7 +49,6 @@ public class S_GameManager : MonoBehaviour
         Instance = this;
         GameObject.DontDestroyOnLoad(this.gameObject);
     }
-
 
     //Getters and Setters//
 
@@ -101,5 +100,10 @@ public class S_GameManager : MonoBehaviour
         {
             i_playerHealth = i_healthMax;
         }
+    }
+
+    public void SetPlayerHealthState(int _value)
+    {
+        i_playerHealth = _value;
     }
 }
