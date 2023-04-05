@@ -1143,6 +1143,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position1Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else if (_positionNum == 1 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 2
         {
@@ -1172,6 +1175,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position2Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else if (_positionNum == 2 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 3
         {
@@ -1201,6 +1207,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position3Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else if (_positionNum == 3 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 4
         {
@@ -1230,6 +1239,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position5Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else if (_positionNum == 4 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 5
         {
@@ -1259,6 +1271,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position5Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else if (_positionNum == 5 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // 6
         {
@@ -1288,6 +1303,9 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
             // Reset Identifer
             chg_str_position6Identifier = "none";
+
+            // Now reorganize status effects
+            StartCoroutine(MoveStatusEffects());
         }
         else
         {
@@ -1308,51 +1326,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Private Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    /// <summary>
-    /// Helper function to sort the list according to duration
-    /// - Josh
-    /// </summary>
-    private void SortStatusEffectList() // Put in turn manager
-    {
-        
-    }
-
-
-    /// <summary>
-    /// Helper method to move a status effect to a new position
-    /// - Josh 
-    /// </summary>
-    /// <param name="_statusEffect"></param>
-    /// <param name="_positionIndex"></param>
-    private void MovePositions(string _statusEffect, int _positionIndex)
-    {
-        if (_statusEffect.Equals("acid"))
-        {
-            // Move Child
-            chg_UI_acidStatusEffect.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
-        }
-        else if (_statusEffect.Equals("bleed"))
-        {
-
-        }
-        else if (_statusEffect.Equals("frail"))
-        {
-
-        }
-        else if (_statusEffect.Equals("resist"))
-        {
-
-        }
-        else if (_statusEffect.Equals("stun"))
-        {
-
-        }
-        else if(_statusEffect.Equals("special"))
-        {
-
-        }
-    }
 
     /// <summary>
     /// Helper function to seek and return the duration for a given effect 
@@ -1588,17 +1561,14 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         }
 
         // Cleaner delete from direct access
-        if(_index != -3) 
+        if (_index != -3)
         {
             chg_ls_activeEffectsList.RemoveAt(_index);
         }
-        else 
+        else
         {
             Debug.Log("DEBUG: FAILED FUNCTION - S_HealthBarStatusEffects - RemoveEffectFromList() - Effect Not Found Error");
         }
-
-        // Now reorganize status effects
-        StartCoroutine(MoveStatusEffects());
     }
 
     /// <summary>
@@ -1607,11 +1577,39 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// </summary>
     private void SortPositions() 
     {
-        
+        int _counter = -1;
+        foreach ((string, int, int) _object in chg_ls_activeEffectsList.ToList())
+        {
+            _counter += 1;
+            if (_object.Item1.Equals("acid"))
+            {
+                chg_i_acidEffectListIndex = _counter;
+            }
+            else if(_object.Item1.Equals("bleed"))
+            {
+                chg_i_bleedEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("frail"))
+            {
+                chg_i_frailtyEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("resistant"))
+            {
+                chg_i_resistantEffectListIndex = _counter;
+            }
+            else if (_object.Item1.Equals("special"))
+            {
+                chg_p_i_enemySpecialEffectIndex = _counter;
+            }
+        }
     }
 
     
-
+    /// <summary>
+    /// Move status effects if they exist into a forced slot
+    /// - Josh
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator MoveStatusEffects()
     {
         SortPositions();
@@ -1716,19 +1714,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         else
         {
             //Debug.Log("DEBUG: No more cardballs to spawn!");
-        }
-
-        if (c_i_movementInt == 5)
-        {
-            c_b_movementBool = true;
-        }
-
-        // May not be necessary, check later, part of race condition debugging between turns. 
-        g_global.g_enemyState.UpdateActiveEnemies();
-
-        foreach (S_Enemy _enemy in g_global.g_ls_activeEnemies.ToList())
-        {
-            _enemy.UpdateEnemyHealthUI();
         }
     }
 
