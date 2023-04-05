@@ -29,9 +29,10 @@ public class S_RewardVisualScript : MonoBehaviour
         {
             b_rewardClaimed = true;
 
-            lReward.SetActive(true);
+            rReward.SetActive(false);
 
-            lRewardSelector.SetActive(false);
+
+            //lRewardSelector.SetActive(false);
 
 
             foreach (int _cardID in ls_cardBundle1)
@@ -46,9 +47,9 @@ public class S_RewardVisualScript : MonoBehaviour
         {
             b_rewardClaimed = true;
 
-            rReward.SetActive(true);
+            lReward.SetActive(false);
 
-            rRewardSelector.SetActive(false);
+            //rRewardSelector.SetActive(false);
 
             foreach (int _cardID in ls_cardBundle2)
             {

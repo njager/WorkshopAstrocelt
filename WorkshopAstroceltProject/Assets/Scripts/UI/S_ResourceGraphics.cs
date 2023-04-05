@@ -78,10 +78,13 @@ public class S_ResourceGraphics : MonoBehaviour
     {
         // Update red energy
         g_global.g_UIManager.GetRedEnergyTrackerText().text = "" + g_global.g_energyManager.GetRedEnergyInt();
+        g_global.g_UIManager.GetRedUpperEnergyText().text = "" + g_global.g_energyManager.GetRedEnergyInt();
         // Update blue energy
         g_global.g_UIManager.GetBlueEnergyTrackerText().text = ""  + g_global.g_energyManager.GetBlueEnergyInt();
+        g_global.g_UIManager.GetBlueUpperEnergyText().text = "" + g_global.g_energyManager.GetBlueEnergyInt();
         //Update yellow energy
         g_global.g_UIManager.GetYellowEnergyTrackerText().text = ""  + g_global.g_energyManager.GetYellowEnergyInt();
+        g_global.g_UIManager.GetYellowUpperEnergyText().text = "" + g_global.g_energyManager.GetYellowEnergyInt();
     }
 
     public void UpdateResourceBarGraphics() 

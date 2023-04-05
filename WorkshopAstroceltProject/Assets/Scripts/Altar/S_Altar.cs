@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class S_Altar : MonoBehaviour
 {
@@ -144,6 +145,7 @@ public class S_Altar : MonoBehaviour
         //set the constellation manager bools until the card balls finish spawning
         StartCoroutine(g_global.g_ConstellationManager.CardballSpawnCheck());
 
+
         for (int i = 0; i < _numCards; i++)
         {
             yield return new WaitForSeconds(0.3f);
@@ -155,6 +157,7 @@ public class S_Altar : MonoBehaviour
                 StartCoroutine(MoveCardballPrefabs());
             }
         }
+
 
         //do this outside the loop so all cardballs are in the active list
         if (g_global.g_vfxManager.GetCamPos())
@@ -383,6 +386,11 @@ public class S_Altar : MonoBehaviour
             //deal more cards if there are now cards in ls_cardBall storage
             DealAnotherCard();
         }
+        else
+        {
+            //trigger resetting the map bool
+            StartCoroutine(g_global.g_vfxManager.MapBoolReset());
+        }
     }
 
 
@@ -453,7 +461,7 @@ public class S_Altar : MonoBehaviour
     /// </summary>
     public void MoveCardBallsUp()
     {
-        for(int i=0; i < ls_activeCardBalls.Count(); i++) 
+        for (int i=0; i < ls_activeCardBalls.Count(); i++) 
         { 
             if(i==0)
             {
@@ -476,6 +484,7 @@ public class S_Altar : MonoBehaviour
     /// <returns></returns>
     public IEnumerator SlideUpperCardBalls()
     {
+
         for (int i = 0; i < ls_activeCardBalls.Count(); i++)
         {
             //Debug.Log("Were sliding");

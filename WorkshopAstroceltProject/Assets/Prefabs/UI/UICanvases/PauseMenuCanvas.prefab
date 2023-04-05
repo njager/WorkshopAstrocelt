@@ -531,8 +531,8 @@ MonoBehaviour:
   mainMenuAssets: {fileID: 1965705455547473094}
   optionsMenuAssets: {fileID: 1965705453936293667}
   tutorial: {fileID: 0}
-  musicSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
+  musicSlider: {fileID: 4612285487217631845}
+  sfxSlider: {fileID: 1507072075059427587}
   musicVolume: 0
   sfxVolume: 0
 --- !u!1 &1965705455532311218
@@ -1057,6 +1057,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1965705455459941462}
     m_Modifications:
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1965705455459941458}
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnValueChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: S_PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1965705455459941458}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SFXValueChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: S_PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5527270252883125104, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1168,6 +1224,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5527270254365894656, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
   m_PrefabInstance: {fileID: 6337507717047148323}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1965705453936293676 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5527270254365894671, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+  m_PrefabInstance: {fileID: 6337507717047148323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4612285487217631845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1725292650785914182, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+  m_PrefabInstance: {fileID: 6337507717047148323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1965705455630358476 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5527270252804655343, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
@@ -1201,11 +1273,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1965705453936293676 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5527270254365894671, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
+--- !u!114 &1507072075059427587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4835014017132504608, guid: dfa350c81394d064facc2e3704a5d8f4, type: 3}
   m_PrefabInstance: {fileID: 6337507717047148323}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7967405516556642111
 PrefabInstance:
   m_ObjectHideFlags: 0

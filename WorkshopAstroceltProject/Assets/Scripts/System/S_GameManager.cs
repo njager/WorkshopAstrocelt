@@ -20,6 +20,11 @@ public class S_GameManager : MonoBehaviour
 
     public int i_bones = 0;
 
+    [Header("Volume variables saved between scenes")]
+    public float f_masterVolume;
+
+    public float f_sfxVolume;
+
     //Status Effects
     public bool b_bleeding = false;
     public bool b_resistant = false;
