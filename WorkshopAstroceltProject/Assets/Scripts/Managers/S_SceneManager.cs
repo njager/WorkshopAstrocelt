@@ -96,4 +96,51 @@ public class S_SceneManager : MonoBehaviour
 
         r_rewardCanvas.SetActive(true);
     }
+
+    private void EncounterLoader(int newSceneIndex)
+    {
+        SceneManager.LoadScene(newSceneIndex);
+    }
+
+    public void TestSceneChanger()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.buildIndex == 0)
+        {
+            EncounterLoader(1);
+        }
+        else if (currentScene.buildIndex == 1)
+        {
+            EncounterLoader(2);
+        }
+        else if (currentScene.buildIndex == 2)
+        {
+            EncounterLoader(Random.Range(3,5));
+        }
+        else if (currentScene.buildIndex == 3 || currentScene.buildIndex == 4)
+        {
+            EncounterLoader(Random.Range(5,7));
+        }
+        else if (currentScene.buildIndex == 5 || currentScene.buildIndex == 6)
+        {
+            EncounterLoader(7);
+        }
+        else if (currentScene.buildIndex == 7)
+        {
+            EncounterLoader(Random.Range(8, 10));
+        }
+        else if (currentScene.buildIndex == 8 || currentScene.buildIndex == 9)
+        {
+            EncounterLoader(Random.Range(10, 13));
+        }
+        else if (currentScene.buildIndex == 10 || currentScene.buildIndex == 11 || currentScene.buildIndex == 12)
+        {
+            EncounterLoader(13);
+        }
+        else if (currentScene.buildIndex == 13)
+        {
+            EncounterLoader(14);
+        }
+
+    }
 }
