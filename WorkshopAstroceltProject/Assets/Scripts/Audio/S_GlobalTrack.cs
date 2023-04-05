@@ -29,7 +29,7 @@ public class S_GlobalTrack : MonoBehaviour
         {
             globalTrackEmitter.SetParameter("CurrentScene", 1);
             globalTrackEmitter.SetParameter("TimeInScene", S_FMODStaticSceneIdentifier.GetTimeInSceneFloat());
-            globalTrackEmitter.SetParameter("PlayerHealth", (float)g_gameManager.i_playerHealth);
+            globalTrackEmitter.SetParameter("PlayerHealth", (float)g_gameManager.GetHealth());
 
             if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
             {
@@ -44,7 +44,7 @@ public class S_GlobalTrack : MonoBehaviour
         {
             globalTrackEmitter.SetParameter("CurrentScene", 0);
             globalTrackEmitter.SetParameter("TimeInScene", S_FMODStaticSceneIdentifier.GetTimeInSceneFloat());
-            globalTrackEmitter.SetParameter("PlayerHealth", (float)g_gameManager.i_playerHealth);
+            globalTrackEmitter.SetParameter("PlayerHealth", (float)g_gameManager.GetHealth());
 
             if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
             {
@@ -59,7 +59,8 @@ public class S_GlobalTrack : MonoBehaviour
         {
             globalTrackEmitter.SetParameter("CurrentScene", 2);
             globalTrackEmitter.SetParameter("TimeInScene", S_FMODStaticSceneIdentifier.GetTimeInSceneFloat());
-            globalTrackEmitter.SetParameter("PlayerHealth", (float)g_gameManager.i_playerHealth);
+            globalTrackEmitter.SetParameter("PlayerHealth", (float)g_gameManager.GetHealth());
+            globalTrackEmitter.SetParameter("BossHealth", (float)g_gameManager.GetBossHealth());
 
             if (S_FMODStaticSceneIdentifier.GetStopAndPlayBool() == true)
             {

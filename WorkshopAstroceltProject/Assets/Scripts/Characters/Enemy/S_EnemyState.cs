@@ -1,5 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class S_EnemyState : MonoBehaviour
 {
     // Controls the state for the entierety of enemies 
@@ -178,8 +180,15 @@ public class S_EnemyState : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //If the enemy 1 healths or goes over in shields from abilities, or they die
-        if(g_global.g_enemyAttributeSheet1 != null)
+        // Boss Health audio
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.buildIndex == 14) 
+        {
+            g_global.g_gameManager.SetBossHealthState(g_global.g_enemyAttributeSheet1.GetEnemyHealthValue());
+        }
+
+            //If the enemy 1 healths or goes over in shields from abilities, or they die
+            if (g_global.g_enemyAttributeSheet1 != null)
         {
             if (g_global.g_enemyAttributeSheet1.e_i_health > g_global.g_enemyAttributeSheet1.e_i_healthMax)
             {

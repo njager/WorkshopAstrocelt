@@ -30,6 +30,9 @@ public class S_GameManager : MonoBehaviour
     public bool b_resistant = false;
     public bool b_stunned = false;
 
+    [Header("Boss Health Value")]
+    public int e_i_bossHealth;
+
     private void Awake()
     {
         if(Instance != null)
@@ -80,12 +83,21 @@ public class S_GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the health from the player
+    /// Get the health for the player
     /// </summary>
     /// <returns></returns>
     public int GetHealth()
     {
         return i_playerHealth;
+    }
+
+    /// <summary>
+    /// Get the health from the boss
+    /// </summary>
+    /// <returns></returns>
+    public int GetBossHealth()
+    {
+        return e_i_bossHealth;
     }
 
     /// <summary>
@@ -105,5 +117,10 @@ public class S_GameManager : MonoBehaviour
     public void SetPlayerHealthState(int _value)
     {
         i_playerHealth = _value;
+    }
+
+    public void SetBossHealthState(int _value)
+    {
+        e_i_bossHealth = _value;
     }
 }
