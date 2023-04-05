@@ -14,6 +14,12 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     [Header("Update Loop Blocker")]
     private static bool b_stopAndPlay;
 
+    [Header("TimeInScene")]
+    private static float f_timeInScene;
+
+    [Header("Music Volume")]
+    private static float f_musicVolume;
+
     /// <summary>
     /// Public method to declare the bool to tell FMOD what parameter to use for the global background track
     /// This is the combat scene method
@@ -28,7 +34,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
 
         // For update loop
         b_stopAndPlay = true;
-        Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
+        //Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
     }
 
     /// <summary>
@@ -77,7 +83,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
 
         // For update loop
         b_stopAndPlay = true;
-        Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
+        //Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -132,6 +138,26 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     public static void SetStopAndPlayParameter(bool _truthValue)
     {
         b_stopAndPlay = _truthValue;
+    }
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.f_timeInScene
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public static void SetTimeInSceneFloat(float _floatValue)
+    {
+        f_timeInScene = _floatValue;
+    }
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.f_musicVolume
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public static void SetMusicVolumeFloat(float _floatValue)
+    {
+        f_musicVolume = _floatValue;
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -196,5 +222,29 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     public static bool GetStopAndPlayBool()
     {
         return b_stopAndPlay;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.f_timeInScene
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.f_timeInScene
+    /// </returns>
+    public static float GetTimeInSceneFloat()
+    {
+        return f_timeInScene;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.f_musicVolume
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.f_musicVolume
+    /// </returns>
+    public static float GetMusicVolumeFloat()
+    {
+        return f_musicVolume;
     }
 }

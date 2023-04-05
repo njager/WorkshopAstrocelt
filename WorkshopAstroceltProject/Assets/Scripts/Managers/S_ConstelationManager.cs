@@ -499,6 +499,8 @@ public class S_ConstelationManager : MonoBehaviour
             //call the altar
             g_global.g_altar.CheckCardBallData();
 
+            s_nodeStarReference.GetComponent<S_NodeStar>().b_clickableStar = false; 
+
             NodeStarClicked(s_nodeStarReference, s_nodeStarReference.transform.position);
         }
     }

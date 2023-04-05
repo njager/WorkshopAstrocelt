@@ -354,9 +354,6 @@ public class S_Player : MonoBehaviour
         {
             SetPlayerHealthText(p_sc_playerAttributes.GetPlayerHealthValue());
         }
-
-        // Set the new audio percentage value
-        PlayerHealthAudioPercentage();
     }
 
     /// <summary>
@@ -379,24 +376,5 @@ public class S_Player : MonoBehaviour
     {
         g_global.g_UIManager.sc_characterGraphics.UpdatePlayerShieldUI(_shieldValue);
         g_global.g_UIManager.sc_characterGraphics.PlayerShieldingUIToggle();
-    }
-
-    /// On being attacked, set the audio percentage so the FMOD will conform to the new value
-    /// - Josh
-    /// </summary>
-    private void PlayerHealthAudioPercentage()
-    {
-        // Set the random values
-        float _randomInt1 = g_global.g_audioManager.GetRandomFloatNumber();
-        float _randomInt2 = g_global.g_audioManager.GetRandomFloatNumber();
-
-        // Add them to enemy health
-        float _playerHealth = p_sc_playerAttributes.GetPlayerHealthValue() + _randomInt1;
-        float _playerMaxHealth = p_sc_playerAttributes.GetPlayerMaxHealthValue() + _randomInt2;
-
-        // Calculate and Set the Percentage
-        float _temp = _playerHealth / _playerMaxHealth;
-
-        g_global.g_audioManager.SetPlayerAudioPercentage(_temp * 100);
     }
 }

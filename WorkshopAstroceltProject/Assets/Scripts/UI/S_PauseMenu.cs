@@ -24,6 +24,12 @@ public class S_PauseMenu : MonoBehaviour
     public GameObject optionsMenuAssets;
     public GameObject tutorial;
 
+    [Header("Audio Scene bools")]
+    public bool b_combatScene;
+    public bool b_eventScene;
+    public bool b_bossScene;
+    public bool b_mainMenuScene;
+
     private S_Global g_global;
 
     [SerializeField] private Slider musicSlider;
@@ -63,11 +69,10 @@ public class S_PauseMenu : MonoBehaviour
 
     public void OnValueChanged(float value)
     {
-        musicVolume = value;
-        g_global.g_gameManager.f_masterVolume = value;
-
-
+        S_FMODStaticSceneIdentifier.SetMusicVolumeFloat(value);
+        //g_global.g_gameManager.f_masterVolume = value;
     }
+
     public void SFXValueChanged(float value)
     {
         sfxVolume = value;
