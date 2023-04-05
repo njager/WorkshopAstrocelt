@@ -106,14 +106,12 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     [Header("Current Special Attack Enemy")]
     [SerializeField] int chg_e_i_specialAttackEnemyIdentifier;
 
-    [Header("Bleed Text")]
-    [SerializeField] TextMeshProUGUI chg_UI_i_bleedTextMultiplier;
+    [Header("Bleed Stack Elements")]
+    [SerializeField] TextMeshProUGUI chg_UI_i_bleedText;
+    [SerializeField] int chg_UI_i_bleedTier;
+    [SerializeField] bool chg_UI_b_bleedStatusEffectFirstTimeActive;
 
-    // Add a func to switch the asset depending on the enemy who triggered the special effect, now use the function
-
-    // Rework how stack counts inform data values - Is it still  broken ?
-
-    // Finish movement for status effects
+    // Rework how stack counts inform data values - Is it still  broken ? Yes
 
     private void Awake()
     {
@@ -121,14 +119,6 @@ public class S_HealthBarStatusEffects : MonoBehaviour
 
         ThreeElementTuple.tupleList = chg_ls_activeEffectsList;
     }
-
-    /* private void Update()
-     {
-         if (g_global.g_enemyState.e_b_enemy1Dead)
-         {
-             healthbar1.setactive(false);
-         }
-     }*/
 
     /////////////////////////////----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
     ///////////////////////////// Public Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -1115,195 +1105,261 @@ public class S_HealthBarStatusEffects : MonoBehaviour
         int _positionNum = GetIndexFromEffect(_effect);
         if (_positionNum == 0 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 1
         {
-            // Adjust slot count
-            chg_i_slotsOccupied -= 1;
+            // Bleed Check
+            if (_effect.Equals("bleed"))
+            {
+                if (chg_UI_i_bleedTier > 1)
+                {
+                    SetBleedEffectTier((chg_UI_i_bleedTier -= 1));
+                }
+                else 
+                {
+                    // Adjust slot count
+                    chg_i_slotsOccupied -= 1;
 
-            // Grab Child
-            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+                    // Grab Child
+                    GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
-            // Move Child
-            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+                    // Move Child
+                    _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
-            // Fade Child
-            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+                    // Fade Child
+                    _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Set New parent
-            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+                    // Set New parent
+                    _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
-            // Clear List Index
-            ResetIndexFromIndex(0);
+                    // Clear List Index
+                    ResetIndexFromIndex(0);
 
-            // Clear Child
-            chg_statusEffectPosition1Child = null;
+                    // Clear Child
+                    chg_statusEffectPosition1Child = null;
 
-            // Remove effect from the list
-            RemoveEffectFromList(chg_str_position1Identifier);
+                    // Remove effect from the list
+                    RemoveEffectFromList(chg_str_position1Identifier);
 
-            // Reset Identifer
-            chg_str_position1Identifier = "none";
+                    // Reset Identifer
+                    chg_str_position1Identifier = "none";
 
-            // Now reorganize status effects
-            StartCoroutine(MoveStatusEffects());
+                    // Now reorganize status effects
+                    StartCoroutine(MoveStatusEffects());
+                }
+            }
         }
         else if (_positionNum == 1 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 2
         {
-            // Adjust slot count
-            chg_i_slotsOccupied -= 1;
+            // Bleed Check
+            if (_effect.Equals("bleed"))
+            {
+                if (chg_UI_i_bleedTier > 1)
+                {
+                    SetBleedEffectTier((chg_UI_i_bleedTier -= 1));
+                }
+                else
+                {
+                    // Adjust slot count
+                    chg_i_slotsOccupied -= 1;
 
-            // Grab Child
-            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+                    // Grab Child
+                    GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
-            // Move Child
-            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+                    // Move Child
+                    _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
-            // Fade Child
-            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+                    // Fade Child
+                    _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Set New parent
-            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+                    // Set New parent
+                    _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
-            // Clear Child
-            chg_statusEffectPosition2Child = null;
+                    // Clear Child
+                    chg_statusEffectPosition2Child = null;
 
-            // Clear List Index
-            ResetIndexFromIndex(1);
+                    // Clear List Index
+                    ResetIndexFromIndex(1);
 
-            // Remove effect from the list
-            RemoveEffectFromList(chg_str_position2Identifier);
+                    // Remove effect from the list
+                    RemoveEffectFromList(chg_str_position2Identifier);
 
-            // Reset Identifer
-            chg_str_position2Identifier = "none";
+                    // Reset Identifer
+                    chg_str_position2Identifier = "none";
 
-            // Now reorganize status effects
-            StartCoroutine(MoveStatusEffects());
+                    // Now reorganize status effects
+                    StartCoroutine(MoveStatusEffects());
+                }
+            }
         }
         else if (_positionNum == 2 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 3
         {
-            // Adjust slot count
-            chg_i_slotsOccupied -= 1;
+            // Bleed Check
+            if (_effect.Equals("bleed"))
+            {
+                if (chg_UI_i_bleedTier > 1)
+                {
+                    SetBleedEffectTier((chg_UI_i_bleedTier -= 1));
+                }
+                else
+                {
+                    // Adjust slot count
+                    chg_i_slotsOccupied -= 1;
 
-            // Grab Child
-            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+                    // Grab Child
+                    GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
-            // Move Child
-            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+                    // Move Child
+                    _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
-            // Fade Child
-            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+                    // Fade Child
+                    _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Set New parent
-            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+                    // Set New parent
+                    _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
-            // Clear List Index
-            ResetIndexFromIndex(2);
+                    // Clear List Index
+                    ResetIndexFromIndex(2);
 
-            // Clear Child
-            chg_statusEffectPosition3Child = null;
+                    // Clear Child
+                    chg_statusEffectPosition3Child = null;
 
-            // Remove effect from the list
-            RemoveEffectFromList(chg_str_position3Identifier);
+                    // Remove effect from the list
+                    RemoveEffectFromList(chg_str_position3Identifier);
 
-            // Reset Identifer
-            chg_str_position3Identifier = "none";
+                    // Reset Identifer
+                    chg_str_position3Identifier = "none";
 
-            // Now reorganize status effects
-            StartCoroutine(MoveStatusEffects());
+                    // Now reorganize status effects
+                    StartCoroutine(MoveStatusEffects());
+                }
+            }
         }
         else if (_positionNum == 3 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 4
         {
-            // Adjust slot count
-            chg_i_slotsOccupied -= 1;
+            // Bleed Check
+            if (_effect.Equals("bleed"))
+            {
+                if (chg_UI_i_bleedTier > 1)
+                {
+                    SetBleedEffectTier((chg_UI_i_bleedTier -= 1));
+                }
+                else
+                {
+                    // Adjust slot count
+                    chg_i_slotsOccupied -= 1;
 
-            // Grab Child
-            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+                    // Grab Child
+                    GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
-            // Move Child
-            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+                    // Move Child
+                    _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
-            // Fade Child
-            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+                    // Fade Child
+                    _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Set New parent
-            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+                    // Set New parent
+                    _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
-            // Clear List Index
-            ResetIndexFromIndex(3);
+                    // Clear List Index
+                    ResetIndexFromIndex(3);
 
-            // Clear Child
-            chg_statusEffectPosition4Child = null;
+                    // Clear Child
+                    chg_statusEffectPosition4Child = null;
 
-            // Remove effect from the list
-            RemoveEffectFromList(chg_str_position4Identifier);
+                    // Remove effect from the list
+                    RemoveEffectFromList(chg_str_position4Identifier);
 
-            // Reset Identifer
-            chg_str_position5Identifier = "none";
+                    // Reset Identifer
+                    chg_str_position5Identifier = "none";
 
-            // Now reorganize status effects
-            StartCoroutine(MoveStatusEffects());
+                    // Now reorganize status effects
+                    StartCoroutine(MoveStatusEffects());
+                }
+            }
         }
         else if (_positionNum == 4 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 5
         {
-            // Adjust slot count
-            chg_i_slotsOccupied -= 1;
+            // Bleed Check
+            if (_effect.Equals("bleed"))
+            {
+                if (chg_UI_i_bleedTier > 1)
+                {
+                    SetBleedEffectTier((chg_UI_i_bleedTier -= 1));
+                }
+                else
+                {
+                    // Adjust slot count
+                    chg_i_slotsOccupied -= 1;
 
-            // Grab Child
-            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+                    // Grab Child
+                    GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
-            // Move Child
-            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+                    // Move Child
+                    _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
-            // Fade Child
-            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+                    // Fade Child
+                    _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Set New parent
-            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+                    // Set New parent
+                    _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
-            // Clear List Index
-            ResetIndexFromIndex(4);
+                    // Clear List Index
+                    ResetIndexFromIndex(4);
 
-            // Clear Child
-            chg_statusEffectPosition5Child = null;
+                    // Clear Child
+                    chg_statusEffectPosition5Child = null;
 
-            // Remove effect from the list
-            RemoveEffectFromList(chg_str_position5Identifier);
+                    // Remove effect from the list
+                    RemoveEffectFromList(chg_str_position5Identifier);
 
-            // Reset Identifer
-            chg_str_position5Identifier = "none";
+                    // Reset Identifer
+                    chg_str_position5Identifier = "none";
 
-            // Now reorganize status effects
-            StartCoroutine(MoveStatusEffects());
+                    // Now reorganize status effects
+                    StartCoroutine(MoveStatusEffects());
+                }
+            }
         }
-        else if (_positionNum == 5 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // 6
+        else if (_positionNum == 5 && EffectStateActive(_effect, GetHealthBarOwner()) == true) // Slot 6
         {
-            // Adjust slot count
-            chg_i_slotsOccupied -= 1;
+            // Bleed Check
+            if (_effect.Equals("bleed"))
+            {
+                if (chg_UI_i_bleedTier > 1)
+                {
+                    SetBleedEffectTier((chg_UI_i_bleedTier -= 1));
+                }
+                else
+                {
+                    // Adjust slot count
+                    chg_i_slotsOccupied -= 1;
 
-            // Grab Child
-            GameObject _effectObject = GetEffectObjectFromEffect(_effect);
+                    // Grab Child
+                    GameObject _effectObject = GetEffectObjectFromEffect(_effect);
 
-            // Move Child
-            _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
+                    // Move Child
+                    _effectObject.transform.DOMove(chg_statusEffectSpawn.transform.position, chg_f_endMoveValue);
 
-            // Fade Child
-            _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
+                    // Fade Child
+                    _effectObject.GetComponent<Image>().DOFade(0, chg_f_fadeDurationValue);
 
-            // Set New parent
-            _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
+                    // Set New parent
+                    _effectObject.transform.SetParent(chg_statusEffectSpawn.transform);
 
-            // Clear List Index
-            ResetIndexFromIndex(5);
+                    // Clear List Index
+                    ResetIndexFromIndex(5);
 
-            // Clear Child
-            chg_statusEffectPosition6Child = null;
+                    // Clear Child
+                    chg_statusEffectPosition6Child = null;
 
-            // Remove effect from the list
-            RemoveEffectFromList(chg_str_position6Identifier);
+                    // Remove effect from the list
+                    RemoveEffectFromList(chg_str_position6Identifier);
 
-            // Reset Identifer
-            chg_str_position6Identifier = "none";
+                    // Reset Identifer
+                    chg_str_position6Identifier = "none";
 
-            // Now reorganize status effects
-            StartCoroutine(MoveStatusEffects());
+                    // Now reorganize status effects
+                    StartCoroutine(MoveStatusEffects());
+                }
+            }
         }
         else
         {
@@ -1319,6 +1375,26 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     public void SetSpecialAttackIdentifer(int _ownerIndex)
     {
         chg_e_i_specialAttackEnemyIdentifier = _ownerIndex;
+    }
+
+    /// <summary>
+    /// Setter for S.HealthBarStatusEffects.chg_UI_i_bloodTier
+    /// - Josh
+    /// </summary>
+    /// <param name="_tierLevel"></param>
+    public void SetBleedEffectTier(int _tierLevel) 
+    {
+        chg_UI_i_bleedTier = _tierLevel;
+        UpdateBleedEffectText();
+    }
+
+    /// <summary>
+    /// Update the Blood Text Tier Level
+    /// - Josh
+    /// </summary>
+    public void UpdateBleedEffectText() 
+    {
+        chg_UI_i_bleedText.text = "X" + chg_UI_i_bleedTier;
     }
 
     /////////////////////////////-----------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -1608,7 +1684,7 @@ public class S_HealthBarStatusEffects : MonoBehaviour
     /// - Josh
     /// </summary>
     /// <returns></returns>
-    public IEnumerator MoveStatusEffects()
+    private IEnumerator MoveStatusEffects()
     {
         SortPositions();
         yield return null;
