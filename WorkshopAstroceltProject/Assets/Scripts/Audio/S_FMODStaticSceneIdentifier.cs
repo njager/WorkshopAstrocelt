@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public static class S_FMODStaticSceneIdentifier 
+public class S_FMODStaticSceneIdentifier : MonoBehaviour 
 {
     [Header("Scene Types Bool")]
     private static bool b_combatScene;
@@ -25,6 +25,10 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = false;
         b_bossScene = false;
         b_titleScene = false;
+
+        // For update loop
+        b_stopAndPlay = true;
+        Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
     }
 
     /// <summary>
@@ -38,6 +42,9 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = true;
         b_bossScene = false;
         b_titleScene = false;
+
+        // For update loop
+        b_stopAndPlay = true;
     }
 
     /// <summary>
@@ -51,6 +58,9 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = false;
         b_bossScene = true;
         b_titleScene = false;
+
+        // For update loop
+        b_stopAndPlay = true;
     }
 
     /// <summary>
@@ -64,6 +74,10 @@ public static class S_FMODStaticSceneIdentifier
         b_encounterScene = false;
         b_bossScene = false;
         b_titleScene = true;
+
+        // For update loop
+        b_stopAndPlay = true;
+        Debug.Log("Bools Changed to: " + b_combatScene + ", " + b_encounterScene + ", " + b_bossScene + ", " + b_titleScene);
     }
 
     /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 

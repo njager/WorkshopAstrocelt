@@ -11,8 +11,6 @@ public class S_GlobalTrack : MonoBehaviour
     private void Start()
     {
         globalTrackEmitter.Play();
-
-        S_FMODStaticSceneIdentifier.TriggerTitleSceneBool();
     }
 
     private void Update()
@@ -27,6 +25,7 @@ public class S_GlobalTrack : MonoBehaviour
                 S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
                 globalTrackEmitter.Stop();
                 globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
             }
         }
 
@@ -39,6 +38,7 @@ public class S_GlobalTrack : MonoBehaviour
                 S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
                 globalTrackEmitter.Stop();
                 globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
             }
         }
 
@@ -51,6 +51,7 @@ public class S_GlobalTrack : MonoBehaviour
                 S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
                 globalTrackEmitter.Stop();
                 globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
             }
         }
 
@@ -63,6 +64,7 @@ public class S_GlobalTrack : MonoBehaviour
                 S_FMODStaticSceneIdentifier.SetStopAndPlayParameter(false);
                 globalTrackEmitter.Stop();
                 globalTrackEmitter.Play();
+                Debug.Log("We stopped and played");
             }
         }
     }

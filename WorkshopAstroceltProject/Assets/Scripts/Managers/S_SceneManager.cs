@@ -116,7 +116,8 @@ public class S_SceneManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.buildIndex == 0) // Title
         {
-            S_FMODStaticSceneIdentifier.TriggerTitleSceneBool();
+            //S_FMODStaticSceneIdentifier.TriggerTitleSceneBool();
+            S_FMODStaticSceneIdentifier.TriggerCombatSceneBool();
             EncounterLoader(1);
         }
         else if (currentScene.buildIndex == 1) // Combat
