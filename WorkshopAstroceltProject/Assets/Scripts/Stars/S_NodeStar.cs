@@ -167,6 +167,7 @@ public class S_NodeStar : MonoBehaviour
 
     public void ConfirmClickable(S_StarClass _star)
     {
+        Debug.Log("confirm clickable hit old var: " + b_clickableStar);
         b_clickableStar = true;
         s_thisStar = _star;
     }

@@ -147,36 +147,36 @@ public class S_Global : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            g_enemyState.e_b_enemy1Dead = true;
-            g_enemyState.enemy1.EnemyDied("Lumberjack");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            g_enemyState.e_b_enemy2Dead = true;
-            g_enemyState.enemy2.EnemyDied("Lumberjack");
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            g_enemyState.e_b_enemy3Dead = true;
-            g_enemyState.enemy3.EnemyDied("Lumberjack");
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            g_playerAttributeSheet.SetPlayerHealthValue(0);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (g_UIManager.debugTurnbar.activeInHierarchy == false)
-            {
-                g_UIManager.debugTurnbar.SetActive(true);
-            }
-            else 
-            {
-                g_UIManager.debugTurnbar.SetActive(false);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    g_enemyState.e_b_enemy1Dead = true;
+        //    g_enemyState.enemy1.EnemyDied("Lumberjack");
+        //}
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    g_enemyState.e_b_enemy2Dead = true;
+        //    g_enemyState.enemy2.EnemyDied("Lumberjack");
+        //}
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    g_enemyState.e_b_enemy3Dead = true;
+        //    g_enemyState.enemy3.EnemyDied("Lumberjack");
+        //}
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    g_playerAttributeSheet.SetPlayerHealthValue(0);
+        //}
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    if (g_UIManager.debugTurnbar.activeInHierarchy == false)
+        //    {
+        //        g_UIManager.debugTurnbar.SetActive(true);
+        //    }
+        //    else 
+        //    {
+        //        g_UIManager.debugTurnbar.SetActive(false);
+        //    }
+        //}
         if (Input.GetMouseButtonDown(1))
         {
             if (g_ConstellationManager.GetMakingConstellation())
@@ -185,12 +185,12 @@ public class S_Global : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace)) 
-        {
-            g_energyManager.SetRedEnergyInt(g_energyManager.GetRedEnergyInt() + 20);
-            g_energyManager.SetBlueEnergyInt(g_energyManager.GetBlueEnergyInt() + 20);
-            g_energyManager.SetYellowEnergyInt(g_energyManager.GetYellowEnergyInt() + 20);
-        }
+        //if (Input.GetKeyDown(KeyCode.Backspace)) 
+        //{
+        //    g_energyManager.SetRedEnergyInt(g_energyManager.GetRedEnergyInt() + 20);
+        //    g_energyManager.SetBlueEnergyInt(g_energyManager.GetBlueEnergyInt() + 20);
+        //    g_energyManager.SetYellowEnergyInt(g_energyManager.GetYellowEnergyInt() + 20);
+        //}
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {

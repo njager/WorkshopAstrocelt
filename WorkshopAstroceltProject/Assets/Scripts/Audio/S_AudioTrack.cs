@@ -14,6 +14,8 @@ public class S_AudioTrack : MonoBehaviour
 
     [SerializeField] public bool b_bossScene;
 
+    [SerializeField] public bool b_mainMenuScene;
+
     [Header("Time Interval")]
     [SerializeField] public float f_intensityBreakpoint;
 
@@ -37,11 +39,11 @@ public class S_AudioTrack : MonoBehaviour
     {
 
         //Debug.Log(g_global.g_pauseMenu.musicVolume);
-        changeVolume();
+        //changeVolume();
 
         f_timeInScene += Time.deltaTime;
 
-        i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
+        //i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
 
         if (b_eventScene)
         {
@@ -71,6 +73,12 @@ public class S_AudioTrack : MonoBehaviour
 
             emitter.SetParameter("CurrentScene", 2);
         }
+        else if (b_mainMenuScene)
+        {
+            var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+
+            emitter.SetParameter("CurrentScene", 3);
+        }
         else { Debug.Log("No scene music selected"); }
     }
 
@@ -79,16 +87,7 @@ public class S_AudioTrack : MonoBehaviour
         //vol = g_global.g_pauseMenu.musicVolume;
         var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Volume", g_global.g_pauseMenu.musicVolume);
-        //emitter.SetParameter("SFX_Volume", g_global.g_pauseMenu.sfxVolume);
+
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFX_Volume", g_global.g_pauseMenu.sfxVolume);
-        //Debug.Log(g_global.g_pauseMenu.sfxVolume);
-
-        /*musicEvent = target.GetComponent<FMODUnity.StudioEventEmitter>();
-        FMOD.Studio.ParameterInstance myParameter;
-        myParameter = musicEvent.GetParameter(“War”);
-
-        myParameter.getValue(out float);
-        myParameter.setValue(float);*/
-
     }
 }

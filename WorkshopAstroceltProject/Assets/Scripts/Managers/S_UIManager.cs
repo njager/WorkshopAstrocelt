@@ -196,6 +196,8 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy1ShieldText.enabled = false;
             e_tx_upperEnemy1ShieldText.enabled = false;
             e_UI_upperEnemy1HealthBar.enabled = false;
+
+            g_global.g_vfxManager.e_enemyImageUI1.gameObject.SetActive(false);
         }
         if (_enemyNum == 2)
         {
@@ -205,6 +207,8 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy2ShieldText.enabled = false;
             e_tx_upperEnemy2ShieldText.enabled = false;
             e_UI_upperEnemy2HealthBar.enabled = false;
+
+            g_global.g_vfxManager.e_enemyImageUI2.gameObject.SetActive(false);
         }
         if (_enemyNum == 3)
         {
@@ -214,6 +218,8 @@ public class S_UIManager : MonoBehaviour
             e_tx_enemy3ShieldText.enabled = false;
             e_tx_upperEnemy3ShieldText.enabled = false;
             e_UI_upperEnemy3HealthBar.enabled = false;
+
+            g_global.g_vfxManager.e_enemyImageUI3.gameObject.SetActive(false);
         }
     }
 
