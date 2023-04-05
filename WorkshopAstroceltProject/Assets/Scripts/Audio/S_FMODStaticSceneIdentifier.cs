@@ -8,17 +8,17 @@ using FMOD;
 public class S_FMODStaticSceneIdentifier : MonoBehaviour 
 {
     [Header("Scene Types Bool")]
-    [SerializeField] static bool b_titleScene;
     [SerializeField] static bool b_combatScene;
     [SerializeField] static bool b_encounterScene;
     [SerializeField] static bool b_bossScene;
+    [SerializeField] static bool b_titleScene;
 
     [Header("Global Audio Track Object")]
-    public StudioEventEmitter emitter;
+    public StudioEventEmitter globalTrackEmitter;
 
     private void Start()
     {
-        emitter.Play();
+        globalTrackEmitter.Play();
     }
 
     private void Update()
@@ -26,7 +26,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
         // Update FMOD track in here
         if (b_combatScene == true && (b_titleScene == false && b_encounterScene == false && b_bossScene == false)) 
         {
-            emitter.SetParameter("CurrentScene", 1);
+            globalTrackEmitter.SetParameter("CurrentScene", 1);
         }
         else 
         {
@@ -35,7 +35,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
 
         if (b_encounterScene == true && (b_titleScene == false && b_combatScene == false && b_bossScene == false))
         {
-            emitter.SetParameter("CurrentScene", 0);
+            globalTrackEmitter.SetParameter("CurrentScene", 0);
         }
         else 
         {
@@ -44,7 +44,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
 
         if (b_bossScene == true && (b_titleScene == false && b_encounterScene == false && b_combatScene == false))
         {
-            emitter.SetParameter("CurrentScene", 2);
+            globalTrackEmitter.SetParameter("CurrentScene", 2);
         }
         else
         {
@@ -53,7 +53,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
 
         if (b_titleScene == true && (b_combatScene == false && b_encounterScene == false && b_bossScene == false))
         {
-            emitter.SetParameter("CurrentScene", 3);
+            globalTrackEmitter.SetParameter("CurrentScene", 3);
         }
         else
         {
@@ -111,5 +111,49 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
         b_encounterScene = false;
         b_bossScene = false;
         b_titleScene = true;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.b_combatScene
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetCombatSceneBoolParameter(bool _truthValue)
+    {
+        b_combatScene = _truthValue;
+    }
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.b_encounterScene
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetEncounterSceneBoolParameter(bool _truthValue)
+    {
+        b_encounterScene = _truthValue;
+    }
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.b_bossScene
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetBossSceneBoolParameter(bool _truthValue)
+    {
+        b_bossScene = _truthValue;
+    }
+
+    /// <summary>
+    /// Set the static bool value of S_FMODStaticSceneIdentifier.b_bossScene
+    /// - Josh 
+    /// </summary>
+    /// <param name="_truthValue"></param>
+    public void SetTitleSceneBoolParameter(bool _truthValue)
+    {
+        b_titleScene = _truthValue;
     }
 }
