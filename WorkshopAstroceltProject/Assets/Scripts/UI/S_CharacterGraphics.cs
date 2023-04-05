@@ -421,7 +421,7 @@ public class S_CharacterGraphics : MonoBehaviour
     /// </summary>
     /// <param name="_state"></param>
     /// /// <param name="_enemyCount"></param>
-    public void ToggleBleedEnemyUI(bool _state, int _enemyCount)
+    public void ToggleBleedEnemyUI(bool _state, int _enemyCount, int _stackCount)
     {
         if (_enemyCount == 1)
         {
