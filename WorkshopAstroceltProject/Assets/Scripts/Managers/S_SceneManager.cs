@@ -41,6 +41,12 @@ public class S_SceneManager : MonoBehaviour
     }
 
 
+    public void Scene0()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+
     /// <summary>
     /// Used to exit the game on the win and lose screens
     /// - Josh
