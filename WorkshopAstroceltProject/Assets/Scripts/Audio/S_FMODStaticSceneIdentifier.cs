@@ -2,66 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-using FMODUnityResonance;
-using FMOD;
 
-public class S_FMODStaticSceneIdentifier : MonoBehaviour 
+public static class S_FMODStaticSceneIdentifier 
 {
     [Header("Scene Types Bool")]
     [SerializeField] static bool b_combatScene;
     [SerializeField] static bool b_encounterScene;
     [SerializeField] static bool b_bossScene;
     [SerializeField] static bool b_titleScene;
-
-    [Header("Global Audio Track Object")]
-    public StudioEventEmitter globalTrackEmitter;
-
-    private void Start()
-    {
-        globalTrackEmitter.Play();
-
-        TriggerTitleSceneBool();
-    }
-
-    private void Update()
-    {
-        // Update FMOD track in here
-        if (b_combatScene == true && (b_titleScene == false && b_encounterScene == false && b_bossScene == false)) 
-        {
-            globalTrackEmitter.SetParameter("CurrentScene", 1);
-        }
-        else 
-        {
-            return;
-        }
-
-        if (b_encounterScene == true && (b_titleScene == false && b_combatScene == false && b_bossScene == false))
-        {
-            globalTrackEmitter.SetParameter("CurrentScene", 0);
-        }
-        else 
-        {
-            return;
-        }
-
-        if (b_bossScene == true && (b_titleScene == false && b_encounterScene == false && b_combatScene == false))
-        {
-            globalTrackEmitter.SetParameter("CurrentScene", 2);
-        }
-        else
-        {
-            return;
-        }
-
-        if (b_titleScene == true && (b_combatScene == false && b_encounterScene == false && b_bossScene == false))
-        {
-            globalTrackEmitter.SetParameter("CurrentScene", 3);
-        }
-        else
-        {
-            return;
-        }
-    }
 
     /// <summary>
     /// Public method to declare the bool to tell FMOD what parameter to use for the global background track
@@ -124,7 +72,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// - Josh 
     /// </summary>
     /// <param name="_truthValue"></param>
-    public void SetCombatSceneBoolParameter(bool _truthValue)
+    public static void SetCombatSceneBoolParameter(bool _truthValue)
     {
         b_combatScene = _truthValue;
     }
@@ -134,7 +82,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// - Josh 
     /// </summary>
     /// <param name="_truthValue"></param>
-    public void SetEncounterSceneBoolParameter(bool _truthValue)
+    public static void SetEncounterSceneBoolParameter(bool _truthValue)
     {
         b_encounterScene = _truthValue;
     }
@@ -144,7 +92,7 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// - Josh 
     /// </summary>
     /// <param name="_truthValue"></param>
-    public void SetBossSceneBoolParameter(bool _truthValue)
+    public static void SetBossSceneBoolParameter(bool _truthValue)
     {
         b_bossScene = _truthValue;
     }
@@ -154,8 +102,60 @@ public class S_FMODStaticSceneIdentifier : MonoBehaviour
     /// - Josh 
     /// </summary>
     /// <param name="_truthValue"></param>
-    public void SetTitleSceneBoolParameter(bool _truthValue)
+    public static void SetTitleSceneBoolParameter(bool _truthValue)
     {
         b_titleScene = _truthValue;
+    }
+
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    ///////////////////////////// Getters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+    /////////////////////////////---------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.b_combatScene
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.b_combatScene
+    /// </returns>
+    public static bool GetCombatSceneParameterBool()
+    {
+        return b_combatScene;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.b_encounterScene
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.b_encounterScene
+    /// </returns>
+    public static bool GetEncounterSceneParameterBool()
+    {
+        return b_encounterScene;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.b_bossScene
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.b_bossScene
+    /// </returns>
+    public static bool GetBossSceneParameterBool()
+    {
+        return b_bossScene;
+    }
+
+    /// <summary>
+    /// Returns the gameobject of S_FMODStaticSceneIdentifier.b_titleScene
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_FMODStaticSceneIdentifier.b_titleScene
+    /// </returns>
+    public static bool GetTitleSceneParameterBool()
+    {
+        return b_titleScene;
     }
 }
