@@ -41,6 +41,7 @@ public class S_SceneManager : MonoBehaviour
     }
 
 
+
     /// <summary>
     /// Used to exit the game on the win and lose screens
     /// - Josh
@@ -103,6 +104,11 @@ public class S_SceneManager : MonoBehaviour
     private void EncounterLoader(int newSceneIndex)
     {
         SceneManager.LoadScene(newSceneIndex);
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void TestSceneChanger()
