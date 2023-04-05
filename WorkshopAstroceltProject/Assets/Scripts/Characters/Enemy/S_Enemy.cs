@@ -419,6 +419,18 @@ public class S_Enemy : MonoBehaviour
     /// <param name="_enemyType"></param>
     public void EnemyDied(string _enemyType)
     {
+        //if (_enemyType == "Lumberjack" || _enemyType == "Magician" || _enemyType == "Beast" || _enemyType == "Brawler" || _enemyType == "Realmwalker")
+        if (_enemyType == "Magician" || _enemyType == "Brawler")
+        {
+
+            FMODUnity.RuntimeManager.PlayOneShot("Events/Sounds/CharacterSFX/enemy-death-clur-bod");
+        }
+        if (_enemyType == "Beast" || _enemyType == "Crone")
+        {
+
+            FMODUnity.RuntimeManager.PlayOneShot("Events/Sounds/CharacterSFX/enemy-death-puca-ss");
+        }
+
         g_global.g_i_enemyCount -= 1;
 
         Debug.Log("Enemy Perished");
