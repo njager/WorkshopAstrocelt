@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response3c
   m_EditorClassIdentifier: 
-  s_responseText: "Wait, should I? No...but what if?\n [Lose health: HIGH, Gain a
-    Legendary ritual: LOW]"
+  s_responseText: Why wait? Let's end this now.
   r_reward:
-    i_value: 26
-    s_rewardString: "I never though that would actually work. \n[Gained: Zealous
-      Storm]"
+    i_value: 0
+    s_rewardString: You make your way towards the hulking Bananach. It's time to
+      end this.
     b_boneReward: 0
     b_healthReward: 0
-    b_cardReward: 1
-    i_failureValue: -20
+    b_cardReward: 0
+    i_failureValue: 0
     b_boneFailure: 0
     b_healthFailure: 1
     b_cardFailure: 0
-  f_failureChance: 70
-  s_failureText: "That didn't go well. \n[Lose 20 health]"
+  f_failureChance: 0
+  s_failureText: 

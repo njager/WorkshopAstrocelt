@@ -571,14 +571,14 @@ RectTransform:
   m_GameObject: {fileID: 4018466164889924760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children: []
   m_Father: {fileID: 5666505240148551340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -118.9}
   m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6523078174400273077
@@ -609,7 +609,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: 'Bodach
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79c0d867bbe5f744a8aa37ee6ed10c8a, type: 2}
   m_sharedMaterial: {fileID: 5066305262922275057, guid: 79c0d867bbe5f744a8aa37ee6ed10c8a, type: 2}
@@ -827,7 +829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2456550193583920174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1067,11 +1069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509854089639134268, guid: d8aa8343587ac9241a5cf1828211ceb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.48
+      value: 1.067
       objectReference: {fileID: 0}
     - target: {fileID: 5509854089639134268, guid: d8aa8343587ac9241a5cf1828211ceb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.573
       objectReference: {fileID: 0}
     - target: {fileID: 5509854089639134268, guid: d8aa8343587ac9241a5cf1828211ceb7, type: 3}
       propertyPath: m_LocalPosition.z

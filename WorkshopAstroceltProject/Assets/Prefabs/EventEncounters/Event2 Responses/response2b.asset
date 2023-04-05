@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response2b
   m_EditorClassIdentifier: 
-  s_responseText: "There has to a ritual that can help! \n[Lose 1 Ritual from your
-    deck]"
+  s_responseText: 'Valor. Only the brave makes a mark that withstands the tests of
+    time.
+
+    [Gain Attack Ritual]'
   r_reward:
-    i_value: 8
-    s_rewardString: BUG
+    i_value: 22
+    s_rewardString: Defeat your enemies before they can hit you. You've gained IVY
+      BLADE II
     b_boneReward: 0
     b_healthReward: 0
-    b_cardReward: 0
-    i_failureValue: 8
+    b_cardReward: 1
+    i_failureValue: 0
     b_boneFailure: 0
     b_healthFailure: 0
     b_cardFailure: 1
-  f_failureChance: 100
-  s_failureText: "You've lost a ritual from your deck. \n[DIG IN]"
+  f_failureChance: 0
+  s_failureText: 

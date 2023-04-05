@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
   m_Name: response3a
   m_EditorClassIdentifier: 
-  s_responseText: 'Even these corrupted creatures had a life. They deserve some rights
-    for whereever they are going
+  s_responseText: 'I need to rest so I can be at full strength.
 
-    [Gain 10 health: HIGH]'
+    [Gain 50HP]'
   r_reward:
-    i_value: 10
-    s_rewardString: "You feel rejuvinated from the ceremony. \n[Gained 10 health]"
+    i_value: 50
+    s_rewardString: You regain 50 HP. You get up, and begin to make your way towards
+      the Bananach. It's time to end this.
     b_boneReward: 0
     b_healthReward: 1
     b_cardReward: 0
@@ -27,4 +27,4 @@ MonoBehaviour:
     b_healthFailure: 0
     b_cardFailure: 0
   f_failureChance: 0
-  s_failureText: BUG
+  s_failureText: 

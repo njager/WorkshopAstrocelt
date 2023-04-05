@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bd0051b090d9364a9b0c89d12e9efa2, type: 3}
-  m_Name: response3b
+  m_Name: response2c
   m_EditorClassIdentifier: 
-  s_responseText: 'I don''t need rest, I can use this time to prepare.
-
-    [Gain
-    Legendary Ritual]'
+  s_responseText: "No, my mind and mind and body simply need to rest. \n[Gain 10
+    HP)"
   r_reward:
-    i_value: 42
-    s_rewardString: You used your time to make a WILTING RAY ritual. It should come
-      in handy. You make your way towards the Bananach. It's time.
+    i_value: 10
+    s_rewardString: Everybody needs their rest! You've gained 10 HP.
     b_boneReward: 0
-    b_healthReward: 0
-    b_cardReward: 1
+    b_healthReward: 1
+    b_cardReward: 0
     i_failureValue: 0
     b_boneFailure: 0
-    b_healthFailure: 0
+    b_healthFailure: 1
     b_cardFailure: 0
   f_failureChance: 0
-  s_failureText: Legendary!
+  s_failureText: 
