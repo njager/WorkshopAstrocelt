@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Linq; 
+using System.Linq;
+using UnityEngine.UI;
 
 public class S_ConstelationManager : MonoBehaviour
 {
@@ -493,6 +494,10 @@ public class S_ConstelationManager : MonoBehaviour
 
             //Reset bonus energy
             g_global.g_consecutiveColorTrackerManager.ResetColorTracker();
+
+
+            //turn the button off while the cardballs slide
+            g_global.g_vfxManager.ui_mapPanButton.GetComponent<Button>().interactable = false;
 
             //call the altar
             g_global.g_altar.CheckCardBallData();

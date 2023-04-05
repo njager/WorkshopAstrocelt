@@ -64,23 +64,28 @@ public class S_PauseMenu : MonoBehaviour
     public void OnValueChanged(float value)
     {
         musicVolume = value;
-        
+        g_global.g_gameManager.f_masterVolume = value;
+
 
     }
     public void SFXValueChanged(float value)
     {
         sfxVolume = value;
-        
+        g_global.g_gameManager.f_sfxVolume = value;
     }
   
     public void Start()
     {
-        SFXValueChanged(50f);
-
         //musicSlider.onValueChanged.AddListener((v) => { musicVolume = v; });
         //print(musicVolume);
-        
 
+        //get the value from game manager
+        sfxVolume = g_global.g_gameManager.f_sfxVolume;
+        musicVolume = g_global.g_gameManager.f_masterVolume;
+
+        //set the slider to the right position
+        sfxSlider.value = sfxVolume;
+        musicSlider.value = musicVolume;
 
 
 

@@ -29,7 +29,8 @@ public class S_RewardVisualScript : MonoBehaviour
         {
             b_rewardClaimed = true;
 
-            lReward.SetActive(true);
+            rReward.SetActive(false);
+
 
             //lRewardSelector.SetActive(false);
 
@@ -46,7 +47,7 @@ public class S_RewardVisualScript : MonoBehaviour
         {
             b_rewardClaimed = true;
 
-            rReward.SetActive(true);
+            lReward.SetActive(false);
 
             //rRewardSelector.SetActive(false);
 

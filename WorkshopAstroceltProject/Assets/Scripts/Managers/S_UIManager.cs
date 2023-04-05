@@ -119,6 +119,11 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI en_tx_blueEnergyTrackerText;
     public TextMeshProUGUI en_tx_yellowEnergyTrackerText;
 
+    [Header("Energy UI Text Elements Upper")]
+    public TextMeshProUGUI en_tx_redUpperEnergyText;
+    public TextMeshProUGUI en_tx_blueUpperEnergyText;
+    public TextMeshProUGUI en_tx_yellowUpperEnergyText;
+
     [Header("Constellation Length Elements")]
     public TextMeshProUGUI co_tx_constellationTrackerText;
 
@@ -375,6 +380,36 @@ public class S_UIManager : MonoBehaviour
     public TextMeshProUGUI GetYellowEnergyTrackerText()
     {
         return en_tx_yellowEnergyTrackerText;
+    }
+
+
+    public TextMeshProUGUI GetRedUpperEnergyText()
+    {
+        return en_tx_redUpperEnergyText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_blueText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_blueEnergyTrackerText
+    /// </returns>
+    public TextMeshProUGUI GetBlueUpperEnergyText()
+    {
+        return en_tx_blueUpperEnergyText;
+    }
+
+    /// <summary>
+    /// Return the TextMeshProUGUI object of S_UIManager.en_tx_yellowText
+    /// - Josh
+    /// </summary>
+    /// <returns>
+    /// S_UIManager.en_tx_yellowEnergyTrackerText
+    /// </returns>
+    public TextMeshProUGUI GetYellowUpperEnergyText()
+    {
+        return en_tx_yellowUpperEnergyText;
     }
 
 
