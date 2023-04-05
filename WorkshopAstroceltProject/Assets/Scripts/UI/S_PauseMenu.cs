@@ -107,6 +107,19 @@ public class S_PauseMenu : MonoBehaviour
         }*/
     }
 
+
+    public void MenuButtonPressed()
+    {
+        if (GameIsPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
     
     public void Resume()
     {

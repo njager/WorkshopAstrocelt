@@ -8,6 +8,6 @@ public class S_PauseButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        pm_pauseMenuObj.Pause();
+        pm_pauseMenuObj.MenuButtonPressed();
     }
 }
