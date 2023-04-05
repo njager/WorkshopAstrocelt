@@ -18,7 +18,7 @@ public class S_EventManager : MonoBehaviour
     public GameObject g_reponsePrefab;
 
     [Header("ID for the next Scene")]
-    public int i_sceneID;
+    public int[] ls_i_sceneID;
 
     public List<GameObject> ls_responses;
 
@@ -90,7 +90,7 @@ public class S_EventManager : MonoBehaviour
         _newResponse.GetComponent<S_ResponseManager>().b_clicked = true;
 
         //set the scene id
-        _newResponse.GetComponent<S_ResponseManager>().i_sceneID = i_sceneID;
+        _newResponse.GetComponent<S_ResponseManager>().i_sceneID = ls_i_sceneID[Random.Range(0, ls_i_sceneID.Length)];
 
         ls_responses.Add(_newResponse);
     }

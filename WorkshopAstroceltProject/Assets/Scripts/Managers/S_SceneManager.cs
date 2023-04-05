@@ -18,6 +18,9 @@ public class S_SceneManager : MonoBehaviour
     public bool b_toEventScene = false;
     public int[] ls_i_eventIndices;
 
+    //fill this list with potential scenes
+    public int[] ls_i_sceneIndices;
+
     [Header("Next Turn Button")]
     public GameObject nextTurnButton;
 
@@ -57,7 +60,7 @@ public class S_SceneManager : MonoBehaviour
     {
         if(g_global.g_rewardVisualScript.b_rewardClaimed)
         {
-            SceneManager.LoadScene(i_sceneIndex);
+            SceneManager.LoadScene(ls_i_sceneIndices[Random.Range(0, ls_i_sceneIndices.Length)]);
         }
     }
 
