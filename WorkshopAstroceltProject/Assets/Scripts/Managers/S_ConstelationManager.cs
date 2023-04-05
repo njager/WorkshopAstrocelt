@@ -91,9 +91,6 @@ public class S_ConstelationManager : MonoBehaviour
 
         //wait for checking stars
         yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
 
         if (!_star.s_star.m_previousLine) { Debug.Log("line is gone so no star added"); yield return null; }
         else if (_line.b_isColliding) { Debug.Log("line is gone so no star added"); yield return null; }
