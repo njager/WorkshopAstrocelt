@@ -62,74 +62,6 @@ public class S_ConstellationLine : MonoBehaviour
         g_global.g_ls_completedLineRendererList.Add(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        //Debug.Log("Is there collision");
-        GameObject other = col.gameObject;
-        if (other.CompareTag("Meteor"))
-        {
-            Debug.Log("encountered a Meteor chain in path");
-
-            //change the color to error
-            m_lineRendererInst.startColor = cl_errorLineColor;
-            m_lineRendererInst.endColor = cl_errorLineColor;
-
-            //change the var for line wait
-            b_isColliding = true;
-        }
-        else if (other.CompareTag("Line")) //check if collider is a line
-        {
-            //print("Theres a line");
-            //Use if lines connecting to the same stars are colliding if(&& other.GetComponent<LineRenderer>() != _prevLine)
-            if (s_previousStar.s_star.m_previousLine)
-            {
-                //Debug.Log(" Line with this index:"+ i_index);
-                S_ConstellationLine _prevLine = s_previousStar.s_star.m_previousLine;
-
-                //execute if the lines arnt next to eachother
-                if(other.GetComponent<S_ConstellationLine>().i_index != _prevLine.i_index)
-                {
-                    if (other.GetComponent<S_ConstellationLine>().i_index < i_index) //check which one has a larger index and if it is equal to the previous line
-                    {
-                        Debug.Log("Hit another Line connected to the stars");
-
-                        //change the color to error
-                        m_lineRendererInst.startColor = cl_errorLineColor;
-                        m_lineRendererInst.endColor = cl_errorLineColor;
-
-                        //change the var for line wait
-                        b_isColliding = true;
-                    }
-                }
-            }
-            else if (other.GetComponent<S_ConstellationLine>().i_index < i_index ) //check which one has a larger index and if it is equal to the previous line
-            {
-                Debug.Log("Hit another Line with lower index");
-
-                //change the color to error
-                m_lineRendererInst.startColor = cl_errorLineColor;
-                m_lineRendererInst.endColor = cl_errorLineColor;
-
-                //change the var for line wait
-                b_isColliding = true;
-            }
-        }
-        else if (other.CompareTag("Star")) //check if the col is a star
-        {
-            if(other!=s_previousStar.gameObject && other!= s_nextStar.gameObject && other!=s_nullStarInst)
-            {
-                Debug.Log("encountered another star in path");
-
-                //change the color to error
-                m_lineRendererInst.startColor = cl_errorLineColor;
-                m_lineRendererInst.endColor = cl_errorLineColor;
-
-                //change the var for line wait
-                b_isColliding = true;
-            }
-        }
-    }
-
     /// <summary>
     /// This Function calculates the X offset
     /// - Riley
@@ -199,9 +131,46 @@ public class S_ConstellationLine : MonoBehaviour
 
             if (!b_starAdded)
             {
-                //make the line wait to go to the constellation manager too delete itself
-                StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar, this));
-                b_starAdded = true;
+                //do a raycast to find all potential collisions
+                RaycastHit2D hit = Physics2D.Raycast(_endPoint, _startPoint - _endPoint);
+
+
+                Debug.Log("The hit distance = " + hit.distance);
+                Debug.Log(hit.collider);
+
+                if (hit.collider != null)
+                {
+                    Debug.Log("Did Hit");
+
+                    if (hit.transform.tag == "Star")
+                    {
+                        if (hit.transform.GetComponent<S_StarClass>() == s_nextStar)
+                        {
+                            Debug.Log("We hit?");
+                            //make the line wait to go to the constellation manager too delete itself
+                            StartCoroutine(g_global.g_ConstellationManager.LineWait(s_nextStar, this));
+                            b_starAdded = true;
+                        }
+                        else
+                        {
+                            //change the color to error
+                            m_lineRendererInst.startColor = cl_errorLineColor;
+                            m_lineRendererInst.endColor = cl_errorLineColor;
+
+                            //change the var for line wait
+                            b_isColliding = true;
+                        }
+                    }
+                    else
+                    {
+                        //change the color to error
+                        m_lineRendererInst.startColor = cl_errorLineColor;
+                        m_lineRendererInst.endColor = cl_errorLineColor;
+
+                        //change the var for line wait
+                        b_isColliding = true;
+                    }
+                }
             }
         }
     }

@@ -25,10 +25,13 @@ public class S_GameManager : MonoBehaviour
 
     public float f_sfxVolume;
 
-    //Status Effects
+    [Header("Status Effects")]
     public bool b_bleeding = false;
     public bool b_resistant = false;
     public bool b_stunned = false;
+
+    [Header("Boss Health Value")]
+    public int e_i_bossHealth;
 
     private void Awake()
     {
@@ -49,7 +52,6 @@ public class S_GameManager : MonoBehaviour
         Instance = this;
         GameObject.DontDestroyOnLoad(this.gameObject);
     }
-
 
     //Getters and Setters//
 
@@ -81,12 +83,21 @@ public class S_GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the health from the player
+    /// Get the health for the player
     /// </summary>
     /// <returns></returns>
     public int GetHealth()
     {
         return i_playerHealth;
+    }
+
+    /// <summary>
+    /// Get the health from the boss
+    /// </summary>
+    /// <returns></returns>
+    public int GetBossHealth()
+    {
+        return e_i_bossHealth;
     }
 
     /// <summary>
@@ -101,5 +112,15 @@ public class S_GameManager : MonoBehaviour
         {
             i_playerHealth = i_healthMax;
         }
+    }
+
+    public void SetPlayerHealthState(int _value)
+    {
+        i_playerHealth = _value;
+    }
+
+    public void SetBossHealthState(int _value)
+    {
+        e_i_bossHealth = _value;
     }
 }

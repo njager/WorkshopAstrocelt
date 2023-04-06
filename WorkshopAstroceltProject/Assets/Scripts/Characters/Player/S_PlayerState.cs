@@ -39,6 +39,8 @@ public class S_PlayerState : MonoBehaviour
         PlayerWinOrLose(); // Update isn't evil, we want some things to be instantanous - Josh
 
         // It's become evil -J
+
+        g_global.g_gameManager.SetPlayerHealthState(g_global.g_playerAttributeSheet.GetPlayerHealthValue());
     }
 
     /// <summary>
