@@ -52,11 +52,12 @@ MonoBehaviour:
   i_shieldMax: 10000
   f_playerEnergyGenerationRate: 1
   i_bones: 0
-  f_masterVolume: 50
-  f_sfxVolume: 50
+  f_masterVolume: 100
+  f_sfxVolume: 100
   b_bleeding: 0
   b_resistant: 0
   b_stunned: 0
+  e_i_bossHealth: 0
 --- !u!114 &8238026520514395602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baedd767daa162f4faa308db38472125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_gameManager: {fileID: 0}
   globalTrackEmitter: {fileID: 519411096325675158}
 --- !u!1 &3794661849869480059
 GameObject:
