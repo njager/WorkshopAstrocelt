@@ -129,6 +129,13 @@ public class S_ConstelationManager : MonoBehaviour
     {
         //g_global.g_resourceGraphic.BonusTracker(_star);
 
+        //change the star sound here if the line is formed
+        i_starSound++;
+
+        //Victor's sound
+        var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Note Order", i_starSound);
+
         //add to data structure
         ls_curConstellation.Add(_star);
 
@@ -162,12 +169,11 @@ public class S_ConstelationManager : MonoBehaviour
         //check the star type
         else if (_star.starType == "Ritual")
         {
-            //change the star sound here if the line is formed
-            i_starSound++;
+            //add to data structure
+            ls_curConstellation.Add(_star);
 
-            //Victor's sound
-            var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("Note Order", i_starSound);
+            //add star to clicked list
+            ls_clickedStars.Add(_star);
 
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
@@ -203,13 +209,6 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else
         {
-            //change the star sound here if the line is formed
-            i_starSound++;
-
-            //Victor's sound
-            var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("Note Order", i_starSound);
-
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
 
