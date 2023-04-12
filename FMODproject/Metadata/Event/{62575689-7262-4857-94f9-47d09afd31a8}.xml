@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{62575689-7262-4857-94f9-47d09afd31a8}">
 		<property name="name">
-			<value>Nested Event 2</value>
+			<value>Event</value>
 		</property>
 		<property name="outputFormat">
 			<value>5</value>
@@ -83,7 +83,6 @@
 		</relationship>
 		<relationship name="modules">
 			<destination>{c8a02436-e6d4-42b9-9786-eb5ada508946}</destination>
-			<destination>{a63016f8-408c-4b33-96b8-da83eae7e6ad}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{8766fe5e-4559-4cf8-8d1e-4ed1fb660a9a}</destination>
@@ -106,7 +105,6 @@
 			<destination>{c6798f8d-2e3c-4dfa-9c82-bf82eeac3fa9}</destination>
 			<destination>{b5fff613-05d5-4b6f-9f13-3d8de468f3f2}</destination>
 			<destination>{c8a02436-e6d4-42b9-9786-eb5ada508946}</destination>
-			<destination>{a63016f8-408c-4b33-96b8-da83eae7e6ad}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{f82d785c-e158-4e8f-95e3-1e83d815ba0c}">
@@ -245,17 +243,6 @@
 		</property>
 		<relationship name="sound">
 			<destination>{e5e11cf6-845f-427b-b569-f0fb032f5d9b}</destination>
-		</relationship>
-	</object>
-	<object class="EventSound" id="{a63016f8-408c-4b33-96b8-da83eae7e6ad}">
-		<property name="start">
-			<value>41</value>
-		</property>
-		<property name="length">
-			<value>2</value>
-		</property>
-		<relationship name="event">
-			<destination>{f71fa339-f120-48f9-905c-2718fd3f374b}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{8766fe5e-4559-4cf8-8d1e-4ed1fb660a9a}">
