@@ -122,7 +122,6 @@ public class S_ResourceGraphics : MonoBehaviour
         if (_starColor.Equals("red"))
         {
             //turn off the other containers and turn on the red one
-            sc_UIManager.GetDefaultBonusContainer().GetComponent<Image>().DOFade(0f, .5f);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(false);
@@ -167,7 +166,6 @@ public class S_ResourceGraphics : MonoBehaviour
         else if (_starColor.Equals("yellow"))
         {
             //turn off the other containers and turn on the yellow one
-            sc_UIManager.GetDefaultBonusContainer().GetComponent<Image>().DOFade(0f, .5f);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(false);
             sc_UIManager.GetYellowBonusContainer().SetActive(true);
@@ -213,7 +211,6 @@ public class S_ResourceGraphics : MonoBehaviour
         else if (_starColor.Equals("blue"))
         {
             //turn off the other containers and turn on the blue one
-            sc_UIManager.GetDefaultBonusContainer().GetComponent<Image>().DOFade(0f, 1.5f);
             sc_UIManager.GetDefaultBonusContainer().SetActive(false);
             sc_UIManager.GetBlueBonusContainer().SetActive(true);
             sc_UIManager.GetBlueBonusContainer().GetComponent<Image>().DOFade(100f, 1.5f);
