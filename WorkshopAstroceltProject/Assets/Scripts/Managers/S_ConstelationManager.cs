@@ -169,6 +169,12 @@ public class S_ConstelationManager : MonoBehaviour
         //check the star type
         else if (_star.starType == "Ritual")
         {
+            //add to data structure
+            ls_curConstellation.Add(_star);
+
+            //add star to clicked list
+            ls_clickedStars.Add(_star);
+
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
 

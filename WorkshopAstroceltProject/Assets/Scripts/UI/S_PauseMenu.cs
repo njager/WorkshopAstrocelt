@@ -36,7 +36,7 @@ public class S_PauseMenu : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
     public float musicVolume;
-    public float sfxVolume = 50f;
+    public float sfxVolume = 100f;
 
     private bool p_b_tutIsOn = false;
 
