@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{d5339b2f-4c21-4763-9563-649565e2efb3}">
 		<property name="name">
-			<value>player-lose-1</value>
+			<value>player-lose</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -46,6 +46,9 @@
 		</relationship>
 	</object>
 	<object class="MixerInput" id="{572ce933-1da1-4abf-8914-45b2c91a8535}">
+		<relationship name="masters">
+			<destination>{e41a3bc9-34c3-4e72-a41c-43c88f40fa55}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{df442736-84f5-4454-9311-0c195af40d1b}</destination>
 		</relationship>
