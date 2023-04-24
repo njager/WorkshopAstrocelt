@@ -51,6 +51,9 @@ public class S_GameManager : MonoBehaviour
 
         Instance = this;
         GameObject.DontDestroyOnLoad(this.gameObject);
+
+
+        S_FMODStaticSceneIdentifier.SetMusicVolumeFloat(f_masterVolume);
     }
 
     //Getters and Setters//

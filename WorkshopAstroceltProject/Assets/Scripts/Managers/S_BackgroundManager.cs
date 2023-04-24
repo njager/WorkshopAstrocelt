@@ -46,12 +46,4 @@ public class S_BackgroundManager : MonoBehaviour
 
         }
     }
-
-    /// <summary>
-    /// Turn off maps
-    /// </summary>
-    public void TurnOffMaps() 
-    {
-
-    }
 }

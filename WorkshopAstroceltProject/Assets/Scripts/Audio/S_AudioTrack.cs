@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,10 @@ public class S_AudioTrack : MonoBehaviour
 
     private float vol = 100;
 
+    public int i_currentScene = 0;
+
+    public StudioEventEmitter emitter;
+
 
 
     public float f_timeInScene = 0;
@@ -32,7 +37,6 @@ public class S_AudioTrack : MonoBehaviour
     void Start()
     {
         g_global = S_Global.Instance;
-        
     }
 
     void Update()
@@ -46,38 +50,38 @@ public class S_AudioTrack : MonoBehaviour
         //i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
 
         if (b_eventScene)
-        {
-            var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-            
+        {    
             emitter.SetParameter("TimeInScene", f_timeInScene);
+
+            i_currentScene= 0;
             
-            emitter.SetParameter("CurrentScene", 0);
+            emitter.SetParameter("CurrentScene", i_currentScene);
         }
         else if (b_combatScene)
-        {
-            var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-            
+        {            
             emitter.SetParameter("PlayerHealth", (float)i_playerHealth);
-                        
+
             emitter.SetParameter("TimeInScene", f_timeInScene);
 
-            emitter.SetParameter("CurrentScene", 1);
+            i_currentScene = 1;
+
+            emitter.SetParameter("CurrentScene", i_currentScene);
         }
         else if (b_bossScene)
-        {
-            var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
-            
+        {            
             emitter.SetParameter("PlayerHealth", (float)i_playerHealth);
             
             emitter.SetParameter("TimeInScene", f_timeInScene);
 
-            emitter.SetParameter("CurrentScene", 2);
+            i_currentScene = 2;
+
+            emitter.SetParameter("CurrentScene", i_currentScene);
         }
         else if (b_mainMenuScene)
         {
-            var emitter = _sceneAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+            i_currentScene = 3;
 
-            emitter.SetParameter("CurrentScene", 3);
+            emitter.SetParameter("CurrentScene", i_currentScene);
         }
         else { Debug.Log("No scene music selected"); }
     }

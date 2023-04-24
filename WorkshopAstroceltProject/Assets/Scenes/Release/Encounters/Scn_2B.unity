@@ -3019,6 +3019,17 @@ Transform:
   m_Father: {fileID: 734767346}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2078408481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 519411096325675158, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+  m_PrefabInstance: {fileID: 1276164755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2080584401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,6 +3090,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 222980473611423627, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
+      propertyPath: emitter
+      value: 
+      objectReference: {fileID: 2078408481}
     - target: {fileID: 222980473611423627, guid: 5176b03a3dfc50d4ea2e7339597bd165, type: 3}
       propertyPath: b_combatScene
       value: 1

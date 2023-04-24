@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class S_ConstelationManager : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Energy Star Prefab")]
     public GameObject s_energyStarPrefab;
 
+    public StudioEventEmitter emitter;
+
     private void Awake()
     {
         //fetch global, get set previous as null, and start with star lockout
@@ -127,14 +130,14 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
-        //g_global.g_resourceGraphic.BonusTracker(_star);
 
         //change the star sound here if the line is formed
         i_starSound++;
 
         //Victor's sound
-        var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Note Order", i_starSound);
+
+        //g_global.g_resourceGraphic.BonusTracker(_star);
 
         //add to data structure
         ls_curConstellation.Add(_star);

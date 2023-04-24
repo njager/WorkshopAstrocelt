@@ -3436,6 +3436,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3794661849869480059, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
   m_PrefabInstance: {fileID: 420563462}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &538520004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 519411096325675158, guid: 218cc74f9c1907041910a7e6314d6ca0, type: 3}
+  m_PrefabInstance: {fileID: 420563462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538520003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &589668466
 GameObject:
   m_ObjectHideFlags: 0
@@ -8064,6 +8075,8 @@ MonoBehaviour:
   b_bossScene: 0
   b_mainMenuScene: 1
   f_intensityBreakpoint: 0
+  i_currentScene: 0
+  emitter: {fileID: 538520004}
   f_timeInScene: 0
   _sceneAudio: {fileID: 538520003}
   i_playerHealth: 0
