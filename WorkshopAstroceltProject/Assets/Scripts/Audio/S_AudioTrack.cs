@@ -8,6 +8,8 @@ public class S_AudioTrack : MonoBehaviour
 {
     private S_Global g_global;
 
+    private S_GameManager gameManager;
+
     [Header("Scene Music")]
     [SerializeField] public bool b_eventScene;
 
@@ -37,6 +39,12 @@ public class S_AudioTrack : MonoBehaviour
     void Start()
     {
         g_global = S_Global.Instance;
+
+        gameManager = S_GameManager.Instance;
+
+        emitter = gameManager.GetComponentInChildren<StudioEventEmitter>();
+
+        i_playerHealth = gameManager.i_playerHealth;
     }
 
     void Update()
