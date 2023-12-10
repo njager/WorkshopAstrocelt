@@ -337,6 +337,9 @@ public class S_EnergyStar : MonoBehaviour
                     s_blueEnergyStarGraphic.GetComponent<Animator>().enabled = false;
                 }
 
+                //decrement the star sound
+                g_global.g_ConstellationManager.i_starSound -= 1;
+
                 g_global.g_DrawingManager.GoBackOnce(_starClassScript.s_star.m_previousLine.gameObject);
             }
         }

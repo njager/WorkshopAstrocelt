@@ -187,8 +187,8 @@ public class S_EnemyState : MonoBehaviour
             g_global.g_gameManager.SetBossHealthState(g_global.g_enemyAttributeSheet1.GetEnemyHealthValue());
         }
 
-            //If the enemy 1 healths or goes over in shields from abilities, or they die
-            if (g_global.g_enemyAttributeSheet1 != null)
+        //If the enemy 1 healths or goes over in shields from abilities, or they die
+        if (g_global.g_enemyAttributeSheet1 != null)
         {
             if (g_global.g_enemyAttributeSheet1.e_i_health > g_global.g_enemyAttributeSheet1.e_i_healthMax)
             {

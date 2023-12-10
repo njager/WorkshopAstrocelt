@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{1320ab1c-6d4c-44df-bf73-f14462429491}">
 		<property name="name">
-			<value>player-win-combat-1</value>
+			<value>player-win-combat</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -46,6 +46,9 @@
 		</relationship>
 	</object>
 	<object class="MixerInput" id="{fd527515-ba76-4bcd-ac1a-a155a88868e4}">
+		<relationship name="masters">
+			<destination>{e41a3bc9-34c3-4e72-a41c-43c88f40fa55}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{9c44bd0f-e6db-4468-bc3a-de71edf8c39e}</destination>
 		</relationship>

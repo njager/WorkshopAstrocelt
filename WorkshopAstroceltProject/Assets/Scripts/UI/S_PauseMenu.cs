@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Newtonsoft.Json.Linq;
 
 public class S_PauseMenu : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class S_PauseMenu : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
     public float musicVolume;
-    public float sfxVolume = 50f;
+    public float sfxVolume = 100f;
 
     private bool p_b_tutIsOn = false;
 
@@ -70,7 +71,7 @@ public class S_PauseMenu : MonoBehaviour
     public void OnValueChanged(float value)
     {
         S_FMODStaticSceneIdentifier.SetMusicVolumeFloat(value);
-        //g_global.g_gameManager.f_masterVolume = value;
+        g_global.g_gameManager.f_masterVolume = value;
     }
 
     public void SFXValueChanged(float value)
@@ -93,6 +94,7 @@ public class S_PauseMenu : MonoBehaviour
         musicSlider.value = musicVolume;
 
 
+        S_FMODStaticSceneIdentifier.SetMusicVolumeFloat(musicVolume);
 
         fullscreenTog.isOn = Screen.fullScreen;
         bool foundRes = false;

@@ -394,6 +394,9 @@ public class S_PlayerState : MonoBehaviour
             g_global.g_gameManager.i_playerHealth = g_global.g_playerAttributeSheet.GetPlayerHealthValue();
             //Debug.Log("Player health " + g_global.g_gameManager.i_playerHealth);
 
+            //Play win sound
+            PlaySoundWin();
+
             //go to the new scene
             if (g_global.g_sceneManager.b_toEventScene)
             {

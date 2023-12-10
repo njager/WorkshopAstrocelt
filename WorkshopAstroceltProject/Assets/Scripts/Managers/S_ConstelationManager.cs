@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class S_ConstelationManager : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class S_ConstelationManager : MonoBehaviour
     [Header("Energy Star Prefab")]
     public GameObject s_energyStarPrefab;
 
+    public StudioEventEmitter emitter;
+
     private void Awake()
     {
         //fetch global, get set previous as null, and start with star lockout
@@ -76,6 +79,8 @@ public class S_ConstelationManager : MonoBehaviour
 
         // Get popups to not move at first
         s_b_popupMove = false; 
+
+        emitter = _starSoundPhase1.GetComponent<StudioEventEmitter>();
     }
 
     /// <summary>
@@ -127,6 +132,13 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_star"></param>
     public void AddStarToCurConstellation(S_StarClass _star)
     {
+
+        //change the star sound here if the line is formed
+        i_starSound++;
+
+        //Victor's sound
+        emitter.SetParameter("Note Order", i_starSound);
+
         //g_global.g_resourceGraphic.BonusTracker(_star);
 
         //add to data structure
@@ -162,12 +174,11 @@ public class S_ConstelationManager : MonoBehaviour
         //check the star type
         else if (_star.starType == "Ritual")
         {
-            //change the star sound here if the line is formed
-            i_starSound++;
+            //add to data structure
+            ls_curConstellation.Add(_star);
 
-            //Victor's sound
-            var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("Note Order", i_starSound);
+            //add star to clicked list
+            ls_clickedStars.Add(_star);
 
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
@@ -203,13 +214,6 @@ public class S_ConstelationManager : MonoBehaviour
         }
         else
         {
-            //change the star sound here if the line is formed
-            i_starSound++;
-
-            //Victor's sound
-            var emitter = _starSoundPhase1.GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("Note Order", i_starSound);
-
             //set the currentconsecutive energy
             g_global.g_consecutiveColorTrackerManager.ColorTrackerCheck(_star.colorType);
 
@@ -571,7 +575,7 @@ public class S_ConstelationManager : MonoBehaviour
     /// <param name="_boolState"></param>
     public void SetStarLockOutBool(bool _boolState)
     {
-        Debug.Log("Star lockout bool is..." + _boolState.ToString());
+        //Debug.Log("Star lockout bool is..." + _boolState.ToString());
         b_starLockout = _boolState;
     }
 

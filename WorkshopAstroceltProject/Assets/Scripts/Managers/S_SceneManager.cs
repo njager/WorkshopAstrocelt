@@ -83,17 +83,12 @@ public class S_SceneManager : MonoBehaviour
         //lock out the player from drawing
         g_global.g_ConstellationManager.SetStarLockOutBool(false);
 
-        g_global.g_ConstellationManager.DeleteWholeCurConstellation();
-
         // Line removal
         g_global.g_DrawingManager.b_lineDeletionCompletion = false;
         StartCoroutine(g_global.g_DrawingManager.LineDeletion());
 
         //clear the energy
         g_global.g_energyManager.ClearEnergy();
-
-        // Turn Off Maps
-        g_global.g_backgroundManager.TurnOffMaps();
 
         //Clear Popups
         //StartCoroutine(g_global.g_popupManager.ClearAllPopups());

@@ -29,7 +29,6 @@ Transform:
   m_Children:
   - {fileID: 3324856005553266562}
   - {fileID: 1649471967140821332}
-  - {fileID: 9201668543515816022}
   - {fileID: 8032768113480216110}
   m_Father: {fileID: 2497990690041559864}
   m_RootOrder: 0
@@ -82,7 +81,10 @@ MonoBehaviour:
   b_eventScene: 0
   b_combatScene: 0
   b_bossScene: 0
+  b_mainMenuScene: 0
   f_intensityBreakpoint: 15
+  i_currentScene: 0
+  emitter: {fileID: 0}
   f_timeInScene: 0
   _sceneAudio: {fileID: 6945479483261178311}
   i_playerHealth: 0
@@ -396,7 +398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2497990689578947692}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &37595930818983332
 MonoBehaviour:
@@ -519,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Music/player-lose-1
+  Event: event:/Music/player-lose
   PlayEvent: 11
   StopEvent: 0
   AllowFadeout: 1
@@ -627,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Music/player-win-combat-1
+  Event: event:/Music/player-win-combat
   PlayEvent: 11
   StopEvent: 0
   AllowFadeout: 1
@@ -732,57 +734,3 @@ Transform:
   m_Father: {fileID: 2497990690667023714}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8963451779003273411
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9201668543515816022}
-  - component: {fileID: 8432486445946445973}
-  m_Layer: 0
-  m_Name: Combat
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &9201668543515816022
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8963451779003273411}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2497990689578947692}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8432486445946445973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8963451779003273411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/Music/Ambience/Combat
-  PlayEvent: 11
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
